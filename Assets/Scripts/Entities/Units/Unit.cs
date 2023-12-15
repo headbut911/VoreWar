@@ -2004,37 +2004,39 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
     private void RandomizeTraits()
     {
-        while (true) { 
-        var customs = Tags.Where(t => State.RandomizeLists.Any(rl => (Traits)rl.id == t)).ToList();
-            customs.AddRange(PermanentTraits.Where(t => State.RandomizeLists.Any(rl => (Traits)rl.id == t)));
+        while (true)
+        {
+            var customs = Tags.Where(t => State.RandomizeLists.Any(rl => (Traits)rl.id == t)).ToList();
+            customs.AddRange(PermanentTraits.Where(t => State.RandomizeLists.Any(rl => (Traits)rl.id == t && rl.level <= level)));
             if (!customs.Any())
                 break;
-        customs.ForEach(ct =>
-        {
-            RandomizeList randomizeList = State.RandomizeLists.Single(rl => (Traits)rl.id == ct);
-            var chance = randomizeList.chance;
-            while (chance > 0 && State.Rand.NextDouble() < randomizeList.chance)
+            customs.ForEach(ct =>
             {
-                List<Traits> gainable = randomizeList.RandomTraits.Where(rt => !Tags.Contains(rt) && !PermanentTraits.Contains(rt)).ToList();
-                if (gainable.Count() > 0)
-                {
-                    var randomPick = gainable[State.Rand.Next(gainable.Count())];
-                    PermanentTraits.Add(randomPick);
-                    RemovedTraits?.Remove(randomPick); // Even if manually removed before, rng-sus' word is law
-                    gainable.Remove(randomPick);
-                    GivePrerequisiteTraits(randomPick);
-                }
-                chance -= 1;
-            }
-            if (RemovedTraits == null)
-                RemovedTraits = new List<Traits>();
-            RemovedTraits.Add(ct);
-            foreach (Traits trait in RemovedTraits)
-            {
-                Tags.Remove(trait);
-                PermanentTraits.Remove(trait);
-            }
-        });
+                    RandomizeList randomizeList = State.RandomizeLists.Single(rl => (Traits)rl.id == ct);
+                    var chance = randomizeList.chance;
+                    while (chance > 0 && State.Rand.NextDouble() < randomizeList.chance)
+                    {
+                        List<Traits> gainable = randomizeList.RandomTraits.Where(rt => !Tags.Contains(rt) && !PermanentTraits.Contains(rt)).ToList();
+                        if (gainable.Count() > 0)
+                        {
+                            var randomPick = gainable[State.Rand.Next(gainable.Count())];
+                            PermanentTraits.Add(randomPick);
+                            RemovedTraits?.Remove(randomPick); // Even if manually removed before, rng-sus' word is law
+                            gainable.Remove(randomPick);
+                            GivePrerequisiteTraits(randomPick);
+                        }
+                        chance -= 1;
+                    }
+                    if (RemovedTraits == null)
+                        RemovedTraits = new List<Traits>();
+                    RemovedTraits.Add(ct);
+                    foreach (Traits trait in RemovedTraits)
+                    {
+                        Tags.Remove(trait);
+                        PermanentTraits.Remove(trait);
+                    }
+                
+            });
         }
 
     }
@@ -2195,6 +2197,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             Health += 4;
         }
+        RandomizeTraits();
     }
 
     public void LeaderLevelDown()
@@ -2858,6 +2861,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
     internal List<Traits> RandomizeOne(RandomizeList randomizeList)
     {
+
         var chance = randomizeList.chance;
         var traitsToAdd = new List<Traits>();
         List<Traits> gainable = randomizeList.RandomTraits.Where(rt => !Tags.Contains(rt) && !PermanentTraits.Contains(rt)).ToList();
