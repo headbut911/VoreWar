@@ -1592,15 +1592,21 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             if (!(hideSecret && secretTags.Contains(Tags[i])))
             {
+                bool color = false;
+                string tagString = "";
                 if (ret != "")
                     ret += "\n";
                 if (TemporaryTraits != null && TemporaryTraits.Count > 0 && TemporaryTraits.Contains(Tags[i]))
                 {
                     if (PermanentTraits != null && PermanentTraits.Count > 0 && !PermanentTraits.Contains(Tags[i]))
-                        ret += "<color=#402B8Dff>" + Tags[i].ToString() + "</color>";
+                        color = true;
                 }
+                if (State.RandomizeLists.Any(rl => (Traits)rl.id == Tags[i]))
+                    tagString = State.RandomizeLists.Where(rl => (Traits)rl.id == Tags[i]).FirstOrDefault().name;
                 else
-                    ret += Tags[i].ToString();
+                    tagString = Tags[i].ToString();
+
+                ret += color ? "<color=#402B8Dff>" + tagString + "</color>" : tagString;
             }
         }
         if (PermanentTraits != null && PermanentTraits.Count > 0)
@@ -1613,8 +1619,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 {
                     if (ret != "")
                         ret += "\n";
-                    ret += PermanentTraits[i].ToString();
-                }
+                    if (State.RandomizeLists.Any(rl => (Traits)rl.id == PermanentTraits[i]))
+                        ret += State.RandomizeLists.Where(rl => (Traits)rl.id == PermanentTraits[i]).FirstOrDefault().name;
+                    else
+                        ret += PermanentTraits[i].ToString();
+                    }
             }
         }
         return ret;
@@ -2006,7 +2015,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
     {
         while (true)
         {
-            var customs = Tags.Where(t => State.RandomizeLists.Any(rl => (Traits)rl.id == t)).ToList();
+            var customs = Tags.Where(t => State.RandomizeLists.Any(rl => (Traits)rl.id == t && rl.level <= level)).ToList();
             customs.AddRange(PermanentTraits.Where(t => State.RandomizeLists.Any(rl => (Traits)rl.id == t && rl.level <= level)));
             if (!customs.Any())
                 break;
@@ -2861,7 +2870,10 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
     internal List<Traits> RandomizeOne(RandomizeList randomizeList)
     {
-
+        if (randomizeList.level > Level)
+            {
+                return new List<Traits>() { (Traits)randomizeList.id };
+            }
         var chance = randomizeList.chance;
         var traitsToAdd = new List<Traits>();
         List<Traits> gainable = randomizeList.RandomTraits.Where(rt => !Tags.Contains(rt) && !PermanentTraits.Contains(rt)).ToList();
