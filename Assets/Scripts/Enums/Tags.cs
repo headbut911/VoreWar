@@ -368,6 +368,8 @@ public enum Traits
     ManaBarrier = 185,
     /// <summary>Unit's BladeDance, Tenacity, and Focus stack loss is reduced by if stacks are below 10% current HP.</summary>
     Unflinching = 186,
+    /// <summary>Unit's stats are boosted by 220% But needs more EXP to level.</summary>
+    Elite = 1083,
 
 
     //Hidden Traits
