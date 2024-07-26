@@ -15,6 +15,7 @@ public enum ItemType
     Gloves,
     Shoes,
 
+    Meditate,
     FireBall,
     PowerBolt,
     LightningBolt,
