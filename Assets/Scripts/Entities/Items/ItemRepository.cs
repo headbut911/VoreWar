@@ -19,7 +19,6 @@ public enum ItemType
     FireBall,
     PowerBolt,
     LightningBolt,
-    Meditate,
     Shield,
     Mending,
     Speed,
