@@ -951,6 +951,10 @@ public class Actor_Unit
             {
                 damageScalar *= 1.25f;
             }
+            if (Unit.GetStatusEffect(StatusEffectType.Bloodrite) != null)
+            {
+                damageScalar *= 2f;
+            }
             if (target.Unit.GetStatusEffect(StatusEffectType.Shielded) != null)
             {
                 damageScalar *= 1 - target.Unit.GetStatusEffect(StatusEffectType.Shielded).Strength;
@@ -988,6 +992,10 @@ public class Actor_Unit
             if (Unit.GetStatusEffect(StatusEffectType.Valor) != null)
             {
                 damageScalar *= 1.25f;
+            }
+            if (Unit.GetStatusEffect(StatusEffectType.Bloodrite) != null)
+            {
+                damageScalar *= 2f;
             }
             if (target.Unit.GetStatusEffect(StatusEffectType.Shielded) != null)
             {
