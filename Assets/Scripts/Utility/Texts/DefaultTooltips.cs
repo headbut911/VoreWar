@@ -708,6 +708,8 @@ Does not retroactively affect already created units.";
                 return "Controls how many movement points scout sized armies start with every turn.";
             case 285:
                 return "Determines the maximum amount of units allowed to be in a scout army(Set to 0 to disable feature).";
+            case 286:
+                return "Controls if when a unit auto-surrenders if they are healed to full health. Can be changed from if only defecting units are healed, only units that remain loyal are healed, or if all auto-surrendered unit are healed.";
             default:
                 return "";
         }
