@@ -704,6 +704,10 @@ Does not retroactively affect already created units.";
                 return "Modifies how fast an army returns to it's standard MP generation. \nA mod value of -100% with a curve of 50% will cause an army to have 0 MP for it's first turn and half of it's MP on it's next turn.";
             case 283:
                 return "Replaces scat with diapers for absorbed units and diaper-related tactical log messages will be displayed.";
+            case 284:
+                return "Controls how many bonus movement points scout sized armies start with every turn. When scouts use their bonus MP they will have decreased MP by the amount uesd the following turn";
+            case 285:
+                return "Determines the maximum amount of units allowed to be in a scout army(Set to 0 to disable feature).";
             case 286:
                 return "Controls if when a unit auto-surrenders if they are healed to full health. Can be changed from if only defecting units are healed, only units that remain loyal are healed, or if all auto-surrendered unit are healed.";
             default:
