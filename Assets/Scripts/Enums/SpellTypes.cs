@@ -39,6 +39,8 @@
     Meditate = 27,
     Bloodrite = 28,
 
+    Conduit = 27,
+
     AlraunePuff = 70,
     Web = 71,
     GlueBomb = 72,

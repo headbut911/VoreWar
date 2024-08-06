@@ -2534,9 +2534,18 @@ public class Actor_Unit
 
         if (target != null)
         {
-            if (spell.AreaOfEffect > 0)
+            if (spell.AreaOfEffect > 0 && spell.AOEType == AreaOfEffectType.Full)
             {
                 foreach (var splashTarget in TacticalUtilities.UnitsWithinTiles(target.Position, spell.AreaOfEffect).Where(s => s.Unit.IsDead == false))
+                {
+                    splashTarget.DefendDamageSpell(spell, this, spell.Damage(this, splashTarget));
+                    CheckDead(splashTarget);
+                }
+                State.GameManager.SoundManager.PlaySpellHit(spell, target.UnitSprite.transform.position);
+            }
+            else if (spell.AOEType == AreaOfEffectType.FixedPattern)
+            {
+                foreach (var splashTarget in TacticalUtilities.UnitsWithinPattern(target.Position, spell.Pattern).Where(s => s.Unit.IsDead == false))
                 {
                     splashTarget.DefendDamageSpell(spell, this, spell.Damage(this, splashTarget));
                     CheckDead(splashTarget);
@@ -2552,7 +2561,7 @@ public class Actor_Unit
                 CheckDead(target);
             }
         }
-        else if (targetArea != null && spell.AreaOfEffect > 0)
+        else if (targetArea != null && spell.AreaOfEffect > 0 && spell.AOEType == AreaOfEffectType.Full)
         {
             foreach (var splashTarget in TacticalUtilities.UnitsWithinTiles(targetArea, spell.AreaOfEffect).Where(s => s.Unit.IsDead == false))
             {
@@ -2560,6 +2569,15 @@ public class Actor_Unit
                 CheckDead(splashTarget);
             }
             State.GameManager.SoundManager.PlaySpellHit(spell, targetArea);
+        }
+        else if (spell.AOEType == AreaOfEffectType.FixedPattern)
+        {
+            foreach (var splashTarget in TacticalUtilities.UnitsWithinPattern(target.Position, spell.Pattern).Where(s => s.Unit.IsDead == false))
+            {
+                splashTarget.DefendDamageSpell(spell, this, spell.Damage(this, splashTarget));
+                CheckDead(splashTarget);
+            }
+            State.GameManager.SoundManager.PlaySpellHit(spell, target.UnitSprite.transform.position);
         }
         if (Unit.TraitBoosts.SpellAttacks > 1)
         {
