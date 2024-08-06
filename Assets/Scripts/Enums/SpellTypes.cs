@@ -39,7 +39,7 @@
     Meditate = 27,
     Bloodrite = 28,
 
-    Conduit = 27,
+    Conduit = 29,
 
     AlraunePuff = 70,
     Web = 71,
