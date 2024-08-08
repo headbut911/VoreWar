@@ -64,6 +64,7 @@ public class TacticalMode : SceneBase
 
     public AnimatedTile Pyre;
     public Tile Ice;
+    public AnimatedTile Smoke;
 
     bool[,] BlockedTile;
     bool[,] BlockedClimberTile;
@@ -4439,6 +4440,15 @@ Turns: {currentTurn}
                     {
                         Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> took <color=red>{damage}</color> points of fire damage");
                     }
+                }
+            }
+            if (key.Value.Type == TileEffectType.Smoke)///Currently gets applied only at end of turns and remains even when unit leaves smoke
+            {
+                var actor = TacticalUtilities.GetActorAt(key.Key);
+                if (actor != null)
+                {
+                    actor.Unit.TraitBoosts.Incoming.RangedShift += 2f;
+                    actor.Unit.TraitBoosts.Incoming.MeleeShift += 1.6f;
                 }
             }
             if (key.Value.RemainingDuration <= 0)

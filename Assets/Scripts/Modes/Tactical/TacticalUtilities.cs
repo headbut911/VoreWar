@@ -950,6 +950,9 @@ static class TacticalUtilities
                     case TileEffectType.IcePatch:
                         State.GameManager.TacticalMode.EffectTileMap.SetTile(new Vector3Int(position.x, position.y, 0), State.GameManager.TacticalMode.Ice);
                         break;
+                    case TileEffectType.Smoke:
+                        State.GameManager.TacticalMode.EffectTileMap.SetTile(new Vector3Int(position.x, position.y, 0), State.GameManager.TacticalMode.Smoke);
+                        break;
                 }
             }
         }

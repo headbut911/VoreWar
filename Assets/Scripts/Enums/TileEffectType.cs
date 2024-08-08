@@ -1,6 +1,7 @@
 ﻿public enum TileEffectType
 {
     Fire,
-    IcePatch
+    IcePatch,
+    Smoke
 }
 

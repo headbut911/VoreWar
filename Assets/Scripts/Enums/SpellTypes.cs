@@ -40,6 +40,7 @@
     Bloodrite = 28,
 
     Conduit = 29,
+    SmokeScreen = 30,
 
     AlraunePuff = 70,
     Web = 71,
