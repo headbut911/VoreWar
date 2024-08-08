@@ -49,6 +49,7 @@ static class SpellList
     static internal readonly StatusSpell Valor;
     static internal readonly StatusSpell Predation;
     static internal readonly StatusSpell Charm;
+    static internal readonly DamageSpell SmokeScreen;
 
     static internal readonly DamageSpell IceBlast;
     static internal readonly DamageSpell Pyre;
@@ -289,6 +290,31 @@ static class SpellList
             },
         };
         SpellDict[SpellTypes.Predation] = Predation;
+
+        SmokeScreen = new DamageSpell()
+        {
+            Name = "Smoke Screen",
+            Id = "smokescreen",
+            SpellType = SpellTypes.SmokeScreen,
+            Description = "Creates a cloud of smoke that increases the evasion of units within it",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Ally, AbilityTargets.Tile },
+            Range = new Range(3),
+            AreaOfEffect = 1,
+            Tier = 1,
+            Damage = (a, t) => 0,
+            Resistable = false,
+            OnExecute = (a, t) =>
+            {
+                a.CastOffensiveSpell(SmokeScreen, t);
+                TacticalUtilities.CreateEffect(t.Position, TileEffectType.Smoke, 1, 1 + a.Unit.GetStat(Stat.Mind) / 30, 4);
+            },
+            OnExecuteTile = (a, l) =>
+            {
+                a.CastOffensiveSpell(SmokeScreen, null, l);
+                TacticalUtilities.CreateEffect(l, TileEffectType.Smoke, 1, 1 + a.Unit.GetStat(Stat.Mind) / 30, 4);
+            },
+        };
+        SpellDict[SpellTypes.SmokeScreen] = SmokeScreen;
 
         IceBlast = new DamageSpell()
         {
