@@ -41,6 +41,7 @@
 
     ForcePulse = 35,
     Trance = 36,
+    FlameWave = 37,
 
 
 
