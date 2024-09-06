@@ -249,6 +249,10 @@ public class Empire
                 Income += Config.GoldMineIncome;
             }
         }
+        foreach (ConstructibleBuilding claimable in State.World.Constructibles)
+        {
+
+        }
         Income += Boosts.WealthAdd;
     }
 

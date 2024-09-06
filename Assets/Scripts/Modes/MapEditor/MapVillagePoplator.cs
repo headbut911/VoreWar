@@ -1,5 +1,6 @@
 ﻿using MapObjects;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 
 
 class MapVillagePopulator
@@ -85,6 +86,46 @@ class MapVillagePopulator
                 newClaimables.Add(new GoldMine(map.claimables[i].Position));
         }
         claimables = newClaimables.ToArray();
+    }
+
+    internal void PopulateConstructibles(Map map, ref ConstructibleBuilding[] claimables)
+    {
+        if (map.claimables == null)
+        {
+            claimables = new ConstructibleBuilding[0];
+            return;
+        }
+        List<ConstructibleBuilding> newConstructibles = new List<ConstructibleBuilding>();
+
+
+        for (int i = 0; i < map.constructibles.Length; i++)
+        {
+            if (map.constructibles[i].Type == ConstructibleType.WorkCamp)
+                newConstructibles.Add(new WorkCamp(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.LumberSite)
+                newConstructibles.Add(new LumberSite(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.Quarry)
+                newConstructibles.Add(new Quarry(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.CasterTower)
+                newConstructibles.Add(new CasterTower(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.BarrierTower)
+                newConstructibles.Add(new BarrierTower(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.DefEncampment)
+                newConstructibles.Add(new DefEncampment(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.AdventureGuild)
+                newConstructibles.Add(new AdventureGuild(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.BlackMagicTower)
+                newConstructibles.Add(new BlackMagicTower(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.TemporalTower)
+                newConstructibles.Add(new TemporalTower(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.Laborotory)
+                newConstructibles.Add(new Laborotory(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.Teleporter)
+                newConstructibles.Add(new Teleporter(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.TownHall)
+                newConstructibles.Add(new TownHall(map.constructibles[i].Position));
+        }
+        claimables = newConstructibles.ToArray();
     }
 
     int FarmSquares(Vec2i pos)

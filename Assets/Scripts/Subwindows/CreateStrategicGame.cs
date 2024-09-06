@@ -40,6 +40,7 @@ public struct StrategicCreationArgs
     internal int[] Team;
     internal int MercCamps;
     internal int GoldMines;
+    internal int AncientTeleporters;
 
     internal WorldGenerator.MapGenArgs MapGen;
 
@@ -87,6 +88,7 @@ public class CreateStrategicGame : MonoBehaviour
 
     public InputField GoldMines;
     public InputField MercenaryHouses;
+    public InputField AncientTeleporters;
 
     public Toggle SpawnTeamsTogether;
     public Toggle FirstTurnArmiesIdle;
@@ -620,6 +622,7 @@ public class CreateStrategicGame : MonoBehaviour
 
             }
             args.MercCamps = Convert.ToInt32(MercenaryHouses.text);
+            args.AncientTeleporters = Convert.ToInt32(AncientTeleporters.text);
             args.GoldMines = Convert.ToInt32(GoldMines.text);
             args.crazyBuildings = CrazyBuildings.isOn;
 

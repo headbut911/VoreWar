@@ -2492,6 +2492,16 @@ public class StrategyMode : SceneBase
                 }
 
             }
+            ConstructibleBuilding constructible = StrategicUtilities.GetConstructibleAt(new Vec2i(ClickX, ClickY));
+            if (constructible != null)
+            {
+                VillageTooltip.gameObject.SetActive(true);
+                if (constructible is GoldMine)
+                {
+                    VillageTooltip.Text.text = $"Gold Mine\nOwner: {claimable.Owner?.Name}\nGold Per Turn: {Config.GoldMineIncome}";
+                }
+
+            }
 
         }
         else

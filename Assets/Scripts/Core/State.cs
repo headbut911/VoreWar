@@ -318,10 +318,25 @@ public static class State
                 }
             }
 
+            if (World.AncientTeleporters == null)
+                World.AncientTeleporters = new MercenaryHouse[0];
+
+            foreach (MercenaryHouse house in World.MercenaryHouses)
+            {
+                if (house.Mercenaries != null)
+                {
+                    foreach (var merc in house.Mercenaries)
+                    {
+                        merc.Unit.InitializeTraits();
+                    }
+                }
+            }
 
 
             if (World.Claimables == null)
                 World.Claimables = new ClaimableBuilding[0];
+            if (World.Constructibles == null)
+                World.Constructibles = new ConstructibleBuilding[0];
 
             //Always runs for new versions           
             if (World.SaveVersion != Version && World.AllActiveEmpires != null)

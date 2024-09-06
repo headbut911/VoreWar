@@ -122,6 +122,18 @@ static class StrategicUtilities
         return null;
     }
 
+    public static ConstructibleBuilding GetConstructibleAt(Vec2i location)
+    {
+        foreach (ConstructibleBuilding constructible in State.World.Constructibles)
+        {
+            if (constructible.Position.Matches(location))
+            {
+                return constructible;
+            }
+        }
+        return null;
+    }
+
     public static void TryClaim(Vec2i location, Empire empire)
     {
         if (empire.Race == Race.Goblins)

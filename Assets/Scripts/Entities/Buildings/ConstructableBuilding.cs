@@ -1,7 +1,7 @@
 ﻿using OdinSerializer;
 
 
-abstract class ConstructableBuilding
+abstract class ConstructibleBuilding
 {
     [OdinSerialize]
     internal Empire Owner;
@@ -12,7 +12,14 @@ abstract class ConstructableBuilding
     [OdinSerialize]
     internal int UpgradeStage;
 
-    protected ConstructableBuilding(Vec2i location)
+    [OdinSerialize]
+    internal int turnsToCompletion;
+    [OdinSerialize]
+    internal int turnsToUpgrade;
+
+    [OdinSerialize]
+    internal string Name;
+    protected ConstructibleBuilding(Vec2i location)
     {
         Position = location;
     }

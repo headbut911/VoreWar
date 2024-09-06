@@ -17,6 +17,29 @@ namespace MapObjects
     {
         GoldMine = 0,
     }
+    internal enum ConstructibleType
+    {
+        //Production
+        WorkCamp = 0,
+        LumberSite = 1,
+        Quarry = 2,
+
+        //Defense   
+        CasterTower = 10,
+        BarrierTower = 11,
+        DefEncampment = 12,
+
+        //Utility
+        AdventureGuild = 20,
+        BlackMagicTower = 21,
+        TemporalTower = 22,
+
+        //Manupulation
+        Laborotory = 30,
+        Teleporter = 31,
+        TownHall = 32
+
+    }
     class MapVillage
     {
         public MapVillage(bool capital, Race race, Vec2i position)
@@ -47,7 +70,18 @@ namespace MapObjects
         [OdinSerialize]
         public Vec2i Position { get; set; }
     }
-
+    struct MapConstructible
+    {
+        public MapConstructible(ConstructibleType type, Vec2i position) : this()
+        {
+            Type = type;
+            Position = position;
+        }
+        [OdinSerialize]
+        public ConstructibleType Type { get; private set; }
+        [OdinSerialize]
+        public Vec2i Position { get; set; }
+    }
     class Map
     {
         [OdinSerialize]
@@ -60,6 +94,8 @@ namespace MapObjects
         internal Vec2i[] mercLocations;
         [OdinSerialize]
         internal MapClaimable[] claimables;
+        [OdinSerialize]
+        internal MapConstructible[] constructibles;
 
         static public Map Get(string filename)
         {
@@ -219,6 +255,8 @@ public class MapEditor : SceneBase
             State.World.Tiles = new StrategicTileType[Config.StrategicWorldSizeX, Config.StrategicWorldSizeY];
         if (State.World.Claimables == null)
             State.World.Claimables = new ClaimableBuilding[0];
+        if (State.World.Constructibles == null)
+            State.World.Constructibles = new ConstructibleBuilding[0];
         if (State.World.Doodads == null)
             State.World.Doodads = new StrategicDoodadType[Config.StrategicWorldSizeX, Config.StrategicWorldSizeY];
         CatchUpEmpires();
@@ -1189,6 +1227,21 @@ public class MapEditor : SceneBase
             State.World.Claimables = claimables.ToArray();
             RedrawVillages();
         }
+        ConstructibleBuilding constructibleAtTile = StrategicUtilities.GetConstructibleAt(clickLocation);
+        if (claimableAtTile != null)
+        {
+            LastActionBuilder.Add(() =>
+            {
+                var tempClaimables = State.World.Claimables.ToList();
+                tempClaimables.Add(claimableAtTile);
+                State.World.Claimables = tempClaimables.ToArray();
+                RedrawVillages();
+            });
+            var claimables = State.World.Claimables.ToList();
+            claimables.Remove(claimableAtTile);
+            State.World.Claimables = claimables.ToArray();
+            RedrawVillages();
+        }
     }
 
 
@@ -1248,6 +1301,43 @@ public class MapEditor : SceneBase
         {
             State.World.Claimables = new ClaimableBuilding[0];
         }
+        if (map.constructibles != null)
+        {
+            List<ConstructibleBuilding> constructibles = new List<ConstructibleBuilding>();
+            foreach (var construct in map.constructibles)
+            {
+                if (construct.Type == ConstructibleType.WorkCamp)
+                    constructibles.Add(new WorkCamp(construct.Position));
+                if (construct.Type == ConstructibleType.LumberSite)
+                    constructibles.Add(new LumberSite(construct.Position));
+                if (construct.Type == ConstructibleType.Quarry)
+                    constructibles.Add(new Quarry(construct.Position));
+                if (construct.Type == ConstructibleType.CasterTower)
+                    constructibles.Add(new CasterTower(construct.Position));
+                if (construct.Type == ConstructibleType.BarrierTower)
+                    constructibles.Add(new BarrierTower(construct.Position));
+                if (construct.Type == ConstructibleType.DefEncampment)
+                    constructibles.Add(new DefEncampment(construct.Position));
+                if (construct.Type == ConstructibleType.AdventureGuild)
+                    constructibles.Add(new AdventureGuild(construct.Position));
+                if (construct.Type == ConstructibleType.BlackMagicTower)
+                    constructibles.Add(new BlackMagicTower(construct.Position));
+                if (construct.Type == ConstructibleType.TemporalTower)
+                    constructibles.Add(new TemporalTower(construct.Position));
+                if (construct.Type == ConstructibleType.Laborotory)
+                    constructibles.Add(new Laborotory(construct.Position));
+                if (construct.Type == ConstructibleType.Teleporter)
+                    constructibles.Add(new Teleporter(construct.Position));
+                if (construct.Type == ConstructibleType.TownHall)
+                    constructibles.Add(new TownHall(construct.Position));
+            }
+            if (constructibles.Count > 0)
+                State.World.Constructibles = constructibles.ToArray();
+        }
+        else
+        {
+            State.World.Constructibles = new ConstructibleBuilding[0];
+        }
 
         Config.World.StrategicWorldSizeX = tiles.GetLength(0);
         Config.World.StrategicWorldSizeY = tiles.GetLength(1);
@@ -1279,10 +1369,41 @@ public class MapEditor : SceneBase
             storedMercLocations.Add(mercHouse.Position);
         }
         List<MapClaimable> storedClaimables = new List<MapClaimable>();
+        List<MapConstructible> storedConstructibles = new List<MapConstructible>();
         foreach (ClaimableBuilding claimable in State.World.Claimables)
         {
             if (claimable is GoldMine)
                 storedClaimables.Add(new MapClaimable(ClaimableType.GoldMine, claimable.Position));
+        }
+        foreach (ConstructibleBuilding constructible in State.World.Constructibles)
+        {
+
+            if (constructible is WorkCamp)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.WorkCamp, constructible.Position));
+            if (constructible is LumberSite)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.LumberSite, constructible.Position));
+            if (constructible is Quarry)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.Quarry, constructible.Position));
+            if (constructible is CasterTower)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.CasterTower, constructible.Position));
+            if (constructible is BarrierTower)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.BarrierTower, constructible.Position));
+            if (constructible is DefEncampment)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.DefEncampment, constructible.Position));
+            if (constructible is AdventureGuild)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.AdventureGuild, constructible.Position));
+            if (constructible is BlackMagicTower)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.BlackMagicTower, constructible.Position));
+            if (constructible is TemporalTower)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.TemporalTower, constructible.Position));
+            if (constructible is Laborotory)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.Laborotory, constructible.Position));
+            if (constructible is Teleporter)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.Teleporter, constructible.Position));
+            if (constructible is TownHall)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.TownHall, constructible.Position));
+
+
         }
         Map map = new Map
         {
@@ -1409,6 +1530,14 @@ public class MapEditor : SceneBase
             claim.Position.y += diffY;
             if (claim.Position.x < x - 1 && claim.Position.x > 0 && claim.Position.y < y - 1 && claim.Position.y > 0)
                 newClaims.Add(claim);
+        }
+        List<ConstructibleBuilding> newCosntruct = new List<ConstructibleBuilding>();
+        foreach (ConstructibleBuilding cosntruct in State.World.Constructibles.ToList())
+        {
+            cosntruct.Position.x += diffX;
+            cosntruct.Position.y += diffY;
+            if (cosntruct.Position.x < x - 1 && cosntruct.Position.x > 0 && cosntruct.Position.y < y - 1 && cosntruct.Position.y > 0)
+                newCosntruct.Add(cosntruct);
         }
         State.World.Claimables = newClaims.ToArray();
 
