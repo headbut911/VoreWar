@@ -44,6 +44,7 @@
     FlameWave = 37,
     SummonDoppelganger = 38,
     FireBomb = 39,
+    Bolas = 40,
 
 
 
