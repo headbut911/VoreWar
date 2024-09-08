@@ -141,6 +141,16 @@ public class MapEditor : SceneBase
     public Button LoadMapButton;
     public Button ResizeButton;
 
+    public Button TilesButton;
+    public Button EmpiresButton;
+    public Button SpawnersButton;
+    public Button DoodadsButton;
+
+    public GameObject TilePanel;
+    public GameObject EmpiresPanel;
+    public GameObject SpawnersPanel;
+    public GameObject DoodadsPanel;
+
     public Toggle SimpleDisplay;
 
     public MapResizePanel ResizeUI;
@@ -242,6 +252,7 @@ public class MapEditor : SceneBase
             ExitMapEditor.GetComponentInChildren<Text>().text = "Exit to Main Menu";
         }
         RecreateObjects();
+        ActivateTiles();
     }
 
     void CatchUpEmpires()
@@ -373,6 +384,54 @@ public class MapEditor : SceneBase
         ActiveDoodad = true;
         SelectionBackground.SetActive(true);
         SelectionBackground.transform.position = location.position;
+    }
+
+    public void ActivateTiles()
+    {
+        TilePanel.SetActive(true);
+        EmpiresPanel.SetActive(false);
+        SpawnersPanel.SetActive(false);
+        DoodadsPanel.SetActive(false);
+        TilesButton.interactable = false;
+        EmpiresButton.interactable = true;
+        SpawnersButton.interactable = true;
+        DoodadsButton.interactable = true;
+    }
+
+    public void ActivateEmpires()
+    {
+        TilePanel.SetActive(false);
+        EmpiresPanel.SetActive(true);
+        SpawnersPanel.SetActive(false);
+        DoodadsPanel.SetActive(false);
+        TilesButton.interactable = true;
+        EmpiresButton.interactable = false;
+        SpawnersButton.interactable = true;
+        DoodadsButton.interactable = true;
+    }
+
+    public void ActivateSpawners()
+    {
+        TilePanel.SetActive(false);
+        EmpiresPanel.SetActive(false);
+        SpawnersPanel.SetActive(true);
+        DoodadsPanel.SetActive(false);
+        TilesButton.interactable = true;
+        EmpiresButton.interactable = true;
+        SpawnersButton.interactable = false;
+        DoodadsButton.interactable = true;
+    }
+
+    public void ActivateDoodads()
+    {
+        TilePanel.SetActive(false);
+        EmpiresPanel.SetActive(false);
+        SpawnersPanel.SetActive(false);
+        DoodadsPanel.SetActive(true);
+        TilesButton.interactable = true;
+        EmpiresButton.interactable = true;
+        SpawnersButton.interactable = true;
+        DoodadsButton.interactable = false;
     }
 
     internal void SetDoodadTooltip(StrategicDoodadType type)
