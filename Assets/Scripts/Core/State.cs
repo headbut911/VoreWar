@@ -319,7 +319,7 @@ public static class State
             }
 
             if (World.AncientTeleporters == null)
-                World.AncientTeleporters = new MercenaryHouse[0];
+                World.AncientTeleporters = new AncientTeleporter[0];
 
             foreach (MercenaryHouse house in World.MercenaryHouses)
             {

@@ -101,7 +101,8 @@ class MapVillagePopulator
         for (int i = 0; i < map.constructibles.Length; i++)
         {
             if (map.constructibles[i].Type == ConstructibleType.WorkCamp)
-                newConstructibles.Add(new WorkCamp(map.constructibles[i].Position));
+                newConstructibles.Add(new WorkCamp(map.constructibles[i].Position, 0, 4, 2));
+            /*
             if (map.constructibles[i].Type == ConstructibleType.LumberSite)
                 newConstructibles.Add(new LumberSite(map.constructibles[i].Position));
             if (map.constructibles[i].Type == ConstructibleType.Quarry)
@@ -124,6 +125,7 @@ class MapVillagePopulator
                 newConstructibles.Add(new Teleporter(map.constructibles[i].Position));
             if (map.constructibles[i].Type == ConstructibleType.TownHall)
                 newConstructibles.Add(new TownHall(map.constructibles[i].Position));
+            */
         }
         claimables = newConstructibles.ToArray();
     }

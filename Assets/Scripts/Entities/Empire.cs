@@ -19,6 +19,8 @@ public class Empire
     [OdinSerialize]
     int gold;
     [OdinSerialize]
+    public ConstructionResources constructionResources;
+    [OdinSerialize]
     public int Income { get; private set; }
     [OdinSerialize]
     public List<Army> Armies;
@@ -249,9 +251,12 @@ public class Empire
                 Income += Config.GoldMineIncome;
             }
         }
-        foreach (ConstructibleBuilding claimable in State.World.Constructibles)
+        foreach (ConstructibleBuilding constructible in State.World.Constructibles)
         {
-
+            if (constructible is WorkCamp && constructible.Owner == this)
+            {
+                Income += 10;
+            }
         }
         Income += Boosts.WealthAdd;
     }

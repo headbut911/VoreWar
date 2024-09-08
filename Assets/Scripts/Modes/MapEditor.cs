@@ -1307,7 +1307,8 @@ public class MapEditor : SceneBase
             foreach (var construct in map.constructibles)
             {
                 if (construct.Type == ConstructibleType.WorkCamp)
-                    constructibles.Add(new WorkCamp(construct.Position));
+                    constructibles.Add(new WorkCamp(construct.Position, 0, 4, 2));
+                /*
                 if (construct.Type == ConstructibleType.LumberSite)
                     constructibles.Add(new LumberSite(construct.Position));
                 if (construct.Type == ConstructibleType.Quarry)
@@ -1330,6 +1331,7 @@ public class MapEditor : SceneBase
                     constructibles.Add(new Teleporter(construct.Position));
                 if (construct.Type == ConstructibleType.TownHall)
                     constructibles.Add(new TownHall(construct.Position));
+                */
             }
             if (constructibles.Count > 0)
                 State.World.Constructibles = constructibles.ToArray();
@@ -1380,6 +1382,7 @@ public class MapEditor : SceneBase
 
             if (constructible is WorkCamp)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.WorkCamp, constructible.Position));
+            /*
             if (constructible is LumberSite)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.LumberSite, constructible.Position));
             if (constructible is Quarry)
@@ -1402,7 +1405,7 @@ public class MapEditor : SceneBase
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.Teleporter, constructible.Position));
             if (constructible is TownHall)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.TownHall, constructible.Position));
-
+            */
 
         }
         Map map = new Map

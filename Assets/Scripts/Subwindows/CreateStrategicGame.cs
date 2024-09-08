@@ -53,6 +53,7 @@ public struct StrategicCreationArgs
         crazyBuildings = false;
         MercCamps = 0;
         GoldMines = 0;
+        AncientTeleporters = 0;
 
         MapGen = new WorldGenerator.MapGenArgs();
 
