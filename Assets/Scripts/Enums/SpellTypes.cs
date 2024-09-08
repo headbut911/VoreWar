@@ -46,8 +46,6 @@
     FireBomb = 39,
     Bolas = 40,
 
-
-
     AlraunePuff = 70,
     Web = 71,
     GlueBomb = 72,
