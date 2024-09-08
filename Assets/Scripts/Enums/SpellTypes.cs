@@ -43,6 +43,7 @@
     Trance = 36,
     FlameWave = 37,
     SummonDoppelganger = 38,
+    FireBomb = 39,
 
 
 
