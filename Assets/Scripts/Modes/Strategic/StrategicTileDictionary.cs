@@ -7,6 +7,15 @@ public class StrategicTileDictionary : MonoBehaviour
     internal Tile[] WaterFloat;
     internal Tile[] GrassFloat;
     internal Tile[] DesertFloat;
+    internal Tile[] SnowFloat;
+    internal Tile[] AshenFloat;
+    internal Tile[] VolcanicFloat;
+    internal Tile[] SwampFloat;
+    internal Tile[] DrySwampFloat;
+    internal Tile[] PurpleBogFloat;
+    internal Tile[] SavannahFloat;
+    internal Tile[] RainforestFloat;
+    internal Tile[] SmallIslandsFloat;
     internal Tile[] IceOverSnow;
     internal Tile[] DeepWaterOverWater;
 
@@ -15,6 +24,15 @@ public class StrategicTileDictionary : MonoBehaviour
     public Sprite[] WaterFloatSprites;
     public Sprite[] GrassFloatSprites;
     public Sprite[] DesertFloatSprites;
+    public Sprite[] SnowFloatSprites;
+    public Sprite[] AshenFloatSprites;
+    public Sprite[] VolcanicFloatSprites;
+    public Sprite[] SwampFloatSprites;
+    public Sprite[] DrySwampFloatSprites;
+    public Sprite[] PurpleBogFloatSprites;
+    public Sprite[] SavannahFloatSprites;
+    public Sprite[] RainforestFloatSprites;
+    public Sprite[] SmallIslandsFloatSprites;
 
     public Sprite[] IceOverSnowSprites;
     public Sprite[] DeepWaterOverWaterSprites;
@@ -28,6 +46,15 @@ public class StrategicTileDictionary : MonoBehaviour
         WaterFloat = CreateTiles(WaterFloatSprites);
         GrassFloat = CreateTiles(GrassFloatSprites);
         DesertFloat = CreateTiles(DesertFloatSprites);
+        SnowFloat = CreateTiles(SnowFloatSprites);
+        AshenFloat = CreateTiles(AshenFloatSprites);
+        VolcanicFloat = CreateTiles(VolcanicFloatSprites);
+        SwampFloat = CreateTiles(SwampFloatSprites);
+        DrySwampFloat = CreateTiles(DrySwampFloatSprites);
+        PurpleBogFloat = CreateTiles(PurpleBogFloatSprites);
+        SavannahFloat = CreateTiles(SavannahFloatSprites);
+        RainforestFloat = CreateTiles(RainforestFloatSprites);
+        SmallIslandsFloat = CreateTiles(SmallIslandsFloatSprites);
         Objects = CreateTiles(ObjectSprites);
 
 

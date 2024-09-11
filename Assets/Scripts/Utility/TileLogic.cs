@@ -483,6 +483,18 @@ class StrategicTileLogic
         {
             return StrategicTileInfo.SnowFamily.Contains(tiles[pos.x, pos.y]);
         }
+        if (StrategicTileInfo.AshenFamily.Contains(type))
+        {
+            return StrategicTileInfo.AshenFamily.Contains(tiles[pos.x, pos.y]);
+        }
+        if (StrategicTileInfo.ShallowWaterFamily.Contains(type))
+        {
+            return StrategicTileInfo.ShallowWaterFamily.Contains(tiles[pos.x, pos.y]);
+        }
+        if (StrategicTileInfo.SavannahFamily.Contains(type))
+        {
+            return StrategicTileInfo.SavannahFamily.Contains(tiles[pos.x, pos.y]);
+        }
         //if (StrategicTileInfo.WaterFamily.Contains(type))
         //{
         //    return StrategicTileInfo.WaterFamily.Contains(tiles[pos.x, pos.y]);
@@ -492,8 +504,69 @@ class StrategicTileLogic
 
     internal StrategicTileType DetermineOverlay(int x, int y)
     {
-        int type = DetermineType(new Vec2(x, y), tiles[x, y]);
-        return StrategicTileType.grass;
+        Vec2 pos = new Vec2(x, y);
+        int dir = DetermineType(pos, tiles[x,y]);
+        Vec2 inherit;
+        switch (dir)
+        {
+            case 0: inherit = GetPos(pos, Neighbor.North); break;
+            case 1: inherit = GetPos(pos, Neighbor.North); break;
+            case 2: inherit = GetPos(pos, Neighbor.North); break;
+            case 3: inherit = GetPos(pos, Neighbor.North); break;
+            case 4: inherit = GetPos(pos, Neighbor.North); break;
+            case 5: inherit = GetPos(pos, Neighbor.North); break;
+            case 6: inherit = GetPos(pos, Neighbor.SouthEast); break;
+            case 7: inherit = GetPos(pos, Neighbor.SouthWest); break;
+            case 8: inherit = GetPos(pos, Neighbor.West); break;
+            case 9: return tiles[x,y]; // This is an empty space on the sprite sheet
+            case 10: inherit = GetPos(pos, Neighbor.East); break;
+            case 11: inherit = GetPos(pos, Neighbor.NorthEast); break;
+            case 12: inherit = GetPos(pos, Neighbor.East); break;
+            case 13: inherit = GetPos(pos, Neighbor.North); break;
+            case 14: inherit = GetPos(pos, Neighbor.NorthEast); break;
+            case 15: inherit = GetPos(pos, Neighbor.NorthWest); break;
+            case 16: inherit = GetPos(pos, Neighbor.South); break;
+            case 17: inherit = GetPos(pos, Neighbor.South); break;
+            case 18: inherit = GetPos(pos, Neighbor.South); break;
+            case 19: inherit = GetPos(pos, Neighbor.North); break; // Full tile, no clue which way
+            case 20: inherit = GetPos(pos, Neighbor.West); break;
+            case 21: inherit = GetPos(pos, Neighbor.West); break;
+            case 22: inherit = GetPos(pos, Neighbor.East); break;
+            case 23: inherit = GetPos(pos, Neighbor.NorthEast); break;
+            case 24: inherit = GetPos(pos, Neighbor.North); break;
+            case 25: inherit = GetPos(pos, Neighbor.North); break;
+            case 26: inherit = GetPos(pos, Neighbor.West); break;
+            case 27: inherit = GetPos(pos, Neighbor.East); break;
+            case 28: inherit = GetPos(pos, Neighbor.West); break;
+            case 29: inherit = GetPos(pos, Neighbor.West); break;
+            case 30: inherit = GetPos(pos, Neighbor.East); break;
+            case 31: inherit = GetPos(pos, Neighbor.NorthWest); break;
+            case 32: inherit = GetPos(pos, Neighbor.South); break;
+            case 33: inherit = GetPos(pos, Neighbor.South); break;
+            case 34: inherit = GetPos(pos, Neighbor.West); break;
+            case 35: inherit = GetPos(pos, Neighbor.East); break;
+            case 36: inherit = GetPos(pos, Neighbor.West); break;
+            case 37: inherit = GetPos(pos, Neighbor.North); break;
+            case 38: inherit = GetPos(pos, Neighbor.South); break;
+            case 39: inherit = GetPos(pos, Neighbor.East); break;
+            case 40: inherit = GetPos(pos, Neighbor.NorthWest); break;
+            case 41: inherit = GetPos(pos, Neighbor.NorthEast); break;
+            case 42: inherit = GetPos(pos, Neighbor.SouthWest); break;
+            case 43: inherit = GetPos(pos, Neighbor.NorthWest); break;
+            case 44: inherit = GetPos(pos, Neighbor.SouthWest); break;
+            case 45: inherit = GetPos(pos, Neighbor.SouthWest); break;
+            case 46: inherit = GetPos(pos, Neighbor.SouthWest); break;
+            case 47: inherit = GetPos(pos, Neighbor.NorthWest); break;
+            default:
+                return tiles[x, y];
+        }
+        if (IsTileType(inherit, StrategicTileType.grass)) return StrategicTileType.grass;
+        if (IsTileType(inherit, StrategicTileType.desert)) return StrategicTileType.desert;
+        if (IsTileType(inherit, StrategicTileType.snow)) return StrategicTileType.snow;
+        if (IsTileType(inherit, StrategicTileType.ashen)) return StrategicTileType.ashen;
+        if (IsTileType(inherit, StrategicTileType.shallowWater)) return StrategicTileType.shallowWater;
+        if (IsTileType(inherit, StrategicTileType.savannah)) return StrategicTileType.savannah;
+        return tiles[inherit.x, inherit.y];
     }
 }
 

@@ -721,7 +721,7 @@ public class StrategyMode : SceneBase
                 //{
                 //    TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.DeepWaterOverWater[(int)overTiles[i, j] - 2300]);
                 //}
-                Debug.Log(overTiles[i, j] + ", " + i + ", " + j);
+                Debug.Log(underTiles[i, j] + ", " + i + ", " + j);
                 if (overTiles[i, j] >= (StrategicTileType)2000)
                 {
                     TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
@@ -746,11 +746,56 @@ public class StrategyMode : SceneBase
                 }
                 else if (tiles[i, j] >= (StrategicTileType)2100)
                 {
-                    switch (logic.DetermineOverlay())
+                    switch (logic.DetermineOverlay(i, j))
                     {
-
+                        case (StrategicTileType.grass):
+                            if (underTiles[i,j] < StrategicTileType.grass)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.GrassFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.desert):
+                            if (underTiles[i, j] < StrategicTileType.desert)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.DesertFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.snow):
+                            if (underTiles[i, j] < StrategicTileType.snow)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.SnowFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.ashen):
+                            if (underTiles[i, j] < StrategicTileType.ashen)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.AshenFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.volcanic):
+                            if (underTiles[i, j] <= StrategicTileType.volcanic)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.VolcanicFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.swamp):
+                            if (underTiles[i, j] <= StrategicTileType.swamp)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.SwampFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.drySwamp):
+                            if (underTiles[i, j] <= StrategicTileType.drySwamp)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.DrySwampFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.purpleSwamp):
+                            if (underTiles[i, j] <= StrategicTileType.purpleSwamp)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.PurpleBogFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.savannah):
+                            if (underTiles[i, j] <= StrategicTileType.savannah)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.SavannahFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.smallIslands):
+                            if (underTiles[i, j] <= StrategicTileType.smallIslands)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.SmallIslandsFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        case (StrategicTileType.rainforest):
+                            if (underTiles[i, j] <= StrategicTileType.rainforest)
+                                TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.RainforestFloat[(int)tiles[i, j] - 2100]);
+                            break;
+                        default:
+                            TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.GrassFloat[(int)tiles[i, j] - 2100]);
+                            break;
                     }
-                    TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.GrassFloat[(int)tiles[i, j] - 2100]);
                     if (underTiles[i, j] != (StrategicTileType)99)
                     {
                         TilemapLayers[0].SetTile(new Vector3Int(i, j, 0), TileTypes[(int)underTiles[i, j]]);
