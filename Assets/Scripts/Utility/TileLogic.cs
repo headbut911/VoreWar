@@ -489,5 +489,11 @@ class StrategicTileLogic
         //}
         return tiles[pos.x, pos.y] == type;
     }
+
+    internal StrategicTileType DetermineOverlay(int x, int y)
+    {
+        int type = DetermineType(new Vec2(x, y), tiles[x, y]);
+        return StrategicTileType.grass;
+    }
 }
 

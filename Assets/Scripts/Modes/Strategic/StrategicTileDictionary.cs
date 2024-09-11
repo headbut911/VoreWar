@@ -6,6 +6,7 @@ public class StrategicTileDictionary : MonoBehaviour
 {
     internal Tile[] WaterFloat;
     internal Tile[] GrassFloat;
+    internal Tile[] DesertFloat;
     internal Tile[] IceOverSnow;
     internal Tile[] DeepWaterOverWater;
 
@@ -13,6 +14,7 @@ public class StrategicTileDictionary : MonoBehaviour
 
     public Sprite[] WaterFloatSprites;
     public Sprite[] GrassFloatSprites;
+    public Sprite[] DesertFloatSprites;
 
     public Sprite[] IceOverSnowSprites;
     public Sprite[] DeepWaterOverWaterSprites;
@@ -25,6 +27,7 @@ public class StrategicTileDictionary : MonoBehaviour
         DeepWaterOverWater = CreateTiles(DeepWaterOverWaterSprites);
         WaterFloat = CreateTiles(WaterFloatSprites);
         GrassFloat = CreateTiles(GrassFloatSprites);
+        DesertFloat = CreateTiles(DesertFloatSprites);
         Objects = CreateTiles(ObjectSprites);
 
 

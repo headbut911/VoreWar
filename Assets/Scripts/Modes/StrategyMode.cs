@@ -721,6 +721,7 @@ public class StrategyMode : SceneBase
                 //{
                 //    TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.DeepWaterOverWater[(int)overTiles[i, j] - 2300]);
                 //}
+                Debug.Log(overTiles[i, j] + ", " + i + ", " + j);
                 if (overTiles[i, j] >= (StrategicTileType)2000)
                 {
                     TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
@@ -745,6 +746,10 @@ public class StrategyMode : SceneBase
                 }
                 else if (tiles[i, j] >= (StrategicTileType)2100)
                 {
+                    switch (logic.DetermineOverlay())
+                    {
+
+                    }
                     TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.GrassFloat[(int)tiles[i, j] - 2100]);
                     if (underTiles[i, j] != (StrategicTileType)99)
                     {
