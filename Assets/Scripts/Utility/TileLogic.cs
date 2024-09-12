@@ -666,22 +666,22 @@ class StrategicTileLogic
                 break;
             case 6: 
                 temp_vec1 = GetPos(pos, Neighbor.SouthEast);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(6, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break;
             case 7:
                 temp_vec1 = GetPos(pos, Neighbor.SouthWest);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(7, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break;
             case 8:
                 temp_vec1 = GetPos(pos, Neighbor.West);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break;
             case 9: 
                 //true_types.Add(State.World.Tiles[x,y]); // This is an empty space on the sprite sheet
                 break;
             case 10: 
                 temp_vec1 = GetPos(pos, Neighbor.East);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break;
             case 11: 
                 temp_vec1 = GetPos(pos, Neighbor.NorthEast);
@@ -840,11 +840,11 @@ class StrategicTileLogic
                 break;
             case 14:
                 temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break;
             case 15:
                 temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break;
             case 16: 
                 temp_vec1 = GetPos(pos, Neighbor.West);
@@ -861,7 +861,7 @@ class StrategicTileLogic
                 break;
             case 17:
                 temp_vec1 = GetPos(pos, Neighbor.South);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break;
             case 18:
                 temp_vec1 = GetPos(pos, Neighbor.South);
@@ -878,7 +878,7 @@ class StrategicTileLogic
                 break;
             case 19:
                 temp_vec1 = GetPos(pos, Neighbor.North);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                true_types.Add(19, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
                 break; // Full tile, no clue which way
             case 20:
                 temp_vec1 = GetPos(pos, Neighbor.West);
