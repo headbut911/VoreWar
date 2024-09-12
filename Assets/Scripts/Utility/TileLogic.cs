@@ -1587,7 +1587,43 @@ class StrategicTileLogic
                 break;
         }
 
+        bool NW_corner = false;
+        bool NE_corner = false;
+        bool SW_corner = false;
+        bool SE_corner = false;
 
+        List<int> needs_NW_corner = new List<int> { };
+        List<int> needs_NE_corner = new List<int> { };
+        List<int> needs_SW_corner = new List<int> { };
+        List<int> needs_SE_corner = new List<int> { };
+        if (needs_NW_corner.Contains(dir))
+        {
+            if (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.West)) && !AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.West)))
+            {
+                NW_corner = true;
+            }
+        }
+        if (needs_NE_corner.Contains(dir))
+        {
+            if (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.East)))
+            {
+                NE_corner = true;
+            }
+        }
+        if (needs_SW_corner.Contains(dir))
+        {
+            if (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.West)) && !AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.West)))
+            {
+                SW_corner = true;
+            }
+        }
+        if (needs_SE_corner.Contains(dir))
+        {
+            if (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.East)))
+            {
+                SE_corner = true;
+            }
+        }
 
         return true_types;
 
