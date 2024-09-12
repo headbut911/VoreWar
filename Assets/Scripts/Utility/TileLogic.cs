@@ -1,4 +1,6 @@
-﻿enum Neighbor
+﻿using System.Collections.Generic;
+
+enum Neighbor
 {
     North,
     NorthEast,
@@ -507,6 +509,7 @@ class StrategicTileLogic
         Vec2 pos = new Vec2(x, y);
         int dir = DetermineType(pos, tiles[x,y]);
         Vec2 inherit;
+        //List<Vec2> adj_tiles = new List<Vec2>();
         switch (dir)
         {
             case 0: inherit = GetPos(pos, Neighbor.North); break;
@@ -518,7 +521,7 @@ class StrategicTileLogic
             case 6: inherit = GetPos(pos, Neighbor.SouthEast); break;
             case 7: inherit = GetPos(pos, Neighbor.SouthWest); break;
             case 8: inherit = GetPos(pos, Neighbor.West); break;
-            case 9: return tiles[x,y]; // This is an empty space on the sprite sheet
+            case 9: return State.World.Tiles[x,y]; // This is an empty space on the sprite sheet
             case 10: inherit = GetPos(pos, Neighbor.East); break;
             case 11: inherit = GetPos(pos, Neighbor.NorthEast); break;
             case 12: inherit = GetPos(pos, Neighbor.East); break;
@@ -558,7 +561,7 @@ class StrategicTileLogic
             case 46: inherit = GetPos(pos, Neighbor.SouthWest); break;
             case 47: inherit = GetPos(pos, Neighbor.NorthWest); break;
             default:
-                return tiles[x, y];
+                return State.World.Tiles[x, y];
         }
         if (IsTileType(inherit, StrategicTileType.grass)) return StrategicTileType.grass;
         if (IsTileType(inherit, StrategicTileType.desert)) return StrategicTileType.desert;
