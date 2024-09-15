@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
+using System.Linq;
+
 
 enum Neighbor
 {
@@ -524,1108 +526,1124 @@ class StrategicTileLogic
             return true;
         }
 
-        return State.World.Tiles[pos1.x, pos1.y] == State.World.Tiles[pos2.x, pos2.y];
+        return postion1 == postion2;
     }
 
-    internal Dictionary<int, StrategicTileType> DetermineOverlay(int x, int y)
+    internal IEnumerable<KeyValuePair<int, StrategicTileType>> DetermineOverlay(int x, int y)
     {
         Vec2 pos = new Vec2(x, y);
         int dir = DetermineType(pos, tiles[x,y]);
-        List<Vec2> adj_tiles = new List<Vec2>();
         List<StrategicTileType> adj_types = new List<StrategicTileType>();
-        Dictionary<int, StrategicTileType> true_types = new Dictionary<int, StrategicTileType>();
-
-        Vec2 temp_vec1;
-        Vec2 temp_vec2;
-        Vec2 temp_vec3;
-        Vec2 temp_vec4;
 
 
-        switch (dir)
-        {
-            case 0:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.West);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 1:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 2:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.East);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 3:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.West);
-                temp_vec3 = GetPos(pos, Neighbor.South);
-                bool t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                bool t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                bool t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(3, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 4:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.South);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 5:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.East);
-                temp_vec3 = GetPos(pos, Neighbor.South);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(5, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 6: 
-                temp_vec1 = GetPos(pos, Neighbor.SouthEast);
-                true_types.Add(6, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 7:
-                temp_vec1 = GetPos(pos, Neighbor.SouthWest);
-                true_types.Add(7, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 8:
-                temp_vec1 = GetPos(pos, Neighbor.West);
-                true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 9: 
-                //true_types.Add(State.World.Tiles[x,y]); // This is an empty space on the sprite sheet
-                break;
-            case 10: 
-                temp_vec1 = GetPos(pos, Neighbor.East);
-                true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 11: 
-                temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec2 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec3 = GetPos(pos, Neighbor.SouthEast);
-                temp_vec4 = GetPos(pos, Neighbor.SouthWest);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                bool t1_t4_same = AreTypesSame(temp_vec1, temp_vec4);
-                bool t2_t4_same = AreTypesSame(temp_vec2, temp_vec3);
-                bool t3_t4_same = AreTypesSame(temp_vec3, temp_vec4);
-                if (t1_t2_same && t1_t3_same && t1_t4_same) //all same
-                {
-                    true_types.Add(11, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else if (t1_t2_same && t1_t3_same) // t4 not same
-                {
-                    true_types.Add(47, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(7, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t3_same && t1_t4_same) // t2 not same
-                {
-                    true_types.Add(45, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(15, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t2_same && t1_t4_same) // t3 not same
-                {
-                    true_types.Add(46, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t2_t3_same && t2_t4_same)
-                {
-                    true_types.Add(44, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(14, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t2_same && t3_t4_same)
-                {
-                    true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(42, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t3_same && t2_t4_same)
-                {
-                    true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(40, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t4_same && t2_t3_same)
-                {
-                    true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(31, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                else // none same
-                {
-                    true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    true_types.Add(7, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                break;
-            case 12:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.East);
-                temp_vec3 = GetPos(pos, Neighbor.West);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(12, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(20, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 13:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.East);
-                temp_vec3 = GetPos(pos, Neighbor.South);
-                temp_vec4 = GetPos(pos, Neighbor.West);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                t1_t4_same = AreTypesSame(temp_vec1, temp_vec4);
-                t2_t4_same = AreTypesSame(temp_vec2, temp_vec3);
-                t3_t4_same = AreTypesSame(temp_vec3, temp_vec4);
-                if (t1_t2_same && t1_t3_same && t1_t4_same) //all same
-                {
-                    true_types.Add(13, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else if(t1_t2_same && t1_t3_same) // t4 not same
-                {
-                    true_types.Add(5, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(8, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t3_same && t1_t4_same) // t2 not same
-                {
-                    true_types.Add(3, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(10, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t2_same && t1_t4_same) // t3 not same
-                {
-                    true_types.Add(12, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(17, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t2_t3_same && t2_t4_same)
-                {
-                    true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(28, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t2_same && t3_t4_same)
-                {
-                    true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(16, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t3_same && t2_t4_same)
-                {
-                    true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(20, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                else if (t1_t4_same && t2_t3_same)
-                {
-                    true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                else // none same
-                {
-                    true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    true_types.Add(16, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    true_types.Add(10, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
-                }
-                break;
-            case 14:
-                temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 15:
-                temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 16: 
-                temp_vec1 = GetPos(pos, Neighbor.West);
-                temp_vec2 = GetPos(pos, Neighbor.South);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(16, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 17:
-                temp_vec1 = GetPos(pos, Neighbor.South);
-                true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break;
-            case 18:
-                temp_vec1 = GetPos(pos, Neighbor.South);
-                temp_vec2 = GetPos(pos, Neighbor.East);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(18, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 19:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                true_types.Add(19, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                break; // Full tile, no clue which way
-            case 20:
-                temp_vec1 = GetPos(pos, Neighbor.West);
-                temp_vec2 = GetPos(pos, Neighbor.East);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 21:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.West);
-                temp_vec3 = GetPos(pos, Neighbor.SouthEast);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(21, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(26, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 22:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.East);
-                temp_vec3 = GetPos(pos, Neighbor.SouthWest);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(22, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(27, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 23:
-                temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec2 = GetPos(pos, Neighbor.SouthWest);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(13, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 24:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.SouthEast);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(13, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 25:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.SouthWest);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(13, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 26:
-                temp_vec1 = GetPos(pos, Neighbor.West);
-                temp_vec2 = GetPos(pos, Neighbor.SouthEast);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(26, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 27:
-                temp_vec1 = GetPos(pos, Neighbor.East);
-                temp_vec2 = GetPos(pos, Neighbor.SouthWest);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(27, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 28:
-                temp_vec1 = GetPos(pos, Neighbor.East);
-                temp_vec2 = GetPos(pos, Neighbor.South);
-                temp_vec3 = GetPos(pos, Neighbor.West);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(28, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(18, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(32, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 29:
-                temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec2 = GetPos(pos, Neighbor.South);
-                temp_vec3 = GetPos(pos, Neighbor.West);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(29, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(34, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 30:
-                temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec2 = GetPos(pos, Neighbor.South);
-                temp_vec3 = GetPos(pos, Neighbor.East);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(30, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 31:
-                temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec2 = GetPos(pos, Neighbor.SouthEast);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 32:
-                temp_vec1 = GetPos(pos, Neighbor.South);
-                temp_vec2 = GetPos(pos, Neighbor.NorthEast);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 33:
-                temp_vec1 = GetPos(pos, Neighbor.South);
-                temp_vec2 = GetPos(pos, Neighbor.NorthWest);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 34:
-                temp_vec1 = GetPos(pos, Neighbor.West);
-                temp_vec2 = GetPos(pos, Neighbor.NorthEast);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(34, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 35:
-                temp_vec1 = GetPos(pos, Neighbor.East);
-                temp_vec2 = GetPos(pos, Neighbor.NorthWest);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(9, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 36:
-                temp_vec1 = GetPos(pos, Neighbor.West);
-                temp_vec2 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec3 = GetPos(pos, Neighbor.SouthEast);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(36, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(26, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(13, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(41, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(13, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 37:
-                temp_vec1 = GetPos(pos, Neighbor.North);
-                temp_vec2 = GetPos(pos, Neighbor.SouthWest);
-                temp_vec3 = GetPos(pos, Neighbor.SouthEast);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(37, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 38:
-                temp_vec1 = GetPos(pos, Neighbor.South);
-                temp_vec2 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec3 = GetPos(pos, Neighbor.NorthEast);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(38, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(43, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 39:
-                temp_vec1 = GetPos(pos, Neighbor.East);
-                temp_vec2 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec3 = GetPos(pos, Neighbor.SouthWest);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(39, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(27, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(9, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(39, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(9, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 40:
-                temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec2 = GetPos(pos, Neighbor.SouthWest);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 41:
-                temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec2 = GetPos(pos, Neighbor.SouthEast);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 42:
-                temp_vec1 = GetPos(pos, Neighbor.SouthWest);
-                temp_vec2 = GetPos(pos, Neighbor.SouthEast);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(42, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(7, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 43:
-                temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec2 = GetPos(pos, Neighbor.NorthWest);
-                if (AreTypesSame(temp_vec1, temp_vec2))
-                {
-                    true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                }
-                else
-                {
-                    true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                }
-                break;
-            case 44:
-                temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec2 = GetPos(pos, Neighbor.SouthWest);
-                temp_vec3 = GetPos(pos, Neighbor.SouthEast);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(44, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 45:
-                temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec2 = GetPos(pos, Neighbor.SouthWest);
-                temp_vec3 = GetPos(pos, Neighbor.SouthEast);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(45, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 46:
-                temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec2 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec3 = GetPos(pos, Neighbor.SouthWest);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(46, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(23, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            case 47:
-                temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                temp_vec2 = GetPos(pos, Neighbor.NorthEast);
-                temp_vec3 = GetPos(pos, Neighbor.SouthEast);
-                t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
-                t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
-                t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
-                if (t1_t2_same)
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(47, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                else
-                {
-                    if (t1_t3_same)
-                    {
-                        true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(13, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else if (t2_t3_same)
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(41, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                    }
-                    else
-                    {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                    }
-                }
-                break;
-            default:
-                Debug.Log("Tile Logic Fell Through");
-                break;
-        }
 
-        bool NW_corner = false;
-        bool NE_corner = false;
-        bool SW_corner = false;
-        bool SE_corner = false;
+        var temp_Dict = from entry in GetOverlayTypes(dir) orderby entry.Value ascending select entry;
 
-        List<int> needs_NW_corner = new List<int> { };
-        List<int> needs_NE_corner = new List<int> { };
-        List<int> needs_SW_corner = new List<int> { };
-        List<int> needs_SE_corner = new List<int> { };
+        Vec2 temp_vec;
+
+        List<int> needs_NW_corner = new List<int> {0, 3, 12, 13, 21};
+        List<int> needs_NE_corner = new List<int> {2, 5, 12, 13, 22};
+        List<int> needs_SW_corner = new List<int> {3, 13, 16, 28, 29};
+        List<int> needs_SE_corner = new List<int> {5, 13, 18, 28, 30};
+
         if (needs_NW_corner.Contains(dir))
         {
-            if (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.West)) && !AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.West)))
+            if (AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.West)))
             {
-                NW_corner = true;
+                temp_vec = GetPos(pos, Neighbor.NorthWest);
+                KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(15, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                temp_Dict.Append(corner);
+
             }
         }
         if (needs_NE_corner.Contains(dir))
         {
-            if (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.East)))
+            if (!AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.East)))
             {
-                NE_corner = true;
+                temp_vec = GetPos(pos, Neighbor.NorthEast);
+                KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(14, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                temp_Dict.Append(corner);
             }
         }
         if (needs_SW_corner.Contains(dir))
         {
-            if (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.West)) && !AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.West)))
+            if (!AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.South)) && !AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.West)))
             {
-                SW_corner = true;
+                temp_vec = GetPos(pos, Neighbor.SouthWest);
+                KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(7, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                temp_Dict.Append(corner);
             }
         }
         if (needs_SE_corner.Contains(dir))
         {
-            if (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.East)))
+            if (!AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.South)))
             {
-                SE_corner = true;
+                temp_vec = GetPos(pos, Neighbor.SouthEast);
+                KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(6, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                temp_Dict.Append(corner);
             }
+
         }
 
-        return true_types;
+        return temp_Dict;
+
+        Dictionary<int, StrategicTileType> GetOverlayTypes(int direction)
+        {
+            Dictionary<int, StrategicTileType> true_types = new Dictionary<int, StrategicTileType>();
+
+            Vec2 temp_vec1;
+            Vec2 temp_vec2;
+            Vec2 temp_vec3;
+            Vec2 temp_vec4;
+
+            switch (direction)
+            {
+                case 0:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.West);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 1:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 2:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.East);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 3:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.West);
+                    temp_vec3 = GetPos(pos, Neighbor.South);
+                    bool t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    bool t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    bool t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(3, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 4:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.South);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 5:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.East);
+                    temp_vec3 = GetPos(pos, Neighbor.South);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(5, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 6:
+                    temp_vec1 = GetPos(pos, Neighbor.SouthEast);
+                    true_types.Add(6, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 7:
+                    temp_vec1 = GetPos(pos, Neighbor.SouthWest);
+                    true_types.Add(7, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 8:
+                    temp_vec1 = GetPos(pos, Neighbor.West);
+                    true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 9:
+                    //true_types.Add(State.World.Tiles[x,y]); // This is an empty space on the sprite sheet
+                    break;
+                case 10:
+                    temp_vec1 = GetPos(pos, Neighbor.East);
+                    true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 11:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthEast);
+                    temp_vec4 = GetPos(pos, Neighbor.SouthWest);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    bool t1_t4_same = AreTypesSame(temp_vec1, temp_vec4);
+                    bool t2_t4_same = AreTypesSame(temp_vec2, temp_vec3);
+                    bool t3_t4_same = AreTypesSame(temp_vec3, temp_vec4);
+                    if (t1_t2_same && t1_t3_same && t1_t4_same) //all same
+                    {
+                        true_types.Add(11, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else if (t1_t2_same && t1_t3_same) // t4 not same
+                    {
+                        true_types.Add(47, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(7, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t3_same && t1_t4_same) // t2 not same
+                    {
+                        true_types.Add(45, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(15, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t2_same && t1_t4_same) // t3 not same
+                    {
+                        true_types.Add(46, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(6, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t2_t3_same && t2_t4_same)
+                    {
+                        true_types.Add(44, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(14, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t2_same && t3_t4_same)
+                    {
+                        true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(42, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t3_same && t2_t4_same)
+                    {
+                        true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(40, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t4_same && t2_t3_same)
+                    {
+                        true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(31, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    else // none same
+                    {
+                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        true_types.Add(7, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    break;
+                case 12:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.East);
+                    temp_vec3 = GetPos(pos, Neighbor.West);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(12, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(20, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 13:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.East);
+                    temp_vec3 = GetPos(pos, Neighbor.South);
+                    temp_vec4 = GetPos(pos, Neighbor.West);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    t1_t4_same = AreTypesSame(temp_vec1, temp_vec4);
+                    t2_t4_same = AreTypesSame(temp_vec2, temp_vec3);
+                    t3_t4_same = AreTypesSame(temp_vec3, temp_vec4);
+                    if (t1_t2_same && t1_t3_same && t1_t4_same) //all same
+                    {
+                        true_types.Add(13, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else if (t1_t2_same && t1_t3_same) // t4 not same
+                    {
+                        true_types.Add(5, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(8, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t3_same && t1_t4_same) // t2 not same
+                    {
+                        true_types.Add(3, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(10, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t2_same && t1_t4_same) // t3 not same
+                    {
+                        true_types.Add(12, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(17, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t2_t3_same && t2_t4_same)
+                    {
+                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(28, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t2_same && t3_t4_same)
+                    {
+                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(16, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t3_same && t2_t4_same)
+                    {
+                        true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(20, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    else if (t1_t4_same && t2_t3_same)
+                    {
+                        true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    else // none same
+                    {
+                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        true_types.Add(10, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                    }
+                    break;
+                case 14:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthEast);
+                    true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 15:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthWest);
+                    true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 16:
+                    temp_vec1 = GetPos(pos, Neighbor.West);
+                    temp_vec2 = GetPos(pos, Neighbor.South);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(16, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 17:
+                    temp_vec1 = GetPos(pos, Neighbor.South);
+                    true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break;
+                case 18:
+                    temp_vec1 = GetPos(pos, Neighbor.South);
+                    temp_vec2 = GetPos(pos, Neighbor.East);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(18, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 19:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    true_types.Add(19, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    break; // Full tile, no clue which way
+                case 20:
+                    temp_vec1 = GetPos(pos, Neighbor.West);
+                    temp_vec2 = GetPos(pos, Neighbor.East);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 21:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.West);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthEast);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(21, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(26, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 22:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.East);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthWest);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(22, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(27, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 23:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthWest);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 24:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthEast);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 25:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthWest);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 26:
+                    temp_vec1 = GetPos(pos, Neighbor.West);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthEast);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(26, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 27:
+                    temp_vec1 = GetPos(pos, Neighbor.East);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthWest);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(27, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 28:
+                    temp_vec1 = GetPos(pos, Neighbor.East);
+                    temp_vec2 = GetPos(pos, Neighbor.South);
+                    temp_vec3 = GetPos(pos, Neighbor.West);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(28, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(18, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(32, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 29:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec2 = GetPos(pos, Neighbor.South);
+                    temp_vec3 = GetPos(pos, Neighbor.West);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(29, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(34, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 30:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec2 = GetPos(pos, Neighbor.South);
+                    temp_vec3 = GetPos(pos, Neighbor.East);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(30, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(10, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 31:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthEast);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 32:
+                    temp_vec1 = GetPos(pos, Neighbor.South);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthEast);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 33:
+                    temp_vec1 = GetPos(pos, Neighbor.South);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthWest);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 34:
+                    temp_vec1 = GetPos(pos, Neighbor.West);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthEast);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(34, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 35:
+                    temp_vec1 = GetPos(pos, Neighbor.East);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthWest);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(9, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 36:
+                    temp_vec1 = GetPos(pos, Neighbor.West);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthEast);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(36, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(26, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(41, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 37:
+                    temp_vec1 = GetPos(pos, Neighbor.North);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthWest);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthEast);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(37, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 38:
+                    temp_vec1 = GetPos(pos, Neighbor.South);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec3 = GetPos(pos, Neighbor.NorthEast);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(38, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(14, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(43, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(14, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 39:
+                    temp_vec1 = GetPos(pos, Neighbor.East);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthWest);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(39, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(27, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(39, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 40:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthWest);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 41:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthEast);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 42:
+                    temp_vec1 = GetPos(pos, Neighbor.SouthWest);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthEast);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(42, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(7, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 43:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthWest);
+                    if (AreTypesSame(temp_vec1, temp_vec2))
+                    {
+                        true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    }
+                    else
+                    {
+                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                    }
+                    break;
+                case 44:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthWest);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthEast);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(44, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 45:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec2 = GetPos(pos, Neighbor.SouthWest);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthEast);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(45, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 46:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthWest);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(46, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(23, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                case 47:
+                    temp_vec1 = GetPos(pos, Neighbor.NorthWest);
+                    temp_vec2 = GetPos(pos, Neighbor.NorthEast);
+                    temp_vec3 = GetPos(pos, Neighbor.SouthEast);
+                    t1_t2_same = AreTypesSame(temp_vec1, temp_vec2);
+                    t1_t3_same = AreTypesSame(temp_vec1, temp_vec3);
+                    t2_t3_same = AreTypesSame(temp_vec2, temp_vec3);
+                    if (t1_t2_same)
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(47, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    else
+                    {
+                        if (t1_t3_same)
+                        {
+                            true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else if (t2_t3_same)
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(41, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        }
+                        else
+                        {
+                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        }
+                    }
+                    break;
+                default:
+                    Debug.Log("Tile Logic Fell Through");
+                    break;
+            }
+
+            return true_types;
+        }
 
     }
 }

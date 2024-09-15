@@ -803,7 +803,7 @@ public class StrategyMode : SceneBase
         void ApplyFloat(int x, int y)
         {
             int counter = 0;
-            foreach(KeyValuePair<int, StrategicTileType> tiletype in logic.DetermineOverlay(x, y))
+            foreach (KeyValuePair<int, StrategicTileType> tiletype in logic.DetermineOverlay(x, y))
             {
                 counter++;
                 switch (tiletype.Value)
