@@ -1,4 +1,3 @@
-using OdinSerializer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -138,7 +137,7 @@ public class StrategyMode : SceneBase
     public EventScreen EventUI;
 
     public float NightChance = Config.BaseNightChance;
-	
+
     public GameObject NotificationWindow;
     public TMPro.TextMeshProUGUI NotificationText;
     float remainingNotificationTime;
@@ -572,7 +571,7 @@ public class StrategyMode : SceneBase
 
     internal void ReassignArmyEmpire(Army army)
     {
-        var sidesRepresented = new Dictionary<int,int>();
+        var sidesRepresented = new Dictionary<int, int>();
         army.Units.ForEach(unit =>
         {
             if (sidesRepresented.ContainsKey(unit.FixedSide))
@@ -584,7 +583,7 @@ public class StrategyMode : SceneBase
                 sidesRepresented.Add(unit.FixedSide, 1);
             }
         });
-        
+
         var finalSide = sidesRepresented.OrderByDescending(s => s.Value).First();
         var emp = State.World.GetEmpireOfSide(finalSide.Key);
         var pos = army.Position;
@@ -626,17 +625,19 @@ public class StrategyMode : SceneBase
                     loc = spot;
             }
         }
-        pos = new Vec2i(loc.x,loc.y);
+        pos = new Vec2i(loc.x, loc.y);
         if (emp != null)
         {
             var newArmy = new Army(emp, pos, emp.Side);
             newArmy.Units = army.Units;
             emp.Armies.Add(newArmy);
             newArmy.Units.ForEach(u => u.Side = newArmy.Side);
-        } else // we'll literally make up an empire on the spot. Should rarely happen
+        }
+        else // we'll literally make up an empire on the spot. Should rarely happen
         {
             var monsterEmp = State.World.MonsterEmpires.Where(e => e.Race == army.Units.Where(u => u.FixedSide == finalSide.Key).FirstOrDefault()?.Race).FirstOrDefault();
-            if (monsterEmp != null) {
+            if (monsterEmp != null)
+            {
                 Empire brandNewEmp = new MonsterEmpire(new Empire.ConstructionArgs(finalSide.Key, UnityEngine.Color.white, UnityEngine.Color.white, monsterEmp.BannerType, StrategyAIType.Monster, TacticalAIType.Full, 2000 + finalSide.Key, monsterEmp.MaxArmySize, 0));
                 brandNewEmp.ReplacedRace = monsterEmp.Race;
                 brandNewEmp.TurnOrder = 1234;
@@ -721,20 +722,20 @@ public class StrategyMode : SceneBase
                 //{
                 //    TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.DeepWaterOverWater[(int)overTiles[i, j] - 2300]);
                 //}
-                Debug.Log(underTiles[i, j] + ", " + i + ", " + j);
+                //Debug.Log(underTiles[i, j] + ", " + i + ", " + j);
                 if (overTiles[i, j] >= (StrategicTileType)2000)
                 {
-                    TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
+                    TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
                 }
                 else if (overTiles[i, j] != 0)
                 {
-                    TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(overTiles[i, j], i, j)]);
+                    TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(overTiles[i, j], i, j)]);
                 }
                 else
                 {
                     var type = StrategicTileInfo.GetObjectTileType(State.World.Tiles[i, j], i, j);
                     if (type != -1)
-                        TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.Objects[type]);
+                        TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.Objects[type]);
 
                 }
                 if (tiles[i, j] >= (StrategicTileType)2100 && underTiles[i, j] >= (StrategicTileType)2200)
@@ -753,6 +754,7 @@ public class StrategyMode : SceneBase
                     }
                     else
                     {
+                        TilemapLayers[0].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(State.World.Tiles[i, j], i, j)]);
                         switch (State.World.Tiles[i, j])
                         {
                             case StrategicTileType.field:
@@ -809,55 +811,57 @@ public class StrategyMode : SceneBase
                 switch (tiletype.Value)
                 {
                     case (StrategicTileType.grass):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.grass)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.grass || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.GrassFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.desert):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.desert)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.desert || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.DesertFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.snow):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.snow)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.snow || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SnowFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.ashen):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.ashen)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.ashen || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.AshenFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.volcanic):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.volcanic)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.volcanic || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.VolcanicFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.swamp):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.swamp)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.swamp || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SwampFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.drySwamp):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.drySwamp)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.drySwamp || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.DrySwampFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.purpleSwamp):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.purpleSwamp)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.purpleSwamp || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.PurpleBogFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.savannah):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.savannah)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.savannah || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SavannahFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.smallIslands):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.smallIslands)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.smallIslands || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SmallIslandsFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.rainforest):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.rainforest)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.rainforest || State.World.Tiles[x, y] == StrategicTileType.water)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.RainforestFloat[tiletype.Key]);
+                        break;
+                    case (StrategicTileType.water):
                         break;
                     default:
                         TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.GrassFloat[tiletype.Key]);
                         break;
                 }
             }
-            
+
         }
     }
 
@@ -952,11 +956,12 @@ public class StrategyMode : SceneBase
         {
             LastHumanEmpire = State.World.MainEmpires.Where(s => s.StrategicAI == null).FirstOrDefault();
         }
-        if (!initialLoad) { 
-        foreach (Empire empire in State.World.AllActiveEmpires)
+        if (!initialLoad)
         {
-            empire.ArmyCleanup(); 
-        }
+            foreach (Empire empire in State.World.AllActiveEmpires)
+            {
+                empire.ArmyCleanup();
+            }
         }
         ActingEmpire.CalcIncome(State.World.Villages);
         if (ActingEmpire.StrategicAI == null || OnlyAIPlayers || Config.CheatExtraStrategicInfo || State.World.MainEmpires.Where(s => s.IsAlly(ActingEmpire) && s.StrategicAI == null).Any())
@@ -1225,11 +1230,12 @@ public class StrategyMode : SceneBase
                         {
                             Village village = StrategicUtilities.GetVillageAt(ExchangerUI.RightArmy.Position);
                             var infilitrators = new List<Unit>();
-                            
-                                
-                                ExchangerUI.RightArmy.Units.ForEach(unit => {
-                                    infilitrators.Add(unit);
-                                });
+
+
+                            ExchangerUI.RightArmy.Units.ForEach(unit =>
+                            {
+                                infilitrators.Add(unit);
+                            });
                             if (village != null && village.Empire.IsEnemy(ExchangerUI.LeftArmy.Empire))
                             {
                                 infilitrators.ForEach(inf =>
@@ -1242,7 +1248,8 @@ public class StrategyMode : SceneBase
                             else
                             {
                                 MercenaryHouse mercHouse = StrategicUtilities.GetMercenaryHouseAt(ExchangerUI.RightArmy.Position);
-                                if (mercHouse != null) {
+                                if (mercHouse != null)
+                                {
                                     infilitrators.ForEach(inf =>
                                     {
                                         StrategicUtilities.TryInfiltrate(ExchangerUI.RightArmy, inf, null, mercHouse);
@@ -1622,7 +1629,7 @@ public class StrategyMode : SceneBase
             if (maxTrainLevel >= 5) options.Add($"Extreme Training - {trainExp[4]} EXP, {trainCost[4]}G");
             if (maxTrainLevel >= 6) options.Add($"Hero Training - {trainExp[5]} EXP, {trainCost[5]}G");
             if (maxTrainLevel >= 7) options.Add($"Godly Training - {trainExp[6]} EXP, {trainCost[6]}G");
-            
+
             TrainUI.TrainingLevel.ClearOptions();
             TrainUI.TrainingLevel.AddOptions(options);
             if (TrainUI.TrainingLevel.value >= maxTrainLevel)
@@ -1684,7 +1691,7 @@ public class StrategyMode : SceneBase
 
 
     void EndTurn()
-    {       
+    {
         UndoMoves.Clear();
         ActingEmpire.Reports.Clear();
         if (State.World.EmpireOrder == null || State.World.EmpireOrder.Count != State.World.AllActiveEmpires.Count)
@@ -1725,7 +1732,7 @@ public class StrategyMode : SceneBase
 
         float NightRoll = (float)State.Rand.NextDouble();
         if (Config.DayNightEnabled)
-        {           
+        {
             if (Config.DayNightSchedule && State.World.Turn % Config.World.NightRounds == 0)
             {
                 State.World.IsNight = true;
@@ -2105,7 +2112,8 @@ public class StrategyMode : SceneBase
 
     private bool ContainsFriendly(Army s)
     {
-        return s.Units.Any(u => {
+        return s.Units.Any(u =>
+        {
             return u.FixedSide == ActingEmpire.Side || (State.World.GetEmpireOfSide(u.FixedSide)?.IsAlly(ActingEmpire) ?? false);
         });
     }
