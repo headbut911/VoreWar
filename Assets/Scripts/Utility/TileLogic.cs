@@ -652,106 +652,73 @@ class StrategicTileLogic
         Vec2 temp_vec;
         Vec2 comp_vec;
 
-        List<int> needs_NW_corner = new List<int> {0, 1, 3, 8, 12, 13, 21, 24, 25, 26, 34, 36, 37 };
-        List<int> needs_NE_corner = new List<int> {2, 1, 5, 10, 12, 13, 22, 24, 25, 27, 35, 37, 39};
-        List<int> needs_SW_corner = new List<int> {3, 8, 13, 17, 16, 26, 34, 28, 29, 32, 33, 36, 38 };
-        List<int> needs_SE_corner = new List<int> {5, 10, 13,17, 18, 27, 28, 30, 32, 33, 38, 35, 39 };
-        /*
-        List<int> north_flat = new List<int> { 1, 24, 25, 37 }; // 1
-        List<int> east_flat = new List<int> {10, 27, 35, 39}; // 10
-        List<int> south_flat = new List<int> {17, 32, 33, 38}; // 17
-        List<int> west_flat = new List<int> {8,26, 34, 36,}; // 8
-        */
+        List<int> north_flat = new List<int> { 0, 1, 2, 3, 4, 5, 12, 21, 22, 24, 25, 37 }; // 1
+        List<int> east_flat = new List<int> { 2, 5, 6, 10, 12, 18, 20, 22, 27, 28, 30, 35, 39 }; // 10
+        List<int> south_flat = new List<int> { 3, 4, 5, 16, 17, 18, 28, 29, 30, 32, 33, 38 }; // 17
+        List<int> west_flat = new List<int> { 0, 3, 8, 12, 16, 20, 21, 26, 27, 28, 34, 36, }; // 8
         IEnumerable<KeyValuePair<int, StrategicTileType>> conat_list = temp_Dict;
 
-        bool has_flat_north = false;
-        bool has_flat_east = false;
-        bool has_flat_south = false;
-        bool has_flat_west = false;
-
-        foreach (KeyValuePair<int, StrategicTileType> tiletype in temp_Dict)
-        {
-            if (tiletype.Key == 1)
-                has_flat_north = true;
-            if (tiletype.Key == 10)
-                has_flat_east = true;
-            if (tiletype.Key == 17)
-                has_flat_south = true;
-            if (tiletype.Key == 8)
-                has_flat_west = true;
-        }
+        bool has_flat_north = north_flat.Contains(dir);
+        bool has_flat_east = east_flat.Contains(dir);
+        bool has_flat_south = south_flat.Contains(dir);
+        bool has_flat_west = west_flat.Contains(dir);
         
         Debug.Log(dir + ": " + x + ", " + y);
 
-        if (needs_NW_corner.Contains(dir))
+        if (pos.x > 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)
         {
-            if (!((has_flat_north || has_flat_west) && !(pos.x > 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)))
-            {
-                
-                if (!AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.West)) || (has_flat_north || has_flat_west)))
-                {
-                    temp_vec = GetPos(pos, Neighbor.NorthWest);
-                    comp_vec = GetPos(pos, has_flat_west ? Neighbor.West : Neighbor.North);
-                    if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
-                    {
-                        KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(15, State.World.Tiles[temp_vec.x, temp_vec.y]);
-                        conat_list = temp_Dict.Append(corner);
-                    }
-                }
-            }
 
-        }
-        if (needs_NE_corner.Contains(dir))
-        {
-            if (!((has_flat_north || has_flat_east) && !(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)))
+            if (!AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.West)) || (has_flat_north || has_flat_west)))
             {
-                if (!AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.East)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.East)) || (has_flat_north || has_flat_east)))
+                temp_vec = GetPos(pos, Neighbor.NorthWest);
+                comp_vec = GetPos(pos, has_flat_west ? has_flat_north ? Neighbor.NorthWest : Neighbor.West : Neighbor.North);
+                if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
                 {
-                    temp_vec = GetPos(pos, Neighbor.NorthEast);
-                    comp_vec = GetPos(pos, has_flat_east ? Neighbor.East : Neighbor.North);
-                    if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
-                    {
-                        KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(14, State.World.Tiles[temp_vec.x, temp_vec.y]);
-                        conat_list = conat_list.Append(corner);
-                    }
-
-                }
-            }           
-        }
-        if (needs_SW_corner.Contains(dir))
-        {
-            if (!((has_flat_south || has_flat_west) && !(pos.x > 1 && pos.y > 1)))
-            {
-                if (!AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.South)) && !AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.West)) || (has_flat_south || has_flat_west)))
-                {
-                    temp_vec = GetPos(pos, Neighbor.SouthWest);
-                    comp_vec = GetPos(pos, has_flat_west ? Neighbor.West : Neighbor.South);
-                    if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
-                    {
-                        KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(7, State.World.Tiles[temp_vec.x, temp_vec.y]);
-                        conat_list = conat_list.Append(corner);
-                    }
+                    KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(15, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                    conat_list = temp_Dict.Append(corner);
                 }
             }
         }
-        if (needs_SE_corner.Contains(dir))
+        if (pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)
         {
-            if (!((has_flat_south || has_flat_east) && !(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y > 1)))
+            if (!AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.East)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.East)) || (has_flat_north || has_flat_east)))
             {
-                if (!AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.South)) && (AreTypesSame(GetPos(pos, Neighbor.East), GetPos(pos, Neighbor.South)) || (has_flat_south || has_flat_east)))
+                temp_vec = GetPos(pos, Neighbor.NorthEast);
+                comp_vec = GetPos(pos, has_flat_east ? has_flat_north ? Neighbor.NorthEast : Neighbor.East : Neighbor.North);
+                if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
                 {
-                    temp_vec = GetPos(pos, Neighbor.SouthEast);
-                    comp_vec = GetPos(pos, has_flat_east ? Neighbor.East : Neighbor.South);
-                    if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
-                    {
-                        KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(6, State.World.Tiles[temp_vec.x, temp_vec.y]);
-                        conat_list = conat_list.Append(corner);
-                    }
+                    KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(14, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                    conat_list = conat_list.Append(corner);
+                }
 
+            }
+        }
+        if (pos.x > 1 && pos.y > 1)
+        {
+            if (!AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.South)) && !AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.West)) || (has_flat_south || has_flat_west)))
+            {
+                temp_vec = GetPos(pos, Neighbor.SouthWest);
+                comp_vec = GetPos(pos, has_flat_west ? has_flat_south ? Neighbor.SouthWest : Neighbor.West : Neighbor.South);
+                if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
+                {
+                    KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(7, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                    conat_list = conat_list.Append(corner);
                 }
             }
+        }
+        if (pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y > 1)
+        {
+            if (!AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.South)) && (AreTypesSame(GetPos(pos, Neighbor.East), GetPos(pos, Neighbor.South)) || (has_flat_south || has_flat_east)))
+            {
+                temp_vec = GetPos(pos, Neighbor.SouthEast);
+                comp_vec = GetPos(pos, has_flat_east ? has_flat_south ? Neighbor.SouthEast : Neighbor.East : Neighbor.South);
+                if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
+                {
+                    KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(6, State.World.Tiles[temp_vec.x, temp_vec.y]);
+                    conat_list = conat_list.Append(corner);
+                }
 
-
+            }
         }
 
         return conat_list;
