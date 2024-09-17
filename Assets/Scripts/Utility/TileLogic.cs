@@ -652,21 +652,46 @@ class StrategicTileLogic
         Vec2 temp_vec;
         Vec2 comp_vec;
 
-        List<int> needs_NW_corner = new List<int> {0, 1, 3, 8, 12, 13, 21};
-        List<int> needs_NE_corner = new List<int> {2, 1, 5, 10, 12, 13, 22};
-        List<int> needs_SW_corner = new List<int> {3, 8, 13, 17, 16, 28, 29};
-        List<int> needs_SE_corner = new List<int> {5, 10, 13,17, 18, 28, 30};
-
+        List<int> needs_NW_corner = new List<int> {0, 1, 3, 8, 12, 13, 21, 24, 25, 26, 34, 36, 37 };
+        List<int> needs_NE_corner = new List<int> {2, 1, 5, 10, 12, 13, 22, 24, 25, 27, 35, 37, 39};
+        List<int> needs_SW_corner = new List<int> {3, 8, 13, 17, 16, 26, 34, 28, 29, 32, 33, 36, 38 };
+        List<int> needs_SE_corner = new List<int> {5, 10, 13,17, 18, 27, 28, 30, 32, 33, 38, 35, 39 };
+        /*
+        List<int> north_flat = new List<int> { 1, 24, 25, 37 }; // 1
+        List<int> east_flat = new List<int> {10, 27, 35, 39}; // 10
+        List<int> south_flat = new List<int> {17, 32, 33, 38}; // 17
+        List<int> west_flat = new List<int> {8,26, 34, 36,}; // 8
+        */
         IEnumerable<KeyValuePair<int, StrategicTileType>> conat_list = temp_Dict;
+
+        bool has_flat_north = false;
+        bool has_flat_east = false;
+        bool has_flat_south = false;
+        bool has_flat_west = false;
+
+        foreach (KeyValuePair<int, StrategicTileType> tiletype in temp_Dict)
+        {
+            if (tiletype.Key == 1)
+                has_flat_north = true;
+            if (tiletype.Key == 10)
+                has_flat_east = true;
+            if (tiletype.Key == 17)
+                has_flat_south = true;
+            if (tiletype.Key == 8)
+                has_flat_west = true;
+        }
+        
+        Debug.Log(dir + ": " + x + ", " + y);
 
         if (needs_NW_corner.Contains(dir))
         {
-            if (!((dir == 1 || dir == 8) && !(pos.x > 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)))
+            if (!((has_flat_north || has_flat_west) && !(pos.x > 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)))
             {
-                if (!AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.West)) || (dir == 1 || dir == 8)))
+                
+                if (!AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.West)) || (has_flat_north || has_flat_west)))
                 {
                     temp_vec = GetPos(pos, Neighbor.NorthWest);
-                    comp_vec = GetPos(pos, dir == 8 ? Neighbor.West : Neighbor.North);
+                    comp_vec = GetPos(pos, has_flat_west ? Neighbor.West : Neighbor.North);
                     if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
                     {
                         KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(15, State.World.Tiles[temp_vec.x, temp_vec.y]);
@@ -678,12 +703,12 @@ class StrategicTileLogic
         }
         if (needs_NE_corner.Contains(dir))
         {
-            if (!((dir == 1 || dir == 10) && !(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)))
+            if (!((has_flat_north || has_flat_east) && !(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)))
             {
-                if (!AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.East)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.East)) || (dir == 1 || dir == 10)))
+                if (!AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.North)) && !AreTypesSame(GetPos(pos, Neighbor.NorthEast), GetPos(pos, Neighbor.East)) && (AreTypesSame(GetPos(pos, Neighbor.North), GetPos(pos, Neighbor.East)) || (has_flat_north || has_flat_east)))
                 {
                     temp_vec = GetPos(pos, Neighbor.NorthEast);
-                    comp_vec = GetPos(pos, dir == 10 ? Neighbor.East : Neighbor.North);
+                    comp_vec = GetPos(pos, has_flat_east ? Neighbor.East : Neighbor.North);
                     if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
                     {
                         KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(14, State.World.Tiles[temp_vec.x, temp_vec.y]);
@@ -695,12 +720,12 @@ class StrategicTileLogic
         }
         if (needs_SW_corner.Contains(dir))
         {
-            if (!((dir == 17 || dir == 8) && !(pos.x > 1 && pos.y > 1)))
+            if (!((has_flat_south || has_flat_west) && !(pos.x > 1 && pos.y > 1)))
             {
-                if (!AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.South)) && !AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.West)) || (dir == 17 || dir == 8)))
+                if (!AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.South)) && !AreTypesSame(GetPos(pos, Neighbor.SouthWest), GetPos(pos, Neighbor.West)) && (AreTypesSame(GetPos(pos, Neighbor.South), GetPos(pos, Neighbor.West)) || (has_flat_south || has_flat_west)))
                 {
                     temp_vec = GetPos(pos, Neighbor.SouthWest);
-                    comp_vec = GetPos(pos, dir == 8 ? Neighbor.West : Neighbor.South);
+                    comp_vec = GetPos(pos, has_flat_west ? Neighbor.West : Neighbor.South);
                     if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
                     {
                         KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(7, State.World.Tiles[temp_vec.x, temp_vec.y]);
@@ -711,12 +736,12 @@ class StrategicTileLogic
         }
         if (needs_SE_corner.Contains(dir))
         {
-            if (!((dir == 17 || dir == 10) && !(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y > 1)))
+            if (!((has_flat_south || has_flat_east) && !(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y > 1)))
             {
-                if (!AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.South)) && (AreTypesSame(GetPos(pos, Neighbor.East), GetPos(pos, Neighbor.South)) || (dir == 17 || dir == 10)))
+                if (!AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.East)) && !AreTypesSame(GetPos(pos, Neighbor.SouthEast), GetPos(pos, Neighbor.South)) && (AreTypesSame(GetPos(pos, Neighbor.East), GetPos(pos, Neighbor.South)) || (has_flat_south || has_flat_east)))
                 {
                     temp_vec = GetPos(pos, Neighbor.SouthEast);
-                    comp_vec = GetPos(pos, dir == 10 ? Neighbor.East : Neighbor.South);
+                    comp_vec = GetPos(pos, has_flat_east ? Neighbor.East : Neighbor.South);
                     if (State.World.Tiles[temp_vec.x, temp_vec.y] > State.World.Tiles[comp_vec.x, comp_vec.y])
                     {
                         KeyValuePair<int, StrategicTileType> corner = new KeyValuePair<int, StrategicTileType>(6, State.World.Tiles[temp_vec.x, temp_vec.y]);
@@ -747,29 +772,29 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.West);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(0, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(8, GetTileType(temp_vec2));
                     }
                     break;
                 case 1:
                     temp_vec1 = GetPos(pos, Neighbor.North);
-                    true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(1, GetTileType(temp_vec1));
                     break;
                 case 2:
                     temp_vec1 = GetPos(pos, Neighbor.North);
                     temp_vec2 = GetPos(pos, Neighbor.East);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(2, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
                     }
                     break;
                 case 3:
@@ -783,31 +808,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(3, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(3, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(0, GetTileType(temp_vec1));
+                            true_types.Add(17, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(4, GetTileType(temp_vec1));
+                            true_types.Add(8, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(16, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(8, GetTileType(temp_vec2));
+                            true_types.Add(17, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -816,12 +841,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.South);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(4, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(17, GetTileType(temp_vec2));
                     }
                     break;
                 case 5:
@@ -835,52 +860,52 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(5, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(5, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(2, GetTileType(temp_vec1));
+                            true_types.Add(17, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(4, GetTileType(temp_vec1));
+                            true_types.Add(10, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(18, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(10, GetTileType(temp_vec2));
+                            true_types.Add(17, GetTileType(temp_vec3));
                         }
                     }
                     break;
                 case 6:
                     temp_vec1 = GetPos(pos, Neighbor.SouthEast);
-                    true_types.Add(6, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(6, GetTileType(temp_vec1));
                     break;
                 case 7:
                     temp_vec1 = GetPos(pos, Neighbor.SouthWest);
-                    true_types.Add(7, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(7, GetTileType(temp_vec1));
                     break;
                 case 8:
                     temp_vec1 = GetPos(pos, Neighbor.West);
-                    true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(8, GetTileType(temp_vec1));
                     break;
                 case 9:
                     //true_types.Add(State.World.Tiles[x,y]); // This is an empty space on the sprite sheet
                     break;
                 case 10:
                     temp_vec1 = GetPos(pos, Neighbor.East);
-                    true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(10, GetTileType(temp_vec1));
                     break;
                 case 11:
                     temp_vec1 = GetPos(pos, Neighbor.NorthEast);
@@ -895,85 +920,85 @@ class StrategicTileLogic
                     bool t3_t4_same = AreTypesSame(temp_vec3, temp_vec4);
                     if (t1_t2_same && t1_t3_same && t1_t4_same) //all same
                     {
-                        true_types.Add(11, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(11, GetTileType(temp_vec1));
                     }
                     else if (t1_t2_same && t1_t3_same) // t4 not same
                     {
-                        true_types.Add(47, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(47, GetTileType(temp_vec1));
+                        true_types.Add(7, GetTileType(temp_vec4));
                     }
                     else if (t1_t3_same && t1_t4_same) // t2 not same
                     {
-                        true_types.Add(45, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(45, GetTileType(temp_vec1));
+                        true_types.Add(15, GetTileType(temp_vec4));
                     }
                     else if (t1_t2_same && t1_t4_same) // t3 not same
                     {
-                        true_types.Add(46, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(46, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec4));
                     }
                     else if (t2_t3_same && t2_t4_same)
                     {
-                        true_types.Add(44, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(44, GetTileType(temp_vec1));
+                        true_types.Add(14, GetTileType(temp_vec4));
                     }
                     else if (t1_t2_same && t3_t4_same)
                     {
-                        true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(42, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(43, GetTileType(temp_vec1));
+                        true_types.Add(42, GetTileType(temp_vec4));
                     }
                     else if (t1_t3_same && t2_t4_same)
                     {
-                        true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(40, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(41, GetTileType(temp_vec1));
+                        true_types.Add(40, GetTileType(temp_vec4));
                     }
                     else if (t1_t4_same && t2_t3_same)
                     {
-                        true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(31, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(23, GetTileType(temp_vec1));
+                        true_types.Add(31, GetTileType(temp_vec2));
                     }
                     else if (t1_t2_same)
                     {
-                        true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(43, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec3));
+                        true_types.Add(7, GetTileType(temp_vec4));
                     }
                     else if (t1_t3_same)
                     {
-                        true_types.Add(42, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(42, GetTileType(temp_vec1));
+                        true_types.Add(15, GetTileType(temp_vec2));
+                        true_types.Add(17, GetTileType(temp_vec4));
                     }
                     else if (t2_t3_same)
                     {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(31, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(15, GetTileType(temp_vec1));
+                        true_types.Add(31, GetTileType(temp_vec3));
+                        true_types.Add(6, GetTileType(temp_vec4));
                     }
                     else if (t1_t4_same)
                     {
-                        true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        true_types.Add(23, GetTileType(temp_vec1));
+                        true_types.Add(15, GetTileType(temp_vec2));
+                        true_types.Add(6, GetTileType(temp_vec3));
                     }
                     else if (t2_t4_same)
                     {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(41, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(15, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec3));
+                        true_types.Add(41, GetTileType(temp_vec4));
                     }
                     else if (t3_t4_same)
                     {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(42, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(15, GetTileType(temp_vec1));
+                        true_types.Add(14, GetTileType(temp_vec2));
+                        true_types.Add(42, GetTileType(temp_vec4));
                     }
                     else // none same
                     {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(14, GetTileType(temp_vec1));
+                        true_types.Add(15, GetTileType(temp_vec2));
+                        true_types.Add(6, GetTileType(temp_vec3));
+                        true_types.Add(7, GetTileType(temp_vec4));
                     }
                     break;
                 case 12:
@@ -987,31 +1012,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(12, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(12, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(2, GetTileType(temp_vec1));
+                            true_types.Add(8, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(20, GetTileType(temp_vec1));
+                            true_types.Add(10, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(20, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(20, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(10, GetTileType(temp_vec2));
+                            true_types.Add(8, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1028,140 +1053,140 @@ class StrategicTileLogic
                     t3_t4_same = AreTypesSame(temp_vec3, temp_vec4);
                     if (t1_t2_same && t1_t3_same && t1_t4_same) //all same
                     {
-                        true_types.Add(13, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(13, GetTileType(temp_vec1));
                     }
                     else if (t1_t2_same && t1_t3_same) // t4 not same
                     {
-                        true_types.Add(5, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(5, GetTileType(temp_vec1));
+                        true_types.Add(8, GetTileType(temp_vec4));
                     }
                     else if (t1_t3_same && t1_t4_same) // t2 not same
                     {
-                        true_types.Add(3, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(3, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
                     }
                     else if (t1_t2_same && t1_t4_same) // t3 not same
                     {
-                        true_types.Add(12, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        true_types.Add(12, GetTileType(temp_vec1));
+                        true_types.Add(17, GetTileType(temp_vec3));
                     }
                     else if (t2_t3_same && t2_t4_same)
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(28, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(28, GetTileType(temp_vec4));
                     }
                     else if (t1_t2_same && t3_t4_same)
                     {
-                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(16, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(2, GetTileType(temp_vec1));
+                        true_types.Add(16, GetTileType(temp_vec4));
                     }
                     else if (t1_t3_same && t2_t4_same)
                     {
-                        true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(20, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(4, GetTileType(temp_vec1));
+                        true_types.Add(20, GetTileType(temp_vec4));
                     }
                     else if (t1_t4_same && t2_t3_same)
                     {
-                        true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(0, GetTileType(temp_vec1));
+                        true_types.Add(18, GetTileType(temp_vec2));
                     }
                     else if (t1_t2_same)
                     {
-                        true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(2, GetTileType(temp_vec1));
+                        true_types.Add(17, GetTileType(temp_vec3));
+                        true_types.Add(8, GetTileType(temp_vec4));
                     }
                     else if (t1_t3_same)
                     {
-                        true_types.Add(4, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(4, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
+                        true_types.Add(8, GetTileType(temp_vec4));
                     }
                     else if (t2_t3_same)
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(18, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(18, GetTileType(temp_vec3));
+                        true_types.Add(8, GetTileType(temp_vec4));
                     }
                     else if (t1_t4_same)
                     {
-                        true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                        true_types.Add(0, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
+                        true_types.Add(17, GetTileType(temp_vec3));
                     }
                     else if (t2_t4_same)
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(20, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(17, GetTileType(temp_vec3));
+                        true_types.Add(20, GetTileType(temp_vec4));
                     }
                     else if (t3_t4_same)
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(16, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
+                        true_types.Add(16, GetTileType(temp_vec4));
                     }
                     else // none same
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
-                        true_types.Add(8, State.World.Tiles[temp_vec4.x, temp_vec4.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
+                        true_types.Add(17, GetTileType(temp_vec3));
+                        true_types.Add(8, GetTileType(temp_vec4));
                     }
                     break;
                 case 14:
                     temp_vec1 = GetPos(pos, Neighbor.NorthEast);
-                    true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(14, GetTileType(temp_vec1));
                     break;
                 case 15:
                     temp_vec1 = GetPos(pos, Neighbor.NorthWest);
-                    true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(15, GetTileType(temp_vec1));
                     break;
                 case 16:
                     temp_vec1 = GetPos(pos, Neighbor.West);
                     temp_vec2 = GetPos(pos, Neighbor.South);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(16, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(16, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(8, GetTileType(temp_vec1));
+                        true_types.Add(17, GetTileType(temp_vec2));
                     }
                     break;
                 case 17:
                     temp_vec1 = GetPos(pos, Neighbor.South);
-                    true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(17, GetTileType(temp_vec1));
                     break;
                 case 18:
                     temp_vec1 = GetPos(pos, Neighbor.South);
                     temp_vec2 = GetPos(pos, Neighbor.East);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(18, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(18, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(17, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
                     }
                     break;
                 case 19:
                     temp_vec1 = GetPos(pos, Neighbor.North);
-                    true_types.Add(19, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                    true_types.Add(19, GetTileType(temp_vec1));
                     break; // Full tile, no clue which way
                 case 20:
                     temp_vec1 = GetPos(pos, Neighbor.West);
                     temp_vec2 = GetPos(pos, Neighbor.East);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(20, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(8, GetTileType(temp_vec1));
+                        true_types.Add(10, GetTileType(temp_vec2));
                     }
                     break;
                 case 21:
@@ -1175,31 +1200,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(21, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(21, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(0, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(0, GetTileType(temp_vec1));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(24, GetTileType(temp_vec1));
+                            true_types.Add(8, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(26, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(26, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(8, GetTileType(temp_vec2));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1214,31 +1239,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(22, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(22, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(2, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(2, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(25, GetTileType(temp_vec1));
+                            true_types.Add(10, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(27, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(27, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(10, GetTileType(temp_vec2));
+                            true_types.Add(7, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1247,12 +1272,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthWest);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(23, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(14, GetTileType(temp_vec1));
+                        true_types.Add(7, GetTileType(temp_vec2));
                     }
                     break;
                 case 24:
@@ -1260,12 +1285,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthEast);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(24, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec2));
                     }
                     break;
                 case 25:
@@ -1273,12 +1298,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthWest);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(25, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(1, GetTileType(temp_vec1));
+                        true_types.Add(7, GetTileType(temp_vec2));
                     }
                     break;
                 case 26:
@@ -1286,12 +1311,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthEast);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(26, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(26, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(8, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec2));
                     }
                     break;
                 case 27:
@@ -1299,12 +1324,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthWest);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(27, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(27, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(10, GetTileType(temp_vec1));
+                        true_types.Add(7, GetTileType(temp_vec2));
                     }
                     break;
                 case 28:
@@ -1318,31 +1343,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(28, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(28, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(18, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(18, GetTileType(temp_vec1));
+                            true_types.Add(8, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(20, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(32, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(20, GetTileType(temp_vec1));
+                            true_types.Add(32, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(10, GetTileType(temp_vec1));
+                            true_types.Add(16, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(10, GetTileType(temp_vec1));
+                            true_types.Add(17, GetTileType(temp_vec2));
+                            true_types.Add(8, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1357,31 +1382,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(29, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(29, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(32, GetTileType(temp_vec1));
+                            true_types.Add(8, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(34, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(34, GetTileType(temp_vec1));
+                            true_types.Add(17, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(16, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(14, GetTileType(temp_vec1));
+                            true_types.Add(16, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(8, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(14, GetTileType(temp_vec1));
+                            true_types.Add(17, GetTileType(temp_vec2));
+                            true_types.Add(8, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1396,31 +1421,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(30, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(30, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(33, GetTileType(temp_vec1));
+                            true_types.Add(10, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(35, GetTileType(temp_vec1));
+                            true_types.Add(17, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(18, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(18, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(17, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(10, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(17, GetTileType(temp_vec2));
+                            true_types.Add(10, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1429,12 +1454,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthEast);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(31, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(15, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec2));
                     }
                     break;
                 case 32:
@@ -1442,12 +1467,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.NorthEast);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(32, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(17, GetTileType(temp_vec1));
+                        true_types.Add(14, GetTileType(temp_vec2));
                     }
                     break;
                 case 33:
@@ -1455,12 +1480,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.NorthWest);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(33, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(17, GetTileType(temp_vec1));
+                        true_types.Add(15, GetTileType(temp_vec2));
                     }
                     break;
                 case 34:
@@ -1468,12 +1493,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.NorthEast);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(34, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(34, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(8, GetTileType(temp_vec1));
+                        true_types.Add(14, GetTileType(temp_vec2));
                     }
                     break;
                 case 35:
@@ -1481,12 +1506,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.NorthWest);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(35, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(10, GetTileType(temp_vec1));
+                        true_types.Add(15, GetTileType(temp_vec2));
                     }
                     break;
                 case 36:
@@ -1500,31 +1525,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(36, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(36, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(33, GetTileType(temp_vec1));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(26, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(26, GetTileType(temp_vec1));
+                            true_types.Add(14, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(41, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(8, GetTileType(temp_vec1));
+                            true_types.Add(41, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(8, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(8, GetTileType(temp_vec1));
+                            true_types.Add(14, GetTileType(temp_vec2));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1539,31 +1564,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(37, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(37, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(25, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(25, GetTileType(temp_vec1));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(24, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(24, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(42, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(1, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(1, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec2));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1578,31 +1603,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(38, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(38, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(33, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(14, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(33, GetTileType(temp_vec1));
+                            true_types.Add(14, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(32, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(32, GetTileType(temp_vec1));
+                            true_types.Add(15, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(43, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(17, GetTileType(temp_vec1));
+                            true_types.Add(43, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(17, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(14, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(17, GetTileType(temp_vec1));
+                            true_types.Add(15, GetTileType(temp_vec2));
+                            true_types.Add(14, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1617,31 +1642,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(39, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(39, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(35, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(35, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(27, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(27, GetTileType(temp_vec1));
+                            true_types.Add(15, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(39, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(10, GetTileType(temp_vec1));
+                            true_types.Add(39, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(10, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(10, GetTileType(temp_vec1));
+                            true_types.Add(15, GetTileType(temp_vec2));
+                            true_types.Add(7, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1650,12 +1675,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthWest);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(40, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(15, GetTileType(temp_vec1));
+                        true_types.Add(7, GetTileType(temp_vec2));
                     }
                     break;
                 case 41:
@@ -1663,12 +1688,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthEast);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(41, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(14, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec2));
                     }
                     break;
                 case 42:
@@ -1676,12 +1701,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.SouthEast);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(42, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(42, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(7, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(7, GetTileType(temp_vec1));
+                        true_types.Add(6, GetTileType(temp_vec2));
                     }
                     break;
                 case 43:
@@ -1689,12 +1714,12 @@ class StrategicTileLogic
                     temp_vec2 = GetPos(pos, Neighbor.NorthWest);
                     if (AreTypesSame(temp_vec1, temp_vec2))
                     {
-                        true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                        true_types.Add(43, GetTileType(temp_vec1));
                     }
                     else
                     {
-                        true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                        true_types.Add(15, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                        true_types.Add(14, GetTileType(temp_vec1));
+                        true_types.Add(15, GetTileType(temp_vec2));
                     }
                     break;
                 case 44:
@@ -1708,31 +1733,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(44, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(44, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(40, GetTileType(temp_vec1));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(31, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(42, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec2));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1747,31 +1772,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(45, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(45, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(23, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(23, GetTileType(temp_vec1));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(41, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(41, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(42, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(14, GetTileType(temp_vec1));
+                            true_types.Add(42, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(14, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(14, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec2));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1786,31 +1811,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(46, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(46, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(43, GetTileType(temp_vec1));
+                            true_types.Add(7, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(40, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(40, GetTileType(temp_vec1));
+                            true_types.Add(6, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(23, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(23, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(7, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(14, GetTileType(temp_vec2));
+                            true_types.Add(7, GetTileType(temp_vec3));
                         }
                     }
                     break;
@@ -1825,31 +1850,31 @@ class StrategicTileLogic
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(47, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
+                            true_types.Add(47, GetTileType(temp_vec1));
                         }
                         else
                         {
-                            true_types.Add(43, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(43, GetTileType(temp_vec1));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     else
                     {
                         if (t1_t3_same)
                         {
-                            true_types.Add(31, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(31, GetTileType(temp_vec1));
+                            true_types.Add(14, GetTileType(temp_vec2));
                         }
                         else if (t2_t3_same)
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(41, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(41, GetTileType(temp_vec2));
                         }
                         else
                         {
-                            true_types.Add(15, State.World.Tiles[temp_vec1.x, temp_vec1.y]);
-                            true_types.Add(14, State.World.Tiles[temp_vec2.x, temp_vec2.y]);
-                            true_types.Add(6, State.World.Tiles[temp_vec3.x, temp_vec3.y]);
+                            true_types.Add(15, GetTileType(temp_vec1));
+                            true_types.Add(14, GetTileType(temp_vec2));
+                            true_types.Add(6, GetTileType(temp_vec3));
                         }
                     }
                     break;
