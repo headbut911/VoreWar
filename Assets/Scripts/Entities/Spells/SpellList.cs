@@ -429,6 +429,7 @@ static class SpellList
             Tier = 1,
             Pattern = new int[3, 3] { { 0, 0, 0 }, { 1, 1, 1 }, { 0, 0, 0 } },
             Resistable = true,
+            DamageType = DamageTypes.Fire,
             Damage = (a, t) => 5 + a.Unit.GetStat(Stat.Mind) / 7,
             OnExecute = (a, t) =>
             {
@@ -454,9 +455,11 @@ static class SpellList
             AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy, AbilityTargets.Tile },
             Range = new Range(5),
             AOEType = AreaOfEffectType.FixedPattern,
-            Tier = 2,
+            Tier = 3,
             Pattern = new int[3, 3] { { 0, 1, 0 }, { 1, 1, 1 }, { 0, 1, 0 } },
             Resistable = true,
+            ResistanceMult = .80f,
+            DamageType = DamageTypes.Fire,
             Damage = (a, t) => 8 + a.Unit.GetStat(Stat.Dexterity) / 9,
             OnExecute = (a, t) =>
             {

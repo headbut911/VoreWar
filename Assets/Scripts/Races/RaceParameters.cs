@@ -49,6 +49,7 @@ static class RaceParameters
     static readonly RaceTraits Cockatrice;
     static readonly RaceTraits Vargul;
     static readonly RaceTraits Hamsters;
+    static readonly RaceTraits Helldivers;
     static readonly RaceTraits Vagrants;
     static readonly RaceTraits Serpents;
     static readonly RaceTraits Wyvern;
@@ -217,6 +218,8 @@ static class RaceParameters
                 return Vargul;
             case Race.Hamsters:
                 return Hamsters;
+            case Race.Helldivers:
+                return Helldivers;
             case Race.Vagrants:
                 return Vagrants;
             case Race.Serpents:
@@ -1231,6 +1234,7 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            PowerAdjustment = 1.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(18, 26),
@@ -1250,6 +1254,36 @@ static class RaceParameters
             Traits.Biter,
         },
             RaceDescription = "A race renowned for their excellent smithing and startling strength despite their stature. Their settlements have rarely been seen above ground however, they are known to have ginormous kingdoms underground that dwarf most other faction's capitals.",
+        };
+
+        Helldivers = new RaceTraits()
+        {
+            BodySize = 10,
+            StomachSize = 18,
+            HasTail = true,
+            FavoredStat = Stat.Dexterity,
+            PowerAdjustment = 1.1f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(12, 18),
+                Dexterity = new RaceStats.StatRange(14, 20),
+                Endurance = new RaceStats.StatRange(8, 12),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(16, 24),
+                Agility = new RaceStats.StatRange(7, 12),
+                Voracity = new RaceStats.StatRange(5, 8),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.QuickShooter,
+            Traits.ForcefulBlow,
+            Traits.PackWill,
+            Traits.DeathCheater,
+            Traits.Respawner,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.FireBomb },
+            RaceDescription = "A group of highly trained soldiers dedicated to the elimination of all that threats democracy. It is unknown which faction or race first started this coalition due to the technology they boast and open recruitment policy. However, one thing is certain; they are quite a formidable force.(They also accept general mercenary work)",
         };
 
         Vagrants = new RaceTraits()

@@ -598,9 +598,15 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.Unflinching:
                 return "Unit's BladeDance, Tenacity, and Focus stack loss is reduced by if stacks are below 10% current HP.";
             case Traits.Annihilation:
-                return "Every time digestion progresses, this unit digests one level from each prey inside them, gaining its experience value. If a unit hits level 0 this way, it dies if it was stil alive and cannot be revived.\n(Cheat Trait)";
+                return "Every time digestion progresses, this unit digests one level from each prey inside them, gaining its experience value. If a unit hits level 0 this way, it dies if it was still alive and cannot be revived.\n(Cheat Trait)";
             case Traits.WeaponChanneler:
                 return "Unit deals extra melee or ranged damage at the cost of each srtike consuming 6 mana. No bonus is received if mana is under 6.";
+            case Traits.Respawner:
+                return "Upon getting killed, this unit will be brought back to life within a 6 tile radius of where they were killed once per battle.";
+            case Traits.RespawnerIII:
+                return "Upon getting killed, this unit will be brought back to life within a 6 tile radius of where they were killed 3 times per battle!";
+            case Traits.DeathCheater:
+                return "Unit has set chance to return to army after dying in battle regardless of outcome. Chance starts at 100% then decreases 10% with each death, bottoms out at 10%";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }
