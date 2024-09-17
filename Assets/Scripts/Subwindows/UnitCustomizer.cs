@@ -501,6 +501,9 @@ public class UnitCustomizer
             case Race.FeralOrcas:
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Dorsal Fin";
                 break;
+            case Race.Helldivers:
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Race Detail";
+                break;
         }
     }
 
