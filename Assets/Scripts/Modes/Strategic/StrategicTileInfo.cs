@@ -116,8 +116,9 @@ static class StrategicTileInfo
     static internal List<StrategicTileType> SnowFamily = new List<StrategicTileType>() { StrategicTileType.snow, StrategicTileType.snowHills, StrategicTileType.fieldSnow, StrategicTileType.ice, StrategicTileType.snowTrees, StrategicTileType.snowMountain };
     static internal List<StrategicTileType> WaterFamily = new List<StrategicTileType>() { StrategicTileType.water, StrategicTileType.ocean};
     static internal List<StrategicTileType> AshenFamily = new List<StrategicTileType>() {StrategicTileType.ashen, StrategicTileType.fieldAshen, StrategicTileType.ashenHills};
-    static internal List<StrategicTileType> ShallowWaterFamily = new List<StrategicTileType>() { StrategicTileType.shallowWater, StrategicTileType.smallIslands, StrategicTileType.fieldSmallIslands};
+    static internal List<StrategicTileType> ShallowWaterFamily = new List<StrategicTileType>() {StrategicTileType.smallIslands, StrategicTileType.fieldSmallIslands};
     static internal List<StrategicTileType> SavannahFamily = new List<StrategicTileType>() { StrategicTileType.savannah, StrategicTileType.fieldsavannah};
+    static internal List<StrategicTileType> ConsideredLiquid = new List<StrategicTileType>() { StrategicTileType.water, StrategicTileType.ocean, StrategicTileType.ice, StrategicTileType.shallowWater, StrategicTileType.lava};
 
 
     static Noise.OpenSimplexNoise OpenSimplexNoise = new Noise.OpenSimplexNoise(155);

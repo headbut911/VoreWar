@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 public class StrategicTileDictionary : MonoBehaviour
 {
     internal Tile[] WaterFloat;
+    internal Tile[] OceanFloat;
+    internal Tile[] LavaFloat;
+    internal Tile[] ShallowWaterFloat;
     internal Tile[] GrassFloat;
     internal Tile[] DesertFloat;
     internal Tile[] SnowFloat;
@@ -22,6 +25,9 @@ public class StrategicTileDictionary : MonoBehaviour
     internal Tile[] Objects;
 
     public Sprite[] WaterFloatSprites;
+    public Sprite[] OceanFloatSprites;
+    public Sprite[] LavaFloatSprites;
+    public Sprite[] ShallowWaterFloatSprites;
     public Sprite[] GrassFloatSprites;
     public Sprite[] DesertFloatSprites;
     public Sprite[] SnowFloatSprites;
@@ -44,6 +50,9 @@ public class StrategicTileDictionary : MonoBehaviour
         IceOverSnow = CreateTiles(IceOverSnowSprites);
         DeepWaterOverWater = CreateTiles(DeepWaterOverWaterSprites);
         WaterFloat = CreateTiles(WaterFloatSprites);
+        OceanFloat = CreateTiles(OceanFloatSprites);
+        LavaFloat = CreateTiles(LavaFloatSprites);
+        ShallowWaterFloat = CreateTiles(ShallowWaterFloatSprites);
         GrassFloat = CreateTiles(GrassFloatSprites);
         DesertFloat = CreateTiles(DesertFloatSprites);
         SnowFloat = CreateTiles(SnowFloatSprites);

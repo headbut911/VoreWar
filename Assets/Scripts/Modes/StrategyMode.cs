@@ -725,7 +725,28 @@ public class StrategyMode : SceneBase
                 //Debug.Log(underTiles[i, j] + ", " + i + ", " + j);
                 if (overTiles[i, j] >= (StrategicTileType)2000)
                 {
-                    TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
+                    switch(State.World.Tiles[i, j])
+                    {
+                        case StrategicTileType.water:
+                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
+                            break;
+                        case StrategicTileType.ocean:
+                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.OceanFloat[(int)overTiles[i, j] - 2000]);
+                            break;
+                        case StrategicTileType.lava:
+                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.LavaFloat[(int)overTiles[i, j] - 2000]);
+                            break;
+                        case StrategicTileType.ice:
+                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.IceOverSnow[(int)overTiles[i, j] - 2000]);
+                            break;
+                        case StrategicTileType.shallowWater:
+                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.ShallowWaterFloat[(int)overTiles[i, j] - 2000]);
+                            break;
+                        default:
+                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.LavaFloat[(int)overTiles[i, j] - 2000]);
+                            break;
+
+                    }
                 }
                 else if (overTiles[i, j] != 0)
                 {
@@ -811,57 +832,64 @@ public class StrategyMode : SceneBase
                 switch (tiletype.Value)
                 {
                     case (StrategicTileType.grass):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.grass || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.grass || StrategicTileInfo.ConsideredLiquid.Contains(State.World.Tiles[x, y]))
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.GrassFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.desert):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.desert || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.desert)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.DesertFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.snow):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.snow || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.snow || StrategicTileInfo.ConsideredLiquid.Contains(State.World.Tiles[x, y]))
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SnowFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.ashen):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.ashen || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.ashen)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.AshenFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.volcanic):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.volcanic || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.volcanic)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.VolcanicFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.swamp):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.swamp || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.swamp)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SwampFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.drySwamp):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.drySwamp || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.drySwamp)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.DrySwampFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.purpleSwamp):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.purpleSwamp || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.purpleSwamp)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.PurpleBogFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.savannah):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.savannah || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.savannah)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SavannahFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.smallIslands):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.smallIslands || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.smallIslands)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SmallIslandsFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.rainforest):
-                        if (State.World.Tiles[x, y] <= StrategicTileType.rainforest || State.World.Tiles[x, y] == StrategicTileType.water)
+                        if (State.World.Tiles[x, y] <= StrategicTileType.rainforest)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.RainforestFloat[tiletype.Key]);
                         break;
                     case (StrategicTileType.water):
+                        break;
+                    case (StrategicTileType.ocean):
+                        break;
+                    case (StrategicTileType.ice):
+                        break;
+                    case (StrategicTileType.shallowWater):
+                        break;
+                    case (StrategicTileType.lava):
                         break;
                     default:
                         TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.GrassFloat[tiletype.Key]);
                         break;
                 }
             }
-
         }
     }
 

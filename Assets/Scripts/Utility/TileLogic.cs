@@ -254,24 +254,19 @@ class StrategicTileLogic
         {
             for (int y = 0; y < tiles.GetLength(1); y++)
             {
-                if (tiles[x, y] == StrategicTileType.water)
+                if (StrategicTileInfo.ConsideredLiquid.Contains(tiles[x, y]))
                 {
-                    int type = DetermineType(new Vec2(x, y), StrategicTileType.water);
+                    int type = DetermineType(new Vec2(x, y), tiles[x, y]);
                     overTiles[x, y] = (StrategicTileType)(2000 + type);
                     if (type == 19)
-                        overTiles[x, y] = StrategicTileType.water;
-
-                    int sand = DirectBorderTiles(x, y, StrategicTileType.desert);
-                    int snow = DirectBorderTiles(x, y, StrategicTileType.snow);
-                    int grass = DirectBorderTiles(x, y, StrategicTileType.grass);
-                    if (grass >= sand && grass >= snow)
-                        temptiles[x, y] = StrategicTileType.grass;
-                    else if (sand >= grass && sand >= snow)
-                        temptiles[x, y] = StrategicTileType.desert;
-                    else if (snow >= sand && snow >= grass)
-                        temptiles[x, y] = StrategicTileType.snow;
-                    else
-                        temptiles[x, y] = StrategicTileType.grass;
+                        overTiles[x, y] = tiles[x, y];
+                    Dictionary<StrategicTileType, int> greatest_near = DirectBorderTiles(x, y);
+                    if (greatest_near.Count == 0)
+                    {
+                        greatest_near = DirectBorderTiles(x, y, true);
+                    }
+                    StrategicTileType keyOfMaxValue = greatest_near.Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
+                    temptiles[x, y] = keyOfMaxValue;
 
 
                     continue;
@@ -326,21 +321,96 @@ class StrategicTileLogic
         }
         return newtiles;
 
-        int DirectBorderTiles(int x, int y, StrategicTileType type)
-        {
-            int count = 0;
-            count += IsTileType(new Vec2(x, y + 1), type) ? 3 : 0;
-            count += IsTileType(new Vec2(x, y - 1), type) ? 3 : 0;
-            count += IsTileType(new Vec2(x - 1, y), type) ? 3 : 0;
-            count += IsTileType(new Vec2(x + 1, y), type) ? 3 : 0;
-            count += IsTileType(new Vec2(x + 1, y + 1), type) ? 1 : 0;
-            count += IsTileType(new Vec2(x + 1, y - 1), type) ? 1 : 0;
-            count += IsTileType(new Vec2(x - 1, y + 1), type) ? 1 : 0;
-            count += IsTileType(new Vec2(x - 1, y - 1), type) ? 1 : 0;
-            return count;
-        }
     }
+    internal Dictionary<StrategicTileType, int> DirectBorderTiles(int x, int y, bool liquid_check = false)
+    {
+        Dictionary<StrategicTileType, int> greatest_near = new Dictionary<StrategicTileType, int>(); ;
+        StrategicTileType north = GetTileType(new Vec2(x, y + 1));
+        StrategicTileType south = GetTileType(new Vec2(x, y + 1));
+        StrategicTileType west = GetTileType(new Vec2(x - 1, y));
+        StrategicTileType east = GetTileType(new Vec2(x + 1, y));
+        StrategicTileType northeast = GetTileType(new Vec2(x + 1, y + 1));
+        StrategicTileType southeast = GetTileType(new Vec2(x + 1, y - 1));
+        StrategicTileType northwest = GetTileType(new Vec2(x - 1, y + 1));
+        StrategicTileType southwest = GetTileType(new Vec2(x - 1, y - 1));
 
+        if (north != (StrategicTileType)8000)
+            greatest_near.Add(north, 3);
+        if (south != (StrategicTileType)8000)
+            if (greatest_near.ContainsKey(south))
+            {
+                greatest_near[south] += 3;
+            }
+            else
+            {
+                greatest_near.Add(south, 3);
+            }
+        if (west != (StrategicTileType)8000)
+            if (greatest_near.ContainsKey(west))
+            {
+                greatest_near[west] += 3;
+            }
+            else
+            {
+                greatest_near.Add(west, 3);
+            }
+        if (east != (StrategicTileType)8000)
+            if (greatest_near.ContainsKey(east))
+            {
+                greatest_near[east] += 3;
+            }
+            else
+            {
+                greatest_near.Add(east, 3);
+            }
+        if (northeast != (StrategicTileType)8000)
+            if (greatest_near.ContainsKey(northeast))
+            {
+                greatest_near[northeast] += 1;
+            }
+            else
+            {
+                greatest_near.Add(northeast, 1);
+            }
+        if (southeast != (StrategicTileType)8000)
+            if (greatest_near.ContainsKey(southeast))
+            {
+                greatest_near[southeast] += 1;
+            }
+            else
+            {
+                greatest_near.Add(southeast, 1);
+            }
+        if (northwest != (StrategicTileType)8000)
+            if (greatest_near.ContainsKey(northwest))
+            {
+                greatest_near[northwest] += 1;
+            }
+            else
+            {
+                greatest_near.Add(northwest, 1);
+            }
+        if (southwest != (StrategicTileType)8000)
+            if (greatest_near.ContainsKey(southwest))
+            {
+                greatest_near[southwest] += 1;
+            }
+            else
+            {
+                greatest_near.Add(southwest, 1);
+            }
+        if (!liquid_check)
+        {
+            foreach (StrategicTileType i in StrategicTileInfo.ConsideredLiquid)
+            {
+                if (greatest_near.ContainsKey(i))
+                {
+                    greatest_near.Remove(i);
+                }
+            }
+        }
+        return greatest_near;
+    }
     internal int DetermineType(Vec2 pos, StrategicTileType type, bool inverted = false)
     {
         Wanted yes;
@@ -469,6 +539,46 @@ class StrategicTileLogic
             default:
                 return startingPos;
         }
+    }
+
+    internal StrategicTileType GetTileType(Vec2 pos)
+    {
+        if (pos.x < 0 || pos.y < 0 || pos.x > tiles.GetUpperBound(0) || pos.y > tiles.GetUpperBound(1))
+            return (StrategicTileType)8000;
+        StrategicTileType type = State.World.Tiles[pos.x, pos.y];
+        if (StrategicTileInfo.ConsideredLiquid.Contains(type))
+        {
+            return type;
+        }
+        if (StrategicTileInfo.SandFamily.Contains(type))
+        {
+            return StrategicTileType.desert;
+        }
+        if (StrategicTileInfo.GrassFamily.Contains(type))
+        {
+            return StrategicTileType.grass;
+        }
+        if (StrategicTileInfo.SnowFamily.Contains(type))
+        {
+            return StrategicTileType.snow;
+        }
+        if (StrategicTileInfo.AshenFamily.Contains(type))
+        {
+            return StrategicTileType.ashen;
+        }
+        if (StrategicTileInfo.ShallowWaterFamily.Contains(type))
+        {
+            return StrategicTileType.shallowWater;
+        }
+        if (StrategicTileInfo.SavannahFamily.Contains(type))
+        {
+            return StrategicTileType.savannah;
+        }
+        //if (StrategicTileInfo.WaterFamily.Contains(type))
+        //{
+        //    return StrategicTileInfo.WaterFamily.Contains(tiles[pos.x, pos.y]);
+        //}
+        return type;
     }
 
     internal bool IsTileType(Vec2 pos, StrategicTileType type)
