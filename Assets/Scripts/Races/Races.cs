@@ -49,6 +49,7 @@
     static internal Cockatrice Cockatrice = new Cockatrice();
     static internal Vargul Vargul = new Vargul();
     static internal Hamsters Hamsters = new Hamsters();
+    static internal Helldivers Helldivers = new Helldivers();
 
     static internal Vagrants Vagrants = new Vagrants();
     static internal Serpents Serpents = new Serpents();
@@ -312,6 +313,8 @@
                 return Vargul;
             case Race.Hamsters:
                 return Hamsters;
+            case Race.Helldivers:
+                return Helldivers;
             case Race.Dratopyr:
                 return Dratopyr;
             case Race.Erin:

@@ -455,7 +455,7 @@ static class SpellList
             AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy, AbilityTargets.Tile },
             Range = new Range(5),
             AOEType = AreaOfEffectType.FixedPattern,
-            Tier = 2,
+            Tier = 3,
             Pattern = new int[3, 3] { { 0, 1, 0 }, { 1, 1, 1 }, { 0, 1, 0 } },
             Resistable = true,
             ResistanceMult = .80f,

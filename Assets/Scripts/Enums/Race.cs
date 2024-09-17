@@ -49,6 +49,7 @@
     Vargul = 61,
     Youko = 62,
     Hamsters = 63,
+    Helldivers = 64,
 
     Vagrants = 100,
     Serpents = 101,
