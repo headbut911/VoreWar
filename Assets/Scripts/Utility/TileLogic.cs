@@ -491,7 +491,7 @@ class StrategicTileLogic
         {
             if (direction == Wanted.DontCare)
                 return false;
-            if (direction == Wanted.Yes && IsTileType(GetPos(pos, neighbor), type) == false)
+            if (direction == Wanted.Yes && (IsTileType(GetPos(pos, neighbor), type) == false))
                 return true;
             if (direction == Wanted.No && IsTileType(GetPos(pos, neighbor), type))
                 return true;
@@ -568,6 +568,10 @@ class StrategicTileLogic
     {
         if (pos.x < 0 || pos.y < 0 || pos.x > tiles.GetUpperBound(0) || pos.y > tiles.GetUpperBound(1))
             return true;
+        if (StrategicTileInfo.ConsideredLiquid.Contains(type))
+        {
+            return StrategicTileInfo.ConsideredLiquid.Contains(tiles[pos.x, pos.y]) || tiles[pos.x, pos.y] == StrategicTileType.smallIslands;
+        }
         if (StrategicTileInfo.SandFamily.Contains(type))
         {
             return StrategicTileInfo.SandFamily.Contains(tiles[pos.x, pos.y]);
@@ -586,6 +590,10 @@ class StrategicTileLogic
         }
         if (StrategicTileInfo.ShallowWaterFamily.Contains(type))
         {
+            if (StrategicTileInfo.ConsideredLiquid.Contains(tiles[pos.x, pos.y]))
+            {
+                return true;
+            }
             return StrategicTileInfo.ShallowWaterFamily.Contains(tiles[pos.x, pos.y]);
         }
         if (StrategicTileInfo.SavannahFamily.Contains(type))
