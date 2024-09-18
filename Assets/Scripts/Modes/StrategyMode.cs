@@ -728,16 +728,20 @@ public class StrategyMode : SceneBase
                     switch(State.World.Tiles[i, j])
                     {
                         case StrategicTileType.water:
-                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
+                            if (underTiles[i,j] != StrategicTileType.water)
+                                TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)overTiles[i, j] - 2000]);
                             break;
                         case StrategicTileType.ocean:
-                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.OceanFloat[(int)overTiles[i, j] - 2000]);
+                            if (underTiles[i, j] != StrategicTileType.ocean)
+                                TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.OceanFloat[(int)overTiles[i, j] - 2000]);
                             break;
                         case StrategicTileType.lava:
-                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.LavaFloat[(int)overTiles[i, j] - 2000]);
+                            if (underTiles[i, j] != StrategicTileType.lava)
+                                TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.LavaFloat[(int)overTiles[i, j] - 2000]);
                             break;
                         case StrategicTileType.ice:
-                            TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.IceOverSnow[(int)overTiles[i, j] - 2000]);
+                            if (underTiles[i, j] != StrategicTileType.ice)
+                                TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.IceOverSnow[(int)overTiles[i, j] - 2000]);
                             break;
                         case StrategicTileType.shallowWater:
                             TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.ShallowWaterFloat[(int)overTiles[i, j] - 2000]);
@@ -759,14 +763,7 @@ public class StrategyMode : SceneBase
                         TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.Objects[type]);
 
                 }
-                if (tiles[i, j] >= (StrategicTileType)2100 && underTiles[i, j] >= (StrategicTileType)2200)
-                {
-                    TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.GrassFloat[(int)tiles[i, j] - 2100]);
-                    TilemapLayers[0].SetTile(new Vector3Int(i, j, 0), TileDictionary.IceOverSnow[(int)underTiles[i, j] - 2200]);
-                    //TilemapLayers[0].SetTile(new Vector3Int(i, j, 0), TileTypes[(int)underTiles[i, j]]);
-
-                }
-                else if (tiles[i, j] >= (StrategicTileType)2100)
+                if (tiles[i, j] >= (StrategicTileType)2100)
                 {
                     ApplyFloat(i, j);
                     if (underTiles[i, j] != (StrategicTileType)99)
@@ -882,8 +879,6 @@ public class StrategyMode : SceneBase
                     case (StrategicTileType.ocean):
                         break;
                     case (StrategicTileType.ice):
-                        break;
-                    case (StrategicTileType.shallowWater):
                         break;
                     case (StrategicTileType.lava):
                         break;

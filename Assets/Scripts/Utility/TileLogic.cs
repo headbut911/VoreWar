@@ -232,6 +232,7 @@ class StrategicTileLogic
 {
     StrategicTileType[,] tiles;
     StrategicTileType[,] newtiles;
+    int type;
 
     internal StrategicTileType[,] ApplyLogic(StrategicTileType[,] originalTiles, out StrategicTileType[,] overTiles, out StrategicTileType[,] underTiles)
     {
@@ -256,7 +257,7 @@ class StrategicTileLogic
             {
                 if (StrategicTileInfo.ConsideredLiquid.Contains(tiles[x, y]))
                 {
-                    int type = DetermineType(new Vec2(x, y), tiles[x, y]);
+                    type = DetermineType(new Vec2(x, y), tiles[x, y]);
                     overTiles[x, y] = (StrategicTileType)(2000 + type);
                     if (type == 19)
                         overTiles[x, y] = tiles[x, y];
@@ -266,7 +267,9 @@ class StrategicTileLogic
                         greatest_near = DirectBorderTiles(x, y, true);
                     }
                     StrategicTileType keyOfMaxValue = greatest_near.Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
-                    temptiles[x, y] = keyOfMaxValue;
+                    Debug.Log(keyOfMaxValue);
+                    temptiles[x, y] = (StrategicTileType)StrategicTileInfo.GetTileType(keyOfMaxValue, x, y);
+                    
 
 
                     continue;
@@ -275,7 +278,6 @@ class StrategicTileLogic
             }
         }
         tiles = temptiles;
-
         for (int x = 0; x < tiles.GetLength(0); x++)
         {
             for (int y = 0; y < tiles.GetLength(1); y++)
@@ -283,7 +285,7 @@ class StrategicTileLogic
                 if (overTiles[x, y] != 0)
                 {
                     underTiles[x, y] = tiles[x, y];
-                    int type = DetermineType(new Vec2(x, y), tiles[x, y]);
+                    type = DetermineType(new Vec2(x, y), tiles[x, y]);
                     newtiles[x, y] = (StrategicTileType)(2100 + type);
                     //newtiles[x, y] = tiles[x, y];
                     continue;
@@ -296,27 +298,8 @@ class StrategicTileLogic
                         overTiles[x, y] = StrategicTileType.volcanic;
 
                 }
-                switch (tiles[x, y])
-                {
-                    case StrategicTileType.ice:
-                        {
-                            int type = DetermineType(new Vec2(x, y), StrategicTileType.ice);
-                            underTiles[x, y] = (StrategicTileType)(2200 + type);
-                            //underTiles[x, y] = StrategicTileType.ice;
-                            type = DetermineType(new Vec2(x, y), StrategicTileType.snow);
-                            newtiles[x, y] = (StrategicTileType)(2100 + type);
-                            break;
-                        }
-                    default:
-                        {
-                            int type = DetermineType(new Vec2(x, y), tiles[x, y]);
-                            newtiles[x, y] = (StrategicTileType)(2100 + type);
-                            break;
-                        }
-
-                        //newtiles[x, y] = tiles[x, y];
-                        //continue;
-                }
+                type = DetermineType(new Vec2(x, y), tiles[x, y]);
+                newtiles[x, y] = (StrategicTileType)(2100 + type);
             }
         }
         return newtiles;
@@ -568,7 +551,7 @@ class StrategicTileLogic
         }
         if (StrategicTileInfo.ShallowWaterFamily.Contains(type))
         {
-            return StrategicTileType.shallowWater;
+            return StrategicTileType.smallIslands;
         }
         if (StrategicTileInfo.SavannahFamily.Contains(type))
         {
@@ -585,8 +568,6 @@ class StrategicTileLogic
     {
         if (pos.x < 0 || pos.y < 0 || pos.x > tiles.GetUpperBound(0) || pos.y > tiles.GetUpperBound(1))
             return true;
-        if (type == StrategicTileType.ice)
-            return tiles[pos.x, pos.y] == type;
         if (StrategicTileInfo.SandFamily.Contains(type))
         {
             return StrategicTileInfo.SandFamily.Contains(tiles[pos.x, pos.y]);
@@ -663,7 +644,7 @@ class StrategicTileLogic
         bool has_flat_south = south_flat.Contains(dir);
         bool has_flat_west = west_flat.Contains(dir);
         
-        Debug.Log(dir + ": " + x + ", " + y);
+        //Debug.Log(dir + ": " + x + ", " + y);
 
         if (pos.x > 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1)
         {
