@@ -503,6 +503,7 @@ public class UnitCustomizer
                 break;
             case Race.Helldivers:
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Race Detail";
+                buttons[(int)ButtonTypes.ClothingType].Label.text = "Cape";
                 break;
         }
     }
