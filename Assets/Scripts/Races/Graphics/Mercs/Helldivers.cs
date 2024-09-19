@@ -19,7 +19,11 @@ class Helldivers : BlankSlate
         BodySizes = 2;//Simple Light set and Heavy set
         BodyAccentTypes1 = 1;//Armor set
         BodyAccentTypes2 = 7;//Race Detail/Accessories
-        AllowedMainClothingTypes = new List<MainClothing>();
+        AllowedMainClothingTypes = new List<MainClothing>()
+        {
+            cape1,
+            cape2
+        };
         AllowedWaistTypes = new List<MainClothing>();
         AllowedClothingHatTypes = new List<ClothingAccessory>();
         AvoidedMainClothingTypes = 0;
@@ -31,9 +35,9 @@ class Helldivers : BlankSlate
         Body = null;
         Head = null;
         BodyAccessory = null;
-        BodyAccent = new SpriteExtraInfo(5, BodyAccentSprite, WhiteColored);//Armor
-        BodyAccent2 = new SpriteExtraInfo(2, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));//Race Detail/Accessories
-        BodyAccent3 = new SpriteExtraInfo(12, BodyAccentSprite3, WhiteColored);//Over-Faulding
+        BodyAccent = new SpriteExtraInfo(6, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Armor
+        BodyAccent2 = new SpriteExtraInfo(3, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));//Race Detail/Accessories
+        BodyAccent3 = new SpriteExtraInfo(12, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Over-Faulding
         BodyAccent4 = null;
         BodyAccent5 = null;
         BodyAccent6 = null;
@@ -49,10 +53,10 @@ class Helldivers : BlankSlate
         SecondaryAccessory = null;
         Belly = new SpriteExtraInfo(15, null, WhiteColored);
         SecondaryBelly = null;
-        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
+        Weapon = new SpriteExtraInfo(7, WeaponSprite, WhiteColored);
         BackWeapon = null;
         BodySize = null;
-        Breasts = new SpriteExtraInfo(16, BreastsSprite, WhiteColored);
+        Breasts = new SpriteExtraInfo(16, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));
         Dick = null;
         Balls = new SpriteExtraInfo(10, BallsSprite, WhiteColored);
     }
@@ -61,6 +65,7 @@ class Helldivers : BlankSlate
         base.RandomCustom(unit);
 
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
+        unit.ClothingColor = (12);
     }
     internal override int BreastSizes => 5;
     internal override int DickSizes => 1;
@@ -142,6 +147,44 @@ class Helldivers : BlankSlate
             return null;
         }
     }
+
+    Cape1 cape1 = new Cape1();
+    Cape2 cape2 = new Cape2();
+
+    class Cape1 : MainClothing
+    {
+        public Cape1()
+        {
+            coversBreasts = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(2, null, null);
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, actor.Unit.ClothingColor);
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers2[6];
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class Cape2 : MainClothing
+    {
+        public Cape2()
+        {
+            coversBreasts = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(2, null, null);
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, actor.Unit.ClothingColor);
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers2[13];
+            base.Configure(sprite, actor);
+        }
+    }
+
 
     protected override Sprite AccessorySprite(Actor_Unit actor) => null;
     protected override Sprite BackWeaponSprite(Actor_Unit actor) => null;
