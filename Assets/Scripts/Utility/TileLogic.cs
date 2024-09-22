@@ -267,7 +267,7 @@ class StrategicTileLogic
                         greatest_near = DirectBorderTiles(x, y, true);
                     }
                     StrategicTileType keyOfMaxValue = greatest_near.Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
-                    Debug.Log(keyOfMaxValue);
+                    //Debug.Log(keyOfMaxValue);
                     temptiles[x, y] = (StrategicTileType)StrategicTileInfo.GetTileType(keyOfMaxValue, x, y);
                     
 
@@ -619,8 +619,7 @@ class StrategicTileLogic
             (StrategicTileInfo.SnowFamily.Contains(postion1) && StrategicTileInfo.SnowFamily.Contains(postion2)) ||
             (StrategicTileInfo.AshenFamily.Contains(postion1) && StrategicTileInfo.AshenFamily.Contains(postion2)) ||
             (StrategicTileInfo.ShallowWaterFamily.Contains(postion1) && StrategicTileInfo.ShallowWaterFamily.Contains(postion2)) ||
-            (StrategicTileInfo.SavannahFamily.Contains(postion1) && StrategicTileInfo.SavannahFamily.Contains(postion2))
-            )
+            (StrategicTileInfo.SavannahFamily.Contains(postion1) && StrategicTileInfo.SavannahFamily.Contains(postion2)))
         {
             return true;
         }
@@ -1842,6 +1841,292 @@ class StrategicTileLogic
             return true_types;
         }
 
+    }
+
+    internal IEnumerable<KeyValuePair<int, StrategicTileType>> GetSurroundingLiquid(int direction, StrategicTileType type, Vec2 pos) 
+    {
+        Dictionary<int, StrategicTileType> overlay_tiles = new Dictionary<int, StrategicTileType>();
+
+        StrategicTileType north = StrategicTileType.grass;
+        StrategicTileType south = StrategicTileType.grass;
+        StrategicTileType east = StrategicTileType.grass;
+        StrategicTileType west = StrategicTileType.grass;
+
+        List<int> not_from_north = new List<int> {0,1,2,3,4,5,12,13,19,21,22,24,25,37};
+        List<int> not_from_east = new List<int> {2,5,10,12,13,19,20,27,28,30,35,39};
+        List<int> not_from_south = new List<int> {3,4,5,13,16,17,18,19,22,28,29,30,32,33,38};
+        List<int> not_from_west = new List<int> {0,3,8,12,13,16,18,19,20,21,26,28,29,34,36};
+
+        if (!not_from_north.Contains(direction))
+            north = GetTileType(GetPos(pos, Neighbor.North));
+        if (!not_from_east.Contains(direction))
+            east = GetTileType(GetPos(pos, Neighbor.East));
+        if (!not_from_south.Contains(direction))
+            south = GetTileType(GetPos(pos, Neighbor.South));
+        if (!not_from_west.Contains(direction))
+            west = GetTileType(GetPos(pos, Neighbor.West));
+
+        switch (direction)
+        { 
+            case 0:
+                overlay_tiles.Add(0,south);
+                overlay_tiles.Add(1,east);
+                break;
+            case 1:
+                overlay_tiles.Add(2, west);
+                overlay_tiles.Add(3, south);
+                overlay_tiles.Add(4, east);
+                break;
+            case 2:
+                overlay_tiles.Add(5, south);
+                overlay_tiles.Add(6, west);
+                break;
+            case 3:
+                overlay_tiles.Add(7, east);
+                break;
+            case 4:
+                overlay_tiles.Add(8, west);
+                overlay_tiles.Add(9, east);
+                break;
+            case 5:
+                overlay_tiles.Add(10, west);
+                break;
+            case 6:
+                overlay_tiles.Add(11, north);
+                overlay_tiles.Add(12, east);
+                overlay_tiles.Add(13, west);
+                overlay_tiles.Add(14, south);
+                break;
+            case 7:
+                overlay_tiles.Add(11, north);
+                overlay_tiles.Add(15, west);
+                overlay_tiles.Add(16, east);
+                overlay_tiles.Add(17, south);
+                break;
+            case 8:
+                overlay_tiles.Add(16, east);
+                overlay_tiles.Add(18, north);
+                overlay_tiles.Add(19, south);
+                break;
+            case 9:
+                overlay_tiles.Add(3, south);
+                overlay_tiles.Add(11, north);
+                overlay_tiles.Add(13, west);
+                overlay_tiles.Add(16, east);
+                break;
+            case 10:
+                overlay_tiles.Add(13, west);
+                overlay_tiles.Add(20, north);
+                overlay_tiles.Add(21, south);
+                break;
+            case 11:
+                overlay_tiles.Add(22, north);
+                overlay_tiles.Add(23, east);
+                overlay_tiles.Add(24, west);
+                overlay_tiles.Add(25, south);
+                break;
+            case 12:
+                overlay_tiles.Add(26, south);
+                break;
+            case 13:
+                break;
+            case 14:
+                overlay_tiles.Add(3, south);
+                overlay_tiles.Add(13, west);
+                overlay_tiles.Add(27, north);
+                overlay_tiles.Add(28, east);
+                break;
+            case 15:
+                overlay_tiles.Add(3, south);
+                overlay_tiles.Add(16, east);
+                overlay_tiles.Add(29, north);
+                overlay_tiles.Add(30, west);
+                break;
+            case 16:
+                overlay_tiles.Add(31, north);
+                overlay_tiles.Add(32, east);
+                break;
+            case 17:
+                overlay_tiles.Add(11, north);
+                overlay_tiles.Add(33, west);
+                overlay_tiles.Add(34, east);
+                break;
+            case 18:
+                overlay_tiles.Add(35, north);
+                overlay_tiles.Add(36, west);
+                break;
+            case 19:
+                break;
+            case 20:
+                overlay_tiles.Add(37, north);
+                overlay_tiles.Add(38, south);
+                break;
+            case 21:
+                overlay_tiles.Add(39, south);
+                overlay_tiles.Add(40, east);
+                break;
+            case 22:
+                overlay_tiles.Add(41, west);
+                overlay_tiles.Add(42, south);
+                break;
+            case 23:
+                overlay_tiles.Add(43, west);
+                overlay_tiles.Add(44, north);
+                overlay_tiles.Add(45, east);
+                overlay_tiles.Add(46, south);
+                break;
+            case 24:
+                overlay_tiles.Add(47, south);
+                overlay_tiles.Add(48, east);
+                overlay_tiles.Add(49, west);
+                break;
+            case 25:
+                overlay_tiles.Add(50, west);
+                overlay_tiles.Add(51, south);
+                overlay_tiles.Add(52, east);
+                break;
+            case 26:
+                overlay_tiles.Add(53, north);
+                overlay_tiles.Add(54, east);
+                overlay_tiles.Add(55, south);
+                break;
+            case 27:
+                overlay_tiles.Add(56, west);
+                overlay_tiles.Add(57, south);
+                overlay_tiles.Add(58, north);
+                break;
+            case 28:
+                overlay_tiles.Add(59, north);
+                break;
+            case 29:
+                overlay_tiles.Add(60, north);
+                overlay_tiles.Add(61, east);
+                break;
+            case 30:
+                overlay_tiles.Add(62, west);
+                overlay_tiles.Add(63, north);
+                break;
+            case 31:
+                overlay_tiles.Add(64, north);
+                overlay_tiles.Add(65, west);
+                overlay_tiles.Add(66, south);
+                overlay_tiles.Add(67, east);
+                break;
+            case 32:
+                overlay_tiles.Add(68, east);
+                overlay_tiles.Add(69, north);
+                overlay_tiles.Add(70, west);
+                break;
+            case 33:
+                overlay_tiles.Add(71, east);
+                overlay_tiles.Add(72, north);
+                overlay_tiles.Add(73, west);
+                break;
+            case 34:
+                overlay_tiles.Add(74, north);
+                overlay_tiles.Add(75, east);
+                overlay_tiles.Add(76, south);
+                break;
+            case 35:
+                overlay_tiles.Add(77, north);
+                overlay_tiles.Add(78, west);
+                overlay_tiles.Add(79, south);
+                break;
+            case 36:
+                overlay_tiles.Add(80, north);
+                overlay_tiles.Add(81, east);
+                overlay_tiles.Add(82, south);
+                break;
+            case 37:
+                overlay_tiles.Add(83, west);
+                overlay_tiles.Add(84, south);
+                overlay_tiles.Add(85, east);
+                break;
+            case 38:
+                overlay_tiles.Add(86, north);
+                overlay_tiles.Add(87, west);
+                overlay_tiles.Add(88, east);
+                break;
+            case 39:
+                overlay_tiles.Add(89, north);
+                overlay_tiles.Add(90, west);
+                overlay_tiles.Add(91, south);
+                break;
+            case 40:
+                overlay_tiles.Add(16, east);
+                overlay_tiles.Add(92, north);
+                overlay_tiles.Add(93, west);
+                overlay_tiles.Add(94, south);
+                break;
+            case 41:
+                overlay_tiles.Add(13, west);
+                overlay_tiles.Add(95, north);
+                overlay_tiles.Add(96, south);
+                overlay_tiles.Add(97, east);
+                break;
+            case 42:
+                overlay_tiles.Add(11, north);
+                overlay_tiles.Add(98, west);
+                overlay_tiles.Add(99, east);
+                overlay_tiles.Add(100, south);
+                break;
+            case 43:
+                overlay_tiles.Add(3, south);
+                overlay_tiles.Add(101, north);
+                overlay_tiles.Add(102, west);
+                overlay_tiles.Add(103, east);
+                break;
+            case 44:
+                overlay_tiles.Add(104, north);
+                overlay_tiles.Add(105, east);
+                overlay_tiles.Add(106, west);
+                overlay_tiles.Add(107, south);
+                break;
+            case 45:
+                overlay_tiles.Add(108, north);
+                overlay_tiles.Add(109, west);
+                overlay_tiles.Add(110, south);
+                overlay_tiles.Add(111, east);
+                break;
+            case 46:
+                overlay_tiles.Add(112, north);
+                overlay_tiles.Add(113, east);
+                overlay_tiles.Add(114, south);
+                overlay_tiles.Add(115, west);
+                break;
+            case 47:
+                overlay_tiles.Add(116, north);
+                overlay_tiles.Add(117, west);
+                overlay_tiles.Add(118, south);
+                overlay_tiles.Add(119, east);
+                break;
+            default: 
+                break;
+        }
+
+
+        List<int> can_have_NW_corner = new List<int> {6,7,9,10,14,17,18,23,27,32,41,42,45};
+        List<int> can_have_NE_corner = new List<int> {6,7,8,9,15,16,17,26,31,33,40,42,44};
+        List<int> can_have_SW_corner = new List<int> {1,2,6,9,10,14,15,24,31,35,41,43,47};
+        List<int> can_have_SE_corner = new List<int> {0,1,7,8,9,14,15,23,25,34,40,43,46};
+
+        if (pos.x > 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1 && can_have_NW_corner.Contains(direction))
+            if(type != GetTileType(GetPos(pos, Neighbor.NorthWest)))
+                overlay_tiles.Add(120, GetTileType(GetPos(pos, Neighbor.NorthWest)));
+        if(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y < State.World.Tiles.GetUpperBound(1) - 1 && can_have_NE_corner.Contains(direction))
+            if (type != GetTileType(GetPos(pos, Neighbor.NorthEast)))
+                overlay_tiles.Add(122, GetTileType(GetPos(pos, Neighbor.NorthEast)));
+        if(pos.x > 1 && pos.y > 1 && can_have_SW_corner.Contains(direction))
+            if (type != GetTileType(GetPos(pos, Neighbor.SouthWest)))
+                overlay_tiles.Add(121, GetTileType(GetPos(pos, Neighbor.SouthWest)));
+        if(pos.x < State.World.Tiles.GetUpperBound(0) - 1 && pos.y > 1 && can_have_SE_corner.Contains(direction))
+            if (type != GetTileType(GetPos(pos, Neighbor.SouthEast)))
+                overlay_tiles.Add(123, GetTileType(GetPos(pos, Neighbor.SouthEast)));
+
+        var temp_Dict = from entry in overlay_tiles orderby entry.Value ascending select entry;
+        IEnumerable<KeyValuePair<int, StrategicTileType>> fixed_tiles = temp_Dict;
+
+        return fixed_tiles;
     }
 }
 

@@ -724,6 +724,7 @@ public class StrategyMode : SceneBase
                 //}
                 //Debug.Log(underTiles[i, j] + ", " + i + ", " + j);
                 int current_layer = 0;
+                int liquid_layer = 0;
                 if (tiles[i, j] >= (StrategicTileType)2100)
                 {
                     current_layer = ApplyFloat(i, j, current_layer);
@@ -769,6 +770,7 @@ public class StrategyMode : SceneBase
                 if (overTiles[i, j] >= (StrategicTileType)2000)
                 {
                     current_layer++;
+                    liquid_layer = current_layer;
                     switch (State.World.Tiles[i, j])
                     {
                         case StrategicTileType.water:
@@ -792,11 +794,47 @@ public class StrategyMode : SceneBase
                         default:
                             TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.LavaFloat[(int)overTiles[i, j] - 2000]);
                             break;
-
                     }
+                    if (i == 0)
+                        Debug.Log((int)overTiles[i, j] - 2000);
+                    foreach (KeyValuePair<int, StrategicTileType> tiletype in logic.GetSurroundingLiquid((int)overTiles[i, j] - 2000, State.World.Tiles[i, j], new Vec2(i, j)))
+                    {
+                        current_layer++;
+                        switch (tiletype.Value)
+                        {
+                            case StrategicTileType.water:
+                                if (StrategicTileType.water > State.World.Tiles[i, j])
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterLiquidFloat[tiletype.Key]);
+                                break;
+                            case StrategicTileType.ocean:
+                                if (StrategicTileType.ocean > State.World.Tiles[i, j])
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.OceanLiquidFloat[tiletype.Key]);
+                                break;
+                            case StrategicTileType.lava:
+                                if (StrategicTileType.lava > State.World.Tiles[i, j])
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.LavaLiquidFloat[tiletype.Key]);
+                                break;
+                            case StrategicTileType.ice:
+                                if (StrategicTileType.ice > State.World.Tiles[i, j])
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.IceLiquidFloat[tiletype.Key]);
+                                break;
+                            case StrategicTileType.shallowWater:
+                                if (StrategicTileType.shallowWater > State.World.Tiles[i, j])
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.ShallowWaterLiquidFloat[tiletype.Key]);
+                                break;
+                            case StrategicTileType.smallIslands:
+                                if (StrategicTileType.shallowWater > State.World.Tiles[i, j])
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.ShallowWaterLiquidFloat[tiletype.Key]);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
                 }
                 else if (overTiles[i, j] != 0)
                 {
+                    Debug.Log(overTiles[i, j]);
                     TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(overTiles[i, j], i, j)]);
                 }
                 else
@@ -880,6 +918,12 @@ public class StrategyMode : SceneBase
                     case (StrategicTileType.ocean):
                         break;
                     case (StrategicTileType.shallowWater):
+                        /*
+                        if (liquid_tile && overTiles[x, y] == (StrategicTileType)2009)
+                        {
+                            TilemapLayers[9 - Math.Min(8, counter)].SetTile(new Vector3Int(x, y, 0), TileDictionary.SmallIslandsFloat[tiletype.Key]);
+                        }
+                        */
                         break;
                     case (StrategicTileType.ice):
                         break;

@@ -8,6 +8,11 @@ public class StrategicTileDictionary : MonoBehaviour
     internal Tile[] OceanFloat;
     internal Tile[] LavaFloat;
     internal Tile[] ShallowWaterFloat;
+    internal Tile[] ShallowWaterLiquidFloat;
+    internal Tile[] WaterLiquidFloat;
+    internal Tile[] IceLiquidFloat;
+    internal Tile[] OceanLiquidFloat;
+    internal Tile[] LavaLiquidFloat;
     internal Tile[] GrassFloat;
     internal Tile[] DesertFloat;
     internal Tile[] SnowFloat;
@@ -28,6 +33,11 @@ public class StrategicTileDictionary : MonoBehaviour
     public Sprite[] OceanFloatSprites;
     public Sprite[] LavaFloatSprites;
     public Sprite[] ShallowWaterFloatSprites;
+    public Sprite[] ShallowWaterLiquidFloatSprites;
+    public Sprite[] WaterLiquidFloatSprites;
+    public Sprite[] IceLiquidFloatSprites;
+    public Sprite[] OceanLiquidFloatSprites;
+    public Sprite[] LavaLiquidFloatSprites;
     public Sprite[] GrassFloatSprites;
     public Sprite[] DesertFloatSprites;
     public Sprite[] SnowFloatSprites;
@@ -53,6 +63,11 @@ public class StrategicTileDictionary : MonoBehaviour
         OceanFloat = CreateTiles(OceanFloatSprites);
         LavaFloat = CreateTiles(LavaFloatSprites);
         ShallowWaterFloat = CreateTiles(ShallowWaterFloatSprites);
+        ShallowWaterLiquidFloat = CreateTiles(ShallowWaterLiquidFloatSprites);
+        WaterLiquidFloat = CreateTiles(WaterLiquidFloatSprites);
+        IceLiquidFloat = CreateTiles(IceLiquidFloatSprites);
+        OceanLiquidFloat = CreateTiles(OceanLiquidFloatSprites);
+        LavaLiquidFloat = CreateTiles(LavaLiquidFloatSprites);
         GrassFloat = CreateTiles(GrassFloatSprites);
         DesertFloat = CreateTiles(DesertFloatSprites);
         SnowFloat = CreateTiles(SnowFloatSprites);
