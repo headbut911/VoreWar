@@ -795,8 +795,6 @@ public class StrategyMode : SceneBase
                             TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), TileDictionary.LavaFloat[(int)overTiles[i, j] - 2000]);
                             break;
                     }
-                    if (i == 0)
-                        Debug.Log((int)overTiles[i, j] - 2000);
                     foreach (KeyValuePair<int, StrategicTileType> tiletype in logic.GetSurroundingLiquid((int)overTiles[i, j] - 2000, State.World.Tiles[i, j], new Vec2(i, j)))
                     {
                         current_layer++;
@@ -834,7 +832,6 @@ public class StrategyMode : SceneBase
                 }
                 else if (overTiles[i, j] != 0)
                 {
-                    Debug.Log(overTiles[i, j]);
                     TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(overTiles[i, j], i, j)]);
                 }
                 else
