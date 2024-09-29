@@ -1260,14 +1260,14 @@ static class RaceParameters
             BodySize = 10,
             StomachSize = 18,
             HasTail = true,
-            FavoredStat = Stat.Dexterity,
+            FavoredStat = Stat.Endurance,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(13, 18),
                 Dexterity = new RaceStats.StatRange(13, 18),
-                Endurance = new RaceStats.StatRange(16, 22),
-                Mind = new RaceStats.StatRange(10, 12),
-                Will = new RaceStats.StatRange(12, 22),
+                Endurance = new RaceStats.StatRange(17, 23),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(14, 23),
                 Agility = new RaceStats.StatRange(7, 12),
                 Voracity = new RaceStats.StatRange(5, 8),
                 Stomach = new RaceStats.StatRange(12, 15),

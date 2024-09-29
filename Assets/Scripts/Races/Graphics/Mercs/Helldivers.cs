@@ -7,6 +7,8 @@ class Helldivers : BlankSlate
     readonly Sprite[] Sprites2 = State.GameManager.SpriteDictionary.Helldivers2;
     readonly Sprite[] Sprites3 = State.GameManager.SpriteDictionary.Helldivers3;
     readonly Sprite[] Sprites4 = State.GameManager.SpriteDictionary.Helldivers4;
+    readonly Sprite[] Sprites5 = State.GameManager.SpriteDictionary.Helldivers5;
+    readonly Sprite[] Sprites6 = State.GameManager.SpriteDictionary.Helldivers6;
 
     internal Helldivers()
     {
@@ -17,7 +19,7 @@ class Helldivers : BlankSlate
         HairColors = 1;
         HairStyles = 1;
         SkinColors = 1;
-        EyeTypes = 2;//Race
+        EyeTypes = 3;//Race
         EyeColors = 1;
         SecondaryEyeColors = 1;
         AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.Fur);
@@ -98,7 +100,7 @@ class Helldivers : BlankSlate
                 case 1:
                     return Sprites3[29 + actor.GetStomachSize(14)];
                 case 2:
-                    return Sprites3[29 + actor.GetStomachSize(14)];
+                    return Sprites5[29 + actor.GetStomachSize(14)];
                 case 3:
                     return Sprites3[29 + actor.GetStomachSize(14)];
                 default:
@@ -125,8 +127,8 @@ class Helldivers : BlankSlate
                 return Sprites4[0 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
             case 2:
                 if (actor.IsAttacking)
-                    return Sprites4[1 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
-                return Sprites4[0 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
+                    return Sprites6[1 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
+                return Sprites6[0 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
             case 3:
                 if (actor.IsAttacking)
                     return Sprites4[1 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
@@ -147,7 +149,7 @@ class Helldivers : BlankSlate
             case 1:
                 return Sprites3[22 + actor.Unit.BodyAccentType2];
             case 2:
-                return Sprites3[22 + actor.Unit.BodyAccentType2];
+                return Sprites5[22 + actor.Unit.BodyAccentType2];
             case 3:
                 return Sprites3[22 + actor.Unit.BodyAccentType2];
             default:
@@ -160,15 +162,15 @@ class Helldivers : BlankSlate
         switch (actor.Unit.EyeType)
         {
             case 0:
-                return Sprites1[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
+                return Sprites2[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
             case 1:
-                return Sprites3[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
+                return Sprites4[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
             case 2:
-                return Sprites3[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
+                return Sprites6[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
             case 3:
-                return Sprites3[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
+                return Sprites4[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
             default:
-                return Sprites1[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
+                return Sprites2[2 + (actor.Unit.BodySize < 1 ? 3 : 0) + (!actor.Unit.HasBreasts ? 7 : 0)];
         }
     }
 
@@ -181,7 +183,7 @@ class Helldivers : BlankSlate
             case 1:
                 return Sprites3[14 + (actor.IsAttacking ? 1 : 0)];
             case 2:
-                return Sprites3[14 + (actor.IsAttacking ? 1 : 0)];
+                return Sprites5[14 + (actor.IsAttacking ? 1 : 0)];
             case 3:
                 return Sprites3[14 + (actor.IsAttacking ? 1 : 0)];
             default:
@@ -203,7 +205,7 @@ class Helldivers : BlankSlate
                 return null;
             case 2:
                 if (actor.Unit.HasBreasts)
-                    return Sprites4[17 + actor.Unit.BreastSize];
+                    return Sprites6[17 + actor.Unit.BreastSize];
                 return null;
             case 3:
                 if (actor.Unit.HasBreasts)
@@ -245,11 +247,11 @@ class Helldivers : BlankSlate
                 break;
             case 2:
                 if (actor.GetBallSize(8, 0.7f) == 8)
-                    return Sprites3[47];
+                    return Sprites5[47];
                 else if (actor.GetBallSize(8, 0.8f) == 8)
-                    return Sprites3[46];
+                    return Sprites5[46];
                 else if (actor.GetBallSize(8, 0.9f) == 8)
-                    return Sprites3[45];
+                    return Sprites5[45];
                 break;
             case 3:
                 if (actor.GetBallSize(8, 0.7f) == 8)
@@ -276,7 +278,7 @@ class Helldivers : BlankSlate
             case 1:
                 return Sprites3[45 + actor.GetBallSize(8)];
             case 2:
-                return Sprites3[45 + actor.GetBallSize(8)];
+                return Sprites5[45 + actor.GetBallSize(8)];
             case 3:
                 return Sprites3[45 + actor.GetBallSize(8)];
             default:
@@ -297,7 +299,7 @@ class Helldivers : BlankSlate
             case 1:
                 return Sprites3[53 + actor.GetWeaponSprite()];
             case 2:
-                return Sprites3[53 + actor.GetWeaponSprite()];
+                return Sprites5[53 + actor.GetWeaponSprite()];
             case 3:
                 return Sprites3[53 + actor.GetWeaponSprite()];
             default:
@@ -328,19 +330,19 @@ class Helldivers : BlankSlate
             switch (actor.Unit.EyeType)
             {
                 case 0:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers1[6];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers2[6];
                     break;
                 case 1:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers3[6];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers4[6];
                     break;
                 case 2:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers3[6];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers6[6];
                     break;
                 case 3:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers3[6];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers4[6];
                     break;
                 default:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers1[6];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers2[6];
                     break;
             }
             base.Configure(sprite, actor);
@@ -362,19 +364,19 @@ class Helldivers : BlankSlate
             switch (actor.Unit.EyeType)
             {
                 case 0:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers1[13];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers2[13];
                     break;
                 case 1:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers3[13];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers4[13];
                     break;
                 case 2:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers3[13];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers6[13];
                     break;
                 case 3:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers3[13];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers4[13];
                     break;
                 default:
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers1[13];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Helldivers2[13];
                     break;
             }
             base.Configure(sprite, actor);
