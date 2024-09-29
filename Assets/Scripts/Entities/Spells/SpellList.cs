@@ -458,6 +458,7 @@ static class SpellList
             Tier = 2,
             Pattern = new int[3, 3] { { 0, 1, 0 }, { 1, 1, 1 }, { 0, 1, 0 } },
             Resistable = true,
+            ResistanceMult = .80f,
             DamageType = DamageTypes.Fire,
             Damage = (a, t) => 8 + a.Unit.GetStat(Stat.Dexterity) / 9,
             OnExecute = (a, t) =>
