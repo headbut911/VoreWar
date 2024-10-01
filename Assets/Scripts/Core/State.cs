@@ -16,6 +16,7 @@ public static class State
     public static NameGenerator NameGen;
     public static GameManager GameManager;
     public static AssimilateList AssimilateList;
+    public static TaggedTraitsList TieredTraitsList;
     public static List<RandomizeList> RandomizeLists;
 
     internal static EventList EventList;
@@ -89,6 +90,8 @@ public static class State
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleFeralOrcas.txt", $"{StorageDirectory}maleFeralOrcas.txt");
             if (File.Exists($"{StorageDirectory}femaleFeralOrcas.txt") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralOrcas.txt", $"{StorageDirectory}femaleFeralOrcas.txt");
+            if (File.Exists($"{StorageDirectory}taggedTraits.json.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}taggedTraits.json", $"{StorageDirectory}taggedTraits.json");
         }
         catch
         {
@@ -149,6 +152,22 @@ public static class State
     {
         RaceSlot = PlayerPrefs.GetInt("RaceEditorSlot", 1);
         ChangeRaceSlotUsed(RaceSlot);
+    }
+    public static void LoadTraitData()
+    {
+        TieredTraitsList = TraitSorter.TraitParser();
+        foreach (TaggedTrait trait in TieredTraitsList.traits)
+        {
+            foreach (string tag in trait.tags)
+            {
+                if (!TieredTraitsList.tags.Contains(tag))
+                    TieredTraitsList.tags.Append(tag);
+            }
+        }
+        foreach (string tag in TieredTraitsList.tags)
+        {
+            Debug.Log(tag);
+        }
     }
 
     public static void ChangeRaceSlotUsed(int num)
