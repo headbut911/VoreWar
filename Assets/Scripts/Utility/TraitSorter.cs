@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public enum TraitTier
 {
@@ -19,28 +18,40 @@ public enum TraitTier
     Cheat = 7,
     Hidden = 8
 }
-public class TaggedTraitsList
-{
-    internal List<TaggedTrait> traits;
-    internal List<string> tags;
-}
 
 public class TaggedTrait
 {
     internal string name;
-    internal TraitTier tier;
-    internal string[] tags;
+    internal string tier;
+    internal TraitTier tierValue;
+    internal List<string> tags;
+    internal Traits traitEnum;
 }
 
 public class TraitSorter
 {
-    public static TaggedTraitsList TraitParser()
+    public static List<TaggedTrait> TraitParser()
     {
         string readContents;
-        using (StreamReader streamReader = new StreamReader(State.StorageDirectory, Encoding.UTF8))
+        FileStream traitJson = File.OpenRead(State.StorageDirectory + "\\taggedTraits.json");
+        using (StreamReader streamReader = new StreamReader(traitJson))
         {
             readContents = streamReader.ReadToEnd();
         }
-        return JsonConvert.DeserializeObject<TaggedTraitsList>(readContents);
+        List<TaggedTrait> taggedTraitsList = new List<TaggedTrait>();
+        JObject results = JObject.Parse(readContents);
+        IList<JToken> traitList = results["traits"].Children().ToList();
+
+        foreach (JToken t in traitList) {
+            TaggedTrait trait = new TaggedTrait();
+            trait.name = t["name"].ToString();
+            trait.tier = t["tier"].ToString();
+            trait.tags = t["tags"].ToObject<List<string>>();
+            trait.tierValue = (TraitTier)Enum.Parse(typeof(TraitTier), trait.tier);
+            trait.traitEnum = (Traits)Enum.Parse(typeof(Traits), trait.name);
+            taggedTraitsList = taggedTraitsList.Append(trait).ToList();
+            //Debug.Log(taggedTraitsList.Count);
+        }
+        return taggedTraitsList;
     }
 }

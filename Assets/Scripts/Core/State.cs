@@ -16,7 +16,8 @@ public static class State
     public static NameGenerator NameGen;
     public static GameManager GameManager;
     public static AssimilateList AssimilateList;
-    public static TaggedTraitsList TieredTraitsList;
+    public static List<TaggedTrait> TieredTraitsList;
+    public static List<String> TieredTraitsTagsList;
     public static List<RandomizeList> RandomizeLists;
 
     internal static EventList EventList;
@@ -90,7 +91,7 @@ public static class State
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleFeralOrcas.txt", $"{StorageDirectory}maleFeralOrcas.txt");
             if (File.Exists($"{StorageDirectory}femaleFeralOrcas.txt") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralOrcas.txt", $"{StorageDirectory}femaleFeralOrcas.txt");
-            if (File.Exists($"{StorageDirectory}taggedTraits.json.txt") == false)
+            if (File.Exists($"{StorageDirectory}taggedTraits.json") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}taggedTraits.json", $"{StorageDirectory}taggedTraits.json");
         }
         catch
@@ -156,17 +157,15 @@ public static class State
     public static void LoadTraitData()
     {
         TieredTraitsList = TraitSorter.TraitParser();
-        foreach (TaggedTrait trait in TieredTraitsList.traits)
+        TieredTraitsTagsList = new List<string>();
+        foreach (TaggedTrait trait in TieredTraitsList)
         {
+            //Debug.Log("Checking: " + trait.name);
             foreach (string tag in trait.tags)
             {
-                if (!TieredTraitsList.tags.Contains(tag))
-                    TieredTraitsList.tags.Append(tag);
+                if (!TieredTraitsTagsList.Contains(tag))
+                    TieredTraitsTagsList = TieredTraitsTagsList.Append(tag).ToList();
             }
-        }
-        foreach (string tag in TieredTraitsList.tags)
-        {
-            Debug.Log(tag);
         }
     }
 

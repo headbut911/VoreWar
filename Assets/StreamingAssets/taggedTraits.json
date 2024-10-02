@@ -1,6 +1,5 @@
 {
   "traits": [
-    [
       {
         "name": "SoftBody",
         "tier": "Harmful",
@@ -1085,7 +1084,7 @@
         "tags": [
 
           "Combat",
-          "Offensive"
+          "Offense"
 
         ]
       },
@@ -2089,9 +2088,8 @@
         "name": "Inescapable",
         "tier": "Cheat",
         "tags": [
-
-
-          ""
+          "Vore",
+          "Chances"
         ]
       },
       {
@@ -2286,7 +2284,7 @@
         "tier": "Hidden",
         "tags": [
           "Vore",
-          "Absotption",
+          "Absorption",
           "Change"
         ]
       },
@@ -2304,7 +2302,7 @@
         "tier": "Hidden",
         "tags": [
           "Vore",
-          "Trait"
+          "Traits"
         ]
       },
       {
@@ -2312,7 +2310,7 @@
         "tier": "Hidden",
         "tags": [
           "Vore",
-          "Trait"
+          "Traits"
         ]
       },
       {
@@ -2361,5 +2359,4 @@
         ]
       }
     ]
-  ]
 }
