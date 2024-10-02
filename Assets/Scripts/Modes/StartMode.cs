@@ -21,6 +21,7 @@ public class StartMode : SceneBase
         Preset2.onClick.AddListener(() => SetPreset(2));
         Preset3.onClick.AddListener(() => SetPreset(3));
         State.LoadRaceData();
+        State.LoadTraitData();
         UpdatePresetsVisible();
     }
 

@@ -2,6 +2,7 @@
 using OdinSerializer;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 
 public class Actor_Unit
@@ -413,7 +414,7 @@ public class Actor_Unit
 
     public void GenerateSpritePrefab(Transform folder)
     {
-        UnitSprite = Object.Instantiate(State.GameManager.UnitBase, new Vector3(Position.x, Position.y), new Quaternion(), folder).GetComponent<UnitSprite>();
+        UnitSprite = UnityEngine.Object.Instantiate(State.GameManager.UnitBase, new Vector3(Position.x, Position.y), new Quaternion(), folder).GetComponent<UnitSprite>();
         UnitSprite.UpdateHealthBar(this);
     }
 
@@ -1206,7 +1207,7 @@ public class Actor_Unit
         {
             if (State.GameManager.TacticalMode.TacticalSoundBlocked() == false)
             {
-                var obj = Object.Instantiate(State.GameManager.TacticalEffectPrefabList.ShunGokuSatsu);
+                var obj = UnityEngine.Object.Instantiate(State.GameManager.TacticalEffectPrefabList.ShunGokuSatsu);
                 obj.transform.SetPositionAndRotation(new Vector3(target.Position.x, target.Position.y), new Quaternion());
                 MiscUtilities.DelayedInvoke(() => State.GameManager.SoundManager.PlayArrowHit(null), .06f);
                 MiscUtilities.DelayedInvoke(() => State.GameManager.SoundManager.PlayMeleeHit(null), .12f);
@@ -1875,7 +1876,7 @@ public class Actor_Unit
             return false;
         target.RubCount++;
         target.BeingRubbed = true;
-        int index = Random.Range(0, possible.Count - 1);
+        int index = UnityEngine.Random.Range(0, possible.Count - 1);
         type = possible[index];
         switch (type)
         {
@@ -2744,7 +2745,7 @@ public class Actor_Unit
                 if (outcome == 3)
                 {
                     State.GameManager.SoundManager.PlayMisc("unbound", this);
-                    var obj = Object.Instantiate(State.GameManager.TacticalEffectPrefabList.ShunGokuSatsu);
+                    var obj = UnityEngine.Object.Instantiate(State.GameManager.TacticalEffectPrefabList.ShunGokuSatsu);
                     obj.transform.SetPositionAndRotation(new Vector3(t.Position.x, t.Position.y), new Quaternion());
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Suddenly, there is a flash of light and both casters stagger for a moment. What happened?.");
                     t.Unit.Type = UnitType.Adventurer;
@@ -2794,7 +2795,7 @@ public class Actor_Unit
                 else if (outcome == 0)
                 {
                     State.GameManager.SoundManager.PlayMisc("unbound", this);
-                    var obj = Object.Instantiate(State.GameManager.TacticalEffectPrefabList.ShunGokuSatsu);
+                    var obj = UnityEngine.Object.Instantiate(State.GameManager.TacticalEffectPrefabList.ShunGokuSatsu);
                     obj.transform.SetPositionAndRotation(new Vector3(t.Position.x, t.Position.y), new Quaternion());
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Suddenly, there is a flash of light and both casters stagger for a moment. What happened?.");
                     t.Unit.Type = UnitType.Adventurer;
@@ -3027,6 +3028,7 @@ public class Actor_Unit
             AnimationController = new AnimationController();
             Unit.ReloadTraits();
             Unit.InitializeTraits();
+            Unit.Health = (int)Math.Round(Math.Min(Unit.MaxHealth, Math.Max(Unit.MaxHealth * Unit.HealthPct, 1)));
         }, 0.4f);
         
     }

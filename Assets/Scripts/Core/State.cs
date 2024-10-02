@@ -16,6 +16,8 @@ public static class State
     public static NameGenerator NameGen;
     public static GameManager GameManager;
     public static AssimilateList AssimilateList;
+    public static List<TaggedTrait> TieredTraitsList;
+    public static List<String> TieredTraitsTagsList;
     public static List<RandomizeList> RandomizeLists;
 
     internal static EventList EventList;
@@ -89,6 +91,8 @@ public static class State
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleFeralOrcas.txt", $"{StorageDirectory}maleFeralOrcas.txt");
             if (File.Exists($"{StorageDirectory}femaleFeralOrcas.txt") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralOrcas.txt", $"{StorageDirectory}femaleFeralOrcas.txt");
+            if (File.Exists($"{StorageDirectory}taggedTraits.json") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}taggedTraits.json", $"{StorageDirectory}taggedTraits.json");
         }
         catch
         {
@@ -123,7 +127,16 @@ public static class State
                         custom.id = int.Parse(strings[0]);
                         custom.name = strings[1];
                         custom.chance = float.Parse(strings[2], new CultureInfo("en-US"));
+                        custom.level = 0;
                         custom.RandomTraits = strings[3].Split('|').ToList().ConvertAll(s => (Traits)int.Parse(s));
+                        RandomizeLists.Add(custom);
+                    } else if (strings.Length == 5)
+                    {
+                        custom.id = int.Parse(strings[0]);
+                        custom.name = strings[1];
+                        custom.chance = float.Parse(strings[2], new CultureInfo("en-US"));
+                        custom.level = int.Parse(strings[3]);
+                        custom.RandomTraits = strings[4].Split('|').ToList().ConvertAll(s => (Traits)int.Parse(s));
                         RandomizeLists.Add(custom);
                     }
                 });
@@ -149,6 +162,20 @@ public static class State
     {
         RaceSlot = PlayerPrefs.GetInt("RaceEditorSlot", 1);
         ChangeRaceSlotUsed(RaceSlot);
+    }
+    public static void LoadTraitData()
+    {
+        TieredTraitsList = TraitSorter.TraitParser();
+        TieredTraitsTagsList = new List<string>();
+        foreach (TaggedTrait trait in TieredTraitsList)
+        {
+            //Debug.Log("Checking: " + trait.name);
+            foreach (string tag in trait.tags)
+            {
+                if (!TieredTraitsTagsList.Contains(tag))
+                    TieredTraitsTagsList = TieredTraitsTagsList.Append(tag).ToList();
+            }
+        }
     }
 
     public static void ChangeRaceSlotUsed(int num)
