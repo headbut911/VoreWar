@@ -244,10 +244,10 @@ public class WorldConfig
     internal int BellyRubsPerTurn = 1;
     [OdinSerialize]
     internal float DigestionRamp = .1f;
-    [OdinSerialize, AllowEditing, ProperName("Digestion Ramp Turn"), Description("Digestin damage change by the above  every X turns")]
+    [OdinSerialize]
     internal int DigestionRampTurn = 1;
-    [OdinSerialize, AllowEditing, ProperName("Digestion Ramp Cap"), Description("The above will only stack up to X times, negative numbers mean disabled")]
-    internal int DigestionRampCap = 1;
+    [OdinSerialize]
+    internal int DigestionRampCap = -1;
     [OdinSerialize]
     internal float DigestionRampLoss = 1;
     [OdinSerialize]
