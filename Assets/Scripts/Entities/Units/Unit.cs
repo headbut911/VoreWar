@@ -2023,18 +2023,21 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             {
                     RandomizeList randomizeList = State.RandomizeLists.Single(rl => (Traits)rl.id == ct);
                     var chance = randomizeList.chance;
+                    var rolls = UnityEngine.Random.Range(0,randomizeList.count);
                     while (chance > 0 && State.Rand.NextDouble() < randomizeList.chance)
                     {
                         List<Traits> gainable = randomizeList.RandomTraits.Where(rt => !Tags.Contains(rt) && !PermanentTraits.Contains(rt)).ToList();
                         if (gainable.Count() > 0)
-                        {
+                        {                           
                             var randomPick = gainable[State.Rand.Next(gainable.Count())];
                             PermanentTraits.Add(randomPick);
                             RemovedTraits?.Remove(randomPick); // Even if manually removed before, rng-sus' word is law
                             gainable.Remove(randomPick);
                             GivePrerequisiteTraits(randomPick);
                         }
-                        chance -= 1;
+                        if(!(rolls > 0))
+                            chance -= 1;
+                        rolls--;
                     }
                     if (RemovedTraits == null)
                         RemovedTraits = new List<Traits>();
@@ -2875,6 +2878,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 return new List<Traits>() { (Traits)randomizeList.id };
             }
         var chance = randomizeList.chance;
+        var rolls = UnityEngine.Random.Range(0, randomizeList.count);
         var traitsToAdd = new List<Traits>();
         List<Traits> gainable = randomizeList.RandomTraits.Where(rt => !Tags.Contains(rt) && !PermanentTraits.Contains(rt)).ToList();
         while (State.Rand.NextDouble() < chance)
@@ -2894,7 +2898,9 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                     traitsToAdd.Add(randomPick);
                 gainable.Remove(randomPick);
             }
-            chance -= 1;
+            if (!(rolls > 0))
+                chance -= 1;
+            rolls--;
         }
         return traitsToAdd;
     }
