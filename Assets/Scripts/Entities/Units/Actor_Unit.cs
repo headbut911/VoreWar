@@ -1876,7 +1876,7 @@ public class Actor_Unit
             return false;
         target.RubCount++;
         target.BeingRubbed = true;
-        int index = Random.Range(0, possible.Count - 1);
+        int index = UnityEngine.Random.Range(0, possible.Count - 1);
         type = possible[index];
         switch (type)
         {
@@ -3028,7 +3028,7 @@ public class Actor_Unit
             AnimationController = new AnimationController();
             Unit.ReloadTraits();
             Unit.InitializeTraits();
-            Unit.Health = (int)Math.Round(Math.Min(Unit.MaxHealth, Math.Max(Unit.MaxHealth * healthPct, 1)));
+            Unit.Health = (int)Math.Round(Math.Min(Unit.MaxHealth, Math.Max(Unit.MaxHealth * Unit.HealthPct, 1)));
         }, 0.4f);
         
     }
