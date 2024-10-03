@@ -166,6 +166,9 @@ public class MapEditor : SceneBase
     internal bool ActiveSpecial = false;
     SpecialType activeSpecialType;
 
+    internal bool ActiveBuilding = false;
+    MapBuildingType activeBuildingType;
+
     List<UndoMapAction> UndoActions = new List<UndoMapAction>();
     UndoMapAction LastActionBuilder;
 
@@ -181,11 +184,13 @@ public class MapEditor : SceneBase
     public Button EmpiresButton;
     public Button SpawnersButton;
     public Button DoodadsButton;
+    public Button BuildingsButton;
 
     public GameObject TilePanel;
     public GameObject EmpiresPanel;
     public GameObject SpawnersPanel;
     public GameObject DoodadsPanel;
+    public GameObject BuildingsPanel;
 
     public Toggle SimpleDisplay;
 
@@ -198,6 +203,7 @@ public class MapEditor : SceneBase
 
     public TileBase[] SpawnerTypes;
     public Sprite[] Sprites;
+    public Sprite[] Buildings;
     public Sprite[] VillageSprites;
     GameObject[] SpriteCategories;
 
@@ -215,6 +221,28 @@ public class MapEditor : SceneBase
     {
         MercenaryHouse,
         GoldMine,
+    }
+    public enum MapBuildingType
+    {
+        //Production
+        WorkCamp,
+        LumberSite,
+        Quarry,
+
+        //Defense   
+        CasterTower,
+        BarrierTower,
+        DefEncampment,
+
+        //Utility
+        AdventureGuild,
+        BlackMagicTower,
+        TemporalTower,
+
+        //Manupulation
+        Laborotory,
+        Teleporter,
+        TownHall
     }
 
     public void CloseEditor()
@@ -276,6 +304,7 @@ public class MapEditor : SceneBase
         TileTypes = State.GameManager.StrategyMode.TileTypes;
         DoodadTypes = State.GameManager.StrategyMode.DoodadTypes;
         Sprites = State.GameManager.StrategyMode.Sprites;
+        Buildings = State.GameManager.StrategyMode.Buildings;
         VillageSprites = State.GameManager.StrategyMode.VillageSprites;
         SpriteCategories = State.GameManager.StrategyMode.SpriteCategories;
         EditingActiveMap = editingActiveMap;
@@ -352,6 +381,7 @@ public class MapEditor : SceneBase
         ActiveSpecial = false;
         ActiveVillage = false;
         ActiveDoodad = false;
+        ActiveBuilding = false;
         SelectionBackground.SetActive(true);
         SelectionBackground.transform.position = location.position;
     }
@@ -372,6 +402,7 @@ public class MapEditor : SceneBase
         ActiveTile = false;
         ActiveSpecial = true;
         ActiveDoodad = false;
+        ActiveBuilding = false;
         activeSpecialType = type;
         SelectionBackground.SetActive(true);
         SelectionBackground.transform.position = location.position;
@@ -391,6 +422,29 @@ public class MapEditor : SceneBase
 
 
     }
+    internal void SetBuildingType(MapBuildingType type, Transform location)
+    {
+        ActiveVillage = false;
+        ActiveTile = false;
+        ActiveSpecial = false;
+        ActiveDoodad = false;
+        ActiveBuilding = true;
+        activeBuildingType = type;
+        SelectionBackground.SetActive(true);
+        SelectionBackground.transform.position = location.position;
+    }
+    internal void SetBuildingTooltip(MapBuildingType type)
+    {
+        Tooltip.gameObject.SetActive(true);
+        switch (type)
+        {
+            case MapBuildingType.WorkCamp:
+                Tooltip.text = $"Place Work Camp";
+                break;
+        }
+
+
+    }
 
 
     internal void SetVillageType(Race race, Transform location)
@@ -400,6 +454,7 @@ public class MapEditor : SceneBase
         ActiveTile = false;
         ActiveSpecial = false;
         ActiveDoodad = false;
+        ActiveBuilding = false;
         SelectionBackground.SetActive(true);
         SelectionBackground.transform.position = location.position;
     }
@@ -420,6 +475,7 @@ public class MapEditor : SceneBase
         ActiveSpecial = false;
         ActiveVillage = false;
         ActiveDoodad = true;
+        ActiveBuilding = false;
         SelectionBackground.SetActive(true);
         SelectionBackground.transform.position = location.position;
     }
@@ -430,10 +486,12 @@ public class MapEditor : SceneBase
         EmpiresPanel.SetActive(false);
         SpawnersPanel.SetActive(false);
         DoodadsPanel.SetActive(false);
+        BuildingsPanel.SetActive(false);
         TilesButton.interactable = false;
         EmpiresButton.interactable = true;
         SpawnersButton.interactable = true;
         DoodadsButton.interactable = true;
+        BuildingsButton.interactable = true;
     }
 
     public void ActivateEmpires()
@@ -442,10 +500,12 @@ public class MapEditor : SceneBase
         EmpiresPanel.SetActive(true);
         SpawnersPanel.SetActive(false);
         DoodadsPanel.SetActive(false);
+        BuildingsPanel.SetActive(false);
         TilesButton.interactable = true;
         EmpiresButton.interactable = false;
         SpawnersButton.interactable = true;
         DoodadsButton.interactable = true;
+        BuildingsButton.interactable = true;
     }
 
     public void ActivateSpawners()
@@ -454,10 +514,12 @@ public class MapEditor : SceneBase
         EmpiresPanel.SetActive(false);
         SpawnersPanel.SetActive(true);
         DoodadsPanel.SetActive(false);
+        BuildingsPanel.SetActive(false);
         TilesButton.interactable = true;
         EmpiresButton.interactable = true;
         SpawnersButton.interactable = false;
         DoodadsButton.interactable = true;
+        BuildingsButton.interactable = true;
     }
 
     public void ActivateDoodads()
@@ -466,10 +528,26 @@ public class MapEditor : SceneBase
         EmpiresPanel.SetActive(false);
         SpawnersPanel.SetActive(false);
         DoodadsPanel.SetActive(true);
+        BuildingsPanel.SetActive(false);
         TilesButton.interactable = true;
         EmpiresButton.interactable = true;
         SpawnersButton.interactable = true;
         DoodadsButton.interactable = false;
+        BuildingsButton.interactable = true;
+    }
+
+    public void ActivateBuildings()
+    {
+        TilePanel.SetActive(false);
+        EmpiresPanel.SetActive(false);
+        SpawnersPanel.SetActive(false);
+        DoodadsPanel.SetActive(false);
+        BuildingsPanel.SetActive(true);
+        TilesButton.interactable = true;
+        EmpiresButton.interactable = true;
+        SpawnersButton.interactable = true;
+        DoodadsButton.interactable = true;
+        BuildingsButton.interactable = false;
     }
 
     internal void SetDoodadTooltip(StrategicDoodadType type)
@@ -1014,6 +1092,18 @@ public class MapEditor : SceneBase
             villShield.GetComponent<SpriteRenderer>().sprite = Sprites[10];
             villShield.GetComponent<SpriteRenderer>().sortingOrder = 2;
             villShield.GetComponent<SpriteRenderer>().color = claimable.Owner?.UnityColor ?? Color.clear;
+        }
+        foreach (var constructable in State.World.Constructibles)
+        {
+            int spr = 0;
+            if (constructable is WorkCamp)
+                spr = 0;
+            GameObject vill = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
+            vill.GetComponent<SpriteRenderer>().sprite = Buildings[spr];
+            vill.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            GameObject villColored = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
+            villColored.GetComponent<SpriteRenderer>().sprite = Buildings[spr + 1];
+            villColored.GetComponent<SpriteRenderer>().color = constructable.Owner?.UnityColor ?? Color.clear;
         }
     }
 

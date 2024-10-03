@@ -1,3 +1,4 @@
+using MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +112,7 @@ public class StrategyMode : SceneBase
 
     List<GameObject> currentVillageTiles;
     List<GameObject> currentClaimableTiles;
+    List<GameObject> currentBuildingTiles;
 
     public Tilemap[] TilemapLayers;
     public Tilemap FogOfWar;
@@ -118,6 +120,7 @@ public class StrategyMode : SceneBase
     internal Tile[] TileTypes;
     public TileBase[] DoodadTypes;
     public Sprite[] Sprites;
+    public Sprite[] Buildings;
     public Sprite[] VillageSprites;
     public GameObject[] SpriteCategories;
 
@@ -1000,6 +1003,20 @@ public class StrategyMode : SceneBase
             currentClaimableTiles.Add(villColored);
             currentClaimableTiles.Add(villShield);
             currentClaimableTiles.Add(villShieldInner);
+        }
+        foreach(var constructable in State.World.Constructibles)
+        {
+            int spr = 0;
+            if (constructable is WorkCamp)
+                spr = 0;
+            GameObject vill = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
+            vill.GetComponent<SpriteRenderer>().sprite = Sprites[spr];
+            vill.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            GameObject villColored = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
+            villColored.GetComponent<SpriteRenderer>().sprite = Sprites[spr + 1];
+            villColored.GetComponent<SpriteRenderer>().color = constructable.Owner?.UnityColor ?? Color.clear;
+            currentBuildingTiles.Add(vill);
+            currentBuildingTiles.Add(villColored);
         }
 
 
