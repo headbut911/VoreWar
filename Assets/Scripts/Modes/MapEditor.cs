@@ -1399,6 +1399,29 @@ public class MapEditor : SceneBase
             doodads[x, y] = currentDoodadType;
             RedrawTiles();
         }
+        else if (ActiveBuilding && StrategicUtilities.GetVillageAt(clickLocation) == null && StrategicUtilities.GetMercenaryHouseAt(clickLocation) == null && StrategicUtilities.GetClaimableAt(clickLocation) == null)
+        {
+            if (CanWalkInto(x, y) == false)
+            {
+                var lastTile = tiles[x, y];
+                LastActionBuilder.Add(() => tiles[x, y] = lastTile);
+                tiles[x, y] = StrategicTileType.grass;
+            }
+
+            DestroyVillagesAtTile(clickLocation);
+            switch (activeBuildingType)
+            {
+                case MapBuildingType.WorkCamp:
+                    WorkCamp newCamp = new WorkCamp(clickLocation, 0, 4, 5);
+                    var contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newCamp);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
+            }
+            RedrawTiles();
+            RedrawVillages();
+        }
 
     }
 

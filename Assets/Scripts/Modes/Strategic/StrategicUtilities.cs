@@ -162,6 +162,30 @@ static class StrategicUtilities
             }
             State.GameManager.StrategyMode.RedrawVillages();
         }
+
+        ConstructibleBuilding construct = GetConstructibleAt(location);
+        if (construct != null)
+        {
+            if (empire.Race >= Race.Vagrants)
+            {
+                construct.Owner = null;
+            }
+            else
+            {
+                if (construct.Owner != null && RelationsManager.GetRelation(construct.Owner.Side, empire.Side).Type != RelationState.Enemies)
+                {
+                    return;
+                }
+                if (construct.Owner != empire)
+                {
+                    State.GameManager.StrategyMode.UndoMoves.Clear();
+                    RelationsManager.GoldMineTaken(empire, construct.Owner);
+                    construct.Owner = empire;
+                }
+
+            }
+            State.GameManager.StrategyMode.RedrawVillages();
+        }
     }
 
     public static List<Unit> GetAllUnits(bool excludeMonsters = false)

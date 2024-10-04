@@ -113,6 +113,7 @@ public class World
             pop.PopulateVillages(map, ref Villages);
             pop.PopulateMercenaryHouses(map, ref MercenaryHouses);
             pop.PopulateClaimables(map, ref Claimables);
+            pop.PopulateConstructibles(map, ref Constructibles);
         }
 
 

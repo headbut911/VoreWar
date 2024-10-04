@@ -946,6 +946,7 @@ public class StrategyMode : SceneBase
         Village[] villages = State.World.Villages;
         currentVillageTiles = new List<GameObject>();
         currentClaimableTiles = new List<GameObject>();
+        currentBuildingTiles = new List<GameObject>();
         int highestVillageSprite = VillageSprites.Count() - 1;
         for (int i = 0; i < villages.Length; i++)
         {
@@ -1010,10 +1011,10 @@ public class StrategyMode : SceneBase
             if (constructable is WorkCamp)
                 spr = 0;
             GameObject vill = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
-            vill.GetComponent<SpriteRenderer>().sprite = Sprites[spr];
+            vill.GetComponent<SpriteRenderer>().sprite = Buildings[spr];
             vill.GetComponent<SpriteRenderer>().sortingOrder = 1;
             GameObject villColored = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
-            villColored.GetComponent<SpriteRenderer>().sprite = Sprites[spr + 1];
+            villColored.GetComponent<SpriteRenderer>().sprite = Buildings[spr + 1];
             villColored.GetComponent<SpriteRenderer>().color = constructable.Owner?.UnityColor ?? Color.clear;
             currentBuildingTiles.Add(vill);
             currentBuildingTiles.Add(villColored);
