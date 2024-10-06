@@ -1234,6 +1234,7 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            PowerAdjustment = 1.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(18, 26),
@@ -1260,25 +1261,27 @@ static class RaceParameters
             BodySize = 10,
             StomachSize = 18,
             HasTail = true,
-            FavoredStat = Stat.Endurance,
+            FavoredStat = Stat.Dexterity,
+            PowerAdjustment = 1.1f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(13, 18),
-                Dexterity = new RaceStats.StatRange(13, 18),
-                Endurance = new RaceStats.StatRange(17, 23),
+                Strength = new RaceStats.StatRange(12, 18),
+                Dexterity = new RaceStats.StatRange(14, 20),
+                Endurance = new RaceStats.StatRange(8, 12),
                 Mind = new RaceStats.StatRange(8, 12),
-                Will = new RaceStats.StatRange(14, 23),
+                Will = new RaceStats.StatRange(16, 24),
                 Agility = new RaceStats.StatRange(7, 12),
                 Voracity = new RaceStats.StatRange(5, 8),
                 Stomach = new RaceStats.StatRange(12, 15),
             },
             RacialTraits = new List<Traits>()
         {
-            Traits.StrongMelee,
+            Traits.QuickShooter,
+            Traits.ForcefulBlow,
             Traits.PackWill,
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.FireBomb },
-            RaceDescription = "A group of highly trained soldiers dedicated to the elimination of all that threats democracy. It is unknown which faction or race first started this coalition due to the technology they boast and open recruitment however, one thing is certain; they are quite a formidable force.(They also accept general mercenary work)",
+            RaceDescription = "A group of highly trained soldiers dedicated to the elimination of all that threats democracy. It is unknown which faction or race first started this coalition due to the technology they boast and open recruitment policy. However, one thing is certain; they are quite a formidable force.(They also accept general mercenary work)",
         };
 
         Vagrants = new RaceTraits()
