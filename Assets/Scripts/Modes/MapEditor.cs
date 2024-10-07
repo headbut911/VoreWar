@@ -1211,7 +1211,7 @@ public class MapEditor : SceneBase
         }
         else if (ActiveVillage)
         {
-            if (StrategicUtilities.GetVillageAt(clickLocation) == null && StrategicUtilities.GetMercenaryHouseAt(clickLocation) == null)
+            if (StrategicUtilities.GetVillageAt(clickLocation) == null && StrategicUtilities.GetMercenaryHouseAt(clickLocation) == null && StrategicUtilities.GetConstructibleAt(clickLocation) == null)
             {
                 if (x >= tiles.GetLength(0) - 1 || x < 1)
                     return;
@@ -1355,7 +1355,7 @@ public class MapEditor : SceneBase
                 }
             }
         }
-        else if (ActiveSpecial && StrategicUtilities.GetVillageAt(clickLocation) == null && StrategicUtilities.GetMercenaryHouseAt(clickLocation) == null)
+        else if (ActiveSpecial && StrategicUtilities.GetVillageAt(clickLocation) == null && StrategicUtilities.GetMercenaryHouseAt(clickLocation) == null && StrategicUtilities.GetConstructibleAt(clickLocation) == null)
         {
             if (CanWalkInto(x, y) == false)
             {
@@ -1385,7 +1385,7 @@ public class MapEditor : SceneBase
             RedrawTiles();
             RedrawVillages();
         }
-        else if (ActiveDoodad && StrategicUtilities.GetVillageAt(clickLocation) == null && StrategicUtilities.GetMercenaryHouseAt(clickLocation) == null)
+        else if (ActiveDoodad && StrategicUtilities.GetVillageAt(clickLocation) == null && StrategicUtilities.GetMercenaryHouseAt(clickLocation) == null && StrategicUtilities.GetConstructibleAt(clickLocation) == null)
         {
             if (doodads == null)
                 doodads = new StrategicDoodadType[Config.StrategicWorldSizeX, Config.StrategicWorldSizeY];
