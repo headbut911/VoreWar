@@ -1890,6 +1890,7 @@ public class StrategyMode : SceneBase
         }
 #endif
         ProcessIncome(ActingEmpire);
+        HandleBuildings(ActingEmpire);
         if (ActingEmpire.StrategicAI == null)
         {
             if (State.World.Turn > 1)
@@ -2054,6 +2055,15 @@ public class StrategyMode : SceneBase
             Regenerate();
         }
 
+    }
+    
+    void HandleBuildings(Empire empire)
+    {
+        ConstructibleBuilding[] owned_buildings = State.World.Constructibles.Where(x => x.Owner == empire).ToArray();
+        foreach (var constructable in owned_buildings)
+        {
+            constructable.RunBuildingTurn();
+        }
     }
 
     void ProcessGrowth()
