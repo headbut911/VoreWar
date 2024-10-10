@@ -378,6 +378,10 @@ public enum Traits
     ManaDynamo = 190,
     /// <summary>Unit deals extra melee or ranged damage at the cost of each attack consuming 6 mana. No bonus is received if mana is under 6</summary>
     WeaponChanneler = 191,
+    /// <summary>Upon getting killed, this unit will be brought back to life within a 6 tile radius of where they were killed once per battle</summary>
+    Respawner = 192,
+    /// <summary>Upon getting killed, this unit will be brought back to life within a 6 tile radius of where they were killed once per battle</summary>
+    RespawnerIII = 193,
 
 
 

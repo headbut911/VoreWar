@@ -1533,6 +1533,21 @@ public class PredatorComponent
             {
                 unit.ApplyStatusEffect(StatusEffectType.Empowered, 1.0f, 5);
             }
+            if (preyUnit.Unit.GetStatusEffect(StatusEffectType.Respawns) != null)
+            {
+                var spawnLoc = TacticalUtilities.GetRandomTileForActor(preyUnit.Actor);
+                if (spawnLoc == null)
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} was unable to respawn!");
+                else
+                    TacticalUtilities.Resurrect((spawnLoc),preyUnit.Actor);
+                    TacticalGraphicalEffects.CreateGenericMagic(spawnLoc, spawnLoc, preyUnit.Actor, TacticalGraphicalEffects.SpellEffectIcon.Resurrect);
+                    preyUnit.Unit.Health = preyUnit.Unit.MaxHealth;
+                    preyUnit.Unit.RemoveRespawns();
+                    if (preyUnit.Unit.Race != Race.Helldivers)
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} has respawned!");
+                    else
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Reinforcements have arrived!");
+            }
         }
 
         if (preyUnit.Unit.IsDead == false)

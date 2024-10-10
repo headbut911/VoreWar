@@ -64,5 +64,7 @@
     Bloodrite = 32,
     /// <summary>Movement is reduced to 1.</summary>
     Snared = 33,
+    /// <summary>Remaining respawns for the respawner traits.</summary>
+    Respawns = 34,
 }
 
