@@ -1279,6 +1279,7 @@ static class RaceParameters
             Traits.QuickShooter,
             Traits.ForcefulBlow,
             Traits.PackWill,
+            Traits.Respawner,
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.FireBomb },
             RaceDescription = "A group of highly trained soldiers dedicated to the elimination of all that threats democracy. It is unknown which faction or race first started this coalition due to the technology they boast and open recruitment policy. However, one thing is certain; they are quite a formidable force.(They also accept general mercenary work)",
