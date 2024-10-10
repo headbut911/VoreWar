@@ -981,6 +981,12 @@ public class StrategyMode : SceneBase
             merc.GetComponent<SpriteRenderer>().sprite = Sprites[14];
             merc.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
+        foreach (var teleporter in State.World.AncientTeleporters)
+        {
+            GameObject tele = Instantiate(SpriteCategories[2], new Vector3(teleporter.Position.x, teleporter.Position.y), new Quaternion(), VillageFolder);
+            tele.GetComponent<SpriteRenderer>().sprite = Sprites[16];
+            tele.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        }
         foreach (var claimable in State.World.Claimables)
         {
             int spr = 0;
@@ -2649,6 +2655,12 @@ public class StrategyMode : SceneBase
                 VillageTooltip.gameObject.SetActive(true);
                 VillageTooltip.Text.text = $"Mercenary House\nMercs: {house.Mercenaries.Count}\nHas Special? {(MercenaryHouse.UniqueMercs.Count > 0 ? "Yes" : "No")}";
             }
+            AncientTeleporter tele = StrategicUtilities.GetTeleAt(new Vec2i(ClickX, ClickY));
+            if (tele != null)
+            {
+                VillageTooltip.gameObject.SetActive(true);
+                VillageTooltip.Text.text = $"Ancient Teleporter";
+            }
             ClaimableBuilding claimable = StrategicUtilities.GetClaimableAt(new Vec2i(ClickX, ClickY));
             if (claimable != null)
             {
@@ -2663,9 +2675,9 @@ public class StrategyMode : SceneBase
             if (constructible != null)
             {
                 VillageTooltip.gameObject.SetActive(true);
-                if (constructible is GoldMine)
+                if (constructible is WorkCamp)
                 {
-                    VillageTooltip.Text.text = $"Gold Mine\nOwner: {claimable.Owner?.Name}\nGold Per Turn: {Config.GoldMineIncome}";
+                    VillageTooltip.Text.text = $"Work Camp\nOwner: {claimable.Owner?.Name}";
                 }
 
             }

@@ -112,6 +112,7 @@ public class World
             MapVillagePopulator pop = new MapVillagePopulator(Tiles);
             pop.PopulateVillages(map, ref Villages);
             pop.PopulateMercenaryHouses(map, ref MercenaryHouses);
+            pop.PopulateAncientTeleporters(map, ref AncientTeleporters);
             pop.PopulateClaimables(map, ref Claimables);
             pop.PopulateConstructibles(map, ref Constructibles);
         }

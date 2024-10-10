@@ -623,7 +623,7 @@ public class CreateStrategicGame : MonoBehaviour
 
             }
             args.MercCamps = Convert.ToInt32(MercenaryHouses.text);
-            //args.AncientTeleporters = Convert.ToInt32(AncientTeleporters.text);
+            args.AncientTeleporters = Convert.ToInt32(AncientTeleporters.text);
             args.GoldMines = Convert.ToInt32(GoldMines.text);
             args.crazyBuildings = CrazyBuildings.isOn;
 

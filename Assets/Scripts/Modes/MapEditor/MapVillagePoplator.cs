@@ -69,6 +69,22 @@ class MapVillagePopulator
         }
         houses = newHouses.ToArray();
     }
+    internal void PopulateAncientTeleporters(Map map, ref AncientTeleporter[] teles)
+    {
+        if (map.teleLocations == null)
+        {
+            teles = new AncientTeleporter[0];
+            return;
+        }
+        List<AncientTeleporter> newTele = new List<AncientTeleporter>();
+
+
+        for (int i = 0; i < map.teleLocations.Length; i++)
+        {
+            newTele.Add(new AncientTeleporter(map.teleLocations[i]));
+        }
+        teles = newTele.ToArray();
+    }
 
     internal void PopulateClaimables(Map map, ref ClaimableBuilding[] claimables)
     {

@@ -93,6 +93,8 @@ namespace MapObjects
         [OdinSerialize]
         internal Vec2i[] mercLocations;
         [OdinSerialize]
+        internal Vec2i[] teleLocations;
+        [OdinSerialize]
         internal MapClaimable[] claimables;
         [OdinSerialize]
         internal MapConstructible[] constructibles;
@@ -221,6 +223,7 @@ public class MapEditor : SceneBase
     {
         MercenaryHouse,
         GoldMine,
+        AncientTeleporter
     }
     public enum MapBuildingType
     {
@@ -1077,6 +1080,12 @@ public class MapEditor : SceneBase
             merc.GetComponent<SpriteRenderer>().sprite = Sprites[14];
             merc.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
+        foreach (var teleporter in State.World.AncientTeleporters)
+        {
+            GameObject tele = Instantiate(SpriteCategories[2], new Vector3(teleporter.Position.x, teleporter.Position.y), new Quaternion(), VillageFolder);
+            tele.GetComponent<SpriteRenderer>().sprite = Sprites[16];
+            tele.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        }
         foreach (var claimable in State.World.Claimables)
         {
             int spr = 0;
@@ -1381,6 +1390,13 @@ public class MapEditor : SceneBase
                     State.World.Claimables = claimables.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
+                case SpecialType.AncientTeleporter:
+                    AncientTeleporter newTele = new AncientTeleporter(clickLocation);
+                    var teles = State.World.AncientTeleporters.ToList();
+                    teles.Add(newTele);
+                    State.World.AncientTeleporters = teles.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
             }
             RedrawTiles();
             RedrawVillages();
@@ -1514,6 +1530,21 @@ public class MapEditor : SceneBase
             State.World.MercenaryHouses = houses.ToArray();
             RedrawVillages();
         }
+        AncientTeleporter teleAtTile = StrategicUtilities.GetTeleAt(clickLocation);
+        if (teleAtTile != null)
+        {
+            LastActionBuilder.Add(() =>
+            {
+                var tempTele = State.World.AncientTeleporters.ToList();
+                tempTele.Add(teleAtTile);
+                State.World.AncientTeleporters = tempTele.ToArray();
+                RedrawVillages();
+            });
+            var teles = State.World.AncientTeleporters.ToList();
+            teles.Remove(teleAtTile);
+            State.World.AncientTeleporters = teles.ToArray();
+            RedrawVillages();
+        }
         ClaimableBuilding claimableAtTile = StrategicUtilities.GetClaimableAt(clickLocation);
         if (claimableAtTile != null)
         {
@@ -1587,6 +1618,21 @@ public class MapEditor : SceneBase
         else
         {
             State.World.MercenaryHouses = new MercenaryHouse[0];
+        }if (map.teleLocations != null)
+        {
+            List<AncientTeleporter> teles = new List<AncientTeleporter>();
+            foreach (var tel in map.teleLocations)
+            {
+                teles.Add(new AncientTeleporter(tel));
+            }
+            if (teles.Count > 0)
+                State.World.AncientTeleporters = teles.ToArray();
+            else
+                State.World.AncientTeleporters = new AncientTeleporter[0];
+        }
+        else
+        {
+            State.World.AncientTeleporters = new AncientTeleporter[0];
         }
         if (map.claimables != null)
         {
@@ -1671,6 +1717,11 @@ public class MapEditor : SceneBase
         foreach (MercenaryHouse mercHouse in State.World.MercenaryHouses)
         {
             storedMercLocations.Add(mercHouse.Position);
+        }
+        List<Vec2i> storedTeleLocations = new List<Vec2i>();
+        foreach (AncientTeleporter Tele in State.World.AncientTeleporters)
+        {
+            storedTeleLocations.Add(Tele.Position);
         }
         List<MapClaimable> storedClaimables = new List<MapClaimable>();
         List<MapConstructible> storedConstructibles = new List<MapConstructible>();
@@ -1828,6 +1879,16 @@ public class MapEditor : SceneBase
         }
         State.World.MercenaryHouses = newMercs.ToArray();
 
+        List<AncientTeleporter> newTele = new List<AncientTeleporter>();
+        foreach (AncientTeleporter tele in State.World.AncientTeleporters.ToList())
+        {
+            tele.Position.x += diffX;
+            tele.Position.y += diffY;
+            if (tele.Position.x < x - 1 && tele.Position.x > 0 && tele.Position.y < y - 1 && tele.Position.y > 0)
+                newTele.Add(tele);
+        }
+        State.World.AncientTeleporters = newTele.ToArray();
+
         List<ClaimableBuilding> newClaims = new List<ClaimableBuilding>();
         foreach (ClaimableBuilding claim in State.World.Claimables.ToList())
         {
@@ -1914,9 +1975,14 @@ public class MapEditor : SceneBase
         if (villageAtCursor == null)
         {
             MercenaryHouse house = StrategicUtilities.GetMercenaryHouseAt(new Vec2i(ClickX, ClickY));
+            AncientTeleporter tele = StrategicUtilities.GetTeleAt(new Vec2i(ClickX, ClickY));
             if (house != null)
             {
                 Tooltip.text = "Mercenary House";
+            }
+            else if (tele != null)
+            {
+                Tooltip.text = "Ancient Teleporter";
             }
             else
             {

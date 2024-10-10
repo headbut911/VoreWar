@@ -109,6 +109,17 @@ static class StrategicUtilities
         }
         return null;
     }
+    public static AncientTeleporter GetTeleAt(Vec2i location)
+    {
+        foreach (AncientTeleporter tele in State.World.AncientTeleporters)
+        {
+            if (tele.Position.Matches(location))
+            {
+                return tele;
+            }
+        }
+        return null;
+    }
 
     public static ClaimableBuilding GetClaimableAt(Vec2i location)
     {
@@ -673,6 +684,20 @@ static class StrategicUtilities
             }
         }
         return retMercs.ToArray();
+    }
+    internal static AncientTeleporter[] GetUnoccupiedAncientTeleporter(Empire empire)
+    {
+        AncientTeleporter[] teles = State.World.AncientTeleporters;
+        List<AncientTeleporter> retTeles = new List<AncientTeleporter>();
+        for (int i = 0; i < State.World.AncientTeleporters.Length; i++)
+        {
+            if (ArmyAt(teles[i].Position) == null)
+            {
+                retTeles.Add(teles[i]);
+
+            }
+        }
+        return retTeles.ToArray();
     }
 
     internal static bool IsVillageOccupied(Empire empire, int i)
