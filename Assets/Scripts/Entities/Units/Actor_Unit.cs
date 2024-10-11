@@ -265,9 +265,9 @@ public class Actor_Unit
 
     public int CurrentMaxMovement()
     {
-        if (Unit.HasTrait(Traits.Respawner) && State.GameManager.TacticalMode.currentTurn == 1)
+        if (Unit.HasTrait(Traits.Respawner) && (State.GameManager.TacticalMode.currentTurn == 1) && State.GameManager.TacticalMode.attackersTurnCheck == true)
             Unit.AddRespawns(1);
-        if (Unit.HasTrait(Traits.RespawnerIII) && State.GameManager.TacticalMode.currentTurn == 1)
+        if (Unit.HasTrait(Traits.RespawnerIII) && (State.GameManager.TacticalMode.currentTurn == 1) && State.GameManager.TacticalMode.attackersTurnCheck == true)
             Unit.AddRespawns(3);
         int sizePenalty = (int)(PredatorComponent?.Fullness ?? 0);
         sizePenalty = (int)(sizePenalty * Unit.TraitBoosts.SpeedLossFromWeightMultiplier);
@@ -1534,7 +1534,7 @@ public class Actor_Unit
             GiveRandomBoost();
 
         Unit.GiveScaledExp(4 * target.Unit.ExpMultiplier, Unit.Level - target.Unit.Level);
-        if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null)
+        if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (target.Unit.HasTrait(Traits.Respawner) || target.Unit.HasTrait(Traits.RespawnerIII)))
         {
             var spawnLoc = TacticalUtilities.GetRandomTileForActor(target);
             if (spawnLoc == null)
@@ -1566,7 +1566,7 @@ public class Actor_Unit
         if (Unit.HasTrait(Traits.TasteForBlood))
             GiveRandomBoost();
         Unit.GiveScaledExp(4 * target.Unit.ExpMultiplier, Unit.Level - target.Unit.Level);
-        if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null)
+        if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (target.Unit.HasTrait(Traits.Respawner) || target.Unit.HasTrait(Traits.RespawnerIII)))
         {
             var spawnLoc = TacticalUtilities.GetRandomTileForActor(target);
             if (spawnLoc == null)

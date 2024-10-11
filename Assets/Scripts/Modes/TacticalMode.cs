@@ -154,6 +154,7 @@ public class TacticalMode : SceneBase
     Spell CurrentSpell;
 
     bool attackersTurn;
+    public bool attackersTurnCheck;
     internal bool IsPlayerTurn;
     internal bool IsPlayerInControl => PseudoTurn || (IsPlayerTurn && RunningFriendlyAI == false && foreignAI == null && !SpectatorMode);
     int activeSide;
@@ -409,6 +410,7 @@ public class TacticalMode : SceneBase
         armies[1] = defender;
         this.village = village;
         attackersTurn = true;
+        attackersTurnCheck = true;
 
         currentTurn = 1;
         corpseCount = 0;
@@ -1209,6 +1211,7 @@ Turns: {currentTurn}
         currentTurn = data.currentTurn;
 
         attackersTurn = data.attackersTurn;
+        attackersTurnCheck = data.attackersTurn;
         IsPlayerTurn = data.isAPlayerTurn;
         activeSide = data.activeSide;
 
@@ -3602,6 +3605,7 @@ Turns: {currentTurn}
         if (attackersTurn)
         {
             attackersTurn = false;
+            attackersTurnCheck = false;
             activeSide = defenderSide;
             currentAI = defenderAI;
             NewTurn();
@@ -3611,6 +3615,7 @@ Turns: {currentTurn}
         else
         {
             attackersTurn = true;
+            attackersTurnCheck = true;
             currentTurn++;
             activeSide = armies[0].Side;
             currentAI = attackerAI;
@@ -3914,7 +3919,9 @@ Turns: {currentTurn}
                 if (actor.Unit.IsDead && actor.Unit.Type != UnitType.Summon &&
                     (actor.Unit.HasTrait(Traits.Eternal) || (actor.Unit.HasTrait(Traits.LuckySurvival) && State.Rand.Next(5) != 0) ||
                     (actor.Unit.HasTrait(Traits.Reformer) && actor.KilledByDigestion) ||
-                    (actor.Unit.HasTrait(Traits.Revenant) && actor.KilledByDigestion == false)
+                    (actor.Unit.HasTrait(Traits.Revenant) && actor.KilledByDigestion == false) ||
+                    (actor.Unit.HasTrait(Traits.DeathCheater) && actor.Unit.TimesKilled <= 9 && (State.Rand.Next(10) >= (actor.Unit.TimesKilled - 1))) ||
+                    (actor.Unit.HasTrait(Traits.DeathCheater) && actor.Unit.TimesKilled >= 10 && (State.Rand.Next(10) == 0))
                     ))
                 {
                     actor.Surrendered = false;

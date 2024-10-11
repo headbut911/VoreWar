@@ -1432,6 +1432,9 @@ public class PredatorComponent
                 preyUnit.Unit.RemoveTrait(Traits.LuckySurvival);
                 preyUnit.Unit.RemoveTrait(Traits.Reformer);
                 preyUnit.Unit.RemoveTrait(Traits.TheGreatEscape);
+                preyUnit.Unit.RemoveTrait(Traits.DeathCheater);
+                preyUnit.Unit.RemoveTrait(Traits.Respawner);
+                preyUnit.Unit.RemoveTrait(Traits.RespawnerIII);
             }
             else
             {
@@ -1533,7 +1536,7 @@ public class PredatorComponent
             {
                 unit.ApplyStatusEffect(StatusEffectType.Empowered, 1.0f, 5);
             }
-            if (preyUnit.Unit.GetStatusEffect(StatusEffectType.Respawns) != null)
+            if (preyUnit.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (preyUnit.Unit.HasTrait(Traits.Respawner) || preyUnit.Unit.HasTrait(Traits.RespawnerIII)))
             {
                 var spawnLoc = TacticalUtilities.GetRandomTileForActor(preyUnit.Actor);
                 if (spawnLoc == null)
