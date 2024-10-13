@@ -1546,10 +1546,7 @@ public class PredatorComponent
                     TacticalGraphicalEffects.CreateGenericMagic(spawnLoc, spawnLoc, preyUnit.Actor, TacticalGraphicalEffects.SpellEffectIcon.Resurrect);
                     preyUnit.Unit.Health = preyUnit.Unit.MaxHealth;
                     preyUnit.Unit.RemoveRespawns();
-                    if (preyUnit.Unit.Race != Race.Helldivers)
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} has respawned!");
-                    else
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Reinforcements have arrived!");
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} has respawned!");
             }
         }
 
