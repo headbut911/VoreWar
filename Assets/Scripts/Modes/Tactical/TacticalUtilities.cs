@@ -1087,6 +1087,34 @@ static class TacticalUtilities
         UnitPickerUI.gameObject.SetActive(true);
     }
 
+    static internal List<Vec2i> TilesWithinRange(Vec2i location, int range)
+    {
+        List<Vec2i> tile_positions = new List<Vec2i>();
+        int outer_matrix_cursor = 0;
+        for (int y = location.y + range; y >= location.y - range; y--)
+        {
+            int inner_matrix_cursor = 0;
+            for (int x = location.x + range; x >= location.x - range; x--)
+            {
+                if (x < 0 || y < 0 || x > tiles.GetUpperBound(0) || y > tiles.GetUpperBound(1))
+                {
+                    inner_matrix_cursor++;
+                    continue;
+                }
+                tile_positions.Add(new Vec2i(x, y));
+            }
+            outer_matrix_cursor++;
+        }
+        return tile_positions;
+    }
+
+ static internal Vec2i GetRandomTileForActor(Actor_Unit actor)
+ {
+     Vec2i[] tile_positions = TilesWithinRange(actor.Position, 6).Where(tile => OpenTile(tile, actor)).ToArray();
+     if (tile_positions.Length == 0) { return null; }
+     return tile_positions[UnityEngine.Random.Range(0, tile_positions.Length - 1)];
+ }
+
     internal static void Resurrect(Vec2i loc, Actor_Unit target)
     {
         var pred = FindPredator(target);

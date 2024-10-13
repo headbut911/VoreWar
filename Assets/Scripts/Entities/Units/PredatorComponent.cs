@@ -1432,6 +1432,9 @@ public class PredatorComponent
                 preyUnit.Unit.RemoveTrait(Traits.LuckySurvival);
                 preyUnit.Unit.RemoveTrait(Traits.Reformer);
                 preyUnit.Unit.RemoveTrait(Traits.TheGreatEscape);
+                preyUnit.Unit.RemoveTrait(Traits.DeathCheater);
+                preyUnit.Unit.RemoveTrait(Traits.Respawner);
+                preyUnit.Unit.RemoveTrait(Traits.RespawnerIII);
             }
             else
             {
@@ -1532,6 +1535,18 @@ public class PredatorComponent
             if (unit.HasTrait(Traits.MetabolicSurge))
             {
                 unit.ApplyStatusEffect(StatusEffectType.Empowered, 1.0f, 5);
+            }
+            if (preyUnit.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (preyUnit.Unit.HasTrait(Traits.Respawner) || preyUnit.Unit.HasTrait(Traits.RespawnerIII)))
+            {
+                var spawnLoc = TacticalUtilities.GetRandomTileForActor(preyUnit.Actor);
+                if (spawnLoc == null)
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} was unable to respawn!");
+                else
+                    TacticalUtilities.Resurrect((spawnLoc),preyUnit.Actor);
+                    TacticalGraphicalEffects.CreateGenericMagic(spawnLoc, spawnLoc, preyUnit.Actor, TacticalGraphicalEffects.SpellEffectIcon.Resurrect);
+                    preyUnit.Unit.Health = preyUnit.Unit.MaxHealth;
+                    preyUnit.Unit.RemoveRespawns();
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} has respawned!");
             }
         }
 
