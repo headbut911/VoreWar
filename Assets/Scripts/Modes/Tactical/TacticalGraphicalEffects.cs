@@ -120,7 +120,7 @@ static class TacticalGraphicalEffects
             return State.GameManager.SpriteDictionary.SpitterSlug[10];
         else if (actor.Unit.Race == Race.Bats)
             return State.GameManager.SpriteDictionary.Demibats1[132];
-        else if (actor.Unit.Race == Race.Helldivers && (weapon.Graphic == 4 || weapon.Graphic == 6))
+        else if (actor.Unit.Race == Race.RwuMercenaries && (weapon.Graphic == 4 || weapon.Graphic == 6))
             return State.GameManager.SpriteDictionary.Slimes[17];
         else if (actor.Unit.Race == Race.Hamsters && (weapon.Graphic == 4 || weapon.Graphic == 6))
             return State.GameManager.SpriteDictionary.Slimes[17];

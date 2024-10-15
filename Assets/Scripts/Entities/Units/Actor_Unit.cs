@@ -1544,7 +1544,7 @@ public class Actor_Unit
                 TacticalGraphicalEffects.CreateGenericMagic(spawnLoc, spawnLoc, target, TacticalGraphicalEffects.SpellEffectIcon.Resurrect);
                 target.Unit.Health = target.Unit.MaxHealth;
                 target.Unit.RemoveRespawns();
-                if (target.Unit.Race != Race.Helldivers)
+                if (target.Unit.Race != Race.RwuMercenaries)
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{target.Unit.Name} has respawned!");
                 else
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Reinforcements have arrived!");
@@ -1576,7 +1576,7 @@ public class Actor_Unit
                 TacticalGraphicalEffects.CreateGenericMagic(spawnLoc, spawnLoc, target, TacticalGraphicalEffects.SpellEffectIcon.Resurrect);
                 target.Unit.Health = target.Unit.MaxHealth;
                 target.Unit.RemoveRespawns();
-                if (target.Unit.Race != Race.Helldivers)
+                if (target.Unit.Race != Race.RwuMercenaries)
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{target.Unit.Name} has respawned!");
                 else
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Reinforcements have arrived!");
