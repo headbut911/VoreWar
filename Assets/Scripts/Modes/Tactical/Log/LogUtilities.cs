@@ -505,7 +505,7 @@ static class LogUtilities
                 return GetRandomStringFrom("puca", "bunny", "lagomorph", "digger");
             case Race.Hamsters:
                 return GetRandomStringFrom("hamster", "rodent", "shortstack");
-            case Race.Helldivers:
+            case Race.RwuMercenaries:
                 return GetRandomStringFrom("helldiver", "trooper", "liberator");
             case Race.Vagrants:
                 return GetRandomStringFrom("vagrant", "jellyfish", "medusa");
@@ -698,7 +698,7 @@ static class LogUtilities
             else if (weapon.Name == "Compound Bow") return "Throwing Axe";
             else if (weapon.Name == "Claw") return "Claws";
         }
-        else if (unit.Race == Race.Helldivers)
+        else if (unit.Race == Race.RwuMercenaries)
         {
             if (weapon.Name == "Mace") return "Combat Knife";
             else if (weapon.Name == "Axe" && unit.EyeType == 0) return "Machete";

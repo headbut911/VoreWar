@@ -203,15 +203,15 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Vargul4;
     public Sprite[] Vargul5;
     public Sprite[] Hamsters;
-    public Sprite[] Helldivers1;
-    public Sprite[] Helldivers2;
-    public Sprite[] Helldivers3;
-    public Sprite[] Helldivers4;
-    public Sprite[] Helldivers5;
-    public Sprite[] Helldivers6;
-    public Sprite[] Helldivers7;
-    public Sprite[] Helldivers8a;
-    public Sprite[] Helldivers8b;
+    public Sprite[] RwuMercenaries1;
+    public Sprite[] RwuMercenaries2;
+    public Sprite[] RwuMercenaries3;
+    public Sprite[] RwuMercenaries4;
+    public Sprite[] RwuMercenaries5;
+    public Sprite[] RwuMercenaries6;
+    public Sprite[] RwuMercenaries7;
+    public Sprite[] RwuMercenaries8a;
+    public Sprite[] RwuMercenaries8b;
 
     public Sprite[] CowsSeliciaBelly;
 

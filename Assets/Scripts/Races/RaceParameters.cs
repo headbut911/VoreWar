@@ -49,7 +49,7 @@ static class RaceParameters
     static readonly RaceTraits Cockatrice;
     static readonly RaceTraits Vargul;
     static readonly RaceTraits Hamsters;
-    static readonly RaceTraits Helldivers;
+    static readonly RaceTraits RwuMercenaries;
     static readonly RaceTraits Vagrants;
     static readonly RaceTraits Serpents;
     static readonly RaceTraits Wyvern;
@@ -218,8 +218,8 @@ static class RaceParameters
                 return Vargul;
             case Race.Hamsters:
                 return Hamsters;
-            case Race.Helldivers:
-                return Helldivers;
+            case Race.RwuMercenaries:
+                return RwuMercenaries;
             case Race.Vagrants:
                 return Vagrants;
             case Race.Serpents:
@@ -1256,7 +1256,7 @@ static class RaceParameters
             RaceDescription = "A race renowned for their excellent smithing and startling strength despite their stature. Their settlements have rarely been seen above ground however, they are known to have ginormous kingdoms underground that dwarf most other faction's capitals.",
         };
 
-        Helldivers = new RaceTraits()
+        RwuMercenaries = new RaceTraits()
         {
             BodySize = 10,
             StomachSize = 18,
@@ -1283,7 +1283,7 @@ static class RaceParameters
             Traits.Respawner,
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.FireBomb },
-            RaceDescription = "A group of highly trained soldiers dedicated to the elimination of all that threats democracy. It is unknown which faction or race first started this coalition due to the technology they boast and open recruitment policy. However, one thing is certain; they are quite a formidable force.(They also accept general mercenary work)",
+            RaceDescription = "A highly trained soldier of the Red Wolf United mercenary company. It is unknown which faction or race first started this company due to the technology they boast and open recruitment policy. However, one thing is certain; these soldiers are no slouches when it comes to combat are quite a formidable force on the battlefield.",
         };
 
         Vagrants = new RaceTraits()
