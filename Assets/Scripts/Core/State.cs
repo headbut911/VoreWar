@@ -16,7 +16,7 @@ public static class State
     public static NameGenerator NameGen;
     public static GameManager GameManager;
     public static AssimilateList AssimilateList;
-    public static List<TaggedTrait> TieredTraitsList;
+    public static Dictionary<Traits,TaggedTrait> TieredTraitsList;
     public static List<String> TieredTraitsTagsList;
     public static List<RandomizeList> RandomizeLists;
 
@@ -169,15 +169,7 @@ public static class State
     {
         TieredTraitsList = TraitSorter.TraitParser();
         TieredTraitsTagsList = new List<string>();
-        foreach (TaggedTrait trait in TieredTraitsList)
-        {
-            //Debug.Log("Checking: " + trait.name);
-            foreach (string tag in trait.tags)
-            {
-                if (!TieredTraitsTagsList.Contains(tag))
-                    TieredTraitsTagsList = TieredTraitsTagsList.Append(tag).ToList();
-            }
-        }
+
     }
 
     public static void ChangeRaceSlotUsed(int num)

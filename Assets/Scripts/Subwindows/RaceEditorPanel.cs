@@ -88,9 +88,13 @@ public class RaceEditorPanel : MonoBehaviour
 
     public GameObject GeneralPanel;
     public GameObject TraitsPanel;
+    public GameObject TaggedTraitsPanel;
 
     public Button GeneralButton;
     public Button TraitsButton;
+    public Button TaggedTraitsButton;
+
+    public TaggedTraitEditor taggedTraitEditor = new TaggedTraitEditor();
 
     List<Traits> CurrentTraits;
 
@@ -778,7 +782,9 @@ public class RaceEditorPanel : MonoBehaviour
     {
         GeneralPanel.SetActive(true);
         TraitsPanel.SetActive(false);
+        TaggedTraitsPanel.SetActive(false);
         GeneralButton.interactable = false;
+        TaggedTraitsButton.interactable = false;
         TraitsButton.interactable = true;
     }
 
@@ -786,8 +792,30 @@ public class RaceEditorPanel : MonoBehaviour
     {
         GeneralPanel.SetActive(false);
         TraitsPanel.SetActive(true);
+        TaggedTraitsPanel.SetActive(false);
         GeneralButton.interactable = true;
         TraitsButton.interactable = false;
+        TaggedTraitsButton.interactable = true;
+    }
+    public void ActivateTaggedTraitsPanel()
+    {
+        GeneralPanel.SetActive(false);
+        TraitsPanel.SetActive(false);
+        Enum.TryParse(RaceDropdown.options[RaceDropdown.value].text, out Race race);
+        taggedTraitEditor.Open(race, CurrentTraits);
+        GeneralButton.interactable = false;
+        TraitsButton.interactable = false;
+        TaggedTraitsButton.interactable = false;
+    }
+    public void CloseTaggedTraitsPanel()
+    {
+        GeneralPanel.SetActive(false);
+        TraitsPanel.SetActive(true);
+        CurrentTraits = taggedTraitEditor.Close();
+        GeneralButton.interactable = true;
+        TraitsButton.interactable = false;
+        TaggedTraitsButton.interactable = true;
+        UpdateInteractable();
     }
 }
     

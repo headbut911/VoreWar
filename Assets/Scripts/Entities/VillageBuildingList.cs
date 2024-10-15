@@ -565,7 +565,7 @@ public static class VillageBuildingList
         },
 
         [VillageBuilding.builder1] = new VillageBuildingDefinition(
-            VillageBuilding.Cathedral, "Builder Workshop",
+            VillageBuilding.builder1, "Builder Workshop",
             "A place for builders to work. Max Builders +1"
         )
         {
