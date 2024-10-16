@@ -156,7 +156,7 @@ public enum Traits
     /// <summary>Allows a weaker, 3-tile attack.</summary>
     TailStrike = 80,
     /// <summary>Unit does not digest friendly units.</summary>
-    Endosoma = 81,
+    FriendlyStomach = 81,
     /// <summary>Halves chance for unit's prey to escape.</summary>
     IronGut = 82,
     /// <summary>Reduces chance for unit's prey to escape by 15%.</summary>
@@ -378,6 +378,11 @@ public enum Traits
     ManaDynamo = 190,
     /// <summary>Unit deals extra melee or ranged damage at the cost of each attack consuming 6 mana. No bonus is received if mana is under 6</summary>
     WeaponChanneler = 191,
+    /// <summary>Unit deals no digestion damage, enemies eaten by this unit will eventually lose the ability to escape and will be considered defeated.</summary>
+    Endosoma = 192,
+    /// <summary>Units defeated by the Endosoma trait will now be recruited instead at the end of battle.</summary>
+    Friendosoma = 193,
+
 
 
 

@@ -108,6 +108,7 @@ public class Unit
     internal int Mana { get; private set; }
 
     internal int MaxMana => (int)(GetStatBase(Stat.Mind) + GetStatBase(Stat.Will) * 2 * TraitBoosts.ManaMultiplier);
+    internal int MaxStamina => (int)((GetStatBase(Stat.Strength) + GetStatBase(Stat.Endurance) * 2) * TraitBoosts.StaminaMultiplier);
 
     private int _maxHealth = 99999;
 
@@ -521,6 +522,29 @@ public class Unit
             Mana = MaxMana;
     }
 
+    internal bool SpendStam(int amount)
+    {
+        if (Stamina >= amount)
+        {
+            Stamina -= amount;
+            return true;
+        }
+        return false;
+    }
+    internal void RestoreStamPct(float pct)
+    {
+        Stamina += (int)(MaxStamina * pct);
+        if (Stamina > MaxStamina)
+            Stamina = MaxStamina;
+    }
+
+    internal void RestoreStam(int amt)
+    {
+        Stamina += amt;
+        if (Stamina > MaxStamina)
+            Stamina = MaxStamina;
+    }
+
 
     internal int NearbyFriendlies = 0;
     internal int NearbyEnemies = 0;
@@ -576,6 +600,8 @@ public class Unit
     [OdinSerialize]
     public Actor_Unit BoundUnit;
 
+    [OdinSerialize]
+    internal int Stamina;
 
     /// <summary>
     /// Creates an empty unit for various purposes
@@ -594,6 +620,7 @@ public class Unit
         Stats[(int)Stat.Stomach] = 12 + State.Rand.Next(4);
         Health = MaxHealth;
         Mana = MaxMana;
+        Stamina = MaxStamina;
     }
 
     public Unit(int side, Race race, int startingXP, bool predator, UnitType type = UnitType.Soldier, bool immuneToDefectons = false)
@@ -652,6 +679,7 @@ public class Unit
         RandomSkills();
         Health = MaxHealth;
         Mana = MaxMana;
+        Stamina = MaxStamina;
 
         if (UniformDataStorer.GetUniformOdds(race) >= State.Rand.NextDouble())
         {
@@ -1298,6 +1326,15 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             _manaPct = (float)Mana / MaxMana;
             return _manaPct;
+        }
+    }
+    private float _stamPct = 100f;
+    public float StamPct
+    {
+        get
+        {
+            _stamPct = (float)Stamina / MaxStamina;
+            return _stamPct;
         }
     }
 
@@ -2061,6 +2098,9 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             prereq = Traits.Growth;
         }
         if ( randomPick == Traits.HealingBelly)
+        {
+            prereq = Traits.FriendlyStomach;
+        }if ( randomPick == Traits.Friendosoma)
         {
             prereq = Traits.Endosoma;
         }

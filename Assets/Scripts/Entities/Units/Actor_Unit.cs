@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class Actor_Unit
 {
@@ -1760,7 +1761,7 @@ public class Actor_Unit
         {
             return 0;
         }
-        if (Surrendered || (attacker.Unit.HasTrait(Traits.Endosoma) && (Unit.FixedSide == attacker.Unit.GetApparentSide(Unit)) || Unit.GetStatusEffect(StatusEffectType.Hypnotized)?.Strength == attacker.Unit.FixedSide))
+        if (Surrendered || ((attacker.Unit.HasTrait(Traits.FriendlyStomach) || attacker.Unit.HasTrait(Traits.Endosoma)) && (Unit.FixedSide == attacker.Unit.GetApparentSide(Unit)) || Unit.GetStatusEffect(StatusEffectType.Hypnotized)?.Strength == attacker.Unit.FixedSide))
             return 1f;
 
         float predVoracity = Mathf.Pow(15 + skillBoost + attacker.Unit.GetStat(Stat.Voracity), 1.5f);

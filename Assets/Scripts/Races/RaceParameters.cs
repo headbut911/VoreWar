@@ -2866,7 +2866,7 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.BoggingSlime,
-            Traits.Endosoma,
+            Traits.FriendlyStomach,
             Traits.Resilient,
             Traits.SoftBody,
             Traits.VerySlowMovement,

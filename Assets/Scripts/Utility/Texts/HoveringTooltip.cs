@@ -411,7 +411,7 @@ public class HoveringTooltip : MonoBehaviour
                 return "Prey is afflicted with the Prey's Curse effect";
             case Traits.FearsomeAppetite:
                 return "Consuming a victim frightens nearby allies of the prey, temporarily reducing their stats";
-            case Traits.Endosoma:
+            case Traits.FriendlyStomach:
                 return "Can vore friendly units, friendly units that are vored take no digestion damage \nThey do not try to escape, but can be regurgitated or are freed at the end of battle\nHas 100% chance to eat allies, and only costs 2 AP, like eating surrendered units.  May cause battles to not automatically end if used with TheGreatEscape";
             case Traits.TailStrike:
                 return "An attack that does less damage, but attacks the tile and the 2 tiles adjacent to it that are within reach";
@@ -601,7 +601,11 @@ public class HoveringTooltip : MonoBehaviour
                 return "Every time digestion progresses, this unit digests one level from each prey inside them, gaining its experience value. If a unit hits level 0 this way, it dies if it was stil alive and cannot be revived.\n(Cheat Trait)";
             case Traits.WeaponChanneler:
                 return "Unit deals extra melee or ranged damage at the cost of each srtike consuming 6 mana. No bonus is received if mana is under 6.";
-        }  
+            case Traits.Endosoma:
+                return "Units that are vored take no digestion damage \n Enemies lose stamina instead of health, enemies with no stamina no longer try to escape and are considered defeated at the end of battle, but not if freed. \n Has 100% chance to eat allies.Can vore friendly units, they do not try to escape. \n May cause battles to not automatically end if used with TheGreatEscape";
+            case Traits.Friendosoma:
+                return "Enemies defeated by defeated by the Endosoma trait will now be recruited instead at the end of battle.soma";
+        }
         return "<b>This trait needs a tooltip!</b>";
     }
 

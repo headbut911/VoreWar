@@ -3720,7 +3720,7 @@ Turns: {currentTurn}
                 {
                     RetreatedDigestors[i].DigestCheck();
                 }
-                if (RetreatedDigestors[i].Unit.HasTrait(Traits.Endosoma))
+                if (RetreatedDigestors[i].Unit.HasTrait(Traits.FriendlyStomach) || RetreatedDigestors[i].Unit.HasTrait(Traits.Endosoma))
                 {
                     foreach (var prey in RetreatedDigestors[i].PredatorComponent.GetAllPrey())
                     {
@@ -3815,12 +3815,15 @@ Turns: {currentTurn}
             return false;
         int remainingAttackers = 0;
         int remainingDefenders = 0;
-
+        Debug.Log("VicCheck1");
         CalculateRemaining(ref remainingAttackers, ref remainingDefenders);
+        Debug.Log("RemDef:" + remainingDefenders);
         if (remainingAttackers == 0 || remainingDefenders == 0)
         {
+            Debug.Log("VicCheck2");
             foreach (Actor_Unit actor in units)
             {
+                Debug.Log("VicCheck3");
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && actor.TurnsSinceLastDamage < 2) return false;
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && !actor.Unit.hiddenFixedSide && units.Any(u => u.Targetable && !u.Fled && u.Visible && TacticalUtilities.TreatAsHostile(actor, u))) return false;
                 if (actor.Unit.Predator == false)
@@ -3829,6 +3832,24 @@ Turns: {currentTurn}
                 {
                     actor.PredatorComponent.FreeGreatEscapePrey(prey);
                     RetreatUnit(prey.Actor, prey.Unit.Side == defenderSide);
+                }
+                if (actor.Unit.HasTrait(Traits.Endosoma))
+                {
+                    foreach (var prey in actor.PredatorComponent.GetDirectPrey().Where(s => s.Unit.Stamina <= 0).ToList())
+                    {
+                        actor.PredatorComponent.FreeEndoPrey(prey);
+                        if (actor.Unit.HasTrait(Traits.Friendosoma))
+                        {
+                            SwitchAlignment(prey.Actor);
+                            RetreatUnit(prey.Actor, prey.Unit.Side == defenderSide);
+                        }
+                        else
+                        {
+                            prey.Actor.Unit.Health = 0;
+                            prey.Actor.Unit.Kill();
+                        }
+
+                    }
                 }
                 if (actor.Fled == false)
                     continue;
@@ -4257,7 +4278,7 @@ Turns: {currentTurn}
                     //    actor.Visible = true;
                     //    actor.Targetable = true;
                     //}
-                    if ((actor.SelfPrey?.Predator == null || actor.SelfPrey?.Predator.PredatorComponent?.IsActorInPrey(actor) == false || actor.SelfPrey.TurnsSinceLastDamage > 3 && actor.SelfPrey.Predator.Unit.HasTrait(Traits.Endosoma)) && actor.Unit.IsDead == false && actor.Visible == false && actor.Targetable == false)
+                    if ((actor.SelfPrey?.Predator == null || actor.SelfPrey?.Predator.PredatorComponent?.IsActorInPrey(actor) == false || actor.SelfPrey.TurnsSinceLastDamage > 3 && (actor.SelfPrey.Predator.Unit.HasTrait(Traits.FriendlyStomach) || actor.SelfPrey.Predator.Unit.HasTrait(Traits.Endosoma))) && actor.Unit.IsDead == false && actor.Visible == false && actor.Targetable == false)
                     {
                         actor.SelfPrey = null;
                         Debug.Log("Prey orphan found, fixing");
@@ -4271,7 +4292,7 @@ Turns: {currentTurn}
                     if (actor.Unit.Side == armies[0].Side)
                     {
                         remainingAttackers++;
-                        if (actor.SelfPrey != null && actor.Unit.HasTrait(Traits.TheGreatEscape))
+                        if ((actor.SelfPrey != null && actor.Unit.HasTrait(Traits.TheGreatEscape) || (actor.SelfPrey != null && actor.Unit.Stamina <= 0)))
                             remainingAttackers--;
                         if (actor.Surrendered)
                             surrenderedAttackers++;
@@ -4279,21 +4300,20 @@ Turns: {currentTurn}
                         if (preyCount > 0)
                         {
                             remainingDefenders += preyCount;
-                            if (actor.Unit.HasTrait(Traits.Endosoma))
+                            if ((actor.Unit.HasTrait(Traits.FriendlyStomach) || actor.Unit.HasTrait(Traits.Endosoma)))
                             {
-                                remainingDefenders -= actor.PredatorComponent.GetDirectPrey().Where(s => actor.Unit.Side == s.Unit.Side || s.Unit.HasTrait(Traits.TheGreatEscape)).Count();
+                                remainingDefenders -= actor.PredatorComponent.GetDirectPrey().Where(s => actor.Unit.Side == s.Unit.Side || s.Unit.HasTrait(Traits.TheGreatEscape) || s.Unit.Stamina <= 0).Count();
                             }
                             else
                             {
                                 remainingDefenders -= actor.PredatorComponent.GetDirectPrey().Where(s => s.Unit.HasTrait(Traits.TheGreatEscape)).Count(); 
                             }
                         }
-
                     }
                     else
                     {
                         remainingDefenders++;
-                        if (actor.SelfPrey != null && actor.Unit.HasTrait(Traits.TheGreatEscape))
+                        if ((actor.SelfPrey != null && actor.Unit.HasTrait(Traits.TheGreatEscape) || (actor.SelfPrey != null && actor.Unit.Stamina <= 0)))
                             remainingDefenders--;
                         if (actor.Surrendered)
                             surrenderedDefenders++;
@@ -4301,9 +4321,9 @@ Turns: {currentTurn}
                         if (preyCount > 0)
                         {
                             remainingAttackers += preyCount;
-                            if (actor.Unit.HasTrait(Traits.Endosoma))
+                            if (actor.Unit.HasTrait(Traits.FriendlyStomach) || actor.Unit.HasTrait(Traits.Endosoma))
                             {
-                                remainingAttackers -= actor.PredatorComponent.GetDirectPrey().Where(s => actor.Unit.Side == s.Unit.Side || s.Unit.HasTrait(Traits.TheGreatEscape)).Count();
+                                remainingAttackers -= actor.PredatorComponent.GetDirectPrey().Where(s => actor.Unit.Side == s.Unit.Side || s.Unit.HasTrait(Traits.TheGreatEscape) || s.Unit.Stamina <= 0).Count();
                             }
                             else
                             {

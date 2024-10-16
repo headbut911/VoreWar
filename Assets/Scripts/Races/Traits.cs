@@ -49,6 +49,7 @@ class PermanentBoosts
     internal int VoreAttacks = 1;
     internal int SpellAttacks = 1;
     internal float ManaMultiplier = 1.0f;
+    internal float StaminaMultiplier = 1.0f;
     internal int VoreMinimumOdds = 0;
     internal int TurnCanFlee = 8;
     internal int DigestionImmunityTurns = Config.DigestionGraceTurns;
