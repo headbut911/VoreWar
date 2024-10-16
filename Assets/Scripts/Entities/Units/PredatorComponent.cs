@@ -799,6 +799,7 @@ public class PredatorComponent
         target.Actor.UnitSprite.DisplayEscape();
         TacticalUtilities.Log.RegisterRegurgitate(actor.Unit, target.Actor.Unit, actor.PredatorComponent.Location(target));
         RemovePrey(target);
+        unit.RestoreStamPct(1);
         UpdateFullness();
         return target;
     }
