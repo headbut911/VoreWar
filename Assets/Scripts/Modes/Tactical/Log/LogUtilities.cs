@@ -506,7 +506,7 @@ static class LogUtilities
             case Race.Hamsters:
                 return GetRandomStringFrom("hamster", "rodent", "shortstack");
             case Race.RwuMercenaries:
-                return GetRandomStringFrom("helldiver", "trooper", "liberator");
+                return GetRandomStringFrom("mercenary", "trooper", "merc");
             case Race.Vagrants:
                 return GetRandomStringFrom("vagrant", "jellyfish", "medusa");
             case Race.Serpents:
@@ -705,11 +705,11 @@ static class LogUtilities
             else if (weapon.Name == "Axe" && unit.EyeType == 1) return "Ikakalaka";
             else if (weapon.Name == "Axe" && unit.EyeType == 2) return "Sabre";
             else if (weapon.Name == "Axe" && unit.EyeType == 3) return "Cutlass";
-            else if (weapon.Name == "Simple Bow") return "Peacemaker";
-            else if (weapon.Name == "Compound Bow" && unit.EyeType == 0) return "Knight SMG";
-            else if (weapon.Name == "Compound Bow" && unit.EyeType == 1) return "Stalwart LMG";
-            else if (weapon.Name == "Compound Bow" && unit.EyeType == 2) return "RS-422 Railgun";
-            else if (weapon.Name == "Compound Bow" && unit.EyeType == 3) return "R-63 Diligence";
+            else if (weapon.Name == "Simple Bow") return "Sidearm";
+            else if (weapon.Name == "Compound Bow" && unit.EyeType == 0) return "SMG";
+            else if (weapon.Name == "Compound Bow" && unit.EyeType == 1) return "LMG";
+            else if (weapon.Name == "Compound Bow" && unit.EyeType == 2) return "Sniper Rifle";
+            else if (weapon.Name == "Compound Bow" && unit.EyeType == 3) return "Assault Rifle";
             else if (weapon.Name == "Claw") return "Fist";
         }
         else if (unit.Race == Race.Vipers)

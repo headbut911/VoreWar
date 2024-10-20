@@ -503,9 +503,9 @@ public class UnitCustomizer
                 break;
             case Race.RwuMercenaries:
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Race Detail";
-                buttons[(int)ButtonTypes.ClothingType].Label.text = "Cape";
+                buttons[(int)ButtonTypes.ClothingType].Label.text = "Bonus Accessory";
                 buttons[(int)ButtonTypes.EyeType].Label.text = "Race";
-                buttons[(int)ButtonTypes.HairStyle].Label.text = "Alt Armor (for Sharks)";
+                buttons[(int)ButtonTypes.HairStyle].Label.text = "Custom livery (for Sharks)";
                 break;
         }
     }

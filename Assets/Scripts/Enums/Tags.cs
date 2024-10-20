@@ -384,6 +384,8 @@ public enum Traits
     RespawnerIII = 193,
     /// <summary>Unit has set chance to return to army after dying in battle regardless of outcome. Chance starts at 100% then decreases 10% with each death, bottoming out at 10%.</summary>
     DeathCheater = 194,
+    /// <summary>Unit deals bonus ranged and melee damage to members of the same race.</summary>
+    Competitive = 195,
 
 
 
