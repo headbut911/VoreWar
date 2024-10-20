@@ -607,6 +607,8 @@ public class HoveringTooltip : MonoBehaviour
                 return "Upon getting killed, this unit will be brought back to life within a 6 tile radius of where they were killed 3 times per battle!";
             case Traits.DeathCheater:
                 return "Unit has set chance to return to army after dying in battle regardless of outcome. Chance starts at 100% then decreases 10% with each death, bottoms out at 10%";
+            case Traits.Competitive:
+                return "Unit deals bonus ranged and melee damage to members of the same race.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

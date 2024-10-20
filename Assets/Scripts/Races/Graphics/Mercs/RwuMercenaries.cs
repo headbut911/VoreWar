@@ -50,7 +50,7 @@ class RwuMercenaries : BlankSlate
         BodyAccent2 = new SpriteExtraInfo(3, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));//Race Detail/Accessories
         BodyAccent3 = new SpriteExtraInfo(11, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Over-Faulding
         BodyAccent4 = new SpriteExtraInfo(7, BodyAccentSprite4, WhiteColored); //Claws
-        BodyAccent5 = new SpriteExtraInfo(16, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));
+        BodyAccent5 = new SpriteExtraInfo(16, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Breasts
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
@@ -79,6 +79,7 @@ class RwuMercenaries : BlankSlate
         unit.EyeType = State.Rand.Next(0, EyeTypes);
         unit.HairStyle = (0);
         unit.ClothingColor = (17);
+        unit.ClothingType = State.Rand.Next(3);
     }
     internal override int BreastSizes => 5;
     internal override int DickSizes => 1;
@@ -312,11 +313,11 @@ class RwuMercenaries : BlankSlate
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, actor.Unit.ClothingColor);
             if (actor.Unit.EyeType == 0)
                 clothing1 = new SpriteExtraInfo(17, null, null);
             else
                 clothing1 = new SpriteExtraInfo(1, null, null);
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, actor.Unit.ClothingColor);
             switch (actor.Unit.EyeType)
             {
                 case 0:
@@ -350,11 +351,11 @@ class RwuMercenaries : BlankSlate
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, actor.Unit.ClothingColor);
             if (actor.Unit.EyeType == 0)
                 clothing1 = new SpriteExtraInfo(17, null, null);
             else
                 clothing1 = new SpriteExtraInfo(1, null, null);
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, actor.Unit.ClothingColor);
             switch (actor.Unit.EyeType)
             {
                 case 0:

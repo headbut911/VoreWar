@@ -1242,7 +1242,7 @@ static class RaceParameters
                 Endurance = new RaceStats.StatRange(17, 23),
                 Mind = new RaceStats.StatRange(8, 16),
                 Will = new RaceStats.StatRange(8, 16),
-                Agility = new RaceStats.StatRange(8, 14),
+                Agility = new RaceStats.StatRange(8, 10),
                 Voracity = new RaceStats.StatRange(8, 12),
                 Stomach = new RaceStats.StatRange(12, 18),
             },
@@ -1267,7 +1267,7 @@ static class RaceParameters
             {
                 Strength = new RaceStats.StatRange(12, 18),
                 Dexterity = new RaceStats.StatRange(14, 20),
-                Endurance = new RaceStats.StatRange(8, 12),
+                Endurance = new RaceStats.StatRange(9, 13),
                 Mind = new RaceStats.StatRange(8, 12),
                 Will = new RaceStats.StatRange(16, 24),
                 Agility = new RaceStats.StatRange(7, 12),
@@ -1281,9 +1281,10 @@ static class RaceParameters
             Traits.PackWill,
             Traits.DeathCheater,
             Traits.Respawner,
+            Traits.Competitive,
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.FireBomb },
-            RaceDescription = "A highly trained soldier of the Red Wolf United mercenary company. It is unknown which faction or race first started this company due to the technology they boast and open recruitment policy. However, one thing is certain; these soldiers are no slouches when it comes to combat are quite a formidable force on the battlefield.",
+            RaceDescription = "A highly trained soldier of the Red Wolf United Mercenary Company. It is unknown which faction or race first started this company due to the technology they boast and open recruitment policy. However, one thing is certain; these soldiers are no slouches when it comes to combat are quite a formidable force on the battlefield.",
         };
 
         Vagrants = new RaceTraits()

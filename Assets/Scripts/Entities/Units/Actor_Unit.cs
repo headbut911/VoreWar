@@ -958,6 +958,10 @@ public class Actor_Unit
                 damageScalar *= 5;
             if (target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null)
                 damageScalar /= 2;
+            if (Unit.HasTrait(Traits.Competitive) && Unit.Race == target.Unit.Race)
+            {
+                damageScalar *= 1.15f;
+            }
             if (Unit.GetStatusEffect(StatusEffectType.Valor) != null)
             {
                 damageScalar *= 1.25f;
@@ -1004,6 +1008,10 @@ public class Actor_Unit
             if (target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null)
                 damageScalar /= 2;
 
+            if (Unit.HasTrait(Traits.Competitive) && Unit.Race == target.Unit.Race)
+            {
+                damageScalar *= 1.15f;
+            }
             if (Unit.GetStatusEffect(StatusEffectType.Valor) != null)
             {
                 damageScalar *= 1.25f;
