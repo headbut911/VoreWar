@@ -1279,7 +1279,7 @@ static class RaceParameters
             Traits.QuickShooter,
             Traits.ForcefulBlow,
             Traits.PackWill,
-            Traits.DeathCheater,
+            Traits.PackDefense,
             Traits.Respawner,
             Traits.Competitive,
         },

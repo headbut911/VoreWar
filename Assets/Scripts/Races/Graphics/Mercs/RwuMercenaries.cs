@@ -43,14 +43,14 @@ class RwuMercenaries : BlankSlate
 
         ExtendedBreastSprites = false;
 
-        Body = null;
-        Head = null;
-        BodyAccessory = null;
-        BodyAccent = new SpriteExtraInfo(6, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Armor
-        BodyAccent2 = new SpriteExtraInfo(3, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));//Race Detail/Accessories
-        BodyAccent3 = new SpriteExtraInfo(11, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Over-Faulding
-        BodyAccent4 = new SpriteExtraInfo(7, BodyAccentSprite4, WhiteColored); //Claws
-        BodyAccent5 = new SpriteExtraInfo(16, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Breasts
+        Body = new SpriteExtraInfo(3, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));//Race Detail/Accessories
+        Head = new SpriteExtraInfo(6, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Armor
+        BodyAccessory = new SpriteExtraInfo(11, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Over-Faulding
+        BodyAccent = new SpriteExtraInfo(16, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Breasts
+        BodyAccent2 = new SpriteExtraInfo(7, BodyAccentSprite4, WhiteColored); //Claws
+        BodyAccent3 = null;
+        BodyAccent4 = null;
+        BodyAccent5 = null;
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;

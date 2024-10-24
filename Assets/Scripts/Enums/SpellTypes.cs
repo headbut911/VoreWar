@@ -45,6 +45,7 @@
     SummonDoppelganger = 38,
     FireBomb = 39,
     Bolas = 40,
+    SummonSpawn = 41,
 
     AlraunePuff = 70,
     Web = 71,

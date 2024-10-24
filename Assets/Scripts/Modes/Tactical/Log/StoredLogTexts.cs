@@ -242,7 +242,7 @@ static class StoredLogTexts
             actorRace: Race.Deer, targetRace: Race.Deer, priority: 9),
             new EventString((i) => $"In a singsong melody reminiscent of a certain holiday song, <b>{i.Unit.Name}</b> asks: \"<b>{i.Target.Name}</b>, with your veal so fine, won't you be my meal tonight?\" before swiftly devouring {GPPHis(i.Unit)} fellow {GetRaceDescSingl(i.Target)} on the spot!",
             actorRace: Race.Deer, targetRace: Race.Deer, priority: 9),
-            new EventString((i) => $"<b>{i.Unit.Name}</b> finally gets why {GPPHis(i.Unit)} people are preyed upon as {GPPHe(i.Unit)} force{SIfSingular(i.Unit)} <b>{i.Target.Name}</b> down {GPPHis(i.Target)} {GetRandomStringFrom("hot", "humid", "moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "drooling", "steamy", "eager")} {GetRandomStringFrom("gullet", "neck", "throat", "esophagus")}.",
+            new EventString((i) => $"<b>{i.Unit.Name}</b> finally gets why {GPPHis(i.Unit)} people are preyed upon as {GPPHe(i.Unit)} force{SIfSingular(i.Unit)} <b>{i.Target.Name}</b> down {GPPHis(i.Unit)} {GetRandomStringFrom("hot", "humid", "moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "drooling", "steamy", "eager")} {GetRandomStringFrom("gullet", "neck", "throat", "esophagus")}.",
             actorRace: Race.Deer, targetRace: Race.Deer, priority: 9),
             new EventString((i) => $"<b>{i.Unit.Name}</b> is surpised to find that {GPPHis(i.Unit)} {PreyLocStrings.ToSyn(PreyLocation.stomach)}, despite stretching, feels quite fine as <b>{i.Target.Name}</b> is forced to curl up within {GPPHim(i.Unit)}. The {GetRaceDescSingl(i.Unit)} worries that {GPPHis(i.Unit)} favorite food might be actually venison.",
             actorRace: Race.Deer, targetRace: Race.Deer, priority: 9),
@@ -542,9 +542,13 @@ static class StoredLogTexts
             priority: 8),
             new EventString((i) => $"<b>{i.Unit.Name}</b> shoves <b>{i.Target.Name}</b> to the ground and pushes {GPPHim(i.Target)} legfirst into {GPPHis(i.Unit)} {GetRandomStringFrom("rapacious", "avaricious", "greedy", "gluttonous", "covetous", "demanding", "eager", "insatiate")} {GetRandomStringFrom("gullet", "neck", "throat", "esophagus", "jaws", "maw", "mouth", "muzzle", "gob", "oral entrance")}!",
             priority: 8),
-            new EventString((i) => $"<b>{i.Unit.Name}</b> grabs <b>{i.Target.Name}</b>, shoving the {GetRaceDescSingl(i.Target)} down {GPPHis(i.Target)} {GetRandomStringFrom("hot", "humid", "moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "drooling", "steamy", "eager")} {GetRandomStringFrom("gullet", "neck", "throat", "esophagus")}!",
+            new EventString((i) => $"<b>{i.Unit.Name}</b> grabs <b>{i.Target.Name}</b>, shoving the {GetRaceDescSingl(i.Target)} down {GPPHis(i.Unit)} {GetRandomStringFrom("hot", "humid", "moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "drooling", "steamy", "eager")} {GetRandomStringFrom("gullet", "neck", "throat", "esophagus")}!",
             priority: 8),
-            new EventString((i) => $"<b>{i.Target.Name}</b> struggles as <b>{i.Unit.Name}</b> begins {GetRandomStringFrom("eating", "devouring", "voring", "gobbling up", "swallowing down", "gulping down", "slurping down", "wolfing down")} {GPPHim(i.Target)}, the {GetPredDesc(i.Unit)} predator finishing with a loud and wet <i>{GetRandomStringFrom("*Burp!*", "*Burrp!*", "*Buurp*", "*Buoorp!*", "*Urp*", "*Urrp!*", "*Uorrp!*", "*UOOORRP!*")}</i>",
+            new EventString((i) => {
+                if (State.Rand.Next(2) == 1)
+                    return $"<b>{i.Target.Name}</b> struggles as <b>{i.Unit.Name}</b> begins {GetRandomStringFrom("eating", "devouring", "voring", "gobbling", "swallowing", "gulping", "slurping")} {GPPHim(i.Target)}, the {GetPredDesc(i.Unit)} predator finishing with a loud and wet <i>{GetRandomStringFrom("*Burp!*", "*Burrp!*", "*Buurp*", "*Buoorp!*", "*Urp*", "*Urrp!*", "*Uorrp!*", "*UOOORRP!*")}</i>";
+                return $"<b>{i.Target.Name}</b> struggles as <b>{i.Unit.Name}</b> begins {GetRandomStringFrom("swallowing", "gulping", "slurping", "wolfing", "gobbling")} {GPPHim(i.Target)} down, the {GetPredDesc(i.Unit)} predator finishing with a loud and wet <i>{GetRandomStringFrom("*Burp!*", "*Burrp!*", "*Buurp*", "*Buoorp!*", "*Urp*", "*Urrp!*", "*Uorrp!*", "*UOOORRP!*")}</i>";
+            },
             priority: 8, conditional: CanBurp),
             new EventString((i) => $"<b>{i.Target.Name}</b> cries out as {GPPHeIs(i.Target)} swallowed, clawing desperately for freedom all the way down <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "drooling", "powerful", "strong", "greedy", "hungry", "ravenous")} {GetRandomStringFrom("gullet", "neck", "throat", "esophagus")}!",
             priority: 8),
@@ -895,7 +899,7 @@ static class StoredLogTexts
             actorRace: Race.Abakhanskya, targetRace: Race.Vagrants, priority: 9),
             new EventString((i) => $"The vargul, a great and fearsome warrior race in <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> eyes. It made them all the more alluring a meal. The strength they packed soon makes itself known as <b>{i.Target.Name}</b> screams, shouts and punches against the gut walls around them soon enough, giving her predator a long smirk and a sigh of pleasure.",
             actorRace: Race.Abakhanskya, targetRace: Race.Vargul, priority: 9),
-            new EventString((i) => $"The vipers... A lovely mix of serpent and lamia, with a tasy alien twist. Claiming them from their tail first, <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> life or death desperation on display gives <b>{i.Unit.Name}</b> a laugh. Which soon turns to a final gulp, as she knocks her head back and lets gravity send them plunging to her {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
+            new EventString((i) => $"The vipers... A lovely mix of serpent and lamia, with a tasty alien twist. Claiming them from their tail first, <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> life or death desperation on display gives <b>{i.Unit.Name}</b> a laugh. Which soon turns to a final gulp, as she knocks her head back and lets gravity send them plunging to her {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
             actorRace: Race.Abakhanskya, targetRace: Race.Vipers, priority: 9),
             new EventString((i) => $"<b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> gluttonous spree is put to an end as he is snatched up by someone he could never stomach. <b>{i.Unit.Name}</b> smirks as she works in her chubby xenospinosaur meal. A lovely, fluffy mix of scale and feather!",
             actorRace: Race.Abakhanskya, targetRace: Race.Vision, priority: 9),
@@ -915,6 +919,8 @@ static class StoredLogTexts
             actorRace: Race.Abakhanskya, targetRace: Race.Zera, priority: 9),
             new EventString((i) => $"Abakhanskya scoffs at Zoey's attempts to fight her. The shark is grabbed by the legs and lowered down into her jaws. She laments on not being able to see much of that face thanks to the hair, but the sounds of prey trying to bargain and scream for help is enough to please the Matron, if not the flavour.",
             actorRace: Race.Abakhanskya, targetRace: Race.Zoey, priority: 9),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> swiftly snatches devours <b>{i.Target.Name}</b> whole. \"So much for all your training I hear so much about!\" <b>{i.Unit.Name}</b> bellows, smirking smugly as the battle-hardened mercenary futilely attempts to break free from her steel-gut.",
+            actorRace: Race.Abakhanskya, targetRace: Race.RwuMercenaries, priority: 9),
             //Aba swallow Flirts
             new EventString((i) => $"<b>{AttractedWarrior(i.Unit).Name}</b> can't help but watch <b>{i.Unit.Name}</b> pack in <b>{i.Target.Name}</b>, watching the enormous dragoness reduce a whole {GetRaceDescSingl(i.Target)} to simple bloat in her {PreyLocStrings.ToSyn(PreyLocation.stomach)}. Her grin grows a little wider as her gaze settles on her onlooker, who feels somewhat unsettled now.",
             actorRace: Race.Abakhanskya, priority: 9, conditional: s => ReqOSWStomach(s)),
@@ -1063,6 +1069,15 @@ static class StoredLogTexts
             actorRace: Race.Abakhanskya, targetRace: Race.Feit, priority: 9),
             new EventString((i) => $"<b>{i.Unit.Name}</b> chomps down and swallows <b>{i.Target.Name}</b> easily, the {GetRaceDescSingl(i.Target)} clearly out of her league in this dragon fight!  She {GetRandomStringFrom("sinks down", "slides down", "slips down", "slithers down", "pours down")} into the {GetRandomStringFrom("hot", "humid", "moist", "slick", "wet", "slimy", "steamy", "hungry")} pit of the scaled {PreyLocStrings.ToSyn(PreyLocation.stomach)}...",
             actorRace: Race.Cierihaka, targetRace: Race.Feit, priority: 9),
+            //RwuMercenary Swallow
+            new EventString((i) => $"\"I AM getting a pay bonus for eating them, right?\" <b>{i.Unit.Name}</b> asks after sending <b>{i.Target.Name}</b> into {GPPHis(i.Unit)} {i.preyLocation.ToSyn()}.",
+            actorRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"\"In training they said to just go for the kill but, orders are orders.\" <b>{i.Unit.Name}</b> says as {GPPHe(i.Unit)} grabs <b>{i.Target.Name}</b> and sends {GPPHim(i.Target)} into {GPPHis(i.Unit)} {i.preyLocation.ToSyn()}.",
+            actorRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> grabs and {GetRandomStringFrom("eats", "devours", "swallows", "gulps down", "wolfs down", "vores")} <b>{i.Target.Name}</b> then radios in, \"<b>{i.Unit.Name}</b> reporting, target successfully {GetRandomStringFrom("eaten", "swallowed", "vored", "captured")}!\"",
+            actorRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> grabs and {GetRandomStringFrom("eats", "devours", "swallows", "gulps down", "wolfs down", "vores")} their rival mercenary, <b>{i.Target.Name}</b>. \"Ha, I got you now {GetGenderString(i.Target, "sister", "brother", "comrade")}! Guess we know who the better soldier is now!\" <b>{i.Unit.Name}</b> says triumphantly.",
+            actorRace: Race.RwuMercenaries, targetRace: Race.RwuMercenaries, priority: 9),
         };
 
         RandomDigestionMessages = new List<EventString>()
@@ -2253,6 +2268,19 @@ static class StoredLogTexts
             targetRace: Race.Abakhanskya, priority: 9),
             new EventString((i) => $"More flesh is added sooner to <b>{i.Target.Name}</b> as she commands <b>{i.Unit.Name}</b> to start massaging that {PreyLocStrings.BellyStuffedAdjSyn()} {PreyLocStrings.ToSyn(PreyLocation.stomach)} she possesses.",
             targetRace: Race.Abakhanskya, priority: 9),
+            //RwuMercenary Rub
+            new EventString((i) => $"As <b>{i.Unit.Name}</b> {GetRandomStringFrom("pats", "rubs", "massages", "tends to")} <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> {GetRandomStringFrom("sloshing", "gurgling", "groaning", "growling", "shifting", "trembling", "wobbling", "stuffed", "full", "bloated", "bulging", "thrashing")} {PreyLocStrings.ToSyn(PreyLocation.stomach)} \"I was going to request a pay raise after battle but this works to.~\" <b>{i.Unit.Name}</b> {GetRandomStringFrom("gratefully says", "says contently", "happily moans")}.",
+            targetRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"As <b>{i.Unit.Name}</b> {GetRandomStringFrom("pats", "rubs", "massages", "tends to")} <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> {GetRandomStringFrom("sloshing", "gurgling", "groaning", "growling", "shifting", "trembling", "wobbling", "stuffed", "full", "bloated", "bulging", "thrashing")} {PreyLocStrings.ToSyn(PreyLocation.stomach)} \"Thanks for the {GetRandomStringFrom("aid", "assist")}.\" <b>{i.Unit.Name}</b> says attempting to maintain {GetRandomStringFrom("professionalism", "military bearing")}.",
+            targetRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> begins {GetRandomStringFrom("rubbing", "massageing", "tending to")} {GPPHis(i.Unit)} fellow mercenary's {GetRandomStringFrom("sloshing", "gurgling", "groaning", "growling", "shifting", "trembling", "wobbling", "stuffed", "full", "bloated", "bulging", "thrashing")} {PreyLocStrings.ToSyn(PreyLocation.stomach)} \"You know this is against {GetRandomStringFrom("our contract", "protocol", "regulations")}... Just don't tell high command.\" <b>{i.Target.Name}</b> says, while making sure no one else sees them.",
+            targetRace: Race.RwuMercenaries, actorRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> begins {GetRandomStringFrom("rubbing", "massageing", "tending to")} {GPPHis(i.Unit)} fellow mercenary's {GetRandomStringFrom("sloshing", "gurgling", "groaning", "growling", "shifting", "trembling", "wobbling", "stuffed", "full", "bloated", "bulging", "thrashing")} {PreyLocStrings.ToSyn(PreyLocation.stomach)}. <b>{i.Target.Name}</b> attempts remain stoic and hide how much {GPPHe(i.Target)} actually enjoys the act.(Failng miserably)",
+            targetRace: Race.RwuMercenaries, actorRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("pats", "rubs", "adjusts", "packs in")} {GPPHis(i.Unit)} {GetRandomStringFrom("sloshing", "gurgling", "groaning", "growling", "shifting", "trembling", "wobbling", "stuffed", "full", "bloated", "bulging", "thrashing")} {PreyLocStrings.ToSyn(PreyLocation.stomach)}, {GetRandomStringFrom("grumbling", "groaning", "sighing")} \"I better not have to get my armor refitted after I'm done with you.\"",
+            priority: 11, conditional: s => s.Target == s.Unit, actorRace: Race.RwuMercenaries),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("pats", "rubs", "adjusts", "packs in", "squishes")} {GPPHis(i.Unit)} {GetRandomStringFrom("sloshing", "gurgling", "groaning", "growling", "shifting", "trembling", "wobbling", "stuffed", "full", "bloated", "bulging", "thrashing")} {PreyLocStrings.ToSyn(PreyLocation.stomach)}, {GetRandomStringFrom("protesting", "groaning", "complaining")} \"Why are you annoyingly heavy?\"",
+            priority: 11, conditional: s => s.Target == s.Unit && SizeDiff(s, 1), actorRace: Race.RwuMercenaries),
         };
 
         BreastRubMessages = new List<EventString>()
@@ -2511,6 +2539,8 @@ static class StoredLogTexts
             new EventString((i) => $"<b>{i.Unit.Name}</b> stuffs <b>{i.Target.Name}</b> into {GPPHis(i.Unit)} boobs.",priority:25, conditional: HasGreatEscape),
             new EventString((i) => $"<b>{i.Unit.Name}</b> sucks <b>{i.Target.Name}</b> up {GPPHis(i.Unit)} breasts, the engorged bosom jiggling as prey struggles inside.",priority:25, conditional: HasGreatEscape),
             new EventString((i) => $"Not a moment after being sucked in, <b>{i.Target.Name}</b> is already plotting {GPPHis(i.Target)} escape from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> bosom.",priority:25, conditional: HasGreatEscape),
+            // RwuMercenaries Breast vore
+            new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("handily", "swiftly", "deftly")} stuffs <b>{i.Target.Name}</b>, into {GPPHis(i.Unit)} chest.\"Good thing this chest armor is so flexible!\" <b>{i.Unit.Name}</b> says as {GPPHis(i.Unit)} bust expands.", actorRace: Race.RwuMercenaries, priority: 10),
         };
 
         CockVoreMessages = new List<EventString>()
@@ -2580,7 +2610,9 @@ static class StoredLogTexts
             priority: 12, conditional: s => Friendly(s) && Endo(s)),
             new EventString((i) => $"<b>{i.Unit.Name}</b> has to reassure <b>{i.Target.Name}</b> that it's safe, before the latter finally dives head first down the length of {GPPHis(i.Unit)} cock.",
             priority: 12, conditional: s => Friendly(s) && Endo(s)),
-
+            //RwuMercenary CV
+            new EventString((i) => $"\"Voring may not be our spicialty, but I never get tired of doing that!\" <b>{i.Unit.Name}</b> says as {GPPHe(i.Unit)} sends <b>{i.Target.Name}</b> {GPPHis(i.Unit)} {i.preyLocation.ToSyn()}.",
+            actorRace: Race.RwuMercenaries, priority: 9),
         };
 
         AnalVoreMessages = new List<EventString>()
@@ -3258,6 +3290,13 @@ static class StoredLogTexts
             targetRace: Race.FeralOrcas, actorRace: Race.Sharks, priority: 9),
             new EventString((i) => $"Embarrassingly, <b>{i.Target.Name}</b> meets {GPPHis(i.Target)} end in a {GetRaceDescSingl(i.Target)}, much to the pleasure of <b>{i.Unit.Name}</b>!",
             targetRace: Race.FeralOrcas, actorRace: Race.Zoey, priority: 9),
+            //RwuMercenary Digest
+            new EventString((i) => $"As <b>{i.Target.Name}</b> falls prey to <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {i.preyLocation.ToSyn()}. <b>{i.Unit.Name}</b> smirks and marks a notch onto {GPPHis(i.Target)} weapon.",
+            conditional: s => s.Unit.HasWeapon, actorRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"\"Finally! Now I can actually focus on {GetRandomStringFrom("fighting", "combat", "the battle")} without you thrashing about anymore.\"<b>{i.Unit.Name}</b> says as <b>{i.Target.Name}</b> meets {GPPHis(i.Target)} end in {GPPHis(i.Unit)} {i.preyLocation.ToSyn()}.",
+            actorRace: Race.RwuMercenaries, priority: 9),
+            new EventString((i) => $"As <b>{i.Target.Name}</b> falls prey to <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {i.preyLocation.ToSyn()} {GPPHis(i.Target)} last thoughts are \"Why isn't our armor digestion resistant!?\"",
+            targetRace: Race.RwuMercenaries, priority: 9),
         };
 
         AbsorptionMessages = new List<EventString>()
