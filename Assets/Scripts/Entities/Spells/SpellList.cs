@@ -66,6 +66,7 @@ static class SpellList
     static internal readonly DamageSpell FireBomb;
     static internal readonly StatusSpell Bolas;
     static internal readonly Spell SummonDoppelganger;
+    static internal readonly Spell SummonSpawn;
 
     //Quicksand
     static internal readonly StatusSpell PreysCurse;
@@ -692,6 +693,39 @@ static class SpellList
         };
         SpellDict[SpellTypes.SummonDoppelganger] = SummonDoppelganger;
 
+        SummonSpawn = new Spell()
+        {
+            Name = "Summon Spawn",
+            Id = "summonspawn",
+            SpellType = SpellTypes.SummonSpawn,
+            Description = "Summons a feral spawn of the caster's race at 50 % of the caster’s experience.",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Tile },
+            Range = new Range(4),
+            Tier = 3,
+            Resistable = false,
+            OnExecuteTile = (a, loc) =>
+            {
+                if (TacticalUtilities.OpenTile(loc, null) && a.CastSpell(SummonSpawn, null))
+                {
+                    Race spawnRace = a.Unit.DetermineSpawnRace();
+                    Race truespawnRace = a.Unit.HiddenUnit.DetermineSpawnRace();
+                    if (spawnRace != truespawnRace)
+                        spawnRace = a.Unit.HiddenUnit.DetermineSpawnRace();
+                    Unit unit = new Unit(a.Unit.Side, spawnRace, (int)(a.Unit.Experience * .50f), true, UnitType.Summon);
+                    unit.AddTrait(Traits.Feral);
+                    var actorCharm = a.Unit.GetStatusEffect(StatusEffectType.Charmed) ?? a.Unit.GetStatusEffect(StatusEffectType.Hypnotized);
+                    if (actorCharm != null)
+                    {
+                        unit.ApplyStatusEffect(StatusEffectType.Charmed, actorCharm.Strength, actorCharm.Duration);
+                    }
+                    StrategicUtilities.SpendLevelUps(unit);
+                    State.GameManager.TacticalMode.AddUnitToBattle(unit, loc);
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{a.Unit.Name}</b> has summoned a spawn.");
+                    State.GameManager.SoundManager.PlaySpellCast(Summon, a);
+                }
+            },
+        };
+        SpellDict[SpellTypes.SummonSpawn] = SummonSpawn;
 
         Reanimate = new Spell()
         {
