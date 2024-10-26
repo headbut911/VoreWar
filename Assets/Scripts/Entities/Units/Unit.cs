@@ -2562,11 +2562,16 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
     public void UpdateSpells()
     {
         UseableSpells = new List<Spell>();
+
         if (InnateSpells != null)
         {
             foreach (SpellTypes type in InnateSpells)
             {
-                if (SpellList.SpellDict.TryGetValue(type, out Spell spell))
+                if (GetStatusEffect(StatusEffectType.Bloodrite) != null)
+                {
+                    UseableSpells.Remove(SpellList.Bloodrite);
+                }
+                else if (SpellList.SpellDict.TryGetValue(type, out Spell spell))
                 {
                     UseableSpells.Add(spell);
                 }
@@ -2631,6 +2636,10 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 if (HasTrait(Traits.Feral))
                 {
                     continue;
+                }
+                else if (GetStatusEffect(StatusEffectType.Bloodrite) != null)
+                {
+                    UseableSpells.Remove(SpellList.Bloodrite);
                 }
                 else if (SpellList.SpellDict.TryGetValue(book.ContainedSpell, out Spell spell))
                 {
@@ -2812,6 +2821,35 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
     }
 
+    internal void AddRespawns(int amount)
+    {
+        var resp = GetStatusEffect(StatusEffectType.Respawns);
+        if (resp != null)
+        {
+            resp.Duration += amount;
+            resp.Strength += amount;
+        }
+        else
+        {
+            ApplyStatusEffect(StatusEffectType.Respawns, amount, amount);
+        }
+
+    }
+
+    internal void RemoveRespawns()
+    {
+        var resp = GetStatusEffect(StatusEffectType.Respawns);
+        if (resp != null)
+        {
+            int reduction = 1;
+            resp.Duration -= reduction;
+            resp.Strength -= reduction;
+            if (resp.Duration <= 0)
+                StatusEffects.Remove(resp);
+        }
+
+    }
+
     internal void AddStagger()
     {
         var stag = GetStatusEffect(StatusEffectType.Staggering);
@@ -2857,7 +2895,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             NonFatalDamage((int)effect.Strength, "virus");
         foreach (var eff in StatusEffects.ToList())
         {
-            if (eff.Type == StatusEffectType.BladeDance || eff.Type == StatusEffectType.Tenacious || eff.Type == StatusEffectType.Focus)
+            if (eff.Type == StatusEffectType.Respawns || eff.Type == StatusEffectType.BladeDance || eff.Type == StatusEffectType.Tenacious || eff.Type == StatusEffectType.Focus)
                 continue;
             var actor = TacticalUtilities.Units.Where(s => s.Unit == this).FirstOrDefault();
             var pred = actor.SelfPrey?.Predator;

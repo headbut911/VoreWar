@@ -219,7 +219,7 @@ public class Actor_Unit
             Movement = 2;
             Slimed = false;
         }
-        else if (Unit.GetStatusEffect(StatusEffectType.Webbed) != null)
+        else if ((Unit.GetStatusEffect(StatusEffectType.Webbed) != null) || (Unit.GetStatusEffect(StatusEffectType.Snared) != null))
         {
             Movement = 1;
             Slimed = false;
@@ -267,6 +267,10 @@ public class Actor_Unit
 
     public int CurrentMaxMovement()
     {
+        if (Unit.HasTrait(Traits.Respawner) && (State.GameManager.TacticalMode.currentTurn == 1) && State.GameManager.TacticalMode.attackersTurnCheck == true)
+            Unit.AddRespawns(1);
+        if (Unit.HasTrait(Traits.RespawnerIII) && (State.GameManager.TacticalMode.currentTurn == 1) && State.GameManager.TacticalMode.attackersTurnCheck == true)
+            Unit.AddRespawns(3);
         int sizePenalty = (int)(PredatorComponent?.Fullness ?? 0);
         sizePenalty = (int)(sizePenalty * Unit.TraitBoosts.SpeedLossFromWeightMultiplier);
         int bonus = 0;
@@ -964,6 +968,10 @@ public class Actor_Unit
             {
                 damageScalar *= 1.2f;
             }
+            if (Unit.GetStatusEffect(StatusEffectType.Bloodrite) != null)
+            {
+                damageScalar *= 1.1f;
+            }
             if (target.Unit.GetStatusEffect(StatusEffectType.Shielded) != null)
             {
                 damageScalar *= 1 - target.Unit.GetStatusEffect(StatusEffectType.Shielded).Strength;
@@ -1005,6 +1013,10 @@ public class Actor_Unit
             if (Unit.HasTrait(Traits.WeaponChanneler) && Unit.Mana >= 6)
             {
                 damageScalar *= 1.2f;
+            }
+            if (Unit.GetStatusEffect(StatusEffectType.Bloodrite) != null)
+            {
+                damageScalar *= 2.5f;
             }
             if (target.Unit.GetStatusEffect(StatusEffectType.Shielded) != null)
             {
@@ -1524,6 +1536,18 @@ public class Actor_Unit
             GiveRandomBoost();
 
         Unit.GiveScaledExp(4 * target.Unit.ExpMultiplier, Unit.Level - target.Unit.Level);
+        if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (target.Unit.HasTrait(Traits.Respawner) || target.Unit.HasTrait(Traits.RespawnerIII)))
+        {
+            var spawnLoc = TacticalUtilities.GetRandomTileForActor(target);
+            if (spawnLoc == null)
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{target.Unit.Name} was unable to respawn!");
+            else
+                TacticalUtilities.Resurrect((spawnLoc),target);
+                TacticalGraphicalEffects.CreateGenericMagic(spawnLoc, spawnLoc, target, TacticalGraphicalEffects.SpellEffectIcon.Resurrect);
+                target.Unit.Health = target.Unit.MaxHealth;
+                target.Unit.RemoveRespawns();
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{target.Unit.Name} has respawned!");
+        }
     }
 
     private void KillUnit(Actor_Unit target, Spell spell)
@@ -1541,6 +1565,19 @@ public class Actor_Unit
         if (Unit.HasTrait(Traits.TasteForBlood))
             GiveRandomBoost();
         Unit.GiveScaledExp(4 * target.Unit.ExpMultiplier, Unit.Level - target.Unit.Level);
+        if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (target.Unit.HasTrait(Traits.Respawner) || target.Unit.HasTrait(Traits.RespawnerIII)))
+        {
+            var spawnLoc = TacticalUtilities.GetRandomTileForActor(target);
+            if (spawnLoc == null)
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{target.Unit.Name} was unable to respawn!");
+            else
+                TacticalUtilities.Resurrect((spawnLoc),target);
+                TacticalGraphicalEffects.CreateGenericMagic(spawnLoc, spawnLoc, target, TacticalGraphicalEffects.SpellEffectIcon.Resurrect);
+                target.Unit.Health = target.Unit.MaxHealth;
+                target.Unit.RemoveRespawns();
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{target.Unit.Name} has respawned!");
+
+        }
     }
 
     /// <summary>
@@ -2289,7 +2326,7 @@ public class Actor_Unit
                 Unit.ApplyStatusEffect(StatusEffectType.Berserk, 1, 3);
             }
         }
-        if ((canKill == false && Unit.IsDead) || (Config.AutoSurrender && Unit.IsDead && State.Rand.NextDouble() < Config.AutoSurrenderChance && Surrendered == false && Unit.HasTrait(Traits.Fearless) == false && !KilledByDigestion))
+        if ((canKill == false && Unit.IsDead) || (Config.AutoSurrender && Unit.IsDead && State.Rand.NextDouble() < Config.AutoSurrenderChance && Surrendered == false && Unit.HasTrait(Traits.Fearless) == false && !KilledByDigestion && Unit.GetStatusEffect(StatusEffectType.Respawns) == null))
         {
             Unit.Health = 1;
             Surrendered = true;

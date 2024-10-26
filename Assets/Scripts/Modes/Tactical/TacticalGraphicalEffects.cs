@@ -120,6 +120,8 @@ static class TacticalGraphicalEffects
             return State.GameManager.SpriteDictionary.SpitterSlug[10];
         else if (actor.Unit.Race == Race.Bats)
             return State.GameManager.SpriteDictionary.Demibats1[132];
+        else if (actor.Unit.Race == Race.Hamsters && (weapon.Graphic == 4 || weapon.Graphic == 6))
+            return State.GameManager.SpriteDictionary.Slimes[17];
         else if (actor.Unit.Race == Race.Panthers)
         {
             if (weapon.Graphic == 4)
@@ -172,6 +174,26 @@ static class TacticalGraphicalEffects
         if (State.GameManager.TacticalMode.turboMode)
             return;
         var prefab = State.GameManager.TacticalEffectPrefabList.Fireball;
+        var effect = Object.Instantiate(prefab, new Vector3(startLocation.x, startLocation.y, 0), new Quaternion()).GetComponent<ArrowEffect>();
+        effect.Setup(startLocation, endLocation, target, null, null);
+
+    }
+
+    internal static void CreateFireBomb(Vec2i startLocation, Vec2i endLocation, Actor_Unit target)
+    {
+        if (State.GameManager.TacticalMode.turboMode)
+            return;
+        var prefab = State.GameManager.TacticalEffectPrefabList.FireBomb;
+        var effect = Object.Instantiate(prefab, new Vector3(startLocation.x, startLocation.y, 0), new Quaternion()).GetComponent<ArrowEffect>();
+        effect.Setup(startLocation, endLocation, target, null, null);
+
+    }
+
+    internal static void CreateBola(Vec2i startLocation, Vec2i endLocation, Actor_Unit target)
+    {
+        if (State.GameManager.TacticalMode.turboMode)
+            return;
+        var prefab = State.GameManager.TacticalEffectPrefabList.Bola;
         var effect = Object.Instantiate(prefab, new Vector3(startLocation.x, startLocation.y, 0), new Quaternion()).GetComponent<ArrowEffect>();
         effect.Setup(startLocation, endLocation, target, null, null);
 

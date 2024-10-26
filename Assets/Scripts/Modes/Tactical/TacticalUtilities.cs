@@ -615,6 +615,40 @@ static class TacticalUtilities
         return;
     }
 
+    static internal void CheckSpellKnockBack(Vec2i Knocker, Actor_Unit Attacker, Actor_Unit Target, ref float damage)
+    {
+        int xDiff = Target.Position.x - Knocker.x;
+        int yDiff = Target.Position.y - Knocker.y;
+        int direction = Attacker.DiffToDirection(xDiff, yDiff);
+        if (OpenTile(Attacker.GetTile(Target.Position, direction), Target))
+            return;
+        if (OpenTile(Attacker.GetTile(Target.Position, (direction + 1) % 8), Target))
+            return;
+        if (OpenTile(Attacker.GetTile(Target.Position, (direction + 7) % 8), Target))
+            return;
+        Target.Unit.TraitBoosts.Incoming.MagicDamage += ((int)(damage));
+
+        return;
+    }
+
+    static internal void SpellKnockBack(Vec2i Knocker, Actor_Unit Attacker, Actor_Unit Target)
+    {
+        int xDiff = Target.Position.x - Knocker.x;
+        int yDiff = Target.Position.y - Knocker.y;
+        int direction = Attacker.DiffToDirection(xDiff, yDiff);
+
+        Target.Movement += 1;
+        if (Target.Move(direction, tiles))
+            return;
+        else if (Target.Move((direction + 1) % 8, tiles))
+            return;
+        else if (Target.Move((direction + 7) % 8, tiles))
+            return;
+        Target.Movement -= 1;
+
+        return;
+    }
+
     static internal PredatorComponent GetPredatorComponentOfUnit(Unit unit)
     {
         foreach (Actor_Unit actor in Units)
@@ -1052,6 +1086,34 @@ static class TacticalUtilities
         UnitPickerUI.ActorFolder.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 300 * (1 + (list.Length / 3)));
         UnitPickerUI.gameObject.SetActive(true);
     }
+
+    static internal List<Vec2i> TilesWithinRange(Vec2i location, int range)
+    {
+        List<Vec2i> tile_positions = new List<Vec2i>();
+        int outer_matrix_cursor = 0;
+        for (int y = location.y + range; y >= location.y - range; y--)
+        {
+            int inner_matrix_cursor = 0;
+            for (int x = location.x + range; x >= location.x - range; x--)
+            {
+                if (x < 0 || y < 0 || x > tiles.GetUpperBound(0) || y > tiles.GetUpperBound(1))
+                {
+                    inner_matrix_cursor++;
+                    continue;
+                }
+                tile_positions.Add(new Vec2i(x, y));
+            }
+            outer_matrix_cursor++;
+        }
+        return tile_positions;
+    }
+
+ static internal Vec2i GetRandomTileForActor(Actor_Unit actor)
+ {
+     Vec2i[] tile_positions = TilesWithinRange(actor.Position, 6).Where(tile => OpenTile(tile, actor)).ToArray();
+     if (tile_positions.Length == 0) { return null; }
+     return tile_positions[UnityEngine.Random.Range(0, tile_positions.Length - 1)];
+ }
 
     internal static void Resurrect(Vec2i loc, Actor_Unit target)
     {

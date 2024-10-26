@@ -378,10 +378,16 @@ public enum Traits
     ManaDynamo = 190,
     /// <summary>Unit deals extra melee or ranged damage at the cost of each attack consuming 6 mana. No bonus is received if mana is under 6</summary>
     WeaponChanneler = 191,
+    /// <summary>Upon getting killed, this unit will be brought back to life within a 6 tile radius of where they were killed once per battle</summary>
+    Respawner = 192,
+    /// <summary>Upon getting killed, this unit will be brought back to life within a 6 tile radius of where they were killed once per battle</summary>
+    RespawnerIII = 193,
+    /// <summary>Unit has set chance to return to army after dying in battle regardless of outcome. Chance starts at 100% then decreases 10% with each death, bottoming out at 10%.</summary>
+    DeathCheater = 194,
     /// <summary>Unit deals no digestion damage, enemies eaten by this unit will eventually lose the ability to escape and will be considered defeated.</summary>
-    Endosoma = 192,
+    Endosoma = 195,
     /// <summary>Units defeated by the Endosoma trait will now be recruited instead at the end of battle.</summary>
-    Friendosoma = 193,
+    Friendosoma = 196,
 
 
 
