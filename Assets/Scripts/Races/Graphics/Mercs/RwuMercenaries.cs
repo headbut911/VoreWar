@@ -38,7 +38,7 @@ class RwuMercenaries : BlankSlate
         AllowedWaistTypes = new List<MainClothing>();
         AllowedClothingHatTypes = new List<ClothingAccessory>();
         AvoidedMainClothingTypes = 0;
-        MouthTypes = 0;
+        MouthTypes = 2;
 
 
         ExtendedBreastSprites = false;
@@ -56,7 +56,7 @@ class RwuMercenaries : BlankSlate
         BodyAccent8 = null;
         BodyAccent9 = null;
         BodyAccent10 = null;
-        Mouth = null;
+        Mouth = new SpriteExtraInfo(6, MouthSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.ClothingStrict, s.Unit.ClothingColor));//Helmet
         Hair = null;
         Hair2 = null;
         Eyes = null;
@@ -115,6 +115,23 @@ class RwuMercenaries : BlankSlate
         else
         {
             return null;
+        }
+    }
+
+    protected override Sprite MouthSprite(Actor_Unit actor)
+    {
+        switch (actor.Unit.EyeType)
+        {
+            case 0:
+                return Sprites2[16 + actor.Unit.MouthType];
+            case 1:
+                return Sprites4[16 + actor.Unit.MouthType];
+            case 2:
+                return Sprites6[16 + actor.Unit.MouthType];
+            case 3:
+                return Sprites8a[16 + actor.Unit.MouthType];
+            default:
+                return Sprites2[16 + actor.Unit.MouthType];
         }
     }
 
@@ -206,6 +223,8 @@ class RwuMercenaries : BlankSlate
 
     protected override Sprite BodyAccentSprite5(Actor_Unit actor)
     {
+        if (actor.Unit.BreastSize == 0)
+            return null;
         switch (actor.Unit.EyeType)
         {
             case 0:
@@ -393,7 +412,6 @@ class RwuMercenaries : BlankSlate
     protected override Color HairColor(Actor_Unit actor) => Color.white;
     protected override Sprite HairSprite(Actor_Unit actor) => null;
     protected override Sprite HairSprite2(Actor_Unit actor) => null;
-    protected override Sprite MouthSprite(Actor_Unit actor) => null;
     protected override Color ScleraColor(Actor_Unit actor) => Color.white;
     protected override Sprite SecondaryAccessorySprite(Actor_Unit actor) => null;
 
