@@ -1284,7 +1284,7 @@ static class RaceParameters
             Traits.Competitive,
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.FireBomb },
-            RaceDescription = "A highly trained soldier of the Red Wolf United Mercenary Company. It is unknown which faction or race first started this company due to the technology they boast and open recruitment policy. However, one thing is certain; these soldiers are no slouches when it comes to combat are quite a formidable force on the battlefield.",
+            RaceDescription = "A highly trained soldier of the Red Wolf United Mercenary Company. It is unknown which faction or race first started this company due to the technology they boast and open recruitment policy. However, one thing is certain; these soldiers are no slouches when it comes to combat and are quite a formidable force on the battlefield.",
         };
 
         Vagrants = new RaceTraits()
