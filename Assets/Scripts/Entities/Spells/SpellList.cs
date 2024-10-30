@@ -65,6 +65,7 @@ static class SpellList
     static internal readonly DamageSpell FlameWave;
     static internal readonly DamageSpell FireBomb;
     static internal readonly StatusSpell Bolas;
+    static internal readonly Spell CaptureNet;
     static internal readonly Spell SummonDoppelganger;
     static internal readonly Spell SummonSpawn;
 
@@ -498,6 +499,42 @@ static class SpellList
 
         };
         SpellDict[SpellTypes.Bolas] = Bolas;
+
+        CaptureNet = new Spell()
+        {
+            Name = "Capture Net",
+            Id = "captureNet",
+            SpellType = SpellTypes.CaptureNet,
+            Description = "Attempts to capture the target with a net converting them to the user's side. Target must be at 5 health to capture otherwise will deal chip damage. (Doesn't work on summons or leaders)",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy },
+            Range = new Range(5),
+            Tier = -1,
+            Resistable = false,
+            OnExecute = (a, t) =>
+            {
+                a.CastSpell(CaptureNet, t);
+                TacticalGraphicalEffects.CreateCaptureNet(a.Position, t.Position, t);
+                State.GameManager.SoundManager.PlaySwing(a);
+                if (t.Unit.Health <= 5 && t.Unit.CanBeConverted())
+                {
+                    if (State.Rand.Next(10) == 1)
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{t.Unit.Name} barely managed to shake off the net!");
+                    else
+                    {
+                        State.GameManager.TacticalMode.SwitchAlignment(t);
+                        t.Surrendered = true;
+                        t.Movement = 0;
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{a.Unit.Name} captured {t.Unit.Name}!");
+                    }
+                }
+                else
+                {
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{a.Unit.Name} hit {t.Unit.Name} in the face with the net dealing minimal damage.");
+                    t.Unit.Heal(-2);
+                }
+            },
+        };
+        SpellDict[SpellTypes.CaptureNet] = CaptureNet;
 
         ForcePulse = new DamageSpell()
         {

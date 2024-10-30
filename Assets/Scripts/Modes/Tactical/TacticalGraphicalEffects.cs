@@ -201,6 +201,16 @@ static class TacticalGraphicalEffects
 
     }
 
+    internal static void CreateCaptureNet(Vec2i startLocation, Vec2i endLocation, Actor_Unit target)
+    {
+        if (State.GameManager.TacticalMode.turboMode)
+            return;
+        var prefab = State.GameManager.TacticalEffectPrefabList.CaptureNet;
+        var effect = Object.Instantiate(prefab, new Vector3(startLocation.x, startLocation.y, 0), new Quaternion()).GetComponent<ArrowEffect>();
+        effect.Setup(startLocation, endLocation, target, null, null);
+
+    }
+
     internal static void CreateHeartProjectile(Vec2i startLocation, Vec2i endLocation, Actor_Unit target)
     {
         if (State.GameManager.TacticalMode.turboMode)

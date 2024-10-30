@@ -18,4 +18,5 @@ public class TacticalEffectPrefabList : MonoBehaviour
     public GameObject MagicExplosion;
     public GameObject FireBomb;
     public GameObject Bola;
+    public GameObject CaptureNet;
 }
