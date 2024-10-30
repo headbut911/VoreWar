@@ -46,6 +46,7 @@
     FireBomb = 39,
     Bolas = 40,
     SummonSpawn = 41,
+    CaptureNet = 42,
 
     AlraunePuff = 70,
     Web = 71,

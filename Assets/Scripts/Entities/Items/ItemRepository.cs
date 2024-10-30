@@ -18,6 +18,7 @@ public enum ItemType
     //FireBomb,
 
     Meditate,
+    CaptureNet,
     FireBall,
     PowerBolt,
     LightningBolt,
@@ -112,6 +113,7 @@ public class ItemRepository
             //new SpellBook("Fire Bomb", "A belt of incendiary grenades", 60, 1, SpellTypes.FireBomb),
 
             new SpellBook("Meditate Book", "Allows the focusing of Mana mid-battle", 30, 1, SpellTypes.Meditate),
+            new SpellBook("Capture Nets", "A set of large weighted nets for capturing enemies", 15, 1, SpellTypes.CaptureNet),
             new SpellBook("Fireball Book", "Allows the casting of Fireball", 30, 1, SpellTypes.Fireball),
             new SpellBook("Power Bolt Book", "Allows the casting of Power Bolt", 30, 1, SpellTypes.PowerBolt),
             new SpellBook("Lightning Bolt Book", "Allows the casting of Lightning Bolt", 30, 1, SpellTypes.LightningBolt),
