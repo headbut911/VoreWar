@@ -2066,7 +2066,7 @@ internal class EventList
                         return false;
                     UI.MainText.text = $"A dragon that has been harassing {village.Name} for some time has grown tired of the town's meagre offerings to placate them, their last visit they demanded that a \"substantial tribute\" would be expected next time. What should the town do?";
                     UI.MainText.text += AddVillageInfo(village);
-                    UI.FirstChoice.GetComponentInChildren<Text>().text = $"Dargons are fierce creatures we cannot offord to provoke one. Take money from our coffers to make sure the dragon is appeased. [500]";
+                    UI.FirstChoice.GetComponentInChildren<Text>().text = $"Dragons are fierce creatures we cannot offord to provoke one. Take money from our coffers to make sure the dragon is appeased. [500]";
                     UI.FirstChoice.onClick.AddListener(() =>
                     {
                         village.Happiness += 25;
