@@ -55,7 +55,7 @@ internal class EventList
             empire.RecentEvents = new List<int>();
         for (int i = 0; i < 20; i++)
         {
-            int val = State.Rand.Next(35);
+            int val = State.Rand.Next(36);
             if (i < 17 && empire.RecentEvents.Contains(val))
                 continue;
             if (Config.EventsRepeat == false && empire.EventHappened.ContainsKey(val))
@@ -1794,7 +1794,7 @@ internal class EventList
                     UI.ThirdChoice.interactable = true;
                 }
                 break;
-            //Event Idea from DR.fetish on discord
+            //Event Idea from discord
             case 30:
                 {
                     if ((empire.Leader == null) || (empire.Leader.Race >= Race.Vagrants))
@@ -1866,7 +1866,7 @@ internal class EventList
                     });
                     UI.ThirdChoice.interactable = false;
                 break;
-            //Event from Ryan The Sergal on discord
+            //Event from discord
             case 32:
                 {
                     Village village = GetRandomVillage(empire.Side);
@@ -1920,7 +1920,7 @@ internal class EventList
                 }
                     UI.ThirdChoice.interactable = true;
                 break;
-            case 33://Prey event
+            case 33://Prey event|Event from discord
                 {
                     var occupiedVillages = State.World.Villages.Where(s => s.Side == empire.Side && s.Race != empire.ReplacedRace);
                     var selfVillages = State.World.Villages.Where(s => s.Side == empire.Side && s.Race == empire.ReplacedRace);
@@ -2018,7 +2018,7 @@ internal class EventList
                     UI.ThirdChoice.interactable = true;
                 }
                 break;*/
-                //Event from Ryan The Sergal on discord
+                //Event from discord
             case 34:
                 {
                     var village = GetRandomVillage(empire.Side);
@@ -2057,6 +2057,57 @@ internal class EventList
                     });
                     UI.ThirdChoice.interactable = empire.CanVore;
                 }
+                break;
+                //Event Idea from discord
+            case 35:
+                {
+                    Village village = GetRandomVillage(empire.Side);
+                    if (village == null)
+                        return false;
+                    UI.MainText.text = $"A dragon that has been harassing {village.Name} for some time has grown tired of the town's meagre offerings to placate them, their last visit they demanded that a \"substantial tribute\" would be expected next time. What should the town do?";
+                    UI.MainText.text += AddVillageInfo(village);
+                    UI.FirstChoice.GetComponentInChildren<Text>().text = $"Dargons are fierce creatures we cannot offord to provoke one. Take money from our coffers to make sure the dragon is appeased. [500]";
+                    UI.FirstChoice.onClick.AddListener(() =>
+                    {
+                        village.Happiness += 25;
+                        empire.SpendGold(500);
+                        State.GameManager.CreateMessageBox($"The dragon gladly accepts the tribute and leaves the town alone for now... The people of {village.Name} are grateful for our assistance in having the dragon dealt with even if temporarily. \n\nHappiness +25, -500 Gold");
+                    });
+                    UI.FirstChoice.interactable = empire.Gold >= 500;
+                    UI.SecondChoice.GetComponentInChildren<Text>().text = $"The last thing we want is an angry dragon roaming across our lands, unfortunately we don't have the funds for a larger offering. Propose giving some villagers as servants to the dragon.";
+                    UI.SecondChoice.onClick.AddListener(() =>
+                    {
+                        village.Happiness -= 25;
+                        village.SubtractPopulation(village.Population / 2);
+                        village.SetPopulationToAtleastTwo();
+                        State.GameManager.CreateMessageBox($"The dragon liked the proposition, perhaps too much... The dragon first chose their servants the dragon then ate a substantial amount of the town's population threatening to raise the whole town to the ground should anyone object. Once the dragon ate their fill they left with newfound servants in tow. Let's hope the dragon won’t return soon. \n\nHappiness -25, Population halved");
+                    });
+                    UI.SecondChoice.interactable = true;
+                    UI.ThirdChoice.GetComponentInChildren<Text>().text = $"We shall suffer this dragon no longer. Send some scouts to steal from their hoard!";
+                    UI.ThirdChoice.onClick.AddListener(() =>
+                    {
+                        int payout = 500;
+                        if (State.Rand.Next(2) == 0)
+                        {
+                            empire.AddGold(500);
+                        }
+                        else
+                        {
+                            empire.AddGold(800);
+                            payout = 800;
+                        }
+                        State.GameManager.CreateMessageBox($"Our scouts return in success, managing to escape the dragon with sacks full of gems and gold! However the scouts also report that dragon is currently on the way to the town, let's hope we can fend it off.\n\n+{payout} Gold, The dragon about to attack the town!");
+                        int highestExp = State.GameManager.StrategyMode.ScaledExp;
+                        int baseXp = (int)(highestExp * 50 / 100);
+                        Unit dragon = new Unit(114, Race.Dragon, baseXp, true);
+                        dragon.AddPermanentTrait(Traits.Large);
+                        var armyName = $"{dragon.Name} The Vengeful";
+                        Empire dragonEmp = CreateFactionlessArmy(village, 35, new[] {dragon}, 1, armyName);
+                        dragonEmp.Name = armyName;
+                        dragon.Side = dragonEmp.Side;
+                    });
+                }
+                    UI.ThirdChoice.interactable = true;
                 break;
 
             default:
