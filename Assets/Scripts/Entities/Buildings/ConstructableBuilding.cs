@@ -19,7 +19,7 @@ abstract class ConstructibleBuilding
     [OdinSerialize]
     internal int baseBuildTurns;
     [OdinSerialize]
-    internal int baseUpgraderTurns;
+    internal int baseUpgradeTurns;
     public bool constructing => turnsToUpgrade > 0;
     public bool upgrading => turnsToCompletion > 0;
 
@@ -30,7 +30,7 @@ abstract class ConstructibleBuilding
         Position = location;
         UpgradeStage = upgradestage;
         baseBuildTurns = buildtime;
-        baseUpgraderTurns = upgradetime;
+        baseUpgradeTurns = upgradetime;
     }
 
     internal abstract void RunBuildingFunction();

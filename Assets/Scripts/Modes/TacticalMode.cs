@@ -860,7 +860,7 @@ public class TacticalMode : SceneBase
         if (State.GameManager.CurrentScene == State.GameManager.TacticalMode && State.GameManager.StatScreen.gameObject.activeSelf == false)
             Log.RefreshListing();
         if (Time.realtimeSinceStartup - time > .5f)
-            Debug.Log($"{AttackerName} vs {DefenderName} - {Time.realtimeSinceStartup - time}");
+            Debug.Log($"{AttackerName} vs {DefenderName} - {Time.realtimeSinceStartup - time} - {currentTurn}");
         if (State.Warned == false && Time.realtimeSinceStartup - time > 4f)
         {
             State.Warned = true;
@@ -3820,15 +3820,12 @@ Turns: {currentTurn}
             return false;
         int remainingAttackers = 0;
         int remainingDefenders = 0;
-        Debug.Log("VicCheck1");
         CalculateRemaining(ref remainingAttackers, ref remainingDefenders);
-        Debug.Log("RemDef:" + remainingDefenders);
+
         if (remainingAttackers == 0 || remainingDefenders == 0)
         {
-            Debug.Log("VicCheck2");
             foreach (Actor_Unit actor in units)
             {
-                Debug.Log("VicCheck3");
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && actor.TurnsSinceLastDamage < 2) return false;
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && !actor.Unit.hiddenFixedSide && units.Any(u => u.Targetable && !u.Fled && u.Visible && TacticalUtilities.TreatAsHostile(actor, u))) return false;
                 if (actor.Unit.Predator == false)

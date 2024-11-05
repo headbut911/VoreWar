@@ -266,6 +266,9 @@ public class WorldConfig
     internal float SurrenderedPredEscapeMult = 1;
     [OdinSerialize]
     internal float SurrenderedPredAutoRegur = 0;
+
+    [OdinSerialize]
+    internal Dictionary<ConstructibleBuilding, bool> AIEnabledBuildings = new Dictionary<ConstructibleBuilding, bool>();
     internal bool GetValue(string name)
     {
         if (Toggles == null)
