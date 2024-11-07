@@ -207,7 +207,7 @@ public class Actor_Unit
             Paralyzed = false;
             Slimed = false;
         }
-        else if (Unit.GetStatusEffect(StatusEffectType.Petrify) != null)
+        else if ((Unit.GetStatusEffect(StatusEffectType.Petrify) != null) || (Unit.GetStatusEffect(StatusEffectType.Frozen) != null))
         {
             Movement = 0;
             Slimed = false;
@@ -852,7 +852,7 @@ public class Actor_Unit
         }
 
         int range = attacker.Position.GetNumberOfMovesDistance(Position);
-        if (Surrendered || Unit.GetStatusEffect(StatusEffectType.Petrify) != null || Unit.GetStatusEffect(StatusEffectType.Sleeping) != null)
+        if (Surrendered || Unit.GetStatusEffect(StatusEffectType.Petrify) != null || Unit.GetStatusEffect(StatusEffectType.Sleeping) != null || Unit.GetStatusEffect(StatusEffectType.Frozen) != null)
             return 1f;
         const int maximumBoost = 75;
         const int minimumOdds = 25;
@@ -956,7 +956,7 @@ public class Actor_Unit
 			damageScalar *= multiplier;
             if (Unit.HasTrait(Traits.AllOutFirstStrike) && HasAttackedThisCombat == false)
                 damageScalar *= 5;
-            if (target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null)
+            if ((target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null) || (target.Unit.GetStatusEffect(StatusEffectType.Frozen) != null))
                 damageScalar /= 2;
             if (Unit.HasTrait(Traits.Competitive) && Unit.Race == target.Unit.Race)
             {
@@ -1005,7 +1005,7 @@ public class Actor_Unit
                 damageScalar *= 5;
             damageScalar *= multiplier;
 
-            if (target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null)
+            if ((target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null) || (target.Unit.GetStatusEffect(StatusEffectType.Frozen) != null))
                 damageScalar /= 2;
 
             if (Unit.HasTrait(Traits.Competitive) && Unit.Race == target.Unit.Race)
@@ -2038,6 +2038,9 @@ public class Actor_Unit
         if (Unit.GetStatusEffect(StatusEffectType.Petrify) != null)
             size *= 3;
 
+        if (Unit.GetStatusEffect(StatusEffectType.Frozen) != null)
+            size *= 2;
+
         return size;
     }
 
@@ -2280,6 +2283,15 @@ public class Actor_Unit
         {
             case DamageTypes.Fire:
                 damage = (int)Mathf.Round(damage * Unit.TraitBoosts.FireDamageTaken);
+                break;
+            case DamageTypes.Ice:
+                damage = (int)Mathf.Round(damage * Unit.TraitBoosts.IceDamageTaken);
+                break;
+            case DamageTypes.Elec:
+                float elecboost = 1f;
+                if (Unit.GetStatusEffect(StatusEffectType.Static) != null)
+                    elecboost = 1.5f;
+                damage = (int)Mathf.Round(damage * (Unit.TraitBoosts.ElecDamageTaken * elecboost));
                 break;
             case DamageTypes.Poison:
                 if (Unit.HasTrait(Traits.PoisonSpit))

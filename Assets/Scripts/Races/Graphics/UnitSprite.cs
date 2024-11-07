@@ -282,6 +282,10 @@ public class UnitSprite : MonoBehaviour
         {
             CompleteSprite.DarkenSprites();
         }
+        else if (actor.Unit.GetStatusEffect(StatusEffectType.Frozen) != null)
+        {
+            CompleteSprite.ApplyDeadEffect();
+        }
     }
 
     private void UpdateLevelText(Actor_Unit actor)

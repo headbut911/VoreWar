@@ -44,7 +44,9 @@ static class SpellList
 {
     static internal readonly DamageSpell Fireball;
     static internal readonly DamageSpell PowerBolt;
+    static internal readonly DamageSpell Icicle;
     static internal readonly DamageSpell LightningBolt;
+    static internal readonly DamageSpell JoltCrash;
     static internal readonly StatusSpell Meditate;
     static internal readonly StatusSpell Shield;
     static internal readonly StatusSpell Mending;
@@ -55,6 +57,7 @@ static class SpellList
 
     static internal readonly DamageSpell IceBlast;
     static internal readonly DamageSpell Pyre;
+    static internal readonly DamageSpell CrossShock;
     static internal readonly DamageSpell Flamberge;
     //static internal readonly Spell Warp;
     //static internal readonly DamageSpell MagicWall;
@@ -157,17 +160,45 @@ static class SpellList
         };
         SpellDict[SpellTypes.PowerBolt] = PowerBolt;
 
+        Icicle = new DamageSpell()
+        {
+            Name = "Icicle",
+            Id = "icicle",
+            SpellType = SpellTypes.Icicle,
+            Description = "Deals ice damage to a single target, 1 in 3 chance to freeze target. Frozen units cannot take any actions or dodge, but take reduced damage and are slightly harder to eat.",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy },
+            Range = new Range(8),
+            AreaOfEffect = 0,
+            Tier = 1,
+            Resistable = true,
+            DamageType = DamageTypes.Ice,
+            Damage = (a, t) => 5 + a.Unit.GetStat(Stat.Mind) / 10,
+            OnExecute = (a, t) =>
+            {
+                a.CastOffensiveSpell(Icicle, t);
+                TacticalGraphicalEffects.CreateIcicle(a.Position, t.Position, t);
+                State.GameManager.SoundManager.PlaySpellCast(PowerBolt, a);
+                if (State.Rand.Next(3) == 0)
+                {
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{t.Unit.Name} Was frozen solid!");
+                    t.Unit.ApplyStatusEffect(StatusEffectType.Frozen, 1f, 2);
+                }
+            },
+        };
+        SpellDict[SpellTypes.Icicle] = Icicle;
+
         LightningBolt = new DamageSpell()
         {
             Name = "Lightning Bolt",
             Id = "lightning-bolt",
             SpellType = SpellTypes.LightningBolt,
-            Description = "Deals damage to a single target, long range",
+            Description = "Deals electric damage to a single target, long range",
             AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy },
             Range = new Range(40),
             AreaOfEffect = 0,
             Tier = 1,
             Resistable = true,
+            DamageType = DamageTypes.Elec,
             Damage = (a, t) => 5 + a.Unit.GetStat(Stat.Mind) / 10,
             OnExecute = (a, t) =>
             {
@@ -176,6 +207,39 @@ static class SpellList
             },
         };
         SpellDict[SpellTypes.LightningBolt] = LightningBolt;
+
+        JoltCrash = new DamageSpell()
+        {
+            Name = "Jolt Crash",
+            Id = "joltcrash",
+            SpellType = SpellTypes.JoltCrash,
+            Description = "Deals electric damage to a single target knocking them back and applying static, which increases all electric damage they recive",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy },
+            Range = new Range(1),
+            AreaOfEffect = 0,
+            Tier = 1,
+            Resistable = true,
+            ResistanceMult = .90f,
+            DamageType = DamageTypes.Elec,
+            Damage = (a, t) => 6 + a.Unit.GetStat(Stat.Mind) / 10,
+            OnExecute = (a, t) =>
+            {
+                float crashDamage = 1.2f;
+                int curr = t.Unit.Health;
+                a.CastOffensiveSpell(JoltCrash, t);
+                bool didSpellHit = curr != t.Unit.Health;
+                if (didSpellHit)
+                {
+                    TacticalUtilities.CheckKnockBack(a, t, ref crashDamage);
+                    TacticalUtilities.KnockBack(a, t);
+                    t.Unit.ApplyStatusEffect(StatusEffectType.Static, 1f, 2);
+                    State.GameManager.SoundManager.PlaySpellCast(LightningBolt, a);
+                }
+                else
+                {State.GameManager.SoundManager.PlaySwing(a);}
+            },
+        };
+        SpellDict[SpellTypes.JoltCrash] = JoltCrash;
 
         Meditate = new StatusSpell()
         {
@@ -313,6 +377,7 @@ static class SpellList
             AreaOfEffect = 1,
             Tier = 2,
             Resistable = true,
+            DamageType = DamageTypes.Ice,
             Damage = (a, t) => 5 + a.Unit.GetStat(Stat.Mind) / 10,
             OnExecute = (a, t) =>
             {
@@ -346,14 +411,71 @@ static class SpellList
             {
                 a.CastOffensiveSpell(Pyre, t);
                 TacticalUtilities.CreateEffect(t.Position, TileEffectType.Fire, 1, 1 + a.Unit.GetStat(Stat.Mind) / 30, 4);
+                State.GameManager.SoundManager.PlaySpellCast(Fireball, a);
             },
             OnExecuteTile = (a, l) =>
             {
                 a.CastOffensiveSpell(Pyre, null, l);
                 TacticalUtilities.CreateEffect(l, TileEffectType.Fire, 1, 1 + a.Unit.GetStat(Stat.Mind) / 30, 4);
+                State.GameManager.SoundManager.PlaySpellCast(Fireball, a);
             },
         };
         SpellDict[SpellTypes.Pyre] = Pyre;
+
+        CrossShock = new DamageSpell()
+        {
+            Name = "Cross Shock",
+            Id = "crossshock",
+            SpellType = SpellTypes.CrossShock,
+            Description = "Deals electric damage in a 'X' pattern and applies 'static' to hit units, which increases all electric damage they recive",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy, AbilityTargets.Tile },
+            Range = new Range(6),
+            AOEType = AreaOfEffectType.FixedPattern,
+            Tier = 2,
+            Pattern = new int[3, 3] { { 1, 0, 1 }, { 0, 1, 0 }, { 1, 0, 1 } },
+            Resistable = true,
+            DamageType = DamageTypes.Elec,
+            Damage = (a, t) => 8 + a.Unit.GetStat(Stat.Mind) / 10,
+            OnExecute = (a, t) =>
+            {
+                int curr = 0;
+                TacticalGraphicalEffects.CreateCrossShock(t.Position);
+                State.GameManager.SoundManager.PlaySpellCast(LightningBolt, a);
+                foreach (var splashTarget in TacticalUtilities.UnitsWithinPattern(t.Position, CrossShock.Pattern))
+                {
+                    curr = splashTarget.Unit.Health;
+                }
+                a.CastOffensiveSpell(CrossShock, t);
+                foreach (var splashTarget in TacticalUtilities.UnitsWithinPattern(t.Position, CrossShock.Pattern))
+                {
+                    bool didSpellHit = (curr != splashTarget.Unit.Health);
+                    if (didSpellHit)
+                    {
+                        splashTarget.Unit.ApplyStatusEffect(StatusEffectType.Static, 1f, 2);
+                    }
+                }
+            },
+            OnExecuteTile = (a, l) =>
+            {
+                int curr = 0;
+                TacticalGraphicalEffects.CreateCrossShock(l);
+                State.GameManager.SoundManager.PlaySpellCast(LightningBolt, a);
+                foreach (var splashTarget in TacticalUtilities.UnitsWithinPattern(l, CrossShock.Pattern))
+                {
+                    curr = splashTarget.Unit.Health;
+                }
+                a.CastOffensiveSpell(CrossShock, null, l);
+                foreach (var splashTarget in TacticalUtilities.UnitsWithinPattern(l, CrossShock.Pattern))
+                {
+                    bool didSpellHit = (curr != splashTarget.Unit.Health);
+                    if (didSpellHit)
+                    {
+                        splashTarget.Unit.ApplyStatusEffect(StatusEffectType.Static, 1f, 2);
+                    }
+                }
+            },
+        };
+        SpellDict[SpellTypes.CrossShock] = CrossShock;
 
         //Warp = new Spell() //Implemented this and forgot it was supposed to be target and then location, only the caster makes it highly situational
         //{
