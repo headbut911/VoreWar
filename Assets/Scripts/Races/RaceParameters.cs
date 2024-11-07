@@ -49,6 +49,7 @@ static class RaceParameters
     static readonly RaceTraits Cockatrice;
     static readonly RaceTraits Vargul;
     static readonly RaceTraits Hamsters;
+    static readonly RaceTraits RwuMercenaries;
     static readonly RaceTraits Vagrants;
     static readonly RaceTraits Serpents;
     static readonly RaceTraits Wyvern;
@@ -217,6 +218,8 @@ static class RaceParameters
                 return Vargul;
             case Race.Hamsters:
                 return Hamsters;
+            case Race.RwuMercenaries:
+                return RwuMercenaries;
             case Race.Vagrants:
                 return Vagrants;
             case Race.Serpents:
@@ -1231,6 +1234,7 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            PowerAdjustment = 1.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(18, 26),
@@ -1238,7 +1242,7 @@ static class RaceParameters
                 Endurance = new RaceStats.StatRange(17, 23),
                 Mind = new RaceStats.StatRange(8, 16),
                 Will = new RaceStats.StatRange(8, 16),
-                Agility = new RaceStats.StatRange(8, 14),
+                Agility = new RaceStats.StatRange(8, 10),
                 Voracity = new RaceStats.StatRange(8, 12),
                 Stomach = new RaceStats.StatRange(12, 18),
             },
@@ -1250,6 +1254,37 @@ static class RaceParameters
             Traits.Biter,
         },
             RaceDescription = "A race renowned for their excellent smithing and startling strength despite their stature. Their settlements have rarely been seen above ground however, they are known to have ginormous kingdoms underground that dwarf most other faction's capitals.",
+        };
+
+        RwuMercenaries = new RaceTraits()
+        {
+            BodySize = 10,
+            StomachSize = 18,
+            HasTail = true,
+            FavoredStat = Stat.Dexterity,
+            PowerAdjustment = 1.1f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(12, 18),
+                Dexterity = new RaceStats.StatRange(14, 20),
+                Endurance = new RaceStats.StatRange(9, 13),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(16, 24),
+                Agility = new RaceStats.StatRange(7, 12),
+                Voracity = new RaceStats.StatRange(5, 8),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.QuickShooter,
+            Traits.ForcefulBlow,
+            Traits.PackWill,
+            Traits.PackDefense,
+            Traits.Respawner,
+            Traits.Competitive,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.FireBomb },
+            RaceDescription = "A highly trained soldier of the Red Wolf United Mercenary Company. It is unknown which faction or race first started this company due to the technology they boast and open recruitment policy. However, one thing is certain; these soldiers are no slouches when it comes to combat and are quite a formidable force on the battlefield.",
         };
 
         Vagrants = new RaceTraits()

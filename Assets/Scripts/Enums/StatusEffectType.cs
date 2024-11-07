@@ -66,5 +66,9 @@
     Snared = 33,
     /// <summary>Remaining respawns for the respawner traits.</summary>
     Respawns = 34,
+    /// <summary>Prevents movement and dodging, but halves damage taken from attacks and doubles bulk as prey.</summary>
+    Frozen = 35,
+    /// <summary>Increases damage recived from electric spells.</summary>
+    Static = 36,
 }
 

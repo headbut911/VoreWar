@@ -384,6 +384,8 @@ public enum Traits
     RespawnerIII = 193,
     /// <summary>Unit has set chance to return to army after dying in battle regardless of outcome. Chance starts at 100% then decreases 10% with each death, bottoming out at 10%.</summary>
     DeathCheater = 194,
+    /// <summary>Unit deals bonus ranged and melee damage to members of the same race.</summary>
+    Competitive = 195,
 
 
 
@@ -490,6 +492,15 @@ public enum Traits
     Symbiote = 298,
     /// <summary>creates a spawn unit on prey Absorption</summary>
     CreateSpawn = 299,
+    /// <summary>Unit takes 25% less damage from electric attacks.</summary>
+    Grounded = 300,
+    /// <summary>Unit takes 25% less damage from ice attacks.</summary>
+    ColdTolerance = 301,
+    /// <summary>Unit takes extra damage from all sources of ice. (150%)</summary>
+    IceVulnerable = 302,
+    /// <summary>Unit takes extra damage from all sources of electricity. (150%)</summary>
+    ElecVulnerable = 303,
+
 
     // Growth-related section
     /// <summary>Unit increases in size when absorbing prey.</summary>

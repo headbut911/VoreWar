@@ -18,9 +18,12 @@ public enum ItemType
     //FireBomb,
 
     Meditate,
+    CaptureNet,
     FireBall,
     PowerBolt,
+    Icicle,
     LightningBolt,
+    JoltCrash,
     FlameWave,
     ForcePulse,
     Bolas,
@@ -31,6 +34,7 @@ public enum ItemType
     Predation,
     IceBlast,
     Pyre,
+    CrossShock,
     //Warp
     //Magic Wall
     Bloodrite,
@@ -112,9 +116,12 @@ public class ItemRepository
             //new SpellBook("Fire Bomb", "A belt of incendiary grenades", 60, 1, SpellTypes.FireBomb),
 
             new SpellBook("Meditate Book", "Allows the focusing of Mana mid-battle", 30, 1, SpellTypes.Meditate),
+            new SpellBook("Capture Nets", "A set of large weighted nets for capturing enemies", 15, 1, SpellTypes.CaptureNet),
             new SpellBook("Fireball Book", "Allows the casting of Fireball", 30, 1, SpellTypes.Fireball),
             new SpellBook("Power Bolt Book", "Allows the casting of Power Bolt", 30, 1, SpellTypes.PowerBolt),
+            new SpellBook("Icicle Book", "Allows the casting of Icicle", 30, 1, SpellTypes.Icicle),
             new SpellBook("Lightning Bolt Book", "Allows the casting of Lightning Bolt", 30, 1, SpellTypes.LightningBolt),
+            new SpellBook("JoltCrash Book", "Allows the casting of Jolt Crash", 30, 1, SpellTypes.JoltCrash),
             new SpellBook("Flame Wave Book", "Allows the casting of Flame Wave", 30, 1, SpellTypes.FlameWave),
             new SpellBook("Force Pulse Book", "Allows the casting of Force Pulse", 30, 1, SpellTypes.ForcePulse),
             new SpellBook("Bolas", "A set of hunting bolas for stopping prey", 30, 1, SpellTypes.Bolas),
@@ -125,6 +132,7 @@ public class ItemRepository
             new SpellBook("Predation Book", "Allows the casting of Predation", 30, 1, SpellTypes.Predation),
             new SpellBook("Ice Blast Book", "Allows the casting of Ice Blast", 60, 2, SpellTypes.IceBlast),
             new SpellBook("Pyre Book", "Allows the casting of Pyre", 60, 2, SpellTypes.Pyre),
+            new SpellBook("CrossShock Book", "Allows the casting of Cross Shock", 60, 2, SpellTypes.CrossShock),
             //new SpellBook("Warp Book", "Allows the casting of Warp", 60, 2, SpellTypes.Warp),
             //new SpellBook("Magic Wall Book", "Allows the casting of Magic Wall", 60, 2, SpellTypes.MagicWall),           
             new SpellBook("Bloodrite Book", "Allows the casting of Bloodrite", 60, 2, SpellTypes.Bloodrite),
