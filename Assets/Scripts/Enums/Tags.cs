@@ -492,6 +492,15 @@ public enum Traits
     Symbiote = 298,
     /// <summary>creates a spawn unit on prey Absorption</summary>
     CreateSpawn = 299,
+    /// <summary>Unit takes 25% less damage from electric attacks.</summary>
+    Grounded = 300,
+    /// <summary>Unit takes 25% less damage from ice attacks.</summary>
+    ColdTolerance = 301,
+    /// <summary>Unit takes extra damage from all sources of ice. (150%)</summary>
+    IceVulnerable = 302,
+    /// <summary>Unit takes extra damage from all sources of electricity. (150%)</summary>
+    ElecVulnerable = 303,
+
 
     // Growth-related section
     /// <summary>Unit increases in size when absorbing prey.</summary>

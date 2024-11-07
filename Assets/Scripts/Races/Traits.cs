@@ -62,6 +62,8 @@ class PermanentBoosts
     internal float VirtualDexMult = 1;
     internal float VirtualStrMult = 1;
     internal float FireDamageTaken = 1;
+    internal float IceDamageTaken = 1;
+    internal float ElecDamageTaken = 1;
     internal float GrowthDecayRate = 1;
     internal int SightRangeBoost = 0;
 }
@@ -253,6 +255,8 @@ static class TraitList
         [Traits.RangedIneptitude] = new Booster("Unit's ranged weapons do less damage than normal", (s) => {s.Outgoing.RangedDamage *= 0.8f; s.VirtualStrMult *= 1.2f; }),
         [Traits.KeenShot] = new Booster("Unit's ranged weapons do additional damage", (s) => { s.Outgoing.RangedDamage *= 1.2f; s.VirtualDexMult *= 1.2f;}),
         [Traits.HotBlooded] = new Booster("Unit is used to the heat and takes significantly less damage from fire spells", (s) => s.FireDamageTaken *= .25f),
+        [Traits.Grounded] = new Booster("Unit is used to the heat and takes significantly less damage from electric spells", (s) => s.ElecDamageTaken *= .25f),
+        [Traits.ColdTolerance] = new Booster("Unit is used to the heat and takes significantly less damage from ice spells", (s) => s.IceDamageTaken *= .25f),
         [Traits.FocusedDevelopment] = new Booster("Allows picking of any stat on level up", (s) => { s.OnLevelUpAllowAnyStat = true; }),
         [Traits.ManaRich] = new Booster("Unit has higher mana cap, units absorbing this unit will recover some of their mana", (s) => { s.ManaMultiplier *= 1.5f; s.Outgoing.ManaAbsorbHundreths += 40; }),
         [Traits.ManaDrain] = new Booster("This unit will recover some mana while absorbing others, but it also receives less health", (s) => { s.Incoming.ManaAbsorbHundreths += 40; s.Incoming.Nutrition *= .6f; }),
@@ -314,6 +318,8 @@ static class TraitList
         [Traits.AwkwardShape] = new Booster("This unit has a very strange body type, making them harder to swallow and providing less sustenance as prey.", (s) => { s.Incoming.VoreOddsMult *= 0.75f; s.Outgoing.Nutrition *= 0.25f; }),
         [Traits.Legendary] = new Booster("<b>This unit is a legendary predator renowned throughout the realm, possessing a wide array of skills learned from generations upon generations of experiences.</b> \n<b>StrongGullet:</b> May attempt <b>2</b> vore attacks per turn, each using half of max AP. \n<b>BornToMove:</b> Total prey does not affect unit's movement speed. \n<b>IronGut:</b> It is much harder for prey to escape this unit's innards once devoured. \n<b>MagicResistance:</b> This unit is harder to hit with magic. \n<b>GreatlyTempered:</b>Recieves less damage from ranged attacks, but full damage from melee attacks. \nCheat Trait", (s) => { s.VoreAttacks += 1; s.SpeedLossFromWeightMultiplier = 0; s.DodgeLossFromWeightMultiplier = 0.2f; s.Outgoing.ChanceToEscape *= 0.5f; s.Incoming.MagicShift += 0.2f; s.Incoming.RangedDamage *= .7f; }),
         [Traits.FireVulnerable] = new Booster("Unit takes extra damage from all sources of fire. (150%)", (s) => s.FireDamageTaken *= 1.5f),
+        [Traits.IceVulnerable] = new Booster("Unit takes extra damage from all sources of ice. (150%)", (s) => s.IceDamageTaken *= 1.5f),
+        [Traits.ElecVulnerable] = new Booster("Unit takes extra damage from all sources of electricity. (150%)", (s) => s.ElecDamageTaken *= 1.5f),
         [Traits.SlowerDigestion] = new Booster("Does reduced acid damage to prey (25%)", (s) => s.Outgoing.DigestionRate *= 0.25f),
         [Traits.FasterDigestion] = new Booster("Does additional acid damage to prey. (200%)", (s) => s.Outgoing.DigestionRate *= 2f),
         [Traits.FasterAbsorption] = new Booster("Unit absorbs dead prey even more quickly. (200%)", (s) => s.Outgoing.AbsorptionRate *= 2f),

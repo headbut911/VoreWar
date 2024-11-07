@@ -47,6 +47,9 @@
     Bolas = 40,
     SummonSpawn = 41,
     CaptureNet = 42,
+    Icicle = 43,
+    CrossShock = 44,
+    JoltCrash = 45,
 
     AlraunePuff = 70,
     Web = 71,

@@ -211,6 +211,25 @@ static class TacticalGraphicalEffects
 
     }
 
+    internal static void CreateIcicle(Vec2i startLocation, Vec2i endLocation, Actor_Unit target)
+    {
+        if (State.GameManager.TacticalMode.turboMode)
+            return;
+        var prefab = State.GameManager.TacticalEffectPrefabList.Icicle;
+        var effect = Object.Instantiate(prefab, new Vector3(startLocation.x, startLocation.y, 0), new Quaternion()).GetComponent<ArrowEffect>();
+        effect.Setup(startLocation, endLocation, target, null, null);
+
+    }
+
+    internal static void CreateCrossShock(Vec2 location)
+    {
+        if (State.GameManager.TacticalMode.turboMode)
+            return;
+        var prefab = State.GameManager.TacticalEffectPrefabList.CrossShock;
+        Object.Instantiate(prefab, new Vector3(location.x, location.y, 0), new Quaternion());
+
+    }
+
     internal static void CreateHeartProjectile(Vec2i startLocation, Vec2i endLocation, Actor_Unit target)
     {
         if (State.GameManager.TacticalMode.turboMode)
