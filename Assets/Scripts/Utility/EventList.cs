@@ -1662,6 +1662,8 @@ internal class EventList
                                 var armyName = $"Kitty and {youth.Name}";
                                 Empire kittyEmp = CreateFactionlessArmy(village, 57, new[] { lion, youth }, 10, armyName);
                                 kittyEmp.Name = armyName;
+                                youth.Side = kittyEmp.Side;
+                                lion.Side = kittyEmp.Side;
                             }
                         }
 
@@ -1688,6 +1690,8 @@ internal class EventList
                         var armyName = $"Kitty and {youth.Name}";
                         Empire kittyEmp = CreateFactionlessArmy(village, 57, new[] { lion, youth }, 10, armyName);
                         kittyEmp.Name = armyName;
+                        youth.Side = kittyEmp.Side;
+                        lion.Side = kittyEmp.Side;
                         RelationsManager.SetPeace(kittyEmp, empire);
                     });
                     UI.SecondChoice.interactable = true;
