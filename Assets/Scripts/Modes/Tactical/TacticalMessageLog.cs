@@ -262,6 +262,10 @@ public class TacticalMessageLog
                     return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can suck <b>{action.Prey.Name}</b> out of {GPPHis(action.Target)} breasts.";
                 else if (action.oldLocation == PreyLocation.stomach)
                     return $"<b>{action.Unit.Name}</b> {GetRandomStringFrom("tackles", "headbutts", "charges into", "bashes")} <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> {GetRandomStringFrom("filled", "bulbus", "exposed")} belly, but <b>{action.Target.Name}</b> refuses to let go of <b>{action.Prey.Name}</b> that easily.";
+                else if (action.oldLocation == PreyLocation.womb)
+                    return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can {GetRandomStringFrom("free", "liberate", "spring")} <b>{action.Prey.Name}</b> from {GPPHis(action.Target)} vagina.";
+                else if (action.oldLocation == PreyLocation.tail)
+                    return $"<b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tail shakes <b>{action.Unit.Name}</b> off before {GPPHe(action.Unit)} can {GetRandomStringFrom("free", "liberate")} <b>{action.Prey.Name}</b>.";
                 else
                     return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can suck <b>{action.Prey.Name}</b> out of {GPPHis(action.Target)} balls.";
             case MessageLogEvent.Feed:

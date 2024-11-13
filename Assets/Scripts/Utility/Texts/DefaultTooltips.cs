@@ -567,7 +567,7 @@ It should be fairly stable though.  There are a few places that are still keyed 
             case 220:
                 return "Changes how unbirth is handled. If conversion is enabled, unbirthed units will be converted to their pred's side upon being digested. If rebirth is enabled, unbirthed units will be reborn as units of their pred's race as well as converted to their pred's side upon being absorbed. If both are enabled, conversion will occur first, but units can still be rebirthed by unbirthing a corpse or transferring a unit through CV.";
             case 221:
-                return "When enabled, cock vored units can transferred to allies, allowing their allies to digest/absorb them. Prey has a chance of escaping if they are still alive when transferring. Prey can be transferred to an ally's stomach or womb if the ally has a vagina.";
+                return "When enabled, cock and oral vored units can transferred to allies, allowing their allies to digest/absorb them. Prey has a chance of escaping if they are still alive when transferring. Prey can be transferred to an ally's stomach or womb if the ally has a vagina. Also enables vore stealing of living prey, useful for rescuing allies and transferring prey from one pred to another.";
             case 222:
                 return "When enabled, preds can transfer units they have 'cumgested' through cock vore to strengthen a target unit. The target unit must be unbirthed by one of the pred's allies, as well as either be on the pred's side themselves, or have already been digested inside the pred's ally's womb.";
             case 223:

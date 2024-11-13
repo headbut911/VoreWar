@@ -30,7 +30,7 @@ public static class PreyLocStrings
 
     static readonly List<string> oralVoreVerbPresentTense = new List<string>() { "eats", "devours", "swallows", "gobbles", "gulps", "wolfs", "horks", "chomps", "slurps", "munches" };
     static readonly List<string> oralVoreVerbPresentContinuousTense = new List<string>() { "eating", "devouring", "swallowing", "gobbling", "gulping", "wolfing", "horking", "downing", "chomping", "slurping", "munching" };
-    static readonly List<string> oralVoreVerbPastTense = new List<string>() { "eaten", "ate", "devoured", "swallowed", "gobbled", "gulped", "downed", "chomped", "slurped", "munching" };
+    static readonly List<string> oralVoreVerbPastTense = new List<string>() { "eaten", "ate", "devoured", "swallowed", "gobbled", "gulped", "downed", "chomped", "slurped", "munched" };
 
     static readonly List<string> DigestVerb = new List<string> () { "digest", "churn", "gurgle", "melt", "mulch", "dissolve", "liquify" };
     static readonly List<string> DigestsVerb = new List<string> () { "digests", "churns", "gurgles", "melts", "mulches", "dissolves", "liquifies" };
