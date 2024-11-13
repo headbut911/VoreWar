@@ -3182,6 +3182,28 @@ public class PredatorComponent
             }
 
         }
+        if (State.RaceSettings.GetVoreTypes(actor.Unit.Race).Contains(VoreType.Oral))
+        {
+            foreach (Prey preyUnit in target.PredatorComponent.womb)
+            {
+                if (!preyUnit.Unit.IsDead)
+                {
+                    return preyUnit;
+                }
+            }
+
+        }
+        if (State.RaceSettings.GetVoreTypes(actor.Unit.Race).Contains(VoreType.Oral))
+        {
+            foreach (Prey preyUnit in target.PredatorComponent.tail)
+            {
+                if (!preyUnit.Unit.IsDead)
+                {
+                    return preyUnit;
+                }
+            }
+
+        }
         return null;
     }
 
