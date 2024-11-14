@@ -158,6 +158,7 @@ static class StoredLogTexts
         bool SizeDiff(EventLog s, float ratio) => State.RaceSettings.GetBodySize(s.Unit.Race) * s.Unit.GetScale(1) >= State.RaceSettings.GetBodySize(s.Target.Race) * s.Target.GetScale(1) * ratio;
         bool SizeDiffPrey(EventLog s, float ratio) => State.RaceSettings.GetBodySize(s.Unit.Race) * s.Unit.GetScale(1) >= State.RaceSettings.GetBodySize(s.Prey.Race) * s.Target.GetScale(1) * ratio;
         //bool ReqSSW(EventLog s) => SameSexWarrior(s.Unit) != "NULL";
+        bool ReqRAW(EventLog s) => RandomAlliedWarrior(s.Unit) != null && RandomAlliedWarrior(s.Unit) != s.Target;
         bool ReqOSW(EventLog s) => AttractedWarrior(s.Unit) != null;
         bool ReqOSWLewd(EventLog s) => AttractedWarrior(s.Unit) != null && Lewd(s);
         bool ReqOSWStomach(EventLog s) => AttractedWarrior(s.Unit) != null && InStomach(s);
@@ -923,8 +924,8 @@ static class StoredLogTexts
             actorRace: Race.Abakhanskya, targetRace: Race.Zera, priority: 12),
             new EventString((i) => $"Abakhanskya scoffs at Zoey's attempts to fight her. The shark is grabbed by the legs and lowered down into her jaws. She laments on not being able to see much of that face thanks to the hair, but the sounds of prey trying to bargain and scream for help is enough to please the Matron, if not the flavour.",
             actorRace: Race.Abakhanskya, targetRace: Race.Zoey, priority: 12),
-            new EventString((i) => $"<b>{i.Unit.Name}</b> swiftly snatches devours <b>{i.Target.Name}</b> whole. \"So much for all your training I hear so much about!\" <b>{i.Unit.Name}</b> bellows, smirking smugly as the battle-hardened mercenary futilely attempts to break free from her steel-gut.",
-            actorRace: Race.Abakhanskya, targetRace: Race.RwuMercenaries, priority: 12),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> swiftly snatches and devours <b>{i.Target.Name}</b> whole. \"So much for all your training I hear so much about!\" <b>{i.Unit.Name}</b> bellows, smirking smugly as the battle-hardened mercenary futilely attempts to break free from her steel-gut.",
+            actorRace: Race.Abakhanskya, targetRace: Race.RwuMercenaries, priority: 9),
             //Aba swallow Flirts
             new EventString((i) => $"<b>{AttractedWarrior(i.Unit).Name}</b> can't help but watch <b>{i.Unit.Name}</b> pack in <b>{i.Target.Name}</b>, watching the enormous dragoness reduce a whole {GetRaceDescSingl(i.Target)} to simple bloat in her {PreyLocStrings.ToSyn(PreyLocation.stomach)}. Her grin grows a little wider as her gaze settles on her onlooker, who feels somewhat unsettled now.",
             actorRace: Race.Abakhanskya, priority: 12, conditional: s => ReqOSWStomach(s)),
@@ -3867,6 +3868,8 @@ static class StoredLogTexts
             priority: 11, conditional: s => InStomach(s) && Lewd(s)),
             new EventString((i) => $"<b>{i.Target.Name}</b> begins {GetRandomStringFrom("jerking", "rubbing", "playing with", "licking")} <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")}. As <b>{i.Unit.Name}</b> is about to cum, <b>{i.Target.Name}</b> quickly catches {GPPHis(i.Unit)} load in {GPPHis(i.Target)} mouth; bloating out {GPPHis(i.Target)} belly.",
             priority: 11, conditional: s => InStomach(s) && Lewd(s)),
+            new EventString((i) => $"<b>{i.Target.Name}</b> wraps {GPPHis(i.Unit)} mouth around <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {PreyLocStrings.CockAdjSyn()} {PreyLocStrings.ToCockSyn()} and begins servicing it. <b>{i.Unit.Name}</b> can't hold on any longer and blows {GPPHis(i.Unit)} load into <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> mouth. <b>{i.Target.Name}</b> swallows most of it and {GPPHis(i.Target)} belly bloats out.",
+            priority: 11, conditional: s => InStomach(s) && Lewd(s)),
             //Cock vore transfer into stomach with dead prey
             new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("pulls", "waves", "calls", "beckons")} <b>{i.Target.Name}</b> over and tells {GPPHim(i.Target)} to start sucking. <b>{i.Target.Name}</b> is just too good with {GPPHis(i.Target)} mouth and <b>{i.Unit.Name}</b> {GetRandomStringFrom("climaxes", "orgasms", "goes over the edge", "cums", "ejaculates", "nuts")} soon after, bloating out the {GetRaceDescSingl(i.Target)}'s belly as {GPPHis(i.Unit)} balls shrink down.",
             priority: 11, conditional: s => InStomach(s) && Lewd(s) && s.Prey.IsDead ),
@@ -3895,10 +3898,16 @@ static class StoredLogTexts
             priority: 11, conditional: s => !InStomach(s) && Lewd(s) && s.Prey.IsDead ),
             new EventString((i) => $"<b>{i.Unit.Name}</b> thrusts {GPPHis(i.Unit)} twitching {GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")} at <b>{i.Target.Name}</b> beckoning {GPPHim(i.Target)} over, Not a moment later <b>{i.Target.Name}</b> is riding <b>{i.Unit.Name}</b>. Unable to hold back, <b>{i.Unit.Name}</b> shoots a {GetRandomStringFrom("creamy", "silky", "cummy", "jizzy", "plentiful", "lewd", "naughty", "sexy", "spoogey", "gooey", "thick")} load made from <b>{i.Prey.Name}</b> into <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> {i.preyLocation.ToSyn()}.",
             priority: 11, conditional: s => !InStomach(s) && Lewd(s) && s.Prey.IsDead ),
+            //Cock vore transfer into womb with dead prey & CondomsForCV
+            new EventString((i) => $"As <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.balls)} shrinks, <b>{ApostrophizeWithOrWithoutS(i.Prey.Name)}</b> liquified form fills the thin rubber barrier between <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {PreyLocStrings.ToCockSyn()} and <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)} until, with a *pop* sound, is heard bursting through. <b>{i.Unit.Name}</b> looks sheepishly at <b>{i.Target.Name}</b>. \"{GetRandomStringFrom("Oops?", "Oops.", "Sorry?", "Sorry.")}\"",
+            priority: 11, conditional: s => Config.CondomsForCV && !InStomach(s) && Lewd(s) && s.Prey.IsDead ),
+            new EventString((i) => $"As <b>{i.Unit.Name}</b> goes to have sex with <b>{i.Target.Name}</b>, {GPPHe(i.Unit)} pulls out a condom, before being told to put it away. Without that barrier of protection, the {GetRandomStringFrom("cum", "jizz", "spooge", "goo", "thick fluid")} that was once <b>{i.Prey.Name}</b> spills into <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)} unimpeded.",
+            priority: 11, conditional: s => Config.CondomsForCV && !InStomach(s) && Lewd(s) && s.Prey.IsDead ),
+            new EventString((i) => $"<b>{i.Unit.Name}</b> slips on a condom and goes to have sex with <b>{i.Target.Name}</b>. After they're done, <b>{i.Unit.Name}</b> observes that former <b>{i.Prey.Name}</b> is leaking from 7 small holes in the condom. Knowing what happened, <b>{i.Unit.Name}</b> shouts \"<b>{RandomAlliedWarrior(i.Unit).Name}</b>! Not funny!\"",
+            priority: 11, conditional: s => Config.CondomsForCV && !InStomach(s) && Lewd(s) && s.Prey.IsDead && ReqRAW(s)),
+            new EventString((i) => $"Before having sex, <b>{i.Unit.Name}</b> looks for {GPPHis(i.Unit)} condom, but can't find it. \"I think I left it with <b>{RandomAlliedWarrior(i.Unit).Name}</b>. Want me to go get it?\" <b>{i.Target.Name}</b> responds \"Nah, I saw your face when that {GetRaceDescSingl(i.Prey)} went in your balls, I want to feel that myself.\" With that, the two {GetRandomStringFrom("have sex", "fuck")}, right there in the middle of the battlefield.",
+            priority: 11, conditional: s => Config.CondomsForCV && !InStomach(s) && Lewd(s) && s.Prey.IsDead && ReqRAW(s)),
 
-            //Lewd Messages
-            new EventString((i) => $"<b>{i.Target.Name}</b> wraps {GPPHis(i.Unit)} mouth around <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {PreyLocStrings.CockAdjSyn()} {PreyLocStrings.ToCockSyn()} and begins servicing it. <b>{i.Unit.Name}</b> can't hold on any longer and blows {GPPHis(i.Unit)} load into <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> mouth. <b>{i.Target.Name}</b> swallows most of it and {GPPHis(i.Target)} belly bloats out.",
-            priority: 11, conditional: s => InStomach(s) && Lewd(s)),
         };
 
         KissTransferMessages = new List<EventString>()

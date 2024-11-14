@@ -1489,7 +1489,39 @@ public class PredatorComponent
                 State.GameManager.TacticalMode.TacticalStats.RegisterRegurgitation(unit.Side);
                 FreeUnit(preyUnit.Actor);
 
-                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} converted from one side to another thanks to {unit.Name}'s digestion conversion trait.");
+                switch (State.Rand.Next(6))
+                {
+                    case 0:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> digestion conversion trait.");
+                        break;
+                    case 1:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"With <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> body partially dissolved, <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body takes this opportunity to rewrite <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> worldview before putting {LogUtilities.GPPHim(preyUnit.Unit)} back together and letting {LogUtilities.GPPHim(preyUnit.Unit)} out, now ready to fight for <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side.");
+                        break;
+                    case 2:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Right before death within <b>{unit.Name}</b>, <b>{preyUnit.Unit.Name}</b> is released on the condition of joining <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side of the battle.");
+                        break;
+                    case 3:
+                        if (!State.GameManager.PureTactical)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> was converted to the side of the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(unit.Side))}, thanks to a large amount of \"persuasion\" by <b>{unit.Name}</b>.");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> digestion conversion trait.");
+                        break;
+                    case 4:
+                        if (!State.GameManager.PureTactical)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Within <b>{unit.Name}</b>, <b>{preyUnit.Unit.Name}</b> has been brainwashed, and now fully believes in the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(unit.Side))} cause.");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"With <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> body partially dissolved, <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body takes this opportunity to rewrite <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> worldview before putting {LogUtilities.GPPHim(preyUnit.Unit)} back together and letting {LogUtilities.GPPHim(preyUnit.Unit)} out, now ready to fight for <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side.");
+                        break;
+                    case 5:
+                        if (!State.GameManager.PureTactical)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> emerges from <b>{unit.Name}</b> a changed {preyUnit.Unit.Race}, ready to fight for the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(unit.Side))}!");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Right before death within <b>{unit.Name}</b>, <b>{preyUnit.Unit.Name}</b> is released on the condition of joining <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side of the battle.");
+                        break;
+                    default:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> digestion conversion trait.");
+                        break;
+                }
                 return 0;
             }
             if (unit.HasTrait(Traits.DigestionRebirth) && State.Rand.Next(2) == 0 && preyUnit.Unit.CanBeConverted() && (Config.SpecialMercsCanConvert || unit.DetermineConversionRace() < Race.Selicia))
@@ -1502,9 +1534,33 @@ public class PredatorComponent
                 preyUnit.Unit.Health = preyUnit.Unit.MaxHealth / 2;
                 preyUnit.ChangeSide(unit.Side);
                 preyUnit.ChangeRace(conversionRace);
-                TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 0.5f);
+                if (unit.HasVagina)
+                {TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 0.5f);}
                     FreeUnit(preyUnit.Actor);
-                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{preyUnit.Unit.Name} converted from one side to another and changed race thanks to {unit.Name}'s converting digestion rebirth trait.");
+                switch (State.Rand.Next(6))
+                {
+                    case 0:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another and changed race thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> converting digestion rebirth trait.");
+                        break;
+                    case 1:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"With <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> body partially dissolved, <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body takes this opportunity to rewrite <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> worldview and genetics, before allowing the brand new {LogUtilities.GetRaceDescSingl(preyUnit.Unit)} back out.");
+                        break;
+                    case 2:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> is released from inside <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body, though now as {LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit))}.");
+                        break;
+                    case 3:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{preyUnit.Unit.Name}</b> is released from <b>{unit.Name}</b>, {LogUtilities.GPPHe(preyUnit.Unit)} {LogUtilities.GetGenderString(preyUnit.Unit, "looks", "looks", "look")} at {LogUtilities.GPPHimself(preyUnit.Unit)}, and {LogUtilities.GetGenderString(preyUnit.Unit, "notes", "notes", "note")} that {LogUtilities.GPPHe(preyUnit.Unit)} {LogUtilities.IsAre(preyUnit.Unit)} now {LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit))}.");
+                        break;
+                    case 4:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{LogUtilities.Capitalize(LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit)))} is expelled from <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body, the brand new form of <b>{preyUnit.Unit.Name}</b>.");
+                        break;
+                    case 5:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> emerges from <b>{unit.Name}</b> changed into {LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit))}.");
+                        break;
+                    default:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another and changed race thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> converting digestion rebirth trait.");
+                        break;
+                }
                 return 0;
             }
             preyUnit.Actor.KilledByDigestion = true;
@@ -3530,8 +3586,74 @@ public class PredatorComponent
             {
                 recipient.PredatorComponent.birthStatBoost += preyUnit.Unit.Level;
                 recipient.PredatorComponent.RemovePrey(preyUnit);
-                actor.PredatorComponent.RemovePrey(preyUnit);
-                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps what remains of <b>{preyUnit.Unit.Name}</b> into <b>{recipient.Unit.Name}</b>'s womb, providing nutrients to strengthen <b>{alreadyChild.Unit.Name}</b>.");
+                actor.PredatorComponent.RemovePrey(preyUnit); int pool = 6;
+                if (Config.CondomsForCV)
+                {pool = 11;}
+                var friendlies = TacticalUtilities.Units.Where(s => s.Unit.Side == unit.Side && s.Unit != recipient.Unit && s.Unit != unit && s.Visible && s.Targetable && s.Unit.IsDead == false).ToArray();//Random unit picker, using modified unimplemented code from the LogUtilities
+                if (friendlies.Length == 0)
+                {friendlies = null;}
+                switch (State.Rand.Next(pool))
+                {
+                    case 0:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps what remains of <b>{preyUnit.Unit.Name}</b> into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> womb, providing nutrients to strengthen <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    case 1:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"The {LogUtilities.GetRandomStringFrom("cum", "jizz", "spooge", "goo", "thick fluid")} that was once <b>{preyUnit.Unit.Name}</b> travels up <b>{LogUtilities.ApostrophizeWithOrWithoutS(actor.Unit.Name)}</b> {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")}, the former {LogUtilities.GetRaceDescSingl(preyUnit.Unit)} gushing up into {LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)} {PreyLocStrings.ToSyn(PreyLocation.womb)} where {LogUtilities.GPPHe(preyUnit.Unit)} {LogUtilities.IsAre(preyUnit.Unit)} promptly absorbed into <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    case 2:
+                        if (!Config.LewdDialog)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps what remains of <b>{preyUnit.Unit.Name}</b> into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> womb, providing nutrients to strengthen <b>{alreadyChild.Unit.Name}</b>.");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{actor.Unit.Name}</b> and <b>{recipient.Unit.Name}</b> {LogUtilities.GetRandomStringFrom("have sex", "fuck")}, the liquid remains of <b>{preyUnit.Unit.Name}</b> shoot into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, where what little remains of <b>{preyUnit.Unit.Name}</b> is simply absorbed into <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    case 3:
+                        if (!Config.LewdDialog)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"The {LogUtilities.GetRandomStringFrom("cum", "jizz", "spooge", "goo", "thick fluid")} that was once <b>{preyUnit.Unit.Name}</b> travels up <b>{LogUtilities.ApostrophizeWithOrWithoutS(actor.Unit.Name)}</b> {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")}, the former {LogUtilities.GetRaceDescSingl(preyUnit.Unit)} gushing up into {LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)} {PreyLocStrings.ToSyn(PreyLocation.womb)} where {LogUtilities.GPPHe(preyUnit.Unit)} {LogUtilities.IsAre(preyUnit.Unit)} promptly absorbed into <b>{alreadyChild.Unit.Name}</b>.");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{recipient.Unit.Name}</b> rides <b>{LogUtilities.ApostrophizeWithOrWithoutS(actor.Unit.Name)}</b> {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")}, milking out a liqufied {LogUtilities.GetRaceDescSingl(preyUnit.Unit)}, who flows into the already occupied {PreyLocStrings.ToSyn(PreyLocation.womb)}, where {LogUtilities.GPPHis(preyUnit.Unit)} remains fuse with <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    case 4:
+                        if (!Config.LewdDialog)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps <b>{preyUnit.Unit.Name}</b> through {LogUtilities.GPPHis(actor.Unit)} {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")} and into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, where {LogUtilities.GPPHis(preyUnit.Unit)} remains are used by <b>{alreadyChild.Unit.Name}</b> to fuel <b>{LogUtilities.GPPHis(alreadyChild.Unit)}</b> growth.");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{recipient.Unit.Name}</b> pushes <b>{actor.Unit.Name}</b> down to the ground and fucks {LogUtilities.GPPHim(actor.Unit)} until the liquid remains of <b>{preyUnit.Unit.Name}</b> flow up into {LogUtilities.GPPHis(recipient.Unit)} {PreyLocStrings.ToSyn(PreyLocation.womb)}, where <b>{preyUnit.Unit.Name}</b> is absorbed into <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    case 5:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps <b>{preyUnit.Unit.Name}</b> through {LogUtilities.GPPHis(actor.Unit)} {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")} and into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, where {LogUtilities.GPPHis(preyUnit.Unit)} remains are used by <b>{alreadyChild.Unit.Name}</b> to fuel <b>{LogUtilities.GPPHis(alreadyChild.Unit)}</b> growth.");
+                        break;
+                    case 6:
+                        if (!Config.LewdDialog)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps <b>{preyUnit.Unit.Name}</b> through {LogUtilities.GPPHis(actor.Unit)} {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")} and into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, where {LogUtilities.GPPHis(preyUnit.Unit)} remains are used by <b>{alreadyChild.Unit.Name}</b> to fuel <b>{LogUtilities.GPPHis(alreadyChild.Unit)}</b> growth.");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{actor.Unit.Name}</b> and <b>{recipient.Unit.Name}</b> have sex, an untimely squirm from <b>{alreadyChild.Unit.Name}</b> coinsides with <b>{actor.Unit.Name}</b> cumming hard, allowing the former {LogUtilities.GetRaceDescSingl(preyUnit.Unit)} <b>{preyUnit.Unit.Name}</b> to rip through the condom, flowing into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)} before being absorbed into the regrowing <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    case 7:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{actor.Unit.Name}</b> goes to have sex with <b>{recipient.Unit.Name}</b>, {LogUtilities.GPPHe(actor.Unit)} pull out a condom, before being told to put it away. Without that barrier of protection, the {LogUtilities.GetRandomStringFrom("cum", "jizz", "spooge", "goo", "thick fluid")} that was once <b>{preyUnit.Unit.Name}</b> spills into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)} unimpeded, where it is easily absorbed into <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    case 8:
+                        if (friendlies == null)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{actor.Unit.Name}</b> and <b>{recipient.Unit.Name}</b> {LogUtilities.GetRandomStringFrom("have sex", "fuck")}, the liquid remains of <b>{preyUnit.Unit.Name}</b> shoot into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, where what little remains of <b>{preyUnit.Unit.Name}</b> is simply absorbed into <b>{alreadyChild.Unit.Name}</b>.");
+                        else
+                        {var i = friendlies[State.Rand.Next(friendlies.Length)].Unit;
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> slips on a condom and goes to have sex with <b>{recipient.Unit.Name}</b>. After they're done, <b>{actor.Unit.Name}</b> observes that former <b>{preyUnit.Unit.Name}</b> is leaking from 7 small holes in the condom. Knowing what happened, <b>{actor.Unit.Name}</b> shouts \"<b>{(i).Name}</b>! Not funny!\" Within <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, the trickling streams of \"<b>{preyUnit.Unit.Name}</b>\" are absorbed by <b>{alreadyChild.Unit.Name}</b>.");}
+                        break;
+                    case 9:
+                        if (friendlies == null)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{actor.Unit.Name}</b> and <b>{recipient.Unit.Name}</b> {LogUtilities.GetRandomStringFrom("have sex", "fuck")}, the liquid remains of <b>{preyUnit.Unit.Name}</b> shoot into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, where what little remains of <b>{preyUnit.Unit.Name}</b> is simply absorbed into <b>{alreadyChild.Unit.Name}</b>.");
+                        else
+                        {var i = friendlies[State.Rand.Next(friendlies.Length)].Unit;
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Before having sex, <b>{actor.Unit.Name}</b> looks for {LogUtilities.GPPHis(actor.Unit)} condom, but can't find it. \"I think I left it with <b>{(i).Name}</b>. Want me to go get it?\" <b>{recipient.Unit.Name}</b> responds \"Nah, I got a {LogUtilities.GetRaceDescSingl(alreadyChild.Unit)} in my {PreyLocStrings.ToSyn(PreyLocation.womb)}, they'll absorb everything.\" True to {LogUtilities.GPPHis(recipient.Unit)} word, the remains of <b>{preyUnit.Unit.Name}</b> are absorbed by <b>{alreadyChild.Unit.Name}</b>.");}
+                        break;
+                    case 10:
+                        if (!Config.LewdDialog)
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps <b>{preyUnit.Unit.Name}</b> through {LogUtilities.GPPHis(actor.Unit)} {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")} and into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, where {LogUtilities.GPPHis(preyUnit.Unit)} remains are used by <b>{alreadyChild.Unit.Name}</b> to fuel <b>{LogUtilities.GPPHis(alreadyChild.Unit)}</b> growth.");
+                        else
+                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{LogUtilities.ApostrophizeWithOrWithoutS(actor.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.balls)} shrinks, <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> liquified form fills the rubber barrier between <b>{LogUtilities.ApostrophizeWithOrWithoutS(actor.Unit.Name)}</b> {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")} and <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}. As <b>{actor.Unit.Name}</b> pulls {LogUtilities.GPPHis(actor.Unit)} {LogUtilities.GetRandomStringFrom("shaft", "rod", "cock", "member", "dick")} back out, the condom is left behind, where it is pulled into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> {PreyLocStrings.ToSyn(PreyLocation.womb)}, and it is there that it pops, with <b>{preyUnit.Unit.Name}</b> becoming a shower of nutrients for <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    default:
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps what remains of <b>{preyUnit.Unit.Name}</b> into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> womb, providing nutrients to strengthen <b>{alreadyChild.Unit.Name}</b>.");
+                        break;
+                    }
                 if (unit.HasTrait(Traits.Corruption) || preyUnit.Unit.HasTrait(Traits.Corruption))
                 {
                     alreadyChild.Unit.hiddenFixedSide = true;

@@ -161,6 +161,13 @@ static class LogUtilities
     //        return "NULL";
     //    return friendlies[State.Rand.Next(friendlies.Length)].Unit.Name;  
     //}
+    internal static Unit RandomAlliedWarrior(Unit unit)//Implementing modified code, but kept original because I'm not sure if someone else was planning on using it.
+    {
+        var friendlies = TacticalUtilities.Units.Where(s => s.Unit.Side == unit.Side && s.Unit != unit && s.Visible && s.Targetable && s.Unit.IsDead == false).ToArray();
+        if (friendlies.Length == 0)
+            return null;
+        return friendlies[State.Rand.Next(friendlies.Length)].Unit;
+    }
 
     internal static Unit CompetitionWarrior(Unit unit)
     {
