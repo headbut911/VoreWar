@@ -51,7 +51,7 @@ class Kobolds : BlankSlate
 
     internal override void RunFirst(Actor_Unit actor)
     {
-        if (actor.Unit.TailType == 0 || actor.IsOralVoring || actor.IsAttacking)
+        if (actor.IsOralVoring || actor.IsAttacking)
             facingFront = true;
         else if (actor.IsAnalVoring || actor.IsUnbirthing || actor.IsCockVoring || actor.Unit.TailType == 1)
             facingFront = false;
