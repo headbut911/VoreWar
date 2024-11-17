@@ -56,6 +56,8 @@ public class TacticalMessageLog
         [OdinSerialize]
         internal int Bonus;
         [OdinSerialize]
+        internal int RebirthType;
+        [OdinSerialize]
         internal string Message;
         [OdinSerialize]
         internal string Extra;
@@ -295,7 +297,9 @@ public class TacticalMessageLog
                 else
                     return $"<b>{action.Unit.Name}</b> tries to knock down <b>{action.Target.Name}</b>, but {action.Target.Name} stands {GPPHis(action.Target)} ground!{odds}";
             case MessageLogEvent.Birth:
-                return $"With a loud grunt, <b>{action.Unit.Name}</b> pushes <b>{action.Target.Name}</b> from {GPPHis(action.Unit)} womb, and breathes a sigh of relief.{odds}";
+                msg = GenerateBirthMessage(action);
+                msg = msg += odds;
+                return msg;
             case MessageLogEvent.Resist:
                 return $"<b>{action.Unit.Name}</b> tried to vore <b>{action.Target.Name}</b>, but was fought off.{odds}";
             case MessageLogEvent.Kill:
@@ -721,6 +725,13 @@ public class TacticalMessageLog
         return GetStoredMessage(StoredLogTexts.MessageTypes.UnbirthMessages, action);
     }
 
+    private string GenerateBirthMessage(EventLog action)
+    {
+        if (SimpleText)
+            return $"<b>{action.Unit.Name}</b> births <b>{action.Target.Name}</b>.";
+        return GetStoredMessage(StoredLogTexts.MessageTypes.RebirthMessages, action);
+    }
+
     private string GenerateTVSwallowMessage(EventLog action)
     {
         if (SimpleText)
@@ -1065,13 +1076,15 @@ public class TacticalMessageLog
         UpdateListing();
     }
 
-    public void RegisterBirth(Unit predator, Unit prey, float odds)
+    public void RegisterBirth(Unit predator, Unit prey, float odds, PreyLocation location, int rebirthType)
     {
         events.Add(new EventLog
         {
             Type = MessageLogEvent.Birth,
             Unit = predator,
             Target = prey,
+            preyLocation = location,
+            RebirthType = rebirthType,//1 = NromalRebirth|2 = NormalConvert|3 = DigestRebirth|4 = DigestConvert
             Odds = odds
         });
         UpdateListing();
