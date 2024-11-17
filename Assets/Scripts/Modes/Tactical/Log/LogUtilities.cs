@@ -562,6 +562,8 @@ static class LogUtilities
                 return GetRandomStringFrom("cockatrice", GetGenderString(unit, "scary hen", "monster cock", "danger chicken"), "terror chicken"); ////new, blame Flame_Valxsarion for encouraging me. Actually don't, I came up with "monster cock" 
             case Race.Bees:
                 return GetRandomStringFrom("apid", GetGenderString(unit, "worker bee", "drone", "bee"), "bee"); ////new 
+            case Race.Ants:
+                return GetRandomStringFrom("formica", GetGenderString(unit, "worker ant", "drone", "ant"), "ant"); ////new 
             case Race.Alraune:
                 return GetRandomStringFrom("plant", "demi-plant", "flowery being"); ////new   
             case Race.Bats:

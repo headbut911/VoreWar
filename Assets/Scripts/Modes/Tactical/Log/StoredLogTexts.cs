@@ -52,6 +52,7 @@ static class StoredLogTexts
         VoreStealMessages,
         BreastFeedMessages,
         CumFeedMessages,
+        RebirthMessages,
         GreatEscapeKeep,
         GreatEscapeFlee,
     }
@@ -96,6 +97,8 @@ static class StoredLogTexts
                 return BreastFeedMessages;
             case MessageTypes.CumFeedMessages:
                 return CumFeedMessages;
+            case MessageTypes.RebirthMessages:
+                return RebirthMessages;
             case MessageTypes.GreatEscapeKeep:
                 return GreatEscapeKeepMessages;
             case MessageTypes.GreatEscapeFlee:
@@ -123,6 +126,7 @@ static class StoredLogTexts
     internal static List<EventString> VoreStealMessages;
     internal static List<EventString> BreastFeedMessages;
     internal static List<EventString> CumFeedMessages;
+    internal static List<EventString> RebirthMessages;
     internal static List<EventString> GreatEscapeKeepMessages;
     internal static List<EventString> GreatEscapeFleeMessages;
 
@@ -4022,7 +4026,30 @@ static class StoredLogTexts
             new EventString((i) => $"<b>{i.Target.Name}</b> deliriously beckons <b>{i.Unit.Name}</b> and begins playing with {GPPHis(i.Unit)} penis before feasting on {GPPHis(i.Unit)} {PreyLocStrings.SpoogeAdjSyn()} {PreyLocStrings.ToFluid(PreyLocation.balls)}.",priority: 10, conditional: s => ReqTargetCompatibleLewd(s)),
             new EventString((i) => $"<b>{i.Unit.Name}</b> unloads {GPPHis(i.Unit)} {PreyLocStrings.SpoogeAdjSyn()} {PreyLocStrings.ToFluid(PreyLocation.balls)} into <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> mouth.",priority: 8),
         };
-
+        RebirthMessages = new List<EventString>()
+        {
+			//RebirthType Key: 1 = NromalRebirth|2 = NormalConvert|3 = DigestRebirth|4 = DigestConvert
+            //Normal Rebirth and Conversion
+            new EventString((i) => $"With a loud grunt, <b>{i.Unit.Name}</b> pushes <b>{i.Target.Name}</b> from {GPPHis(i.Unit)} womb, and breathes a sigh of relief.",priority: 10, conditional: s => InWomb(s) && (s.RebirthType == 2 || s.RebirthType == 1)),
+            new EventString((i) => $"With a loud grunt, <b>{i.Unit.Name}</b> pushes <b>{i.Target.Name}</b> from {GPPHis(i.Unit)} womb, and breathes a sigh of relief. Then mewls cutely because they can.",priority: 10, actorRace: Race.Cats, conditional: s => InWomb(s) && (s.RebirthType == 2 || s.RebirthType == 1)),
+            new EventString((i) => $"As <b>{i.Target.Name}</b> is pushed from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("womb", "vagina")}, {GPPHis(i.Target)} former life is {GetRandomStringFrom("forgotten", "left behind")}, as <b>{i.Target.Name}</b> begins a new life as a {GetRaceDescSingl(i.Target)}.",priority: 10, conditional: s => InWomb(s) && s.RebirthType == 1),
+            new EventString((i) => $"As <b>{i.Target.Name}</b> is pushed from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("womb", "vagina")}, {GPPHe(i.Target)} find{SIfSingular(i.Target)} {GPPHis(i.Target)} mind altered and changed, ready to fight for {GPPHis(i.Target)} new mother.",priority: 10, conditional: s => InWomb(s) && s.RebirthType == 2),
+            new EventString((i) => $"As <b>{i.Target.Name}</b> slides out of <b>{i.Unit.Name}</b>, {GPPHe(i.Target)} mutter{SIfSingular(i.Target)} \"I kinda hoped I'd get to go in an egg...\"",priority: 10, conditional: s => ((s.Unit.Race == Race.Alligators) || (s.Unit.Race == Race.Ants) || (s.Unit.Race == Race.Avians) || (s.Unit.Race == Race.Bees) || (s.Unit.Race == Race.Cockatrice) || (s.Unit.Race == Race.Dragon) || (s.Unit.Race == Race.Driders) || (s.Unit.Race == Race.EasternDragon) || (s.Unit.Race == Race.Frogs) || (s.Unit.Race == Race.Goodra) || (s.Unit.Race == Race.Gryphons) || (s.Unit.Race == Race.Harpies) || (s.Unit.Race == Race.Kobolds) || (s.Unit.Race == Race.Komodos) || (s.Unit.Race == Race.Lamia) || (s.Unit.Race == Race.Lizards) || (s.Unit.Race == Race.Monitors) || (s.Unit.Race == Race.Vipers) || (s.Unit.Race == Race.Wyvern) || (s.Unit.Race == Race.WyvernMatron)) && InWomb(s) && (s.RebirthType == 2 || s.RebirthType == 1)),
+            //Digestion Rebirth only
+            new EventString((i) => $"<b>{i.Target.Name}</b> converted from one side to another and changed race thanks to <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> converting digestion rebirth trait.",priority: 10, conditional: s => s.RebirthType == 3),
+            new EventString((i) => $"<b>{i.Target.Name}</b> is released from inside <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> body, though now as {GetAorAN(GetRaceDescSingl(i.Target))}.",priority: 10, conditional: s => s.RebirthType == 3),
+            new EventString((i) => $"{Capitalize(GetAorAN(GetRaceDescSingl(i.Target)))} is expelled from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> body, the brand new form of <b>{i.Target.Name}</b>.",priority: 10, conditional: s => s.RebirthType == 3),
+            new EventString((i) => $"With <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> body partially dissolved, <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> body takes this opportunity to rewrite <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> worldview and genetics, before allowing the brand new {GetRaceDescSingl(i.Target)} back out.",priority: 10, conditional: s => s.RebirthType == 3),
+            new EventString((i) => $"As <b>{i.Target.Name}</b> is released from <b>{i.Unit.Name}</b>, {GPPHe(i.Target)} look{SIfSingular(i.Target)} at {GPPHimself(i.Target)}, and note{SIfSingular(i.Target)} that {GPPHe(i.Target)} {IsAre(i.Target)} now {GetAorAN(GetRaceDescSingl(i.Target))}.",priority: 10, conditional: s => s.RebirthType == 3),
+            new EventString((i) => $"<b>{i.Target.Name}</b> emerges from <b>{i.Unit.Name}</b> changed into {GetAorAN(GetRaceDescSingl(i.Target))}.",priority: 10, conditional: s => s.RebirthType == 3),
+            //Digestion Conversion only
+            new EventString((i) => $"<b>{i.Target.Name}</b> converted from one side to another thanks to <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> digestion conversion trait.",priority: 10, conditional: s => s.RebirthType == 4),
+            new EventString((i) => $"With <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> body partially dissolved, <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> body takes this opportunity to rewrite <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> worldview before putting {GPPHim(i.Target)} back together and letting {GPPHim(i.Target)} out, now ready to fight for <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> side.",priority: 10, conditional: s => s.RebirthType == 4),
+            new EventString((i) => $"Right before death within <b>{i.Unit.Name}</b>, <b>{i.Target.Name}</b> is released on the condition of joining <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> side of the battle.",priority: 10, conditional: s => s.RebirthType == 4),
+            new EventString((i) => $"<b>{i.Target.Name}</b> was converted to the side of the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(i.Unit.Side))}, thanks to a large amount of \"persuasion\" by <b>{i.Unit.Name}</b>.",priority: 10, conditional: s => s.RebirthType == 4 && !State.GameManager.PureTactical),
+            new EventString((i) => $"Within <b>{i.Unit.Name}</b>, <b>{i.Target.Name}</b> has been brainwashed, and now fully believes in the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(i.Unit.Side))} cause.",priority: 10, conditional: s => s.RebirthType == 4 && !State.GameManager.PureTactical),
+            new EventString((i) => $"<b>{i.Target.Name}</b> emerges from <b>{i.Unit.Name}</b> a changed {i.Target.Race}, ready to fight for the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(i.Unit.Side))}!",priority: 10, conditional: s => s.RebirthType == 4 && !State.GameManager.PureTactical),
+        };
         GreatEscapeKeepMessages = new List<EventString>()
         {
             new EventString((i) => $"<b>{i.Unit.Name}</b> jiggles their {PreyLocStrings.ToSyn(i.preyLocation)} with <b>{i.Target.Name}</b> stashed inside. \"What are you waiting for in there?\" - {GPPHe(i.Unit)} asks, annoyed.",priority:25, conditional: HasGreatEscape),

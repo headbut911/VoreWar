@@ -1466,8 +1466,8 @@ public class PredatorComponent
                 preyUnit.Unit.Health = preyUnit.Unit.MaxHealth / 2;
                 preyUnit.Actor.Movement = 0;
                 preyUnit.ChangeSide(unit.Side);
+                TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 1f, Location(preyUnit), 2);
                 FreeUnit(preyUnit.Actor);
-                TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 1f);
                 if (!State.GameManager.TacticalMode.turboMode)
                     actor.SetBirthMode();
                 return 0;
@@ -1487,41 +1487,8 @@ public class PredatorComponent
 
                 preyUnit.ChangeSide(unit.Side);
                 State.GameManager.TacticalMode.TacticalStats.RegisterRegurgitation(unit.Side);
+                TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 0.5f, Location(preyUnit), 4);
                 FreeUnit(preyUnit.Actor);
-
-                switch (State.Rand.Next(6))
-                {
-                    case 0:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> digestion conversion trait.");
-                        break;
-                    case 1:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"With <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> body partially dissolved, <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body takes this opportunity to rewrite <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> worldview before putting {LogUtilities.GPPHim(preyUnit.Unit)} back together and letting {LogUtilities.GPPHim(preyUnit.Unit)} out, now ready to fight for <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side.");
-                        break;
-                    case 2:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Right before death within <b>{unit.Name}</b>, <b>{preyUnit.Unit.Name}</b> is released on the condition of joining <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side of the battle.");
-                        break;
-                    case 3:
-                        if (!State.GameManager.PureTactical)
-                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> was converted to the side of the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(unit.Side))}, thanks to a large amount of \"persuasion\" by <b>{unit.Name}</b>.");
-                        else
-                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> digestion conversion trait.");
-                        break;
-                    case 4:
-                        if (!State.GameManager.PureTactical)
-                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Within <b>{unit.Name}</b>, <b>{preyUnit.Unit.Name}</b> has been brainwashed, and now fully believes in the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(unit.Side))} cause.");
-                        else
-                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"With <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> body partially dissolved, <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body takes this opportunity to rewrite <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> worldview before putting {LogUtilities.GPPHim(preyUnit.Unit)} back together and letting {LogUtilities.GPPHim(preyUnit.Unit)} out, now ready to fight for <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side.");
-                        break;
-                    case 5:
-                        if (!State.GameManager.PureTactical)
-                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> emerges from <b>{unit.Name}</b> a changed {preyUnit.Unit.Race}, ready to fight for the {InfoPanel.RaceSingular(State.World?.GetEmpireOfSide(unit.Side))}!");
-                        else
-                            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"Right before death within <b>{unit.Name}</b>, <b>{preyUnit.Unit.Name}</b> is released on the condition of joining <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> side of the battle.");
-                        break;
-                    default:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> digestion conversion trait.");
-                        break;
-                }
                 return 0;
             }
             if (unit.HasTrait(Traits.DigestionRebirth) && State.Rand.Next(2) == 0 && preyUnit.Unit.CanBeConverted() && (Config.SpecialMercsCanConvert || unit.DetermineConversionRace() < Race.Selicia))
@@ -1534,33 +1501,8 @@ public class PredatorComponent
                 preyUnit.Unit.Health = preyUnit.Unit.MaxHealth / 2;
                 preyUnit.ChangeSide(unit.Side);
                 preyUnit.ChangeRace(conversionRace);
-                if (unit.HasVagina)
-                {TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 0.5f);}
-                    FreeUnit(preyUnit.Actor);
-                switch (State.Rand.Next(6))
-                {
-                    case 0:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another and changed race thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> converting digestion rebirth trait.");
-                        break;
-                    case 1:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"With <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> body partially dissolved, <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body takes this opportunity to rewrite <b>{LogUtilities.ApostrophizeWithOrWithoutS(preyUnit.Unit.Name)}</b> worldview and genetics, before allowing the brand new {LogUtilities.GetRaceDescSingl(preyUnit.Unit)} back out.");
-                        break;
-                    case 2:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> is released from inside <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body, though now as {LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit))}.");
-                        break;
-                    case 3:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"As <b>{preyUnit.Unit.Name}</b> is released from <b>{unit.Name}</b>, {LogUtilities.GPPHe(preyUnit.Unit)} look{LogUtilities.SIfSingular(preyUnit.Unit)} at {LogUtilities.GPPHimself(preyUnit.Unit)}, and note{LogUtilities.SIfSingular(preyUnit.Unit)} that {LogUtilities.GPPHe(preyUnit.Unit)} {LogUtilities.IsAre(preyUnit.Unit)} now {LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit))}.");
-                        break;
-                    case 4:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{LogUtilities.Capitalize(LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit)))} is expelled from <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> body, the brand new form of <b>{preyUnit.Unit.Name}</b>.");
-                        break;
-                    case 5:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> emerges from <b>{unit.Name}</b> changed into {LogUtilities.GetAorAN(LogUtilities.GetRaceDescSingl(preyUnit.Unit))}.");
-                        break;
-                    default:
-                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{preyUnit.Unit.Name}</b> converted from one side to another and changed race thanks to <b>{LogUtilities.ApostrophizeWithOrWithoutS(unit.Name)}</b> converting digestion rebirth trait.");
-                        break;
-                }
+                TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 0.5f, Location(preyUnit), 3);
+                FreeUnit(preyUnit.Actor);
                 return 0;
             }
             preyUnit.Actor.KilledByDigestion = true;
@@ -1740,8 +1682,8 @@ public class PredatorComponent
                         //HandleShapeshifterRebirth(preyUnit);
                         preyUnit.ChangeRace(conversionRace);
                     }
+                    TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 1f, Location(preyUnit), 1);
                     FreeUnit(preyUnit.Actor);
-                    TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 1f);
                     if (!State.GameManager.TacticalMode.turboMode)
                         actor.SetBirthMode();
                     RemovePrey(preyUnit);
@@ -1878,16 +1820,17 @@ public class PredatorComponent
     //            {
     //                preyUnit.Actor.SubtractHealth(999);
     //                RemovePrey(preyUnit);
+    //                TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 1f, Location(preyUnit), 1);
     //                FreePrey(newPrey, true);
     //                released.Add(newPrey.Actor);
     //            }
     //            else
     //            {
     //                preyUnit.Actor.Surrendered = false;
+    //                TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 1f, Location(preyUnit), 1);
     //                FreePrey(preyUnit, true);
     //                released.Add(preyUnit.Actor);
     //            }
-    //            TacticalUtilities.Log.RegisterBirth(unit, preyUnit.Unit, 1f);
     //        }
     //    }
     //    UpdateFullness();
