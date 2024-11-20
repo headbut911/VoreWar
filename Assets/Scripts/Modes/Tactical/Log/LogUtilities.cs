@@ -346,6 +346,8 @@ static class LogUtilities
                 return GetRandomStringFrom("striped", "roaring", "mewling");
             case Race.Goblins:
                 return GetRandomStringFrom("diminutive", "cursing", "short");
+            case Race.Hamsters:
+                return GetRandomStringFrom("stout", "shortstack", "chubby");
             case Race.Alligators:
                 return GetRandomStringFrom("crocodilian", "lumbering", "swampy");
             case Race.Vagrants:
@@ -430,6 +432,8 @@ static class LogUtilities
                 return GetRandomStringFrom("striped", "roaring", "sharp toothed");
             case Race.Goblins:
                 return GetRandomStringFrom("stronger than looks", "knee kicking", "smart");
+            case Race.Hamsters:
+                return GetRandomStringFrom("knee breaking", "deceptively strong", "hammer-loving");
             case Race.Alligators:
                 return GetRandomStringFrom("armoured", "large jawed", "swampy");
             case Race.Vagrants:
@@ -515,7 +519,7 @@ static class LogUtilities
             case Race.Puca:
                 return GetRandomStringFrom("puca", "bunny", "lagomorph", "digger");
             case Race.Hamsters:
-                return GetRandomStringFrom("hamster", "rodent", "shortstack");
+                return GetRandomStringFrom("hamster", GetGenderString(unit, "sow", "boar", "hamster"), "rodent");
             case Race.RwuMercenaries:
                 return GetRandomStringFrom("mercenary", "trooper", "merc");
             case Race.Vagrants:
