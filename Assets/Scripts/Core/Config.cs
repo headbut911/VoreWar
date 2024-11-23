@@ -45,8 +45,6 @@ static class Config
 
     public const int NumberOfRaces = 32;
 
-    public const int NumberOfBuildings = 12;
-
     public const int NewItemSlots = 2;
 
     public const int GarrisonCost = 8;
@@ -386,9 +384,8 @@ static class Config
     internal static int AbsorbResourceModBoost => World.AbsorbResourceModBoost;
     public static float SurrenderedPredEscapeMult => World.SurrenderedPredEscapeMult;
     public static float SurrenderedPredAutoRegur => World.SurrenderedPredAutoRegur;
-
-
-    public static Dictionary<ConstructibleBuilding,bool> AIEnabledBuildings => World.AIEnabledBuildings;
+    public static int NumberOfBuildings => World.GetBuildingInfoCount();
+    public static List<ConstructibleBuilding> Buildings=> World.GetBuildingInfo();
 
     internal static bool WinterActive()
     {

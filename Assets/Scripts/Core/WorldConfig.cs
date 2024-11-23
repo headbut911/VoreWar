@@ -13,6 +13,9 @@ public class WorldConfig
     internal Dictionary<Race, SpawnerInfo> SpawnerInfo = new Dictionary<Race, SpawnerInfo>();
 
     [OdinSerialize]
+    internal List<ConstructibleBuilding> BuildingInfo = new List<ConstructibleBuilding>();
+
+    [OdinSerialize]
     internal int[] VillagesPerEmpire = new int[Config.NumberOfRaces];
 
 
@@ -267,8 +270,6 @@ public class WorldConfig
     [OdinSerialize]
     internal float SurrenderedPredAutoRegur = 0;
 
-    [OdinSerialize]
-    internal Dictionary<ConstructibleBuilding, bool> AIEnabledBuildings = new Dictionary<ConstructibleBuilding, bool>();
     internal bool GetValue(string name)
     {
         if (Toggles == null)
@@ -328,6 +329,29 @@ public class WorldConfig
                 SpawnerInfo[race] = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
             }
         }
+    }
+
+
+    internal List<ConstructibleBuilding> GetBuildingInfo()
+    {
+        if(BuildingInfo == null)
+            ReloadBuildingInfo();
+        return BuildingInfo;
+    }
+
+    internal int GetBuildingInfoCount()
+    {
+        if(BuildingInfo == null)
+            ReloadBuildingInfo();
+        return BuildingInfo.Count();
+    }
+
+    internal void ReloadBuildingInfo()
+    {
+        BuildingInfo = new List<ConstructibleBuilding>
+        { 
+            new WorkCamp(null, 3,2),
+        };
     }
 
     internal void ResetDictionary()

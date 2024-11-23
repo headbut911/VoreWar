@@ -17,7 +17,7 @@ namespace MapObjects
     {
         GoldMine = 0,
     }
-    internal enum ConstructibleType
+    public enum ConstructibleType
     {
         //Production
         WorkCamp = 0,
@@ -1428,7 +1428,7 @@ public class MapEditor : SceneBase
             switch (activeBuildingType)
             {
                 case MapBuildingType.WorkCamp:
-                    WorkCamp newCamp = new WorkCamp(clickLocation, 0, 4, 5);
+                    WorkCamp newCamp = new WorkCamp(clickLocation, 4, 5);
                     var contstruct = State.World.Constructibles.ToList();
                     contstruct.Add(newCamp);
                     State.World.Constructibles = contstruct.ToArray();
@@ -1655,7 +1655,7 @@ public class MapEditor : SceneBase
             foreach (var construct in map.constructibles)
             {
                 if (construct.Type == ConstructibleType.WorkCamp)
-                    constructibles.Add(new WorkCamp(construct.Position, 0, 4, 2));
+                    constructibles.Add(new WorkCamp(construct.Position, 4, 2));
                 /*
                 if (construct.Type == ConstructibleType.LumberSite)
                     constructibles.Add(new LumberSite(construct.Position));

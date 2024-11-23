@@ -10,7 +10,12 @@ abstract class ConstructibleBuilding
     internal Vec2i Position;
 
     [OdinSerialize]
-    internal int UpgradeStage;
+    internal int UpgradeStage; 
+
+    [OdinSerialize]
+    internal int GoldCost; 
+    [OdinSerialize]
+    internal ConstructionResources ResourceToBuild;
 
     [OdinSerialize]
     internal int turnsToCompletion;
@@ -24,11 +29,19 @@ abstract class ConstructibleBuilding
     public bool upgrading => turnsToCompletion > 0;
 
     [OdinSerialize]
+    internal bool enabled = true;
+    [OdinSerialize]
+    internal bool AIenabled;
+
+
+    [OdinSerialize]
     internal string Name;
-    protected ConstructibleBuilding(Vec2i location, int upgradestage, int buildtime, int upgradetime)
+    protected ConstructibleBuilding(Vec2i location, int buildtime, int upgradetime)
     {
         Position = location;
-        UpgradeStage = upgradestage;
+        UpgradeStage = 0;
+        GoldCost = 0;
+        ResourceToBuild = new ConstructionResources();
         baseBuildTurns = buildtime;
         baseUpgradeTurns = upgradetime;
     }

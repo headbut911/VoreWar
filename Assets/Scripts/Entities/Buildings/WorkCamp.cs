@@ -1,8 +1,11 @@
 ﻿class WorkCamp : ConstructibleBuilding
 {
 
-    public WorkCamp(Vec2i location, int upgradestage, int buildtime, int upgradetime) : base(location, 0, 4, 2)
+    public WorkCamp(Vec2i location, int buildtime, int upgradetime) : base(location, buildtime, upgradetime)
     {
+        Name = "Work Camp";
+        ResourceToBuild.SetResources(0,0,0,0,0,0);
+        GoldCost = 10;
     }
 
     internal override void RunBuildingFunction()

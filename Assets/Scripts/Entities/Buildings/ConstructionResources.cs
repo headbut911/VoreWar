@@ -6,20 +6,23 @@ public enum ConstructionresourceType
     stone,
     ores,
     naturalmaterials,
+    prefabs,
     manastones
 }
 public class ConstructionResources
 {
     [OdinSerialize]
-    public int Wood;
+    public int Wood = 0;
     [OdinSerialize]
-    public int Stone;
+    public int Stone = 0;
     [OdinSerialize]
-    public int Ores;
+    public int Ores = 0;
     [OdinSerialize]
-    public int NaturalMaterials;
+    public int NaturalMaterials = 0;
     [OdinSerialize]
-    public int ManaStones;
+    public int Prefabs = 0;
+    [OdinSerialize]
+    public int ManaStones = 0;
 
     public void AddResource(ConstructionresourceType type, int amount)
     {
@@ -33,6 +36,8 @@ public class ConstructionResources
                 Ores += amount; break;
             case ConstructionresourceType.naturalmaterials:
                 NaturalMaterials += amount; break;
+            case ConstructionresourceType.prefabs:
+                Prefabs += amount; break;
             case ConstructionresourceType.manastones:
                 ManaStones += amount; break;
             default:
@@ -52,6 +57,8 @@ public class ConstructionResources
                 Ores -= amount; break;
             case ConstructionresourceType.naturalmaterials:
                 NaturalMaterials -= amount; break;
+            case ConstructionresourceType.prefabs:
+                Prefabs += amount; break;
             case ConstructionresourceType.manastones:
                 ManaStones -= amount; break;
             default:
@@ -71,6 +78,8 @@ public class ConstructionResources
                 return Ores >= amount;
             case ConstructionresourceType.naturalmaterials:
                 return NaturalMaterials >= amount;
+            case ConstructionresourceType.prefabs:
+                return Prefabs >= amount;
             case ConstructionresourceType.manastones:
                 return ManaStones >= amount;
             default:
@@ -79,5 +88,14 @@ public class ConstructionResources
         return false;
     }
 
+    public void SetResources(int wood, int stones, int ores, int nm, int prefabs, int ms)
+    {
+        Wood = wood;
+        Stone = stones;
+        Ores = ores;
+        NaturalMaterials = nm;
+        Prefabs = prefabs;
+        ManaStones = ms;
+    }
 }
 
