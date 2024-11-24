@@ -372,7 +372,7 @@ static class StoredLogTexts
             actorRace: Race.Crux, targetRace: Race.Crux, priority: 10),
             new EventString((i) => $"Stuffing <b>{i.Target.Name}</b> {GetRandomStringFrom("ass", "buns", "butt", "cheeks", "rear", "booty")}-first down {GPPHis(i.Unit)} {GetRandomStringFrom("hot", "humid", "moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "greedy", "steamy", "eager", "hungry")} {GetRandomStringFrom("gullet", "throat", "esophagus")}, <b>{i.Unit.Name}</b> smiles as {GPPHe(i.Unit)} look{SIfSingular(i.Unit)} at the curly ears of {GPPHis(i.Unit)} fellow crux, the last thing visible of {GPPHim(i.Target)} before {GPPHe(i.Target)} too vanish{EsIfSingular(i.Target)} from sight.",
             actorRace: Race.Crux, targetRace: Race.Crux, priority: 10),
-            //Aabayx exclusive
+            //Aabayx exclusive creds to Cartography!
             new EventString((i) => $"As <b>{i.Unit.Name}</b> approaches <b>{i.Target.Name}</b>, the {GetRaceDescSingl(i.Target)}, seeing no mouth or other openings, thinks {GPPHimself(i.Target)} safe. Suddenly, <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> head opens up, and as <b>{i.Target.Name}</b> is rapidly swallowed down, {GPPHe(i.Target)} take{SIfSingular(i.Unit)} a moment to think on what went wrong.",
             actorRace: Race.Aabayx, priority: 9),
             new EventString((i) => $"As <b>{i.Target.Name}</b> is swallowed down by a fellow Aabayx, all present are forced to marvel at the geometric impossibility on display before them, as <b>{i.Unit.Name}</b> somehow fits <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> icosahedral head through {GPPHis(i.Unit)} own icosahedral head.",
@@ -1105,7 +1105,7 @@ static class StoredLogTexts
             targetRace: Race.Slimes, priority: 9),
             new EventString((i) => $"<b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {i.preyLocation.ToSyn()} is emitting bubbling noises.",
             targetRace: Race.Slimes, priority: 9),
-            //Aabayx exclusive
+            //Aabayx exclusive creds to Cartography!
             new EventString((i) => $"The unique viral digestion of the Aabayx is taking a toll on <b>{i.Target.Name}</b>, as viruses increasingly infecting more of {GPPHis(i.Target)} body.",
             actorRace: Race.Aabayx, priority: 9),
             new EventString((i) => $"The chemical signals used by <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> stomach are tricking the viral matrix that forms <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> body to willingly dissasemble.",
@@ -1869,9 +1869,9 @@ static class StoredLogTexts
 
             new EventString((i) => $"\"You better get {GetRandomStringFrom("comfy", "cozy", "comfortable", "settled in")}, I have a long digestive {GetRandomStringFrom("system", "tract")}\" <b>{i.Unit.Name}</b> teases <b>{i.Target.Name}</b> as the {GetRaceDescSingl(i.Target)} tries frantically to escape.",
             actorRace: Race.Taurus, priority: 9, conditional: InStomach),
-
+            //Creds to Cartography!
             new EventString((i) => $"With a sudden look on {GPPHis(i.Unit)} face, <b>{i.Unit.Name}</b> looks down and asks <b>{i.Target.Name}</b>, \"Hey, while I've got you in my pouch, can you tell me why so many races look like you guys? Like, what's up with that?\"",
-            actorRace: Race.Kangaroos, targetRace: Race.Taurus, priority: 9, conditional: InBreasts),
+            actorRace: Race.Kangaroos, targetRace: Race.Humans, priority: 9, conditional: InBreasts),
             new EventString((i) => $"\"You know, I wasn't actually certain if my pouch would be able to hold you. You looked pretty big,\" <b>{i.Unit.Name}</b> says to <b>{i.Target.Name}</b>. \"You won't be very big much longer, though...\"",
             actorRace: Race.Kangaroos, targetRace: Race.Taurus, priority: 9, conditional: InBreasts),
 
@@ -2983,7 +2983,7 @@ static class StoredLogTexts
             //Slime pred
             new EventString((i) => $"The silhouette of <b>{i.Target.Name}</b> inside <b>{i.Unit.Name}</b> loses coherency and dissolves into slime.",
             actorRace: Race.Slimes, priority: 8),
-            //Aabayx exclusive
+            //Aabayx exclusive creds to Cartography!
             new EventString((i) => $"With one final shudder, <b>{i.Target.Name}</b> looses any structural integrity, dissolving into trillions of new viruses, ready for intigration into <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> body.",
             actorRace: Race.Aabayx, priority: 9),
             new EventString((i) => $"At this point, <b>{i.Target.Name}</b> is beyond saving. While clumps of the viral matrix that made up {GPPHis(i.Target)} body still cling together, <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> dissasembely has passed a point of no return. {GPPHe(i.Target)} {IsAre(i.Target)} dead.",
@@ -3655,7 +3655,7 @@ static class StoredLogTexts
 
             //Slimes exclusive
             new EventString((i) => $"The dark lump in <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> translucent form disappears completely.", actorRace: Race.Slimes, priority: 10),
-            //Aabayx exclusive
+            //Aabayx exclusive creds to Cartography!
             new EventString((i) => $"With a {GetRandomStringFrom("lewd", "gross", "odd")} squelching noise, the non-cellular remains of <b>{i.Target.Name}</b> fall from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("anus", "ass", "asshole", "behind")} in a spongy pile.", actorRace: Race.Aabayx, priority: 9),
             new EventString((i) => $"The last viruses from <b>{i.Target.Name}</b> have been intigrated into <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> viral matrix. A small *glorp* as the last bit is sucked up into <b>{i.Unit.Name}</b> is <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> legacy.", targetRace: Race.Aabayx, actorRace: Race.Aabayx, priority: 10),
             //Kangaroo pred (pouch vore)
@@ -3967,6 +3967,7 @@ static class StoredLogTexts
         KissTransferMessages = new List<EventString>()
         {
             //The main idea behind most of the dialouge was, how in several Kirby games Kirby share health pickups with his allies via kissing them and they would still somehow get the full effect of the heal, just seemed too good to pass up. Also the alternative is mother bird-like stuff going on and I ain't writing that -Wolfwar
+            //Now with new logs by Cartography!
             new EventString((i) => $"<b>{i.Unit.Name}</b> kisses <b>{i.Target.Name}</b>, causing <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> belly to {GetRandomStringFrom("suddenly", "instantly", "inexplicably")} be filled with <b>{i.Prey.Name}</b>. <b>{i.Target.Name}</b>, although {GetRandomStringFrom("satisfied", "full", "content")} is utterly baffled as to how it occurred.",
             priority: 10, conditional: s => InStomach(s) && !s.Prey.IsDead ),
             new EventString((i) => $"<b>{i.Unit.Name}</b> kisses <b>{i.Target.Name}</b>, instantly giving <b>{i.Prey.Name}</b> in the process, {GetRandomStringFrom("satisfied", "pleased", "content")} with the outcome <b>{i.Target.Name}</b> happily pats {GPPHis(i.Unit)} belly.",
@@ -3979,6 +3980,7 @@ static class StoredLogTexts
 
         VoreStealMessages = new List<EventString>()
         {
+            //Additional logs as well as the Youko and Aabayx exclusives by Cartography
             //Oral to Oral vore steal
             new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("tackles", "headbutts", "charges into", "bashes")} <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> {GetRandomStringFrom("filled", "bulbus", "exposed")} belly forcing {GPPHim(i.Target)} to {GetRandomStringFrom("regurgitate", "free", "release")} <b>{i.Prey.Name}</b> into the air who <b>{i.Unit.Name}</b> deftly catches in {GPPHis(i.Unit)} mouth.",
             priority: 10, conditional: s => s.oldLocation == PreyLocation.stomach && s.preyLocation == PreyLocation.stomach),
@@ -4034,6 +4036,7 @@ static class StoredLogTexts
         RebirthMessages = new List<EventString>()
         {
             //RebirthType Key: 1 = NromalRebirth|2 = NormalConvert|3 = DigestRebirth|4 = DigestConvert
+            //Huge credit to Cartography for all of the new logs!
             //Generic Rebirth and Conversion
             new EventString((i) => $"<b>{i.Target.Name}</b> is expelled from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {PreyLocStrings.ToSyn(i.preyLocation)}, with a changed outlook on life.",priority: 10, conditional: s => (s.RebirthType == 2 || s.RebirthType == 4)),
             new EventString((i) => $"<b>{i.Target.Name}</b> is expelled from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {PreyLocStrings.ToSyn(i.preyLocation)}, changed in mind and body.",priority: 10, conditional: s => (s.RebirthType == 1 || s.RebirthType == 3)),
