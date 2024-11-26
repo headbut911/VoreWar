@@ -41,15 +41,20 @@ class Kobolds : BlankSlate
         SpecialAccessoryCount = 5;
         AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.Kobold);
     }
+    internal override void RandomCustom(Unit unit)
+    {
+        base.RandomCustom(unit);
+        unit.TailType = (0);
+    }
     internal override int BreastSizes => 3;
     internal override int DickSizes => 3;
 
     internal override void RunFirst(Actor_Unit actor)
     {
-        if (actor.IsAnalVoring || actor.IsUnbirthing || actor.IsCockVoring)
-            facingFront = false;
-        else if (actor.Unit.TailType == 0 || actor.IsOralVoring || actor.IsAttacking)
+        if (actor.IsOralVoring || actor.IsAttacking)
             facingFront = true;
+        else if (actor.IsAnalVoring || actor.IsUnbirthing || actor.IsCockVoring || actor.Unit.TailType == 1)
+            facingFront = false;
         else
             facingFront = true;
         base.RunFirst(actor);
