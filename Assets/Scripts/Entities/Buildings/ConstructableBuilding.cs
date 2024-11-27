@@ -1,4 +1,5 @@
 ﻿using OdinSerializer;
+using System.Linq;
 
 
 abstract class ConstructibleBuilding
@@ -25,8 +26,8 @@ abstract class ConstructibleBuilding
     internal int baseBuildTurns;
     [OdinSerialize]
     internal int baseUpgradeTurns;
-    public bool constructing => turnsToUpgrade > 0;
-    public bool upgrading => turnsToCompletion > 0;
+    public bool constructing => turnsToCompletion > 0;
+    public bool upgrading => turnsToUpgrade > 0;
 
     [OdinSerialize]
     internal bool enabled = true;
@@ -47,9 +48,14 @@ abstract class ConstructibleBuilding
     }
 
     internal abstract void RunBuildingFunction();
-    internal void ConstructBuilding(int buildTurns) 
+    internal void ConstructBuilding() 
     {
-        turnsToCompletion = buildTurns;
+        turnsToCompletion = baseBuildTurns;
+        var contstruct = State.World.Constructibles.ToList();
+        contstruct.Add(this);
+        State.World.Constructibles = contstruct.ToArray();
+        State.GameManager.StrategyMode.RedrawVillages();
+
     }
 
     internal void UpgradeBuilding(int upgradeTurns)

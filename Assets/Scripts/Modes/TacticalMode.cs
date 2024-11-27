@@ -1346,9 +1346,9 @@ Turns: {currentTurn}
                                 FrontTilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.TileTypes[startIndex + 3]);
                             else
                                 FrontTilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.TileTypes[startIndex + State.Rand.Next(2)]);
-                            if (tiles[i, j+1] >= (TacticalTileType)500 && (tiles[i, j + 1] < (TacticalTileType)2000 || tiles[i, j + 1] >= (TacticalTileType)2300))
+                            if ((tiles[i, j + 1] >= (TacticalTileType)500 && tiles[i, j + 1] < (TacticalTileType)600) || (tiles[i, j + 1] >= (TacticalTileType)2300 && tiles[i, j + 1] < (TacticalTileType)2400))
                                 Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.VolcanicTileTypes[1]);
-                            else if ((tiles[i, j+1] >= (TacticalTileType)200))
+                            else if ((tiles[i, j+1] >= (TacticalTileType)200 && tiles[i, j + 1] < (TacticalTileType)300) || (tiles[i, j + 1] >= (TacticalTileType)2000 && tiles[i, j + 1] < (TacticalTileType)2200))
                                 Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.DesertTileTypes[1]);
                             else
                                 Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.GrassEnviroment[0]);

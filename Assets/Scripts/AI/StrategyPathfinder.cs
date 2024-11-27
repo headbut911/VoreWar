@@ -379,6 +379,9 @@ public static class StrategyPathfinder
         if (State.World.Doodads != null && State.World.Doodads[pos.x, pos.y] >= StrategicDoodadType.bridgeVertical && State.World.Doodads[pos.x, pos.y] <= StrategicDoodadType.virtualBridgeIntersection)
             return true;
         if (Grid[pos.x, pos.y].FriendlyOccupied)
+        if (State.World.Doodads != null && State.World.Doodads[pos.x, pos.y] == StrategicDoodadType.wall)
+            return false;
+        if (Grid[pos.x, pos.y].FriendlyOccupied)
             return false;
         if (army == null && impassables.Contains(Grid[pos.x, pos.y].TileType))
             return false; 

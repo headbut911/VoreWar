@@ -24,6 +24,16 @@ public class ConstructionResources
     [OdinSerialize]
     public int ManaStones = 0;
 
+    public void Init()
+    {
+        Wood = 0;
+        Stone = 0;
+        Ores = 0;
+        NaturalMaterials = 0;
+        Prefabs = 0;
+        ManaStones = 0;
+    }
+
     public void AddResource(ConstructionresourceType type, int amount)
     {
         switch (type)

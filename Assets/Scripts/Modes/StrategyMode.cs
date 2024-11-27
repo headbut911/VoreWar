@@ -1,7 +1,7 @@
-using MapObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -117,6 +117,7 @@ public class StrategyMode : SceneBase
     public Tilemap[] TilemapLayers;
     public Tilemap FogOfWar;
     public TileBase FogTile;
+    public TileBase[] BuildIndicator;
     internal Tile[] TileTypes;
     public TileBase[] DoodadTypes;
     public Sprite[] Sprites;
@@ -134,6 +135,7 @@ public class StrategyMode : SceneBase
     public DevourPanel DevourUI;
     public TurnReportPanel ReportUI;
     public TrainPanel TrainUI;
+    public BuildMenu BuildMenu;
     public GameObject EnemyTurnText;
     public GameObject PausedText;
 
@@ -164,6 +166,9 @@ public class StrategyMode : SceneBase
     bool pickingExchangeLocation = false;
 
     internal bool Paused;
+
+    internal bool BuildMode;
+    internal ConstructibleType SelectedConstruction;
 
     public Sprite[] TileSprites;
 
@@ -1024,6 +1029,12 @@ public class StrategyMode : SceneBase
             villColored.GetComponent<SpriteRenderer>().color = constructable.Owner?.UnityColor ?? Color.clear;
             currentBuildingTiles.Add(vill);
             currentBuildingTiles.Add(villColored);
+            if (constructable.constructing || constructable.upgrading)
+            {
+                GameObject hammer = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
+                hammer.GetComponent<SpriteRenderer>().sprite = Buildings[97];
+                hammer.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            }
         }
 
 
@@ -1788,6 +1799,7 @@ public class StrategyMode : SceneBase
     {
         UndoMoves.Clear();
         ActingEmpire.Reports.Clear();
+        ActingEmpire.OwnedTiles.Clear();
         if (State.World.EmpireOrder == null || State.World.EmpireOrder.Count != State.World.AllActiveEmpires.Count)
             State.World.RefreshTurnOrder();
         int startingIndex = State.World.EmpireOrder.IndexOf(ActingEmpire);
@@ -1795,6 +1807,10 @@ public class StrategyMode : SceneBase
         StatusBarUI.EndTurn.interactable = false;
         StatusBarUI.ShowTurnReport.gameObject.SetActive(false);
         StatusBarUI.EmpireStatus.interactable = OnlyAIPlayers;
+        foreach (Village vil in State.World.Villages.Where(s => s.Side == ActingEmpire.Side))
+        {
+            ClaimWithinXTilesOf(vil.Position, 1);
+        }
         if (startingIndex + 1 >= State.World.EmpireOrder.Count)
         {
 
@@ -1920,6 +1936,7 @@ public class StrategyMode : SceneBase
             StatusBarUI.EmpireStatus.interactable = ActingEmpire.IsAlly(LastHumanEmpire) || OnlyAIPlayers;
             EnemyTurnText.SetActive(true);
         }
+        StatusBarUI.Build.onClick.AddListener(() => BuildMenu.Open(ActingEmpire));
         runningQueued = true;
         Regenerate();
     }
@@ -2436,17 +2453,46 @@ public class StrategyMode : SceneBase
             int y = (int)(currentMousePos.y + 0.5f);
             if (x >= 0 && x < Config.StrategicWorldSizeX && y >= 0 && y < Config.StrategicWorldSizeY)
             {
-                UpdateTooltips(x, y);
-                if (Input.GetMouseButtonDown(0) && ActingEmpire.StrategicAI == null && subWindowUp == false && QueuedPath == null)
-                    ProcessClick(x, y);
-                else if (Input.GetMouseButtonDown(0) && OnlyAIPlayers)
-                    ProcessClickWithoutEmpire(x, y);
-                else if (Input.GetMouseButtonDown(0) && LastHumanEmpire.IsAlly(ActingEmpire))
-                    ProcessClickBetweenTurns(x, y);
-                if (Input.GetMouseButtonDown(1) && ActingEmpire.StrategicAI == null && subWindowUp == false && QueuedPath == null && SelectedArmy != null && SelectedArmy.RemainingMP > 0)
-                    SetSelectedArmyPathTo(x, y);
-                if (mouseMovementMode)
-                    CheckPath(new Vec2i(x, y));
+                if (BuildMode)
+                {
+                    TilemapLayers[14].ClearAllTiles();
+                    TilemapLayers[14].SetTile(new Vector3Int(x, y, 0), BuildIndicator[2]);
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        BuildMode = false;
+                        TilemapLayers[14].ClearAllTiles();
+                        TilemapLayers[13].ClearAllTiles();
+                        ConstructibleBuilding newBuilding;
+                        switch (SelectedConstruction)
+                        {
+                            case ConstructibleType.WorkCamp:
+                                newBuilding = new WorkCamp(new Vec2i(x,y), 3, 2);
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
+                        }
+                    }
+                    if (Input.GetMouseButtonDown(1))
+                    {
+                        BuildMode = false;
+                    }
+                }
+                else
+                {
+                    UpdateTooltips(x, y);
+                    if (Input.GetMouseButtonDown(0) && ActingEmpire.StrategicAI == null && subWindowUp == false && QueuedPath == null)
+                        ProcessClick(x, y);
+                    else if (Input.GetMouseButtonDown(0) && OnlyAIPlayers)
+                        ProcessClickWithoutEmpire(x, y);
+                    else if (Input.GetMouseButtonDown(0) && LastHumanEmpire.IsAlly(ActingEmpire))
+                        ProcessClickBetweenTurns(x, y);
+                    if (Input.GetMouseButtonDown(1) && ActingEmpire.StrategicAI == null && subWindowUp == false && QueuedPath == null && SelectedArmy != null && SelectedArmy.RemainingMP > 0)
+                        SetSelectedArmyPathTo(x, y);
+                    if (mouseMovementMode)
+                        CheckPath(new Vec2i(x, y));
+                }
+
             }
             else
             {
@@ -2677,9 +2723,18 @@ public class StrategyMode : SceneBase
                 VillageTooltip.gameObject.SetActive(true);
                 if (constructible is WorkCamp)
                 {
-                    VillageTooltip.Text.text = $"Work Camp\nOwner: {claimable.Owner?.Name}";
+                    VillageTooltip.Text.text = $"Work Camp\nOwner: {constructible.Owner?.Name}";
                 }
 
+
+                if (constructible.constructing)
+                {
+                    VillageTooltip.Text.text += $"\n Constructing in {constructible.turnsToCompletion} turn(s)" ;
+                }
+                else if (constructible.upgrading)
+                {
+                    VillageTooltip.Text.text += $"\n Upgrading for {constructible.turnsToUpgrade} turn(s)";
+                }
             }
 
         }
@@ -2806,6 +2861,47 @@ public class StrategyMode : SceneBase
     {
 
 
+    }
+
+    void ClaimWithinXTilesOf(Vec2i pos, int dist)
+    {
+        for (int x = pos.x - dist; x <= pos.x + dist; x++)
+        {
+            for (int y = pos.y - dist; y <= pos.y + dist; y++)
+            {
+                Vec2i claimPos = new Vec2i(x, y);
+                if (!ActingEmpire.OwnedTiles.Contains(claimPos))
+                    ActingEmpire.OwnedTiles.Add(claimPos);
+            }
+        }
+    }
+
+    public void InitiateBuildMode(ConstructibleType selected)
+    {
+        SelectedArmy = null;
+        BuildMode = true;
+        List<Vec2i> validtiles = ActingEmpire.OwnedTiles;
+        List<Vec2i> invalidtiles = new List<Vec2i>();
+        SelectedConstruction = selected;
+        foreach (var empire in State.World.MainEmpires)
+        {
+            if (ActingEmpire.IsAlly(empire))
+            {
+                validtiles.AddRange(empire.OwnedTiles);
+            }
+            else
+            {
+                invalidtiles.AddRange(empire.OwnedTiles);
+            }
+        }
+        foreach (var tile in validtiles)
+        {
+            TilemapLayers[13].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[0]);
+        }
+        foreach (var tile in invalidtiles)
+        {
+            TilemapLayers[13].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[1]);
+        }
     }
 }
 

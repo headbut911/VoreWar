@@ -336,6 +336,8 @@ public class WorldConfig
     {
         if(BuildingInfo == null)
             ReloadBuildingInfo();
+        if(BuildingInfo.Count() <= 0)
+            ReloadBuildingInfo();
         return BuildingInfo;
     }
 

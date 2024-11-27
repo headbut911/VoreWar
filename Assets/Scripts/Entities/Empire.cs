@@ -21,6 +21,8 @@ public class Empire
     [OdinSerialize]
     public ConstructionResources constructionResources;
     [OdinSerialize]
+    public List<Vec2i> OwnedTiles;
+    [OdinSerialize]
     public int Income { get; private set; }
     [OdinSerialize]
     public List<Army> Armies;
@@ -166,6 +168,9 @@ public class Empire
         MaxArmySize = args.maxArmySize;
         MaxGarrisonSize = args.maxGarrisonSize;
         Armies = new List<Army>();
+        OwnedTiles = new List<Vec2i>();
+        constructionResources = new ConstructionResources();
+        constructionResources.Init();
         Name = Race.ToString();
         if (args.strategicAI == StrategyAIType.None)
             StrategicAI = null;

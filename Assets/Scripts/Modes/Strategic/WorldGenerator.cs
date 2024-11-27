@@ -512,7 +512,7 @@ public class WorldGenerator
     }
     public void PlaceAncientTeleporters(int tele)
     {
-        Debug.Log(tele);
+
         if (tele < 0)
         {
             State.World.AncientTeleporters = new AncientTeleporter[0];
