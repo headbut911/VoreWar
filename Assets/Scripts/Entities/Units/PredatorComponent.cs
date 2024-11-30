@@ -2908,12 +2908,26 @@ public class PredatorComponent
             return preyUnit;
             }
         }
+        foreach (Prey preyUnit in stomach2)
+        {
+            if (preyUnit.Unit.IsDead == false)
+            {
+            return preyUnit;
+            }
+        }
         return null;
     }
 
     public float GetKissTransferBulk()
     {
         foreach (Prey preyUnit in stomach)
+        {
+            if (preyUnit.Unit.IsDead == false)
+            {
+            return preyUnit.Actor.Bulk();
+            }
+        }
+        foreach (Prey preyUnit in stomach2)
         {
             if (preyUnit.Unit.IsDead == false)
             {
@@ -3175,6 +3189,17 @@ public class PredatorComponent
         if (State.RaceSettings.GetVoreTypes(actor.Unit.Race).Contains(VoreType.Oral))
         {
             foreach (Prey preyUnit in target.PredatorComponent.stomach)
+            {
+                if (!preyUnit.Unit.IsDead)
+                {
+                    return preyUnit;
+                }
+            }
+
+        }
+        if (State.RaceSettings.GetVoreTypes(actor.Unit.Race).Contains(VoreType.Oral))
+        {
+            foreach (Prey preyUnit in target.PredatorComponent.stomach2)
             {
                 if (!preyUnit.Unit.IsDead)
                 {
