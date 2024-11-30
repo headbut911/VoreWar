@@ -1,23 +1,29 @@
 
 
-CODE:
+CREDITS:
+
 Original game by <b>darkevilme/WarpedRealities</b>
 Converting the game to Unity / C# and all the new features - <b>Aurilika</b>
 <i>None of us would be here if not for the amazing work by these two!
 Give your Cat/Dog units many pets and please feed your Auri!</i>
 
-Additional testing / bug fixing / coding by <b>Selicia</b>
-Additional testing / bug fixing / coding by <b>Cattitude</b>
-Additional testing / bug fixing / coding by <b>Scarabyte</b>
-Additional testing / bug fixing / coding by <b>CaneSugarCat</b>
-Additional testing / bug fixing / coding by <b>Sheights</b>
-Additional testing / bug fixing / coding by <b>Flame Valxsarion</b>
+Current Main Dev team:
+<b>Selicia</b>
+<b>Cattitude</b>
+<b>Scarabyte</b>
+<b>CaneSugarCat</b>
+<b>Wolfwar106</b>
+<b>Sheights</b>
+<b>Flame Valxsarion</b>
+
+
+CODE:
 Crux Race code by <b>ChemicalCrux</b>
 FeralLions setup, name pool and behavior by <b>Cattitude</b>.
 Also implemented farts and added the belly rub hand, traits, fixes and other additions to the code base.
 Animated bellies, death skull and tactical chat long improvements - <b>Baif</b>
-Asymmetrical Breast Vore by <b>GreenSlime</b>
 Animated Breasts by <b>Flame Valxsarion</b>, borrowing and repurposing code from the bellies
+Asymmetrical Breast Vore by <b>GreenSlime</b>
 Alt vore code mostly by <b>KuroTenko</b> (breast vore, unbirth and cockvore)
 Scat V2 by <b>dddddd2</b>
 Multi-race villages code by <b>Danthebur</b>
@@ -30,25 +36,23 @@ Random Traits system implemented by <b>Cattitude</b>
 Options/Content menus makeover by <b>Scarabyte</b>
 Day/Night cycle by <b>CaneSugarCat</b>
 Metamorphosis functionality by <b>KuroTenko</b>
-Lizards AV/UB implementation by <b>Flame Valxsarion</b>
+Lizards AV/UB vore pose implementation by <b>Flame Valxsarion</b>
 Special thanks to <b>Sheights</b> for fixing the errors that the above caused
 Condoms for CV disposal implemented by <b>Flame Valxsarion</b>
 Clean Disposal (Diapers) implemented by <b>Wolfwar106</b>
-Clean Disposal (Diapers) log messages by <b>Mocha</b>
-Almost all of the digestion sounds are from <b>chemicalcrux</b>
-Additional Sound effects obtained from <b>https://www.zapsplat.com</b>
 NearbyEnemies variable functionality by <b>CaneSugarCat</b>
+(NEW) Wide variety of digestion tweak options by <b>CaneSugarCat</b>
+(NEW) New spells framework by <b>CaneSugarCat</b>, you absolute wizard!
+(NEW) New spells by <b>Wolfwar106</b>, you similarly absolute wizard!
+(NEW) OV/UB/TV stealing and transfers by <b>Wolfwar106</b>
+(NEW) Surrender autoheal (Goddess' Mercy) functionality by <b>Wolfwar106</b>
 
-[Old Graphics (now removed, but they helped guide the early stages, and were inspirations for their replacements):
-[Base character sprites (Base model / cat /dog) by <b>Rayen</b> (I modified them to a higher resolution, and added the foxes wolves and bunnies.)
-Imps / Lamia / Clothing sprites / Fox tail / The high quality village sprites by <b>GreenSlime</b>
-Lizard sprites, Crypters sprites, base model fur patches by <b>failbird105</b>
-Slime sprites and the very large breast/cock sizes by <b>Turbotowns</b>
-Scylla sprites by <b>LLEPAICG</b>
-Harpysprites by <b>Kligor</b>
-Alternate breast sizes by <b>KuroTenko</b>
-Equine sprites by <b>Anonymouse_Equine</b>]
-Some of the remaining sprites are still by <b>darkevilme</b>, but most of the tactical and strategic ground tiles are adapted from cc0 files.]
+
+<b>SOUND EFFECTS</b>
+Almost all of the digestion sounds are from <b>chemicalcrux</b>
+(NEW) A few new vore SFX recorded by <b>Flame Valxsarion</b>. Yes, even <i>those</i> ones.
+(NEW) New spell SFX by <b>Wolfwar106</b>
+Additional Sound effects obtained from <b>https://www.zapsplat.com</b>
 
 
 <b>WRITERS:</b>
@@ -56,15 +60,18 @@ A significant amount of log messages by <b>Katar</b>
 A good percentage of the town names are by <b>Katar</b>
 A significant amount of log messages by <b>HarryS</b>
 Most of the scat tactical log text from <b>InfernoTheDragon</b> or <b>Cattitude</b>
-Additional scat log messages by <b>Flame Valxsarion</b>
 CV and Condom disposal messages by <b>Cartography</b>
+(NEW) Additional scat/AV/CV/Condom log messages by <b>Flame Valxsarion</b>
 Fart log messages by <b>Cattitude</b>
-Wide array of synonyms applied throughout the TacLog by <b>Flame Valxsarion</b>
+Clean Disposal (Diapers) log messages by <b>Mocha</b>
+Wide arrays of synonyms applied throughout the TacLog by <b>Flame Valxsarion</b>
 Deer Log messages by <b>@bane of Fun#6036</b>
+(NEW) Many new vore steal/transfer messages by <b>Wolfwar106</b>
 Orca logs messages by <b>InfernoTheDragon</b>
 Feit's log messages by <b>InfernoTheDragon</b>
 Abakhanskya's log messages by <b>Abakhanskya</b>
 Cierihaka's log messages by <b>Abakhanskya</b>
+(NEW) New events by <b>WolfWar106</b>
 
 
 <b>ARTISTS:</b>
@@ -179,6 +186,7 @@ Demi Bats
 Driders
 Earthworms
 Gazelle
+(NEW) Gnolls
 Gryphons
 Hippos
 Feit
@@ -189,9 +197,11 @@ Komodos
 Mantis
 Merfolk
 Monitors
+(NEW) Raiju
 Sharks
 Singularity
 Slugs
+(NEW) Taraluxia
 Terminids
 Terrorbirds
 Vargul
@@ -209,6 +219,19 @@ Goodra
 Diaper sprites
 Hamsters
 Plate Armor
+Red Wolf United Mercenaries
+
+
+[Old Graphics (now removed, but they helped guide the early stages, and were inspirations for their replacements):
+[Base character sprites (Base model / cat /dog) by <b>Rayen</b> (I modified them to a higher resolution, and added the foxes wolves and bunnies.)
+Imps / Lamia / Clothing sprites / Fox tail / The high quality village sprites by <b>GreenSlime</b>
+Lizard sprites, Crypters sprites, base model fur patches by <b>Dolly-decimal</b>
+Slime sprites and the very large breast/cock sizes by <b>Turbotowns</b>
+Scylla sprites by <b>LLEPAICG</b>
+Harpysprites by <b>Kligor</b>
+Alternate breast sizes by <b>KuroTenko</b>
+Equine sprites by <b>Anonymouse_Equine</b>]
+Some of the remaining sprites are still by <b>darkevilme</b>, but most of the tactical and strategic ground tiles are adapted from cc0 files.]
 
 
 <b>CHARACTER RIGHTS:</b>
@@ -223,6 +246,7 @@ Zera
 
 <b><u>GramzonTheDragon:</b></u>
 Feit
+(NEW)Taraluxia
 Zoey
 
 <b><u>Magentasaur:</b></u>

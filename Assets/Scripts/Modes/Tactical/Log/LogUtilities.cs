@@ -376,6 +376,8 @@ static class LogUtilities
                 return GetRandomStringFrom("strange-headed", "humbled viroid", "awkward-shaped");
             case Race.Mice:
                 return GetRandomStringFrom("squeaking", "timid", "cheese-nibbling","skittish");
+            case Race.Avians:
+                return GetRandomStringFrom("winged", "feathered", "squawking", "chirping");
             default:
                 return "tasty";
         }
@@ -454,6 +456,8 @@ static class LogUtilities
                 return GetRandomStringFrom("apex predator", "hungry dragon", "voracious dragon");
             case Race.FeralLions:
                 return GetRandomStringFrom("indulgent", "greedily snarling", "voracious", "capacious", "insatiable", "dominant", "pleased"); ////new 
+            case Race.Avians:
+                return GetRandomStringFrom("winged", "feathered", "swift", "taloned", "hawklike");
             default:
                 return "strong";
         }
@@ -590,6 +594,8 @@ static class LogUtilities
                 return GetRandomStringFrom("raptor", "dino", "draco-raptor", "draconic raptor", "raptoress", "she-raptor");
             case Race.Zoey:
                 return GetRandomStringFrom("tiger shark", "anthro shark", "demi-shark");
+            case Race.Avians:
+                return GetRandomStringFrom("bird", "fowl", "bird of prey", "avian", "hawk", "eagle");
             default:
                 return "creature";
         }
