@@ -77,6 +77,7 @@ class RwuMercenaries : BlankSlate
 
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
         unit.EyeType = State.Rand.Next(0, EyeTypes);
+        unit.BodySize = State.Rand.Next(2);
         unit.HairStyle = (0);
         unit.ClothingColor = (17);
         unit.ClothingType = State.Rand.Next(3);
