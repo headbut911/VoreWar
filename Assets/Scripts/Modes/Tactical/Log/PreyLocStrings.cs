@@ -5,17 +5,17 @@ public static class PreyLocStrings
     static readonly List<string> wombSyn = new List<string>() { "womb", "lower belly", "pussy", "slit", "muff", "cunt", "cooch", "snatch", "vagina", "twat", "love tunnel", "honeypot", "minge", "love box", "sinful flower", "vadge", "vagine", "yoni" };
     static readonly List<string> breastSyn = new List<string>() { "breasts", "bosom", "bust", "mammaries", "boobs", "cleavage", "tits", "titties", "boobies", "jugs", "knockers" };
     static readonly List<string> breastSynPlural = new List<string>() { "breasts", "mammaries", "boobs", "tits", "boobies", "titties", "jugs", "knockers" };
-    static readonly List<string> ballsSyn = new List<string>() { "balls", "scrotum", "testicles", "nuts", "orbs", "nutsack", "jizzmakers", "daddybags" };
+    static readonly List<string> ballsSyn = new List<string>() { "balls", "balls","balls", "scrotum", "testicles", "testicles", "nuts", "nuts", "nuts", "orbs", "orbs", "nutsack", "jizzmakers", "daddybags" };
     static readonly List<string> ballsSynSing = new List<string>() { "scrotum", "nutsack", "sack", "ballsack" };
-    static readonly List<string> ballsSynPlural = new List<string>() { "balls", "testicles", "nuts", "orbs", "testis", "jizzmakers", "daddybags" };
-    static readonly List<string> stomachSyn = new List<string>() { "gut", "gut", "stomach", "stomach", "belly", "belly", "tummy", "tummy", "tum", "middle", "midsection", "chamber", "abdomen" };
+    static readonly List<string> ballsSynPlural = new List<string>() { "balls", "balls", "testicles", "nuts", "nuts", "orbs", "testis", "jizzmakers", "daddybags" };
+    static readonly List<string> stomachSyn = new List<string>() { "gut", "gut", "stomach", "stomach", "belly", "belly", "tummy", "tummy", "tum", "middle", "midsection", "stomach chamber", "abdomen" };
     static readonly List<string> analSyn = new List<string>() { "butt", "ass", "bottom", "backside", "bum", "rear", "rump", "booty", "tush", "moon", "derriere", "cheeks", "hindquarters" };
     static readonly List<string> cockSyn = new List<string>() { "penis", "tool", "manhood", "rod", "wang", "dick", "cock", "phallus", "member", "shaft", "pecker", "schlong", "erection" };
 
     static readonly List<string> wombFluid = new List<string>() { "cum", "ejaculate", "honey", "fem-fluids", "fem-cum", "pussy juice", "girl-cum", "girl-fluids", "hot lube" };
     static readonly List<string> breastFluid = new List<string>() { "milk", "delicious milk", "leaking milk", "lactation", "nourishing fluid" };
     static readonly List<string> ballsFluid = new List<string>() { "cum", "sperm", "semen", "jizz", "spunk", "seed", "nut", "spooge", "batter", "load" };
-    static readonly List<string> stomachFluid = new List<string>() { "nutritious paste", "nutritious soup", "mush", "nutritious mush", "digestive juices", "chyme", "bubbling mush", "hot slurry", "meaty chunks", "stew", "melting flesh and bones" };
+    static readonly List<string> stomachFluid = new List<string>() { "nutritious paste", "nutritious soup", "mush", "nutritious mush", "chyme", "bubbling mush", "hot slurry", "meaty chunks", "stew", "melting flesh and bones" };
 
 
     static readonly List<string> wombVerb = new List<string>() { "release", "birth", "ejaculate" };
@@ -32,10 +32,12 @@ public static class PreyLocStrings
     static readonly List<string> oralVoreVerbPresentContinuousTense = new List<string>() { "eating", "devouring", "swallowing", "gobbling", "gulping", "wolfing", "horking", "downing", "chomping", "slurping", "munching" };
     static readonly List<string> oralVoreVerbPastTense = new List<string>() { "eaten", "ate", "devoured", "swallowed", "gobbled", "gulped", "downed", "chomped", "slurped", "munched" };
 
-    static readonly List<string> DigestVerb = new List<string> () { "digest", "churn", "gurgle", "melt", "mulch", "dissolve", "liquify" };
-    static readonly List<string> DigestsVerb = new List<string> () { "digests", "churns", "gurgles", "melts", "mulches", "dissolves", "liquifies" };
-    static readonly List<string> DigestedVerb = new List<string> () { "digested", "churned", "gurgled", "melted", "mulched", "dissolved", "liquified" };
-    static readonly List<string> DigestingVerb = new List<string> () { "digesting", "churning", "gurgling", "melting", "mulching", "dissolving", "liquifying" };
+    static readonly List<string> DigestVerb = new List<string> () { "digest", "churn", "gurgle", "slosh", "melt", "mulch", "dissolve", "liquify" };
+    static readonly List<string> DigestsVerb = new List<string> () { "digests", "churns", "gurgles", "sloshes", "melts", "mulches", "dissolves", "liquifies" };
+    static readonly List<string> DigestedVerb = new List<string> () { "digested", "churned", "gurgled", "sloshed", "melted", "mulched", "dissolved", "liquified" };
+    static readonly List<string> DigestingVerb = new List<string> () { "digesting", "churning", "gurgling", "sloshing", "melting", "mulching", "dissolving", "liquifying" };
+
+    static readonly List<string> FartSFX = new List<string> () { "~PFRRRRRT~","~PFFrrt~","~Prrt~","~Frrt~","~FFttt~","~Fffbptpt~","~Pbbt~","~Pbbrrt~","~Thppbbt~","~Brrrnt!~","~Brrt!!" };
 
     static readonly List<string> BellyStuffedAdj = new List<string> () { "sloshing", "sloshy", "gurgling", "gurgly", "churning", "groaning", "growling", "rumbling", "rumbly", "hungry", "sweltering", "gluttonous", "caustic", "quaking", "quivering", "quavering", "shifting", "trembling", "wobbling", "wiggling", "wriggling", "squirming", "stuffed", "full", "bloated", "bulging", "thrashing", "bubbling", "pulsating", "curvaceous", "prey-filled", "prey-stuffed", "prey-packed", "meat-filled", "meat-stuffed", "meat-packed", "swollen", "lumpy", "hefty", "overworked", "overpacked", "overstuffed", "encumbered" };
     static readonly List<string> AcidicDeadly = new List<string> () { "digestive", "groaning", "gurgling", "churning", "sizzling", "melty", "gastric", "acidic", "caustic", "corrosive", "erosive", "abrasive", "dissolving", "deadly", "predatory", "flesh-melting", "life-ending", "fatal", "powerful" };
@@ -211,6 +213,9 @@ public static class PreyLocStrings
     { return genRandom(DigestedVerb); }
     public static string DigestingVerbSyn()
     { return genRandom(DigestingVerb); }
+
+    public static string RandomFartSFX()
+    { return genRandom(FartSFX); }
 
     public static string BellyStuffedAdjSyn()
     { return genRandom(BellyStuffedAdj); }
