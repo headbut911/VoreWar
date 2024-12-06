@@ -30,7 +30,6 @@ public class BuildMenu : MonoBehaviour
         State.GameManager.StrategyMode.Paused = true;
         gameObject.SetActive(true);
         var enabledBuildings = Config.World.GetBuildingInfo();
-        int counter = 0;
         CurrentGold.text = empire.Gold.ToString();
         CurrentWood.text = empire.constructionResources.Wood.ToString();
         CurrentStone.text = empire.constructionResources.Stone.ToString();
@@ -54,12 +53,15 @@ public class BuildMenu : MonoBehaviour
             currentPrefab.Ores.text = building.ResourceToBuild.Ores.ToString();
             currentPrefab.ManaStones.text = building.ResourceToBuild.ManaStones.ToString();
             currentPrefab.linkedBuilding = DetermineType(building);
+            if (!empire.constructionResources.CanBuildWithCurrentResources(building.ResourceToBuild) || building.GoldCost > empire.Gold)
+            {
+                currentPrefab.Construct.interactable = false;
+            }
             currentPrefab.Construct.onClick.AddListener(() =>
             {
                 Close();
                 State.GameManager.StrategyMode.InitiateBuildMode(currentPrefab.linkedBuilding);
             });
-            counter++;
         }
     }
 
@@ -83,5 +85,6 @@ public class BuildMenu : MonoBehaviour
         ClearFolder();
         gameObject.SetActive(false);
         State.GameManager.StrategyMode.Paused = false;
+        State.GameManager.StrategyMode.BuildMode = false;
     }
 }

@@ -76,6 +76,26 @@ public class ConstructionResources
         }
     }
 
+    public bool CanBuildWithCurrentResources(ConstructionResources required)
+    {
+        if (!HasNeededResource(ConstructionresourceType.wood, required.Wood)) return false;
+        if (!HasNeededResource(ConstructionresourceType.stone, required.Stone)) return false;
+        if (!HasNeededResource(ConstructionresourceType.ores, required.Ores)) return false;
+        if (!HasNeededResource(ConstructionresourceType.naturalmaterials, required.NaturalMaterials)) return false;
+        if (!HasNeededResource(ConstructionresourceType.prefabs, required.Prefabs)) return false;
+        if (!HasNeededResource(ConstructionresourceType.manastones, required.ManaStones)) return false;
+        return true;
+    }
+    public void SpendProvidedResources(ConstructionResources required)
+    {
+        Wood -= required.Wood;
+        Stone -= required.Stone;
+        Ores -= required.Ores;
+        NaturalMaterials -= required.NaturalMaterials;
+        Prefabs -= required.Prefabs;
+        ManaStones -= required.ManaStones;
+    }
+
     public bool HasNeededResource(ConstructionresourceType type, int amount)
     {
         switch (type)

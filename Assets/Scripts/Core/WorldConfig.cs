@@ -352,7 +352,7 @@ public class WorldConfig
     {
         BuildingInfo = new List<ConstructibleBuilding>
         { 
-            new WorkCamp(null, 3,2),
+            new WorkCamp(null, 2),
         };
     }
 

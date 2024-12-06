@@ -117,7 +117,7 @@ class MapVillagePopulator
         for (int i = 0; i < map.constructibles.Length; i++)
         {
             if (map.constructibles[i].Type == ConstructibleType.WorkCamp)
-                newConstructibles.Add(new WorkCamp(map.constructibles[i].Position, 4, 2));
+                newConstructibles.Add(new WorkCamp(map.constructibles[i].Position, 4));
             /*
             if (map.constructibles[i].Type == ConstructibleType.LumberSite)
                 newConstructibles.Add(new LumberSite(map.constructibles[i].Position));

@@ -1,8 +1,9 @@
 ﻿using OdinSerializer;
+using System.Collections.Generic;
 using System.Linq;
 
 
-abstract class ConstructibleBuilding
+public abstract class ConstructibleBuilding
 {
     [OdinSerialize]
     internal Empire Owner;
@@ -11,7 +12,7 @@ abstract class ConstructibleBuilding
     internal Vec2i Position;
 
     [OdinSerialize]
-    internal int UpgradeStage; 
+    internal List<BuildingUpgrade> Upgrades; 
 
     [OdinSerialize]
     internal int GoldCost; 
@@ -24,10 +25,10 @@ abstract class ConstructibleBuilding
     internal int turnsToUpgrade;
     [OdinSerialize]
     internal int baseBuildTurns;
-    [OdinSerialize]
-    internal int baseUpgradeTurns;
+    public int upgradeStage => Upgrades.Where(u=> u.built).Count();
     public bool constructing => turnsToCompletion > 0;
     public bool upgrading => turnsToUpgrade > 0;
+    public bool active => !constructing && !upgrading;
 
     [OdinSerialize]
     internal bool enabled = true;
@@ -37,30 +38,26 @@ abstract class ConstructibleBuilding
 
     [OdinSerialize]
     internal string Name;
-    protected ConstructibleBuilding(Vec2i location, int buildtime, int upgradetime)
+    protected ConstructibleBuilding(Vec2i location, int buildtime)
     {
         Position = location;
-        UpgradeStage = 0;
         GoldCost = 0;
         ResourceToBuild = new ConstructionResources();
         baseBuildTurns = buildtime;
-        baseUpgradeTurns = upgradetime;
+        Upgrades = new List<BuildingUpgrade>();
     }
 
     internal abstract void RunBuildingFunction();
     internal void ConstructBuilding() 
     {
         turnsToCompletion = baseBuildTurns;
+        Owner.constructionResources.SpendProvidedResources(ResourceToBuild);
+        Owner.SpendGold(GoldCost);
         var contstruct = State.World.Constructibles.ToList();
         contstruct.Add(this);
         State.World.Constructibles = contstruct.ToArray();
         State.GameManager.StrategyMode.RedrawVillages();
 
-    }
-
-    internal void UpgradeBuilding(int upgradeTurns)
-    {
-        turnsToUpgrade = upgradeTurns;
     }
 
     public void RunBuildingTurn()

@@ -136,6 +136,7 @@ public class StrategyMode : SceneBase
     public TurnReportPanel ReportUI;
     public TrainPanel TrainUI;
     public BuildMenu BuildMenu;
+    public UpgradeMenu UpgradeMenu;
     public GameObject EnemyTurnText;
     public GameObject PausedText;
 
@@ -214,6 +215,7 @@ public class StrategyMode : SceneBase
                 OnlyAIPlayers = false;
             }
             emp.Regenerate();
+            emp.constructionResources.SetResources(10, 10, 10, 10, 10, 10);
         }
         State.World.PopulateMonsterTurnOrders();
         State.World.RefreshTurnOrder();
@@ -1021,6 +1023,7 @@ public class StrategyMode : SceneBase
             int spr = 0;
             if (constructable is WorkCamp)
                 spr = 0;
+            spr = Math.Min(constructable.upgradeStage, 3) * 2 + spr;           
             GameObject vill = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
             vill.GetComponent<SpriteRenderer>().sprite = Buildings[spr];
             vill.GetComponent<SpriteRenderer>().sortingOrder = 1;
@@ -1029,7 +1032,7 @@ public class StrategyMode : SceneBase
             villColored.GetComponent<SpriteRenderer>().color = constructable.Owner?.UnityColor ?? Color.clear;
             currentBuildingTiles.Add(vill);
             currentBuildingTiles.Add(villColored);
-            if (constructable.constructing || constructable.upgrading)
+            if (!constructable.active)
             {
                 GameObject hammer = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
                 hammer.GetComponent<SpriteRenderer>().sprite = Buildings[97];
@@ -2221,6 +2224,18 @@ public class StrategyMode : SceneBase
                 }
             }
 
+            for (int i = 0; i < State.World.Constructibles.Length; i++)
+            {
+                if (State.World.Constructibles[i].Position.GetDistance(clickLocation) == 0)
+                {
+                    if (State.World.Constructibles[i].Owner == ActingEmpire && State.World.Constructibles[i].active)
+                    {
+                        UpgradeMenu.Open(State.World.Constructibles[i]);
+                        return;
+                    }
+                }
+            }
+
             if (Config.CheatViewHostileArmies)
             {
                 if (ProcessClickWithoutEmpire(x, y))
@@ -2467,7 +2482,7 @@ public class StrategyMode : SceneBase
                         switch (SelectedConstruction)
                         {
                             case ConstructibleType.WorkCamp:
-                                newBuilding = new WorkCamp(new Vec2i(x,y), 3, 2);
+                                newBuilding = new WorkCamp(new Vec2i(x,y), 3);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
@@ -2475,6 +2490,8 @@ public class StrategyMode : SceneBase
                     }
                     if (Input.GetMouseButtonDown(1))
                     {
+                        TilemapLayers[14].ClearAllTiles();
+                        TilemapLayers[13].ClearAllTiles();
                         BuildMode = false;
                     }
                 }
