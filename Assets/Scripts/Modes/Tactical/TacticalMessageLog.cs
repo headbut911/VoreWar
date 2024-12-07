@@ -262,16 +262,33 @@ public class TacticalMessageLog
             case MessageLogEvent.VoreStealFail:
             //Additional fail lines by Cartography
                 if (action.oldLocation == PreyLocation.breasts || action.oldLocation == PreyLocation.leftBreast || action.oldLocation == PreyLocation.rightBreast)
-                switch (State.Rand.Next(3))
                 {
-                    case 0:
-                        return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can suck <b>{action.Prey.Name}</b> out of {GPPHis(action.Target)} breasts.";
-                    case 1:
-                        return $"<b>{action.Unit.Name}</b> tries to suck on <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> nipple to extract <b>{action.Prey.Name}</b> from within, but the {ApostrophizeWithOrWithoutS((GetRaceDescSingl(action.Prey)))} own struggles made getting the grip needed impossible.";
-                    case 2:
-                        return $"<b>{action.Target.Name}</b> struggles to fight off <b>{action.Unit.Name}</b> when {GPPHe(action.Unit)} start{SIfSingular(action.Unit)} sucking on {GPPHis(action.Target)} {PreyLocStrings.ToBreastSynPlural()}, but in the end <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> determination to keep <b>{action.Prey.Name}</b> for {GPPHimself(action.Unit)} triumphs over the {ApostrophizeWithOrWithoutS((GetRaceDescSingl(action.Unit)))} attempts to suckle {GPPHim(action.Prey)} out.";
-                    default:
-                        return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can suck <b>{action.Prey.Name}</b> out of {GPPHis(action.Target)} breasts.";
+                    if (action.Target.Race == Race.Kangaroos)
+                        switch (State.Rand.Next(4))
+                        {
+                            case 0:
+                                return $"<b>{action.Unit.Name}</b> attempts to pull open <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> pouch to get at <b>{action.Prey.Name}</b> only to fail as the pouch remains shut {GetRandomStringFrom("tight.", "suprisingly tight.", "tight!", "suprisingly tight!")}";
+                            case 1:
+                                return $"<b>{action.Unit.Name}</b> forces {GPPHis(action.Unit)} way into <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> already filled pouch, but before {GetRandomStringFrom($"{GPPHe(action.Unit)}", $"the {GetRaceDescSingl(action.Unit)}")} can cause any trouble, <b>{action.Target.Name}</b> {GetRandomStringFrom("pulls", "yanks")} <b>{action.Unit.Name}</b> out and {GetRandomStringFrom("tosses", "throws")} {GPPHim(action.Unit)} aside.";
+                            case 2:
+                                return $"Running up to the {GetRaceDescSingl(action.Target)}, <b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face into <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> pouch! After a few moments of struggle, <b>{action.Target.Name}</b> manages to push away the intruder.";
+                            case 3:
+                                return $"Running up to the {GetRaceDescSingl(action.Target)}, <b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face into <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> pouch! After a few moments of struggle, <b>{action.Target.Name}</b> manages to push away the intruder. \"Don't you know it's rude to look in a {ApostrophizeWithOrWithoutS(GetRaceDescSingl(action.Target))} pouch without asking?\" {GPPHe(action.Target)} call{SIfSingular(action.Target)} out, {GetRandomStringFrom("annoyed", "teasingly", "infuriated")}.";
+                            default:
+                                return $"<b>{action.Unit.Name}</b> attempts to pull open <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> pouch to get at <b>{action.Prey.Name}</b> only to fail as the pouch remains shut {GetRandomStringFrom("tight.", "suprisingly tight.", "tight!", "suprisingly tight!")}";
+                        }
+                    else
+                        switch (State.Rand.Next(3))
+                        {
+                            case 0:
+                                return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can suck <b>{action.Prey.Name}</b> out of {GPPHis(action.Target)} breasts.";
+                            case 1:
+                                return $"<b>{action.Unit.Name}</b> tries to suck on <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> nipple to extract <b>{action.Prey.Name}</b> from within, but the {ApostrophizeWithOrWithoutS((GetRaceDescSingl(action.Prey)))} own struggles made getting the grip needed impossible.";
+                            case 2:
+                                return $"<b>{action.Target.Name}</b> struggles to fight off <b>{action.Unit.Name}</b> when {GPPHe(action.Unit)} start{SIfSingular(action.Unit)} sucking on {GPPHis(action.Target)} {PreyLocStrings.ToBreastSynPlural()}, but in the end <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> determination to keep <b>{action.Prey.Name}</b> for {GPPHimself(action.Unit)} triumphs over the {ApostrophizeWithOrWithoutS((GetRaceDescSingl(action.Unit)))} attempts to suckle {GPPHim(action.Prey)} out.";
+                            default:
+                                return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can suck <b>{action.Prey.Name}</b> out of {GPPHis(action.Target)} breasts.";
+                        }
                 }
                 else if (action.oldLocation == PreyLocation.stomach || action.oldLocation == PreyLocation.stomach2)
                 switch (State.Rand.Next(4))
@@ -322,34 +339,49 @@ public class TacticalMessageLog
                         return $"<b>{action.Target.Name}</b> shoves <b>{action.Unit.Name}</b> off of {GPPHim(action.Target)} before {GPPHe(action.Unit)} can {GetRandomStringFrom("free", "liberate", "spring")} <b>{action.Prey.Name}</b> from {GPPHis(action.Target)} vagina.";
                 }
                 else if (action.oldLocation == PreyLocation.tail)
-                switch (State.Rand.Next(4))
                 {
-                    case 0:
-                        if (action.Target.Race == Race.Youko && ActorHumanoid(action.Unit))
-                            return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} arm between the many fluffy tails of <b>{action.Target.Name}</b>, and even manages to get a grip on <b>{action.Prey.Name}</b>, but no matter how hard {GPPHe(action.Unit)} pull{SIfSingular(action.Unit)}, <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tails hold firm.";
-                        else if (action.Target.Race == Race.Youko)
-                            return $"<b>{action.Unit.Name}</b> {GetRandomStringFrom("punches", "kicks")} <b>{action.Target.Name}</b> hard, right where {GPPHis(action.Target)} tails all attach, causing them all to shift around, briefly exposing <b>{action.Prey.Name}</b> to the outside world once more, before resealing.";
-                        else
-                            return $"<b>{action.Unit.Name}</b> grabs <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tail and squeezes it like a tube of toothpaste, causing <b>{ApostrophizeWithOrWithoutS(action.Prey.Name)}</b> head to briefly poke out of the {ApostrophizeWithOrWithoutS((GetRaceDescSingl(action.Target)))} tailmaw, letting {GPPHim(action.Prey)} breath for a moment before <b>{action.Target.Name}</b> shakes <b>{action.Unit.Name}</b> off and pulls <b>{action.Prey.Name}</b> back inside.";
-                    case 1:
-                        if (action.Target.Race == Race.Youko)
-                            return $"<b>{action.Unit.Name}</b> {GetRandomStringFrom("punches", "kicks")} <b>{action.Target.Name}</b> hard, right where {GPPHis(action.Target)} tails all attach, causing them all to shift around, briefly exposing <b>{action.Prey.Name}</b> to the outside world once more, before resealing.";
-                        else
-                            return $"<b>{action.Unit.Name}</b> slowly wraps {GPPHis(action.Unit)} mouth around <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> {GetRandomStringFrom("engorged", "swollen", "prey-filled")} tail, before a poorly(or well timed) struggle from both <b>{action.Prey.Name}</b> and <b>{action.Target.Name}</b> forces the {GetRaceDescSingl(action.Unit)} off of {GPPHis(action.Target)} tail.";
-                    case 2:
-                        if (action.Target.Race == Race.Youko)
-                            return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face between the many fluffy tails of <b>{action.Target.Name}</b>, but after a short few moments, has to pull out, the smothering tails making it hard to see or breathe.";
-                        else
-                            return $"<b>{action.Unit.Name}</b> forces open <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tailmaw, and sticks {GPPHis(action.Unit)} head in. After desperatly searching for a few moments, <b>{action.Unit.Name}</b> can feel contractions around {GPPHim(action.Unit)}, letting {GPPHim(action.Unit)} know it's time to get out of there.";
-                    case 3:
-                        if (action.Target.Race == Race.Youko && (State.Rand.Next(20)) == 1 && ActorHumanoid(action.Prey)) //5% chance of trickery!
-                            return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face between the many fluffy tails of <b>{action.Target.Name}</b>. Looking around, <b>{action.Unit.Name}</b> is amazed to see what looks to be a whole forest of Youko tails and fur, with <b>{action.Prey.Name}</b> casually sitting in the middle. With a wave, <b>{action.Prey.Name}</b> says \"<b>{action.Unit.Name}</b> yeh! Uoy era woh? Em nioj ot emoc? Ereh ni ecin etiuq s'ti.\" Slowly, <b>{action.Unit.Name}</b> pulls {GPPHis(action.Unit)} face out of <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> {GetRandomStringFrom("tails.", "tails, shuddering.", "tails, traumatized.", "tails, silently vowing to never speak of what they saw.")}";
-                        else if (action.Target.Race == Race.Youko)
-                            return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face between the many fluffy tails of <b>{action.Target.Name}</b>, but after a short few moments, has to pull out, the smothering tails making it hard to see or breathe.";
-                        else
-                            return $"<b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tail shakes <b>{action.Unit.Name}</b> off before {GPPHe(action.Unit)} can {GetRandomStringFrom("free", "liberate")} <b>{action.Prey.Name}</b>.";
-                    default:
-                        return $"<b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tail shakes <b>{action.Unit.Name}</b> off before {GPPHe(action.Unit)} can {GetRandomStringFrom("free", "liberate")} <b>{action.Prey.Name}</b>.";
+                    if (action.Target.Race == Race.Terrorbird)
+                        switch (State.Rand.Next(3))
+                        {
+                            case 0:
+                                return $"<b>{action.Unit.Name}</b> {GetRandomStringFrom("headbutts", "bashes")} <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> crop attempting to release <b>{action.Prey.Name}</b>. After failing <b>{action.Target.Name}</b> simply stares {GetRandomStringFrom("soul-piercingly", "fearlessly", "daggers", "intimidatingly", "blanky")} with {GPPHis(action.Target)} eyes at <b>{action.Unit.Name}</b>.";
+                            case 1:
+                                return $"<b>{action.Unit.Name}</b> tries to bait <b>{action.Target.Name}</b> into trying to {GetRandomStringFrom("swallow", "eat")} {GPPHim(action.Unit)}, hoping to take <b>{action.Prey.Name}</b> for {GPPHimself(action.Unit)}, but the {GetRaceDescSingl(action.Target)} doesn't fall for it.";
+                            case 2:
+                                return $"After <b>{action.Unit.Name}</b> spends a few moments of pushing up against <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> bulging crop, it becomes apparent that the only direction <b>{action.Prey.Name}</b> is likely to go from here is down.";
+                            default:
+                                return $"<b>{action.Unit.Name}</b> {GetRandomStringFrom("headbutts", "bashes")} <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> crop attempting to release <b>{action.Prey.Name}</b>. After failing <b>{action.Target.Name}</b> simply stares {GetRandomStringFrom("soul-piercingly", "fearlessly", "daggers", "intimidatingly", "blanky")} with {GPPHis(action.Target)} eyes at <b>{action.Unit.Name}</b>.";
+                        }
+                    else
+                        switch (State.Rand.Next(4))
+                        {
+                            case 0:
+                                if (action.Target.Race == Race.Youko && ActorHumanoid(action.Unit))
+                                    return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} arm between the many fluffy tails of <b>{action.Target.Name}</b>, and even manages to get a grip on <b>{action.Prey.Name}</b>, but no matter how hard {GPPHe(action.Unit)} pull{SIfSingular(action.Unit)}, <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tails hold firm.";
+                                else if (action.Target.Race == Race.Youko)
+                                    return $"<b>{action.Unit.Name}</b> {GetRandomStringFrom("punches", "kicks")} <b>{action.Target.Name}</b> hard, right where {GPPHis(action.Target)} tails all attach, causing them all to shift around, briefly exposing <b>{action.Prey.Name}</b> to the outside world once more, before resealing.";
+                                else
+                                    return $"<b>{action.Unit.Name}</b> grabs <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tail and squeezes it like a tube of toothpaste, causing <b>{ApostrophizeWithOrWithoutS(action.Prey.Name)}</b> head to briefly poke out of the {ApostrophizeWithOrWithoutS((GetRaceDescSingl(action.Target)))} tailmaw, letting {GPPHim(action.Prey)} breath for a moment before <b>{action.Target.Name}</b> shakes <b>{action.Unit.Name}</b> off and pulls <b>{action.Prey.Name}</b> back inside.";
+                            case 1:
+                                if (action.Target.Race == Race.Youko)
+                                    return $"<b>{action.Unit.Name}</b> {GetRandomStringFrom("punches", "kicks")} <b>{action.Target.Name}</b> hard, right where {GPPHis(action.Target)} tails all attach, causing them all to shift around, briefly exposing <b>{action.Prey.Name}</b> to the outside world once more, before resealing.";
+                                else
+                                    return $"<b>{action.Unit.Name}</b> slowly wraps {GPPHis(action.Unit)} mouth around <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> {GetRandomStringFrom("engorged", "swollen", "prey-filled")} tail, before a poorly(or well timed) struggle from both <b>{action.Prey.Name}</b> and <b>{action.Target.Name}</b> forces the {GetRaceDescSingl(action.Unit)} off of {GPPHis(action.Target)} tail.";
+                            case 2:
+                                if (action.Target.Race == Race.Youko)
+                                    return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face between the many fluffy tails of <b>{action.Target.Name}</b>, but after a short few moments, has to pull out, the smothering tails making it hard to see or breathe.";
+                                else
+                                    return $"<b>{action.Unit.Name}</b> forces open <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tailmaw, and sticks {GPPHis(action.Unit)} head in. After desperatly searching for a few moments, <b>{action.Unit.Name}</b> can feel contractions around {GPPHim(action.Unit)}, letting {GPPHim(action.Unit)} know it's time to get out of there.";
+                            case 3:
+                                if (action.Target.Race == Race.Youko && (State.Rand.Next(20)) == 1 && ActorHumanoid(action.Prey)) //5% chance of trickery!
+                                    return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face between the many fluffy tails of <b>{action.Target.Name}</b>. Looking around, <b>{action.Unit.Name}</b> is amazed to see what looks to be a whole forest of Youko tails and fur, with <b>{action.Prey.Name}</b> casually sitting in the middle. With a wave, <b>{action.Prey.Name}</b> says \"<b>{action.Unit.Name}</b> yeh! Uoy era woh? Em nioj ot emoc? Ereh ni ecin etiuq s'ti.\" Slowly, <b>{action.Unit.Name}</b> pulls {GPPHis(action.Unit)} face out of <b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> {GetRandomStringFrom("tails.", "tails, shuddering.", "tails, traumatized.", "tails, silently vowing to never speak of what they saw.")}";
+                                else if (action.Target.Race == Race.Youko)
+                                    return $"<b>{action.Unit.Name}</b> sticks {GPPHis(action.Unit)} face between the many fluffy tails of <b>{action.Target.Name}</b>, but after a short few moments, has to pull out, the smothering tails making it hard to see or breathe.";
+                                else
+                                    return $"<b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tail shakes <b>{action.Unit.Name}</b> off before {GPPHe(action.Unit)} can {GetRandomStringFrom("free", "liberate")} <b>{action.Prey.Name}</b>.";
+                            default:
+                                return $"<b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> tail shakes <b>{action.Unit.Name}</b> off before {GPPHe(action.Unit)} can {GetRandomStringFrom("free", "liberate")} <b>{action.Prey.Name}</b>.";
+                        }
                 }
                 else
                 switch (State.Rand.Next(3))
@@ -799,9 +831,18 @@ public class TacticalMessageLog
         {
             if (action.preyLocation == PreyLocation.breasts)
             {
-                possibleLines.Add($"<b>{action.Unit.Name}</b> squeezes {GPPHis(action.Unit)} {GetRandomStringFrom("squirming", "wriggling")} boobs, pushing out large amounts of milk, and one very wet <b>{action.Target.Name}</b>.");
-                possibleLines.Add($"After {GPPHis(action.Unit)} full breasts nearly tips {GPPHim(action.Unit)} over, <b>{action.Unit.Name}</b> decides to release <b>{action.Target.Name}</b>, in the process regaining {GPPHis(action.Unit)} balance.");
-                possibleLines.Add($"<b>{action.Target.Name}</b> was released from <b>{action.Unit.Name}</b>'s breasts.");
+                if (action.Unit.Race == Race.Kangaroos)
+                {
+                    possibleLines.Add($"<b>{action.Unit.Name}</b> pushs upwards on the bottom of {GPPHis(action.Unit)} pouch, forcing <b>{action.Target.Name}</b> out and onto the ground.");
+                    possibleLines.Add($"After nearly falling over, <b>{action.Unit.Name}</b> unceremoniously dumps <b>{action.Target.Name}</b> out of {GPPHis(action.Unit)} pouch.");
+                    possibleLines.Add($"<b>{action.Unit.Name}</b> feels a slight twitching in the muscles of {GPPHis(action.Unit)} pouch's entrance, and quickly pulls <b>{action.Target.Name}</b> out before {GPPHis(action.Unit)} pouch sealed for good.");
+                }
+                else
+                {
+                    possibleLines.Add($"<b>{action.Unit.Name}</b> squeezes {GPPHis(action.Unit)} {GetRandomStringFrom("squirming", "wriggling")} boobs, pushing out large amounts of milk, and one very wet <b>{action.Target.Name}</b>.");
+                    possibleLines.Add($"After {GPPHis(action.Unit)} full breasts nearly tips {GPPHim(action.Unit)} over, <b>{action.Unit.Name}</b> decides to release <b>{action.Target.Name}</b>, in the process regaining {GPPHis(action.Unit)} balance.");
+                    possibleLines.Add($"<b>{action.Target.Name}</b> was released from <b>{action.Unit.Name}</b>'s breasts.");
+                }
             }
             else
             {
