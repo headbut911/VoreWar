@@ -4284,7 +4284,7 @@ static class StoredLogTexts
         };
         RebirthMessages = new List<EventString>()
         {
-            //RebirthType Key: 1 = NromalRebirth|2 = NormalConvert|3 = DigestRebirth|4 = DigestConvert
+            //RebirthType Key: 1 = NormalRebirth|2 = NormalConvert|3 = DigestRebirth|4 = DigestConvert
             //Huge credit to Cartography for all of the new logs!
             //Generic Rebirth and Conversion
             new EventString((i) => $"<b>{i.Target.Name}</b> is expelled from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {PreyLocStrings.ToSyn(i.preyLocation)}, with a changed outlook on life.",priority: 10, conditional: s => (s.RebirthType == 2 || s.RebirthType == 4)),

@@ -1242,7 +1242,7 @@ public class TacticalMessageLog
             Unit = predator,
             Target = prey,
             preyLocation = location,
-            RebirthType = rebirthType,//1 = NromalRebirth|2 = NormalConvert|3 = DigestRebirth|4 = DigestConvert
+            RebirthType = rebirthType,//1 = NormalRebirth|2 = NormalConvert|3 = DigestRebirth|4 = DigestConvert
             Odds = odds
         });
         UpdateListing();
