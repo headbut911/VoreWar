@@ -604,7 +604,7 @@ public class InfoPanel
             AGIVal.text = unit.GetStatInfo(Stat.Agility);
             MNDVal.text = unit.GetStatInfo(Stat.Mind);
             WLLVal.text = unit.GetStatInfo(Stat.Will);
-            if (CanVore)
+            if (CanVore && !unit.HasTrait(Traits.Vehicle))
             {
                 UnitInfoPanel.StatBlock.transform.GetChild(3).gameObject.SetActive(true);
                 VORVal.text = unit.GetStatInfo(Stat.Voracity);

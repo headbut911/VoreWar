@@ -28,6 +28,8 @@ public class AssimilateList
         {
             if (trait == Traits.Prey)
                 continue;
+            if (trait == Traits.Vehicle)
+                continue;
             CanAssimilate[trait] = PlayerPrefs.GetInt($"A{trait}", 1) == 1;
         }
     }

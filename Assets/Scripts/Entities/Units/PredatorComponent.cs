@@ -457,7 +457,7 @@ public class PredatorComponent
     {
         get
         {
-            if (unit.HasTrait(Traits.Endosoma))
+            if (unit.HasTrait(Traits.Endosoma) || unit.HasTrait(Traits.Vehicle))
                 return prey.Where(s => actor.Unit.GetApparentSide(s.Unit) != s.Unit.FixedSide || s.Unit.IsDead).Count();
             return prey.Count;
         }
@@ -2743,12 +2743,20 @@ public class PredatorComponent
 
     void Devour(Actor_Unit target, float v, Prey preyref, float delay)
     {
+        if (unit.HasTrait(Traits.Vehicle))
+        {
+            AddToStomach(preyref, v);
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> gets into <b>{actor.Unit.Name}</b>.");
+        }
+        else
+        {
         if (delay > 0)
             MiscUtilities.DelayedInvoke(() => State.GameManager.SoundManager.PlaySwallow(PreyLocation.stomach, actor), delay);
         else
             State.GameManager.SoundManager.PlaySwallow(PreyLocation.stomach, actor);
         TacticalUtilities.Log.RegisterVore(unit, target.Unit, v);
         AddToStomach(preyref, v);
+        }
     }
 
     void Unbirth(Actor_Unit target, float v, Prey preyref, float delay)

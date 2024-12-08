@@ -500,6 +500,8 @@ public enum Traits
     IceVulnerable = 302,
     /// <summary>Unit takes extra damage from all sources of electricity. (150%)</summary>
     ElecVulnerable = 303,
+    /// <summary>Unit is a vehicle and cannot move until a unit is in it. Has no vore stats.</summary>
+    Vehicle = 304,
 
 
     // Growth-related section

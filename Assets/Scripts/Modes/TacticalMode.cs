@@ -2660,7 +2660,7 @@ Turns: {currentTurn}
 
                 // TODO discriminate between living and dead prey
 
-                if (Config.CloseInDigestionNoises && unit.PredatorComponent?.PreyCount > 0)
+                if (Config.CloseInDigestionNoises && unit.PredatorComponent?.PreyCount > 0 && !unit.Unit.HasTrait(Traits.Vehicle))
                 {
                     if (unit.PredatorComponent?.AlivePrey > 0)
                     {

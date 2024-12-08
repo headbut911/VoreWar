@@ -217,7 +217,7 @@ public class Actor_Unit
             Movement = 2;
             Slimed = false;
         }
-        else if ((Unit.GetStatusEffect(StatusEffectType.Webbed) != null) || (Unit.GetStatusEffect(StatusEffectType.Snared) != null))
+        else if ((Unit.GetStatusEffect(StatusEffectType.Webbed) != null) || (Unit.GetStatusEffect(StatusEffectType.Snared) != null) || (Unit.HasTrait(Traits.Vehicle) && !PredatorComponent.OnlyOnePreyAndLiving()))
         {
             Movement = 1;
             Slimed = false;
@@ -1809,7 +1809,7 @@ public class Actor_Unit
         {
             return 0;
         }
-        if (Surrendered || (attacker.Unit.HasTrait(Traits.Endosoma) && (Unit.FixedSide == attacker.Unit.GetApparentSide(Unit)) || Unit.GetStatusEffect(StatusEffectType.Hypnotized)?.Strength == attacker.Unit.FixedSide))
+        if (Surrendered || (attacker.Unit.HasTrait(Traits.Endosoma) && (Unit.FixedSide == attacker.Unit.GetApparentSide(Unit)) || Unit.GetStatusEffect(StatusEffectType.Hypnotized)?.Strength == attacker.Unit.FixedSide) || (attacker.Unit.HasTrait(Traits.Vehicle) && (Unit.FixedSide == attacker.Unit.GetApparentSide(Unit))))
             return 1f;
 
         float predVoracity = Mathf.Pow(15 + skillBoost + attacker.Unit.GetStat(Stat.Voracity), 1.5f);
@@ -2136,6 +2136,8 @@ public class Actor_Unit
 
     internal bool MoveTo(Vec2i destination, TacticalTileType[,] tiles, float delay)
     {
+        if (Unit.HasTrait(Traits.Vehicle) && !PredatorComponent.OnlyOnePreyAndLiving())
+            return false;
         if (destination.x < 0 || destination.y < 0 || destination.x > tiles.GetUpperBound(0) || destination.y > tiles.GetUpperBound(1))
             return false;
         int cost = TacticalTileInfo.TileCost(new Vec2(destination.x, destination.y));
