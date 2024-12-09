@@ -1955,8 +1955,18 @@ public class PredatorComponent
             {
                 if (State.Rand.NextDouble() < Config.BurpFraction)
                 {
-                    actor.SetBurpMode();
-                    State.GameManager.SoundManager.PlayBurp(actor);
+                    if (actor.Unit.Race == Race.Taraluxia && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false))
+                    {State.GameManager.SoundManager.PlayDigest(Location(preyUnit), actor);}
+                    else if (actor.Unit.Race == Race.Taraluxia)
+                    {
+                        actor.SetBurpMode();
+                        State.GameManager.SoundManager.PlayBurp(actor);
+                    }
+                    else
+                    {
+                        actor.SetBurpMode();
+                        State.GameManager.SoundManager.PlayBurp(actor);
+                    }
                 }
                 else
                     State.GameManager.SoundManager.PlayDigest(Location(preyUnit), actor);

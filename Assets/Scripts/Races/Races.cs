@@ -113,6 +113,7 @@
     static internal Terminid Terminid = new Terminid();
     static internal FeralOrcas FeralOrcas = new FeralOrcas();
     static internal BlankSlate BlankSlate = new BlankSlate();
+    static internal Taraluxia Taraluxia = new Taraluxia();
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -349,6 +350,8 @@
                 return Terminid;
             case Race.FeralOrcas:
                 return FeralOrcas;
+            case Race.Taraluxia:
+                return Taraluxia;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

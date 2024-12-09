@@ -459,7 +459,7 @@ public class Actor_Unit
                 Mode = DisplayMode.AnalVore;
                 break;
         }
-        animationUpdateTime = 3F;
+        animationUpdateTime = 1.5F;
     }
 
     public void SetBurpMode()
@@ -487,7 +487,7 @@ public class Actor_Unit
     public void SetVoreSuccessMode()
     {
         DisplayMode displayMode = DisplayMode.VoreSuccess;
-        float time = 1f;
+        float time = 2f;
         modeQueue.Add(new KeyValuePair<int, float>(((int)displayMode), time));
     }
 
@@ -1271,6 +1271,11 @@ public class Actor_Unit
             return false;
 
         if (Unit.Race == Race.Zoey && animationController?.frameLists != null && animationController.frameLists.Count() > 0)
+        {
+            animationController.frameLists[0].currentlyActive = true;
+        }
+
+        if (Unit.Race == Race.Taraluxia && animationController?.frameLists != null && animationController.frameLists.Count() > 0)
         {
             animationController.frameLists[0].currentlyActive = true;
         }

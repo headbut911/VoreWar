@@ -7,7 +7,7 @@ using UnityEngine;
 
 class Feit : BlankSlate
 {
-    const float BellyScale = 1.8f;
+    const float BellyScale = 1.0f;
     public Feit()
     {
         CanBeGender = new List<Gender>() { Gender.Female };
@@ -56,7 +56,7 @@ class Feit : BlankSlate
         if (!actor.HasBelly)
             return null;
 
-        int size = actor.GetStomachSize(38);
+        int size = actor.GetStomachSize(38, BellyScale);
 
         if ( size >= 38 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false))
         {

@@ -111,6 +111,7 @@ static class RaceParameters
     static readonly RaceTraits FeralFox;
     static readonly RaceTraits Terminid;
     static readonly RaceTraits FeralOrcas;
+    static readonly RaceTraits Taraluxia;
 
     static Unit tempUnit;
 
@@ -350,6 +351,8 @@ static class RaceParameters
                 return Terminid;
             case Race.FeralOrcas:
                 return FeralOrcas;
+            case Race.Taraluxia:
+                return Taraluxia;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3035,6 +3038,40 @@ static class RaceParameters
                 Traits.Tasty,
         },
             RaceDescription = "A strange, almost draconic looking raptor. She seems to grow larger and stronger with each victim consumed. Despite having wings, they seem to only allow her to leap great distances instead of fly.",
+        };
+
+        Taraluxia = new RaceTraits()
+        {
+            BodySize = 120,
+            StomachSize = 100,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 15f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(35, 45),
+                Dexterity = new RaceStats.StatRange(20, 30),
+                Endurance = new RaceStats.StatRange(44, 62),
+                Mind = new RaceStats.StatRange(20, 32),
+                Will = new RaceStats.StatRange(90, 110),
+                Agility = new RaceStats.StatRange(20, 30),
+                Voracity = new RaceStats.StatRange(40, 50),
+                Stomach = new RaceStats.StatRange(25, 35),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.Legendary,
+                Traits.Maul,
+                Traits.Flight,
+                Traits.Intimidating,
+                Traits.TailStrike,
+
+            },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.IceBlast },
+            RaceDescription = "Hehe, Ice dragon goes brr",
+
         };
 
     }

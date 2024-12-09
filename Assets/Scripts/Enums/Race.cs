@@ -112,4 +112,5 @@
     Abakhanskya = 183,
     Singularity = 184,
     Feit = 185,
+    Taraluxia = 186,
 }
