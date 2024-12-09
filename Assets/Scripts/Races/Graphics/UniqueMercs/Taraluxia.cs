@@ -90,15 +90,28 @@ class Taraluxia : BlankSlate
 
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
-        AddOffset(Head, 0, 20 * 1f);
-        AddOffset(Belly, 0, 20 * 1f);
-        AddOffset(Body, 0, 20 * 1f);
-        AddOffset(BodyAccent, 0, 20 * 1f);
-        AddOffset(BodyAccent2, 0, 20 * 1f);
-        AddOffset(BodyAccent3, 0, 20 * 1f);
-        AddOffset(BodyAccent4, 0, 20 * 1f);
-        AddOffset(BodyAccent6, 0, 20 * 1f);
-
+        if (facingFront)
+        {
+            AddOffset(Head, 20, 20 * 1f);
+            AddOffset(Belly, 20, 20 * 1f);
+            AddOffset(Body, 20, 20 * 1f);
+            AddOffset(BodyAccent, 20, 20 * 1f);
+            AddOffset(BodyAccent2, 20, 20 * 1f);
+            AddOffset(BodyAccent3, 20, 20 * 1f);
+            AddOffset(BodyAccent4, 20, 20 * 1f);
+            AddOffset(BodyAccent6, 20, 20 * 1f);
+        }
+        else
+        {
+            AddOffset(Head, 0, 20 * 1f);
+            AddOffset(Belly, 0, 20 * 1f);
+            AddOffset(Body, 0, 20 * 1f);
+            AddOffset(BodyAccent, 0, 20 * 1f);
+            AddOffset(BodyAccent2, 0, 20 * 1f);
+            AddOffset(BodyAccent3, 0, 20 * 1f);
+            AddOffset(BodyAccent4, 0, 20 * 1f);
+            AddOffset(BodyAccent6, 0, 20 * 1f);
+        }
     }
 
     protected override Sprite BodyAccentSprite2(Actor_Unit actor) // Tail
@@ -265,11 +278,13 @@ class Taraluxia : BlankSlate
     {
         if (facingFront)
         {
+            BodyAccent6.layer = 5;
             if (actor.IsAttacking) return Sprites[31];
             return Sprites [30];
         }
         else 
         {
+            BodyAccent6.layer = 1;
             if (actor.IsAttacking) return Sprites[33];
             return Sprites [32];
         }
