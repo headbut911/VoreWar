@@ -4,7 +4,7 @@ using UnityEngine;
 class Abakhanskya : BlankSlate
 {
     RaceFrameList AbaIdle = new RaceFrameList(new int[4] { 0, 1, 2, 1 }, new float[4] { .8f, .25f, .8f, .25f });
-    RaceFrameList AbaSwallowHead = new RaceFrameList(new int[12] { 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 6 }, new float[12] { .01f, .70f, .15f, .15f, .15f, .15f, .2f, .3f, .3f, .3f, .3f, .4f });
+    RaceFrameList AbaSwallowHead = new RaceFrameList(new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 7, 6 }, new float[10] { .15f, .15f, .15f, .15f, .2f, .3f, .3f, .3f, .3f, .4f });
     RaceFrameList AbaSwallowBelly = new RaceFrameList(new int[8] { 0, 0, 1, 2, 3, 4, 5, 6 }, new float[8] { 0.01f, 1.0f, .25f, .25f, .25f, .25f, .50f, .6f });
     
     readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.Abakhanskya;
@@ -65,7 +65,8 @@ class Abakhanskya : BlankSlate
     protected override Sprite HeadSprite(Actor_Unit actor)
     {
         AddOffset(Head, 35, 50 * .85f);
-        if (actor.IsOralVoring)
+        if (actor.IsOralVoring) return Sprites[38];
+        if (actor.HasJustVored)
         {
             actor.AnimationController.frameLists[1].currentlyActive = true;
             if (actor.AnimationController.frameLists[1].currentTime >= AbaSwallowHead.times[actor.AnimationController.frameLists[1].currentFrame] && actor.Unit.IsDead == false)
@@ -256,7 +257,7 @@ class Abakhanskya : BlankSlate
     protected override Sprite BodyAccentSprite6(Actor_Unit actor) // Swallow Bulge
     {
         AddOffset(BodyAccent6, 35, 50 * .85f);
-        if (actor.IsOralVoring)
+        if (actor.HasJustVored)
             {
                 actor.AnimationController.frameLists[2].currentlyActive = true;
                 if (actor.AnimationController.frameLists[2].currentTime >= AbaSwallowBelly.times[actor.AnimationController.frameLists[2].currentFrame] && actor.Unit.IsDead == false)
