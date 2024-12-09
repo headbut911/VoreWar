@@ -854,6 +854,14 @@ public class Unit
             }
             catch {}
         }
+        else if (race == Race.Taraluxia)
+        {
+            try {
+            FixedGear = true;
+            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.TaraWeapon);
+            }
+            catch {}
+        }
         else
         {
             FixedGear = false;

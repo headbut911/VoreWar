@@ -508,6 +508,9 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.MouthType].Label.text = "Helmet";
                 buttons[(int)ButtonTypes.HairStyle].Label.text = "Custom livery (for Sharks)";
                 break;
+            case Race.Taraluxia:
+                Taraluxia();
+                break;
         }
     }
 
@@ -676,6 +679,12 @@ public class UnitCustomizer
         buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Scale Color";
         buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Accent Color";
         buttons[(int)ButtonTypes.ExtraColor2].Label.text = "Tail Pattern Color";
+    }
+
+    void Taraluxia()
+    {
+        buttons[(int)ButtonTypes.BodyAccentTypes5].Label.text = "Glowing Maw";
+        buttons[(int)ButtonTypes.TailTypes].Label.text = "Facing Front";
     }
 
 
