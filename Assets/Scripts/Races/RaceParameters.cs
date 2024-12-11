@@ -3066,6 +3066,7 @@ static class RaceParameters
                 Traits.Maul,
                 Traits.Flight,
                 Traits.Intimidating,
+                Traits.ColdTolerance,
                 Traits.TailStrike,
 
             },
