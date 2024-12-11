@@ -38,12 +38,12 @@ class Taraluxia : BlankSlate
         GentleAnimation = true;
         Body = new SpriteExtraInfo(4, BodySprite, WhiteColored); // Foreground Wings and Hind Legs
         BodyAccent = new SpriteExtraInfo(1, BodyAccentSprite, WhiteColored); // Background Wings and Hind Legs
-        BodyAccent2 = new SpriteExtraInfo(6, BodyAccentSprite2, WhiteColored); // Tail
-        BodyAccent3 = new SpriteExtraInfo(7, BodyAccentSprite3, WhiteColored); // TailStrike Effects
+        BodyAccent2 = new SpriteExtraInfo(7, BodyAccentSprite2, WhiteColored); // Tail
+        BodyAccent3 = new SpriteExtraInfo(8, BodyAccentSprite3, WhiteColored); // TailStrike Effects
         BodyAccent4 = new SpriteExtraInfo(3, BodyAccentSprite4, WhiteColored); // Sel Belly Animation
         BodyAccent5 = new SpriteExtraInfo(-2, BodyAccentSprite5, WhiteColored); // Glowing Maw
-        BodyAccent6 = new SpriteExtraInfo(5, BodyAccentSprite6, WhiteColored); // Front Arm
-        Head = new SpriteExtraInfo(4, HeadSprite, WhiteColored);
+        BodyAccent6 = new SpriteExtraInfo(6, BodyAccentSprite6, WhiteColored); // Front Arm
+        Head = new SpriteExtraInfo(5, HeadSprite, WhiteColored);
         Belly = new SpriteExtraInfo(2, null, WhiteColored);
 
         HeadTypes = 0;
@@ -182,9 +182,9 @@ class Taraluxia : BlankSlate
 
                                 if (actor.AnimationController.frameLists[0].currentFrame >= TailStrikeEffects.frames.Length)
                                 {
-                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                     actor.AnimationController.frameLists[0].currentFrame = 0;
                                     actor.AnimationController.frameLists[0].currentTime = 0f;
+                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                 }
                             }
                         }
@@ -203,9 +203,9 @@ class Taraluxia : BlankSlate
 
                                 if (actor.AnimationController.frameLists[0].currentFrame >= TailStrikeEffects.frames.Length)
                                 {
-                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                     actor.AnimationController.frameLists[0].currentFrame = 0;
                                     actor.AnimationController.frameLists[0].currentTime = 0f;
+                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                 }
                             }
                         }
@@ -228,9 +228,9 @@ class Taraluxia : BlankSlate
 
                                 if (actor.AnimationController.frameLists[0].currentFrame >= TailStrikeEffects.frames.Length)
                                 {
-                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                     actor.AnimationController.frameLists[0].currentFrame = 0;
                                     actor.AnimationController.frameLists[0].currentTime = 0f;
+                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                 }
                             }
                         }
@@ -249,9 +249,9 @@ class Taraluxia : BlankSlate
 
                                 if (actor.AnimationController.frameLists[0].currentFrame >= TailStrikeEffects.frames.Length)
                                 {
-                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                     actor.AnimationController.frameLists[0].currentFrame = 0;
                                     actor.AnimationController.frameLists[0].currentTime = 0f;
+                                    actor.AnimationController.frameLists[0].currentlyActive = false;
                                 }
                             }
                         }
@@ -307,9 +307,9 @@ class Taraluxia : BlankSlate
 
                         if (actor.AnimationController.frameLists[4].currentFrame >= TaraLickChops.frames.Length)
                         {
-                            actor.AnimationController.frameLists[4].currentlyActive = false;
                             actor.AnimationController.frameLists[4].currentFrame = 0;
                             actor.AnimationController.frameLists[4].currentTime = 0f;
+                            actor.AnimationController.frameLists[4].currentlyActive = false;
                             SelGurgled = false;
                             if (Config.BurpOnDigest && State.Rand.NextDouble() < Config.BurpFraction)
                             {
@@ -338,9 +338,9 @@ class Taraluxia : BlankSlate
 
                             if (actor.AnimationController.frameLists[3].currentFrame >= TaraOralVoreGlow.frames.Length)
                             {
-                                actor.AnimationController.frameLists[3].currentlyActive = false;
                                 actor.AnimationController.frameLists[3].currentFrame = 0;
                                 actor.AnimationController.frameLists[3].currentTime = 0f;
+                                actor.AnimationController.frameLists[3].currentlyActive = false;
                             }
                         }
                     }
@@ -360,9 +360,9 @@ class Taraluxia : BlankSlate
 
                             if (actor.AnimationController.frameLists[2].currentFrame >= TaraOralVore.frames.Length)
                             {
-                                actor.AnimationController.frameLists[2].currentlyActive = false;
                                 actor.AnimationController.frameLists[2].currentFrame = 0;
                                 actor.AnimationController.frameLists[2].currentTime = 0f;
+                                actor.AnimationController.frameLists[2].currentlyActive = false;
                             }
                         }
                     }
@@ -384,9 +384,9 @@ class Taraluxia : BlankSlate
 
                             if (actor.AnimationController.frameLists[1].currentFrame >= TaraSwallowFront.frames.Length)
                             {
-                                actor.AnimationController.frameLists[1].currentlyActive = false;
                                 actor.AnimationController.frameLists[1].currentFrame = 0;
                                 actor.AnimationController.frameLists[1].currentTime = 0f;
+                                actor.AnimationController.frameLists[1].currentlyActive = false;
                             }
                         }
                     }
@@ -473,9 +473,9 @@ class Taraluxia : BlankSlate
 
                                 if (actor.AnimationController.frameLists[5].currentFrame >= TaraDigestSelFront.frames.Length)
                                 {
-                                    actor.AnimationController.frameLists[5].currentlyActive = false;
                                     actor.AnimationController.frameLists[5].currentFrame = 0;
                                     actor.AnimationController.frameLists[5].currentTime = 0f;
+                                    actor.AnimationController.frameLists[5].currentlyActive = false;
                                     SelDigesting = false;
                                     SelGurgled = true;
                                     SelAlive = false;
@@ -507,9 +507,9 @@ class Taraluxia : BlankSlate
 
                                 if (actor.AnimationController.frameLists[6].currentFrame >= TaraDigestSelBack.frames.Length)
                                 {
-                                    actor.AnimationController.frameLists[6].currentlyActive = false;
                                     actor.AnimationController.frameLists[6].currentFrame = 0;
                                     actor.AnimationController.frameLists[6].currentTime = 0f;
+                                    actor.AnimationController.frameLists[6].currentlyActive = false;
                                     SelDigesting = false;
                                     SelGurgled = true;
                                     SelAlive = false;

@@ -1004,7 +1004,7 @@ static class StoredLogTexts
             actorRace: Race.Feit, priority: 12),
             new EventString((i) => $"<b>{i.Unit.Name}'s</b> dark blue {GetRandomStringFrom("jaws", "maw", "mouth", "muzzle", "gob", "oral entrance")} pulls in <b>{i.Target.Name}</b>, her long tongue helping wrangle them down her {GetRandomStringFrom("hot", "humid", "moist", "slick", "sloppy", "wet", "slippery", "slimy", "eager")} throat!",
             actorRace: Race.Feit, priority: 12),
-            new EventString((i) => $"<b>{i.Target.Name}</b> {GetRandomStringFrom("casually", "nonchalantly", "lackadaisically", "lazily", "leisurely", "languidly", "easily", "apathetically", "idly", "languorously", "effortlessly")} {GetRandomStringFrom("eats up", "devours", "swallows down", "swallows up", "gobbles up", "gobbles down", "gulps down", "wolfs down", "chomps down on", "slurps up", "slurps down", "munches down", "consumes")} <b>{i.Unit.Name}</b>, swallowing them in a single effortless bite!",
+            new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("casually", "nonchalantly", "lackadaisically", "lazily", "leisurely", "languidly", "easily", "apathetically", "idly", "languorously", "effortlessly")} {GetRandomStringFrom("eats up", "devours", "swallows down", "swallows up", "gobbles up", "gobbles down", "gulps down", "wolfs down", "chomps down on", "slurps up", "slurps down", "munches down", "consumes")} <b>{i.Target.Name}</b>, swallowing them in a single effortless bite!",
             conditional: s => SizeDiff(s, 2), actorRace: Race.Feit, priority: 12),
             new EventString((i) => {
                 if (TacticalUtilities.GetPredatorComponentOfUnit(i.Unit)?.PreyCount > 3)
