@@ -25,7 +25,7 @@ class WorkCamp : ConstructibleBuilding
         merchantUpgrade.Name = "Merchant Guild Branch";
         merchantUpgrade.Desc = "Work camp can now be used to purchase and sell Ores, Natural Materials, Prefabs, and Mana Stones.";
         merchantUpgrade.GoldCost = 300;
-        merchantUpgrade.ResourceToUpgrade.SetResources(50, 50, 15, 20, 15, 0);
+        merchantUpgrade.ResourceToUpgrade.SetResources(10, 10, 5, 5, 0, 0);
         merchantUpgrade.upgradeTime = 3;
         Upgrades.Add(merchantUpgrade);
 

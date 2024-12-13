@@ -81,6 +81,11 @@ public class StartMode : SceneBase
         State.GameManager.Menu.OpenRandomizerTraits();
     }
 
+    public void ModifyCustomTraits()
+    {
+        State.GameManager.Menu.OpenCustomTraits();
+    }
+
     public void ReturnToStart()
     {
         State.TutorialMode = false;

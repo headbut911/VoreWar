@@ -19,6 +19,7 @@ public static class State
     public static Dictionary<Traits,TaggedTrait> TieredTraitsList;
     public static List<String> TieredTraitsTagsList;
     public static List<RandomizeList> RandomizeLists;
+    public static List<CustomTraitBoost> CustomTraitList;
 
     internal static EventList EventList;
 
@@ -93,6 +94,8 @@ public static class State
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralOrcas.txt", $"{StorageDirectory}femaleFeralOrcas.txt");
             if (File.Exists($"{StorageDirectory}taggedTraits.json") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}taggedTraits.json", $"{StorageDirectory}taggedTraits.json");
+            if (File.Exists($"{StorageDirectory}userTraits.json") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}userTraits.json", $"{StorageDirectory}userTraits.json");
         }
         catch
         {
@@ -167,8 +170,12 @@ public static class State
     }
     public static void LoadTraitData()
     {
-        TieredTraitsList = TraitSorter.TraitParser();
+        TieredTraitsList = ExternalTraitReader.TaggedTraitParser();
         TieredTraitsTagsList = new List<string>();
+        if (File.Exists($"{State.StorageDirectory}userTraits.json"))
+        {
+            CustomTraitList = ExternalTraitReader.CustomTraitParser();
+        }
 
     }
 

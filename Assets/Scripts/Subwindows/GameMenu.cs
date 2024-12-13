@@ -11,6 +11,7 @@ public class GameMenu : MonoBehaviour
     public CheatMenu CheatMenu;
     public RaceEditorPanel RaceEditor;
     public RandomizerTraitEditor RandomizerTraitEditor;
+    public CustomTraitEditor CustomTraitEditor;
 
     public HelpPanel HelpUI;
 
@@ -70,6 +71,12 @@ public class GameMenu : MonoBehaviour
     {
         RandomizerTraitEditor.gameObject.SetActive(true);
         RandomizerTraitEditor.Open();
+    }
+
+    public void OpenCustomTraits()
+    {
+        CustomTraitEditor.gameObject.SetActive(true);
+        CustomTraitEditor.Open();
     }
     public void LoadHelp()
     {

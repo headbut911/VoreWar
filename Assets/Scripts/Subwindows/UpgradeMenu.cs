@@ -56,6 +56,7 @@ public class UpgradeMenu : MonoBehaviour
                 currentPrefab.DoUpgrade.interactable = false;
                 building.Owner.constructionResources.SpendProvidedResources(upgrade.ResourceToUpgrade);
                 building.Owner.SpendGold(upgrade.GoldCost);
+                RefreshMats(building);
                 State.GameManager.StrategyMode.RedrawVillages();
             });
             if (!building.Owner.constructionResources.CanBuildWithCurrentResources(upgrade.ResourceToUpgrade) || upgrade.GoldCost > building.Owner.Gold)
@@ -63,6 +64,17 @@ public class UpgradeMenu : MonoBehaviour
         }
         BuildingFunctinosMenu.Open(building);
         gameObject.SetActive(true);
+    }
+
+    void RefreshMats(ConstructibleBuilding building)
+    {
+        CurrentGold.text = building.Owner.Gold.ToString();
+        CurrentWood.text = building.Owner.constructionResources.Wood.ToString();
+        CurrentStone.text = building.Owner.constructionResources.Stone.ToString();
+        CurrentNM.text = building.Owner.constructionResources.NaturalMaterials.ToString();
+        CurrentOres.text = building.Owner.constructionResources.Ores.ToString();
+        CurrentPrefabs.text = building.Owner.constructionResources.Prefabs.ToString();
+        CurrentMS.text = building.Owner.constructionResources.ManaStones.ToString();
     }
 
     private void ClearFolder()
@@ -77,6 +89,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         ClearFolder();
         gameObject.SetActive(false);
+        State.GameManager.StrategyMode.Regenerate();
         State.GameManager.StrategyMode.Paused = false;
     }
 }
