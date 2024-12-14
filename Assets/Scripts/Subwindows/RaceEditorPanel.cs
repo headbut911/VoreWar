@@ -117,6 +117,10 @@ public class RaceEditorPanel : MonoBehaviour
             {
                 TraitDropdown.options.Add(new TMP_Dropdown.OptionData(rl.name.ToString()));
             }
+            foreach (CustomTraitBoost ct in State.CustomTraitList)
+            {
+                TraitDropdown.options.Add(new TMP_Dropdown.OptionData(ct.name.ToString()));
+            }
             foreach (Traits traitId in ((Traits[])Enum.GetValues(typeof(Traits))).OrderBy(s =>
              {
                  return s >= Traits.LightningSpeed ? "ZZZ" + s.ToString() : s.ToString();

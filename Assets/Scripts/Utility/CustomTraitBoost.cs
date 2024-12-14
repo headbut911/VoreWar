@@ -11,4 +11,5 @@ public class CustomTraitBoost
     public string description;
     public TraitTier tier;
     internal PermanentBoosts traitBoost;
+    internal List<CustomTraitComp> comps;
 }

@@ -6,13 +6,92 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.WSA;
 
+public enum CustomTraitComp
+{
+    ExpRequired,
+    ExpGain,
+    ExpGainFromVore,
+    ExpGainFromAbsorption,
+    PassiveHeal,
+    CapacityMult,
+    OutgoingChanceToEscape,
+    OutgoingMeleeDamage,
+    OutgoingRangedDamage,
+    OutgoingMagicDamage,
+    OutgoingDigestionRate,
+    OutgoingAbsorptionRate,
+    OutgoingNutrition,
+    OutgoingManaAbsorbHundreths,
+    OutgoingMeleeShift,
+    OutgoingRangedShift,
+    OutgoingMagicShift,
+    OutgoingVoreOddsMult,
+    OutgoingGrowthRate,
+    OutgoingCritRateShift,
+    OutgoingCritDamageMult,
+    OutgoingGrazeRateShift,
+    OutgoingGrazeDamageMult,
+    IncomingChanceToEscape,
+    IncomingMeleeDamage,
+    IncomingRangedDamage,
+    IncomingMagicDamage,
+    IncomingDigestionRate,
+    IncomingAbsorptionRate,
+    IncomingNutrition,
+    IncomingManaAbsorbHundreths,
+    IncomingMeleeShift,
+    IncomingRangedShift,
+    IncomingMagicShift,
+    IncomingVoreOddsMult,
+    IncomingGrowthRate,
+    IncomingCritRateShift,
+    IncomingCritDamageMult,
+    IncomingGrazeRateShift,
+    IncomingGrazeDamageMult,
+    FlatHitReduction,
+    SpeedLossFromWeightMultiplier,
+    DodgeLossFromWeightMultiplier,
+    BulkMultiplier,
+    SpeedMultiplier,
+    MinSpeed,
+    SpeedBonus,
+    MeleeAttacks,
+    RangedAttacks,
+    VoreAttacks,
+    SpellAttacks,
+    ManaMultiplier,
+    StaminaMultiplier,
+    VoreMinimumOdds,
+    TurnCanFlee,
+    DigestionImmunityTurns,
+    HealthRegen,
+    ManaRegen,
+    OnLevelUpBonusToAllStats,
+    OnLevelUpBonusToGiveToTwoRandomStats,
+    OnLevelUpAllowAnyStat,
+    Scale,
+    StatMult,
+    VirtualDexMult,
+    VirtualStrMult,
+    FireDamageTaken,
+    GrowthDecayRate,
+    SightRangeBoost,
+
+    enumcounter, // should always be last
+}
+
 public class CustomTrait : MonoBehaviour
 {
     int current_id;
+    CustomTraitBoost trait;
     public CustomTraitEditor CustomTraitEditor;
+    public CustomTraitComponentMenu compMenu;
+
     public InputField name;
     public InputField description;
     public TMP_Dropdown tier;
+
+    public Button modifyComps;
     
     public TMP_InputField ExpRequired;
     public TMP_InputField ExpGain;
@@ -83,20 +162,30 @@ public class CustomTrait : MonoBehaviour
     public TMP_InputField GrowthDecayRate;
     public TMP_InputField SightRangeBoost;
 
+    Dictionary<CustomTraitComp, GameObject> activeComps;
+
+
     internal void Open(int id)
     {
         gameObject.SetActive(true);
+        activeComps = new Dictionary<CustomTraitComp, GameObject>();
         CustomTraitEditor.gameObject.SetActive(false);
         current_id = id;
-        LoadTrait(id);
+        trait = State.CustomTraitList.Where(x => x.id == current_id).FirstOrDefault();
+        PopulateDict();
+        LoadTrait();
+        RefreshActive();
+        modifyComps.onClick.AddListener(() =>
+        {
+            compMenu.Open(current_id);
+        });
     }
 
-    public void LoadTrait(int id)
-    {
-        CustomTraitBoost trait = State.CustomTraitList.Where(x => x.id == id).FirstOrDefault();
+    public void LoadTrait()
+    {   
         PermanentBoosts boost = trait.traitBoost;
         name.text = trait.name;
-        description.text = trait.name;       
+        description.text = trait.description;       
         tier.value = (int)trait.tier;
         tier.RefreshShownValue();
         ExpRequired.text = boost.ExpRequired.ToString();
@@ -168,9 +257,8 @@ public class CustomTrait : MonoBehaviour
         GrowthDecayRate.text = boost.GrowthDecayRate.ToString();
         SightRangeBoost.text = boost.SightRangeBoost.ToString();
     }
-    public void SaveTrait(int id)
+    public void SaveTrait()
     {
-        CustomTraitBoost trait = State.CustomTraitList.Where(x => x.id == id).FirstOrDefault();
         PermanentBoosts boost = trait.traitBoost;
         OnLevelUpAllowAnyStat.isOn = boost.OnLevelUpAllowAnyStat;
         trait.name = name.text;
@@ -247,13 +335,14 @@ public class CustomTrait : MonoBehaviour
 
     public void SaveClose()
     {
-        SaveTrait(current_id);
+        SaveTrait();
         DiscardClose();
     }
 
     public void DiscardClose()
     {
         gameObject.SetActive(false);
+        activeComps.Clear();
         CustomTraitEditor.Open();
     }
 
@@ -262,5 +351,98 @@ public class CustomTrait : MonoBehaviour
         var rem = State.CustomTraitList.Where(x => current_id == x.id).FirstOrDefault();
         State.CustomTraitList.Remove(rem);
         DiscardClose();
+    }
+
+    public void ToBooster()
+    {
+        CustomTraitBoost cur = State.CustomTraitList.Where(x => current_id == x.id).FirstOrDefault();
+    }
+    public void RefreshActive()
+    {
+        trait = State.CustomTraitList.Where(x => x.id == current_id).FirstOrDefault();
+        foreach (var comp in activeComps.Keys)
+        {
+            if (trait.comps.Contains(comp))
+            {
+                UnityEngine.Debug.Log(comp);
+                activeComps[comp].SetActive(true);
+            }
+            else
+            {
+                activeComps[comp].SetActive(false);
+            }
+        }
+
+    }
+    private void PopulateDict()
+    {
+        activeComps.Add(CustomTraitComp.ExpRequired, ExpRequired.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.ExpGain, ExpGain.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.ExpGainFromVore, ExpGainFromVore.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.ExpGainFromAbsorption, ExpGainFromAbsorption.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.PassiveHeal, PassiveHeal.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.CapacityMult, CapacityMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingChanceToEscape, OutgoingChanceToEscape.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingMeleeDamage, OutgoingMeleeDamage.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingRangedDamage, OutgoingRangedDamage.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingMagicDamage, OutgoingMagicDamage.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingDigestionRate, OutgoingDigestionRate.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingAbsorptionRate, OutgoingAbsorptionRate.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingNutrition, OutgoingNutrition.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingManaAbsorbHundreths, OutgoingManaAbsorbHundreths.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingMeleeShift, OutgoingMeleeShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingRangedShift, OutgoingRangedShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingMagicShift, OutgoingMagicShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingVoreOddsMult, OutgoingVoreOddsMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingGrowthRate, OutgoingGrowthRate.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingCritRateShift, OutgoingCritRateShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingCritDamageMult, OutgoingCritDamageMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingGrazeRateShift, OutgoingGrazeRateShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OutgoingGrazeDamageMult, OutgoingGrazeDamageMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingChanceToEscape, IncomingChanceToEscape.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingMeleeDamage, IncomingMeleeDamage.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingRangedDamage, IncomingRangedDamage.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingMagicDamage, IncomingMagicDamage.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingDigestionRate, IncomingDigestionRate.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingAbsorptionRate, IncomingAbsorptionRate.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingNutrition, IncomingNutrition.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingManaAbsorbHundreths, IncomingManaAbsorbHundreths.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingMeleeShift, IncomingMeleeShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingRangedShift, IncomingRangedShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingMagicShift, IncomingMagicShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingVoreOddsMult, IncomingVoreOddsMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingGrowthRate, IncomingGrowthRate.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingCritRateShift, IncomingCritRateShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingCritDamageMult, IncomingCritDamageMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingGrazeRateShift, IncomingGrazeRateShift.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.IncomingGrazeDamageMult, IncomingGrazeDamageMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.FlatHitReduction, FlatHitReduction.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.SpeedLossFromWeightMultiplier, SpeedLossFromWeightMultiplier.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.DodgeLossFromWeightMultiplier, DodgeLossFromWeightMultiplier.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.BulkMultiplier, BulkMultiplier.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.SpeedMultiplier, SpeedMultiplier.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.MinSpeed, MinSpeed.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.SpeedBonus, SpeedBonus.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.MeleeAttacks, MeleeAttacks.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.RangedAttacks, RangedAttacks.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.VoreAttacks, VoreAttacks.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.SpellAttacks, SpellAttacks.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.ManaMultiplier, ManaMultiplier.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.StaminaMultiplier, StaminaMultiplier.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.VoreMinimumOdds, VoreMinimumOdds.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.TurnCanFlee, TurnCanFlee.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.DigestionImmunityTurns, DigestionImmunityTurns.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.HealthRegen, HealthRegen.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.ManaRegen, ManaRegen.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OnLevelUpBonusToAllStats, OnLevelUpBonusToAllStats.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OnLevelUpBonusToGiveToTwoRandomStats, OnLevelUpBonusToGiveToTwoRandomStats.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.OnLevelUpAllowAnyStat, OnLevelUpAllowAnyStat.gameObject);
+        activeComps.Add(CustomTraitComp.Scale, Scale.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.StatMult, StatMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.VirtualDexMult, VirtualDexMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.VirtualStrMult, VirtualStrMult.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.FireDamageTaken, FireDamageTaken.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.GrowthDecayRate, GrowthDecayRate.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.SightRangeBoost, SightRangeBoost.transform.parent.gameObject);
     }
 }

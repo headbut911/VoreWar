@@ -91,6 +91,7 @@ public class CustomTraitEditor : MonoBehaviour
             customTrait.name = "CustomTrait";
             customTrait.id = rt.id;
             customTrait.traitBoost = new PermanentBoosts();
+            customTrait.comps = new List<CustomTraitComp>();
             State.CustomTraitList.Add(customTrait);
             rt.CloneBtn.onClick.AddListener(() =>
             {
