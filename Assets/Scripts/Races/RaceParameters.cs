@@ -112,6 +112,7 @@ static class RaceParameters
     static readonly RaceTraits Terminid;
     static readonly RaceTraits FeralOrcas;
     static readonly RaceTraits Taraluxia;
+    static readonly RaceTraits Xelhilde;
 
     static Unit tempUnit;
 
@@ -353,6 +354,8 @@ static class RaceParameters
                 return FeralOrcas;
             case Race.Taraluxia:
                 return Taraluxia;
+            case Race.Xelhilde:
+                return Xelhilde;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3075,6 +3078,36 @@ static class RaceParameters
 
         };
 
+        Xelhilde = new RaceTraits()
+        {
+            BodySize = 11,
+            StomachSize = 15,
+            FavoredStat = Stat.Strength,
+            HasTail = true,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal},
+            ExpMultiplier = 1.4f,
+            PowerAdjustment = 2f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(23, 28),
+                Dexterity = new RaceStats.StatRange(8, 16),
+                Endurance = new RaceStats.StatRange(20, 24),
+                Mind = new RaceStats.StatRange(8, 14),
+                Will = new RaceStats.StatRange(12, 16),
+                Agility = new RaceStats.StatRange(18, 21),
+                Voracity = new RaceStats.StatRange(8, 14),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.DoubleAttack,
+                Traits.DefensiveStance,
+                Traits.KeenReflexes,
+                Traits.AdeptLearner,
+                Traits.ArtfulDodge,
+        },
+            RaceDescription = "A canine knight part of a group known as the \"Vindicators of Mondfeld\" that wields specialized zweihänder.",
+        };
     }
 
 }
