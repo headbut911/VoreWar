@@ -935,7 +935,7 @@ static class StoredLogTexts
             new EventString((i) => $"Abakhanskya scoffs at Zoey's attempts to fight her. The shark is grabbed by the legs and lowered down into her jaws. She laments on not being able to see much of that face thanks to the hair, but the sounds of prey trying to bargain and scream for help is enough to please the Matron, if not the flavour.",
             actorRace: Race.Abakhanskya, targetRace: Race.Zoey, priority: 12),
             new EventString((i) => $"<b>{i.Unit.Name}</b> swiftly snatches and devours <b>{i.Target.Name}</b> whole. \"So much for all your training I hear so much about!\" <b>{i.Unit.Name}</b> bellows, smirking smugly as the battle-hardened mercenary futilely attempts to break free from her steel-gut.",
-            actorRace: Race.Abakhanskya, targetRace: Race.RwuMercenaries, priority: 9),
+            actorRace: Race.Abakhanskya, targetRace: Race.RwuMercenaries, priority: 12),
             //Aba swallow Flirts
             new EventString((i) => $"<b>{AttractedWarrior(i.Unit).Name}</b> can't help but watch <b>{i.Unit.Name}</b> pack in <b>{i.Target.Name}</b>, watching the enormous dragoness reduce a whole {GetRaceDescSingl(i.Target)} to simple bloat in her {PreyLocStrings.ToSyn(PreyLocation.stomach)}. Her grin grows a little wider as her gaze settles on her onlooker, who feels somewhat unsettled now.",
             actorRace: Race.Abakhanskya, priority: 12, conditional: s => ReqOSWStomach(s)),

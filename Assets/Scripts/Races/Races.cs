@@ -115,6 +115,7 @@
     static internal BlankSlate BlankSlate = new BlankSlate();
     static internal Taraluxia Taraluxia = new Taraluxia();
     static internal Otachi Otachi = new Otachi();
+    static internal Xelhilde Xelhilde = new Xelhilde();
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -355,6 +356,8 @@
                 return Taraluxia;
             case Race.Otachi:
                 return Otachi;
+            case Race.Xelhilde:
+                return Xelhilde;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

@@ -114,4 +114,5 @@
     Singularity = 184,
     Feit = 185,
     Taraluxia = 186,
+    Xelhilde = 187,
 }
