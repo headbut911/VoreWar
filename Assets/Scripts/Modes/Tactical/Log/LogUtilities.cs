@@ -522,6 +522,8 @@ static class LogUtilities
                 return GetRandomStringFrom("hamster", GetGenderString(unit, "sow", "boar", "hamster"), "rodent");
             case Race.RwuMercenaries:
                 return GetRandomStringFrom("mercenary", "trooper", "merc");
+            case Race.Xelhilde:
+                return GetRandomStringFrom("canine knight", "husky", "bitch");
             case Race.Vagrants:
                 return GetRandomStringFrom("vagrant", "jellyfish", "medusa");
             case Race.Serpents:
