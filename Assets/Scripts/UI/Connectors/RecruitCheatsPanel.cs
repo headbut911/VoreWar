@@ -104,17 +104,22 @@ public class RecruitCheatsPanel : MonoBehaviour
                     }
             
                 }
-        }
-        if (Enum.TryParse(TraitPicker.captionText.text, out Traits trait))
-        {
-            unit.AddPermanentTrait(trait);
-            if (trait == Traits.Resourceful || trait == Traits.BookWormI || trait == Traits.BookWormII || trait == Traits.BookWormIII)
+            }
+            if (State.CustomTraitList.Any(ct => ct.name == TraitPicker.captionText.text))
             {
-                unit.SetMaxItems();
+                CustomTraitBoost customTrait = State.CustomTraitList.Single(rl => rl.name == TraitPicker.captionText.text);
+                unit.AddPermanentTrait((Traits)customTrait.id);
             }
+            if (Enum.TryParse(TraitPicker.captionText.text, out Traits trait))
+            {
+                unit.AddPermanentTrait(trait);
+                if (trait == Traits.Resourceful || trait == Traits.BookWormI || trait == Traits.BookWormII || trait == Traits.BookWormIII)
+                {
+                    unit.SetMaxItems();
+                }
 
-        }
             }
+        }
 
     }
 

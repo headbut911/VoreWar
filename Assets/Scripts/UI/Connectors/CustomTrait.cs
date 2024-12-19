@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using CruxClothing;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -59,6 +61,7 @@ public enum CustomTraitComp
     RangedAttacks,
     VoreAttacks,
     SpellAttacks,
+    HealthMultiplier,
     ManaMultiplier,
     StaminaMultiplier,
     VoreMinimumOdds,
@@ -89,6 +92,7 @@ public class CustomTrait : MonoBehaviour
 
     public InputField name;
     public InputField description;
+    public InputField tags;
     public TMP_Dropdown tier;
 
     public Button modifyComps;
@@ -144,6 +148,7 @@ public class CustomTrait : MonoBehaviour
     public TMP_InputField RangedAttacks;
     public TMP_InputField VoreAttacks;
     public TMP_InputField SpellAttacks;
+    public TMP_InputField HealthMultiplier;
     public TMP_InputField ManaMultiplier;
     public TMP_InputField StaminaMultiplier;
     public TMP_InputField VoreMinimumOdds;
@@ -163,7 +168,6 @@ public class CustomTrait : MonoBehaviour
     public TMP_InputField SightRangeBoost;
 
     Dictionary<CustomTraitComp, GameObject> activeComps;
-
 
     internal void Open(int id)
     {
@@ -188,6 +192,12 @@ public class CustomTrait : MonoBehaviour
         description.text = trait.description;       
         tier.value = (int)trait.tier;
         tier.RefreshShownValue();
+        string tagsCombine = "";
+        foreach (string tag in trait.tags) 
+        {
+            tagsCombine += tag + ",";
+        }
+        tags.text = tagsCombine;
         ExpRequired.text = boost.ExpRequired.ToString();
         ExpGain.text = boost.ExpGain.ToString();
         ExpGainFromVore.text = boost.ExpGainFromVore.ToString();
@@ -239,6 +249,7 @@ public class CustomTrait : MonoBehaviour
         RangedAttacks.text = boost.RangedAttacks.ToString();
         VoreAttacks.text = boost.VoreAttacks.ToString();
         SpellAttacks.text = boost.SpellAttacks.ToString();
+        HealthMultiplier.text = boost.HealthMultiplier.ToString();
         ManaMultiplier.text = boost.ManaMultiplier.ToString();
         StaminaMultiplier.text = boost.StaminaMultiplier.ToString();
         VoreMinimumOdds.text = boost.VoreMinimumOdds.ToString();
@@ -263,6 +274,15 @@ public class CustomTrait : MonoBehaviour
         OnLevelUpAllowAnyStat.isOn = boost.OnLevelUpAllowAnyStat;
         trait.name = name.text;
         trait.description = description.text;
+        List<string> seperatedTags = new List<string>();
+        foreach (var item in tags.text.Split(','))
+        {
+            if (item.Length > 0)
+            {
+                seperatedTags.Add(item.Trim());
+            }
+        }
+        trait.tags = seperatedTags;
         boost.ExpRequired = float.TryParse(ExpRequired.text, out float expRequired) ? expRequired : 1.0f;
         boost.ExpGain = float.TryParse(ExpGain.text, out float expGain) ? expGain : 1.0f;
         boost.ExpGainFromVore = float.TryParse(ExpGainFromVore.text, out float expGainFromVore) ? expGainFromVore : 1.0f;
@@ -314,6 +334,7 @@ public class CustomTrait : MonoBehaviour
         boost.RangedAttacks = int.TryParse(RangedAttacks.text, out int rangedAttacks) ? rangedAttacks : 1;
         boost.VoreAttacks = int.TryParse(VoreAttacks.text, out int voreAttacks) ? voreAttacks : 1;
         boost.SpellAttacks = int.TryParse(SpellAttacks.text, out int spellAttacks) ? spellAttacks : 1;
+        boost.HealthMultiplier = float.TryParse(HealthMultiplier.text, out float healthMultiplier) ? healthMultiplier : 1.0f;
         boost.ManaMultiplier = float.TryParse(ManaMultiplier.text, out float manaMultiplier) ? manaMultiplier : 1.0f;
         boost.StaminaMultiplier = float.TryParse(StaminaMultiplier.text, out float staminaMultiplier) ? staminaMultiplier : 1.0f;
         boost.VoreMinimumOdds = int.TryParse(VoreMinimumOdds.text, out int voreMinimumOdds) ? voreMinimumOdds : 0;
@@ -331,6 +352,8 @@ public class CustomTrait : MonoBehaviour
         boost.FireDamageTaken = float.TryParse(FireDamageTaken.text, out float fireDamageTaken) ? fireDamageTaken : 1.0f;
         boost.GrowthDecayRate = float.TryParse(GrowthDecayRate.text, out float growthDecayRate) ? growthDecayRate : 1.0f;
         boost.SightRangeBoost = int.TryParse(SightRangeBoost.text, out int sightRangeBoost) ? sightRangeBoost : 0;
+
+        ExternalTraitReader.CustomTraitSaver(trait);
     }
 
     public void SaveClose()
@@ -356,13 +379,14 @@ public class CustomTrait : MonoBehaviour
     public void ToBooster()
     {
         CustomTraitBoost cur = State.CustomTraitList.Where(x => current_id == x.id).FirstOrDefault();
+        
     }
     public void RefreshActive()
     {
         trait = State.CustomTraitList.Where(x => x.id == current_id).FirstOrDefault();
         foreach (var comp in activeComps.Keys)
         {
-            if (trait.comps.Contains(comp))
+            if (trait.comps.Keys.Contains(comp))
             {
                 UnityEngine.Debug.Log(comp);
                 activeComps[comp].SetActive(true);
@@ -427,6 +451,7 @@ public class CustomTrait : MonoBehaviour
         activeComps.Add(CustomTraitComp.RangedAttacks, RangedAttacks.transform.parent.gameObject);
         activeComps.Add(CustomTraitComp.VoreAttacks, VoreAttacks.transform.parent.gameObject);
         activeComps.Add(CustomTraitComp.SpellAttacks, SpellAttacks.transform.parent.gameObject);
+        activeComps.Add(CustomTraitComp.HealthMultiplier, HealthMultiplier.transform.parent.gameObject);
         activeComps.Add(CustomTraitComp.ManaMultiplier, ManaMultiplier.transform.parent.gameObject);
         activeComps.Add(CustomTraitComp.StaminaMultiplier, StaminaMultiplier.transform.parent.gameObject);
         activeComps.Add(CustomTraitComp.VoreMinimumOdds, VoreMinimumOdds.transform.parent.gameObject);
@@ -445,4 +470,15 @@ public class CustomTrait : MonoBehaviour
         activeComps.Add(CustomTraitComp.GrowthDecayRate, GrowthDecayRate.transform.parent.gameObject);
         activeComps.Add(CustomTraitComp.SightRangeBoost, SightRangeBoost.transform.parent.gameObject);
     }
+
+    void SaveComps()
+    {
+
+    }
+
+    void LoadComps()
+    {
+
+    }
+
 }

@@ -367,7 +367,7 @@
       },
       {
         "name": "RaceLoyal",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Tactical",
@@ -377,7 +377,7 @@
       },
       {
         "name": "Greedy",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
 
@@ -386,7 +386,7 @@
       },
       {
         "name": "SlowMovement",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Tactical",
@@ -396,7 +396,7 @@
       },
       {
         "name": "VerySlowMovement",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Tactical",
@@ -406,7 +406,7 @@
       },
       {
         "name": "Camaraderie",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Tactical",
@@ -416,7 +416,7 @@
       },
       {
         "name": "CursedMark",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Combat",
@@ -427,7 +427,7 @@
       },
       {
         "name": "Slippery",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Chances",
@@ -437,7 +437,7 @@
       },
       {
         "name": "PredGusher",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Vore",
@@ -447,7 +447,7 @@
       },
       {
         "name": "WastefulProcessing",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Vore",
@@ -458,7 +458,7 @@
       },
       {
         "name": "ForceFeeder",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
 
@@ -467,7 +467,7 @@
       },
       {
         "name": "Cruel",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Vore",
@@ -477,7 +477,7 @@
       },
       {
         "name": "Donor",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Absorption",
@@ -487,7 +487,7 @@
       },
       {
         "name": "TightNethers",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
           "Vore",
@@ -497,7 +497,7 @@
       },
       {
         "name": "Symbiote",
-        "tier": "Strange",
+        "tier": "Neutral",
         "tags": [
 
 

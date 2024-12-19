@@ -31,6 +31,7 @@ public static class State
     public static string SaveDirectory;
     public static string StorageDirectory;
     public static string MapDirectory;
+    public static string CustomTraitDirectory;
 
     public static int RaceSlot;
     public static string RaceSaveDataName;
@@ -42,27 +43,32 @@ public static class State
             SaveDirectory = Application.persistentDataPath + $"Saves{Path.DirectorySeparatorChar}";
             StorageDirectory = Application.persistentDataPath + Path.DirectorySeparatorChar;
             MapDirectory = Application.persistentDataPath + $"Maps{Path.DirectorySeparatorChar}";
+            CustomTraitDirectory = Application.persistentDataPath + $"CustomTraits{Path.DirectorySeparatorChar}";
         }
         else
         {
             SaveDirectory = $"UserData{Path.DirectorySeparatorChar}Saves{Path.DirectorySeparatorChar}";
             StorageDirectory = $"UserData{Path.DirectorySeparatorChar}";
             MapDirectory = $"UserData{Path.DirectorySeparatorChar}Maps{Path.DirectorySeparatorChar}";
+            CustomTraitDirectory = $"UserData{Path.DirectorySeparatorChar}CustomTraits{Path.DirectorySeparatorChar}";
         }
         try
         {
             Directory.CreateDirectory(StorageDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(MapDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(SaveDirectory.TrimEnd(new char[] { '\\', '/' }));
+            Directory.CreateDirectory(CustomTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
         }
         catch
         {
             SaveDirectory = Application.persistentDataPath + $"Saves{Path.DirectorySeparatorChar}";
             StorageDirectory = Application.persistentDataPath + Path.DirectorySeparatorChar;
             MapDirectory = Application.persistentDataPath + $"Maps{Path.DirectorySeparatorChar}";
+            CustomTraitDirectory = Application.persistentDataPath + $"CustomTraits{Path.DirectorySeparatorChar}";
             Directory.CreateDirectory(StorageDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(MapDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(SaveDirectory.TrimEnd(new char[] { '\\', '/' }));
+            Directory.CreateDirectory(CustomTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
         }
 
 
@@ -94,8 +100,6 @@ public static class State
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralOrcas.txt", $"{StorageDirectory}femaleFeralOrcas.txt");
             if (File.Exists($"{StorageDirectory}taggedTraits.json") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}taggedTraits.json", $"{StorageDirectory}taggedTraits.json");
-            if (File.Exists($"{StorageDirectory}userTraits.json") == false)
-                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}userTraits.json", $"{StorageDirectory}userTraits.json");
         }
         catch
         {
@@ -107,6 +111,7 @@ public static class State
         NameGen = new NameGenerator();
         EventList = new EventList();
         AssimilateList = new AssimilateList();
+        CustomTraitList = new List<CustomTraitBoost>();
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
         List<string> lines;
@@ -172,11 +177,7 @@ public static class State
     {
         TieredTraitsList = ExternalTraitReader.TaggedTraitParser();
         TieredTraitsTagsList = new List<string>();
-        if (File.Exists($"{State.StorageDirectory}userTraits.json"))
-        {
-            CustomTraitList = ExternalTraitReader.CustomTraitParser();
-        }
-
+        ExternalTraitReader.CustomTraitParser();
     }
 
     public static void ChangeRaceSlotUsed(int num)

@@ -130,7 +130,7 @@ public class Unit
                 if (healthChange > 0)
                     Health = Math.Min(_maxHealth,Math.Max(1, Health + healthChange));
             }
-            return _maxHealth;
+            return (int)(_maxHealth * TraitBoosts.HealthMultiplier);
         }
         set => _maxHealth = value;
     }
@@ -1640,6 +1640,8 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 }
                 if (State.RandomizeLists.Any(rl => (Traits)rl.id == Tags[i]))
                     tagString = State.RandomizeLists.Where(rl => (Traits)rl.id == Tags[i]).FirstOrDefault().name;
+                else if (State.CustomTraitList.Any(ct => (Traits)ct.id == Tags[i]))
+                    tagString = State.CustomTraitList.Where(ct => (Traits)ct.id == Tags[i]).FirstOrDefault().name;
                 else
                     tagString = Tags[i].ToString();
 
@@ -1658,6 +1660,8 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                         ret += "\n";
                     if (State.RandomizeLists.Any(rl => (Traits)rl.id == PermanentTraits[i]))
                         ret += State.RandomizeLists.Where(rl => (Traits)rl.id == PermanentTraits[i]).FirstOrDefault().name;
+                    else if (State.CustomTraitList.Any(ct => (Traits)ct.id == PermanentTraits[i]))
+                        ret += State.CustomTraitList.Where(ct=> (Traits)ct.id == PermanentTraits[i]).FirstOrDefault().name;
                     else
                         ret += PermanentTraits[i].ToString();
                     }

@@ -1,14 +1,16 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public enum TraitTier
 {
     Harmful,
     Negative,
-    Strange,
+    Neutral,
     Common,
     Uncommon,
     Rare,
@@ -54,16 +56,43 @@ public class ExternalTraitReader
         }
         return taggedTraitsList;
     }
-    public static List<CustomTraitBoost> CustomTraitParser()
+    public static void CustomTraitParser()
     {
         string readContents;
-        FileStream traitJson = File.OpenRead(State.StorageDirectory + "\\userTraits.json");
-        using (StreamReader streamReader = new StreamReader(traitJson))
-        {
-            readContents = streamReader.ReadToEnd();
-        }
+        string[] files = Directory.GetFiles(State.CustomTraitDirectory, "*.json", SearchOption.AllDirectories);
         List<CustomTraitBoost> customTraitsList = new List<CustomTraitBoost>();
-        JObject results = JObject.Parse(readContents);
-        return customTraitsList;
+
+        foreach (string file in files) 
+        {
+
+        }
+        State.CustomTraitList = customTraitsList;
+
+
+
+    }
+    public static bool CustomTraitSaver(CustomTraitBoost trait)
+    {
+        bool modifying = false;
+        foreach (var item in State.CustomTraitList)
+        {
+            if (item.name.ToLower() == trait.name.ToLower() && item.id == trait.id)
+            {
+                modifying = true;
+                break;
+            }
+        }
+
+        if (!modifying && File.Exists($"{State.CustomTraitDirectory}{trait.name}.json")) 
+        { 
+            return false;
+        }
+
+        using (StreamWriter sw = new StreamWriter($"{State.CustomTraitDirectory}{trait.name}.json"))
+        {
+            sw.WriteLine(JsonConvert.SerializeObject(trait));
+
+        }
+        return true;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -9,7 +10,8 @@ public class CustomTraitBoost
     public int id = -1;
     public string name;
     public string description;
+    public List<string> tags;
     public TraitTier tier;
     internal PermanentBoosts traitBoost;
-    internal List<CustomTraitComp> comps;
+    public Dictionary<CustomTraitComp,float> comps;
 }

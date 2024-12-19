@@ -113,6 +113,17 @@ public class TaggedTraitEditor : MonoBehaviour
             traitfromrl.traitEnum = (Traits)rl.id;
             AllTaggedTraits.Add(traitfromrl);
         }
+        foreach (CustomTraitBoost ct in State.CustomTraitList)
+        {
+            TaggedTrait traitfromrcustom = new TaggedTrait();
+            traitfromrcustom.name = ct.name;
+            traitfromrcustom.tierValue = ct.tier;
+            traitfromrcustom.tier = traitfromrcustom.tierValue.ToString();
+            traitfromrcustom.tags = ct.tags;
+            traitfromrcustom.tags.Add("Random Trait");
+            traitfromrcustom.traitEnum = (Traits)ct.id;
+            AllTaggedTraits.Add(traitfromrcustom);
+        }
         foreach (TaggedTrait trait in State.TieredTraitsList.Values)
         {
             AllTaggedTraits.Add(trait);

@@ -27,6 +27,23 @@ abstract class VoreTrait : Trait, IVoreCallback
     public virtual bool OnSwallow(Prey preyUnit, Actor_Unit predUnit, PreyLocation location) => true;
 }
 
+/* 
+ * Note to anyone adding to PermanentBoosts, if you would like to add your variable to the Custom Trait menu, follow these steps:
+ * 1. Add you variable to PermanantBoosts
+ * 2. Navigate to UI/Connectors/CustomTrait.cs
+ * 3. Add your variable to he CustomTraitComp Enum
+ *      3a. If you added to DirectionalStat, add both an Outgoing and an Incoming
+ * 4. Make add your variable to the CustomTrait class as a TMP_InputField (or Toggle, if it's a bool)
+ *      4a. If you added to DirectionalStat, add both an Outgoing and Incoming
+ * 5. Follow the implementation of a variable of the same type, copy/pasting and renaming.
+ * 6. In Unity navigate in the heirachy Game Menu -> CustomTrait Edit Menu -> Scroll View -> Viewport -> Left Panel
+ * 7. Copy a curent object and rename the object and InputField, additionaly, modify the text field to match your variable
+ * 8. Click CustomTrait Edit Menu in the heirachy and add your input field to the empty slot with your variable name.
+ * 9. Profit.
+ * 
+ * Sorry for the extra work,
+ * ~CaneSugarCat
+ */
 class PermanentBoosts
 {
     internal float ExpRequired = 1.0f;
@@ -48,6 +65,7 @@ class PermanentBoosts
     internal int RangedAttacks = 1;
     internal int VoreAttacks = 1;
     internal int SpellAttacks = 1;
+    internal float HealthMultiplier = 1.0f;
     internal float ManaMultiplier = 1.0f;
     internal float StaminaMultiplier = 1.0f;
     internal int VoreMinimumOdds = 0;

@@ -64,6 +64,12 @@ public class UnitEditorPanel : CustomizerPanel
             val2++;
             TraitDropdown.options.Add(new TMP_Dropdown.OptionData(rl.name.ToString()));
         }
+        foreach (CustomTraitBoost ct in State.CustomTraitList)
+        {
+            traitDict[(Traits)ct.id] = val2;
+            val2++;
+            TraitDropdown.options.Add(new TMP_Dropdown.OptionData(ct.name.ToString()));
+        }
         foreach (Traits traitId in ((Traits[])Enum.GetValues(typeof(Traits))).OrderBy(s =>
        {
            return s >= Traits.LightningSpeed ? "ZZZ" + s.ToString() : s.ToString();
@@ -444,6 +450,13 @@ public class UnitEditorPanel : CustomizerPanel
             UnitEditor.RefreshActor();
             TraitList.text = UnitEditor.Unit.ListTraits();
         }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CustomTraitBoost customTrait = State.CustomTraitList.Single(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text);
+            UnitEditor.Unit.AddPermanentTrait((Traits)customTrait.id);
+            UnitEditor.RefreshActor();
+            TraitList.text = UnitEditor.Unit.ListTraits();
+        }
         if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
         {
             UnitEditor.AddTrait(trait);
@@ -494,6 +507,17 @@ public class UnitEditorPanel : CustomizerPanel
 
             }
         }
+        foreach (CustomTraitBoost ct in (State.CustomTraitList))
+        {
+            if (TraitsText.text.ToLower().Contains(ct.name.ToString().ToLower()))
+            {
+                UnitEditor.AddTrait((Traits)ct.id);
+
+                UnitEditor.RefreshActor();
+                TraitList.text = UnitEditor.Unit.ListTraits();
+
+            }
+        }
         foreach (Traits trait in (Stat[])Enum.GetValues(typeof(Traits)))
         {
             if (TraitsText.text.ToLower().Contains(trait.ToString().ToLower()))
@@ -527,6 +551,14 @@ public class UnitEditorPanel : CustomizerPanel
                 UnitEditor.Unit.SetMaxItems();
                 PopulateItems();
             }
+        }
+        
+        CustomTraitBoost cBoost = State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault();
+        if (cBoost != null)
+        {
+            UnitEditor.RemoveTrait((Traits)cBoost.id);
+            UnitEditor.RefreshActor();
+            TraitList.text = UnitEditor.Unit.ListTraits();
         }
 
         if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))

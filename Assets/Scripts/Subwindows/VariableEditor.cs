@@ -189,13 +189,21 @@ public class VariableEditor : MonoBehaviour
                     {
                         var newObj = Instantiate(Toggle, Folder);
                         var toggle = newObj.GetComponent<Toggle>();
-                        if (entry.Key >= (Traits)1000)
+                        if (entry.Key >= (Traits)1000 && entry.Key <= (Traits)1999)
                         {
                             var rlName = State.RandomizeLists.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
                             newObj.name = $"UsingDictionary^{rlName}";
                             toggle.GetComponentInChildren<Text>().text = rlName;
                             toggle.gameObject.AddComponent<VariableScreenTooltip>();
                             toggle.GetComponent<VariableScreenTooltip>().text = "A Custom Trait.";
+                        }
+                        if (entry.Key >= (Traits)2000)
+                        {
+                            var rlName = State.CustomTraitList.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
+                            newObj.name = $"UsingDictionary^{rlName}";
+                            toggle.GetComponentInChildren<Text>().text = rlName;
+                            toggle.gameObject.AddComponent<VariableScreenTooltip>();
+                            toggle.GetComponent<VariableScreenTooltip>().text = State.CustomTraitList.Find(r => (Traits)r.id == entry.Key)?.description ?? entry.Key.ToString();
                         }
                         else
                         {

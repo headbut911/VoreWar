@@ -94,7 +94,7 @@ public class RaceEditorPanel : MonoBehaviour
     public Button TraitsButton;
     public Button TaggedTraitsButton;
 
-    public TaggedTraitEditor taggedTraitEditor = new TaggedTraitEditor();
+    public TaggedTraitEditor taggedTraitEditor;
 
     List<Traits> CurrentTraits;
 
@@ -218,6 +218,9 @@ public class RaceEditorPanel : MonoBehaviour
         if (State.RandomizeLists.Any(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text)){
             CurrentTraits.Add((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
         }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text)){
+            CurrentTraits.Add((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
         if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
         {
             if (CurrentTraits.Contains(trait) == false)
@@ -234,6 +237,15 @@ public class RaceEditorPanel : MonoBehaviour
             {
                 RaceSettingsItem item = State.RaceSettings.Get(race);
                 item.RaceTraits.Add((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            AddTrait();
+        }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTraits.Add((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
             }
             AddTrait();
         }
@@ -256,6 +268,10 @@ public class RaceEditorPanel : MonoBehaviour
         {
             CurrentTraits.Remove((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
         }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Remove((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
             if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
         {
             CurrentTraits.Remove(trait);
@@ -271,6 +287,15 @@ public class RaceEditorPanel : MonoBehaviour
             {
                 RaceSettingsItem item = State.RaceSettings.Get(race);
                 item.RaceTraits.Remove((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            RemoveTrait();
+        }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTraits.Remove((Traits)State.CustomTraitList.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
             }
             RemoveTrait();
         }
@@ -443,6 +468,13 @@ public class RaceEditorPanel : MonoBehaviour
                 traits.Add((Traits)rl.id);
             }
         }
+        foreach (CustomTraitBoost ct in State.CustomTraitList)
+        {
+            if (text.ToLower().Contains(ct.name.ToString().ToLower()))
+            {
+                traits.Add((Traits)ct.id);
+            }
+        }
         foreach (Traits trait in (Stat[])Enum.GetValues(typeof(Traits)))
         {
             if (text.ToLower().Contains(trait.ToString().ToLower()))
@@ -471,6 +503,8 @@ public class RaceEditorPanel : MonoBehaviour
                 ret += ", ";
             if (State.RandomizeLists.Any(rl => (Traits)rl.id == trait))
                 ret += State.RandomizeLists.Where(rl => (Traits)rl.id == trait).FirstOrDefault().name;  
+            else if (State.CustomTraitList.Any(ct => (Traits)ct.id == trait))
+                ret += State.CustomTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name;  
             else
                 ret += trait.ToString();
         }
@@ -702,7 +736,12 @@ public class RaceEditorPanel : MonoBehaviour
             if (State.RandomizeLists.Any(rl => (Traits)rl.id == trait))
             {
                 sb.AppendLine(State.RandomizeLists.Where(rl => (Traits)rl.id == trait).FirstOrDefault().name);
-            } else
+            } 
+            else if (State.CustomTraitList.Any(ct => (Traits)ct.id == trait))
+            {
+                sb.AppendLine(State.CustomTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name);
+            } 
+            else
                 sb.AppendLine(trait.ToString());
         }
         TraitList.text = sb.ToString();

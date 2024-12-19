@@ -76,6 +76,13 @@ public class RandomizerTraitEditor : MonoBehaviour
                 else
                     ranTraits[r] = false;
             }
+            foreach (Traits c in State.CustomTraitList.ConvertAll(r => (Traits)r.id))
+            {
+                if (savedCustom.RandomTraits.Contains(c))
+                    ranTraits[c] = true;
+                else
+                    ranTraits[c] = false;
+            }
             foreach (Traits trait in (Traits[])Enum.GetValues(typeof(Traits)))
             {
                 if (savedCustom.RandomTraits.Contains(trait))

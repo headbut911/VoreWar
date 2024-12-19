@@ -65,7 +65,7 @@ public class CustomTraitComponentMenu : MonoBehaviour
         btnTxt.text = name;
         btn.onClick.AddListener(() =>
         {
-            trait.comps.Add(comp);
+            trait.comps.Add(comp,0);
             CheckVis();
         });
         return btn;
@@ -75,7 +75,7 @@ public class CustomTraitComponentMenu : MonoBehaviour
     {
         foreach (var comp in SelectedComps.Keys)
         {
-            if (trait.comps.Contains(comp))
+            if (trait.comps.Keys.Contains(comp))
             {
                 SelectedComps[comp].gameObject.SetActive(true);
                 AvailibleComps[comp].gameObject.SetActive(false);
