@@ -32,18 +32,15 @@ abstract class VoreTrait : Trait, IVoreCallback
  * 1. Add you variable to PermanantBoosts
  * 2. Navigate to UI/Connectors/CustomTrait.cs
  * 3. Add your variable to he CustomTraitComp Enum
- *      3a. If you added to DirectionalStat, add both an Outgoing and an Incoming
- * 4. Make add your variable to the CustomTrait class as a TMP_InputField (or Toggle, if it's a bool)
- *      4a. If you added to DirectionalStat, add both an Outgoing and Incoming
- * 5. Follow the implementation of a variable of the same type, copy/pasting and renaming.
- * 6. In Unity navigate in the heirachy Game Menu -> CustomTrait Edit Menu -> Scroll View -> Viewport -> Left Panel
- * 7. Copy a curent object and rename the object and InputField, additionaly, modify the text field to match your variable
- * 8. Click CustomTrait Edit Menu in the heirachy and add your input field to the empty slot with your variable name.
- * 9. Profit.
+ *      3a. If you added to DirectionalStat, add both an Outgoing and an Incoming version instead.
+ * 4. Add your variable's Name and Description to ChangeToolTip(), following the current implementation.
+ * 5. If your variable is a bool, like OnLevelUpAllowAnyStat, add it to IsToggle, so the prefab becomes a toggle instead of an InputField
  * 
- * Sorry for the extra work,
+ * I apologize for the extra work, but this WAS a 9 step guide with a lot of moving parts before I spent two days making it as developer friendly as possible, 
+ * so I don't want to hear any belly aching. Enjoy.
  * ~CaneSugarCat
  */
+
 class PermanentBoosts
 {
     internal float ExpRequired = 1.0f;

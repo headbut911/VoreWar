@@ -90,7 +90,6 @@ public class CustomTraitEditor : MonoBehaviour
             CustomTraitBoost customTrait = new CustomTraitBoost();
             customTrait.name = "CustomTrait";
             customTrait.id = rt.id;
-            customTrait.traitBoost = new PermanentBoosts();
             customTrait.comps = new Dictionary<CustomTraitComp, float>();
             customTrait.tags = new List<string>();
             customTrait.tier = TraitTier.Neutral;
