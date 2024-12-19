@@ -102,15 +102,14 @@ public class CustomTrait : MonoBehaviour
     public Button modifyComps;
     
     public CustomTraitCompMod CompPrefab;
-
-    Dictionary<CustomTraitComp, GameObject> activeComps;
+    public List<CustomTraitCompMod> ActiveCompsList;
 
     internal void Open(int id)
     {
         gameObject.SetActive(true);
-        activeComps = new Dictionary<CustomTraitComp, GameObject>();
         CustomTraitEditor.gameObject.SetActive(false);
         current_id = id;
+        ActiveCompsList= new List<CustomTraitCompMod>();
         trait = State.CustomTraitList.Where(x => x.id == current_id).FirstOrDefault();
         LoadTrait();
         RefreshActive();
@@ -153,6 +152,18 @@ public class CustomTrait : MonoBehaviour
         }
         trait.tags = seperatedTags;
 
+        foreach (var cmp in ActiveCompsList)
+        {
+            if (IsToggle(cmp.comp))
+            {
+                trait.comps[cmp.comp] = cmp.Toggle.enabled ? 1 : 0;
+            }
+            else 
+            {
+                trait.comps[cmp.comp] = float.TryParse(cmp.Inputfield.text, out float output) ? output : 1;
+            }
+        }
+
         ExternalTraitReader.CustomTraitSaver(trait);
     }
 
@@ -164,9 +175,14 @@ public class CustomTrait : MonoBehaviour
 
     public void DiscardClose()
     {
+        int children = Folder.childCount;
+        for (int i = children - 1; i >= 0; i--)
+        {
+            Destroy(Folder.GetChild(i).gameObject);
+        }
         gameObject.SetActive(false);
-        activeComps.Clear();
         CustomTraitEditor.Open();
+
     }
 
     public void Remove()
@@ -193,9 +209,13 @@ public class CustomTrait : MonoBehaviour
                 cmp.Toggle.gameObject.SetActive(true);
                 cmp.Toggle.enabled = trait.comps[item] >= 1;
             }
+            else 
+            {
+                cmp.Inputfield.text = trait.comps[item].ToString();
+            }
             cmp.Text.text = item.ToString();
             cmp.comp = item;
-
+            ActiveCompsList.Add(cmp);
         }
     }
 
@@ -493,5 +513,4 @@ public class CustomTrait : MonoBehaviour
                 return false;
         }
     }
-
 }

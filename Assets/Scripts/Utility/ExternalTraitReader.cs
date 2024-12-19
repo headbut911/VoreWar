@@ -64,12 +64,23 @@ public class ExternalTraitReader
 
         foreach (string file in files) 
         {
+            using (StreamReader streamReader = new StreamReader(file))
+            {
+                readContents = streamReader.ReadToEnd();
+            }
+            JObject results = JObject.Parse(readContents);
+            
+            CustomTraitBoost traitBoost = new CustomTraitBoost();
+            traitBoost.id = results["id"].ToObject<int>();
+            traitBoost.name = results["name"].ToString();
+            traitBoost.description = results["description"].ToString();
+            traitBoost.tags = results["tags"].ToObject<List<string>>();
+            traitBoost.tier = results["id"].ToObject<TraitTier>();
+            traitBoost.comps = results["comps"].ToObject<Dictionary<CustomTraitComp, float>>();
+
+            State.CustomTraitList.Add(traitBoost);
 
         }
-        State.CustomTraitList = customTraitsList;
-
-
-
     }
     public static bool CustomTraitSaver(CustomTraitBoost trait)
     {
