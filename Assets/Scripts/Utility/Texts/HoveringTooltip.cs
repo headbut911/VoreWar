@@ -336,9 +336,20 @@ public class HoveringTooltip : MonoBehaviour
 
     public static string GetTraitData(Traits trait)
     {
+        if (trait >= (Traits)2001)
+        {
+            return State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().description;
+        }
+        
+        if (trait >= (Traits)1000)
+        {
+            return "A Random Trait";
+        }
+
         Trait traitClass = TraitList.GetTrait(trait);
         if (traitClass != null)
             return traitClass.Description;
+
         switch (trait)
         {
             case Traits.Resilient:

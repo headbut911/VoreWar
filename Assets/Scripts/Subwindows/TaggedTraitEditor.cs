@@ -119,8 +119,12 @@ public class TaggedTraitEditor : MonoBehaviour
             traitfromrcustom.name = ct.name;
             traitfromrcustom.tierValue = ct.tier;
             traitfromrcustom.tier = traitfromrcustom.tierValue.ToString();
-            traitfromrcustom.tags = ct.tags;
-            traitfromrcustom.tags.Add("Random Trait");
+            traitfromrcustom.tags = new List<string>();
+            foreach (string tag in ct.tags)
+            {
+                traitfromrcustom.tags.Add(tag);
+            }
+            traitfromrcustom.tags.Add("Custom Trait");
             traitfromrcustom.traitEnum = (Traits)ct.id;
             AllTaggedTraits.Add(traitfromrcustom);
         }
@@ -160,6 +164,8 @@ public class TaggedTraitEditor : MonoBehaviour
             //UnityEngine.Debug.Log("Added " + tt.trait + " to " + item.SpawnRace);
         });
         tt.gameObject.SetActive(ShouldBeActive(tagged, false));
+        if (tagged.traitEnum >= (Traits)1000)
+            tt.edit.gameObject.SetActive(false);
     }
 
     private void CreateAddedTaggedTrait(TaggedTrait tagged = null)
@@ -186,6 +192,8 @@ public class TaggedTraitEditor : MonoBehaviour
             tt.gameObject.SetActive(ShouldBeActive(tagged, true));
         });
         tt.gameObject.SetActive(ShouldBeActive(tagged, true));
+        if (tagged.traitEnum >= (Traits)1000)
+            tt.edit.gameObject.SetActive(false);
     }
 
     private bool ShouldBeActive(TaggedTrait checkedTrait, bool addedCol)

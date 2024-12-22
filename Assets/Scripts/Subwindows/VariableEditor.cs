@@ -189,14 +189,6 @@ public class VariableEditor : MonoBehaviour
                     {
                         var newObj = Instantiate(Toggle, Folder);
                         var toggle = newObj.GetComponent<Toggle>();
-                        if (entry.Key >= (Traits)1000 && entry.Key <= (Traits)1999)
-                        {
-                            var rlName = State.RandomizeLists.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
-                            newObj.name = $"UsingDictionary^{rlName}";
-                            toggle.GetComponentInChildren<Text>().text = rlName;
-                            toggle.gameObject.AddComponent<VariableScreenTooltip>();
-                            toggle.GetComponent<VariableScreenTooltip>().text = "A Custom Trait.";
-                        }
                         if (entry.Key >= (Traits)2000)
                         {
                             var rlName = State.CustomTraitList.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
@@ -204,6 +196,14 @@ public class VariableEditor : MonoBehaviour
                             toggle.GetComponentInChildren<Text>().text = rlName;
                             toggle.gameObject.AddComponent<VariableScreenTooltip>();
                             toggle.GetComponent<VariableScreenTooltip>().text = State.CustomTraitList.Find(r => (Traits)r.id == entry.Key)?.description ?? entry.Key.ToString();
+                        }
+                        else if (entry.Key >= (Traits)1000)
+                        {
+                            var rlName = State.RandomizeLists.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
+                            newObj.name = $"UsingDictionary^{rlName}";
+                            toggle.GetComponentInChildren<Text>().text = rlName;
+                            toggle.gameObject.AddComponent<VariableScreenTooltip>();
+                            toggle.GetComponent<VariableScreenTooltip>().text = "A Random Trait.";
                         }
                         else
                         {
@@ -397,9 +397,15 @@ public class VariableEditor : MonoBehaviour
                         TempDictionary[trait] = obj.GetComponentInChildren<Toggle>().isOn;
                     } else
                     {
-                        var match = State.RandomizeLists.Find(r => r.name == split[1]);
-                        if (match != null)
-                            TempDictionary[(Traits)match.id] = obj.GetComponentInChildren<Toggle>().isOn;
+                        var rt = State.RandomizeLists.Find(r => r.name == split[1]);
+                        if (rt != null)
+                            TempDictionary[(Traits)rt.id] = obj.GetComponentInChildren<Toggle>().isOn;
+                        else
+                        {
+                            var ct = State.CustomTraitList.Find(r => r.name == split[1]);
+                            if (ct != null)
+                                TempDictionary[(Traits)ct.id] = obj.GetComponentInChildren<Toggle>().isOn;
+                        }
                     }
                     needSave = true;
                 }

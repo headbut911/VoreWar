@@ -75,7 +75,7 @@ public class ExternalTraitReader
             traitBoost.name = results["name"].ToString();
             traitBoost.description = results["description"].ToString();
             traitBoost.tags = results["tags"].ToObject<List<string>>();
-            traitBoost.tier = results["id"].ToObject<TraitTier>();
+            traitBoost.tier = results["tier"].ToObject<TraitTier>();
             traitBoost.comps = results["comps"].ToObject<Dictionary<CustomTraitComp, float>>();
 
             State.CustomTraitList.Add(traitBoost);
@@ -105,5 +105,9 @@ public class ExternalTraitReader
 
         }
         return true;
+    }
+    public static void CustomTraitRemover(CustomTraitBoost trait)
+    {
+        File.Delete($"{State.CustomTraitDirectory}{trait.name}.json");
     }
 }

@@ -119,7 +119,7 @@ public class Unit
             if (Stats == null) return 1;
             if (!Config.StatBoostsAffectMaxHP) {
                 _maxHealth = Stats[(int)Stat.Endurance] * 2 + Stats[(int)Stat.Strength];
-                 return _maxHealth;
+                 return (int)(_maxHealth * TraitBoosts.HealthMultiplier);
             }
 
             int oldMax = _maxHealth;
@@ -1765,7 +1765,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             foreach (var trait in Tags)
             {
-                Trait ITrait = TraitList.GetTrait(trait);
+                Trait ITrait;
+                if (trait >= (Traits)2001)
+                    ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
+                else
+                    ITrait = TraitList.GetTrait(trait);              
                 if (ITrait is IStatBoost boost)
                     StatBoosts.Add(boost);
                 if (ITrait is IVoreAttackOdds voreAttackOdds)
@@ -1785,7 +1789,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             foreach (var trait in Tags.Concat(PermanentTraits).Distinct())
             {
-                Trait ITrait = TraitList.GetTrait(trait);
+                Trait ITrait;
+                if (trait >= (Traits)2001)
+                    ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
+                else
+                    ITrait = TraitList.GetTrait(trait);
                 if (ITrait is IStatBoost boost)
                     StatBoosts.Add(boost);
                 if (ITrait is IVoreAttackOdds voreAttackOdds)
@@ -1805,7 +1813,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             foreach (var trait in SharedTraits)
             {
-                Trait ITrait = TraitList.GetTrait(trait);
+                Trait ITrait;
+                if (trait >= (Traits)2001)
+                    ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
+                else
+                    ITrait = TraitList.GetTrait(trait);   
                 if (ITrait is IStatBoost boost)
                     StatBoosts.Add(boost);
                 if (ITrait is IVoreAttackOdds voreAttackOdds)
@@ -1821,8 +1833,6 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             }
         }
     }
-
-
 
     internal void SetMaxItems()
     {
@@ -3101,5 +3111,4 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         else
             return State.RaceSettings.GetConversionRace(Race);
     }
-
 }

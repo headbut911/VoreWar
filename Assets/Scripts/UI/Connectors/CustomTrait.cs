@@ -188,14 +188,9 @@ public class CustomTrait : MonoBehaviour
     public void Remove()
     {
         var rem = State.CustomTraitList.Where(x => current_id == x.id).FirstOrDefault();
+        ExternalTraitReader.CustomTraitRemover(rem);
         State.CustomTraitList.Remove(rem);
         DiscardClose();
-    }
-
-    public void ToBooster()
-    {
-        CustomTraitBoost cur = State.CustomTraitList.Where(x => current_id == x.id).FirstOrDefault();
-        
     }
     public void RefreshActive()
     {
