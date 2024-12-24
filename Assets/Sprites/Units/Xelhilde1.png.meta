@@ -35,6 +35,16 @@ TextureImporter:
     21300060: Xelhilde1_22
     21300062: Xelhilde1_23
     21300064: Xelhilde1_24
+    21300066: Xelhilde1_25
+    21300068: Xelhilde1_26
+    21300070: Xelhilde1_27
+    21300072: Xelhilde1_28
+    21300074: Xelhilde1_29
+    21300076: Xelhilde1_30
+    21300078: Xelhilde1_31
+    21300080: Xelhilde1_32
+    21300082: Xelhilde1_33
+    21300084: Xelhilde1_34
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -143,7 +153,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 640
+        y: 960
         width: 260
         height: 160
       alignment: 0
@@ -153,7 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d95f972bfa7a2644cb40676c6b949a21
+      spriteID: 88bb68922cad58b449e831b187182e55
       vertices: []
       indices: 
       edges: []
@@ -163,7 +173,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 260
-        y: 640
+        y: 960
         width: 260
         height: 160
       alignment: 0
@@ -173,7 +183,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a288a44bd561684392ca3e720342c03
+      spriteID: c39fc2787a4edd74697f69b36ee7c686
       vertices: []
       indices: 
       edges: []
@@ -183,7 +193,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 520
-        y: 640
+        y: 960
         width: 260
         height: 160
       alignment: 0
@@ -193,7 +203,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf5e2dac629f9b648b4a146063a461d7
+      spriteID: c32995c5ab2f5274f974fc73b3acd258
       vertices: []
       indices: 
       edges: []
@@ -203,7 +213,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 780
-        y: 640
+        y: 960
         width: 260
         height: 160
       alignment: 0
@@ -213,7 +223,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 221a403022efae44ca2e5da1388e37d4
+      spriteID: 25892c65bcf9c854b940c803d41f5fba
       vertices: []
       indices: 
       edges: []
@@ -223,6 +233,126 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1040
+        y: 960
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fffff3dbd6ba9d4fa2326ea6443e95d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bb5ec2753a934c428077adad70654f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_6
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 800
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce40cfc9230fd354aa6cfda00e754513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_7
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 800
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3732e6177dd54ee40943ff79045deb27
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_8
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 800
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d8f5e59a48e03448089c628bae3501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_9
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 800
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20c0e633d658f0c40b4635a05fa3b3b1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_10
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 640
         width: 260
         height: 160
@@ -233,127 +363,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 916a9fc696eb09348a5150b2c8134990
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 480
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1d8b2899d4460b4bb9a68506c3b217f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_6
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 480
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68a9169176b48b3498decd782527a6cf
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_7
-      rect:
-        serializedVersion: 2
-        x: 520
-        y: 480
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba34a0294444d00498121faf4257e547
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_8
-      rect:
-        serializedVersion: 2
-        x: 780
-        y: 480
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b5bcd02307ebbe4c9d7daf191054464
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_9
-      rect:
-        serializedVersion: 2
-        x: 1040
-        y: 480
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7fbe0e1f65b360745910c47ee98fea72
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_10
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 320
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c66f448f09de3844997d20ff02ae113a
+      spriteID: 89a33e99016d3234593cfa6a6fa071f0
       vertices: []
       indices: 
       edges: []
@@ -363,7 +373,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 260
-        y: 320
+        y: 640
         width: 260
         height: 160
       alignment: 0
@@ -373,7 +383,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca65bc628580d314e98e04a813f0682c
+      spriteID: 4f5c440cbafd07640a9bd744d582f052
       vertices: []
       indices: 
       edges: []
@@ -383,7 +393,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 520
-        y: 320
+        y: 640
         width: 260
         height: 160
       alignment: 0
@@ -393,7 +403,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a1507ae9c69382468d384b59564d399
+      spriteID: f0499ac7faeb77f43896801a9ecf0649
       vertices: []
       indices: 
       edges: []
@@ -403,7 +413,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 780
-        y: 320
+        y: 640
         width: 260
         height: 160
       alignment: 0
@@ -413,7 +423,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc8d4307b9a77b14f908cd1e7db48949
+      spriteID: f777d2b85861dcd4fba56f6fcd09e444
       vertices: []
       indices: 
       edges: []
@@ -423,6 +433,126 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1040
+        y: 640
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e9b969dcbb09c40a3dcadd2cd13bec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9150301fbf1553e4792b82b86ccd26af
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_16
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 480
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0b70f56ee6665d4ca93f7b583836f20
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_17
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 480
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b706f9990f12d1b4ca2be810b93d70f4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_18
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 480
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4fc13483d0755049a9f9b662fd65617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_19
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 480
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fe1ac18accd41d44a859bb77ed461d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_20
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 320
         width: 260
         height: 160
@@ -433,127 +563,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65f638b2651176f4e8c38b5177bfce15
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_15
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c182be2b611cc25428a27a63e9a31d23
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_16
-      rect:
-        serializedVersion: 2
-        x: 260
-        y: 160
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dbf25343ff5713640b392b8f49994348
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_17
-      rect:
-        serializedVersion: 2
-        x: 520
-        y: 160
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 517578c90b3b4d649889a5e736837db3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_18
-      rect:
-        serializedVersion: 2
-        x: 780
-        y: 160
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ed0b67b82f25e774da9a11ad8a63377b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_19
-      rect:
-        serializedVersion: 2
-        x: 1040
-        y: 160
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c23e777f5e77dbc42980ecaf16a1bc83
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Xelhilde1_20
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 260
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 72400e5aec3ad5a4caafcf315abcf62d
+      spriteID: c1dcad53b717a4a489873453a82306ca
       vertices: []
       indices: 
       edges: []
@@ -563,6 +573,186 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 260
+        y: 320
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2df69f5739eec1641941f4d68b385962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_22
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 320
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef586782d5f8f7c40bcd38d30a941009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_23
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 320
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5aecf50e3151df4da8d363df923bbc3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_24
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 320
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 979eea55e93abf54fac071c36125b530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_25
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f07d02603d4c1a340b220a7ae8df92d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_26
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 160
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c7e89a92bbcef54589528e9fa052740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_27
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 160
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75b75b47caaf5af47a77ca2a9b2c7bbe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_28
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 160
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5a717469511744c87d516e032764db
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_29
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 160
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3542ec3076f94c44fb42860bf286e0d6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_30
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
         width: 260
         height: 160
@@ -573,13 +763,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3d4758eedeac134783cb20dcf2dd911
+      spriteID: 7d5b0b62e7d2fee48b15cd63a4ae2a47
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Xelhilde1_22
+      name: Xelhilde1_31
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 260
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0bfeace132bdde49a1bc095ee82adea
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Xelhilde1_32
       rect:
         serializedVersion: 2
         x: 520
@@ -593,13 +803,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d843cfbe19c56ab4d84e35beb2d5f033
+      spriteID: 53ff1600dd3e4c94cbd50f9a9d86be31
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Xelhilde1_23
+      name: Xelhilde1_33
       rect:
         serializedVersion: 2
         x: 780
@@ -613,13 +823,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9193cadfd22ace64e99852a9331b7613
+      spriteID: 774116e038b74a64db41967a0d625816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Xelhilde1_24
+      name: Xelhilde1_34
       rect:
         serializedVersion: 2
         x: 1040
@@ -633,7 +843,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6900b58e76f1ef409ee972701d1bad4
+      spriteID: f5c6febada0d4664aa4174cde7d88599
       vertices: []
       indices: 
       edges: []

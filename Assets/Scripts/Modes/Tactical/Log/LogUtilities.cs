@@ -523,7 +523,7 @@ static class LogUtilities
             case Race.RwuMercenaries:
                 return GetRandomStringFrom("mercenary", "trooper", "merc");
             case Race.Xelhilde:
-                return GetRandomStringFrom("canine knight", "husky", "bitch");
+                return GetRandomStringFrom("canine knight", "doberman", "bitch");
             case Race.Vagrants:
                 return GetRandomStringFrom("vagrant", "jellyfish", "medusa");
             case Race.Serpents:
@@ -624,6 +624,7 @@ static class LogUtilities
         else if (unit.Race == Race.Collectors) return "Maw";
         else if (unit.Race == Race.Ki) return "Jaws";
         else if (unit.Race == Race.Selicia) return "Claws";
+        else if (unit.Race == Race.Xelhilde) return "Zweihänder";
 
         else if (unit.Race == Race.Kangaroos)
         {
