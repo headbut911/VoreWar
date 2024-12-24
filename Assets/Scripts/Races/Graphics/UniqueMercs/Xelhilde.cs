@@ -33,8 +33,8 @@ class Xelhilde : DefaultRaceData
         Body = new SpriteExtraInfo(3, BodySprite, WhiteColored);
         Head = new SpriteExtraInfo(5, HeadSprite, WhiteColored);
         BodyAccessory = null;
-        BodyAccent = null;
-        BodyAccent2 = null;
+        BodyAccent =  new SpriteExtraInfo(6, BodyAccentSprite, WhiteColored);//Belly
+        BodyAccent2 = null;//used for attack pose
         BodyAccent3 = null;
         BodyAccent4 = null;
         BodyAccent5 = null;
@@ -144,6 +144,37 @@ class Xelhilde : DefaultRaceData
             return Sprites[13 + (5 * actor.Unit.SpecialAccessoryType)];
     }
 
+    protected override Sprite BodyAccentSprite(Actor_Unit actor)//Belly
+    {
+        if (actor.HasBelly == true)
+        {
+            if (actor.IsAttacking)
+                switch (actor.Unit.BodyAccentType2)//Attack pose handler
+                {
+                    case 0:
+                    {
+                        return Sprites[0 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                    }
+                    case 1:
+                    {
+                        return Sprites[1 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                    }
+                    case 2:
+                    {
+                        return Sprites[2 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                    }
+                    default:
+                    {
+                        return Sprites[0 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                    }
+                }
+            else
+                return Sprites[26 + (5 * actor.Unit.SpecialAccessoryType)];
+        }
+        else
+            return null;
+    }
+
     protected override Sprite WeaponSprite(Actor_Unit actor)
     {
         if (actor.Surrendered == false)
@@ -185,7 +216,6 @@ class Xelhilde : DefaultRaceData
     }
 
     protected override Sprite AccessorySprite(Actor_Unit actor) => null;
-    protected override Sprite BodyAccentSprite(Actor_Unit actor) => null;
     protected override Sprite BackWeaponSprite(Actor_Unit actor) => null;
     internal override Sprite BellySprite(Actor_Unit actor, GameObject belly) => null;
     protected override Sprite SecondaryBellySprite(Actor_Unit actor) => null;
