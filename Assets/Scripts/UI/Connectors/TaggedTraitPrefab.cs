@@ -100,10 +100,6 @@ public class TaggedTraitPrefab : MonoBehaviour
         var rootObject = new RootObject();
         JsonConvert.PopulateObject(json, rootObject);
         TaggedTraitTempClass toEdit = rootObject.traits.Where(tt => tt.name == traitName.text).FirstOrDefault();
-        if (toEdit == null)
-        {
-            Debug.Log("Null");
-        }
         toEdit.tags = newTags;
         toEdit.tier = traitTier.text;
         using (StreamWriter file = File.CreateText(State.StorageDirectory + "\\taggedTraits.json"))

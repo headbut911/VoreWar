@@ -621,7 +621,7 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.Endosoma:
                 return "Units that are vored take no digestion damage \n Enemies lose stamina instead of health, enemies with no stamina no longer try to escape and are considered defeated at the end of battle, but not if freed. \n Has 100% chance to eat allies.Can vore friendly units, they do not try to escape. \n May cause battles to not automatically end if used with TheGreatEscape";
             case Traits.Friendosoma:
-                return "Enemies defeated by defeated by the Endosoma trait will now be recruited instead at the end of battle.soma";
+                return "Enemies defeated by defeated by the Endosoma trait will now be recruited instead at the end of battle.";
         }
         return "<b>This trait needs a tooltip!</b>";
     }

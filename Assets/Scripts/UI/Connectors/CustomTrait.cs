@@ -164,7 +164,7 @@ public class CustomTrait : MonoBehaviour
             }
         }
 
-        ExternalTraitReader.CustomTraitSaver(trait);
+        ExternalTraitHandler.CustomTraitSaver(trait);
     }
 
     public void SaveClose()
@@ -188,7 +188,7 @@ public class CustomTrait : MonoBehaviour
     public void Remove()
     {
         var rem = State.CustomTraitList.Where(x => current_id == x.id).FirstOrDefault();
-        ExternalTraitReader.CustomTraitRemover(rem);
+        ExternalTraitHandler.CustomTraitRemover(rem);
         State.CustomTraitList.Remove(rem);
         DiscardClose();
     }

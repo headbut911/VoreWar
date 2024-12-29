@@ -1,4 +1,5 @@
-﻿using OdinSerializer;
+﻿using AssetUsageDetectorNamespace;
+using OdinSerializer;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -20,6 +21,7 @@ public static class State
     public static List<String> TieredTraitsTagsList;
     public static List<RandomizeList> RandomizeLists;
     public static List<CustomTraitBoost> CustomTraitList;
+    public static Dictionary<TaggedTrait,bool> UntaggedTraits;
 
     internal static EventList EventList;
 
@@ -112,6 +114,11 @@ public static class State
         EventList = new EventList();
         AssimilateList = new AssimilateList();
         CustomTraitList = new List<CustomTraitBoost>();
+        UntaggedTraits = new Dictionary<TaggedTrait, bool>();
+
+        TieredTraitsList = ExternalTraitHandler.TaggedTraitParser();
+        TieredTraitsTagsList = new List<string>();
+        ExternalTraitHandler.CustomTraitParser();
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
         List<string> lines;
@@ -151,8 +158,46 @@ public static class State
                     }
                 });
             }
-               
         }
+
+        foreach (Traits trait in (Traits[])Enum.GetValues(typeof(Traits)))
+        {
+            if (TieredTraitsList.Keys.Contains(trait))
+            {
+                if (TieredTraitsList[trait].tags == null)
+                {
+                    UntaggedTraits.Add(TieredTraitsList[trait], true);
+                    continue;
+                }
+                if (TieredTraitsList[trait].tags.Count <= 0)
+                {
+                    UntaggedTraits.Add(TieredTraitsList[trait], true);
+                }
+            }
+            else
+            {
+                TaggedTrait newTrait = new TaggedTrait();
+                newTrait.name = trait.ToString();
+                newTrait.tierValue = TraitTier.Neutral;
+                newTrait.tier = newTrait.tierValue.ToString();
+                newTrait.traitEnum = trait;
+                UntaggedTraits.Add(newTrait, false);
+            }
+        }
+
+        List<TaggedTrait> newTraits = new List<TaggedTrait>();
+        foreach (var newTrait in UntaggedTraits) 
+        {
+            if (newTrait.Value)
+            {
+                continue;
+            }
+            newTraits.Add(newTrait.Key);
+        }
+
+        ExternalTraitHandler.AppendTaggedTrait(newTraits);
+
+
     }
 
     public static void SaveEditedRaces()
@@ -172,12 +217,6 @@ public static class State
     {
         RaceSlot = PlayerPrefs.GetInt("RaceEditorSlot", 1);
         ChangeRaceSlotUsed(RaceSlot);
-    }
-    public static void LoadTraitData()
-    {
-        TieredTraitsList = ExternalTraitReader.TaggedTraitParser();
-        TieredTraitsTagsList = new List<string>();
-        ExternalTraitReader.CustomTraitParser();
     }
 
     public static void ChangeRaceSlotUsed(int num)

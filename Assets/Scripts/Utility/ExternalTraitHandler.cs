@@ -30,7 +30,7 @@ public class TaggedTrait
     internal Traits traitEnum;
 }
 
-public class ExternalTraitReader
+public class ExternalTraitHandler
 {
     public static Dictionary<Traits, TaggedTrait> TaggedTraitParser()
     {
@@ -56,6 +56,29 @@ public class ExternalTraitReader
         }
         return taggedTraitsList;
     }
+
+    public static void AppendTaggedTrait(List<TaggedTrait> newTrait)
+    {
+        string json = File.ReadAllText(State.StorageDirectory + "\\taggedTraits.json");
+        var rootObject = new RootObject();
+        JsonConvert.PopulateObject(json, rootObject);
+        foreach (TaggedTrait trait in newTrait) 
+        {
+            TaggedTraitTempClass toBeAdded = new TaggedTraitTempClass();
+            toBeAdded.name = trait.name;
+            toBeAdded.tier = trait.tier;
+            toBeAdded.tier = trait.tier.ToString();
+            toBeAdded.traitEnum = trait.traitEnum;
+            toBeAdded.tierValue = trait.tierValue;
+            rootObject.traits.Add(toBeAdded);
+        }
+        using (StreamWriter file = File.CreateText(State.StorageDirectory + "\\taggedTraits.json"))
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(file, rootObject);
+        }
+    }
+
     public static void CustomTraitParser()
     {
         string readContents;
@@ -109,5 +132,18 @@ public class ExternalTraitReader
     public static void CustomTraitRemover(CustomTraitBoost trait)
     {
         File.Delete($"{State.CustomTraitDirectory}{trait.name}.json");
+    }
+
+    class RootObject
+    {
+        public List<TaggedTraitTempClass> traits { get; set; }
+    }
+    class TaggedTraitTempClass
+    {
+        public string name { get; set; }
+        public string tier { get; set; }
+        public List<string> tags { get; set; }
+        public TraitTier tierValue { get; set; }
+        public Traits traitEnum { get; set; }
     }
 }
