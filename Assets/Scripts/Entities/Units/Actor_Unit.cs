@@ -1269,7 +1269,6 @@ public class Actor_Unit
             animationController.frameLists[0].currentlyActive = true;
         }
 
-        Attack(target, false, damageMultiplier: .66f);
         Actor_Unit tempTarget = TacticalUtilities.GetActorAt(target.Position + new Vec2(1, 0));
         TestAttack(tempTarget);
         tempTarget = TacticalUtilities.GetActorAt(target.Position + new Vec2(0, 1));
@@ -1278,6 +1277,7 @@ public class Actor_Unit
         TestAttack(tempTarget);
         tempTarget = TacticalUtilities.GetActorAt(target.Position + new Vec2(0, -1));
         TestAttack(tempTarget);
+        Attack(target, false, damageMultiplier: .66f);
 
         Movement = 0;
 

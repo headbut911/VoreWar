@@ -249,7 +249,7 @@ class StrategicArmyCommander
     {
         if (empire.Gold >= merc.Cost * 2)
         {
-            if (army.Units.Count < army.MaxSize)
+            if (StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
             {
                 army.Units.Add(merc.Unit);
                 merc.Unit.Side = army.Side;
@@ -263,7 +263,7 @@ class StrategicArmyCommander
     {
         if (empire.Gold >= merc.Cost)
         {
-            if (army.Units.Count < army.MaxSize)
+            if (StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
             {
                 army.Units.Add(merc.Unit);
                 merc.Unit.Side = army.Side;

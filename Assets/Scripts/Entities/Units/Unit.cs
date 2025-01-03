@@ -140,6 +140,11 @@ public class Unit
     }
 
     [OdinSerialize]
+    internal int DeployCost;
+    [OdinSerialize]
+    internal float UpkeepMult;
+
+    [OdinSerialize]
     internal AIClass AIClass;
     [OdinSerialize]
     internal StatWeights StatWeights;
@@ -634,6 +639,9 @@ public class Unit
         PermanentTraits = new List<Traits>();
         RemovedTraits = new List<Traits>();
         Type = type;
+
+        DeployCost = 1;
+        UpkeepMult = 1f;
 
         Predator = predator;
         if (predator == false)

@@ -85,14 +85,14 @@ public class StrategicAI : IStrategicAI
         int totalIncome = empire.Income;
         for (int i = 0; i < empire.Armies.Count; i++)
         {
-            totalIncome += (empire.Armies[i].Units.Count * Config.World.ArmyUpkeep);
+            totalIncome += empire.GetUpkeep();
         }
 
         int idealUnitCount;
 
-        idealUnitCount = totalIncome / Math.Max(Config.World.ArmyUpkeep * 3 / 5, 1);
+        idealUnitCount = (int)Math.Round(totalIncome / Math.Max(empire.GetUpkeepCoefficient() * 3 / 5, 1));
         if (empire.Gold > 3000)
-            idealUnitCount = totalIncome / Math.Max(Config.World.ArmyUpkeep * 4 / 5, 1);
+            idealUnitCount = (int)Math.Round(totalIncome / Math.Max(empire.GetUpkeepCoefficient() * 4 / 5, 1));
         int minArmySize = empire.MaxArmySize * 3 / 4;
         if (currentUnitCount > 40 || ArmyCommander.StrongestArmyRatio < .7f)
             minArmySize = empire.MaxArmySize;

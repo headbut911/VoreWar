@@ -375,6 +375,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
             {
                 Traits.Pounce,
@@ -389,6 +391,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.PackWill,
@@ -403,6 +407,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Mind,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.ArtfulDodge,
@@ -411,13 +417,15 @@ static class RaceParameters
             LeaderRace = Race.Youko,
             RaceDescription = "Natives of this realm, the Foxes seem unable of taking danger seriously. They dodge attacks at the last second and only seem to grow ever bolder as death approaches them. Entire armies have fallen exhausted as a group of foxes dances among them, ready to be devoured once the time is right.",
         };
-
+       
         Youko = new RaceTraits()
         {
             BodySize = 10,
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Mind,
+            DeployCost = 1,
+            UpkeepMult = 2.1f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             RacialTraits = new List<Traits>()
             {
@@ -450,6 +458,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.PackStrength,
@@ -465,6 +475,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Dexterity,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RacialTraits = new List<Traits>()
         {
             Traits.ProlificBreeder,
@@ -483,6 +495,8 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Voracity,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RacialTraits = new List<Traits>()
         {
             Traits.Resilient,
@@ -500,6 +514,8 @@ static class RaceParameters
             StomachSize = 20,
             HasTail = false,
             FavoredStat = Stat.Stomach,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.BoggingSlime,
@@ -516,6 +532,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = false,
             FavoredStat = Stat.Will,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RacialTraits = new List<Traits>()
         {
             //Traits.Aquatic,
@@ -531,6 +549,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RacialTraits = new List<Traits>()
         {
             Traits.Flight,
@@ -547,6 +567,8 @@ static class RaceParameters
             StomachSize = 12,
             HasTail = true,
             FavoredStat = Stat.Will,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.PackStomach,
@@ -562,6 +584,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = false,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.AdeptLearner,
@@ -577,6 +601,8 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = false,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.SlowBreeder,
@@ -593,6 +619,8 @@ static class RaceParameters
             StomachSize = 25,
             HasTail = true,
             FavoredStat = Stat.Voracity,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             RacialTraits = new List<Traits>()
         {
@@ -609,6 +637,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.BornToMove,
@@ -623,6 +653,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.StrongMelee,
@@ -637,6 +669,8 @@ static class RaceParameters
             StomachSize = 14,
             HasTail = true,
             FavoredStat = Stat.Will,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.KeenReflexes,
@@ -651,7 +685,9 @@ static class RaceParameters
             BodySize = 10,
             StomachSize = 16,
             HasTail = true,
-            FavoredStat = Stat.Agility,
+            FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Charge,
@@ -666,6 +702,8 @@ static class RaceParameters
             StomachSize = 14,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.KeenReflexes,
@@ -681,6 +719,8 @@ static class RaceParameters
             StomachSize = 14,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             RacialTraits = new List<Traits>()
         {
@@ -698,6 +738,8 @@ static class RaceParameters
             StomachSize = 20,
             HasTail = false,
             FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 //Traits.StrongMelee,
@@ -713,6 +755,8 @@ static class RaceParameters
             StomachSize = 16,
             HasTail = false,
             FavoredStat = Stat.Endurance,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Tempered,
@@ -728,6 +772,8 @@ static class RaceParameters
             StomachSize = 13,
             HasTail = false,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Flight,
@@ -743,6 +789,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.TasteForBlood,
@@ -757,6 +805,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Will,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.MagicResistance,
@@ -772,6 +822,8 @@ static class RaceParameters
             StomachSize = 14,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.KeenShot,
@@ -786,6 +838,8 @@ static class RaceParameters
             StomachSize = 12,
             HasTail = false,
             FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.PackStrength,
@@ -801,6 +855,8 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = false,
             FavoredStat = Stat.Voracity,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Pounce,
@@ -817,6 +873,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Voracity,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Biter,
@@ -832,6 +890,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.EvasiveBattler,
@@ -847,6 +907,8 @@ static class RaceParameters
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 1f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.Anal },
             RacialTraits = new List<Traits>()
         {
@@ -864,6 +926,8 @@ static class RaceParameters
             StomachSize = 12,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RacialTraits = new List<Traits>()
         {
                 Traits.ProlificBreeder,
@@ -883,6 +947,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.Anal },
             ExpMultiplier = 20f,
             PowerAdjustment = 100f,
+            DeployCost = 8,
+            UpkeepMult = 10f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(40, 50),
@@ -911,6 +977,8 @@ static class RaceParameters
             StomachSize = 12,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RacialTraits = new List<Traits>()
             {
                 Traits.ProlificBreeder,
@@ -928,6 +996,8 @@ static class RaceParameters
             StomachSize = 12,
             HasTail = true,
             FavoredStat = Stat.Will,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore, VoreType.CockVore },
             RacialTraits = new List<Traits>()
             {
@@ -948,6 +1018,7 @@ static class RaceParameters
                 Voracity = new RaceStats.StatRange(8, 14),
                 Stomach = new RaceStats.StatRange(8, 14),
             },
+            RaceAI = RaceAI.Hedonist,
         };
 
 
@@ -958,6 +1029,8 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Strength,
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RacialTraits = new List<Traits>()
         {
             Traits.Maul,
@@ -985,6 +1058,8 @@ static class RaceParameters
             StomachSize = 14,
             HasTail = false,
             FavoredStat = Stat.Mind,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
             Traits.Clever,
@@ -1016,6 +1091,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth, VoreType.Anal },
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats() // Stronger, tougher, slower moving and with slower digestion. (Crocodilians would normally have a very strong digestion, but that reguires focusing on it, not going on fighting.)
             // Wider, shorter throats also make eating easier, but also make prey's escape easier. (Not in RL, obviously. Or perhaps they would, if crocodilians had a habit of swallowing sizeable living prey.)
             {
@@ -1043,6 +1120,8 @@ static class RaceParameters
             StomachSize = 14,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RacialTraits = new List<Traits>()
         {
             Traits.ArtfulDodge,
@@ -1057,6 +1136,8 @@ static class RaceParameters
             StomachSize = 12,
             HasTail = true,
             FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RacialTraits = new List<Traits>()
             {
                 Traits.ProlificBreeder,
@@ -1073,6 +1154,8 @@ static class RaceParameters
             StomachSize = 16,
             HasTail = false,
             FavoredStat = Stat.Endurance,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Resilient,
@@ -1090,6 +1173,8 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Endurance,
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -1117,6 +1202,8 @@ static class RaceParameters
             FavoredStat = Stat.Voracity,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             PowerAdjustment = 1.4f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -1148,6 +1235,8 @@ static class RaceParameters
             FavoredStat = Stat.Strength,
             CanUseRangedWeapons = false,
             PowerAdjustment = 1.4f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 24),
@@ -1177,6 +1266,8 @@ static class RaceParameters
             FavoredStat = Stat.Mind,
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -1204,6 +1295,8 @@ static class RaceParameters
             FavoredStat = Stat.Strength,
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 20),
@@ -1231,6 +1324,8 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(18, 26),
@@ -1261,6 +1356,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 26),
@@ -1289,6 +1386,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.25f,
             PowerAdjustment = .9f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 20),
@@ -1317,6 +1416,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.Anal },
             ExpMultiplier = 1.5f,
             PowerAdjustment = 2f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 20),
@@ -1344,16 +1445,18 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.Anal },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 2.1f,
+            DeployCost = 1,
+            UpkeepMult = 2.1f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(9, 21),
+                Strength = new RaceStats.StatRange(29, 41),
                 Dexterity = new RaceStats.StatRange(7, 14),
                 Endurance = new RaceStats.StatRange(15, 22),
                 Mind = new RaceStats.StatRange(14, 28),
                 Will = new RaceStats.StatRange(8, 18),
                 Agility = new RaceStats.StatRange(11, 22),
                 Voracity = new RaceStats.StatRange(12, 18),
-                Stomach = new RaceStats.StatRange(9, 16),
+                Stomach = new RaceStats.StatRange(19, 26),
             },
             RacialTraits = new List<Traits>()
         {
@@ -1371,6 +1474,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.CockVore },
             ExpMultiplier = .75f,
             PowerAdjustment = .5f,
+            DeployCost = 1,
+            UpkeepMult = 0.1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(2, 6),
@@ -1399,6 +1504,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.75f,
             PowerAdjustment = 1.75f,
+            DeployCost = 1,
+            UpkeepMult = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 20),
@@ -1428,6 +1535,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
             ExpMultiplier = 1.75f,
             PowerAdjustment = 1.75f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 22),
@@ -1455,6 +1564,8 @@ static class RaceParameters
             FavoredStat = Stat.Voracity,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 14),
@@ -1484,6 +1595,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 2.5f,
             PowerAdjustment = 2.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.8f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 26),
@@ -1516,6 +1629,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.5f,
             PowerAdjustment = 2.2f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 22),
@@ -1547,6 +1662,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.5f,
             PowerAdjustment = 2.2f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(11, 20),
@@ -1578,6 +1695,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -1606,6 +1725,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -1635,6 +1756,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 16),
@@ -1665,6 +1788,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 6f,
             PowerAdjustment = 12f,
+            DeployCost = 4,
+            UpkeepMult = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(24, 32),
@@ -1693,10 +1818,12 @@ static class RaceParameters
             BodySize = 9,
             StomachSize = 9,
             HasTail = false,
-            FavoredStat = Stat.Dexterity,
+            FavoredStat = Stat.Agility,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.4f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 10),
@@ -1726,6 +1853,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.4f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -1754,6 +1883,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.CockVore, VoreType.Anal },
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.2f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(4, 8),
@@ -1785,6 +1916,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.CockVore, VoreType.Anal },
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.2f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RacialTraits = new List<Traits>()
             {
                 Traits.Whispers,
@@ -1805,6 +1938,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.0f,
             PowerAdjustment = 1.2f,
+            DeployCost = 1,
+            UpkeepMult = 0.1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(4, 6),
@@ -1834,6 +1969,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 1.75f,
             PowerAdjustment = 2.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 18),
@@ -1865,6 +2002,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 1.75f,
             PowerAdjustment = 3f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 20),
@@ -1897,6 +2036,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 8),
@@ -1928,6 +2069,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = .9f,
             PowerAdjustment = .9f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -1960,6 +2103,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 2.5f,
             PowerAdjustment = 3.0f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 24),
@@ -1990,6 +2135,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2023,6 +2170,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -2052,6 +2201,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 28),
@@ -2082,11 +2233,13 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.9f,
+            DeployCost = 1,
+            UpkeepMult = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 22),
                 Dexterity = new RaceStats.StatRange(8, 16),
-                Endurance = new RaceStats.StatRange(12, 18),
+                Endurance = new RaceStats.StatRange(24, 23),
                 Mind = new RaceStats.StatRange(14, 30),
                 Will = new RaceStats.StatRange(8, 18),
                 Agility = new RaceStats.StatRange(14, 28),
@@ -2096,7 +2249,10 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
                 Traits.Flight,
-                Traits.Ravenous
+                Traits.Ravenous,
+                Traits.AdeptLearner,
+                Traits.StrongGullet,
+                Traits.Maul,
         },
             RaceDescription = "A variety of dragons especially attuned to magic, the Eastern Dragons, or Lung Dragons as they are also known as, are able to fly without wings. Reminiscent of snakes, the Eastern Dragons are readily able to prove that the resemblance is more than skin deep, devouring large prey with ease.",
 
@@ -2111,6 +2267,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2141,6 +2299,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore },
             ExpMultiplier = .85f,
             PowerAdjustment = .75f,
+            DeployCost = 1,
+            UpkeepMult = 0.1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(3, 7),
@@ -2171,6 +2331,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2200,6 +2362,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2228,6 +2392,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.0f,
             PowerAdjustment = 1.0f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2257,6 +2423,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 1.5f,
             PowerAdjustment = 1.75f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -2285,6 +2453,8 @@ static class RaceParameters
             FavoredStat = Stat.Voracity,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -2314,6 +2484,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.CockVore },
             ExpMultiplier = 1.3f,
             PowerAdjustment = 1.6f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 14),
@@ -2342,6 +2514,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.TailVore },
             ExpMultiplier = 1.5f,
             PowerAdjustment = 1.75f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -2371,6 +2545,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.CockVore, VoreType.Oral, VoreType.Unbirth },
             ExpMultiplier = .95f,
             PowerAdjustment = .95f,
+            DeployCost = 1,
+            UpkeepMult = 0.2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2400,6 +2576,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 18),
@@ -2429,6 +2607,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.Anal },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(11, 15),
@@ -2455,6 +2635,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.3f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(11, 15),
@@ -2484,6 +2666,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 2.1f,
+            DeployCost = 1,
+            UpkeepMult = 0.6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(9, 27),
@@ -2515,6 +2699,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth },
             ExpMultiplier = 4f,
             PowerAdjustment = 7f,
+            DeployCost = 4,
+            UpkeepMult = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(22, 26),
@@ -2547,6 +2733,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 2f,
             PowerAdjustment = 4f,
+            DeployCost = 1,
+            UpkeepMult = 0.6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 22),
@@ -2578,6 +2766,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            UpkeepMult = 0.3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(5, 7),
@@ -2607,6 +2797,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 2.4f,
             PowerAdjustment = 4f,
+            DeployCost = 1,
+            UpkeepMult = 0.6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2638,6 +2830,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
             ExpMultiplier = 2.4f,
             PowerAdjustment = 3f,
+            DeployCost = 1,
+            UpkeepMult = 20f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2667,6 +2861,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 2.4f,
             PowerAdjustment = 4f,
+            DeployCost = 1,
+            UpkeepMult = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2697,6 +2893,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 3f,
+            DeployCost = 1,
+            UpkeepMult = 0.6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 20),
@@ -2729,6 +2927,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth },
             ExpMultiplier = 3.2f,
             PowerAdjustment = 7f,
+            DeployCost = 4,
+            UpkeepMult = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(24, 28),
@@ -2759,6 +2959,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore },
             ExpMultiplier = 2.4f,
             PowerAdjustment = 4f,
+            DeployCost = 1,
+            UpkeepMult = 0.6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2789,6 +2991,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
             ExpMultiplier = 2.4f,
             PowerAdjustment = 3.2f,
+            DeployCost = 1,
+            UpkeepMult = 20f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 16),
@@ -2819,6 +3023,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { },
             ExpMultiplier = 2.4f,
             PowerAdjustment = 2f,
+            DeployCost = 1,
+            UpkeepMult = 0.4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(5, 10),
@@ -2852,6 +3058,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 6f,
             PowerAdjustment = 12f,
+            DeployCost = 1,
+            UpkeepMult = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 24),
@@ -2884,6 +3092,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal, VoreType.CockVore },
             ExpMultiplier = 2.4f,
             PowerAdjustment = 5f,
+            DeployCost = 1,
+            UpkeepMult = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 10),
@@ -2916,6 +3126,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.Anal},
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.2f,
+            DeployCost = 1,
+            UpkeepMult = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 10),
@@ -2951,6 +3163,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
             ExpMultiplier = 2f,
             PowerAdjustment = 4f,
+            DeployCost = 1,
+            UpkeepMult = 0.5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 15),
@@ -2980,6 +3194,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 2f,
             PowerAdjustment = 4f,
+            DeployCost = 1,
+            UpkeepMult = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(15, 22),
@@ -3032,6 +3248,17 @@ internal class RaceTraits
     internal Race LeaderRace = Race.none;
     internal List<SpellTypes> InnateSpells = new List<SpellTypes>();
     internal RaceStats RaceStats = new RaceStats();
+
+    /// <summary>
+    /// Controls the amount of unit slots unit takes up in an army.
+    /// </summary>
+    internal int DeployCost = 1;
+
+    /// <summary>
+    /// Controls the upkeep a unit requires.
+    /// </summary>
+    internal float UpkeepMult = 1f;
+
     /// <summary>
     /// Attacks against this race will have their experience gained modified by this ratio
     /// </summary>

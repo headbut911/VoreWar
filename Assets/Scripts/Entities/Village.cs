@@ -697,7 +697,7 @@ public class Village
                 if (unit.unit == Empire.Leader)
                 {
                     var localArmy = StrategicUtilities.ArmyAt(Position);
-                    if (localArmy != null && localArmy.Side == Side && localArmy.Units.Count() < localArmy.Empire.MaxArmySize)
+                    if (localArmy != null && localArmy.Side == Side && StrategicUtilities.ArmyCanFitUnit(localArmy, unit.unit))
                     {
                         Empire.Reports.Add(new StrategicReport($"{unit.unit.Name} (Leader) has arrived at {Name} and auto-joined the army there", new Vec2(Position.x, Position.y)));
                         localArmy.Units.Add(unit.unit);
@@ -1119,10 +1119,10 @@ public class Village
         {
             if (empire.Gold >= Config.ArmyCost)
             {
-                if (army.Units.Count < army.MaxSize)
+                Race race = VillagePopulation.GetMostPopulousRace(); //There should only be one race if this is triggered, so this should be safe
+                Unit unit = new Unit(empire.Side, race, GetStartingXp(), State.World.GetEmpireOfRace(race)?.CanVore ?? true);
+                if (StrategicUtilities.ArmyCanFitUnit(army, unit))
                 {
-                    Race race = VillagePopulation.GetMostPopulousRace(); //There should only be one race if this is triggered, so this should be safe
-                    Unit unit = new Unit(empire.Side, race, GetStartingXp(), State.World.GetEmpireOfRace(race)?.CanVore ?? true);
                     unit.AddTraits(GetTraitsToAdd());
                     army.Units.Add(unit);
                     State.World.Stats.SoldiersRecruited(1, Side);
@@ -1145,9 +1145,9 @@ public class Village
         {
             if (empire.Gold >= Config.ArmyCost)
             {
-                if (army.Units.Count < army.MaxSize)
+                Unit unit = new Unit(empire.Side, race, GetStartingXp(), State.World.GetEmpireOfRace(Race)?.CanVore ?? true);
+                if (StrategicUtilities.ArmyCanFitUnit(army, unit))
                 {
-                    Unit unit = new Unit(empire.Side, race, GetStartingXp(), State.World.GetEmpireOfRace(Race)?.CanVore ?? true);
                     unit.AddTraits(GetTraitsToAdd());
                     army.Units.Add(unit);
                     State.World.Stats.SoldiersRecruited(1, Side);
@@ -1259,7 +1259,7 @@ public class Village
         {
             if (empire.Gold >= Config.ArmyCost)
             {
-                if (army.Units.Count < army.MaxSize)
+                if (StrategicUtilities.ArmyCanFitUnit(army, unit))
                 {
                     var startingExp = GetStartingXp();
                     if (unit.Experience < startingExp)
@@ -1493,7 +1493,7 @@ public class Village
     {
         if (empire.Gold >= merc.Cost)
         {
-            if (army.Units.Count < army.MaxSize)
+            if (StrategicUtilities.ArmyCanFitUnit(army,merc.Unit))
             {
                 var startingExp = GetStartingXp();
                 if (merc.Unit.Experience < startingExp)

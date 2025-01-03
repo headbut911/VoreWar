@@ -593,7 +593,7 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.SpellBlade:
                 return "Unit's weapon damage also scales with mind. (Half as effectively as weapons main stat)";
             case Traits.ArcaneMagistrate:
-                return "Unit gains 1 focus when it hits a spell, unit gains 4 more if the spell kills the target.";
+                return "Unit gains 1 focus when it hits a spell, unit gains 4 more if the spell kills the target. Focus: Unit has its mind increased.";
             case Traits.SwiftStrike:
                 return "Unit deals up 1% more weapon damage per agility it has over it's target, up to 25%, tripled when using light weapons.";
             case Traits.Timid:

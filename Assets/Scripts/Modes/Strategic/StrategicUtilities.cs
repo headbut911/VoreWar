@@ -1127,5 +1127,14 @@ static class StrategicUtilities
             }
         };
     }
+
+    static public bool ArmyCanFitUnit(Army army, Unit unit)
+    {
+        if (army.RemainnigSize - RaceParameters.GetTraitData(unit).DeployCost >= 0 )
+        {
+            return true;
+        }
+        return false;
+    }
 }
 

@@ -373,6 +373,10 @@ class RaceSettingsItem
 
     [OdinSerialize]
     internal float PowerAdjustment;
+    [OdinSerialize]
+    internal float UpkeepMult;
+    [OdinSerialize]
+    internal int DeployCost;
 
 
 
@@ -444,6 +448,8 @@ class RaceSettingsItem
         RaceAI = racePar.RaceAI;
 
         PowerAdjustment = racePar.PowerAdjustment;
+        UpkeepMult = 1;
+        DeployCost = 1;
 
         //DisplayGraphics = race;
 

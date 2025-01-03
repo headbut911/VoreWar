@@ -91,6 +91,9 @@ public class Army
     public float HealRate;
 
     [OdinSerialize]
+    public float RemainnigSize;
+
+    [OdinSerialize]
     private ItemStock itemStock;
 
     internal ItemStock ItemStock

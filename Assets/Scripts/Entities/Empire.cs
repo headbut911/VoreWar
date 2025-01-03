@@ -1,5 +1,6 @@
 using LegacyAI;
 using OdinSerializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -241,7 +242,7 @@ public class Empire
         {
             for (int i = 0; i < Armies.Count; i++)
             {
-                Income = Income - (Armies[i].Units.Count * Config.World.ArmyUpkeep);
+                Income = Income - GetUpkeep();
                 if (AddToStats)
                 {
                     State.World.Stats.CollectedGold(Armies[i].Units.Count * 2, Armies[i].Side);
@@ -469,5 +470,30 @@ public class Empire
                 }
             }
         }
+    }
+
+    internal int GetUpkeep()
+    {
+        int totalCost = 0;
+        foreach (Army army in Armies)
+        {
+            foreach(Unit unit in army.Units)
+            {
+                totalCost += (int)Math.Round(Config.World.ArmyUpkeep * RaceParameters.GetTraitData(unit).UpkeepMult);
+            }
+        }
+        return totalCost;
+    }
+    internal float GetUpkeepCoefficient()
+    {
+        float currentCoeff = Config.World.ArmyUpkeep;
+        foreach (Army army in Armies)
+        {
+            foreach(Unit unit in army.Units)
+            {
+                currentCoeff += Mathf.MoveTowards(currentCoeff,Config.World.ArmyUpkeep * RaceParameters.GetTraitData(unit).UpkeepMult, 10f);
+            }
+        }
+        return currentCoeff;
     }
 }

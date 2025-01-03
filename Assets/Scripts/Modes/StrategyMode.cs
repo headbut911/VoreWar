@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 public class StrategyMode : SceneBase
 {
@@ -2074,7 +2075,7 @@ public class StrategyMode : SceneBase
                         }
                     }
                     dismissOrder[k].Health = 0;
-                    income += Config.World.ArmyUpkeep;
+                    income += (int)Math.Round(Config.World.ArmyUpkeep * RaceParameters.GetTraitData(dismissOrder[k]).UpkeepMult);
                 }
             }
 
