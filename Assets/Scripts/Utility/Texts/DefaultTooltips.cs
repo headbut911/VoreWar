@@ -559,7 +559,7 @@ It should be fairly stable though.  There are a few places that are still keyed 
             case 216:
                 return "Controls whether winter holiday mode is enabled (changes the decorations for snow, and enables certain races to spawn with holiday related outfits)\nNote that when this expires or is turned off, units will still keep wearing what they were wearing.";
             case 217:
-                return "Controls how much maintenance each unit in an army costs per turn.";
+                return "Controls how much maintenance each unit in an army costs per turn regardless of race. A value below 0 will use individual race settings.";
             case 218:
                 return "Changes which types of feeding are allowed. After a unit digests a unit in their breast(s) or cock, they can use that organ to feed allies in order to heal them.";
             case 219:
@@ -764,6 +764,10 @@ Does not retroactively affect already created units.";
                 return "Changes the time of day when monsters are given AP. \n'Can always move' respects 'Monsters can only move at night' setting preventing movement \n'Can only move when Day' allows for movement durring day despite 'Monsters can only move at night' setting.";
             case 313:
                 return "Controls if when a unit auto-surrenders if they are healed to full health. Can be changed from if only defecting units are healed, only units that remain loyal are healed, or if all auto-surrendered units are healed.";
+            case 314:
+                return "Sets the per turn value one unit of this race will occur on the empire it's apart of.";
+            case 315:
+                return "Sets the ammont of slots in an army this unit takes up.";
             default:
                 return "";
         }

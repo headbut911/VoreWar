@@ -55,7 +55,7 @@ public class RaceEditorPanel : MonoBehaviour
     public InputField MaxStomach;
 
     public InputField PowerAdjustment;
-    public InputField UpkeepMult;
+    public InputField Upkeep;
     public InputField DeployCost;
 
     public Toggle OverrideClothed;
@@ -433,10 +433,8 @@ public class RaceEditorPanel : MonoBehaviour
                 if (item.Stats.Stomach.Roll < 1) item.Stats.Strength.Roll = 1;
 
                 item.PowerAdjustment = Convert.ToInt32(PowerAdjustment.text)/100f;
-                item.UpkeepMult = Convert.ToSingle(UpkeepMult.text);
-                item.DeployCost = Convert.ToInt32(DeployCost.text);
-                if(item.DeployCost < 1)
-                    item.DeployCost = 1;
+                item.Upkeep = float.TryParse(Upkeep.text, out float outputUpkeep) ? outputUpkeep : 1;
+                item.DeployCost = float.TryParse(DeployCost.text, out float outputDeploy) ? outputDeploy : 1;
 
                 item.FemaleTraits = TextToTraitList(FemaleTraits.text);
                 item.MaleTraits = TextToTraitList(MaleTraits.text);
@@ -641,10 +639,17 @@ public class RaceEditorPanel : MonoBehaviour
             var depCost = item.DeployCost;
             if (depCost == 0f)
             {
-                depCost = 1;
+                depCost = racePar.DeployCost;
             }
             DeployCost.text = depCost.ToString();
-            UpkeepMult.text = item.UpkeepMult.ToString();
+
+            var upMult = item.Upkeep;
+            if (upMult == 0f)
+            {
+                upMult = racePar.Upkeep;
+            }
+            Upkeep.text = upMult.ToString();
+
             FemaleTraits.text = TraitListToText(item.FemaleTraits);
             MaleTraits.text = TraitListToText(item.MaleTraits);
             HermTraits.text = TraitListToText(item.HermTraits);

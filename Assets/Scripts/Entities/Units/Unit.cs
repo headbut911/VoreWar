@@ -142,7 +142,7 @@ public class Unit
     [OdinSerialize]
     internal int DeployCost;
     [OdinSerialize]
-    internal float UpkeepMult;
+    internal float Upkeep;
 
     [OdinSerialize]
     internal AIClass AIClass;
@@ -641,7 +641,7 @@ public class Unit
         Type = type;
 
         DeployCost = 1;
-        UpkeepMult = 1f;
+        Upkeep = 1f;
 
         Predator = predator;
         if (predator == false)

@@ -18,6 +18,7 @@ public class Recruit_Mode : SceneBase
     VillageView villageView;
 
     List<Unit> dismissList;
+    Dictionary<Button,Unit> buttonList = new Dictionary<Button,Unit>();
 
     int selectedIndex;
 
@@ -169,6 +170,7 @@ public class Recruit_Mode : SceneBase
             }
 
         }
+        army.RecalculateSizeValue();
         BannerType.gameObject.SetActive(army != null);
         InitializeBanners();
 
@@ -246,9 +248,9 @@ public class Recruit_Mode : SceneBase
         RecruitUI.RecruitSoldier.gameObject.SetActive(activatingEmpire < ActivatingEmpire.Observer);
         RecruitUI.StockWeapons.interactable = (activatingEmpire < ActivatingEmpire.Observer || failedToMakeFriendlyArmy) && village.Empire == empire;
         RecruitUI.CheapUpgrade.interactable = activatingEmpire == ActivatingEmpire.Self && army.Units.Count > 0;
-        RecruitUI.RecruitSoldier.interactable = activatingEmpire == ActivatingEmpire.Self && (village.GetTotalPop() > 3) && army.Units.Count < army.MaxSize;
-        RecruitUI.HireSoldier.interactable = activatingEmpire == ActivatingEmpire.Self && village.GetRecruitables().Count > 0 && (village.GetTotalPop() > 3) && army.Units.Count < army.MaxSize;
-        RecruitUI.HireVillageMerc.interactable = activatingEmpire == ActivatingEmpire.Self && (village.Mercenaries?.Count > 0 || village.Adventurers?.Count > 0) && army.Units.Count < army.MaxSize;
+        RecruitUI.RecruitSoldier.interactable = activatingEmpire == ActivatingEmpire.Self && (village.GetTotalPop() > 3) && army.RemainnigSize - State.RaceSettings.GetDeployCost(village.Race) >= 0;
+        RecruitUI.HireSoldier.interactable = activatingEmpire == ActivatingEmpire.Self && village.GetRecruitables().Count > 0 && (village.GetTotalPop() > 3) && army.RemainnigSize > 0;
+        RecruitUI.HireVillageMerc.interactable = activatingEmpire == ActivatingEmpire.Self && (village.Mercenaries?.Count > 0 || village.Adventurers?.Count > 0) && army.RemainnigSize > 0;
         RecruitUI.VillageView.interactable = (activatingEmpire < ActivatingEmpire.Observer || failedToMakeFriendlyArmy) && village.GetTotalPop() > 0 && village.Empire == empire;
 
         RecruitUI.ResurrectLeader.gameObject.SetActive(activatingEmpire != ActivatingEmpire.Observer && empire.Leader != null && empire.Leader.Health <= 0);
@@ -1279,6 +1281,7 @@ public class Recruit_Mode : SceneBase
             GameObject StatRow2 = obj.transform.GetChild(2).GetChild(0).GetChild(0).GetChild(4).gameObject;
             GameObject StatRow3 = obj.transform.GetChild(2).GetChild(0).GetChild(0).GetChild(5).gameObject;
             GameObject StatRow4 = obj.transform.GetChild(2).GetChild(0).GetChild(0).GetChild(6).gameObject;
+            GameObject DeployCost = obj.transform.GetChild(2).GetChild(0).GetChild(2).gameObject;
             Text TraitList = obj.transform.GetChild(2).GetChild(0).GetChild(1).GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
             Text HireButton = obj.transform.GetChild(2).GetChild(1).GetChild(0).gameObject.GetComponent<Text>();
 
@@ -1321,6 +1324,7 @@ public class Recruit_Mode : SceneBase
             StatRow2.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Will).ToString();
             StatRow3.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Endurance).ToString();
             StatRow3.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Agility).ToString();
+            DeployCost.transform.GetChild(1).GetComponent<Text>().text = State.RaceSettings.GetDeployCost(merc.Unit.Race).ToString();
             if (actor.PredatorComponent != null)
             {
                 StatRow4.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Voracity).ToString();
@@ -1328,14 +1332,20 @@ public class Recruit_Mode : SceneBase
             }
             else
                 StatRow4.SetActive(false);
-            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)";
+            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)" + " + (" + State.RaceSettings.GetUpkeep(merc.Unit.Race) + "G/turn)";
             TraitList.text = RaceEditorPanel.TraitListToText(merc.Unit.GetTraits, true).Replace(", ", "\n");
 
             actor.UpdateBestWeapons();
             sprite.UpdateSprites(actor);
             sprite.Name.text = merc.Unit.Name;
             Button button = obj.GetComponentInChildren<Button>();
+            if (StrategicUtilities.ArmyCanFitUnit(army, actor.Unit))
+                button.interactable = true;
+            else
+                button.interactable = false;
             button.onClick.AddListener(() => HireMercenary(merc, obj));
+            button.onClick.AddListener(() => CheckButtonStatus());
+            buttonList.Add(button, actor.Unit);
         }
         UpdateMercenaryScreenText();
         MercenaryScreenUI.gameObject.SetActive(true);
@@ -1345,7 +1355,7 @@ public class Recruit_Mode : SceneBase
     {
         if (empire.Gold >= merc.Cost)
         {
-            if (army.Units.Count < army.MaxSize)
+            if (StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
             {
                 army.Units.Add(merc.Unit);
                 merc.Unit.Side = army.Side;
@@ -1447,7 +1457,7 @@ public class Recruit_Mode : SceneBase
             }
             else
                 StatRow4.SetActive(false);
-            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)";
+            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)" + " + (" + State.RaceSettings.GetUpkeep(merc.Unit.Race) + "G/turn)";
 
             //text.text = $"{merc.Title}\nLevel: {merc.Unit.Level} Exp: {(int)merc.Unit.Experience}\n" +
             //    $"Items: {merc.Unit.GetItem(0)?.Name} {merc.Unit.GetItem(1)?.Name}\n" +
@@ -1460,7 +1470,13 @@ public class Recruit_Mode : SceneBase
             sprite.UpdateSprites(actor);
             sprite.Name.text = merc.Unit.Name;
             Button button = obj.GetComponentInChildren<Button>();
+            if (StrategicUtilities.ArmyCanFitUnit(army, actor.Unit))
+                button.interactable = true;
+            else
+                button.interactable = false;
             button.onClick.AddListener(() => HireVillageMercenary(merc, obj));
+            button.onClick.AddListener(() => CheckButtonStatus());
+            buttonList.Add(button, actor.Unit);
         }
         UpdateMercenaryScreenText();
         MercenaryScreenUI.gameObject.SetActive(true);
@@ -1468,7 +1484,7 @@ public class Recruit_Mode : SceneBase
 
     void UpdateMercenaryScreenText()
     {
-        MercenaryScreenUI.ArmySize.text = $"Army Size {army.Units.Count} / {army.MaxSize}";
+        MercenaryScreenUI.ArmySize.text = $"Army Size {army.RemainnigSize} / {army.MaxSize}";
         MercenaryScreenUI.RemainingGold.text = $"Remaining Gold: {empire.Gold}";
     }
 
@@ -1558,8 +1574,15 @@ public class Recruit_Mode : SceneBase
             sprite.UpdateSprites(actor);
             sprite.Name.text = unit.Name;
             Button button = obj.GetComponentInChildren<Button>();
+            if (StrategicUtilities.ArmyCanFitUnit(army, actor.Unit))
+                button.interactable = true;
+            else
+                button.interactable = false;
             button.onClick.AddListener(() => Hire(unit));
+            button.onClick.AddListener(() => CheckButtonStatus());
+            button.onClick.AddListener(() => buttonList.Remove(button));
             button.onClick.AddListener(() => Destroy(obj));
+            buttonList.Add(button, actor.Unit);
         }
         HireUI.ActorFolder.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 300 * (1 + (village.VillagePopulation.GetRecruitables().Count) / 3));
         HireUI.gameObject.SetActive(true);
@@ -1611,6 +1634,7 @@ public class Recruit_Mode : SceneBase
             if (unit != null)
             {
                 army.Units.Remove(unit);
+                army.RecalculateSizeValue();
                 UpdateActorList();
                 if (village != null)
                 {
@@ -1684,6 +1708,7 @@ public class Recruit_Mode : SceneBase
             }
         }
         army.Units.Remove(unit);
+        army.RecalculateSizeValue();
         destinationArmy.Units.Add(unit);
         empire.Armies.Add(destinationArmy);
         State.GameManager.SwitchToStrategyMode();
@@ -1775,18 +1800,18 @@ public class Recruit_Mode : SceneBase
         {
             for (int i = 0; i < 48; i++)
             {
-                if (army.Units.Count < army.MaxSize)
+                Unit unit = new Unit(thisEmpire.Side, thisEmpire.ReplacedRace, thisEmpire.StartingXP, thisEmpire.CanVore);
+                if (StrategicUtilities.ArmyCanFitUnit(army, unit))
                 {
-                    Unit unit = new Unit(thisEmpire.Side, thisEmpire.ReplacedRace, thisEmpire.StartingXP, thisEmpire.CanVore);
                     army.Units.Add(unit);
                 }
             }
         }
         else
         {
-            if (army.Units.Count < army.MaxSize)
+            Unit unit = new Unit(thisEmpire.Side, thisEmpire.ReplacedRace, thisEmpire.StartingXP, thisEmpire.CanVore);
+            if (StrategicUtilities.ArmyCanFitUnit(army, unit))
             {
-                Unit unit = new Unit(thisEmpire.Side, thisEmpire.ReplacedRace, thisEmpire.StartingXP, thisEmpire.CanVore);
                 army.Units.Add(unit);
             }
         }
@@ -1906,5 +1931,19 @@ public class Recruit_Mode : SceneBase
 
     }
 
+    private void CheckButtonStatus()
+    {
+        foreach (var item in buttonList)
+        {
+            if (item.Key == null)
+            {
+                continue;
+            }
+            if (StrategicUtilities.ArmyCanFitUnit(army, item.Value))
+                item.Key.interactable = true;
+            else
+                item.Key.interactable = false;
+        }
+    }
 
 }

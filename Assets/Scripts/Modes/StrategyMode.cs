@@ -2075,7 +2075,7 @@ public class StrategyMode : SceneBase
                         }
                     }
                     dismissOrder[k].Health = 0;
-                    income += (int)Math.Round(Config.World.ArmyUpkeep * RaceParameters.GetTraitData(dismissOrder[k]).UpkeepMult);
+                    income += (int)Math.Round(Config.World.ArmyUpkeep * RaceParameters.GetTraitData(dismissOrder[k]).Upkeep);
                 }
             }
 

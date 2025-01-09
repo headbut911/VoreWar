@@ -255,6 +255,7 @@ class StrategicArmyCommander
                 merc.Unit.Side = army.Side;
                 empire.SpendGold(merc.Cost);
                 MercenaryHouse.UniqueMercs.Remove(merc);
+                army.RecalculateSizeValue();
             }
         }
     }
@@ -270,6 +271,7 @@ class StrategicArmyCommander
                 empire.SpendGold(merc.Cost);
                 house.Mercenaries.Remove(merc);
                 MercenaryHouse.UniqueMercs.Remove(merc);
+                army.RecalculateSizeValue();
             }
         }
     }

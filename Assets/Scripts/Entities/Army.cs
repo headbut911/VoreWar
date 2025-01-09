@@ -134,6 +134,7 @@ public class Army
         Position = p;
         Units = new List<Unit>();
         JustCreated = true;
+        RemainnigSize = MaxSize;
 
         NameArmy(empire);
         if (empire.Side < 32)
@@ -806,5 +807,14 @@ public class Army
             }
         }
 
+    }
+
+    internal void RecalculateSizeValue()
+    {
+        RemainnigSize = MaxSize;
+        foreach (Unit unit in Units)
+        {
+            RemainnigSize -= State.RaceSettings.GetDeployCost(unit.Race);
+        }
     }
 }

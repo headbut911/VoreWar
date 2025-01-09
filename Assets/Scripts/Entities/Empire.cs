@@ -474,24 +474,32 @@ public class Empire
 
     internal int GetUpkeep()
     {
-        int totalCost = 0;
+        float totalCost = 0;
         foreach (Army army in Armies)
         {
-            foreach(Unit unit in army.Units)
+            foreach (Unit unit in army.Units)
             {
-                totalCost += (int)Math.Round(Config.World.ArmyUpkeep * RaceParameters.GetTraitData(unit).UpkeepMult);
+                if (Config.World.ArmyUpkeep >= 0)
+                    totalCost += Config.World.ArmyUpkeep;
+                else
+                    totalCost += State.RaceSettings.GetUpkeep(unit.Race);
             }
         }
-        return totalCost;
+        return (int)Math.Round(totalCost);
     }
     internal float GetUpkeepCoefficient()
     {
+
+        if (Config.World.ArmyUpkeep >= 0)
+            return Config.World.ArmyUpkeep;
+
         float currentCoeff = Config.World.ArmyUpkeep;
+
         foreach (Army army in Armies)
         {
             foreach(Unit unit in army.Units)
             {
-                currentCoeff += Mathf.MoveTowards(currentCoeff,Config.World.ArmyUpkeep * RaceParameters.GetTraitData(unit).UpkeepMult, 10f);
+                currentCoeff += Mathf.MoveTowards(currentCoeff, State.RaceSettings.GetUpkeep(unit.Race), 10f);
             }
         }
         return currentCoeff;

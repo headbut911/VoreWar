@@ -376,7 +376,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
             {
                 Traits.Pounce,
@@ -392,7 +392,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.PackWill,
@@ -408,7 +408,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Mind,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.ArtfulDodge,
@@ -425,7 +425,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Mind,
             DeployCost = 1,
-            UpkeepMult = 2.1f,
+            Upkeep = 21f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             RacialTraits = new List<Traits>()
             {
@@ -459,7 +459,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.PackStrength,
@@ -476,7 +476,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Dexterity,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RacialTraits = new List<Traits>()
         {
             Traits.ProlificBreeder,
@@ -496,7 +496,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Voracity,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
             Traits.Resilient,
@@ -515,7 +515,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Stomach,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.BoggingSlime,
@@ -533,7 +533,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Will,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RacialTraits = new List<Traits>()
         {
             //Traits.Aquatic,
@@ -550,7 +550,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RacialTraits = new List<Traits>()
         {
             Traits.Flight,
@@ -568,7 +568,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Will,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.PackStomach,
@@ -585,7 +585,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.AdeptLearner,
@@ -602,7 +602,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.SlowBreeder,
@@ -620,7 +620,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Voracity,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             RacialTraits = new List<Traits>()
         {
@@ -638,7 +638,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.BornToMove,
@@ -654,7 +654,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.StrongMelee,
@@ -670,7 +670,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Will,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.KeenReflexes,
@@ -687,7 +687,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Charge,
@@ -703,7 +703,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.KeenReflexes,
@@ -720,7 +720,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             RacialTraits = new List<Traits>()
         {
@@ -739,7 +739,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 //Traits.StrongMelee,
@@ -756,7 +756,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Endurance,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Tempered,
@@ -773,7 +773,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Flight,
@@ -790,7 +790,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.TasteForBlood,
@@ -806,7 +806,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Will,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.MagicResistance,
@@ -823,7 +823,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.KeenShot,
@@ -839,7 +839,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.PackStrength,
@@ -856,7 +856,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Voracity,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Pounce,
@@ -874,7 +874,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Voracity,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Biter,
@@ -891,7 +891,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.EvasiveBattler,
@@ -908,7 +908,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 1f,
+            Upkeep = 3f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.Anal },
             RacialTraits = new List<Traits>()
         {
@@ -927,7 +927,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RacialTraits = new List<Traits>()
         {
                 Traits.ProlificBreeder,
@@ -948,7 +948,7 @@ static class RaceParameters
             ExpMultiplier = 20f,
             PowerAdjustment = 100f,
             DeployCost = 8,
-            UpkeepMult = 10f,
+            Upkeep = 100f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(40, 50),
@@ -978,7 +978,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RacialTraits = new List<Traits>()
             {
                 Traits.ProlificBreeder,
@@ -997,7 +997,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Will,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore, VoreType.CockVore },
             RacialTraits = new List<Traits>()
             {
@@ -1030,7 +1030,7 @@ static class RaceParameters
             FavoredStat = Stat.Strength,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RacialTraits = new List<Traits>()
         {
             Traits.Maul,
@@ -1059,7 +1059,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Mind,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.Clever,
@@ -1092,7 +1092,7 @@ static class RaceParameters
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RaceStats = new RaceStats() // Stronger, tougher, slower moving and with slower digestion. (Crocodilians would normally have a very strong digestion, but that reguires focusing on it, not going on fighting.)
             // Wider, shorter throats also make eating easier, but also make prey's escape easier. (Not in RL, obviously. Or perhaps they would, if crocodilians had a habit of swallowing sizeable living prey.)
             {
@@ -1121,7 +1121,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RacialTraits = new List<Traits>()
         {
             Traits.ArtfulDodge,
@@ -1137,7 +1137,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RacialTraits = new List<Traits>()
             {
                 Traits.ProlificBreeder,
@@ -1155,7 +1155,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Endurance,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
                 Traits.Resilient,
@@ -1174,7 +1174,7 @@ static class RaceParameters
             FavoredStat = Stat.Endurance,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -1203,7 +1203,7 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             PowerAdjustment = 1.4f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -1236,7 +1236,7 @@ static class RaceParameters
             CanUseRangedWeapons = false,
             PowerAdjustment = 1.4f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 24),
@@ -1267,7 +1267,7 @@ static class RaceParameters
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -1296,7 +1296,7 @@ static class RaceParameters
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 20),
@@ -1325,7 +1325,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(18, 26),
@@ -1357,7 +1357,7 @@ static class RaceParameters
             ExpMultiplier = 1.25f,
             PowerAdjustment = 1f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 26),
@@ -1387,7 +1387,7 @@ static class RaceParameters
             ExpMultiplier = 1.25f,
             PowerAdjustment = .9f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 20),
@@ -1417,7 +1417,7 @@ static class RaceParameters
             ExpMultiplier = 1.5f,
             PowerAdjustment = 2f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 20),
@@ -1446,17 +1446,17 @@ static class RaceParameters
             ExpMultiplier = 1.6f,
             PowerAdjustment = 2.1f,
             DeployCost = 1,
-            UpkeepMult = 2.1f,
+            Upkeep = 15f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(29, 41),
-                Dexterity = new RaceStats.StatRange(7, 14),
-                Endurance = new RaceStats.StatRange(15, 22),
-                Mind = new RaceStats.StatRange(14, 28),
-                Will = new RaceStats.StatRange(8, 18),
-                Agility = new RaceStats.StatRange(11, 22),
-                Voracity = new RaceStats.StatRange(12, 18),
-                Stomach = new RaceStats.StatRange(19, 26),
+                Strength = new RaceStats.StatRange(12, 30),
+                Dexterity = new RaceStats.StatRange(9, 21),
+                Endurance = new RaceStats.StatRange(18, 30),
+                Mind = new RaceStats.StatRange(21, 44),
+                Will = new RaceStats.StatRange(12, 27),
+                Agility = new RaceStats.StatRange(16, 33),
+                Voracity = new RaceStats.StatRange(15, 27),
+                Stomach = new RaceStats.StatRange(28, 39),
             },
             RacialTraits = new List<Traits>()
         {
@@ -1475,7 +1475,7 @@ static class RaceParameters
             ExpMultiplier = .75f,
             PowerAdjustment = .5f,
             DeployCost = 1,
-            UpkeepMult = 0.1f,
+            Upkeep = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(2, 6),
@@ -1505,7 +1505,7 @@ static class RaceParameters
             ExpMultiplier = 1.75f,
             PowerAdjustment = 1.75f,
             DeployCost = 1,
-            UpkeepMult = 1f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 20),
@@ -1536,7 +1536,7 @@ static class RaceParameters
             ExpMultiplier = 1.75f,
             PowerAdjustment = 1.75f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 22),
@@ -1565,7 +1565,7 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 14),
@@ -1596,7 +1596,7 @@ static class RaceParameters
             ExpMultiplier = 2.5f,
             PowerAdjustment = 2.5f,
             DeployCost = 1,
-            UpkeepMult = 0.8f,
+            Upkeep = 8f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 26),
@@ -1630,7 +1630,7 @@ static class RaceParameters
             ExpMultiplier = 1.5f,
             PowerAdjustment = 2.2f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 22),
@@ -1663,7 +1663,7 @@ static class RaceParameters
             ExpMultiplier = 1.5f,
             PowerAdjustment = 2.2f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(11, 20),
@@ -1696,7 +1696,7 @@ static class RaceParameters
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -1726,7 +1726,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.1f,
+            Upkeep = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -1757,7 +1757,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 1f,
+            Upkeep = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 16),
@@ -1789,7 +1789,7 @@ static class RaceParameters
             ExpMultiplier = 6f,
             PowerAdjustment = 12f,
             DeployCost = 4,
-            UpkeepMult = 4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(24, 32),
@@ -1823,7 +1823,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.4f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 10),
@@ -1854,7 +1854,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.4f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -1884,7 +1884,7 @@ static class RaceParameters
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.2f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(4, 8),
@@ -1917,7 +1917,7 @@ static class RaceParameters
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.2f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
             {
                 Traits.Whispers,
@@ -1939,7 +1939,7 @@ static class RaceParameters
             ExpMultiplier = 1.0f,
             PowerAdjustment = 1.2f,
             DeployCost = 1,
-            UpkeepMult = 0.1f,
+            Upkeep = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(4, 6),
@@ -1970,7 +1970,7 @@ static class RaceParameters
             ExpMultiplier = 1.75f,
             PowerAdjustment = 2.5f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 18),
@@ -2003,7 +2003,7 @@ static class RaceParameters
             ExpMultiplier = 1.75f,
             PowerAdjustment = 3f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 20),
@@ -2037,7 +2037,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 8),
@@ -2070,7 +2070,7 @@ static class RaceParameters
             ExpMultiplier = .9f,
             PowerAdjustment = .9f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2104,7 +2104,7 @@ static class RaceParameters
             ExpMultiplier = 2.5f,
             PowerAdjustment = 3.0f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 24),
@@ -2136,7 +2136,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2171,7 +2171,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 16),
@@ -2202,7 +2202,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 28),
@@ -2234,12 +2234,12 @@ static class RaceParameters
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.9f,
             DeployCost = 1,
-            UpkeepMult = 1f,
+            Upkeep = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 22),
                 Dexterity = new RaceStats.StatRange(8, 16),
-                Endurance = new RaceStats.StatRange(24, 23),
+                Endurance = new RaceStats.StatRange(22, 23),
                 Mind = new RaceStats.StatRange(14, 30),
                 Will = new RaceStats.StatRange(8, 18),
                 Agility = new RaceStats.StatRange(14, 28),
@@ -2268,7 +2268,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 5f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2300,7 +2300,7 @@ static class RaceParameters
             ExpMultiplier = .85f,
             PowerAdjustment = .75f,
             DeployCost = 1,
-            UpkeepMult = 0.1f,
+            Upkeep = 1f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(3, 7),
@@ -2332,7 +2332,7 @@ static class RaceParameters
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2363,7 +2363,7 @@ static class RaceParameters
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2393,7 +2393,7 @@ static class RaceParameters
             ExpMultiplier = 1.0f,
             PowerAdjustment = 1.0f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2424,7 +2424,7 @@ static class RaceParameters
             ExpMultiplier = 1.5f,
             PowerAdjustment = 1.75f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -2454,7 +2454,7 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -2485,7 +2485,7 @@ static class RaceParameters
             ExpMultiplier = 1.3f,
             PowerAdjustment = 1.6f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 14),
@@ -2515,7 +2515,7 @@ static class RaceParameters
             ExpMultiplier = 1.5f,
             PowerAdjustment = 1.75f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(12, 20),
@@ -2546,7 +2546,7 @@ static class RaceParameters
             ExpMultiplier = .95f,
             PowerAdjustment = .95f,
             DeployCost = 1,
-            UpkeepMult = 0.2f,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -2577,7 +2577,7 @@ static class RaceParameters
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 18),
@@ -2608,7 +2608,7 @@ static class RaceParameters
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(11, 15),
@@ -2636,7 +2636,7 @@ static class RaceParameters
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(11, 15),
@@ -2667,7 +2667,7 @@ static class RaceParameters
             ExpMultiplier = 1.6f,
             PowerAdjustment = 2.1f,
             DeployCost = 1,
-            UpkeepMult = 0.6f,
+            Upkeep = 6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(9, 27),
@@ -2700,7 +2700,7 @@ static class RaceParameters
             ExpMultiplier = 4f,
             PowerAdjustment = 7f,
             DeployCost = 4,
-            UpkeepMult = 3f,
+            Upkeep = 30f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(22, 26),
@@ -2734,7 +2734,7 @@ static class RaceParameters
             ExpMultiplier = 2f,
             PowerAdjustment = 4f,
             DeployCost = 1,
-            UpkeepMult = 0.6f,
+            Upkeep = 14f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 22),
@@ -2767,7 +2767,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            UpkeepMult = 0.3f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(5, 7),
@@ -2798,7 +2798,7 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 4f,
             DeployCost = 1,
-            UpkeepMult = 0.6f,
+            Upkeep = 24f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2831,7 +2831,7 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 3f,
             DeployCost = 1,
-            UpkeepMult = 20f,
+            Upkeep = 15f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2862,7 +2862,7 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 4f,
             DeployCost = 1,
-            UpkeepMult = 1f,
+            Upkeep = 14f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2894,7 +2894,7 @@ static class RaceParameters
             ExpMultiplier = 1.6f,
             PowerAdjustment = 3f,
             DeployCost = 1,
-            UpkeepMult = 0.6f,
+            Upkeep = 14f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(14, 20),
@@ -2928,7 +2928,7 @@ static class RaceParameters
             ExpMultiplier = 3.2f,
             PowerAdjustment = 7f,
             DeployCost = 4,
-            UpkeepMult = 3f,
+            Upkeep = 30f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(24, 28),
@@ -2960,7 +2960,7 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 4f,
             DeployCost = 1,
-            UpkeepMult = 0.6f,
+            Upkeep = 16f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
@@ -2992,7 +2992,7 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 3.2f,
             DeployCost = 1,
-            UpkeepMult = 20f,
+            Upkeep = 20f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 16),
@@ -3024,7 +3024,7 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 2f,
             DeployCost = 1,
-            UpkeepMult = 0.4f,
+            Upkeep = 6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(5, 10),
@@ -3059,7 +3059,7 @@ static class RaceParameters
             ExpMultiplier = 6f,
             PowerAdjustment = 12f,
             DeployCost = 1,
-            UpkeepMult = 1f,
+            Upkeep = 10f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(16, 24),
@@ -3093,7 +3093,7 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 5f,
             DeployCost = 1,
-            UpkeepMult = 2f,
+            Upkeep = 20f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 10),
@@ -3127,7 +3127,7 @@ static class RaceParameters
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.2f,
             DeployCost = 1,
-            UpkeepMult = 3f,
+            Upkeep = 20f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 10),
@@ -3164,7 +3164,7 @@ static class RaceParameters
             ExpMultiplier = 2f,
             PowerAdjustment = 4f,
             DeployCost = 1,
-            UpkeepMult = 0.5f,
+            Upkeep = 15f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(10, 15),
@@ -3195,7 +3195,7 @@ static class RaceParameters
             ExpMultiplier = 2f,
             PowerAdjustment = 4f,
             DeployCost = 1,
-            UpkeepMult = 3f,
+            Upkeep = 25f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(15, 22),
@@ -3257,7 +3257,7 @@ internal class RaceTraits
     /// <summary>
     /// Controls the upkeep a unit requires.
     /// </summary>
-    internal float UpkeepMult = 1f;
+    internal float Upkeep = 1f;
 
     /// <summary>
     /// Attacks against this race will have their experience gained modified by this ratio

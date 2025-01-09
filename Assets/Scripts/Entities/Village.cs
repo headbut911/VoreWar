@@ -701,6 +701,7 @@ public class Village
                     {
                         Empire.Reports.Add(new StrategicReport($"{unit.unit.Name} (Leader) has arrived at {Name} and auto-joined the army there", new Vec2(Position.x, Position.y)));
                         localArmy.Units.Add(unit.unit);
+                        localArmy.RecalculateSizeValue();
                     }
                     else if (localArmy == null && Empire.Armies.Count < Config.MaxArmies)
                     {
@@ -708,6 +709,7 @@ public class Village
                         Army army = new Army(Empire, new Vec2i(Position.x, Position.y), Side);
                         Empire.Armies.Add(army);
                         army.Units.Add(unit.unit);
+                        army.RecalculateSizeValue();
                     }
                     else
                     {
@@ -1128,6 +1130,7 @@ public class Village
                     State.World.Stats.SoldiersRecruited(1, Side);
                     empire.SpendGold(Config.ArmyCost);
                     VillagePopulation.RemoveRacePop(unit.Race, 1);
+                    army.RecalculateSizeValue();
                     return unit;
                 }
             }
@@ -1153,6 +1156,7 @@ public class Village
                     State.World.Stats.SoldiersRecruited(1, Side);
                     empire.SpendGold(Config.ArmyCost);
                     VillagePopulation.RemoveRacePop(unit.Race, 1);
+                    army.RecalculateSizeValue();
                     return unit;
                 }
             }
@@ -1194,20 +1198,24 @@ public class Village
                 if (VillagePopulation.GetRecruitables().Where(rec => rec.IsInfiltratingSide(Side)).Count() > 0 && army.Side == Side && State.Rand.Next(2) < 1)
                 {
                     Unit unit = VillagePopulation.GetRecruitables().Where(rec => rec.IsInfiltratingSide(Side)).OrderByDescending(s => s.Experience).First();
-                    var startingExp = GetStartingXp();
-                    if (unit.Experience < startingExp)
-                        unit.SetExp(startingExp);
-                    unit.AddTraits(GetTraitsToAdd());
-                    army.Units.Add(unit);
-                    unit.Side = army.Side;
-                    empire.SpendGold(Config.ArmyCost);
-                    VillagePopulation.RemoveHireable(unit);
-                    return unit;
+                    if (StrategicUtilities.ArmyCanFitUnit(army, unit))
+                    {
+                        var startingExp = GetStartingXp();
+                        if (unit.Experience < startingExp)
+                            unit.SetExp(startingExp);
+                        unit.AddTraits(GetTraitsToAdd());
+                        army.Units.Add(unit);
+                        unit.Side = army.Side;
+                        empire.SpendGold(Config.ArmyCost);
+                        VillagePopulation.RemoveHireable(unit);
+                        army.RecalculateSizeValue();
+                        return unit;
+                    }
                 }
                 if (Adventurers?.Count > 0)
                 {
                     MercenaryContainer merc = Adventurers.OrderByDescending(s => s.Unit.Experience).First();
-                    if (empire.Gold > merc.Cost)
+                    if (empire.Gold > merc.Cost && StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
                     {
                         HireSpecialUnit(empire, army, merc);
                         return merc.Unit;
@@ -1216,7 +1224,7 @@ public class Village
                 if (Mercenaries?.Count > 0 && empire.Gold > 600)
                 {
                     MercenaryContainer merc = Mercenaries.OrderByDescending(s => s.Unit.Experience).First();
-                    if (empire.Gold > merc.Cost)
+                    if (empire.Gold > merc.Cost && StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
                     {
                         HireSpecialUnit(empire, army, merc);
                         return merc.Unit;
@@ -1234,6 +1242,7 @@ public class Village
                     unit.Side = army.Side;
                     empire.SpendGold(Config.ArmyCost);
                     VillagePopulation.RemoveHireable(unit);
+                    army.RecalculateSizeValue();
                     return unit;
                 }
                 else
@@ -1269,6 +1278,7 @@ public class Village
                     unit.Side = army.Side;
                     empire.SpendGold(10);
                     VillagePopulation.RemoveHireable(unit);
+                    army.RecalculateSizeValue();
                     return true;
                 }
             }
@@ -1504,6 +1514,7 @@ public class Village
                 empire.SpendGold(merc.Cost);
                 Adventurers.Remove(merc);
                 Mercenaries.Remove(merc);
+                army.RecalculateSizeValue();
                 return true;
             }
         }
