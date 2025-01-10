@@ -2666,7 +2666,7 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 2.1f,
-            DeployCost = 1,
+            DeployCost = 2,
             Upkeep = 6f,
             RaceStats = new RaceStats()
             {

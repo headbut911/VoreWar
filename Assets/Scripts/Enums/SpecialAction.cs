@@ -18,4 +18,6 @@
     ShunGokuSatsu,
     Regurgitate,
     TailStrike,
+    GiantSweep,
+    SweepingSwallow,
 }

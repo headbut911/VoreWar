@@ -1811,6 +1811,14 @@ Turns: {currentTurn}
             case SpecialAction.TailStrike:
                 ShowMeleeHitPercentages(actor, .66f);
                 break;
+            case SpecialAction.SweepingSwallow:
+                ShowVoreHitPercentages(actor, PreyLocation.stomach);
+                UpdateOTargetGrid(actor.Position);
+                break;
+            case SpecialAction.GiantSweep:
+                ShowMeleeHitPercentages(actor, .66f);
+                UpdateOTargetGrid(actor.Position);
+                break;
         }
 
     }
@@ -2150,6 +2158,21 @@ Turns: {currentTurn}
         TestTile(pos + new Vec2(-1, 0));
         TestTile(pos + new Vec2(0, -1));
 
+        void TestTile(Vec2 p)
+        {
+            if (SelectedUnit.Position.GetNumberOfMovesDistance(p.x, p.y) == 1)
+                MovementGrid.SetTile(new Vector3Int(p.x, p.y, 0), MovementGridTileTypes[1]);
+        }
+
+    }
+    void UpdateOTargetGrid(Vec2i location)
+    {
+        MovementGrid.ClearAllTiles();
+        foreach (var item in TacticalUtilities.TilesOnPattern(location, new int[3, 3] { { 1, 1, 1 }, { 1, 0, 1 }, { 1, 1, 1 } }, 1))
+        {
+            Vec2 pos = item;
+            TestTile(item);
+        }
         void TestTile(Vec2 p)
         {
             if (SelectedUnit.Position.GetNumberOfMovesDistance(p.x, p.y) == 1)
