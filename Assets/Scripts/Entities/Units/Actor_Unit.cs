@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Actor_Unit
+public class Actor_Unit//<---MarkForNewVore
 {
     enum DisplayMode
     {
@@ -436,7 +436,7 @@ public class Actor_Unit
         Unit.UpdateSpells();
     }
 
-    public void SetPredMode(PreyLocation preyType)
+    public void SetPredMode(PreyLocation preyType)//<---MarkForNewVore
     {
         switch (preyType)
         {
@@ -734,7 +734,7 @@ public class Actor_Unit
         return 0;
     }
 
-    public int GetSimpleBodySprite()
+    public int GetSimpleBodySprite()//<---MarkForNewVore
     {
         if (Mode == DisplayMode.Attacking)
             return 1;
@@ -749,7 +749,7 @@ public class Actor_Unit
     /// <summary>
     /// This one Covers all forms of consuming
     /// </summary>
-    public bool IsEating => IsOralVoring || IsCockVoring || IsBreastVoring || IsUnbirthing || IsTailVoring || IsAnalVoring;
+    public bool IsEating => IsOralVoring || IsCockVoring || IsBreastVoring || IsUnbirthing || IsTailVoring || IsAnalVoring;//<---MarkForNewVore
     public bool IsOralVoring => Mode == DisplayMode.OralVore;
     public bool IsOralVoringHalfOver => Mode == DisplayMode.OralVore && animationUpdateTime < .75f;
 
@@ -1173,7 +1173,7 @@ public class Actor_Unit
             }
             else
             {
-                switch (voreType)
+                switch (voreType)//<---MarkForNewVore
                 {
                     case SpecialAction.BreastVore:
                         PredatorComponent.BreastVore(target);

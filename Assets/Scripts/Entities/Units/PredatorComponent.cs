@@ -30,7 +30,7 @@ interface IVoreRestrictions
     bool CheckVore(Actor_Unit actor, Actor_Unit target, PreyLocation location);
 }
 
-public enum PreyLocation
+public enum PreyLocation//<---MarkForNewVore
 {
     breasts,
     balls,
@@ -87,7 +87,7 @@ public class PredatorComponent
     Transition LeftBreastTransition;
     Transition RightBreastTransition;
 
-    public static PreyLocation[] preyLocationOrder =
+    public static PreyLocation[] preyLocationOrder =//<---MarkForNewVore
     {
         PreyLocation.stomach,
         PreyLocation.stomach2,
@@ -116,7 +116,7 @@ public class PredatorComponent
         }
     }
 
-    [OdinSerialize]
+    [OdinSerialize]//<---MarkForNewVore
     public float VisibleFullness { get; set; }
     [OdinSerialize]
     public float Fullness { get; set; }
@@ -179,7 +179,7 @@ public class PredatorComponent
                 _voreRestrictions = null;
         }
     }
-    internal bool CanVore(PreyLocation location, Actor_Unit preyTarget = null)
+    internal bool CanVore(PreyLocation location, Actor_Unit preyTarget = null)//<---MarkForNewVore
     {
         if (!unit.CanVore(location))
             return false;
@@ -256,7 +256,7 @@ public class PredatorComponent
 
     // lumps prey in similar locations together
 
-    public int PreyNearLocation(PreyLocation location, bool alive)
+    public int PreyNearLocation(PreyLocation location, bool alive)//<---MarkForNewVore
     {
         int prey = 0;
         switch (location)
@@ -313,7 +313,7 @@ public class PredatorComponent
         }
         return prey;
     }
-    public int PreyInLocation(PreyLocation location, bool alive)
+    public int PreyInLocation(PreyLocation location, bool alive)//<---MarkForNewVore
     {
         int prey = 0;
         switch (location)
@@ -420,7 +420,7 @@ public class PredatorComponent
         return allPrey;
     }
 
-    public PredatorComponent(Actor_Unit actor, Unit unit)
+    public PredatorComponent(Actor_Unit actor, Unit unit)//<---MarkForNewVore
     {
         this.actor = actor;
         this.unit = unit;
@@ -439,7 +439,7 @@ public class PredatorComponent
 
     }
 
-    public void UpdateVersion()
+    public void UpdateVersion()//<---MarkForNewVore
     {
         if (tail == null)
             tail = new List<Prey>();
@@ -480,7 +480,7 @@ public class PredatorComponent
     /// <param name="unit">The Actor_Unit being looked for.</param>
     /// <param name="locations">The specified part of the predator to be checked. Can specify multiple.</param>
     /// <returns></returns>
-    public bool IsUnitInPrey(Actor_Unit unit, params PreyLocation[] locations)
+    public bool IsUnitInPrey(Actor_Unit unit, params PreyLocation[] locations)//<---MarkForNewVore
     {
         if (locations.Contains(PreyLocation.stomach))
             foreach (Prey p in stomach)
@@ -551,7 +551,7 @@ public class PredatorComponent
     /// <param name="alive">True = Checking for living creatures. False = Checking for dead creatures.</param>
     /// <param name="locations">The specified part of the predator to be checked. Can specify multiple.</param>
     /// <returns></returns>
-    public bool IsUnitOfSpecificationInPrey(Race race, bool alive, params PreyLocation[] locations)
+    public bool IsUnitOfSpecificationInPrey(Race race, bool alive, params PreyLocation[] locations)//<---MarkForNewVore
     {
         if (Config.RaceSpecificVoreGraphicsDisabled)
             return false;
@@ -614,7 +614,7 @@ public class PredatorComponent
         return false;
     }
 
-    public bool IsUnitOfSpecificationInPrey(Race race, params PreyLocation[] locations)
+    public bool IsUnitOfSpecificationInPrey(Race race, params PreyLocation[] locations)//<---MarkForNewVore
     {
         if (Config.RaceSpecificVoreGraphicsDisabled)
             return false;
@@ -694,7 +694,7 @@ public class PredatorComponent
         }
     }
 
-    internal void PurgePrey()
+    internal void PurgePrey()//<---MarkForNewVore
     {
         FreeAnyAlivePrey();
         prey.Clear();
@@ -897,7 +897,7 @@ public class PredatorComponent
         }
     }
 
-    void AddPrey(Prey preyUnit, PreyLocation location)
+    void AddPrey(Prey preyUnit, PreyLocation location)//<---MarkForNewVore
     {
         OnSwallowCallbacks(preyUnit);
         switch (location)
@@ -942,7 +942,7 @@ public class PredatorComponent
         UpdateAlivePrey();
     }
 
-    internal PreyLocation Location(Prey preyUnit)
+    internal PreyLocation Location(Prey preyUnit)//<---MarkForNewVore
     {
         if (womb.Contains(preyUnit) && unit.CanUnbirth)
         {
