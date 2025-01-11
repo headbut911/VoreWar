@@ -114,6 +114,7 @@
     static internal FeralOrcas FeralOrcas = new FeralOrcas();
     static internal BlankSlate BlankSlate = new BlankSlate();
     static internal Taraluxia Taraluxia = new Taraluxia();
+    static internal Otachi Otachi = new Otachi();
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -352,6 +353,8 @@
                 return FeralOrcas;
             case Race.Taraluxia:
                 return Taraluxia;
+            case Race.Otachi:
+                return Otachi;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

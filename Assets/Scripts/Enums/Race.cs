@@ -95,6 +95,7 @@
     FeralFox = 141,
     Terminid = 142,
     FeralOrcas = 143,
+    Otachi = 144,
 
     Selicia = 170,
     Vision = 171,

@@ -112,6 +112,7 @@ static class RaceParameters
     static readonly RaceTraits Terminid;
     static readonly RaceTraits FeralOrcas;
     static readonly RaceTraits Taraluxia;
+    static readonly RaceTraits Otachi;
 
     static Unit tempUnit;
 
@@ -353,6 +354,8 @@ static class RaceParameters
                 return FeralOrcas;
             case Race.Taraluxia:
                 return Taraluxia;
+            case Race.Otachi:
+                return Otachi;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -2544,6 +2547,35 @@ static class RaceParameters
             RaceDescription = "Orcas that have mutated to fly and breathe air on their homewrold. They've also developed a ravenous appetite.  The Skysharks followed the Scylla to this world, and the Orcas followed the Skyharks.",
         };
 
+        Otachi = new RaceTraits()
+        {
+            BodySize = 16,
+            StomachSize = 24,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth },
+            ExpMultiplier = 1.6f,
+            PowerAdjustment = 1.3f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(11, 15),
+                Dexterity = new RaceStats.StatRange(9, 13),
+                Endurance = new RaceStats.StatRange(17, 23),
+                Mind = new RaceStats.StatRange(7, 11),
+                Will = new RaceStats.StatRange(12, 18),
+                Agility = new RaceStats.StatRange(13, 19),
+                Voracity = new RaceStats.StatRange(19, 27),
+                Stomach = new RaceStats.StatRange(21, 29),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Disgusting,
+            Traits.Resilient,
+            Traits.Pounce,
+            Traits.FireVulnerable,
+        },
+            RaceDescription = "Somehow a Kaiju! (Stats copied from Terminids for now)"
+        };
+
         Selicia = new RaceTraits()
         {
             BodySize = 60,
@@ -3047,7 +3079,7 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Voracity,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
-            ExpMultiplier = 4f,
+            ExpMultiplier = 6f,
             PowerAdjustment = 15f,
             RaceStats = new RaceStats()
             {
