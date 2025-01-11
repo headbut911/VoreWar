@@ -118,7 +118,7 @@ class Taraluxia : BlankSlate
     {
         if (facingFront)
         {
-            int bellySize = actor.GetStomachSize(20, 3.3f);
+            int bellySize = actor.GetStomachSize(20, 3.0f);
             if (bellySize > 12)
             {
                 switch (displayState)
@@ -140,7 +140,7 @@ class Taraluxia : BlankSlate
         }
         else
         {
-            int bellySize = actor.GetStomachSize(20, 3.3f);
+            int bellySize = actor.GetStomachSize(20, 3.0f);
             if (bellySize > 12)
             {
                 switch (displayState)
@@ -170,7 +170,7 @@ class Taraluxia : BlankSlate
             {
                 if (facingFront)
                 {
-                    int bellySize = actor.GetStomachSize(20, 3.3f);
+                    int bellySize = actor.GetStomachSize(20, 3.0f);
                     if (bellySize > 12)
                     {
                         if (actor.AnimationController.frameLists[0].currentlyActive)
@@ -216,7 +216,7 @@ class Taraluxia : BlankSlate
                 }
                 else
                 {
-                    int bellySize = actor.GetStomachSize(20, 3.3f);
+                    int bellySize = actor.GetStomachSize(20, 3.0f);
                     if (bellySize > 12)
                     {
                         if (actor.AnimationController.frameLists[0].currentlyActive)
@@ -424,7 +424,7 @@ class Taraluxia : BlankSlate
 
     protected override Sprite BodySprite(Actor_Unit actor) // Foreground Wings and Hind Legs
     {
-        int bellySize = actor.GetStomachSize(20, 3.3f);
+        int bellySize = actor.GetStomachSize(20, 3.0f);
         if (bellySize > 12)
         {
             if (facingFront)
@@ -447,7 +447,7 @@ class Taraluxia : BlankSlate
     {
         if (facingFront)
         {
-            int bellySize = actor.GetStomachSize(20, 3.3f);
+            int bellySize = actor.GetStomachSize(20, 3.0f);
             if (bellySize > 12) return Sprites[27];
             else return Sprites[26];
         }
@@ -530,7 +530,7 @@ class Taraluxia : BlankSlate
     {
         if (facingFront) // Front View
         {
-            int bellySize = actor.GetStomachSize(20, 3.3f);
+            int bellySize = actor.GetStomachSize(20, 3.0f);
             if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false) //Healthy derg
             {
                 SelAlive = true;
@@ -545,7 +545,7 @@ class Taraluxia : BlankSlate
         }
         else // Back View
         {
-            int bellySize = actor.GetStomachSize(20, 3.3f);
+            int bellySize = actor.GetStomachSize(20, 3.0f);
             if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false) //Healthy derg
             {
                 SelAlive = true;

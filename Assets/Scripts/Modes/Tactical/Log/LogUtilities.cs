@@ -596,6 +596,8 @@ static class LogUtilities
                 return GetRandomStringFrom("tiger shark", "anthro shark", "demi-shark");
             case Race.Avians:
                 return GetRandomStringFrom("bird", "fowl", "bird of prey", "avian", "hawk", "eagle");
+            case Race.Taraluxia:
+                return GetRandomStringFrom("ice dragon", "dragon", "ice dragoness", "dragoness");
             default:
                 return "creature";
         }

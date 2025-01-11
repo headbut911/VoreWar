@@ -70,5 +70,6 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D FeralFoxSkin;
     public Texture2D TerminidSkin;
     public Texture2D FeralOrcaSkin;
+    public Texture2D OtachiSkin;
 
 }
