@@ -2151,7 +2151,7 @@ public class Actor_Unit
             cost = 1;
         if (Movement < cost)
             return false;
-        if ((Unit.HasTrait(Traits.Flight) && Movement > 1) || TacticalUtilities.OpenTile(destination, this))
+        if ((TacticalUtilities.PassableOpenTile(destination, this) && ((Unit.HasTrait(Traits.PassThrough) && Movement > 1) || (Unit.HasTrait(Traits.Blitz) && Movement > 1) || (Unit.HasTrait(Traits.SpectralStep) && Movement > 1))) || (Unit.HasTrait(Traits.Flight) && Movement > 1) || TacticalUtilities.OpenTile(destination, this))
         {
             State.GameManager.TacticalMode.Translator.SetTranslator(UnitSprite.transform, Position, destination, delay, State.GameManager.TacticalMode.IsPlayerTurn);
             State.GameManager.TacticalMode.AITimer = delay;

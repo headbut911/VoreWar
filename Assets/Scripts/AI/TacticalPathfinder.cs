@@ -308,7 +308,7 @@ public static class TacticalPathfinder
                 new PathNode { X = x - 1, Y = y - 1 },
             };
 
-        return proposedLocations.Where(l => CheckTile(l.X, l.Y, actor) == true).ToList();
+        return proposedLocations.Where(l => CheckPassableTile(l.X, l.Y, actor) == true).ToList();
     }
 
     static List<PathNode> GetFlyableAdjacentSquares(int x, int y)
@@ -352,6 +352,13 @@ public static class TacticalPathfinder
     static bool CheckTileFlight(int x, int y)
     {
         if (TacticalUtilities.FlyableTile(x, y))
+            return true;
+        return false;
+    }
+
+    static bool CheckPassableTile(int x, int y, Actor_Unit actor)
+    {
+        if ((TacticalUtilities.OpenTile(x, y, actor)) || ((TacticalUtilities.PassableOpenTile(x, y, actor)) && (actor.Unit.HasTrait(Traits.PassThrough) || actor.Unit.HasTrait(Traits.Blitz) || actor.Unit.HasTrait(Traits.SpectralStep))))
             return true;
         return false;
     }
