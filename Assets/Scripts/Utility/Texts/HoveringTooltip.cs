@@ -615,6 +615,12 @@ public class HoveringTooltip : MonoBehaviour
                 return "Unit has set chance to return to army after dying in battle regardless of outcome. Chance starts at 100% then decreases 10% with each death, bottoms out at 10%";
             case Traits.Competitive:
                 return "Unit deals bonus ranged and melee damage to members of the same race.";
+            case Traits.PassThrough:
+                return "Unit can move past (but not stop on) allied units. Not recommended to use with Blitz or SpectralStep.";
+            case Traits.Blitz:
+                return "Unit can move past (but not stop on) enemy units. Not recommended to use with PassThrough or SpectralStep.";
+            case Traits.SpectralStep:
+                return "Unit can move past (but not stop on) any units. Not recommended to use with Blitz or PassThrough.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }
