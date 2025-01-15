@@ -99,7 +99,7 @@ class Otachi : BlankSlate
         if (standing)
         {
             if (actor.IsOralVoring) return OtachiSprites[29];
-            if (actor.IsAttacking) return OtachiSprites[28];
+            if (actor.IsAttacking || actor.IsCockVoring || actor.IsUnbirthing) return OtachiSprites[28];
             return OtachiSprites[27];
         }
         if (actor.IsOralVoring) return OtachiSprites[26];
@@ -155,12 +155,9 @@ class Otachi : BlankSlate
             if (standing)
             {
                 Belly.layer = 11;
-                if (size > 30)
-                {
-                    if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach)) return OtachiSprites[148];
-                    if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach)) return OtachiSprites[111 + size];
-                    else return OtachiSprites[140];
-                }
+                if (size >= 30 && actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach)) return OtachiSprites[148];
+                if (size >= 30 && actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach)) return OtachiSprites[111 + size];
+                if (size > 30) size = 29;
                 return OtachiSprites[111 + size];
             }
             else 
@@ -215,12 +212,9 @@ class Otachi : BlankSlate
         if (ballsSize >= 20) AddOffset(Balls, 0, -63);
         if (standing)
         {
-            if (ballsSize > 30)
-            {
-                if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.balls)) return OtachiSprites[95];
-                if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.balls)) return OtachiSprites[58 + ballsSize];
-                else return OtachiSprites[87];
-            }
+            if (ballsSize >= 30 && actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.balls)) return OtachiSprites[95];
+            if (ballsSize >= 30 && actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.balls)) return OtachiSprites[58 + ballsSize];
+            if (ballsSize >= 30) ballsSize = 29;
             return OtachiSprites[58 + ballsSize];
         }
         else 
