@@ -28,6 +28,16 @@ public class BuildingUpgrade
         built = false;
     }
 
+    public BuildingUpgrade(int cost, int upTime, ConstructionResources upResource, string name = "", string desc = "")
+    {
+        Name = name;
+        Desc = desc;
+        GoldCost = cost;
+        upgradeTime = upTime;
+        ResourceToUpgrade = upResource;
+        built = false;
+    }
+
 
 }
 

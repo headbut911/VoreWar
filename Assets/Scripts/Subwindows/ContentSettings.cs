@@ -204,6 +204,7 @@ public class ContentSettings : MonoBehaviour
     public GameObject VoreMiscPanel;
     public GameObject VoreMisc2Panel;
     public GameObject VoreMisc3Panel;
+    public GameObject BuildingPanel;
 
     public Button GameplayButton;
     public Button RacesButton;
@@ -212,6 +213,7 @@ public class ContentSettings : MonoBehaviour
     public Button VoreMiscButton;
     public Button VoreMisc2Button;
     public Button VoreMisc3Button;
+    public Button BuildingButton;
 
     List<ToggleObject> Toggles;
 
@@ -282,6 +284,8 @@ public class ContentSettings : MonoBehaviour
     List<ToggleObject> MercToggles;
 
     List<MonsterSpawnerPanel> MonsterSpawners;
+
+    public BuildingSettings buildingSettings;
 
     public void AllMercsCheckedChanged()
     {
@@ -584,6 +588,8 @@ public class ContentSettings : MonoBehaviour
         VoreMiscPanel.SetActive(false);
         VoreMisc2Panel.SetActive(false);
         VoreMisc3Panel.SetActive(false);
+        VoreMisc3Panel.SetActive(false);
+        BuildingPanel.SetActive(false);
         GameplayButton.interactable = false;
         RacesButton.interactable = true;
         GenderButton.interactable = true;
@@ -591,6 +597,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscButton.interactable = true;
         VoreMisc2Button.interactable = true;
         VoreMisc3Button.interactable = true;
+        BuildingButton.interactable = true;
     }
 
     public void ActivateRaces()
@@ -602,6 +609,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscPanel.SetActive(false);
         VoreMisc2Panel.SetActive(false);
         VoreMisc3Panel.SetActive(false);
+        BuildingPanel.SetActive(false);
         GameplayButton.interactable = true;
         RacesButton.interactable = false;
         GenderButton.interactable = true;
@@ -609,6 +617,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscButton.interactable = true;
         VoreMisc2Button.interactable = true;
         VoreMisc3Button.interactable = true;
+        BuildingButton.interactable = true;
         MonsterSpawnerFolder.position = new Vector3();
     }
     public void ActivateGender()
@@ -620,12 +629,14 @@ public class ContentSettings : MonoBehaviour
         VoreMiscPanel.SetActive(false);
         VoreMisc2Panel.SetActive(false);
         VoreMisc3Panel.SetActive(false);
+        BuildingPanel.SetActive(false);
         GameplayButton.interactable = true;
         RacesButton.interactable = true;
         GenderButton.interactable = false;
         AppearanceButton.interactable = true;
         VoreMiscButton.interactable = true;
         VoreMisc2Button.interactable = true;
+        BuildingButton.interactable = true;
     }
     public void ActivateAppearance()
     {
@@ -636,6 +647,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscPanel.SetActive(false);
         VoreMisc2Panel.SetActive(false);
         VoreMisc3Panel.SetActive(false);
+        BuildingPanel.SetActive(false);
         GameplayButton.interactable = true;
         RacesButton.interactable = true;
         GenderButton.interactable = true;
@@ -643,6 +655,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscButton.interactable = true;
         VoreMisc2Button.interactable = true;
         VoreMisc3Button.interactable = true;
+        BuildingButton.interactable = true;
     }
 
     public void ActivateVoreMisc()
@@ -654,6 +667,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscPanel.SetActive(true);
         VoreMisc2Panel.SetActive(false);
         VoreMisc3Panel.SetActive(false);
+        BuildingPanel.SetActive(false);
         GameplayButton.interactable = true;
         RacesButton.interactable = true;
         GenderButton.interactable = true;
@@ -661,6 +675,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscButton.interactable = false;
         VoreMisc2Button.interactable = true;
         VoreMisc3Button.interactable = true;
+        BuildingButton.interactable = true;
     }
 
     public void ActivateVoreMisc2()
@@ -672,6 +687,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscPanel.SetActive(false);
         VoreMisc2Panel.SetActive(true);
         VoreMisc3Panel.SetActive(false);
+        BuildingPanel.SetActive(false);
         GameplayButton.interactable = true;
         RacesButton.interactable = true;
         GenderButton.interactable = true;
@@ -679,6 +695,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscButton.interactable = true;
         VoreMisc2Button.interactable = false;
         VoreMisc3Button.interactable = true;
+        BuildingButton.interactable = true;
     }
     public void ActivateVoreMisc3()
     {
@@ -689,6 +706,7 @@ public class ContentSettings : MonoBehaviour
         VoreMiscPanel.SetActive(false);
         VoreMisc2Panel.SetActive(false);
         VoreMisc3Panel.SetActive(true);
+        BuildingPanel.SetActive(false);
         GameplayButton.interactable = true;
         RacesButton.interactable = true;
         GenderButton.interactable = true;
@@ -696,6 +714,26 @@ public class ContentSettings : MonoBehaviour
         VoreMiscButton.interactable = true;
         VoreMisc2Button.interactable = true;
         VoreMisc3Button.interactable = false;
+        BuildingButton.interactable = true;
+    }
+    public void ActivateBuilding()
+    {
+        GameplayPanel.SetActive(false);
+        RacesPanel.SetActive(false);
+        GenderPanel.SetActive(false);
+        AppearancePanel.SetActive(false);
+        VoreMiscPanel.SetActive(false);
+        VoreMisc2Panel.SetActive(false);
+        VoreMisc3Panel.SetActive(false);
+        BuildingPanel.SetActive(true);
+        GameplayButton.interactable = true;
+        RacesButton.interactable = true;
+        GenderButton.interactable = true;
+        AppearanceButton.interactable = true;
+        VoreMiscButton.interactable = true;
+        VoreMisc2Button.interactable = true;
+        VoreMisc3Button.interactable = true;
+        BuildingButton.interactable = false;
     }
 
     public void ConfirmRefresh()
@@ -1524,6 +1562,7 @@ public class ContentSettings : MonoBehaviour
     {
         SetValues();
         SaveValues();
+        buildingSettings.HardSave();
         gameObject.SetActive(false);
     }
 

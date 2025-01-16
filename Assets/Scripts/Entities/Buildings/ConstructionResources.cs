@@ -24,7 +24,25 @@ public class ConstructionResources
     [OdinSerialize]
     public int ManaStones = 0;
 
-    public void Init()
+    public ConstructionResources()
+    {
+        Wood = 0;
+        Stone = 0;
+        Ores = 0;
+        NaturalMaterials = 0;
+        Prefabs = 0;
+        ManaStones = 0;
+    }
+    public ConstructionResources(int wood = 0, int stones = 0, int ores = 0, int nm = 0, int prefabs = 0, int ms = 0)
+    {
+        Wood = wood;
+        Stone = stones;
+        Ores = ores;
+        NaturalMaterials = nm;
+        Prefabs = prefabs;
+        ManaStones = ms;
+    }
+    public void Reset()
     {
         Wood = 0;
         Stone = 0;

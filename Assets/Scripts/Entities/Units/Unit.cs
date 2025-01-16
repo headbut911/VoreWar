@@ -640,9 +640,6 @@ public class Unit
         RemovedTraits = new List<Traits>();
         Type = type;
 
-        DeployCost = 1;
-        Upkeep = 1f;
-
         Predator = predator;
         if (predator == false)
             fixedPredator = true;

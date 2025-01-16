@@ -25,6 +25,8 @@ public class WorkCampPanel : MonoBehaviour
 
     public TextMeshProUGUI GoldCount;
 
+    public TextMeshProUGUI CampGold;
+
 
     public TextMeshProUGUI[] OwnedItems;
     public TextMeshProUGUI[] InStockItems;
@@ -146,7 +148,7 @@ public class WorkCampPanel : MonoBehaviour
         {
             BuyWood.interactable = false;
         }
-        if (building.Owner.constructionResources.Wood <= 0)
+        if (building.Owner.constructionResources.Wood <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.wood, (WorkCamp)building))
         {
             SellWood.interactable = false;
         }
@@ -155,7 +157,7 @@ public class WorkCampPanel : MonoBehaviour
         {
             BuyStone.interactable = false;
         }
-        if (building.Owner.constructionResources.Stone <= 0)
+        if (building.Owner.constructionResources.Stone <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.stone, (WorkCamp)building))
         {
             SellStone.interactable = false;
         }
@@ -164,7 +166,7 @@ public class WorkCampPanel : MonoBehaviour
         {
             BuyNM.interactable = false;
         }
-        if (building.Owner.constructionResources.NaturalMaterials <= 0)
+        if (building.Owner.constructionResources.NaturalMaterials <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.naturalmaterials, (WorkCamp)building))
         {
             SellNM.interactable = false;
         }
@@ -173,7 +175,7 @@ public class WorkCampPanel : MonoBehaviour
         {
             BuyOres.interactable = false;
         }
-        if (building.Owner.constructionResources.Ores <= 0)
+        if (building.Owner.constructionResources.Ores <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.ores, (WorkCamp)building))
         {
             SellOres.interactable = false;
         }
@@ -182,7 +184,7 @@ public class WorkCampPanel : MonoBehaviour
         {
             BuyPrefabs.interactable = false;
         }
-        if (building.Owner.constructionResources.Prefabs <= 0)
+        if (building.Owner.constructionResources.Prefabs <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.prefabs, (WorkCamp)building))
         {
             SellPrefabs.interactable = false;
         }
@@ -191,7 +193,7 @@ public class WorkCampPanel : MonoBehaviour
         {
             BuyMS.interactable = false;
         }
-        if (building.Owner.constructionResources.ManaStones <= 0)
+        if (building.Owner.constructionResources.ManaStones <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.manastones, (WorkCamp)building))
         {
             SellMS.interactable = false;
         }
@@ -215,17 +217,17 @@ public class WorkCampPanel : MonoBehaviour
         switch (type)
         {
             case ConstructionresourceType.wood:
-                return 10;
+                return Config.BuildCon.WorkCampItemPrice.Wood;
             case ConstructionresourceType.stone:
-                return 10;
+                return Config.BuildCon.WorkCampItemPrice.Stone;
             case ConstructionresourceType.ores:
-                return 30;
+                return Config.BuildCon.WorkCampItemPrice.Ores;
             case ConstructionresourceType.naturalmaterials:
-                return 30;
+                return Config.BuildCon.WorkCampItemPrice.NaturalMaterials;
             case ConstructionresourceType.prefabs:
-                return 70;
+                return Config.BuildCon.WorkCampItemPrice.Prefabs;
             case ConstructionresourceType.manastones:
-                return 70;
+                return Config.BuildCon.WorkCampItemPrice.ManaStones;
             default:
                 break;
         }

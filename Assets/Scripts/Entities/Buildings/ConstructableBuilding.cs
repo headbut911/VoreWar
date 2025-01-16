@@ -38,6 +38,9 @@ public abstract class ConstructibleBuilding
 
     [OdinSerialize]
     internal string Name;
+
+    [OdinSerialize]
+    internal string Desc;
     protected ConstructibleBuilding(Vec2i location, int buildtime)
     {
         Position = location;

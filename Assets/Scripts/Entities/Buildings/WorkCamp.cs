@@ -7,34 +7,37 @@ class WorkCamp : ConstructibleBuilding
     public BuildingUpgrade improveUpgrade;
 
     public ConstructionResources inStockItems;
+
+    internal int currentGold;
     public WorkCamp(Vec2i location, int buildtime) : base(location, buildtime)
     {
         Name = "Work Camp";
-        ResourceToBuild.SetResources(0,0,0,0,0,0);
-        GoldCost = 15;
+        Desc = "The work camp generates wood and stone every turn. It can be traded from when upgraded.";
+        ResourceToBuild = Config.BuildCon.WorkCampResources;
+        GoldCost = Config.BuildCon.WorkCampGold;
 
         postUpgrade = new BuildingUpgrade();
         postUpgrade.Name = "Trade Post";
         postUpgrade.Desc = "Open a trade post, allowing the purchase and sale of basic materials. Wares are restocked every turn.";
-        postUpgrade.GoldCost = 50;
-        postUpgrade.ResourceToUpgrade.SetResources(10, 10, 5, 5, 0, 0);
-        postUpgrade.upgradeTime = 2;
+        postUpgrade.GoldCost = Config.BuildCon.WorkCampTradeUpgrade.GoldCost;
+        postUpgrade.ResourceToUpgrade = Config.BuildCon.WorkCampTradeUpgrade.ResourceToUpgrade;
+        postUpgrade.upgradeTime = Config.BuildCon.WorkCampTradeUpgrade.upgradeTime;
         Upgrades.Add(postUpgrade);
 
         merchantUpgrade = new BuildingUpgrade();
         merchantUpgrade.Name = "Merchant Guild Branch";
         merchantUpgrade.Desc = "Work camp can now be used to purchase and sell Ores, Natural Materials, Prefabs, and Mana Stones.";
-        merchantUpgrade.GoldCost = 300;
-        merchantUpgrade.ResourceToUpgrade.SetResources(10, 10, 5, 5, 0, 0);
-        merchantUpgrade.upgradeTime = 3;
+        merchantUpgrade.GoldCost = Config.BuildCon.WorkCampMerchantUpgrade.GoldCost;
+        merchantUpgrade.ResourceToUpgrade = Config.BuildCon.WorkCampMerchantUpgrade.ResourceToUpgrade;
+        merchantUpgrade.upgradeTime = Config.BuildCon.WorkCampMerchantUpgrade.upgradeTime;
         Upgrades.Add(merchantUpgrade);
 
         improveUpgrade = new BuildingUpgrade();
         improveUpgrade.Name = "Improve Camp";
-        improveUpgrade.Desc = "Improve the work camp, increasing max stock and materials produced every turn.";
-        improveUpgrade.GoldCost = 150;
-        improveUpgrade.ResourceToUpgrade.SetResources(30, 25, 10, 5, 10, 0);
-        improveUpgrade.upgradeTime = 2;
+        improveUpgrade.Desc = "Improve the work camp, triples the max stock and doubles the stone and wood produced every turn.";
+        improveUpgrade.GoldCost = Config.BuildCon.WorkCampImproveUpgrade.GoldCost;
+        improveUpgrade.ResourceToUpgrade = Config.BuildCon.WorkCampImproveUpgrade.ResourceToUpgrade;
+        improveUpgrade.upgradeTime = Config.BuildCon.WorkCampImproveUpgrade.upgradeTime;
         Upgrades.Add(improveUpgrade);
 
         inStockItems = new ConstructionResources();
@@ -49,12 +52,12 @@ class WorkCamp : ConstructibleBuilding
 
         if (postUpgrade.built || merchantUpgrade.built) 
         {
-            inStockItems.SetResources(20, 20, 10, 10, 5, 5);
+            inStockItems.SetResources(10, 10, 5, 5, 3, 3);
         }
 
         if (improveUpgrade.built)
         {
-            inStockItems.SetResources(30, 30, 15, 15, 7, 7);
+            inStockItems.SetResources(Config.BuildCon.WorkCampTurnStock.Wood, Config.BuildCon.WorkCampTurnStock.Stone, Config.BuildCon.WorkCampTurnStock.Ores, Config.BuildCon.WorkCampTurnStock.NaturalMaterials, Config.BuildCon.WorkCampTurnStock.Prefabs, Config.BuildCon.WorkCampTurnStock.ManaStones);
             ownerResource.AddResource(ConstructionresourceType.wood, 1);
             ownerResource.AddResource(ConstructionresourceType.stone, 1);
         }

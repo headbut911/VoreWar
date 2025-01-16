@@ -7,7 +7,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.Experimental.UIElements.StyleEnums;
-using UnityEngine.WSA;
 
 public class BuildMenu : MonoBehaviour
 {
@@ -44,6 +43,7 @@ public class BuildMenu : MonoBehaviour
             var obj = Instantiate(BuildItemPrefab, BuildingFolder);
             var currentPrefab = obj.GetComponent<BuildingPrefab>();
             currentPrefab.BuildingName.text = building.Name;
+            currentPrefab.BuildingDesc.text = building.Desc;
             currentPrefab.BuildTurns.text = building.baseBuildTurns.ToString();
             currentPrefab.GoldCost.text = building.GoldCost.ToString();
             currentPrefab.Wood.text = building.ResourceToBuild.Wood.ToString();

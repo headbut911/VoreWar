@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Diagnostics;
-using UnityEngine.WSA;
 
 public class TaggedTraitEditor : MonoBehaviour
 {

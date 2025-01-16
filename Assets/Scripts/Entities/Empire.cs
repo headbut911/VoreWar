@@ -171,7 +171,7 @@ public class Empire
         Armies = new List<Army>();
         OwnedTiles = new List<Vec2i>();
         constructionResources = new ConstructionResources();
-        constructionResources.Init();
+        constructionResources.Reset();
         Name = Race.ToString();
         if (args.strategicAI == StrategyAIType.None)
             StrategicAI = null;

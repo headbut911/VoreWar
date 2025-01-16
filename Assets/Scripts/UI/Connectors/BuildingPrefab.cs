@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BuildingPrefab : MonoBehaviour
 {
     public TextMeshProUGUI BuildingName;
+    public TextMeshProUGUI BuildingDesc;
     public TextMeshProUGUI BuildTurns;
     public TextMeshProUGUI GoldCost;
 
