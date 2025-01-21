@@ -3102,7 +3102,7 @@ static class StoredLogTexts
             priority: 9, conditional: s => CanBurp(s) && InStomach(s)),
             new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("belches", "burps")} loudly, as <b>{i.Target.Name}</b> succumbs to {GPPHis(i.Unit)} belly.",
             priority: 9, conditional: s=> CanBurp(s) && InStomach(s)),
-            new EventString((i) => $"As <b>{i.Unit.Name}</b> {GetRandomStringFrom("belches", "burps")} proudly from finishing off <b>{i.Target.Name}</b>, <b>{AttractedWarrior(i.Unit)}</b> can't help but get turned on by the {GetRaceDescSingl(i.Unit)}'s roar, and starts to plot 'activities' to do with them after the battle.",
+            new EventString((i) => $"As <b>{i.Unit.Name}</b> {GetRandomStringFrom("belches", "burps")} proudly from finishing off <b>{i.Target.Name}</b>, <b>{AttractedWarrior(i.Unit)}</b> can't help but get turned on by the {GetRaceDescSingl(i.Unit)}'s roar, and starts to plot 'activities' to do with {GPPHim(i.Unit)} after the battle.",
             priority: 9, conditional: s=> CanBurp(s) && InStomach(s) && ReqOSWLewd(s)),
             new EventString((i) => $"<b>{i.Unit.Name}</b> lets out a mighty {GetRandomStringFrom("belch", "burp")} for all to hear after finishing off their rival leader <b>{i.Target.Name}</b>!",
             priority: 11, conditional: s=> CanBurp(s) && InStomach(s) && ActorLeader(s) && TargetLeader(s)),
@@ -4156,7 +4156,7 @@ static class StoredLogTexts
 
             new EventString((i) => $"<b>{i.Unit.Name}</b> kisses <b>{i.Target.Name}</b>, causing <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> belly to {GetRandomStringFrom("suddenly", "instantly", "inexplicably")} be filled with <b>{i.Prey.Name}</b>. <b>{i.Target.Name}</b>, although {GetRandomStringFrom("satisfied", "full", "content")} is utterly baffled as to how it occurred.",
             priority: 10, conditional: s => InStomach(s) && !s.Prey.IsDead ),
-            new EventString((i) => $"<b>{i.Unit.Name}</b> kisses <b>{i.Target.Name}</b>, instantly giving <b>{i.Prey.Name}</b> in the process, {GetRandomStringFrom("satisfied", "pleased", "content")} with the outcome <b>{i.Target.Name}</b> happily pats {GPPHis(i.Unit)} belly.",
+            new EventString((i) => $"<b>{i.Unit.Name}</b> kisses <b>{i.Target.Name}</b>, instantly giving <b>{i.Prey.Name}</b> in the process, {GetRandomStringFrom("satisfied", "pleased", "content")} with the outcome <b>{i.Target.Name}</b> happily pats {GPPHis(i.Target)} belly.",
             priority: 10, conditional: s => InStomach(s) && !s.Prey.IsDead ),
             new EventString((i) => $"<b>{i.Unit.Name}</b> kisses <b>{i.Target.Name}</b>, and {GetRandomStringFrom("in less than a second", "instantly", "without warning")} <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> belly is filled with <b>{i.Prey.Name}</b>. <b>{i.Unit.Name}</b> simply says \"You're welcome!\" as <b>{i.Target.Name}</b> just stands, puzzled as to what just happened.",
             priority: 10, conditional: s => InStomach(s) && !s.Prey.IsDead && ActorHumanoid(s)),
