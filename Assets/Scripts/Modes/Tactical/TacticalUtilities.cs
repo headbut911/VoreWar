@@ -568,10 +568,21 @@ static class TacticalUtilities
             return false;
         if (blockedTiles != null)
         {
-            if (x <= blockedTiles.GetUpperBound(0) || y <= blockedTiles.GetUpperBound(1))
+            if (actor?.Unit.HasTrait(Traits.NimbleClimber) ?? false)
             {
-                if (blockedTiles[x, y])
-                    return false;
+                if (x <= blockedClimberTiles.GetUpperBound(0) || y <= blockedClimberTiles.GetUpperBound(1))
+                {
+                    if (blockedClimberTiles[x, y])
+                        return false;
+                }
+            }
+            else
+            {
+                if (x <= blockedTiles.GetUpperBound(0) || y <= blockedTiles.GetUpperBound(1))
+                {
+                    if (blockedTiles[x, y])
+                        return false;
+                }
             }
 
         }
@@ -580,7 +591,7 @@ static class TacticalUtilities
         {
             for (int i = 0; i < Units.Count; i++)
             {
-                if ((Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side != actor.Unit.Side && actor.Unit.HasTrait(Traits.PassThrough)) || (Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side == actor.Unit.Side && actor.Unit.HasTrait(Traits.Blitz)))
+                if ((TacticalUtilities.IsUnitControlledByPlayer(actor.Unit) == false && Units[i].Targetable == true && !Units[i].Hidden) || (TacticalUtilities.IsUnitControlledByPlayer(actor.Unit) == true && (Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side != actor.Unit.Side && actor.Unit.HasTrait(Traits.PassThrough)) || (Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side == actor.Unit.Side && actor.Unit.HasTrait(Traits.Blitz))))
                 {
                     if (Units[i].Position.x == x && Units[i].Position.y == y)
                     {
