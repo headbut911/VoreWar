@@ -45,7 +45,7 @@ public class WorkCampSettings : MonoBehaviour
             );
     }
 
-    internal  void Load()
+    internal void Load()
     {
         GoldPerTurn.text = Config.BuildCon.WorkCampGoldPerTurn.ToString();
 

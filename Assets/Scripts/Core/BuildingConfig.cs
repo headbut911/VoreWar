@@ -7,7 +7,7 @@ public class BuildingConfig
 {
     //Building System Setting
     [OdinSerialize]
-    public bool BuildingSystemEnabled;
+    public bool BuildingSystemEnabled = false;
     [OdinSerialize]
     public int BuildingSystemTurnLockout = 0;
 

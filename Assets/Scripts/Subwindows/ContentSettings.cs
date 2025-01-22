@@ -745,6 +745,7 @@ public class ContentSettings : MonoBehaviour
     void LoadSaved()
     {
         Refresh();
+        buildingSettings.HardLoad();
         Open();
     }
 
@@ -1562,7 +1563,10 @@ public class ContentSettings : MonoBehaviour
     {
         SetValues();
         SaveValues();
+
+        buildingSettings.DropdownUpdate();
         buildingSettings.HardSave();
+
         gameObject.SetActive(false);
     }
 
