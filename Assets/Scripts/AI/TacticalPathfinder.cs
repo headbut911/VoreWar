@@ -37,6 +37,13 @@ public static class TacticalPathfinder
                 continue;
             }
 
+            if (TacticalUtilities.IsUnitControlledByPlayer(actor.Unit) == false && (actor.Unit.HasTrait(Traits.Blitz) || actor.Unit.HasTrait(Traits.SpectralStep) || actor.Unit.HasTrait(Traits.PassThrough)) && current.G != target.G && CheckTile(current.X, current.Y, actor) == false)
+            {
+                openList.Remove(current);
+//                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"WORK darn it!"); //Testing line
+                continue;
+            }
+
             if (flight == false || CheckTile(current.X, current.Y, actor)) //Can't stop on a occupied tile, short circuited to save slightly on speed
             {
                 if (howClose != -1)
