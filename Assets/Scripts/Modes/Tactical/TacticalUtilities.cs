@@ -591,7 +591,7 @@ static class TacticalUtilities
         {
             for (int i = 0; i < Units.Count; i++)
             {
-                if ((TacticalUtilities.IsUnitControlledByPlayer(actor.Unit) == false && Units[i].Targetable == true && !Units[i].Hidden) || (TacticalUtilities.IsUnitControlledByPlayer(actor.Unit) == true && (Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side != actor.Unit.Side && actor.Unit.HasTrait(Traits.PassThrough)) || (Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side == actor.Unit.Side && actor.Unit.HasTrait(Traits.Blitz))))
+                if ((Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side != actor.Unit.Side && actor.Unit.HasTrait(Traits.PassThrough)) || (Units[i].Targetable == true && !Units[i].Hidden && Units[i].Unit.Side == actor.Unit.Side && actor.Unit.HasTrait(Traits.Blitz)))
                 {
                     if (Units[i].Position.x == x && Units[i].Position.y == y)
                     {
