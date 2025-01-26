@@ -12,6 +12,7 @@ public class GameMenu : MonoBehaviour
     public RaceEditorPanel RaceEditor;
     public RandomizerTraitEditor RandomizerTraitEditor;
     public CustomTraitEditor CustomTraitEditor;
+    public ConditionalTraitsEditor CondTraitEditor;
 
     public HelpPanel HelpUI;
 
@@ -77,6 +78,12 @@ public class GameMenu : MonoBehaviour
     {
         CustomTraitEditor.gameObject.SetActive(true);
         CustomTraitEditor.Open();
+    }
+
+    public void OpenCondTraits()
+    {
+        CondTraitEditor.gameObject.SetActive(true);
+        CondTraitEditor.Open();
     }
     public void LoadHelp()
     {

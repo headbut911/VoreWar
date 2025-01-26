@@ -20,6 +20,7 @@ public static class State
     public static List<String> TieredTraitsTagsList;
     public static List<RandomizeList> RandomizeLists;
     public static List<CustomTraitBoost> CustomTraitList;
+    public static List<ConditionalTraitContainer> ConditionalTraitList;
     public static Dictionary<TaggedTrait,bool> UntaggedTraits;
 
     internal static EventList EventList;
@@ -115,6 +116,7 @@ public static class State
         EventList = new EventList();
         AssimilateList = new AssimilateList();
         CustomTraitList = new List<CustomTraitBoost>();
+        ConditionalTraitList = new List<ConditionalTraitContainer>();
         UntaggedTraits = new Dictionary<TaggedTrait, bool>();
 
         TieredTraitsList = ExternalTraitHandler.TaggedTraitParser();

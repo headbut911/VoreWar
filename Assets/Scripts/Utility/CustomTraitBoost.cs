@@ -16,7 +16,6 @@ public class CustomTraitBoost
 
     internal Booster ToBooster()
     {
-        Debug.Log("Activating Booster");
         Booster customBoost = new Booster(description,
             (s) =>
             {

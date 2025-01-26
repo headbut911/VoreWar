@@ -1771,7 +1771,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             foreach (var trait in Tags)
             {
                 Trait ITrait;
-                if (trait >= (Traits)2001)
+                if (trait >= (Traits)3001)
                     ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
                 else
                     ITrait = TraitList.GetTrait(trait);              
@@ -1795,7 +1795,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             foreach (var trait in Tags.Concat(PermanentTraits).Distinct())
             {
                 Trait ITrait;
-                if (trait >= (Traits)2001)
+                if (trait >= (Traits)3001)
                     ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
                 else
                     ITrait = TraitList.GetTrait(trait);

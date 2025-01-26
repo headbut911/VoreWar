@@ -745,12 +745,12 @@ public class ContentSettings : MonoBehaviour
     void LoadSaved()
     {
         Refresh();
-        buildingSettings.HardLoad();
         Open();
     }
 
     public void Refresh()
     {
+        buildingSettings.HardLoad();
         if (Toggles == null)
             CreateList();
         foreach (ToggleObject toggle in Toggles)

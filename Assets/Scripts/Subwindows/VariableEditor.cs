@@ -189,7 +189,7 @@ public class VariableEditor : MonoBehaviour
                     {
                         var newObj = Instantiate(Toggle, Folder);
                         var toggle = newObj.GetComponent<Toggle>();
-                        if (entry.Key >= (Traits)2000)
+                        if (entry.Key >= (Traits)3000)
                         {
                             var rlName = State.CustomTraitList.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
                             newObj.name = $"UsingDictionary^{rlName}";

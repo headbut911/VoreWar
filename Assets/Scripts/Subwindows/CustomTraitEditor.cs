@@ -86,7 +86,7 @@ public class CustomTraitEditor : MonoBehaviour
             var rt = obj.GetComponent<CustomTraitListItem>();
             rt.name.text = "CustomTrait";
             var last = CustomTags.LastOrDefault();
-            rt.id = last == null ? 2001 : FindNewId();
+            rt.id = last == null ? 3001 : FindNewId();
             CustomTraitBoost customTrait = new CustomTraitBoost();
             customTrait.name = "CustomTrait";
             customTrait.id = rt.id;
@@ -117,9 +117,9 @@ public class CustomTraitEditor : MonoBehaviour
         while (taken)
         {
             index++;
-            taken = CustomTags.Any(rt => rt.id == (2000 + index));
+            taken = CustomTags.Any(rt => rt.id == (3000 + index));
         }
-        return 2000 + index;
+        return 3000 + index;
     }
 
     public void Close()

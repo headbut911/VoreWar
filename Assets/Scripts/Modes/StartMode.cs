@@ -106,6 +106,11 @@ public class StartMode : SceneBase
         State.GameManager.Menu.OpenCustomTraits();
     }
 
+    public void ModifyCondTraits()
+    {
+        State.GameManager.Menu.OpenCondTraits();
+    }
+
     public void ReturnToStart()
     {
         State.TutorialMode = false;
