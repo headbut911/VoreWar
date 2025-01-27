@@ -3137,7 +3137,7 @@ static class RaceParameters
                 Traits.KeenReflexes,
                 Traits.AdeptLearner,
         },
-            RaceDescription = "A canine knight part of a group known as the \"Vindicators of Mondfeld\" that wields specialized zweihänder.",
+            RaceDescription = "A canine knight from the Kingdom of Mondfeld that wields a cobalt zweihänder. She roams the realm in search of battle to bring glory to Mondfeld!",
         };
     }
 
