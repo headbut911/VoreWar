@@ -62,9 +62,12 @@ class Xelhilde : DefaultRaceData
     internal override void RandomCustom(Unit unit)
     {
         base.RandomCustom(unit);
-        unit.Name = "Xelhilde";
+		if (State.Rand.Next(5) == 1)
+            unit.Name = "Vindicator of Mondfeld";
+		else
+            unit.Name = "Xelhilde";
         unit.EyeType = State.Rand.Next(0, EyeTypes);
-        unit.SpecialAccessoryType = State.Rand.Next(0, SpecialAccessoryCount);
+        unit.SpecialAccessoryType = 1;//State.Rand.Next(0, SpecialAccessoryCount);
     }
 
     internal override int BreastSizes => 1;
@@ -153,23 +156,23 @@ class Xelhilde : DefaultRaceData
                 {
                     case 0:
                     {
-                        return Sprites[0 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                        return Sprites[0 + 23 + (actor.GetStomachSize(2) * 5)];
                     }
                     case 1:
                     {
-                        return Sprites[1 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                        return Sprites[1 + 23 + (actor.GetStomachSize(2) * 5)];
                     }
                     case 2:
                     {
-                        return Sprites[2 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                        return Sprites[2 + 23 + (actor.GetStomachSize(2) * 5)];
                     }
                     default:
                     {
-                        return Sprites[0 + 23 + (5 * actor.Unit.SpecialAccessoryType)];
+                        return Sprites[0 + 23 + (actor.GetStomachSize(2) * 5)];
                     }
                 }
             else
-                return Sprites[26 + (5 * actor.Unit.SpecialAccessoryType)];
+                return Sprites[26 + (actor.GetStomachSize(2) * 5)];
         }
         else
             return null;
