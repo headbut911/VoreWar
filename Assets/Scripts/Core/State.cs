@@ -34,6 +34,7 @@ public static class State
     public static string StorageDirectory;
     public static string MapDirectory;
     public static string CustomTraitDirectory;
+    public static string ConditionalTraitDirectory;
 
     public static int RaceSlot;
     public static string RaceSaveDataName;
@@ -46,6 +47,7 @@ public static class State
             StorageDirectory = Application.persistentDataPath + Path.DirectorySeparatorChar;
             MapDirectory = Application.persistentDataPath + $"Maps{Path.DirectorySeparatorChar}";
             CustomTraitDirectory = Application.persistentDataPath + $"CustomTraits{Path.DirectorySeparatorChar}";
+            ConditionalTraitDirectory = Application.persistentDataPath + $"ConditionalTraits{Path.DirectorySeparatorChar}";
         }
         else
         {
@@ -53,6 +55,7 @@ public static class State
             StorageDirectory = $"UserData{Path.DirectorySeparatorChar}";
             MapDirectory = $"UserData{Path.DirectorySeparatorChar}Maps{Path.DirectorySeparatorChar}";
             CustomTraitDirectory = $"UserData{Path.DirectorySeparatorChar}CustomTraits{Path.DirectorySeparatorChar}";
+            ConditionalTraitDirectory = $"UserData{Path.DirectorySeparatorChar}ConditionalTraits{Path.DirectorySeparatorChar}";
         }
         try
         {
@@ -60,6 +63,7 @@ public static class State
             Directory.CreateDirectory(MapDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(SaveDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(CustomTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
+            Directory.CreateDirectory(ConditionalTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
         }
         catch
         {
@@ -67,10 +71,12 @@ public static class State
             StorageDirectory = Application.persistentDataPath + Path.DirectorySeparatorChar;
             MapDirectory = Application.persistentDataPath + $"Maps{Path.DirectorySeparatorChar}";
             CustomTraitDirectory = Application.persistentDataPath + $"CustomTraits{Path.DirectorySeparatorChar}";
+            ConditionalTraitDirectory = Application.persistentDataPath + $"ConditionalTraits{Path.DirectorySeparatorChar}";
             Directory.CreateDirectory(StorageDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(MapDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(SaveDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(CustomTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
+            Directory.CreateDirectory(ConditionalTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
         }
 
 
@@ -122,6 +128,7 @@ public static class State
         TieredTraitsList = ExternalTraitHandler.TaggedTraitParser();
         TieredTraitsTagsList = new List<string>();
         ExternalTraitHandler.CustomTraitParser();
+        ExternalTraitHandler.ConditionalTraitParser();
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
         List<string> lines;

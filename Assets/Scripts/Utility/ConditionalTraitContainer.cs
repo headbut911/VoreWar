@@ -7,13 +7,13 @@ using UnityEngine;
 
 public class ConditionalTraitContainer
 {
-    internal int id = -1;
-    internal string name;
-    internal TraitConditionalClassification classification;
-    internal bool active = false;
-    internal TraitConditionTrigger trigger;
+    public int id = -1;
+    public string name;
+    public TraitConditionalClassification classification;
+    public bool active = false;
+    public TraitConditionTrigger trigger;
 
-    internal Traits associatedTrait;
+    public Traits associatedTrait;
 
-    internal Dictionary<ConditionalTraitOperationBlock, TraitConditionLogicalOperator> OperationBlocks;
+    public Dictionary<ConditionalTraitOperationBlock, TraitConditionLogicalOperator> OperationBlocks;
 }

@@ -129,9 +129,110 @@ public class ExternalTraitHandler
         }
         return true;
     }
+
     public static void CustomTraitRemover(CustomTraitBoost trait)
     {
-        File.Delete($"{State.CustomTraitDirectory}{trait.name}.json");
+        if (File.Exists($"{State.CustomTraitDirectory}{trait.name}.json"))
+            File.Delete($"{State.CustomTraitDirectory}{trait.name}.json");
+    }
+
+    public static void ConditionalTraitParser()
+    {
+        string readContents;
+        string[] files = Directory.GetFiles(State.ConditionalTraitDirectory, "*.json", SearchOption.AllDirectories);
+        List<ConditionalTraitContainer> customTraitsList = new List<ConditionalTraitContainer>();
+
+        foreach (string file in files)
+        {
+            using (StreamReader streamReader = new StreamReader(file))
+            {
+                readContents = streamReader.ReadToEnd();
+            }
+            JObject results = JObject.Parse(readContents);
+
+            ConditionalTraitContainer conditionalCont = new ConditionalTraitContainer();
+            conditionalCont.OperationBlocks = new Dictionary<ConditionalTraitOperationBlock, TraitConditionLogicalOperator>();
+            conditionalCont.id = results["id"].ToObject<int>();
+            conditionalCont.name = results["name"].ToString();
+            conditionalCont.classification = results["classification"].ToObject<TraitConditionalClassification>();
+            conditionalCont.active = results["active"].ToObject<bool>();
+            conditionalCont.trigger = results["trigger"].ToObject<TraitConditionTrigger>();
+            conditionalCont.associatedTrait = results["associatedTrait"].ToObject<Traits>();
+            var opBlockKeys = results["operationBlocksKeys"].ToObject<List<OperationBlockTempClass>>();
+            var opBlockValues = results["operationBlocksValues"].ToObject<List<TraitConditionLogicalOperator>>();
+            int counter = 0;
+            foreach (var opBlockKey in opBlockKeys)
+            {
+                ConditionalTraitOperationBlock opBlock = new ConditionalTraitOperationBlock();
+                opBlock.summary = opBlockKey.summary;
+                opBlock.compareOp = opBlockKey.compareOp;
+                opBlock.compareValue = opBlockKey.compareValue;
+                opBlock.filled = opBlockKey.filled;
+                opBlock.conditionVariable = opBlockKey.conditionVariable;
+                opBlock.arithmeticOperator = opBlockKey.arithmeticOperator;
+
+                conditionalCont.OperationBlocks.Add(opBlock, opBlockValues[counter]);
+                counter++;
+            }
+
+            State.ConditionalTraitList.Add(conditionalCont);
+
+        }
+    }
+    public static bool ConditionalTraitSaver(ConditionalTraitContainer trait)
+    {
+        bool modifying = false;
+        foreach (var item in State.ConditionalTraitList)
+        {
+            if (item.name.ToLower() == trait.name.ToLower() && item.id == trait.id)
+            {
+                modifying = true;
+                break;
+            }
+        }
+
+        if (!modifying && File.Exists($"{State.ConditionalTraitDirectory}{trait.name}.json"))
+        {
+            return false;
+        }
+
+        var rootObject = new ConditionalTraitTempClass();
+        rootObject.id = trait.id;
+        rootObject.name = trait.name;
+        rootObject.classification = trait.classification;
+        rootObject.active = trait.active;
+        rootObject.trigger = trait.trigger;
+        rootObject.associatedTrait = trait.associatedTrait;
+        rootObject.operationBlocksKeys = new List<OperationBlockTempClass>();
+        rootObject.operationBlocksValues = new List<TraitConditionLogicalOperator>();
+
+        foreach (var item in trait.OperationBlocks)
+        {
+            OperationBlockTempClass opBlock = new OperationBlockTempClass();
+            opBlock.summary = item.Key.summary;
+            opBlock.compareOp = item.Key.compareOp;
+            opBlock.compareValue = item.Key.compareValue;
+            opBlock.filled = item.Key.filled;
+            opBlock.conditionVariable = item.Key.conditionVariable;
+            opBlock.arithmeticOperator = item.Key.arithmeticOperator;
+
+            rootObject.operationBlocksKeys.Add(opBlock);
+            rootObject.operationBlocksValues.Add(item.Value);
+        }
+
+        using (StreamWriter file = File.CreateText($"{State.ConditionalTraitDirectory}{trait.name}.json"))
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            serializer.Serialize(file, rootObject);
+        }
+
+        return true;
+
+    }
+    public static void ConditionalTraitRemover(ConditionalTraitContainer trait)
+    {
+        if (File.Exists($"{State.ConditionalTraitDirectory}{trait.name}.json"))
+            File.Delete($"{State.ConditionalTraitDirectory}{trait.name}.json");
     }
 
     class RootObject
@@ -145,5 +246,27 @@ public class ExternalTraitHandler
         public List<string> tags { get; set; }
         public TraitTier tierValue { get; set; }
         public Traits traitEnum { get; set; }
+    }
+
+
+    class ConditionalTraitTempClass
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public TraitConditionalClassification classification { get; set; }
+        public bool active { get; set; }
+        public TraitConditionTrigger trigger { get; set; }
+        public Traits associatedTrait { get; set; }
+        public List<OperationBlockTempClass> operationBlocksKeys { get; set; }
+        public List<TraitConditionLogicalOperator> operationBlocksValues { get; set; }
+    }
+    class OperationBlockTempClass
+    {
+        public string summary { get; set; }
+        public TraitConditionCompareOperator compareOp { get; set; }
+        public int compareValue { get; set; }
+        public bool filled { get; set; }
+        public List<TraitCondition> conditionVariable { get; set; }
+        public List<TraitConditionArithmeticOperator> arithmeticOperator { get; set; }
     }
 }

@@ -32,6 +32,8 @@ public enum TraitCondition
     StrategicTurn,
     AliveAllies,
     AliveEnemies,
+    Growth,
+    Fullness,
 
     // singleton variables: Can't be paired with any other variables
     Male,
@@ -132,7 +134,6 @@ public class ConditionalTrait : MonoBehaviour
                     break;  
                 case TraitConditionCompareOperator.geq:
                     ob.conditionOp.text = ">=";
-                    ob.conditionOp.text = "=";
                     break;  
                 case TraitConditionCompareOperator.none:
                     ob.conditionOp.text = "";
@@ -294,6 +295,8 @@ public class ConditionalTrait : MonoBehaviour
         {
             trait.OperationBlocks.Add(opBlock.Key, opBlock.Value);
         }
+
+        ExternalTraitHandler.ConditionalTraitSaver(trait);
     }
 
     public void SaveClose()
@@ -364,7 +367,11 @@ public class ConditionalTrait : MonoBehaviour
     {
         var rem = State.ConditionalTraitList.Where(x => current_id == x.id).FirstOrDefault();
         //ExternalTraitHandler.CustomTraitRemover(rem);
-        State.ConditionalTraitList.Remove(rem);
+        ExternalTraitHandler.ConditionalTraitRemover(rem);
+        if (State.ConditionalTraitList.Contains(rem))
+        {
+            State.ConditionalTraitList.Remove(rem);
+        }
         DiscardClose();
     }
 }
