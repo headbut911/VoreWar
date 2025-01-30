@@ -4736,4 +4736,16 @@ Turns: {currentTurn}
         target.Unit.Side = caster.Side;
         State.GameManager.TacticalMode.UpdateActorColor(target);
     }
+
+    internal int ExposeRemainingUnits(bool attackers)
+    {
+        int remainingAttackers = 0;
+        int remainingDefenders = 0;
+        CalculateRemaining(ref remainingAttackers, ref remainingDefenders);
+        if (attackers)
+        {
+            return remainingAttackers;
+        }
+        return remainingDefenders;
+    }
 }

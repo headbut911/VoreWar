@@ -40,6 +40,8 @@ public enum TraitCondition
     Female,
     NonBinary,
     Predator,
+    Digesting,
+    Absorbing,
     Prey,
 
     conditionCounter, // Should always be last
@@ -138,7 +140,7 @@ public class ConditionalTrait : MonoBehaviour
                 case TraitConditionCompareOperator.none:
                     ob.conditionOp.text = "";
                     ob.conditionValue.text = "";
-                    break ;
+                    break;
                 default:
                     ob.conditionOp.text = item.Key.compareOp.ToString();
                     break;
