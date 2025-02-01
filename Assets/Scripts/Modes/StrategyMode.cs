@@ -1841,6 +1841,23 @@ public class StrategyMode : SceneBase
         }
         else
         {
+            foreach (var army in ActingEmpire.Armies)
+            {
+                foreach (var unit in army.Units)
+                {
+                    foreach (var item in unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnStrategicTurnEnd || t.trigger == TraitConditionTrigger.All).ToList())
+                    {
+                        if (ConditionalTraitConditionChecker.StrategicTraitConditionActive(unit, item))
+                        {
+                            unit.ActivateConditionalTrait(item.id);
+                        }
+                        else
+                        {
+                            unit.DeactivateConditionalTrait(item.id);
+                        }
+                    }
+                }
+            }
             ActingEmpire = State.World.EmpireOrder[startingIndex + 1];
         }
 

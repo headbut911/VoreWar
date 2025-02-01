@@ -67,6 +67,14 @@ public class HoveringTooltip : MonoBehaviour
         {
             return GetTraitData(trait);
         }
+        if (State.CustomTraitList.Where(t=>t.name == words[2]).Any())
+        {
+            return GetTraitData((Traits)State.CustomTraitList.Where(t => t.name == words[2]).First().id);
+        }
+        if (State.ConditionalTraitList.Where(t=>t.name == words[2]).Any())
+        {
+            return GetTraitData((Traits)State.ConditionalTraitList.Where(t => t.name == words[2]).First().id);
+        }
         return "";
     }
 
@@ -241,6 +249,14 @@ public class HoveringTooltip : MonoBehaviour
             }
         }
 
+        if (State.CustomTraitList.Where(t => t.name == words[2]).Any())
+        {
+            return GetTraitData((Traits)State.CustomTraitList.Where(t => t.name == words[2]).First().id);
+        }
+        if (State.ConditionalTraitList.Where(t => t.name == words[2]).Any())
+        {
+            return GetTraitData((Traits)State.ConditionalTraitList.Where(t => t.name == words[2]).First().id);
+        }
 
         if (State.World?.ItemRepository != null)
         {
@@ -336,7 +352,72 @@ public class HoveringTooltip : MonoBehaviour
 
     public static string GetTraitData(Traits trait)
     {
-        if (trait >= (Traits)2001)
+        if (trait >= (Traits)6000)
+        {
+            var cond = State.ConditionalTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault();
+
+            string constructed = "";
+            switch (cond.classification)
+            {
+                case TraitConditionalClassification.Conditional:
+                    constructed = $"This trait provides the trait <b>{GetTraitName(cond.associatedTrait)}</b> while the following condition is fulfilled:\n";
+                    break;
+                case TraitConditionalClassification.Permanent:
+                    constructed = $"This trait becomes <b>{GetTraitName(cond.associatedTrait)}</b> if the following condition is fulfilled:\n";
+                    break;
+                case TraitConditionalClassification.Temporary:
+                    constructed = $"This trait provides the trait <b>{GetTraitName(cond.associatedTrait)}</b>. Both this trait and <b>{GetTraitName(cond.associatedTrait)}</b> will be removed if the following condition is unfulfilled:\n";
+                    break;
+                default:
+                    break;
+            }
+            foreach (var item in cond.OperationBlocks)
+            {
+                TraitCondition leadCondition = item.Key.conditionVariable.First();
+                constructed += item.Key.summary;
+                if (TraitCondition.Male > leadCondition)
+                {
+                    switch (item.Key.compareOp)
+                    {
+                        case TraitConditionCompareOperator.eq:
+                            constructed += " = ";
+                            break;
+                        case TraitConditionCompareOperator.geq:
+                            constructed += " >= ";
+                            break;
+                        case TraitConditionCompareOperator.leq:
+                            constructed += " <= ";
+                            break;
+                        case TraitConditionCompareOperator.none:
+                            break;
+                        default:
+                            break;
+                    }
+                    constructed += item.Key.compareValue;
+                }
+                constructed += "\n";
+                if (item.Value != TraitConditionLogicalOperator.none)
+                {
+                    switch (item.Value)
+                    {
+                        case TraitConditionLogicalOperator.and:
+                            constructed += "AND\n";
+                            break;
+                        case TraitConditionLogicalOperator.or:
+                            constructed += "OR\n";
+                            break;
+                        case TraitConditionLogicalOperator.not:
+                            constructed += "AND NOT\n";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            return constructed;
+        }
+
+        if (trait >= (Traits)3000)
         {
             return State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().description;
         }
@@ -626,6 +707,22 @@ public class HoveringTooltip : MonoBehaviour
         return "<b>This trait needs a tooltip!</b>";
     }
 
+    private static string GetTraitName(Traits trait)
+    {
+        if (trait >= (Traits)6000)
+        {
+            return State.ConditionalTraitList.Where(t => t.id == (int)trait).First().name;
+        }
+        if (trait >= (Traits)3000)
+        {
+            return State.CustomTraitList.Where(t => t.id == (int)trait).First().name;
+        }
+        if (trait >= (Traits)1000)
+        {
+            return State.RandomizeLists.Where(t => t.id == (int)trait).First().name;
+        }
+        return trait.ToString();
+    }
     public static string GetAIData(RaceAI ai)
     {
         switch (ai)

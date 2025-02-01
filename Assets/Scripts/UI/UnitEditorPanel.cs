@@ -70,6 +70,12 @@ public class UnitEditorPanel : CustomizerPanel
             val2++;
             TraitDropdown.options.Add(new TMP_Dropdown.OptionData(ct.name.ToString()));
         }
+        foreach (ConditionalTraitContainer cdt in State.ConditionalTraitList)
+        {
+            traitDict[(Traits)cdt.id] = val2;
+            val2++;
+            TraitDropdown.options.Add(new TMP_Dropdown.OptionData(cdt.name.ToString()));
+        }
         foreach (Traits traitId in ((Traits[])Enum.GetValues(typeof(Traits))).OrderBy(s =>
        {
            return s >= Traits.LightningSpeed ? "ZZZ" + s.ToString() : s.ToString();
@@ -457,6 +463,13 @@ public class UnitEditorPanel : CustomizerPanel
             UnitEditor.RefreshActor();
             TraitList.text = UnitEditor.Unit.ListTraits();
         }
+        if (State.ConditionalTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            ConditionalTraitContainer conditionalTrait = State.ConditionalTraitList.Single(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text);
+            UnitEditor.Unit.AddPermanentTrait((Traits)conditionalTrait.id);
+            UnitEditor.RefreshActor();
+            TraitList.text = UnitEditor.Unit.ListTraits();
+        }
         if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
         {
             UnitEditor.AddTrait(trait);
@@ -518,6 +531,17 @@ public class UnitEditorPanel : CustomizerPanel
 
             }
         }
+        foreach (ConditionalTraitContainer cdt in (State.ConditionalTraitList))
+        {
+            if (TraitsText.text.ToLower().Contains(cdt.name.ToString().ToLower()))
+            {
+                UnitEditor.AddTrait((Traits)cdt.id);
+
+                UnitEditor.RefreshActor();
+                TraitList.text = UnitEditor.Unit.ListTraits();
+
+            }
+        }
         foreach (Traits trait in (Stat[])Enum.GetValues(typeof(Traits)))
         {
             if (TraitsText.text.ToLower().Contains(trait.ToString().ToLower()))
@@ -557,6 +581,14 @@ public class UnitEditorPanel : CustomizerPanel
         if (cBoost != null)
         {
             UnitEditor.RemoveTrait((Traits)cBoost.id);
+            UnitEditor.RefreshActor();
+            TraitList.text = UnitEditor.Unit.ListTraits();
+        }
+        
+        ConditionalTraitContainer condCont = State.ConditionalTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault();
+        if (condCont != null)
+        {
+            UnitEditor.RemoveTrait((Traits)condCont.id);
             UnitEditor.RefreshActor();
             TraitList.text = UnitEditor.Unit.ListTraits();
         }

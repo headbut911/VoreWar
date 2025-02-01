@@ -10,7 +10,6 @@ public class ConditionalTraitContainer
     public int id = -1;
     public string name;
     public TraitConditionalClassification classification;
-    public bool active = false;
     public TraitConditionTrigger trigger;
 
     public Traits associatedTrait;

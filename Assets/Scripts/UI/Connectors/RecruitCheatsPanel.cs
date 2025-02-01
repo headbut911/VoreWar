@@ -110,6 +110,11 @@ public class RecruitCheatsPanel : MonoBehaviour
                 CustomTraitBoost customTrait = State.CustomTraitList.Single(rl => rl.name == TraitPicker.captionText.text);
                 unit.AddPermanentTrait((Traits)customTrait.id);
             }
+            if (State.ConditionalTraitList.Any(ct => ct.name == TraitPicker.captionText.text))
+            {
+                ConditionalTraitContainer customTrait = State.ConditionalTraitList.Single(rl => rl.name == TraitPicker.captionText.text);
+                unit.AddPermanentTrait((Traits)customTrait.id);
+            }
             if (Enum.TryParse(TraitPicker.captionText.text, out Traits trait))
             {
                 unit.AddPermanentTrait(trait);

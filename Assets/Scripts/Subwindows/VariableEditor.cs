@@ -189,7 +189,15 @@ public class VariableEditor : MonoBehaviour
                     {
                         var newObj = Instantiate(Toggle, Folder);
                         var toggle = newObj.GetComponent<Toggle>();
-                        if (entry.Key >= (Traits)3000)
+                        if (entry.Key >= (Traits)6000)
+                        {
+                            var rlName = State.ConditionalTraitList.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
+                            newObj.name = $"UsingDictionary^{rlName}";
+                            toggle.GetComponentInChildren<Text>().text = rlName;
+                            toggle.gameObject.AddComponent<VariableScreenTooltip>();
+                            toggle.GetComponent<VariableScreenTooltip>().text = "A conditional Trait. Use the conditional trait editor to view and edit.";
+                        }
+                        else if (entry.Key >= (Traits)3000)
                         {
                             var rlName = State.CustomTraitList.Find(r => (Traits)r.id == entry.Key)?.name ?? entry.Key.ToString();
                             newObj.name = $"UsingDictionary^{rlName}";
@@ -398,14 +406,15 @@ public class VariableEditor : MonoBehaviour
                     } else
                     {
                         var rt = State.RandomizeLists.Find(r => r.name == split[1]);
+                        var ct = State.CustomTraitList.Find(r => r.name == split[1]);
+                        var cdt = State.ConditionalTraitList.Find(r => r.name == split[1]);
+
                         if (rt != null)
                             TempDictionary[(Traits)rt.id] = obj.GetComponentInChildren<Toggle>().isOn;
-                        else
-                        {
-                            var ct = State.CustomTraitList.Find(r => r.name == split[1]);
-                            if (ct != null)
-                                TempDictionary[(Traits)ct.id] = obj.GetComponentInChildren<Toggle>().isOn;
-                        }
+                        if (ct != null)
+                            TempDictionary[(Traits)ct.id] = obj.GetComponentInChildren<Toggle>().isOn;
+                        if (cdt != null)
+                            TempDictionary[(Traits)ct.id] = obj.GetComponentInChildren<Toggle>().isOn;
                     }
                     needSave = true;
                 }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public enum UnitType
 {
@@ -577,6 +578,8 @@ public class Unit
     protected List<Traits> SharedTraits;
     [OdinSerialize]
     protected List<Traits> PersistentSharedTraits;
+    [OdinSerialize]
+    protected List<Traits> ActiveConditionalTraits;
 
     /// <summary>
     /// Traits that are considered to be permanent, i.e. do not disappear during refreshes
@@ -589,6 +592,13 @@ public class Unit
     /// </summary>
     [OdinSerialize]
     protected List<Traits> RemovedTraits;
+
+    /// <summary>
+    /// Holds All of a units conditional traits.
+    /// Key: Trait, Value: If Trait is active
+    /// </summary>
+    [OdinSerialize]
+    internal Dictionary<ConditionalTraitContainer, bool> AllConditionalTraits;
 
     //internal List<Trait> TraitsList = new List<Trait>();
     internal List<IStatBoost> StatBoosts;
@@ -638,6 +648,7 @@ public class Unit
         Tags = new List<Traits>();
         PermanentTraits = new List<Traits>();
         RemovedTraits = new List<Traits>();
+        AllConditionalTraits = new Dictionary<ConditionalTraitContainer, bool>();
         Type = type;
 
         Predator = predator;
@@ -1360,8 +1371,16 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             if (PermanentTraits == null)
                 return Tags.ToList();
             if (SharedTraits == null)
-                return Tags.Concat(PermanentTraits).ToList();
-            return Tags.Concat(PermanentTraits).ToList().Concat(SharedTraits).ToList();
+            {
+                if (ActiveConditionalTraits == null)              
+                    return Tags.Concat(PermanentTraits).ToList();
+                return Tags.Concat(PermanentTraits).ToList().Concat(ActiveConditionalTraits).ToList();
+            }
+            if (ActiveConditionalTraits == null)
+            {
+                return Tags.Concat(PermanentTraits).ToList().Concat(SharedTraits).ToList();
+            }
+            return Tags.Concat(PermanentTraits).ToList().Concat(SharedTraits).ToList().Concat(ActiveConditionalTraits).ToList();
         }
     }
 
@@ -1647,6 +1666,8 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                     tagString = State.RandomizeLists.Where(rl => (Traits)rl.id == Tags[i]).FirstOrDefault().name;
                 else if (State.CustomTraitList.Any(ct => (Traits)ct.id == Tags[i]))
                     tagString = State.CustomTraitList.Where(ct => (Traits)ct.id == Tags[i]).FirstOrDefault().name;
+                else if (State.ConditionalTraitList.Any(ct => (Traits)ct.id == Tags[i]))
+                    tagString = State.ConditionalTraitList.Where(ct => (Traits)ct.id == Tags[i]).FirstOrDefault().name;
                 else
                     tagString = Tags[i].ToString();
 
@@ -1667,6 +1688,8 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                         ret += State.RandomizeLists.Where(rl => (Traits)rl.id == PermanentTraits[i]).FirstOrDefault().name;
                     else if (State.CustomTraitList.Any(ct => (Traits)ct.id == PermanentTraits[i]))
                         ret += State.CustomTraitList.Where(ct=> (Traits)ct.id == PermanentTraits[i]).FirstOrDefault().name;
+                    else if (State.ConditionalTraitList.Any(ct => (Traits)ct.id == PermanentTraits[i]))
+                        ret += State.ConditionalTraitList.Where(ct=> (Traits)ct.id == PermanentTraits[i]).FirstOrDefault().name;
                     else
                         ret += PermanentTraits[i].ToString();
                     }
@@ -1698,6 +1721,12 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (HasTrait(traitIdToAdd))
             return;
 
+        if (traitIdToAdd >= (Traits)6000)
+        {
+            var newTrait = State.ConditionalTraitList.Where(t => t.id == (int)traitIdToAdd).First();
+            AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
+        }
+
         Tags.Add(traitIdToAdd);
         RecalculateStatBoosts();
     }
@@ -1715,6 +1744,12 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
         if (HasTrait(traitIdToAdd))
             return false;
+
+        if (traitIdToAdd >= (Traits)6000)
+        {
+            var newTrait = State.ConditionalTraitList.Where(t => t.id == (int)traitIdToAdd).First();
+            AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this,newTrait));
+        }
 
         PermanentTraits.Add(traitIdToAdd);
         RecalculateStatBoosts();
@@ -1771,7 +1806,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             foreach (var trait in Tags)
             {
                 Trait ITrait;
-                if (trait >= (Traits)3001)
+                if (trait >= (Traits)3001 && trait <= (Traits)5999)
                     ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
                 else
                     ITrait = TraitList.GetTrait(trait);              
@@ -1795,7 +1830,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             foreach (var trait in Tags.Concat(PermanentTraits).Distinct())
             {
                 Trait ITrait;
-                if (trait >= (Traits)3001)
+                if (trait >= (Traits)3001 && trait <= (Traits)5999)
                     ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
                 else
                     ITrait = TraitList.GetTrait(trait);
@@ -1819,7 +1854,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             foreach (var trait in SharedTraits)
             {
                 Trait ITrait;
-                if (trait >= (Traits)2001)
+                if (trait >= (Traits)3000 && trait <= (Traits)5999)
                     ITrait = State.CustomTraitList.Where(ct => trait == (Traits)ct.id).FirstOrDefault().ToBooster();
                 else
                     ITrait = TraitList.GetTrait(trait);   
@@ -1964,6 +1999,102 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         RemoveTrait(trait);
     }
 
+    public bool HasActiveConditionalTrait(Traits trait)
+    {
+        if (ActiveConditionalTraits == null)
+            ActiveConditionalTraits = new List<Traits>();
+        return (ActiveConditionalTraits.Contains(trait));
+    }
+
+    public void AddActiveConditionalTrait(Traits trait)
+    {
+        if (ActiveConditionalTraits == null)
+            ActiveConditionalTraits = new List<Traits>();
+        if (!ActiveConditionalTraits.Contains(trait) && !HasTrait(trait))
+            ActiveConditionalTraits.Add(trait);
+        AddTrait(trait);
+
+    }
+
+    public void ResetConditionalTraits()
+    {
+        if (ActiveConditionalTraits == null)
+            ActiveConditionalTraits = new List<Traits>();
+        foreach (Traits trait in ActiveConditionalTraits)
+        {
+            RemoveTrait(trait);
+        }
+        ActiveConditionalTraits.Clear();
+    }
+
+    public void RemoveActiveConditionalTrait(Traits trait)
+    {
+        if (ActiveConditionalTraits == null)
+            ActiveConditionalTraits = new List<Traits>();
+        if (ActiveConditionalTraits.Contains(trait) && HasTrait(trait))
+            ActiveConditionalTraits.Remove(trait);
+        RemoveTrait(trait);
+    }
+
+    public void ActivateConditionalTrait(int id)
+    {
+        if (AllConditionalTraits == null)
+            AllConditionalTraits = new Dictionary<ConditionalTraitContainer, bool>();
+        if (AllConditionalTraits.Keys.Where(t => t.id == id).Any())
+        {
+            var toAdd = AllConditionalTraits.Keys.Where(t => t.id == id).First();
+            AllConditionalTraits[toAdd] =  true;
+            AddActiveConditionalTrait(toAdd.associatedTrait);
+            if (toAdd.classification == TraitConditionalClassification.Permanent)
+            {
+                if (Tags.Contains((Traits)id))
+                {
+                    Tags.Remove((Traits)id);
+                }
+                if (PermanentTraits.Contains((Traits)id))
+                {
+                    PermanentTraits.Remove((Traits)id);
+                }
+                if (SharedTraits != null)
+                {
+                    if (SharedTraits.Contains((Traits)id))
+                        SharedTraits.Remove((Traits)id);
+                }
+                AllConditionalTraits.Remove(toAdd);
+            }
+            RecalculateStatBoosts();
+        }
+
+    }
+    public void DeactivateConditionalTrait(int id)
+    {
+        if (AllConditionalTraits == null)
+            AllConditionalTraits = new Dictionary<ConditionalTraitContainer, bool>();
+        if (AllConditionalTraits.Keys.Where(t => t.id == id).Any())
+        {
+            var toRemove = AllConditionalTraits.Keys.Where(t => t.id == id).First();
+            AllConditionalTraits[toRemove] = false;
+            RemoveActiveConditionalTrait(toRemove.associatedTrait);
+            if (toRemove.classification == TraitConditionalClassification.Temporary)
+            {
+                if (Tags.Contains((Traits)id))
+                {
+                    Tags.Remove((Traits)id);
+                }
+                if (PermanentTraits.Contains((Traits)id))
+                {
+                    PermanentTraits.Remove((Traits)id);
+                }
+                if (SharedTraits != null)
+                {
+                    if (SharedTraits.Contains((Traits)id))
+                        SharedTraits.Remove((Traits)id);
+                }
+            }
+            RecalculateStatBoosts();
+        }
+    }
+
     internal void ReloadTraits()
     {
         Tags = new List<Traits>();
@@ -2018,7 +2149,17 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
         if (!State.TutorialMode)
             RandomizeTraits();
-        Tags = Tags.Distinct().ToList();
+         Tags = Tags.Distinct().ToList();
+        foreach (var t in Tags)
+        {
+            if (t >= (Traits)6000)
+            {
+                Debug.Log(State.ConditionalTraitList.Count());
+                var newTrait = State.ConditionalTraitList.Where(x => x.id == (int)t).First();
+                AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
+            }
+        }
+
         if (HasTrait(Traits.Prey))
             Predator = false;
         else if (fixedPredator == false)
@@ -2268,6 +2409,21 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             Health += 4;
         }
+
+        foreach (var item in AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnLevelUp || t.trigger == TraitConditionTrigger.All).ToList())
+        {
+            if (ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, item))
+            {
+                Debug.Log("TrueCOndition.");
+                ActivateConditionalTrait(item.id);
+            }
+            else
+            {
+                Debug.Log("UnTrueCOndition.");
+                DeactivateConditionalTrait(item.id);
+            }
+        }
+
         RandomizeTraits();
     }
 

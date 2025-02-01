@@ -155,7 +155,6 @@ public class ExternalTraitHandler
             conditionalCont.id = results["id"].ToObject<int>();
             conditionalCont.name = results["name"].ToString();
             conditionalCont.classification = results["classification"].ToObject<TraitConditionalClassification>();
-            conditionalCont.active = results["active"].ToObject<bool>();
             conditionalCont.trigger = results["trigger"].ToObject<TraitConditionTrigger>();
             conditionalCont.associatedTrait = results["associatedTrait"].ToObject<Traits>();
             var opBlockKeys = results["operationBlocksKeys"].ToObject<List<OperationBlockTempClass>>();
@@ -200,7 +199,6 @@ public class ExternalTraitHandler
         rootObject.id = trait.id;
         rootObject.name = trait.name;
         rootObject.classification = trait.classification;
-        rootObject.active = trait.active;
         rootObject.trigger = trait.trigger;
         rootObject.associatedTrait = trait.associatedTrait;
         rootObject.operationBlocksKeys = new List<OperationBlockTempClass>();

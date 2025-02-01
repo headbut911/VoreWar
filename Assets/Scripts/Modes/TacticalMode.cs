@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Networking.Types;
 using UnityEngine.Tilemaps;
+using static UnityEngine.UI.CanvasScaler;
 
 public class TacticalMode : SceneBase
 {
@@ -3721,6 +3722,18 @@ Turns: {currentTurn}
             if (units[i].SelfPrey != null)
                 units[i].SelfPrey.TurnsSinceLastDamage++;
 
+            foreach (var item in units[i].Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnTacticalTurnStart || t.trigger == TraitConditionTrigger.All).ToList())
+            {
+                if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(units[i], item))
+                {
+                    units[i].Unit.ActivateConditionalTrait(item.id);
+                }
+                else
+                {
+                    units[i].Unit.DeactivateConditionalTrait(item.id);
+                }
+            }
+
         }
         for (int i = 0; i < units.Count; i++)
         {
@@ -3872,6 +3885,17 @@ Turns: {currentTurn}
                         {
                             prey.Actor.Unit.Health = 0;
                             prey.Actor.Unit.Kill();
+                            foreach (var item in prey.Actor.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnDeath || t.trigger == TraitConditionTrigger.All).ToList())
+                            {
+                                if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(prey.Actor, item))
+                                {
+                                    prey.Actor.Unit.ActivateConditionalTrait(item.id);
+                                }
+                                else
+                                {
+                                    prey.Actor.Unit.DeactivateConditionalTrait(item.id);
+                                }
+                            }
                         }
 
                     }
@@ -4523,6 +4547,17 @@ Turns: {currentTurn}
             TacticalStats.RegisterAllyVore(predatorUnit.Unit.Side);
             predatorUnit.Unit.DigestedUnits++;
             preyUnit.Unit.Kill();
+            foreach (var item in preyUnit.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnDeath || t.trigger == TraitConditionTrigger.All).ToList())
+            {
+                if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(preyUnit, item))
+                {
+                    preyUnit.Unit.ActivateConditionalTrait(item.id);
+                }
+                else
+                {
+                    preyUnit.Unit.DeactivateConditionalTrait(item.id);
+                }
+            }
             if (predatorUnit.Unit.HasTrait(Traits.EssenceAbsorption) && predatorUnit.Unit.DigestedUnits % 4 == 0)
                 predatorUnit.Unit.GeneralStatIncrease(1);
             preyUnit.Unit.Health = -999999;

@@ -1575,6 +1575,17 @@ public class Actor_Unit
         Unit.EnemiesKilledThisBattle++;
         target.Unit.KilledBy = Unit;
         target.Unit.Kill();
+        foreach (var item in target.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnDeath || t.trigger == TraitConditionTrigger.All).ToList())
+        {
+            if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(target, item))
+            {
+                target.Unit.ActivateConditionalTrait(item.id);
+            }
+            else
+            {
+                target.Unit.DeactivateConditionalTrait(item.id);
+            }
+        }
         if (Unit.HasTrait(Traits.KillerKnowledge) && Unit.KilledUnits % 4 == 0)
             Unit.GeneralStatIncrease(1);
         if (Unit.HasTrait(Traits.TasteForBlood))
@@ -1605,6 +1616,17 @@ public class Actor_Unit
         Unit.EnemiesKilledThisBattle++;
         target.Unit.KilledBy = Unit;
         target.Unit.Kill();
+        foreach (var item in target.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnDeath || t.trigger == TraitConditionTrigger.All).ToList())
+        {
+            if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(target, item))
+            {
+                target.Unit.ActivateConditionalTrait(item.id);
+            }
+            else
+            {
+                target.Unit.DeactivateConditionalTrait(item.id);
+            }
+        }
         if (Unit.HasTrait(Traits.KillerKnowledge) && Unit.KilledUnits % 4 == 0)
             Unit.GeneralStatIncrease(1);
         if (Unit.HasTrait(Traits.TasteForBlood))

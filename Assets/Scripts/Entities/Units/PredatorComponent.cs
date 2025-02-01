@@ -1534,6 +1534,17 @@ public class PredatorComponent
             unit.EnemiesKilledThisBattle++;
             preyUnit.Unit.KilledBy = unit;
             preyUnit.Unit.Kill();
+            foreach (var item in preyUnit.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnDeath || t.trigger == TraitConditionTrigger.All).ToList())
+            {
+                if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(preyUnit.Actor, item))
+                {
+                    preyUnit.Unit.ActivateConditionalTrait(item.id);
+                }
+                else
+                {
+                    preyUnit.Unit.DeactivateConditionalTrait(item.id);
+                }
+            }
             for (int i = 0; i < 20; i++)
             {
                 Actor_Unit next = TacticalUtilities.FindPredator(existingPredator);

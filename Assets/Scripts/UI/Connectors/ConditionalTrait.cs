@@ -76,7 +76,8 @@ public enum TraitConditionTrigger
     OnDeath,
     OnLevelUp,
     OnStrategicTurnEnd,
-    OnTacticalTurnEnd,
+    OnTacticalTurnStart,
+    All,
 }
 public enum TraitConditionalClassification
 {
@@ -104,6 +105,8 @@ public class ConditionalTrait : MonoBehaviour
 
     public ConditionalTraitArithmeticPanel ArithmeticPanel;
 
+    public ConditionalTraitInfoBlock HelpBlock;
+
     public ConditionalTraitOpBlockPrefab opBlockPrefab;
 
     internal List<ConditionalTraitOpBlockPrefab> OpBlocksPrefabList;
@@ -113,12 +116,13 @@ public class ConditionalTrait : MonoBehaviour
     {
         gameObject.SetActive(true);
         ConditionalTraitsEditor.gameObject.SetActive(false);
+        HelpBlock.HelpPanel.gameObject.SetActive(false);
+        HelpBlock.helpOn = false;
         OpBlocks = new Dictionary<ConditionalTraitOperationBlock, TraitConditionLogicalOperator>();
         OpBlocksPrefabList = new List<ConditionalTraitOpBlockPrefab>();
         trait = State.ConditionalTraitList.Where(x => x.id == id).FirstOrDefault();
         current_id = id;
         name.text = trait.name;
-        Classification.value = (int)trait.classification;
         foreach (var item in trait.OperationBlocks)
         {
             var obj = Instantiate(opBlockPrefab, Folder);
@@ -164,12 +168,14 @@ public class ConditionalTrait : MonoBehaviour
         {
             Trigger.options.Add(new TMP_Dropdown.OptionData(trigger.ToString()));
         }
+        Trigger.value = (int)trait.trigger;
 
         Classification.options.Clear();
         foreach (TraitConditionalClassification classification in ((TraitConditionalClassification[])Enum.GetValues(typeof(TraitConditionalClassification))))
         {
             Classification.options.Add(new TMP_Dropdown.OptionData(classification.ToString()));
         }
+        Classification.value = (int)trait.classification;
 
         Dictionary<Traits, int> traitDict = new Dictionary<Traits, int>();
         int val2 = 0;
@@ -292,6 +298,12 @@ public class ConditionalTrait : MonoBehaviour
         GetAssociatedTrait();
 
         trait.classification = (TraitConditionalClassification)Classification.value;
+
+        // Due to their nature of changing values, Random traits can only be Permanent to prevent issues.
+        if (trait.associatedTrait >= (Traits)1000 && trait.associatedTrait <= (Traits)2999)
+        {
+            trait.classification = TraitConditionalClassification.Permanent;
+        }
         trait.OperationBlocks.Clear();
         foreach (var opBlock in OpBlocks)
         {

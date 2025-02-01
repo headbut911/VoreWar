@@ -131,7 +131,22 @@ public class TaggedTraitEditor : MonoBehaviour
         {
             AllTaggedTraits.Add(trait);
         }
-        foreach(TaggedTrait trait in AllTaggedTraits)
+        foreach (ConditionalTraitContainer ct in State.ConditionalTraitList)
+        {
+            TaggedTrait traitfromrcustom = new TaggedTrait();
+            traitfromrcustom.name = ct.name;
+            traitfromrcustom.tierValue = AllTaggedTraits.Where(x=> x.traitEnum == ct.associatedTrait).First().tierValue;
+            traitfromrcustom.tier = AllTaggedTraits.Where(x => x.traitEnum == ct.associatedTrait).First().tier;
+            traitfromrcustom.tags = new List<string>();
+            foreach (string tag in AllTaggedTraits.Where(x => x.traitEnum == ct.associatedTrait).First().tags)
+            {
+                traitfromrcustom.tags.Add(tag);
+            }
+            traitfromrcustom.tags.Add("Conditional Trait");
+            traitfromrcustom.traitEnum = (Traits)ct.id;
+            AllTaggedTraits.Add(traitfromrcustom);
+        }
+        foreach (TaggedTrait trait in AllTaggedTraits)
         {
             CreateAddedTaggedTrait(trait);
             CreateUnaddedTaggedTrait(trait);

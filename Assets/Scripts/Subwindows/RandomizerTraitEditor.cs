@@ -83,6 +83,13 @@ public class RandomizerTraitEditor : MonoBehaviour
                 else
                     ranTraits[c] = false;
             }
+            foreach (Traits cd in State.ConditionalTraitList.ConvertAll(r => (Traits)r.id))
+            {
+                if (savedCustom.RandomTraits.Contains(cd))
+                    ranTraits[cd] = true;
+                else
+                    ranTraits[cd] = false;
+            }
             foreach (Traits trait in (Traits[])Enum.GetValues(typeof(Traits)))
             {
                 if (savedCustom.RandomTraits.Contains(trait))
@@ -120,6 +127,14 @@ public class RandomizerTraitEditor : MonoBehaviour
             foreach (Traits r in State.RandomizeLists.ConvertAll(r => (Traits)r.id))
             {
                 ranTraits[r] = false;
+            }
+            foreach (Traits c in State.CustomTraitList.ConvertAll(r => (Traits)r.id))
+            {
+                ranTraits[c] = false;
+            }
+            foreach (Traits cd in State.ConditionalTraitList.ConvertAll(r => (Traits)r.id))
+            {
+                ranTraits[cd] = false;
             }
             foreach (Traits trait in (Traits[])Enum.GetValues(typeof(Traits)))
             {
