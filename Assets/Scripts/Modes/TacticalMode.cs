@@ -591,6 +591,38 @@ public class TacticalMode : SceneBase
         if (units.Any(actor => State.World.AllActiveEmpires != null && State.World.GetEmpireOfSide(actor.Unit.FixedSide)?.StrategicAI == null))
             skip = false;
 
+        foreach (var actor in units)
+        {
+            if (actor.Unit.HasTrait(Traits.CurseOfCraving))
+            {
+                if (actor.Unit.Predator)
+                {
+                    if (State.Rand.Next(2) == 0)
+                    {
+                        var possible_targets = units.Where(u => !u.Unit.IsEnemyOfSide(actor.Unit.Side) && u != actor && u.SelfPrey == null).ToList();
+                        if (possible_targets.Any())
+                        {
+                            actor.PredatorComponent.ForceConsumeAuto(possible_targets[State.Rand.Next(0, possible_targets.Count())]);
+                        }
+                    }
+
+                }
+            }
+            
+            if (actor.Unit.HasTrait(Traits.CurseOfPreyportaion))
+            {
+                if (State.Rand.Next(4) == 0)
+                {
+                    var possible_targets = units.Where(u => u.Unit.Predator && u != actor && u.SelfPrey == null).ToList();
+                    if (possible_targets.Any())
+                    {
+                        possible_targets[State.Rand.Next(0, possible_targets.Count())].PredatorComponent.ForceConsumeAuto(actor);
+                    }
+
+                }
+            }
+        }
+
         if (skip)
         {
             TurboMode();
@@ -1715,6 +1747,27 @@ Turns: {currentTurn}
         }
     }
 
+    void ShowBoostedVoreHitPercentages(Actor_Unit actor, int skillBoost, PreyLocation location = PreyLocation.stomach)
+    {
+        foreach (Actor_Unit target in units)
+        {
+            if (TacticalUtilities.AppropriateVoreTarget(actor, target) == false)
+                continue;
+            if ((Config.EdibleCorpses == false && target.Targetable == false && target.Visible) || target.Visible == false)
+                continue;
+            Vec2i pos = target.Position;
+            target.UnitSprite.HitPercentagesDisplayed(true);
+            if (actor.PredatorComponent.FreeCap() < target.Bulk() || (actor.BodySize() < target.BodySize() * 3 && actor.Unit.HasTrait(Traits.TightNethers) && PreyLocationMethods.IsGenital(location)))
+                target.UnitSprite.DisplayHitPercentage(target.GetDevourChance(actor, true, skillBoost), Color.yellow);
+            else if (actor.Unit.CanVore(location) != actor.PredatorComponent.CanVore(location,target))
+                target.UnitSprite.DisplayHitPercentage(target.GetDevourChance(actor, true, skillBoost), Color.yellow);
+            else if (actor.Position.GetNumberOfMovesDistance(target.Position) < 2)
+                target.UnitSprite.DisplayHitPercentage(target.GetDevourChance(actor, true, skillBoost), Color.red);
+            else
+                target.UnitSprite.DisplayHitPercentage(target.GetDevourChance(actor, true, skillBoost), Color.black);
+        }
+    }
+
 
     internal bool TakeSpecialAction(SpecialAction type, Actor_Unit actor, Actor_Unit target)
     {
@@ -1819,6 +1872,9 @@ Turns: {currentTurn}
             case SpecialAction.GiantSweep:
                 ShowMeleeHitPercentages(actor, .66f);
                 UpdateOTargetGrid(actor.Position);
+                break;
+            case SpecialAction.AllInVore:
+                ShowBoostedVoreHitPercentages(actor, 50);
                 break;
         }
 

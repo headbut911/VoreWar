@@ -20,4 +20,5 @@
     TailStrike,
     GiantSweep,
     SweepingSwallow,
+    AllInVore,
 }

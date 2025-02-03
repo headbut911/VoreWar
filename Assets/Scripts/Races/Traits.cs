@@ -210,8 +210,10 @@ static class TraitList
         [Traits.Stinger] = new Stinger(),
         [Traits.DefensiveStance] = new DefensiveStance(),
         [Traits.Ravenous] = new Ravenous(),
+        [Traits.EasilySatisfied] = new EasilySatisfied(),
         [Traits.Possession] = new Possession(),
         [Traits.UnpleasantDigestion] = new UnpleasantDigestion(),
+        [Traits.PleasantDigestion] = new PleasantDigestion(),
         [Traits.Parasite] = new Parasite(),
         [Traits.Whispers] = new Whispers(),
         [Traits.Metamorphosis] = new Metamorphosis(),
@@ -303,6 +305,7 @@ static class TraitList
         [Traits.LightFrame] = new Booster("Unit can melee attack twice in a turn, though it loses this ability while it contains any prey.  Unit also takes 25% more damage from all sources", (s) => { s.Incoming.MeleeDamage *= 1.25f; s.Incoming.RangedDamage *= 1.25f; s.Incoming.MagicDamage *= 1.25f; s.VirtualStrMult *= 1.7f; }),
         [Traits.Featherweight] = new Booster("Unit moves slightly faster (+1 AP) and gets a melee/vore dodge bonus, but takes extra damage from melee.", (s) => { s.SpeedBonus += 1; s.Incoming.MeleeShift += .75f; s.Incoming.VoreOddsMult *= 0.75f; s.Incoming.MeleeDamage *= 1.2f; }),
         [Traits.Elite] = new Booster("Unit is skilled and trained in advanced tactics but requires more Exp to level ( All stats +120% but 2x Exp required)", (s) => {s.StatMult *= 2.2f; s.ExpRequired *= 2.0f; }),
+        [Traits.Juggernaut] = new Booster("Unit's stats are increased by 100%, but MP regeneration is delayed by one turn after it regenerates MP.", (s) => {s.StatMult *= 2f;}),
         [Traits.PeakCondition] = new Booster("Unit is at the height of their physical condition (All stats × 1.5)", (s) => s.StatMult *= 1.5f),
         [Traits.Fit] = new Booster("Unit is in better shape than the average unit (All stats × 1.2)", (s) => s.StatMult *= 1.2f),
         [Traits.Illness] = new Booster("Unit is sick and is in poor shape (All stats × 0.8)", (s) => s.StatMult *= 0.8f),
@@ -482,6 +485,18 @@ internal class Ravenous : Trait, IVoreAttackOdds
         }
     }
 }
+internal class EasilySatisfied : Trait, IVoreAttackOdds
+{
+    public EasilySatisfied() => Description = "Unit gets a reduction to vore chance if units are in its stomach";
+
+    public void VoreAttack(Actor_Unit attacker, ref float voreMult)
+    {
+        if (attacker.PredatorComponent.Fullness >= 1)
+        {
+            voreMult *= .5f;
+        }
+    }
+}
 
 internal class UnpleasantDigestion : VoreTrait
 {
@@ -495,6 +510,21 @@ internal class UnpleasantDigestion : VoreTrait
     public override bool OnDigestion(Prey preyUnit, Actor_Unit predUnit, PreyLocation location)
     {
         predUnit.Damage(1);
+        return true;
+    }
+}
+internal class PleasantDigestion : VoreTrait
+{
+    public PleasantDigestion()
+    {
+        Description = "While digesting, prey heals the predator";
+    }
+
+    public override bool IsPredTrait => false;
+
+    public override bool OnDigestion(Prey preyUnit, Actor_Unit predUnit, PreyLocation location)
+    {
+        predUnit.Unit.Heal(1);
         return true;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -58,16 +59,25 @@ public class ConditionalTraitConditionChecker
                         return false;
                     return true;
                 case TraitCondition.Predator:
-                    if (unit.PredatorComponent.PreyCount >= 1)
-                        return true;
+                    if (unit.PredatorComponent != null)
+                    {
+                        if (unit.PredatorComponent.PreyCount >= 1)
+                            return true;
+                    }
                     break;
                 case TraitCondition.Digesting:
-                    if (unit.PredatorComponent.AlivePrey >= 1)
-                        return true;
+                    if (unit.PredatorComponent != null)
+                    {
+                        if (unit.PredatorComponent.AlivePrey >= 1)
+                            return true;
+                    }
                     break;
                 case TraitCondition.Absorbing:
-                    if (unit.PredatorComponent.PreyCount > unit.PredatorComponent.AlivePrey)
-                        return true;
+                    if (unit.PredatorComponent != null)
+                    {
+                        if (unit.PredatorComponent.PreyCount > unit.PredatorComponent.AlivePrey)
+                            return true;
+                    }
                     break;
                 case TraitCondition.Prey:
                     if (unit.SelfPrey != null)
@@ -153,7 +163,10 @@ public class ConditionalTraitConditionChecker
                     value = (float)unit.Unit.BaseScale;
                     break;
                 case TraitCondition.Fullness:
-                    value = unit.PredatorComponent.Fullness;
+                    if (unit.PredatorComponent != null)
+                        value = unit.PredatorComponent.Fullness;
+                    else
+                        value = 0;
                     break;
                 default:
                     break;

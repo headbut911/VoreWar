@@ -568,10 +568,10 @@ static class TacticalUtilities
     }
 
 
-    //public bool IsWalkable(int x, int y, Actor_Unit actor)
-    //{
-    //    return TacticalTileInfo.CanWalkInto(tiles[x, y], actor);
-    //}
+    static public bool IsWalkable(int x, int y, Actor_Unit actor)
+    {
+        return TacticalTileInfo.CanWalkInto(tiles[x, y], actor);
+    }
 
 
     static public bool FlyableTile(int x, int y)
@@ -718,6 +718,18 @@ static class TacticalUtilities
             }
         }
         return unitList;
+    }
+    static internal Actor_Unit UnitOnTile(Vec2 target)
+    {
+        List<Actor_Unit> unitList = new List<Actor_Unit>();
+        foreach (Actor_Unit actor in Units)
+        {
+            if (actor.Position == target)
+            {
+                return actor;
+            }
+        }
+        return null;
     }
 
     static internal List<Vec2i> TilesOnPattern(Vec2i location, int[,] TargetTiles, int rows)
@@ -1314,7 +1326,7 @@ static class TacticalUtilities
         return false;
     }
 
-    internal static void ForceFeed(Actor_Unit actor, Actor_Unit targetPred)
+    internal static void ForceFeed(Actor_Unit actor, Actor_Unit targetPred, bool DisablecontrolBypass = true)
     {
         float r = (float)State.Rand.NextDouble();
         if (targetPred.Unit.Predator)
@@ -1328,7 +1340,7 @@ static class TacticalUtilities
             if (targetPred.Unit.CanCockVore && State.RaceSettings.GetVoreTypes(targetPred.Unit.Race).Contains(VoreType.CockVore)) possibilities.Add("Cock", PreyLocation.balls);
             if (targetPred.Unit.CanUnbirth && State.RaceSettings.GetVoreTypes(targetPred.Unit.Race).Contains(VoreType.Unbirth)) possibilities.Add("Pussy", PreyLocation.womb);
 
-            if (State.GameManager.TacticalMode.IsPlayerInControl && State.GameManager.CurrentScene == State.GameManager.TacticalMode && possibilities.Count > 1)
+            if (State.GameManager.TacticalMode.IsPlayerInControl && State.GameManager.CurrentScene == State.GameManager.TacticalMode && possibilities.Count > 1 && DisablecontrolBypass)
             {
                 var box = State.GameManager.CreateOptionsBox();
                 box.SetData($"Which way do you want to enter?", "Maw", () => targetPred.PredatorComponent.ForceConsume(actor, preyLocation), possibilities.Keys.ElementAtOrDefault(1), () => targetPred.PredatorComponent.ForceConsume(actor, possibilities.Values.ElementAtOrDefault(1)), possibilities.Keys.ElementAtOrDefault(2), () => targetPred.PredatorComponent.ForceConsume(actor, possibilities.Values.ElementAtOrDefault(2)), possibilities.Keys.ElementAtOrDefault(3), () => targetPred.PredatorComponent.ForceConsume(actor, possibilities.Values.ElementAtOrDefault(3)), possibilities.Keys.ElementAtOrDefault(4), () => targetPred.PredatorComponent.ForceConsume(actor, possibilities.Values.ElementAtOrDefault(4)));
@@ -1338,7 +1350,7 @@ static class TacticalUtilities
             {
                 preyLocation = possibilities.Values.ToList()[State.Rand.Next(possibilities.Count)];
                 actor.Movement = 0;
-                targetPred.PredatorComponent.ForceConsume(actor, preyLocation);
+                targetPred.PredatorComponent.ForceConsumeAuto(actor);
             }
         }
         else

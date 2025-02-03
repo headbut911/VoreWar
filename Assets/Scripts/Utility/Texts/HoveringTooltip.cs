@@ -702,7 +702,57 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.Endosoma:
                 return "Units that are vored take no digestion damage \n Enemies lose stamina instead of health, enemies with no stamina no longer try to escape and are considered defeated at the end of battle, but not if freed. \n Has 100% chance to eat allies.Can vore friendly units, they do not try to escape. \n May cause battles to not automatically end if used with TheGreatEscape";
             case Traits.Friendosoma:
-                return "Enemies defeated by defeated by the Endosoma trait will now be recruited instead at the end of battle.";
+                return "Enemies defeated by defeated by the Endosoma trait will now be recruited instead at the end of battle."; 
+            case Traits.Duelist:
+                return "Melee damage is increased by 100%, but Melee damage is divided by the number of adjacent enemy units.";
+            case Traits.Fervor:
+                return "Melee damage is reduced to 25%, but Melee damage is multiplied by the number of adjacent enemy units.";
+            case Traits.Farsighted:
+                return "Accuracy is reduced against targets within 5 tiles. Closer targets are even harder to hit";
+            case Traits.EasilySatisfied:
+                return "Unit has 50% reduced vore chance when it has prey.";
+            case Traits.AwfulAim:
+                return "Unit's ranged attacks have an even chance to target any unit within 2 spaces of the target.";
+            case Traits.Slacker:
+                return "Unit's MP regeneration is delayed by one turn after it regenerates MP.";
+            case Traits.Juggernaut:
+                return "Unit's stats are increased by 100%, but MP regeneration is delayed by one turn after it regenerates MP.";
+            case Traits.PoorConstitution:
+                return "When attacked in melee, unit has a 10% chance to be afflicted with sleep for 2 turns";
+            case Traits.IntrusiveAppetite:
+                return "At the start of each turn, this unit has a 10% chance to spend MP and attempt to eat a random adjacent unit.";
+            case Traits.ExtraNutritious:
+                return "When digested, unit will permanently increase one of predator's stats by one for each of this unit's levels.";
+            case Traits.FoodComaProne:
+                return "While full, at the start of turn, unit has a chance based on current fullness to fall asleep.";
+            case Traits.SleepItOff:
+                return "While asleep, unit's digestion damage and absorption rate is doubled. Unit has a chance based on fullness to extend it's own sleep status by a turn.";
+            case Traits.HaplessPrey:
+                return "Unit has a 10% chance of force-feeding themselves to their melee attack target instead of attacking, if possible. Chance is increased by 5% per difference in level.";
+            case Traits.PleasantDigestion:
+                return "While being digested, unit will heal it's predator each turn.";
+            case Traits.AllIn:
+                return "Unit gains the ability to make a vore attempt at increased odds, if it fails their target vores them instead, if possible.";
+            case Traits.SiphoningAura:
+                return "At the start of turn, Unit applies 1 stack of Weakened to all adjacent allies and Unit gainst 1 stack of Bolstered for every ally afflicted.";
+            case Traits.EnviousPrey:
+                return "Unit has a 10% chance to gain Temptation each time an ally within 3 spaces is eaten.";
+            case Traits.RoughMassage:
+                return "When this unit rubs a unit's belly, the effect is doubled and 1 stack of Weakness is applied to the target.";
+            case Traits.SlowStart:
+                return "For the first 5 turns of battle, unit's MP is reduced by 50%.";
+            case Traits.CurseOfImmolation:
+                return "At start of turn, Unit deals it's level in fire damage to itself and all units around it or it's predator, if this unit has been consumed. This damage can not kill. Effect does not activate if unit has surrendered.";
+            case Traits.CurseOfSacrifice:
+                return "When a unit within 3 spaces is consumed, this unit has a 10% chance to trade places with them and be consumed instead.";          
+            case Traits.CurseOfEquivalency:
+                return "At the start of each turn, this unit's highest stat is reduced by 1 and this unit's lowest stat is increased by 1.";
+            case Traits.CurseOfPhasing:
+                return "When hit by an attack, unit has a 50% chance to teleport to a random space within 3 spaces. If a unit occupies that space, this unit is consumed by the occupier.";
+            case Traits.CurseOfCraving:
+                return "At the start of battle, this unit has a 50% chance to have eaten one of it's allies.";
+            case Traits.CurseOfPreyportaion:
+                return "At the start of battle, this unit has a 25% chance to teleported into a random predator.";
         }
         return "<b>This trait needs a tooltip!</b>";
     }
@@ -711,15 +761,27 @@ public class HoveringTooltip : MonoBehaviour
     {
         if (trait >= (Traits)6000)
         {
-            return State.ConditionalTraitList.Where(t => t.id == (int)trait).First().name;
+            var lis = State.ConditionalTraitList.Where(t => t.id == (int)trait);
+            if (lis.Any())
+            {
+                return lis.First().name;
+            }
         }
         if (trait >= (Traits)3000)
         {
-            return State.CustomTraitList.Where(t => t.id == (int)trait).First().name;
+            var lis = State.CustomTraitList.Where(t => t.id == (int)trait);
+            if (lis.Any())
+            {
+                return lis.First().name;
+            }
         }
         if (trait >= (Traits)1000)
         {
-            return State.RandomizeLists.Where(t => t.id == (int)trait).First().name;
+            var lis = State.RandomizeLists.Where(t => t.id == (int)trait);
+            if (lis.Any())
+            {
+                return lis.First().name;
+            }
         }
         return trait.ToString();
     }

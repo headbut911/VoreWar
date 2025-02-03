@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEngine;
 
 public enum TraitTier
 {
@@ -43,16 +44,23 @@ public class ExternalTraitHandler
         Dictionary<Traits, TaggedTrait> taggedTraitsList = new Dictionary<Traits, TaggedTrait>();
         JObject results = JObject.Parse(readContents);
         IList<JToken> traitList = results["traits"].Children().ToList();
-
-        foreach (JToken t in traitList) {
-            TaggedTrait trait = new TaggedTrait();
-            trait.name = t["name"].ToString();
-            trait.tier = t["tier"].ToString();
-            trait.tags = t["tags"].ToObject<List<string>>();
-            trait.tierValue = (TraitTier)Enum.Parse(typeof(TraitTier), trait.tier);
-            trait.traitEnum = (Traits)Enum.Parse(typeof(Traits), trait.name);
-            taggedTraitsList.Add(trait.traitEnum, trait);
-            //Debug.Log(taggedTraitsList.Count);
+        try
+        {
+            foreach (JToken t in traitList)
+            {
+                TaggedTrait trait = new TaggedTrait();
+                trait.name = t["name"].ToString();
+                trait.tier = t["tier"].ToString();
+                trait.tags = t["tags"].ToObject<List<string>>();
+                trait.tierValue = (TraitTier)Enum.Parse(typeof(TraitTier), trait.tier);
+                trait.traitEnum = (Traits)Enum.Parse(typeof(Traits), trait.name);
+                taggedTraitsList.Add(trait.traitEnum, trait);
+                //Debug.Log(taggedTraitsList.Count);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message + " Remove the old trait entry in ./VoreWar/UserData/taggedTraits.json so it refreshes. Sorry about that! ~CSC");
         }
         return taggedTraitsList;
     }

@@ -1481,7 +1481,15 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             bonus += stacks + (GetStatBase(Stat.Mind) * (stacks/10));
         }
 
+        if (GetStatusEffect(StatusEffectType.Bolstered) != null)
+        {
+            int stacks = GetStatusEffect(StatusEffectType.Bolstered).Duration;
+            bonus += stacks + (GetStatBase(stat) * (stacks / 100));
+        }
+
         bonus -= GetStatBase(stat) * (GetStatusEffect(StatusEffectType.Shaken)?.Strength ?? 0);
+
+        bonus -= GetStatBase(stat) * (GetStatusEffect(StatusEffectType.Weakness)?.Duration/33 ?? 0);
 
         if (GetStatusEffect(StatusEffectType.Webbed) != null)
             bonus -= GetStatBase(stat) * .3f;
@@ -2378,6 +2386,16 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
         Health += 3 * amount;
     }
+    public void RandomStatIncrease(int amount)
+    {
+        int x = State.Rand.Next(Stats.Length);
+        if (Stats[x] > 0)
+            Stats[x] += amount;      
+    }
+    public void SpecificStatIncrease(int amount, int index)
+    {
+        Stats[index] += amount;
+    }
 
     public void LevelUp(Stat stat)
     {
@@ -2505,6 +2523,27 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             + GetStat(Stat.Voracity) + GetStat(Stat.Stomach);
     }
 
+    public int GetHighestStatIndex()
+    {
+        int highestType = 0;
+        for (int i = 0; i < Stats.Length; i++)
+        {
+            if (Stats[i] > Stats[highestType])
+                highestType = i;
+        }
+        return highestType;
+    }
+    public int GetLowestStatIndex()
+    {
+        int lowestType = 0;
+        for (int i = 0; i < Stats.Length; i++)
+        {
+            if (Stats[lowestType] > Stats[i])
+                lowestType = i;
+        }
+        return lowestType;
+    }
+    
     public void LevelDown()
     {
         if (level <= 1)
@@ -2855,6 +2894,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (HasEffect(StatusEffectType.Sleeping)) ret++;
         if (HasEffect(StatusEffectType.Staggering)) ret++;
         if (HasEffect(StatusEffectType.Virus)) ret++;
+        if (HasEffect(StatusEffectType.Weakness)) ret++;
 
         bool HasEffect(StatusEffectType type)
         {
@@ -3035,7 +3075,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
         else
         {
-            ApplyStatusEffect(StatusEffectType.SpellForce, 1, 1);
+            ApplyStatusEffect(StatusEffectType.Staggering, 1, 1);
         }
 
     }
@@ -3049,6 +3089,61 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             stag.Strength--;
             if (stag.Duration == 0)
                 StatusEffects.Remove(stag);
+        }
+    }
+
+    internal void AddBolster(int ammount)
+    {
+        var bol = GetStatusEffect(StatusEffectType.Bolstered);
+        if (bol != null)
+        {
+            bol.Duration += ammount;
+            bol.Strength += ammount;
+        }
+        else
+        {
+            ApplyStatusEffect(StatusEffectType.Bolstered, ammount, ammount);
+        }
+
+    }
+
+    internal void RemoveBolster()
+    {
+        var bol = GetStatusEffect(StatusEffectType.Bolstered);
+        if (bol != null)
+        {
+            bol.Duration--;
+            bol.Strength--;
+            if (bol.Duration == 0)
+                StatusEffects.Remove(bol);
+        }
+    }
+    
+
+    internal void AddWeakness()
+    {
+        var wkns = GetStatusEffect(StatusEffectType.Weakness);
+        if (wkns != null)
+        {
+            wkns.Duration++;
+            wkns.Strength++;
+        }
+        else
+        {
+            ApplyStatusEffect(StatusEffectType.Weakness, 1, 1);
+        }
+
+    }
+
+    internal void RemoveWeakness()
+    {
+        var wkns = GetStatusEffect(StatusEffectType.Weakness);
+        if (wkns != null)
+        {
+            wkns.Duration--;
+            wkns.Strength--;
+            if (wkns.Duration == 0)
+                StatusEffects.Remove(wkns);
         }
     }
 
@@ -3070,7 +3165,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             NonFatalDamage((int)effect.Strength, "virus");
         foreach (var eff in StatusEffects.ToList())
         {
-            if (eff.Type == StatusEffectType.Respawns || eff.Type == StatusEffectType.BladeDance || eff.Type == StatusEffectType.Tenacious || eff.Type == StatusEffectType.Focus)
+            if (eff.Type == StatusEffectType.Respawns || eff.Type == StatusEffectType.BladeDance || eff.Type == StatusEffectType.Tenacious || eff.Type == StatusEffectType.Focus || eff.Type == StatusEffectType.Weakness || eff.Type == StatusEffectType.Bolstered)
                 continue;
             var actor = TacticalUtilities.Units.Where(s => s.Unit == this).FirstOrDefault();
             var pred = actor.SelfPrey?.Predator;
@@ -3081,8 +3176,18 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                     continue;
                 }
             }
+
             if (eff.Type == StatusEffectType.Staggering || eff.Type == StatusEffectType.SpellForce)
                 StatusEffects.Remove(eff);
+
+            if (eff.Type == StatusEffectType.Sleeping && HasTrait(Traits.SleepItOff))
+            {
+                if (actor.PredatorComponent.UsageFraction >= State.Rand.NextDouble())
+                {
+                    continue;
+                }
+            }              
+
             eff.Duration -= 1;
             if (eff.Duration <= 0)
             {

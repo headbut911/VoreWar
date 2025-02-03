@@ -249,6 +249,15 @@ static class TacticalActionList
           minimumMp: 1));
         TargetedDictionary[SpecialAction.SweepingSwallow] = TargetedActions.Last();
 
+        TargetedActions.Add(new TargetedTacticalAction(
+            name: "All-In Vore",
+            requiresPred: true,
+            conditional: (a) => a.Unit.HasTrait(Traits.AllIn) && a.Unit.Predator,
+            onClicked: () => State.GameManager.TacticalMode.TrySetSpecialMode(SpecialAction.AllInVore),
+            onExecute: (a, t) => a.AllInVore(t),
+            minimumMp: 2));
+        TargetedDictionary[SpecialAction.AllInVore] = TargetedActions.Last();
+
 
         //UntargetedActions.Add(new UntargetedTacticalAction("Shapeshift", () => State.GameManager.TacticalMode.ButtonCallback(16), (a) => a.Unit.ShifterShapes != null && a.Unit.ShifterShapes.Count > 1));
         UntargetedActions.Add(new UntargetedTacticalAction("Flee", () => State.GameManager.TacticalMode.ButtonCallback(10), (a) => true));

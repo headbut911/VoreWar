@@ -66,5 +66,9 @@
     Snared = 33,
     /// <summary>Remaining respawns for the respawner traits.</summary>
     Respawns = 34,
+    /// <summary>All stats are reduced by 3% per stack.</summary>
+    Weakness = 35,
+    /// <summary>All stats are increased by 1 + 1% per stack.</summary>
+    Bolstered = 36,
 }
 
