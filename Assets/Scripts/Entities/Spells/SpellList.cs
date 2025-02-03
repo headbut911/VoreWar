@@ -646,6 +646,7 @@ static class SpellList
                         State.GameManager.TacticalMode.SwitchAlignment(t);
                         t.Surrendered = true;
                         t.Movement = 0;
+                        t.AIAvoidEat = 2;
                         State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{a.Unit.Name} captured {t.Unit.Name}!");
                     }
                 }
