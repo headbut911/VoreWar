@@ -14,6 +14,7 @@ public class BuildingFunctionsPanel : MonoBehaviour
     GameObject ActiveObject;
 
     public WorkCampPanel WorkCamp;
+    public LumberSitePanel LumberSite;
 
 
     public void Open(ConstructibleBuilding building)
@@ -33,6 +34,14 @@ public class BuildingFunctionsPanel : MonoBehaviour
             else
                 NoFunction.SetActive(true);
         }
+        else if (building is LumberSite)
+        {
+            ActiveObject = LumberSite.gameObject;
+            ActiveObject.SetActive(true);
+            LumberSite.Open(building);
+        }
+        else
+            NoFunction.SetActive(true);
     }
 
     private void ClearObjects()

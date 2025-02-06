@@ -1021,9 +1021,7 @@ public class StrategyMode : SceneBase
         }
         foreach(var constructable in State.World.Constructibles)
         {
-            int spr = 0;
-            if (constructable is WorkCamp)
-                spr = 0;
+            int spr = constructable.spriteID;
             spr = Math.Min(constructable.upgradeStage, 3) * 2 + spr;           
             GameObject vill = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
             vill.GetComponent<SpriteRenderer>().sprite = Buildings[spr];
@@ -1072,6 +1070,7 @@ public class StrategyMode : SceneBase
                 empire.ArmyCleanup();
             }
         }
+        StatusBarUI.Build.onClick.AddListener(() => BuildMenu.Open(ActingEmpire));
         ActingEmpire.CalcIncome(State.World.Villages);
         if (ActingEmpire.StrategicAI == null || OnlyAIPlayers || Config.CheatExtraStrategicInfo || State.World.MainEmpires.Where(s => s.IsAlly(ActingEmpire) && s.StrategicAI == null).Any())
         {
@@ -1845,15 +1844,18 @@ public class StrategyMode : SceneBase
             {
                 foreach (var unit in army.Units)
                 {
-                    foreach (var item in unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnStrategicTurnEnd || t.trigger == TraitConditionTrigger.All).ToList())
+                    if (unit.AllConditionalTraits != null)
                     {
-                        if (ConditionalTraitConditionChecker.StrategicTraitConditionActive(unit, item))
+                        foreach (var item in unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnStrategicTurnEnd || t.trigger == TraitConditionTrigger.All).ToList())
                         {
-                            unit.ActivateConditionalTrait(item.id);
-                        }
-                        else
-                        {
-                            unit.DeactivateConditionalTrait(item.id);
+                            if (ConditionalTraitConditionChecker.StrategicTraitConditionActive(unit, item))
+                            {
+                                unit.ActivateConditionalTrait(item.id);
+                            }
+                            else
+                            {
+                                unit.DeactivateConditionalTrait(item.id);
+                            }
                         }
                     }
                 }
@@ -2500,7 +2502,12 @@ public class StrategyMode : SceneBase
                         switch (SelectedConstruction)
                         {
                             case ConstructibleType.WorkCamp:
-                                newBuilding = new WorkCamp(new Vec2i(x,y), 3);
+                                newBuilding = new WorkCamp(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
+                            case ConstructibleType.LumberSite:
+                                newBuilding = new LumberSite(new Vec2i(x,y));
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
@@ -2756,11 +2763,13 @@ public class StrategyMode : SceneBase
             if (constructible != null)
             {
                 VillageTooltip.gameObject.SetActive(true);
-                if (constructible is WorkCamp)
-                {
-                    VillageTooltip.Text.text = $"Work Camp\nOwner: {constructible.Owner?.Name}";
-                }
+                string owner_name;
+                if (constructible.Owner == null)
+                    owner_name = "None";
+                else
+                    owner_name = constructible.Owner.Name;
 
+                VillageTooltip.Text.text = $"{constructible.Name}\nOwner: {owner_name}";
 
                 if (constructible.constructing)
                 {

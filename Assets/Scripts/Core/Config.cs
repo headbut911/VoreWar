@@ -390,12 +390,6 @@ static class Config
     //Everything below this line should be mirrored in BuildingConfig to ensure proper saving
 
     internal static BuildingConfig BuildCon = new BuildingConfig();
-    public static int WorkCampGold => BuildCon.WorkCampGold;
-    public static int WorkCampBuildTime => BuildCon.WorkCampBuildTime;
-    public static ConstructionResources WorkCampResources => BuildCon.WorkCampResources;
-    public static BuildingUpgrade WorkCampTradeUpgrade => BuildCon.WorkCampTradeUpgrade;
-    public static BuildingUpgrade WorkCampMerchantUpgrade => BuildCon.WorkCampMerchantUpgrade;
-    public static BuildingUpgrade WorkCampImproveUpgrade => BuildCon.WorkCampImproveUpgrade;
 
 
     internal static bool WinterActive()

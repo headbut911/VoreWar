@@ -33,7 +33,7 @@ public class ConstructionResources
         Prefabs = 0;
         ManaStones = 0;
     }
-    public ConstructionResources(int wood = 0, int stones = 0, int ores = 0, int nm = 0, int prefabs = 0, int ms = 0)
+    public ConstructionResources(int wood = 0, int stones = 0, int nm = 0, int ores = 0, int prefabs = 0, int ms = 0)
     {
         Wood = wood;
         Stone = stones;
@@ -136,7 +136,7 @@ public class ConstructionResources
         return false;
     }
 
-    public void SetResources(int wood, int stones, int ores, int nm, int prefabs, int ms)
+    public void SetResources(int wood, int stones, int nm, int ores, int prefabs, int ms)
     {
         Wood = wood;
         Stone = stones;

@@ -1081,9 +1081,7 @@ public class MapEditor : SceneBase
         }
         foreach (var constructable in State.World.Constructibles)
         {
-            int spr = 0;
-            if (constructable is WorkCamp)
-                spr = 0;
+            int spr = constructable.spriteID;
             GameObject vill = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
             vill.GetComponent<SpriteRenderer>().sprite = Buildings[spr];
             vill.GetComponent<SpriteRenderer>().sortingOrder = 1;
@@ -1402,12 +1400,20 @@ public class MapEditor : SceneBase
             }
 
             DestroyVillagesAtTile(clickLocation);
+            List<ConstructibleBuilding> contstruct;
             switch (activeBuildingType)
             {
                 case MapBuildingType.WorkCamp:
-                    WorkCamp newCamp = new WorkCamp(clickLocation, 4);
-                    var contstruct = State.World.Constructibles.ToList();
+                    WorkCamp newCamp = new WorkCamp(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
                     contstruct.Add(newCamp);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
+                case MapBuildingType.LumberSite:
+                    LumberSite newLumber = new LumberSite(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newLumber);
                     State.World.Constructibles = contstruct.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
@@ -1632,10 +1638,10 @@ public class MapEditor : SceneBase
             foreach (var construct in map.constructibles)
             {
                 if (construct.Type == ConstructibleType.WorkCamp)
-                    constructibles.Add(new WorkCamp(construct.Position, 4));
-                /*
+                    constructibles.Add(new WorkCamp(construct.Position));
                 if (construct.Type == ConstructibleType.LumberSite)
                     constructibles.Add(new LumberSite(construct.Position));
+                /*
                 if (construct.Type == ConstructibleType.Quarry)
                     constructibles.Add(new Quarry(construct.Position));
                 if (construct.Type == ConstructibleType.CasterTower)

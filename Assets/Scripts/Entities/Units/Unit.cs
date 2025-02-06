@@ -2162,7 +2162,6 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             if (t >= (Traits)6000)
             {
-                Debug.Log(State.ConditionalTraitList.Count());
                 var newTrait = State.ConditionalTraitList.Where(x => x.id == (int)t).First();
                 AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
             }

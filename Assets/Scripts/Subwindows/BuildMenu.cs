@@ -69,6 +69,8 @@ public class BuildMenu : MonoBehaviour
     {
         if (build is WorkCamp)
             return ConstructibleType.WorkCamp;
+        if (build is LumberSite)
+            return ConstructibleType.LumberSite;
         return (ConstructibleType)(-1);
     }
 

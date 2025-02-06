@@ -41,12 +41,15 @@ public abstract class ConstructibleBuilding
 
     [OdinSerialize]
     internal string Desc;
-    protected ConstructibleBuilding(Vec2i location, int buildtime)
+
+    [OdinSerialize]
+    internal int spriteID;
+    protected ConstructibleBuilding(Vec2i location)
     {
         Position = location;
         GoldCost = 0;
         ResourceToBuild = new ConstructionResources();
-        baseBuildTurns = buildtime;
+        baseBuildTurns = -1;
         Upgrades = new List<BuildingUpgrade>();
     }
 

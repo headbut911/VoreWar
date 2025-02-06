@@ -259,6 +259,7 @@ public class Empire
         }
         foreach (ConstructibleBuilding constructible in State.World.Constructibles)
         {
+            // Only add building here if it generates or removes income.
             if (constructible is WorkCamp && constructible.Owner == this)
             {
                 Income += 10;
