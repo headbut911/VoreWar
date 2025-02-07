@@ -600,6 +600,8 @@ static class LogUtilities
                 return GetRandomStringFrom("bird", "fowl", "bird of prey", "avian", "hawk", "eagle");
             case Race.Taraluxia:
                 return GetRandomStringFrom("ice dragon", "dragon", "ice dragoness", "dragoness");
+            case Race.BoomBunnies:
+                return GetRandomStringFrom("bunny", GetGenderString(unit, "doe", "buck", "danger lagomorph"), "living-explosive", "fused rabbit");
             default:
                 return "creature";
         }

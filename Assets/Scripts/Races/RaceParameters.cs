@@ -114,6 +114,7 @@ static class RaceParameters
     static readonly RaceTraits Taraluxia;
     static readonly RaceTraits Otachi;
     static readonly RaceTraits Xelhilde;
+    static readonly RaceTraits BoomBunnies;
 
     static Unit tempUnit;
 
@@ -359,6 +360,8 @@ static class RaceParameters
                 return Otachi;
             case Race.Xelhilde:
                 return Xelhilde;
+            case Race.BoomBunnies:
+                return BoomBunnies;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3139,6 +3142,37 @@ static class RaceParameters
         },
             RaceDescription = "A canine knight from the Kingdom of Mondfeld that wields a cobalt zweihänder. She roams the realm in search of battle to bring glory to Mondfeld!",
         };
+
+        BoomBunnies = new RaceTraits()
+        {
+            BodySize = 5,
+            StomachSize = 10,
+            HasTail = true,
+            FavoredStat = Stat.Agility,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth},
+            ExpMultiplier = 1f,
+            PowerAdjustment = .75f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(4, 8),
+                Dexterity = new RaceStats.StatRange(2, 4),
+                Endurance = new RaceStats.StatRange(5, 8),
+                Mind = new RaceStats.StatRange(6, 8),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(10, 18),
+                Voracity = new RaceStats.StatRange(10, 18),
+                Stomach = new RaceStats.StatRange(8, 10),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Replaceable,
+                Traits.ProlificBreeder,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.ExplosiveHug },
+            RaceDescription = "Exploding rabbits of unknown origin. Many believe that Boom Bunnies are the result of some science experiment left unchecked. Despite their tendency of exploding they are exceedingly friendly and benign once tamed.",
+
+        };
+
     }
 
 }

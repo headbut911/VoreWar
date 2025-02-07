@@ -332,6 +332,8 @@ public class InfoPanel
                 return "Terminid";
             case Race.FeralOrcas:
                 return "Feral Orca";
+            case Race.BoomBunnies:
+                return "Boom Bunny";
             case Race.none:
                 return "None";
         }
@@ -524,6 +526,8 @@ public class InfoPanel
                 return "Terminid";
             case Race.FeralOrcas:
                 return "Feral Orca";
+            case Race.BoomBunnies:
+                return "Boom Bunny";
         }
         return empire.ReplacedRace.ToString();
     }

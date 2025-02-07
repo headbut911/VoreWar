@@ -96,6 +96,7 @@
     Terminid = 142,
     FeralOrcas = 143,
     Otachi = 144,
+    BoomBunnies = 145,
 
     Selicia = 170,
     Vision = 171,

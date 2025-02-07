@@ -335,6 +335,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Terminid;
     public Sprite[] FeralOrcas;
     public Sprite[] Otachi;
+    public Sprite[] BoomBunnies;
 
 
     public Sprite[] Cake;
