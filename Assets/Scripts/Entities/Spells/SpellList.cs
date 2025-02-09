@@ -517,7 +517,7 @@ static class SpellList
             Range = new Range(1),
             Tier = -1,
             Resistable = false,
-            Damage = (a, t) => a.Unit.Health + 1,
+            Damage = (a, t) => a.Unit.Health + 5,
             OnExecute = (a, t) =>
             {
                 a.CastOffensiveSpell(Explode, a);
