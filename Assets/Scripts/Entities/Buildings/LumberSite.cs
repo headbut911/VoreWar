@@ -57,8 +57,7 @@ class LumberSite : ConstructibleBuilding
     internal override void RunBuildingFunction()
     {
         ConstructionResources ownerResource = Owner.constructionResources;
-        int looseWorkers = IdleWorkers - woodWorkers - natureWorkers - carpenterWorkers;
-        ownerResource.AddResource(ConstructionresourceType.wood, looseWorkers);
+        ownerResource.AddResource(ConstructionresourceType.wood, woodWorkers + IdleWorkers);
 
         if (lodgeUpgrade.built)
         {

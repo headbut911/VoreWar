@@ -55,6 +55,10 @@ public class BuildingFunctionsPanel : MonoBehaviour
     {
         NoFunction.SetActive(false);
         ActiveObject.SetActive(false);
+
+        WorkCamp.gameObject.SetActive(false);
+        LumberSite.gameObject.SetActive(false);
+        Quarry.gameObject.SetActive(false);
     }
     public void Close()
     {
