@@ -78,7 +78,10 @@ public abstract class ConstructibleBuilding
             turnsToUpgrade--;
             return;
         }
-        RunBuildingFunction();
+        if (Owner != null)
+        {
+            RunBuildingFunction();
+        }
     }
 
 }

@@ -1784,7 +1784,7 @@ public class Recruit_Mode : SceneBase
             }
             //else it already exists and is correct, so we do nothing
         }
-        ArmyUI.UnitInfoAreaSize.sizeDelta = new Vector2(1400, Mathf.Max((5 + army.Units.Count()) / 6 * 240, 900));
+        //ArmyUI.UnitInfoAreaSize.sizeDelta = new Vector2(1400, Mathf.Max((5 + army.Units.Count()) / 6 * 240, 900));
         UpdateDrawnActors();
     }
 

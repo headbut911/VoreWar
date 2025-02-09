@@ -1417,6 +1417,13 @@ public class MapEditor : SceneBase
                     State.World.Constructibles = contstruct.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
+                case MapBuildingType.Quarry:
+                    Quarry newQuarry = new Quarry(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newQuarry);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
             }
             RedrawTiles();
             RedrawVillages();
@@ -1641,6 +1648,8 @@ public class MapEditor : SceneBase
                     constructibles.Add(new WorkCamp(construct.Position));
                 if (construct.Type == ConstructibleType.LumberSite)
                     constructibles.Add(new LumberSite(construct.Position));
+                if (construct.Type == ConstructibleType.Quarry)
+                    constructibles.Add(new Quarry(construct.Position));
                 /*
                 if (construct.Type == ConstructibleType.Quarry)
                     constructibles.Add(new Quarry(construct.Position));

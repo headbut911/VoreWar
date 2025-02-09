@@ -29,9 +29,31 @@ public class BuildingConfig
     internal GeneralBuildingConfig LumberSite = new GeneralBuildingConfig(50, 2, -1, 5, 5);
     [OdinSerialize]
     internal int LumberSiteWorkerCap = 2;
-    internal BuildingUpgrade LumberSiteLodgeUpgrade = new BuildingUpgrade(250, 3, new ConstructionResources(10, 10, 0, 0, 0, 0), "Lumber Lodge", "Construct better living spaces, doubles the worker cap.");
+    internal BuildingUpgrade LumberSiteLodgeUpgrade = new BuildingUpgrade(250, 3, new ConstructionResources(20, 10, 0, 0, 0, 0), "Lumber Lodge", "Construct better living spaces, doubles the worker cap.");
     internal BuildingUpgrade LumberSiteCarpenterUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 5, 25, 0, 0), "Carpentry", "Construct a workshop, allowing 2 workers to be assigned to produce a Prefab.");
     internal BuildingUpgrade LumberSiteGreenHouseUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 15, 0, 0, 0, 0), "Greenhouse", "Construct a greenhouse, enabling workers to be assinged to cultivating natural materials.");
+    
+    //Lumber Site
+    internal GeneralBuildingConfig Quarry = new GeneralBuildingConfig(50, 2, -1, 5, 5);
+    [OdinSerialize]
+    internal int QuarryStoneMin = 1;
+    [OdinSerialize]
+    internal int QuarryStoneMax = 3;
+    [OdinSerialize]
+    internal int QuarryOreMin = 1;
+    [OdinSerialize]
+    internal int QuarryOreMax = 3;
+    [OdinSerialize]
+    internal int QuarryMSMin = 1;
+    [OdinSerialize]
+    internal int QuarryMSMax = 3;
+    [OdinSerialize]
+    internal int QuarryGoldMin = 0;
+    [OdinSerialize]
+    internal int QuarryGoldMax = 20;
+    internal BuildingUpgrade QuarryImproveUpgrade = new BuildingUpgrade(0, 1, new ConstructionResources(0, 0, 0, 0, 0, 0), "Improve Infrastructure", "Improve all aspects of the quarry, unlocking new action plans, boosting old ones, and improving min and max generations by 1.");
+    internal BuildingUpgrade QuarryDeepUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 15, 0, 0, 0), "Deep Mining", "Preform additional tunneling, allowing ores to be collected.");
+    internal BuildingUpgrade QuarryLeyLineUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 30, 15, 15, 0, 0), "Leyline Tap", "Cosntruct proper protective measures, allowing mana stones to be collected.");
 
     public class GeneralBuildingConfig
     {

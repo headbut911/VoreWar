@@ -28,6 +28,7 @@ public class BuildMenu : MonoBehaviour
         ClearFolder();
         State.GameManager.StrategyMode.Paused = true;
         gameObject.SetActive(true);
+        Config.World.ReloadBuildingInfo();
         var enabledBuildings = Config.World.GetBuildingInfo();
         CurrentGold.text = empire.Gold.ToString();
         CurrentWood.text = empire.constructionResources.Wood.ToString();
@@ -71,6 +72,8 @@ public class BuildMenu : MonoBehaviour
             return ConstructibleType.WorkCamp;
         if (build is LumberSite)
             return ConstructibleType.LumberSite;
+        if (build is Quarry)
+            return ConstructibleType.Quarry;
         return (ConstructibleType)(-1);
     }
 
