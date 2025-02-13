@@ -30,27 +30,27 @@ public class QuarryPanel : MonoBehaviour
     {
         Quarry = (Quarry)building;
         UpdateVisibility();
-        StandardActionPlanButton.onClick.AddListener(() =>
+        StandardActionPlanButton.onClick.AddListenerOnce(() =>
         {
             SetActionPlan(0);
         });
-        SearchActionPlanButton.onClick.AddListener(() =>
+        SearchActionPlanButton.onClick.AddListenerOnce(() =>
         {
             SetActionPlan(1);
         });
-        GroupedActionPlanButton.onClick.AddListener(() =>
+        GroupedActionPlanButton.onClick.AddListenerOnce(() =>
         {
             SetActionPlan(2);
         });
-        RiskyActionPlanButton.onClick.AddListener(() =>
+        RiskyActionPlanButton.onClick.AddListenerOnce(() =>
         {
             SetActionPlan(3);
         });
-        FocusActionButton.onClick.AddListener(() =>
+        FocusActionButton.onClick.AddListenerOnce(() =>
         {
             SetActionPlan(4);
         });
-        ProspectActionPlanButton.onClick.AddListener(() =>
+        ProspectActionPlanButton.onClick.AddListenerOnce(() =>
         {
             SetActionPlan(5);
         });

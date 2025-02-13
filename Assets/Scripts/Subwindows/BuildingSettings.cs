@@ -6,7 +6,6 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static BuildingConfig;
 
 public class BuildingSettings : MonoBehaviour
 {

@@ -19,33 +19,13 @@ class LumberSite : ConstructibleBuilding
         Name = "Lumber Site";
         Desc = "The lumber site generates wood each turn using workers. It can be upgraded to produce natural materials and prefabs each turn.";
         spriteID = 8;
-        ResourceToBuild = Config.BuildCon.LumberSite.Resources;
-        GoldCost = Config.BuildCon.LumberSite.Gold;
-        baseBuildTurns = Config.BuildCon.LumberSite.BuildTime;
+        buildingType = ConstructibleType.LumberSite;
 
-        lodgeUpgrade = new BuildingUpgrade();
-        lodgeUpgrade.Name = Config.BuildCon.LumberSiteLodgeUpgrade.Name;
-        lodgeUpgrade.Desc = Config.BuildCon.LumberSiteLodgeUpgrade.Desc;
-        lodgeUpgrade.GoldCost = Config.BuildCon.LumberSiteLodgeUpgrade.GoldCost;
-        lodgeUpgrade.ResourceToUpgrade = Config.BuildCon.LumberSiteLodgeUpgrade.ResourceToUpgrade;
-        lodgeUpgrade.upgradeTime = Config.BuildCon.LumberSiteLodgeUpgrade.upgradeTime;
-        Upgrades.Add(lodgeUpgrade);
+        ApplyConfigStats(Config.BuildCon.LumberSite);
+        lodgeUpgrade = AddUpgrade(lodgeUpgrade, Config.BuildCon.LumberSiteLodgeUpgrade);
+        carpenterUpgrade = AddUpgrade(carpenterUpgrade, Config.BuildCon.LumberSiteCarpenterUpgrade);
+        greenHouseUpgrade = AddUpgrade(greenHouseUpgrade, Config.BuildCon.LumberSiteGreenHouseUpgrade);
 
-        carpenterUpgrade = new BuildingUpgrade();
-        carpenterUpgrade.Name = Config.BuildCon.LumberSiteCarpenterUpgrade.Name;
-        carpenterUpgrade.Desc = Config.BuildCon.LumberSiteCarpenterUpgrade.Desc;
-        carpenterUpgrade.GoldCost = Config.BuildCon.LumberSiteCarpenterUpgrade.GoldCost;
-        carpenterUpgrade.ResourceToUpgrade = Config.BuildCon.LumberSiteCarpenterUpgrade.ResourceToUpgrade;
-        carpenterUpgrade.upgradeTime = Config.BuildCon.LumberSiteCarpenterUpgrade.upgradeTime;
-        Upgrades.Add(carpenterUpgrade);
-
-        greenHouseUpgrade = new BuildingUpgrade();
-        greenHouseUpgrade.Name = Config.BuildCon.LumberSiteGreenHouseUpgrade.Name;
-        greenHouseUpgrade.Desc = Config.BuildCon.LumberSiteGreenHouseUpgrade.Desc;
-        greenHouseUpgrade.GoldCost = Config.BuildCon.LumberSiteGreenHouseUpgrade.GoldCost;
-        greenHouseUpgrade.ResourceToUpgrade = Config.BuildCon.LumberSiteGreenHouseUpgrade.ResourceToUpgrade;
-        greenHouseUpgrade.upgradeTime = Config.BuildCon.LumberSiteGreenHouseUpgrade.upgradeTime;
-        Upgrades.Add(greenHouseUpgrade);
 
         IdleWorkers = 0;
         woodWorkers = Config.BuildCon.LumberSiteWorkerCap;

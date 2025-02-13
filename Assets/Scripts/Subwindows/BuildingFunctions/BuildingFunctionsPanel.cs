@@ -16,6 +16,7 @@ public class BuildingFunctionsPanel : MonoBehaviour
     public WorkCampPanel WorkCamp;
     public LumberSitePanel LumberSite;
     public QuarryPanel Quarry;
+    public CasterTowerPanel CasterTower;
 
 
     public void Open(ConstructibleBuilding building)
@@ -46,6 +47,12 @@ public class BuildingFunctionsPanel : MonoBehaviour
             ActiveObject = Quarry.gameObject;
             ActiveObject.SetActive(true);
             Quarry.Open(building);
+        }
+        else if (building is CasterTower)
+        {
+            ActiveObject = CasterTower.gameObject;
+            ActiveObject.SetActive(true);
+            CasterTower.Open(building);
         }
         else
             NoFunction.SetActive(true);

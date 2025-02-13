@@ -44,6 +44,9 @@ public abstract class ConstructibleBuilding
 
     [OdinSerialize]
     internal int spriteID;
+
+    [OdinSerialize]
+    internal ConstructibleType buildingType;
     protected ConstructibleBuilding(Vec2i location)
     {
         Position = location;
@@ -82,6 +85,25 @@ public abstract class ConstructibleBuilding
         {
             RunBuildingFunction();
         }
+    }
+
+    internal void ApplyConfigStats(GeneralBuildingConfig buildingConfig)
+    {
+        ResourceToBuild = buildingConfig.Resources;
+        GoldCost = buildingConfig.Gold;
+        baseBuildTurns = buildingConfig.BuildTime;
+    }
+
+    internal BuildingUpgrade AddUpgrade(BuildingUpgrade upgrade, BuildingUpgrade configUpgrade)
+    {
+        upgrade = new BuildingUpgrade();
+        upgrade.Name = configUpgrade.Name;
+        upgrade.Desc = configUpgrade.Desc;
+        upgrade.GoldCost = configUpgrade.GoldCost;
+        upgrade.ResourceToUpgrade = configUpgrade.ResourceToUpgrade;
+        upgrade.upgradeTime = configUpgrade.upgradeTime;
+        Upgrades.Add(upgrade);
+        return upgrade;
     }
 
 }

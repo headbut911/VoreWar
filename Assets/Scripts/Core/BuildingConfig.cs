@@ -29,7 +29,7 @@ public class BuildingConfig
     internal GeneralBuildingConfig LumberSite = new GeneralBuildingConfig(50, 2, -1, 5, 5);
     [OdinSerialize]
     internal int LumberSiteWorkerCap = 2;
-    internal BuildingUpgrade LumberSiteLodgeUpgrade = new BuildingUpgrade(250, 3, new ConstructionResources(20, 10, 0, 0, 0, 0), "Lumber Lodge", "Construct better living spaces, doubles the worker cap.");
+    internal BuildingUpgrade LumberSiteLodgeUpgrade = new BuildingUpgrade(250, 3, new ConstructionResources(20, 10, 0, 0, 0, 0), "Improve Lodge", "Construct better living spaces, doubles the worker cap.");
     internal BuildingUpgrade LumberSiteCarpenterUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 5, 25, 0, 0), "Carpentry", "Construct a workshop, allowing 2 workers to be assigned to produce a Prefab.");
     internal BuildingUpgrade LumberSiteGreenHouseUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 15, 0, 0, 0, 0), "Greenhouse", "Construct a greenhouse, enabling workers to be assinged to cultivating natural materials.");
     
@@ -54,29 +54,46 @@ public class BuildingConfig
     internal BuildingUpgrade QuarryImproveUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(10, 20, 0, 0, 0, 0), "Improve Infrastructure", "Improve all aspects of the quarry, unlocking new action plans, boosting old ones, and improving min and max generations by 1.");
     internal BuildingUpgrade QuarryDeepUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 15, 0, 0, 0), "Deep Mining", "Preform additional tunneling, allowing ores to be collected.");
     internal BuildingUpgrade QuarryLeyLineUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 30, 15, 15, 0, 0), "Leyline Tap", "Cosntruct proper protective measures, allowing mana stones to be collected.");
+    
+    //Caster Tower
+    internal GeneralBuildingConfig CasterTower = new GeneralBuildingConfig(250, 2, -1, 15, 20);
+    [OdinSerialize]
+    internal int CasterTowerManaChargesMax = 20;
+    [OdinSerialize]
+    internal int CasterTowerManaChargesRegen = 4;
+    [OdinSerialize]
+    internal int CasterTowerBaseChargeCost = 1;
+    [OdinSerialize]
+    internal int CasterTowerBetterTierChargeCost = 3;
+    [OdinSerialize]
+    internal int CasterTowerBuffChargeCost = 2;
+    internal BuildingUpgrade CasterTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(10, 20, 5, 0, 0, 10), "Improve Tower", "Improve capacity and throughput by installing mana stones. Max mana charges and mana charge regeneration is doubled. Increase range by 1.");
+    internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 10, 15, 0, 5), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool and allows magnitude adjustment.");
+    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(50, 20, 15, 5, 5, 0), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
+    
+}
 
-    public class GeneralBuildingConfig
+public class GeneralBuildingConfig
+{
+    [OdinSerialize]
+    public int Gold = 0;
+    [OdinSerialize]
+    public int BuildTime = 0;
+    [OdinSerialize]
+    public int BuildLimit = -1;
+    public ConstructionResources Resources = new ConstructionResources();
+
+    public GeneralBuildingConfig()
     {
-        [OdinSerialize]
-        public int Gold = 0;
-        [OdinSerialize]
-        public int BuildTime = 0;
-        [OdinSerialize]
-        public int BuildLimit = -1;
-        public ConstructionResources Resources = new ConstructionResources();
-
-        public GeneralBuildingConfig()
-        {
-
-        }
-        public GeneralBuildingConfig(int gold, int time, int limit, int wood = 0, int stones = 0, int nm = 0, int ores = 0, int prefabs = 0, int ms = 0)
-        {
-            Gold = gold;
-            BuildTime = time;
-            BuildLimit = limit;
-            Resources.SetResources(wood, stones, nm, ores, prefabs, ores);
-        }
 
     }
+    public GeneralBuildingConfig(int gold, int time, int limit, int wood = 0, int stones = 0, int nm = 0, int ores = 0, int prefabs = 0, int ms = 0)
+    {
+        Gold = gold;
+        BuildTime = time;
+        BuildLimit = limit;
+        Resources.SetResources(wood, stones, nm, ores, prefabs, ores);
+    }
+
 }
 

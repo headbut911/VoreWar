@@ -15,33 +15,12 @@ class Quarry : ConstructibleBuilding
         Name = "Quarry";
         Desc = "The quarry generates stone each turn. Its output and resource can be adjusted using set action plans.";
         spriteID = 16;
-        ResourceToBuild = Config.BuildCon.LumberSite.Resources;
-        GoldCost = Config.BuildCon.LumberSite.Gold;
-        baseBuildTurns = Config.BuildCon.LumberSite.BuildTime;
+        buildingType = ConstructibleType.Quarry;
 
-        improveUpgrade = new BuildingUpgrade();
-        improveUpgrade.Name = Config.BuildCon.QuarryImproveUpgrade.Name;
-        improveUpgrade.Desc = Config.BuildCon.QuarryImproveUpgrade.Desc;
-        improveUpgrade.GoldCost = Config.BuildCon.QuarryImproveUpgrade.GoldCost;
-        improveUpgrade.ResourceToUpgrade = Config.BuildCon.QuarryImproveUpgrade.ResourceToUpgrade;
-        improveUpgrade.upgradeTime = Config.BuildCon.QuarryImproveUpgrade.upgradeTime;
-        Upgrades.Add(improveUpgrade);
-
-        deepUpgrade = new BuildingUpgrade();
-        deepUpgrade.Name = Config.BuildCon.QuarryDeepUpgrade.Name;
-        deepUpgrade.Desc = Config.BuildCon.QuarryDeepUpgrade.Desc;
-        deepUpgrade.GoldCost = Config.BuildCon.QuarryDeepUpgrade.GoldCost;
-        deepUpgrade.ResourceToUpgrade = Config.BuildCon.QuarryDeepUpgrade.ResourceToUpgrade;
-        deepUpgrade.upgradeTime = Config.BuildCon.QuarryDeepUpgrade.upgradeTime;
-        Upgrades.Add(deepUpgrade);
-
-        leyUpgrade = new BuildingUpgrade();
-        leyUpgrade.Name = Config.BuildCon.QuarryLeyLineUpgrade.Name;
-        leyUpgrade.Desc = Config.BuildCon.QuarryLeyLineUpgrade.Desc;
-        leyUpgrade.GoldCost = Config.BuildCon.QuarryLeyLineUpgrade.GoldCost;
-        leyUpgrade.ResourceToUpgrade = Config.BuildCon.QuarryLeyLineUpgrade.ResourceToUpgrade;
-        leyUpgrade.upgradeTime = Config.BuildCon.QuarryLeyLineUpgrade.upgradeTime;
-        Upgrades.Add(leyUpgrade);
+        ApplyConfigStats(Config.BuildCon.Quarry);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.QuarryImproveUpgrade);
+        deepUpgrade = AddUpgrade(deepUpgrade, Config.BuildCon.QuarryDeepUpgrade);
+        leyUpgrade = AddUpgrade(leyUpgrade, Config.BuildCon.QuarryLeyLineUpgrade);
 
         ActionPlan = 0;
     }

@@ -63,6 +63,7 @@
     ManaExpolsion = 114,
     Conduit = 115,
     Flamberge = 116,
-    SweepingSwallow = 117,
+    ForkLightning = 117,
+    SweepingSwallow = 119,
 }
 

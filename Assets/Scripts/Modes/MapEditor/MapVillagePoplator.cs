@@ -122,6 +122,8 @@ class MapVillagePopulator
                 newConstructibles.Add(new LumberSite(map.constructibles[i].Position));
             if (map.constructibles[i].Type == ConstructibleType.Quarry)
                 newConstructibles.Add(new Quarry(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.CasterTower)
+                newConstructibles.Add(new CasterTower(map.constructibles[i].Position));
             /*
             if (map.constructibles[i].Type == ConstructibleType.LumberSite)
                 newConstructibles.Add(new LumberSite(map.constructibles[i].Position));

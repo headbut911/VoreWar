@@ -355,6 +355,7 @@ public class WorldConfig
             new WorkCamp(null),
             new LumberSite(null),
             new Quarry(null),
+            new CasterTower(null),
         };
     }
 

@@ -53,7 +53,7 @@ public class BuildMenu : MonoBehaviour
             currentPrefab.Stone.text = building.ResourceToBuild.Stone.ToString();
             currentPrefab.Ores.text = building.ResourceToBuild.Ores.ToString();
             currentPrefab.ManaStones.text = building.ResourceToBuild.ManaStones.ToString();
-            currentPrefab.linkedBuilding = DetermineType(building);
+            currentPrefab.linkedBuilding = building.buildingType;
             if (!empire.constructionResources.CanBuildWithCurrentResources(building.ResourceToBuild) || building.GoldCost > empire.Gold)
             {
                 currentPrefab.Construct.interactable = false;
@@ -64,17 +64,6 @@ public class BuildMenu : MonoBehaviour
                 State.GameManager.StrategyMode.InitiateBuildMode(currentPrefab.linkedBuilding);
             });
         }
-    }
-
-    private ConstructibleType DetermineType(ConstructibleBuilding build)
-    {
-        if (build is WorkCamp)
-            return ConstructibleType.WorkCamp;
-        if (build is LumberSite)
-            return ConstructibleType.LumberSite;
-        if (build is Quarry)
-            return ConstructibleType.Quarry;
-        return (ConstructibleType)(-1);
     }
 
     private void ClearFolder()

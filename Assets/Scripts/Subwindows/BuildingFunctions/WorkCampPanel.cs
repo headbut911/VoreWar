@@ -35,62 +35,62 @@ public class WorkCampPanel : MonoBehaviour
     public void Open(ConstructibleBuilding building)
     {
         RefreshUI(building);
-        BuyWood.onClick.AddListener(() =>
+        BuyWood.onClick.AddListenerOnce(() =>
         {
             PurchaceItem(ConstructionresourceType.wood, (WorkCamp)building);
             RefreshUI(building);
         });
-        SellWood.onClick.AddListener(() =>
+        SellWood.onClick.AddListenerOnce(() =>
         {
             SellItem(ConstructionresourceType.wood, (WorkCamp)building);
             RefreshUI(building);
         });
-        BuyStone.onClick.AddListener(() =>
+        BuyStone.onClick.AddListenerOnce(() =>
         {
             PurchaceItem(ConstructionresourceType.stone, (WorkCamp)building);
             RefreshUI(building);
         });
-        SellStone.onClick.AddListener(() =>
+        SellStone.onClick.AddListenerOnce(() =>
         {
             SellItem(ConstructionresourceType.stone, (WorkCamp)building);
             RefreshUI(building);
         });
-        BuyNM.onClick.AddListener(() =>
+        BuyNM.onClick.AddListenerOnce(() =>
         {
             PurchaceItem(ConstructionresourceType.naturalmaterials, (WorkCamp)building);
             RefreshUI(building);
         });
-        SellNM.onClick.AddListener(() =>
+        SellNM.onClick.AddListenerOnce(() =>
         {
             SellItem(ConstructionresourceType.naturalmaterials, (WorkCamp)building);
             RefreshUI(building);
         });
-        BuyOres.onClick.AddListener(() =>
+        BuyOres.onClick.AddListenerOnce(() =>
         {
             PurchaceItem(ConstructionresourceType.ores, (WorkCamp)building);
             RefreshUI(building);
         });
-        SellOres.onClick.AddListener(() =>
+        SellOres.onClick.AddListenerOnce(() =>
         {
             SellItem(ConstructionresourceType.ores, (WorkCamp)building);
             RefreshUI(building);
         });
-        BuyPrefabs.onClick.AddListener(() =>
+        BuyPrefabs.onClick.AddListenerOnce(() =>
         {
             PurchaceItem(ConstructionresourceType.prefabs, (WorkCamp)building);
             RefreshUI(building);
         });
-        SellPrefabs.onClick.AddListener(() =>
+        SellPrefabs.onClick.AddListenerOnce(() =>
         {
             SellItem(ConstructionresourceType.prefabs, (WorkCamp)building);
             RefreshUI(building);
         });
-        BuyMS.onClick.AddListener(() =>
+        BuyMS.onClick.AddListenerOnce(() =>
         {
             PurchaceItem(ConstructionresourceType.manastones, (WorkCamp)building);
             RefreshUI(building);
         });
-        BuyMS.onClick.AddListener(() =>
+        BuyMS.onClick.AddListenerOnce(() =>
         {
             SellItem(ConstructionresourceType.manastones, (WorkCamp)building);
             RefreshUI(building);
