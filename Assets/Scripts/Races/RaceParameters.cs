@@ -3129,9 +3129,9 @@ static class RaceParameters
                 Endurance = new RaceStats.StatRange(21, 25),
                 Mind = new RaceStats.StatRange(8, 14),
                 Will = new RaceStats.StatRange(12, 16),
-                Agility = new RaceStats.StatRange(18, 21),
-                Voracity = new RaceStats.StatRange(8, 14),
-                Stomach = new RaceStats.StatRange(12, 15),
+                Agility = new RaceStats.StatRange(16, 21),
+                Voracity = new RaceStats.StatRange(8, 12),
+                Stomach = new RaceStats.StatRange(10, 13),
             },
             RacialTraits = new List<Traits>()
         {
@@ -3154,19 +3154,20 @@ static class RaceParameters
             PowerAdjustment = .75f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(4, 8),
+                Strength = new RaceStats.StatRange(6, 10),
                 Dexterity = new RaceStats.StatRange(2, 4),
                 Endurance = new RaceStats.StatRange(5, 8),
                 Mind = new RaceStats.StatRange(6, 8),
                 Will = new RaceStats.StatRange(4, 8),
                 Agility = new RaceStats.StatRange(10, 18),
                 Voracity = new RaceStats.StatRange(10, 18),
-                Stomach = new RaceStats.StatRange(8, 10),
+                Stomach = new RaceStats.StatRange(8, 15),
             },
             RacialTraits = new List<Traits>()
         {
                 Traits.Replaceable,
                 Traits.ProlificBreeder,
+                Traits.Pounce,
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.ExplosiveHug },
             RaceDescription = "Exploding rabbits of unknown origin. Many believe that Boom Bunnies are the result of some science experiment left unchecked. Despite their tendency of exploding they are exceedingly friendly and benign once tamed.",
