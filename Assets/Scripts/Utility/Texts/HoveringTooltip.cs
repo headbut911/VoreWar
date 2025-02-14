@@ -226,7 +226,7 @@ public class HoveringTooltip : MonoBehaviour
                     case StatusEffectType.Frozen:
                         return $"Unit cannot perform any actions, but is easy to hit, takes half damage from attacks and is slightly bulky to eat.\nTurns Remaining: {effect.Duration}";
                     case StatusEffectType.Static:
-                        return $"Unit receives more electic damage from attacks (+50%).\nTurns Remaining: {effect.Duration}";
+                        return $"Unit receives more electric damage from attacks (+50%).\nTurns Remaining: {effect.Duration}";
                     case StatusEffectType.Berserk:
                         return $"Unit is berserk, its strength and voracity are greatly increased for a brief period\nTurns Remaining: {effect.Duration}";
                     case StatusEffectType.Charmed:
