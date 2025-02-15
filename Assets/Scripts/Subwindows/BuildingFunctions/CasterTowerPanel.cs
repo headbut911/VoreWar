@@ -59,57 +59,57 @@ public class CasterTowerPanel : MonoBehaviour
 
         valueFireballCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.basicCasts[SpellTypes.Fireball] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.Fireball] = (int)newVal;
             FireballCasts.text = valueFireballCasts.value.ToString();
         });
         valuePowerBoltCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.basicCasts[SpellTypes.PowerBolt] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.PowerBolt] = (int)newVal;
             PowerBoltCasts.text = valuePowerBoltCasts.value.ToString();
         });
         valueLightningBoltCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.basicCasts[SpellTypes.LightningBolt] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.LightningBolt] = (int)newVal;
             LightningBoltCasts.text = valueLightningBoltCasts.value.ToString();
         });
         valuePredationCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.buffCasts[SpellTypes.Predation] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.Predation] = (int)newVal;
             PredationCasts.text = valuePredationCasts.value.ToString();
         });
         valueValorCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.buffCasts[SpellTypes.Valor] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.Valor] = (int)newVal;
             ValorCasts.text = valueValorCasts.value.ToString();
         });
         valueShieldCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.buffCasts[SpellTypes.Shield] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.Shield] = (int)newVal;
             ShieldCasts.text = valueShieldCasts.value.ToString();
         });
         valuePyreCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.advancedCasts[SpellTypes.Pyre] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.Pyre] = (int)newVal;
             PyreCasts.text = valuePyreCasts.value.ToString();
         });
         valueIceBlastCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.advancedCasts[SpellTypes.IceBlast] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.IceBlast] = (int)newVal;
             IceBlastCasts.text = valueIceBlastCasts.value.ToString();
         });
         valueFlambergeCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.advancedCasts[SpellTypes.Flamberge] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.Flamberge] = (int)newVal;
             FlambergeCasts.text = valueFlambergeCasts.value.ToString();
         });
         valueForkLightingCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.advancedCasts[SpellTypes.ForkLightning] = (int)newVal;
+            CasterTower.spellCasts[SpellTypes.ForkLightning] = (int)newVal;
             ForkLightingCasts.text = valueForkLightingCasts.value.ToString();
         });
         MagnitudeSlider.onValueChanged.AddListenerOnce((float newVal) =>
         {
-            CasterTower.SetMagnitude = newVal;
+            CasterTower.SetMagnitude = (int)newVal;
             Magnitude.text = MagnitudeSlider.value.ToString();
         });
         UpdateVisibility();
@@ -163,16 +163,16 @@ public class CasterTowerPanel : MonoBehaviour
     }
     void UpdateSliderValues()
     {
-        valueFireballCasts.value = CasterTower.basicCasts[SpellTypes.Fireball];
-        valuePowerBoltCasts.value = CasterTower.basicCasts[SpellTypes.PowerBolt];
-        valueLightningBoltCasts.value = CasterTower.basicCasts[SpellTypes.LightningBolt];
-        valuePredationCasts.value = CasterTower.buffCasts[SpellTypes.Predation];
-        valueValorCasts.value = CasterTower.buffCasts[SpellTypes.Valor];
-        valueSpeedCasts.value = CasterTower.buffCasts[SpellTypes.Speed];
-        valueShieldCasts.value = CasterTower.buffCasts[SpellTypes.Shield];
-        valuePyreCasts.value = CasterTower.advancedCasts[SpellTypes.Pyre];
-        valueIceBlastCasts.value = CasterTower.advancedCasts[SpellTypes.IceBlast];
-        valueFlambergeCasts.value = CasterTower.advancedCasts[SpellTypes.Flamberge];
-        valueForkLightingCasts.value = CasterTower.advancedCasts[SpellTypes.ForkLightning];
+        valueFireballCasts.value = CasterTower.spellCasts[SpellTypes.Fireball];
+        valuePowerBoltCasts.value = CasterTower.spellCasts[SpellTypes.PowerBolt];
+        valueLightningBoltCasts.value = CasterTower.spellCasts[SpellTypes.LightningBolt];
+        valuePredationCasts.value = CasterTower.spellCasts[SpellTypes.Predation];
+        valueValorCasts.value = CasterTower.spellCasts[SpellTypes.Valor];
+        valueSpeedCasts.value = CasterTower.spellCasts[SpellTypes.Speed];
+        valueShieldCasts.value = CasterTower.spellCasts[SpellTypes.Shield];
+        valuePyreCasts.value = CasterTower.spellCasts[SpellTypes.Pyre];
+        valueIceBlastCasts.value = CasterTower.spellCasts[SpellTypes.IceBlast];
+        valueFlambergeCasts.value = CasterTower.spellCasts[SpellTypes.Flamberge];
+        valueForkLightingCasts.value = CasterTower.spellCasts[SpellTypes.ForkLightning];
     }
 }

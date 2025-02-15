@@ -27,6 +27,8 @@ public class Empire
     public int Income { get; private set; }
     [OdinSerialize]
     public List<Army> Armies;
+    [OdinSerialize]
+    public List<ConstructibleBuilding> Buildings;
 
     [OdinSerialize]
     public int MaxArmySize;
@@ -169,6 +171,7 @@ public class Empire
         MaxArmySize = args.maxArmySize;
         MaxGarrisonSize = args.maxGarrisonSize;
         Armies = new List<Army>();
+        Buildings = new List<ConstructibleBuilding>();
         OwnedTiles = new List<Vec2i>();
         constructionResources = new ConstructionResources();
         constructionResources.Reset();

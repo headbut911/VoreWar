@@ -214,6 +214,9 @@ public class TacticalMode : SceneBase
 
     List<Actor_Unit> garrison;
 
+    internal List<ConstructibleBuilding> attackerBuildingsInRange;
+    internal List<ConstructibleBuilding> defenderBuildingsInRange;
+
     SpecialAction specialType;
     SpecialAction lastSpecial;
     int _mode;
@@ -620,6 +623,312 @@ public class TacticalMode : SceneBase
                     }
 
                 }
+            }
+        }
+
+        foreach (ConstructibleBuilding building in attackerBuildingsInRange)
+        {
+            if (building is CasterTower)
+            {
+                CasterTower casterTower = (CasterTower)building;
+                Unit newUnit = new NPC_unit(casterTower.SetMagnitude, false, 2, armies[0].Side, Race.Fairies, 0, false);
+                newUnit.Type = UnitType.Summon;
+                newUnit.Name = $"{casterTower.Owner.Name} Tower Mage";
+                Actor_Unit unit = new Actor_Unit(new Vec2i(Config.TacticalSizeX / 2, Config.TacticalSizeY - 1), newUnit);
+                unit.Visible = false;
+                unit.Targetable = false;
+                foreach (var spellCasts in casterTower.spellCasts)
+                {
+                    if (casterTower.ManaCharges <= 0)
+                    {
+                        break;
+                    }
+                    casterTower.ManaCharges--;
+                    int counter = 0;
+                    switch (spellCasts.Key)
+                    {
+                        case SpellTypes.Fireball:
+                            counter = casterTower.spellCasts[spellCasts.Key];
+                            while (counter > 0)
+                            {
+                                SpellList.Fireball.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                newUnit.RestoreMana(100); unit.Movement = 1;
+                                counter--;
+                            }
+                            break;
+                        case SpellTypes.PowerBolt:
+                            counter = casterTower.spellCasts[spellCasts.Key];
+                            while (counter > 0)
+                            {
+                                SpellList.PowerBolt.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                newUnit.RestoreMana(100); unit.Movement = 1;
+                                counter--;
+                            }
+                            break;
+                        case SpellTypes.LightningBolt:
+                            counter = casterTower.spellCasts[spellCasts.Key];
+                            while (counter > 0)
+                            {
+                                SpellList.LightningBolt.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                newUnit.RestoreMana(100); unit.Movement = 1;
+                                counter--;
+                            }
+                            break;
+                        case SpellTypes.Shield:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Shield.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Speed:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Speed.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Valor:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Valor.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Predation:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Predation.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.IceBlast:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.IceBlast.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Pyre:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Pyre.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Flamberge:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Flamberge.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.ForkLightning:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.ForkLightning.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                unit.UnitSprite.GraphicsFolder.gameObject.SetActive(false);
+                unit.UnitSprite.OtherFolder.gameObject.SetActive(false);
+            }
+        }
+
+        foreach (ConstructibleBuilding building in defenderBuildingsInRange)
+        {
+            if (building is CasterTower)
+            {
+                CasterTower casterTower = (CasterTower)building;
+                Unit newUnit = new NPC_unit(casterTower.SetMagnitude, false, 2, armies[1].Side, Race.Fairies, 0, false);
+                newUnit.Type = UnitType.Summon;
+                newUnit.Name = $"{casterTower.Owner.Name} Tower Mage";
+                Actor_Unit unit = new Actor_Unit(new Vec2i(Config.TacticalSizeX / 2, 0), newUnit);
+                unit.Visible = false;
+                unit.Targetable = false;
+                foreach (var spellCasts in casterTower.spellCasts)
+                {
+                    if (casterTower.ManaCharges <= 0)
+                    {
+                        break;
+                    }
+                    casterTower.ManaCharges--;
+                    int counter = 0;
+                    switch (spellCasts.Key)
+                    {
+                        case SpellTypes.Fireball:
+                            counter = casterTower.spellCasts[spellCasts.Key];
+                            while (counter > 0)
+                            {
+                                SpellList.Fireball.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                newUnit.RestoreMana(100); unit.Movement = 1;
+                                counter--;
+                            }
+                            break;
+                        case SpellTypes.PowerBolt:
+                            counter = casterTower.spellCasts[spellCasts.Key];
+                            while (counter > 0)
+                            {
+                                SpellList.PowerBolt.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                newUnit.RestoreMana(100); unit.Movement = 1;
+                                counter--;
+                            }
+                            break;
+                        case SpellTypes.LightningBolt:
+                            counter = casterTower.spellCasts[spellCasts.Key];
+                            while (counter > 0)
+                            {
+                                SpellList.LightningBolt.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                newUnit.RestoreMana(100); unit.Movement = 1;
+                                counter--;
+                            }
+                            break;
+                        case SpellTypes.Shield:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Shield.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Speed:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Speed.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Valor:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Valor.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Predation:
+                            if (casterTower.buffUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Predation.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.IceBlast:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.IceBlast.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Pyre:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Pyre.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.Flamberge:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.Flamberge.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        case SpellTypes.ForkLightning:
+                            if (casterTower.forceUpgrade.built)
+                            {
+                                counter = casterTower.spellCasts[spellCasts.Key];
+                                while (counter > 0)
+                                {
+                                    SpellList.ForkLightning.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
+                                    newUnit.RestoreMana(100); unit.Movement = 1;
+                                    counter--;
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                unit.UnitSprite.GraphicsFolder.gameObject.SetActive(false);
+                unit.UnitSprite.OtherFolder.gameObject.SetActive(false);
             }
         }
 
@@ -3918,7 +4227,7 @@ Turns: {currentTurn}
         {
             foreach (Actor_Unit actor in units)
             {
-                if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && actor.TurnsSinceLastDamage < 2) return false;
+                if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && (actor.TurnsSinceLastDamage < 2 & !actor.Unit.HasTrait(Traits.CurseOfImmolation))) return false;
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && !actor.Unit.hiddenFixedSide && units.Any(u => u.Targetable && !u.Fled && u.Visible && TacticalUtilities.TreatAsHostile(actor, u))) return false;
                 if (actor.Unit.Predator == false)
                     continue;

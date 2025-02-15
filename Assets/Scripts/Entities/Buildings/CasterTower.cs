@@ -11,19 +11,15 @@ class CasterTower : ConstructibleBuilding
     [OdinSerialize]
     internal int ManaCharges;
     [OdinSerialize]
-    internal float SetMagnitude;
+    internal int SetMagnitude;
     [OdinSerialize]
-    internal Dictionary<SpellTypes,int> basicCasts;
-    [OdinSerialize]
-    internal Dictionary<SpellTypes,int> buffCasts;
-    [OdinSerialize]
-    internal Dictionary<SpellTypes,int> advancedCasts;
+    internal Dictionary<SpellTypes,int> spellCasts;
     
     public CasterTower(Vec2i location) : base(location)
     {
         Name = "Caster Tower";
         Desc = "The caster tower uses mana to launch a barrage of spells on the first turn of combat that starts in it's range.";
-        spriteID = 16;
+        spriteID = 24;
         buildingType = ConstructibleType.CasterTower;
 
         ApplyConfigStats(Config.BuildCon.CasterTower);
@@ -33,21 +29,17 @@ class CasterTower : ConstructibleBuilding
 
         ManaCharges = Config.BuildCon.CasterTowerManaChargesMax;
 
-        basicCasts = new Dictionary<SpellTypes, int> 
+        spellCasts = new Dictionary<SpellTypes, int> 
         {
             [SpellTypes.Fireball] = 1,
             [SpellTypes.LightningBolt] = 1,
             [SpellTypes.PowerBolt] = 3,
-        };
-        buffCasts = new Dictionary<SpellTypes, int> 
-        {
+
             [SpellTypes.Predation] = 1,
             [SpellTypes.Valor] = 1,
             [SpellTypes.Speed] = 1,
             [SpellTypes.Shield] = 1,
-        };
-        advancedCasts = new Dictionary<SpellTypes, int> 
-        {
+
             [SpellTypes.Pyre] = 1,
             [SpellTypes.IceBlast] = 2,
             [SpellTypes.ForkLightning] = 1,

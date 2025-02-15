@@ -22,6 +22,8 @@ public class UpgradeMenu : MonoBehaviour
     public TextMeshProUGUI CurrentPrefabs;
     public TextMeshProUGUI CurrentMS;
 
+    Dictionary<UpgradePrefab, BuildingUpgrade> upgradePrefabs;
+
     public void Open(ConstructibleBuilding building)
     {
         ClearFolder();
@@ -33,7 +35,9 @@ public class UpgradeMenu : MonoBehaviour
         CurrentPrefabs.text = building.Owner.constructionResources.Prefabs.ToString();
         CurrentMS.text = building.Owner.constructionResources.ManaStones.ToString();
 
-        foreach (var upgrade in building.Upgrades)
+        upgradePrefabs = new Dictionary<UpgradePrefab, BuildingUpgrade>();
+
+        foreach (BuildingUpgrade upgrade in building.Upgrades)
         {
             if (upgrade.built)
                 continue;
@@ -57,10 +61,12 @@ public class UpgradeMenu : MonoBehaviour
                 building.Owner.constructionResources.SpendProvidedResources(upgrade.ResourceToUpgrade);
                 building.Owner.SpendGold(upgrade.GoldCost);
                 RefreshMats(building);
+                RefreshFolderInteractables(building);
                 State.GameManager.StrategyMode.RedrawVillages();
             });
             if (!building.Owner.constructionResources.CanBuildWithCurrentResources(upgrade.ResourceToUpgrade) || upgrade.GoldCost > building.Owner.Gold)
                 currentPrefab.DoUpgrade.interactable = false;
+            upgradePrefabs.Add(currentPrefab, upgrade);
         }
         BuildingFunctinosMenu.Open(building);
         gameObject.SetActive(true);
@@ -75,6 +81,15 @@ public class UpgradeMenu : MonoBehaviour
         CurrentOres.text = building.Owner.constructionResources.Ores.ToString();
         CurrentPrefabs.text = building.Owner.constructionResources.Prefabs.ToString();
         CurrentMS.text = building.Owner.constructionResources.ManaStones.ToString();
+    }
+
+    void RefreshFolderInteractables(ConstructibleBuilding building)
+    {
+        foreach (var item in upgradePrefabs)
+        {
+            if (!building.Owner.constructionResources.CanBuildWithCurrentResources(item.Value.ResourceToUpgrade) || item.Value.GoldCost > building.Owner.Gold)
+                item.Key.DoUpgrade.interactable = false;
+        }
     }
 
     private void ClearFolder()

@@ -10,7 +10,8 @@ public class BuildingConfig
     public bool BuildingSystemEnabled = false;
     [OdinSerialize]
     public int BuildingSystemTurnLockout = 0;
-
+    [OdinSerialize]
+    internal int BuildingPassiveRange = 3;
 
     //Specific Building Settings
     //Work Camp
@@ -56,7 +57,7 @@ public class BuildingConfig
     internal BuildingUpgrade QuarryLeyLineUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 30, 15, 15, 0, 0), "Leyline Tap", "Cosntruct proper protective measures, allowing mana stones to be collected.");
     
     //Caster Tower
-    internal GeneralBuildingConfig CasterTower = new GeneralBuildingConfig(250, 2, -1, 15, 20);
+    internal GeneralBuildingConfig CasterTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
     [OdinSerialize]
     internal int CasterTowerManaChargesMax = 20;
     [OdinSerialize]
@@ -67,9 +68,9 @@ public class BuildingConfig
     internal int CasterTowerBetterTierChargeCost = 3;
     [OdinSerialize]
     internal int CasterTowerBuffChargeCost = 2;
-    internal BuildingUpgrade CasterTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(10, 20, 5, 0, 0, 10), "Improve Tower", "Improve capacity and throughput by installing mana stones. Max mana charges and mana charge regeneration is doubled. Increase range by 1.");
-    internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 10, 15, 0, 5), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool and allows magnitude adjustment.");
-    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(50, 20, 15, 5, 5, 0), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
+    internal BuildingUpgrade CasterTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(), "Improve Tower", "Improve capacity and throughput by installing mana stones. Max mana charges and mana charge regeneration is doubled. Increase range by 1.");
+    internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool and allows magnitude adjustment.");
+    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
     
 }
 
@@ -81,6 +82,8 @@ public class GeneralBuildingConfig
     public int BuildTime = 0;
     [OdinSerialize]
     public int BuildLimit = -1;
+    [OdinSerialize]
+    public bool AICanBuild = true;
     public ConstructionResources Resources = new ConstructionResources();
 
     public GeneralBuildingConfig()

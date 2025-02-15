@@ -101,6 +101,8 @@ public class StrategyMode : SceneBase
 
     bool runningQueued = true;
 
+    bool buildingRangeOn = false;
+
     bool mouseMovementMode = false;
     PathNodeManager arrowManager;
     List<PathNode> queuedPath;
@@ -2517,7 +2519,7 @@ public class StrategyMode : SceneBase
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.CasterTower:
-                                newBuilding = new Quarry(new Vec2i(x,y));
+                                newBuilding = new CasterTower(new Vec2i(x,y));
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
@@ -2558,6 +2560,11 @@ public class StrategyMode : SceneBase
             State.GameManager.OpenMenu();
         }
 
+        if (!buildingRangeOn && !BuildMode)
+        {
+            TilemapLayers[14].ClearAllTiles();
+        }
+        buildingRangeOn = false;
         if (Paused)
             return;
 
@@ -2788,6 +2795,24 @@ public class StrategyMode : SceneBase
                 else if (constructible.upgrading)
                 {
                     VillageTooltip.Text.text += $"\n Upgrading for {constructible.turnsToUpgrade} turn(s)";
+                }
+
+                switch (constructible.buildingType)
+                {
+                    case ConstructibleType.CasterTower:
+                    case ConstructibleType.BarrierTower:
+                    case ConstructibleType.DefEncampment:
+                    case ConstructibleType.AdventureGuild:
+                    case ConstructibleType.BlackMagicTower:
+                    case ConstructibleType.TemporalTower:
+                        buildingRangeOn = true;
+                        foreach (var tile in StrategicUtilities.GetTilesInRange(constructible.Position, Config.BuildCon.BuildingPassiveRange))
+                        {
+                            TilemapLayers[14].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[1]);
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
 

@@ -1658,7 +1658,7 @@ public class MapEditor : SceneBase
                 if (construct.Type == ConstructibleType.Quarry)
                     constructibles.Add(new Quarry(construct.Position));
                 if (construct.Type == ConstructibleType.CasterTower)
-                    constructibles.Add(new Quarry(construct.Position));
+                    constructibles.Add(new CasterTower(construct.Position));
                 /*
                 if (construct.Type == ConstructibleType.Quarry)
                     constructibles.Add(new Quarry(construct.Position));

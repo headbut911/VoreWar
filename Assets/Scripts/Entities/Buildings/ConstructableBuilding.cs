@@ -32,9 +32,6 @@ public abstract class ConstructibleBuilding
 
     [OdinSerialize]
     internal bool enabled = true;
-    [OdinSerialize]
-    internal bool AIenabled;
-
 
     [OdinSerialize]
     internal string Name;
@@ -59,6 +56,7 @@ public abstract class ConstructibleBuilding
     internal abstract void RunBuildingFunction();
     internal void ConstructBuilding() 
     {
+        Owner.Buildings.Add(this);
         turnsToCompletion = baseBuildTurns;
         Owner.constructionResources.SpendProvidedResources(ResourceToBuild);
         Owner.SpendGold(GoldCost);
@@ -66,7 +64,8 @@ public abstract class ConstructibleBuilding
         contstruct.Add(this);
         State.World.Constructibles = contstruct.ToArray();
         State.GameManager.StrategyMode.RedrawVillages();
-
+        State.GameManager.StrategyMode.StatusBarUI.Gold.text = "Gold:" + Owner.Gold;
+        
     }
 
     public void RunBuildingTurn()

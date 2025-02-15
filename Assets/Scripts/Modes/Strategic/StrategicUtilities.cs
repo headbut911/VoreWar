@@ -63,6 +63,35 @@ static class StrategicUtilities
         }
         return hostileArmies.ToArray();
     }
+    public static Army[] GetAllAlliedArmies(Empire empire, bool includeGoblins = false)
+    {
+        List<Army> allyArmies = new List<Army>();
+        foreach (Empire hostileEmpire in State.World.AllActiveEmpires)
+        {
+            if (empire.IsEnemy(hostileEmpire) == true || (includeGoblins == false && hostileEmpire.Team == -200))
+                continue;
+            foreach (Army army in hostileEmpire.Armies)
+            {
+                allyArmies.Add(army);
+            }
+        }
+        return allyArmies.ToArray();
+    }
+
+    public static ConstructibleBuilding[] GetAllHostileBuildings(Empire empire)
+    {
+        List<ConstructibleBuilding> hostileBuildings = new List<ConstructibleBuilding>();
+        foreach (Empire hostileEmpire in State.World.AllActiveEmpires)
+        {
+            if (empire.IsEnemy(hostileEmpire) == false)
+                continue;
+            foreach (ConstructibleBuilding building in hostileEmpire.Buildings)
+            {
+                hostileBuildings.Add(building);
+            }
+        }
+        return hostileBuildings.ToArray();
+    }
 
     public static Army ArmyAt(Vec2i location)
     {
@@ -733,6 +762,50 @@ static class StrategicUtilities
                 return true;
         }
         return false;
+    }    
+
+    internal static List<Army> GetEnemyArmyWithinXTiles(ConstructibleBuilding building, int tiles)
+    {
+        List<Army> armyList = new List<Army>();
+        foreach (Army enemyArmy in GetAllHostileArmies(building.Owner))
+        {
+            if (enemyArmy.Position.GetNumberOfMovesDistance(building.Position) <= tiles)
+                armyList.Add(enemyArmy);
+        }
+        return armyList;
+    }
+    internal static List<Army> GetAllyArmyWithinXTiles(ConstructibleBuilding building, int tiles)
+    {
+        List<Army> armyList = new List<Army>();
+        foreach (Army allyArmy in GetAllAlliedArmies(building.Owner))
+        {
+            if (allyArmy.Position.GetNumberOfMovesDistance(building.Position) <= tiles)
+                armyList.Add(allyArmy);
+        }
+        return armyList;
+    }
+    internal static List<ConstructibleBuilding> GetEnemyBuildingsWithinXTiles(Army army, int tiles)
+    {
+        List<ConstructibleBuilding> buildingList = new List<ConstructibleBuilding>();
+        foreach (ConstructibleBuilding enemyBuilding in GetAllHostileBuildings(army.Empire))
+        {
+            if (enemyBuilding.Position.GetNumberOfMovesDistance(army.Position) <= tiles)
+                buildingList.Add(enemyBuilding);
+        }
+        return buildingList;
+    }
+    internal static List<ConstructibleBuilding> GetActiveEmpireBuildingsWithinXTiles(Army army, int tiles)
+    {
+        List<ConstructibleBuilding> buildingList = new List<ConstructibleBuilding>();
+        foreach (ConstructibleBuilding empireBuilding in army.Empire.Buildings)
+        {
+            if (!empireBuilding.active)
+               continue;
+         
+            if (empireBuilding.Position.GetNumberOfMovesDistance(army.Position) <= tiles)
+                buildingList.Add(empireBuilding);
+        }
+        return buildingList;
     }
 
     internal static void BuyBasicWeapons(Village village)
@@ -1136,6 +1209,27 @@ static class StrategicUtilities
             return true;
         }
         return false;
+    }
+
+    static public List<Vec2i> GetTilesInRange(Vec2i location, int range)
+    {
+        List<Vec2i> tile_positions = new List<Vec2i>();
+        int outer_matrix_cursor = 0;
+        for (int y = location.y + range; y >= location.y - range; y--)
+        {
+            int inner_matrix_cursor = 0;
+            for (int x = location.x + range; x >= location.x - range; x--)
+            {
+                if (x < 0 || y < 0 || x > State.World.Tiles.GetUpperBound(0) || y > State.World.Tiles.GetUpperBound(1))
+                {
+                    inner_matrix_cursor++;
+                    continue;
+                }
+                tile_positions.Add(new Vec2i(x, y));
+            }
+            outer_matrix_cursor++;
+        }
+        return tile_positions;
     }
 }
 

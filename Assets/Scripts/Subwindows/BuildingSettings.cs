@@ -238,6 +238,7 @@ public class BuildingSettings : MonoBehaviour
             BuildingObect.Gold = results[buildingName]["standardInfo"]["gold"].ToObject<int>();
             BuildingObect.BuildTime = results[buildingName]["standardInfo"]["time"].ToObject<int>();
             BuildingObect.BuildLimit = results[buildingName]["standardInfo"]["limit"].ToObject<int>();
+            BuildingObect.AICanBuild = results[buildingName]["standardInfo"]["aicanbuild"].ToObject<bool>();
             BuildingObect.Resources.SetResources(
                 results[buildingName]["standardInfo"]["resource"]["Wood"].ToObject<int>(),
                 results[buildingName]["standardInfo"]["resource"]["Stone"].ToObject<int>(),
@@ -294,13 +295,15 @@ public class BuildingSettings : MonoBehaviour
         public int time { get; set; }
         public int gold { get; set; }
         public int limit { get; set; }
+        public bool aicanbuild { get; set; }
         public ConstructionResourcesTempClass resource { get; set; }
 
-        internal BuildingStandardTempClass(int time, int gold, int limit, ConstructionResources resource)
+        internal BuildingStandardTempClass(int time, int gold, int limit, bool aibuild, ConstructionResources resource)
         {
             this.time = time;
             this.gold = gold;
             this.limit = limit;
+            this.aicanbuild = aibuild;
             this.resource = new ConstructionResourcesTempClass(resource);
         }
     }
@@ -315,7 +318,7 @@ public class BuildingSettings : MonoBehaviour
         public BuildingUpgradeTempClass improveUpgrade { get; set; }
         internal WorkCampTempClass(GeneralBuildingConfig configClass, int goldPerTurn)
         {
-            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.Resources);
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
             this.goldPerTurn = goldPerTurn;
         }
     }
@@ -327,7 +330,7 @@ public class BuildingSettings : MonoBehaviour
         public BuildingUpgradeTempClass carpenterUpgrade { get; set; }
         internal LumberCampTempClass(GeneralBuildingConfig configClass, int cap)
         {
-            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.Resources);
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
             this.workerCap = cap;
         }
     }
