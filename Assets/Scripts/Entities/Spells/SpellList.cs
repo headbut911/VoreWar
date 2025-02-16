@@ -67,6 +67,7 @@ static class SpellList
     static internal readonly DamageSpell FireBomb;
     static internal readonly StatusSpell Bolas;
     static internal readonly Spell SummonDoppelganger;
+    static internal readonly Spell Protect;
 
     //Quicksand
     static internal readonly StatusSpell PreysCurse;
@@ -692,6 +693,23 @@ static class SpellList
             },
         };
         SpellDict[SpellTypes.SummonDoppelganger] = SummonDoppelganger;
+
+        Protect = new Spell()
+        {
+            Name = "Protect",
+            Id = "protect",
+            SpellType = SpellTypes.Protect,
+            Description = "Summons a feral copy of the caster at 50 % of the real caster’s experience.",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Ally },
+            Range = new Range(4),
+            Tier = 3,
+            Resistable = false,
+            OnExecute = (a, t) =>
+            {
+                t.Unit.RestoreBarrier(5);
+            },
+        };
+        SpellDict[SpellTypes.Protect] = Protect;
 
 
         Reanimate = new Spell()

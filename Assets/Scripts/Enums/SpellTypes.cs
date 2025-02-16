@@ -38,6 +38,7 @@
     UnstableMana = 26,
     Meditate = 27,
     Bloodrite = 28,
+    Protect = 29,
 
     ForcePulse = 35,
     Trance = 36,

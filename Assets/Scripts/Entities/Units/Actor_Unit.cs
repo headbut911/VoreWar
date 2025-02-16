@@ -2587,6 +2587,7 @@ public class Actor_Unit
         }        
         int modifiedDamage = CalculateDamageWithResistance(damage, damageType);
         UnitSprite.DisplayDamage(modifiedDamage, spellDamage);
+        modifiedDamage = Unit.DamageBarrier(modifiedDamage);
         SubtractHealth(modifiedDamage);
         if ((State.Rand.NextDouble() > Unit.HealthPct))
         {

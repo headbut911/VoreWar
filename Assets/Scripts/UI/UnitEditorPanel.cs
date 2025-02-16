@@ -17,6 +17,7 @@ public class UnitEditorPanel : CustomizerPanel
     public TextMeshProUGUI TraitList;
     public Slider ExpBar;
     public Slider HealthBar;
+    public Slider BarrierBar;
     public Slider ManaBar;
     public EditStatButton EditStatButtonPrefab;
     public GameObject StatButtonPanel;
@@ -183,6 +184,7 @@ public class UnitEditorPanel : CustomizerPanel
         {
             InfoPanel.ExpBar = ExpBar;
             InfoPanel.HealthBar = HealthBar;
+            InfoPanel.BarrierhBar = BarrierBar;
             InfoPanel.ManaBar = ManaBar;
             UnitEditor = new UnitEditor(actor, this, InfoPanel);
             SetUpRaces();
@@ -228,6 +230,7 @@ public class UnitEditorPanel : CustomizerPanel
         {
             InfoPanel.ExpBar = ExpBar;
             InfoPanel.HealthBar = HealthBar;
+            InfoPanel.BarrierhBar = BarrierBar;
             InfoPanel.ManaBar = ManaBar;
             UnitEditor = new UnitEditor(unit, this, InfoPanel);
             SetUpRaces();

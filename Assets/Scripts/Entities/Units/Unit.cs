@@ -108,6 +108,10 @@ public class Unit
     [OdinSerialize]
     internal int Mana { get; private set; }
 
+    [OdinSerialize]
+    internal int Barrier { get; private set; }
+    [OdinSerialize]
+    internal int MaxBarrier { get; private set; }
     internal int MaxMana => (int)(GetStatBase(Stat.Mind) + GetStatBase(Stat.Will) * 2 * TraitBoosts.ManaMultiplier);
     internal int MaxStamina => (int)((GetStatBase(Stat.Strength) + GetStatBase(Stat.Endurance) * 2) * TraitBoosts.StaminaMultiplier);
 
@@ -543,6 +547,45 @@ public class Unit
         if (Stamina > MaxStamina)
             Stamina = MaxStamina;
     }
+    internal int DamageBarrier(int amount)
+    {
+        int remaining = amount;
+        if (remaining > Barrier)
+        {
+            remaining = amount - Barrier;
+            Barrier = 0;
+            MaxBarrier = 1;
+        }
+        else
+        {
+            remaining = 0;
+            Barrier -= amount;
+            if (Barrier > MaxBarrier)
+                MaxBarrier = Barrier;
+        }
+        return remaining;
+    }
+    internal void RestoreBarrier(int amt)
+    {
+        Barrier += amt;
+        if (Barrier > MaxBarrier)
+            MaxBarrier = Barrier;
+    }
+    internal void RestoreBarrierPct(float pct)
+    {
+        Barrier += (int)(Barrier * pct);
+        if (Barrier > MaxBarrier)
+            MaxBarrier = Barrier;
+    }
+    internal void SetBarrier(int amount)
+    {
+        Barrier = amount;
+        MaxBarrier = amount;
+        if (MaxBarrier <= 0)
+        {
+            MaxBarrier = 1;
+        }
+    }
 
     internal void RestoreStam(int amt)
     {
@@ -636,6 +679,7 @@ public class Unit
         Health = MaxHealth;
         Mana = MaxMana;
         Stamina = MaxStamina;
+        Barrier = 0;
     }
 
     public Unit(int side, Race race, int startingXP, bool predator, UnitType type = UnitType.Soldier, bool immuneToDefectons = false)
@@ -696,6 +740,7 @@ public class Unit
         Health = MaxHealth;
         Mana = MaxMana;
         Stamina = MaxStamina;
+        Barrier = 0;
 
         if (UniformDataStorer.GetUniformOdds(race) >= State.Rand.NextDouble())
         {
@@ -1351,6 +1396,15 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             _stamPct = (float)Stamina / MaxStamina;
             return _stamPct;
+        }
+    }
+        private float _barrierPct = 1f;
+    public float BarrierPct
+    {
+        get
+        {
+            _barrierPct = (float)Barrier / MaxBarrier;
+            return _barrierPct;
         }
     }
 
