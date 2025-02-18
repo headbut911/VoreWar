@@ -2528,6 +2528,11 @@ public class StrategyMode : SceneBase
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
+                            case ConstructibleType.DefEncampment:
+                                newBuilding = new DefenseEncampment(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
                         }
                     }
                     if (Input.GetMouseButtonDown(1))

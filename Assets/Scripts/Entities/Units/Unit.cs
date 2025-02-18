@@ -16,6 +16,7 @@ public enum UnitType
     Adventurer,
     Spawn,
     Boss,
+    Reinforcement,
 }
 
 public enum AIClass

@@ -522,6 +522,7 @@ public class TacticalMode : SceneBase
 
         int summonedUnits = SummonUnits(mapGen, AttackerLeader, DefenderLeader);
         int antSummonedUnits = SummonAnts(mapGen, AttackerLeader, DefenderLeader);
+        int DefCampSummonedUnits = 0;
 
 
         activeSide = armies[0].Side;
@@ -602,7 +603,7 @@ public class TacticalMode : SceneBase
         if (!State.GameManager.PureTactical)
         {
             foreach (ConstructibleBuilding building in attackerBuildingsInRange)
-            {
+            {                
                 if (building is BarrierTower)
                 {
                     BarrierTower barrierTower = (BarrierTower)building;
@@ -658,7 +659,7 @@ public class TacticalMode : SceneBase
                 if (building is CasterTower)
                 {
                     CasterTower casterTower = (CasterTower)building;
-                    Unit newUnit = new NPC_unit(casterTower.SetMagnitude, false, 2, armies[0].Side, Race.Fairies, 0, false);
+                    Unit newUnit = new NPC_unit(10, false, 2, armies[0].Side, Race.Fairies, 0, false);
                     newUnit.Type = UnitType.Summon;
                     newUnit.Name = $"{casterTower.Owner.Name} Tower Mage";
                     Actor_Unit unit = new Actor_Unit(new Vec2i(Config.TacticalSizeX / 2, Config.TacticalSizeY - 1), newUnit);
@@ -818,10 +819,61 @@ public class TacticalMode : SceneBase
 
             foreach (ConstructibleBuilding building in defenderBuildingsInRange)
             {
+                if (building is DefenseEncampment)
+                {
+                    DefenseEncampment defenseEncampment = (DefenseEncampment)building;
+                    int summonCount = (int)Math.Ceiling(attackers.Count() * (Config.BuildCon.DefenseEncampmentArmyPercentage * (defenseEncampment.unitUpgrade.built ? 1.5f : 1)));
+                    while (summonCount > 0 && defenseEncampment.AvailibleDefenders > 0)
+                    {
+                        Empire empire = armies[1].Empire;
+                        float advancedChance = 0.2f * (defenseEncampment.improveUpgrade.built ? 4f : 1);
+                        float unitScale = Config.BuildCon.DefenseEncampmentUnitScale * (defenseEncampment.levelUpgrade.built ? 1.5f : 1);
+                        Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor(empire.Leader.Level * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, armies[1].Side, empire.Race, 0, empire.CanVore);
+                        newUnit.Type = UnitType.Reinforcement;
+                        Actor_Unit unit = new Actor_Unit(mapGen.RandomActorPosition(tiles, BlockedTile, units, TacticalMapGenerator.SpawnLocation.lower, newUnit.GetBestRanged() == null), newUnit);
+                        if (defenseEncampment.improveUpgrade.built)
+                        {
+                            switch (State.Rand.Next(5))
+                            {
+                                case 0:
+                                    newUnit.Items[1] = State.World.ItemRepository.GetItem(ItemType.Helmet);
+                                    break;
+                                case 1:
+                                    newUnit.Items[1] = State.World.ItemRepository.GetItem(ItemType.BodyArmor);
+                                    break;
+                                case 2:
+                                    newUnit.Items[1] = State.World.ItemRepository.GetItem(ItemType.Shoes);
+                                    break;
+                                case 3:
+                                    newUnit.Items[1] = State.World.ItemRepository.GetItem(ItemType.Bolas);
+                                    break;
+                                case 4:
+                                    if (newUnit.GetBestRanged().Range > 2)
+                                    {
+                                        newUnit.Items[1] = State.World.ItemRepository.GetItem(ItemType.Gloves);
+                                    }
+                                    else
+                                    {
+                                        newUnit.Items[1] = State.World.ItemRepository.GetItem(ItemType.Gauntlet);
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        unit.UpdateBestWeapons();
+                        units.Add(unit);
+                        unit.Unit.CurrentLeader = DefenderLeader;
+                        DefCampSummonedUnits++;
+                        defenseEncampment.AvailibleDefenders--;
+                        summonCount--;
+                    }
+                }
+
                 if (building is CasterTower)
                 {
                     CasterTower casterTower = (CasterTower)building;
-                    Unit newUnit = new NPC_unit(casterTower.SetMagnitude, false, 2, armies[1].Side, Race.Fairies, 0, false);
+                    Unit newUnit = new NPC_unit(10, false, 2, armies[1].Side, Race.Fairies, 0, false);
                     newUnit.Type = UnitType.Summon;
                     newUnit.Name = $"{casterTower.Owner.Name} Tower Mage";
                     Actor_Unit unit = new Actor_Unit(new Vec2i(Config.TacticalSizeX / 2, 0), newUnit);
@@ -990,13 +1042,15 @@ public class TacticalMode : SceneBase
             turboMode = false;
             State.Save($"{State.SaveDirectory}Autosave_Battle.sav");
             defectors.DefectReport();
-            if (summonedUnits > 0 || antSummonedUnits > 0)
+            if (summonedUnits > 0 || antSummonedUnits > 0 || DefCampSummonedUnits > 0)
             {
                 string message = "";
                 if (summonedUnits > 0)
                     message += $"{summonedUnits} units were summoned by astral call\n";
                 if (antSummonedUnits > 0)
-                    message += $"{antSummonedUnits} units were summoned by ant pheromones";
+                    message += $"{antSummonedUnits} units were summoned by ant pheromones\n";
+                if (DefCampSummonedUnits > 0)
+                    message += $"{DefCampSummonedUnits} units join as reinforcements";
                 if (AIDefender && AIAttacker)
                     State.GameManager.CreateMessageBox(message, 4);
                 else
@@ -4393,6 +4447,18 @@ Turns: {currentTurn}
             BattleReviewText.SetActive(false);
             foreach (Actor_Unit actor in units.ToList())
             {
+                if (actor.Unit.Type == UnitType.Reinforcement && actor.Unit.IsDead == false)
+                {
+                    List<DefenseEncampment> possible_camps = defenderBuildingsInRange.Where(b => b is DefenseEncampment).Cast<DefenseEncampment>().ToList();
+                    if (possible_camps != null)
+                    {
+                        DefenseEncampment camp = possible_camps.Where(d => d.maxDefenders > d.AvailibleDefenders).First();
+                        if (camp != null)
+                            camp.AvailibleDefenders++;
+                    }
+                    units.Remove(actor);
+                    continue;
+                }
                 actor.Unit.SetSizeToDefault();
                 actor.Unit.EnemiesKilledThisBattle = 0;
                 if (actor.Unit.IsDead && actor.Unit.Type != UnitType.Summon &&

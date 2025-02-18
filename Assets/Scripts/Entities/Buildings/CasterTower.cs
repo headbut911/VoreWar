@@ -11,8 +11,6 @@ class CasterTower : ConstructibleBuilding
     [OdinSerialize]
     internal int ManaCharges;
     [OdinSerialize]
-    internal int SetMagnitude;
-    [OdinSerialize]
     internal Dictionary<SpellTypes,int> spellCasts;
     
     public CasterTower(Vec2i location) : base(location)

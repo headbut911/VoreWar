@@ -8,32 +8,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DefenseEncampmentPanel : MonoBehaviour
-{
+{ 
+    public TextMeshProUGUI CurrentLevel;
+    public TextMeshProUGUI CurrentDefenders;
+    public TextMeshProUGUI MaxDefenders;
+    public TextMeshProUGUI CurrentTrainTime;
 
-    public GameObject MendingHolder;
-    public GameObject EnhanceHolder;
-    public GameObject Core2Holder;
-    public GameObject Core3Holder;
-    
-    public TextMeshProUGUI CurrentPotentialDowntime;
-    public TextMeshProUGUI SlotOneDowntime;
-    public TextMeshProUGUI SlotTwoDowntime;
-    public TextMeshProUGUI SlotThreeDowntime;
-
-    public TextMeshProUGUI BarrierMagnitude;
-    public Slider BarrierMagnitudeSlider;
-    public TextMeshProUGUI MendingMagnitude;
-    public Slider MendingMagnitudeSlider;
-    public TextMeshProUGUI EmpowerMagnitude;
-    public Slider EmpowerMagnitudeSlider;
-
-    public Toggle CoreProtection;
-
-    BarrierTower BarrierTower;
+    DefenseEncampment DefenseEncampment;
 
     public void Open(ConstructibleBuilding building)
     {
-        
+        DefenseEncampment = (DefenseEncampment)building;
+        float unitScale = Config.BuildCon.DefenseEncampmentUnitScale * (DefenseEncampment.levelUpgrade.built ? 1.5f : 1);
+        CurrentLevel.text = ((int)Mathf.Max(Mathf.Floor(building.Owner.Leader.Level * unitScale), 1)).ToString();
+        CurrentDefenders.text = DefenseEncampment.AvailibleDefenders.ToString();
+        MaxDefenders.text = DefenseEncampment.maxDefenders.ToString();
+        CurrentTrainTime.text = DefenseEncampment.TrainTimer.ToString();
     }
 
 }

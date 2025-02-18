@@ -11,11 +11,7 @@ using UnityEngine.UI;
 public class CasterTowerPanel : MonoBehaviour
 {
 
-    public GameObject MagnitudeHolder;
     public GameObject SpellCountHolder;
-
-    public TextMeshProUGUI Magnitude;
-    public Slider MagnitudeSlider;
 
     public TextMeshProUGUI FireballCasts;
     public Slider valueFireballCasts;
@@ -107,11 +103,6 @@ public class CasterTowerPanel : MonoBehaviour
             CasterTower.spellCasts[SpellTypes.ForkLightning] = (int)newVal;
             ForkLightingCasts.text = valueForkLightingCasts.value.ToString();
         });
-        MagnitudeSlider.onValueChanged.AddListenerOnce((float newVal) =>
-        {
-            CasterTower.SetMagnitude = (int)newVal;
-            Magnitude.text = MagnitudeSlider.value.ToString();
-        });
         UpdateVisibility();
     }
 
@@ -126,14 +117,6 @@ public class CasterTowerPanel : MonoBehaviour
             SpellCountHolder.gameObject.SetActive(false);
         }
 
-        if (CasterTower.forceUpgrade.built) 
-        { 
-            MagnitudeHolder.gameObject.SetActive(true);
-        }
-        else
-        {
-            MagnitudeHolder.gameObject.SetActive(false);
-        }
         valuePredationCasts.interactable = CasterTower.buffUpgrade.built;
         valueValorCasts.interactable = CasterTower.buffUpgrade.built;
         valueSpeedCasts.interactable = CasterTower.buffUpgrade.built;
@@ -143,7 +126,6 @@ public class CasterTowerPanel : MonoBehaviour
         valueIceBlastCasts.interactable = CasterTower.forceUpgrade.built;
         valueFlambergeCasts.interactable = CasterTower.forceUpgrade.built;
         valueForkLightingCasts.interactable = CasterTower.forceUpgrade.built;
-        MagnitudeSlider.interactable = CasterTower.forceUpgrade.built;
     }
 
     void UpdateTextValues()
@@ -159,7 +141,6 @@ public class CasterTowerPanel : MonoBehaviour
         IceBlastCasts.text = valueIceBlastCasts.value.ToString();
         FlambergeCasts.text = valueFlambergeCasts.value.ToString();
         ForkLightingCasts.text = valueForkLightingCasts.value.ToString();
-        Magnitude.text = MagnitudeSlider.value.ToString();
     }
     void UpdateSliderValues()
     {

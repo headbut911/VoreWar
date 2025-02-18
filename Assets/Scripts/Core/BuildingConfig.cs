@@ -68,9 +68,9 @@ public class BuildingConfig
     internal int CasterTowerBetterTierChargeCost = 3;
     [OdinSerialize]
     internal int CasterTowerBuffChargeCost = 2;
-    internal BuildingUpgrade CasterTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(25,25,0,0,0,10), "Improve Tower", "Improve capacity and throughput by installing mana stones. Max mana charges and mana charge regeneration is doubled.");
-    internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10,10,0,15,0,5), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool and allows magnitude adjustment.");
-    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(50, 20, 15, 5, 5, 0), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
+    internal BuildingUpgrade CasterTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(), "Improve Tower", "Improve capacity and throughput by installing mana stones. Max mana charges and mana charge regeneration is doubled.");
+    internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool.");
+    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
     
     //Barrier Tower
     internal GeneralBuildingConfig BarrierTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
@@ -85,10 +85,16 @@ public class BuildingConfig
     //Defense Encampment
     internal GeneralBuildingConfig DefenseEncampment = new GeneralBuildingConfig(250, 2, -1, 0, 0);
     [OdinSerialize]
-    internal int DefenseEncampmentBaseBarrierStrength = 10;
-    internal BuildingUpgrade DefenseEncampmentImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(), "Improve Tower", "Boosts tower funciton by installing mana stones. Adds two parallel casts, both with individual downtimes.");
-    internal BuildingUpgrade DefenseEncampmentHealUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(), "Soothing Barrier", "Barriers are infused with resotrative properties, tower applies a long lasting mending status to all ally units.");
-    internal BuildingUpgrade DefenseEncampmentBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(), "Invigorating Barrier", "Barriers are infused with empowering properties, tower applies an empowered buff to all ally units.");
+    internal float DefenseEncampmentArmyPercentage = 0.2f;
+    [OdinSerialize]
+    internal float DefenseEncampmentUnitScale = 0.5f;
+    [OdinSerialize]
+    internal float DefenseEncampmentMaxGarrisonSizeScale = 0.5f;
+    [OdinSerialize]
+    internal int DefenseEncampmentTrainTime = 4;
+    internal BuildingUpgrade DefenseEncampmentImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(), "Improve Equipment", "Invest in better gear. Units will now come with one random equipment. They also have a higher chance to use a heavy weapon.");
+    internal BuildingUpgrade DefenseEncampmentUnitsUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(), "Bastion", "The amount of units that reinforce the battle is increased by 50%. Increase maximum reinforcemets by 50%");
+    internal BuildingUpgrade DefenseEncampmentLevelUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(), "Tactical Training", "Construct training grounds. Increases how well units scale with leader's level by 50%. Halve unit training time.");
     
 }
 

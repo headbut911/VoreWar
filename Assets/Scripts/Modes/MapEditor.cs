@@ -1438,6 +1438,13 @@ public class MapEditor : SceneBase
                     State.World.Constructibles = contstruct.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
+                case MapBuildingType.DefEncampment:
+                    DefenseEncampment newDefenseEncampment = new DefenseEncampment(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newDefenseEncampment);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
             }
             RedrawTiles();
             RedrawVillages();
@@ -1668,28 +1675,8 @@ public class MapEditor : SceneBase
                     constructibles.Add(new CasterTower(construct.Position));
                 if (construct.Type == ConstructibleType.BarrierTower)
                     constructibles.Add(new BarrierTower(construct.Position));
-                /*
-                if (construct.Type == ConstructibleType.Quarry)
-                    constructibles.Add(new Quarry(construct.Position));
-                if (construct.Type == ConstructibleType.CasterTower)
-                    constructibles.Add(new CasterTower(construct.Position));
-                if (construct.Type == ConstructibleType.BarrierTower)
-                    constructibles.Add(new BarrierTower(construct.Position));
                 if (construct.Type == ConstructibleType.DefEncampment)
-                    constructibles.Add(new DefEncampment(construct.Position));
-                if (construct.Type == ConstructibleType.AdventureGuild)
-                    constructibles.Add(new AdventureGuild(construct.Position));
-                if (construct.Type == ConstructibleType.BlackMagicTower)
-                    constructibles.Add(new BlackMagicTower(construct.Position));
-                if (construct.Type == ConstructibleType.TemporalTower)
-                    constructibles.Add(new TemporalTower(construct.Position));
-                if (construct.Type == ConstructibleType.Laborotory)
-                    constructibles.Add(new Laborotory(construct.Position));
-                if (construct.Type == ConstructibleType.Teleporter)
-                    constructibles.Add(new Teleporter(construct.Position));
-                if (construct.Type == ConstructibleType.TownHall)
-                    constructibles.Add(new TownHall(construct.Position));
-                */
+                    constructibles.Add(new DefenseEncampment(construct.Position));
             }
             if (constructibles.Count > 0)
                 State.World.Constructibles = constructibles.ToArray();

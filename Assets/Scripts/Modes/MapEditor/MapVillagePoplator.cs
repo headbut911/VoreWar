@@ -126,30 +126,8 @@ class MapVillagePopulator
                 newConstructibles.Add(new CasterTower(map.constructibles[i].Position));
             if (map.constructibles[i].Type == ConstructibleType.BarrierTower)
                 newConstructibles.Add(new BarrierTower(map.constructibles[i].Position));
-            /*
-            if (map.constructibles[i].Type == ConstructibleType.LumberSite)
-                newConstructibles.Add(new LumberSite(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.Quarry)
-                newConstructibles.Add(new Quarry(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.CasterTower)
-                newConstructibles.Add(new CasterTower(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.BarrierTower)
-                newConstructibles.Add(new BarrierTower(map.constructibles[i].Position));
             if (map.constructibles[i].Type == ConstructibleType.DefEncampment)
-                newConstructibles.Add(new DefEncampment(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.AdventureGuild)
-                newConstructibles.Add(new AdventureGuild(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.BlackMagicTower)
-                newConstructibles.Add(new BlackMagicTower(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.TemporalTower)
-                newConstructibles.Add(new TemporalTower(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.Laborotory)
-                newConstructibles.Add(new Laborotory(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.Teleporter)
-                newConstructibles.Add(new Teleporter(map.constructibles[i].Position));
-            if (map.constructibles[i].Type == ConstructibleType.TownHall)
-                newConstructibles.Add(new TownHall(map.constructibles[i].Position));
-            */
+                newConstructibles.Add(new DefenseEncampment(map.constructibles[i].Position));
         }
         claimables = newConstructibles.ToArray();
     }

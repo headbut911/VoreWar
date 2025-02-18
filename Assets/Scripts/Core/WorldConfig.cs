@@ -357,6 +357,7 @@ public class WorldConfig
             new Quarry(null),
             new CasterTower(null),
             new BarrierTower(null),
+            new DefenseEncampment(null),
         };
     }
 

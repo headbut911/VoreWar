@@ -18,6 +18,7 @@ public class BuildingFunctionsPanel : MonoBehaviour
     public QuarryPanel Quarry;
     public CasterTowerPanel CasterTower;
     public BarrierTowerPanel BarrierTower;
+    public DefenseEncampmentPanel DefenseEncampment;
 
 
     public void Open(ConstructibleBuilding building)
@@ -61,6 +62,12 @@ public class BuildingFunctionsPanel : MonoBehaviour
             ActiveObject.SetActive(true);
             BarrierTower.Open(building);
         }
+        else if (building is DefenseEncampment)
+        {
+            ActiveObject = DefenseEncampment.gameObject;
+            ActiveObject.SetActive(true);
+            DefenseEncampment.Open(building);
+        }
         else
             NoFunction.SetActive(true);
     }
@@ -73,6 +80,9 @@ public class BuildingFunctionsPanel : MonoBehaviour
         WorkCamp.gameObject.SetActive(false);
         LumberSite.gameObject.SetActive(false);
         Quarry.gameObject.SetActive(false);
+        CasterTower.gameObject.SetActive(false);
+        BarrierTower.gameObject.SetActive(false);
+        DefenseEncampment.gameObject.SetActive(false);
     }
     public void Close()
     {
