@@ -68,9 +68,27 @@ public class BuildingConfig
     internal int CasterTowerBetterTierChargeCost = 3;
     [OdinSerialize]
     internal int CasterTowerBuffChargeCost = 2;
-    internal BuildingUpgrade CasterTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(), "Improve Tower", "Improve capacity and throughput by installing mana stones. Max mana charges and mana charge regeneration is doubled. Increase range by 1.");
-    internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool and allows magnitude adjustment.");
-    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
+    internal BuildingUpgrade CasterTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(25,25,0,0,0,10), "Improve Tower", "Improve capacity and throughput by installing mana stones. Max mana charges and mana charge regeneration is doubled.");
+    internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10,10,0,15,0,5), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool and allows magnitude adjustment.");
+    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(50, 20, 15, 5, 5, 0), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
+    
+    //Barrier Tower
+    internal GeneralBuildingConfig BarrierTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    [OdinSerialize]
+    internal int BarrierTowerBaseBarrierStrength = 10;
+    [OdinSerialize]
+    internal bool BarrierTowerIgnoreDowntime = false;
+    internal BuildingUpgrade BarrierTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(), "Improve Tower", "Boosts tower funciton by installing mana stones. Adds two parallel casts, both with individual downtimes.");
+    internal BuildingUpgrade BarrierTowerHealUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(), "Soothing Barrier", "Barriers are infused with resotrative properties, tower applies a long lasting mending status to all ally units.");
+    internal BuildingUpgrade BarrierTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(), "Invigorating Barrier", "Barriers are infused with empowering properties, tower applies an empowered buff to all ally units.");
+    
+    //Defense Encampment
+    internal GeneralBuildingConfig DefenseEncampment = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    [OdinSerialize]
+    internal int DefenseEncampmentBaseBarrierStrength = 10;
+    internal BuildingUpgrade DefenseEncampmentImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(), "Improve Tower", "Boosts tower funciton by installing mana stones. Adds two parallel casts, both with individual downtimes.");
+    internal BuildingUpgrade DefenseEncampmentHealUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(), "Soothing Barrier", "Barriers are infused with resotrative properties, tower applies a long lasting mending status to all ally units.");
+    internal BuildingUpgrade DefenseEncampmentBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(), "Invigorating Barrier", "Barriers are infused with empowering properties, tower applies an empowered buff to all ally units.");
     
 }
 

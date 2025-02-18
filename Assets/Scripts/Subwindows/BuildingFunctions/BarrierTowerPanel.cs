@@ -10,85 +10,108 @@ using UnityEngine.UI;
 public class BarrierTowerPanel : MonoBehaviour
 {
 
-    public Button AddWoodWorker;
-    public Button RemoveWoodWorker;
+    public GameObject MendingHolder;
+    public GameObject EnhanceHolder;
+    public GameObject Core2Holder;
+    public GameObject Core3Holder;
     
-    public Button AddGreenhouseWorker;
-    public Button RemoveGreenhouseWorker;
+    public TextMeshProUGUI CurrentPotentialDowntime;
+    public TextMeshProUGUI SlotOneDowntime;
+    public TextMeshProUGUI SlotTwoDowntime;
+    public TextMeshProUGUI SlotThreeDowntime;
 
-    public Button AddCarpenterWorker;
-    public Button RemoveCarpenterWorker;
+    public TextMeshProUGUI BarrierMagnitude;
+    public Slider BarrierMagnitudeSlider;
+    public TextMeshProUGUI MendingMagnitude;
+    public Slider MendingMagnitudeSlider;
+    public TextMeshProUGUI EmpowerMagnitude;
+    public Slider EmpowerMagnitudeSlider;
 
+    public Toggle CoreProtection;
 
-    public TextMeshProUGUI IdleWorkers;
-    public TextMeshProUGUI WoodWorkers;
-    public TextMeshProUGUI NMWorkers;
-    public TextMeshProUGUI PrefabWorkers;
-
-    LumberSite LumberSite;
+    BarrierTower BarrierTower;
 
     public void Open(ConstructibleBuilding building)
     {
-        LumberSite = (LumberSite)building;
-        UpdateVisibility();
+        BarrierTower = (BarrierTower)building;
+        HandleTowerCores();
+        BarrierMagnitude.text = BarrierTower.BarrierMagnitude.ToString();
+        BarrierMagnitudeSlider.value = BarrierTower.BarrierMagnitude;
+        MendingMagnitude.text = BarrierTower.MendingMagnitude.ToString();
+        MendingMagnitudeSlider.value = BarrierTower.MendingMagnitude;
+        EmpowerMagnitude.text = BarrierTower.EmpowerMagnitude.ToString();
+        EmpowerMagnitudeSlider.value = BarrierTower.EmpowerMagnitude;
+        CoreProtection.isOn = BarrierTower.CoreProtection;
+
+        BarrierMagnitudeSlider.onValueChanged.AddListenerOnce((float newVal) =>
+        {
+            BarrierTower.BarrierMagnitude = (int)newVal;
+            BarrierMagnitude.text = newVal.ToString();
+            RefreshDowntimeCalc();
+        });
+        MendingMagnitudeSlider.onValueChanged.AddListenerOnce((float newVal) =>
+        {
+            BarrierTower.MendingMagnitude = (int)newVal;
+            MendingMagnitude.text = newVal.ToString();
+            RefreshDowntimeCalc();
+        });
+        EmpowerMagnitudeSlider.onValueChanged.AddListenerOnce((float newVal) =>
+        {
+            BarrierTower.EmpowerMagnitude = (int)newVal;
+            EmpowerMagnitude.text = newVal.ToString();
+            RefreshDowntimeCalc();
+        });
+        CoreProtection.onValueChanged.AddListener((bool val) =>
+        {
+            BarrierTower.CoreProtection = val;
+        });
+        if (!BarrierTower.healUpgrade.built)
+            MendingHolder.gameObject.SetActive(false);
+        else
+            MendingHolder.gameObject.SetActive(true);
+        if (!BarrierTower.buffUpgrade.built)
+            EnhanceHolder.gameObject.SetActive(false);
+        else
+            EnhanceHolder.gameObject.SetActive(true);
+        if (!BarrierTower.improveUpgrade.built)
+        {
+            Core2Holder.gameObject.SetActive(false);
+            Core3Holder.gameObject.SetActive(false);
+        }
+        else
+        {
+            Core2Holder.gameObject.SetActive(true);
+            Core3Holder.gameObject.SetActive(true);
+        }
     }
 
-    public void AddWoodWorkerButton()
+    public void RefreshDowntimeCalc()
     {
-        LumberSite.woodWorkers++;
-        LumberSite.IdleWorkers--;
-        UpdateVisibility();
+        CurrentPotentialDowntime.text = BarrierTower.CurrentDowntimeValue.ToString();
     }
 
-    public void RemoveWoodWorkerButton()
+    public void HandleTowerCores()
     {
-        LumberSite.woodWorkers--;
-        LumberSite.IdleWorkers++;
-        UpdateVisibility();
+        if (BarrierTower.DowntimeSlot1 > 0)
+            SlotOneDowntime.text = $"Inactive for {BarrierTower.DowntimeSlot1} turn(s)";
+        else
+            SlotOneDowntime.text = "Ready";
+
+        if (BarrierTower.DowntimeSlot2 > 0)
+            SlotTwoDowntime.text = $"Inactive for {BarrierTower.DowntimeSlot2} turn(s)";
+        else
+            SlotTwoDowntime.text = "Ready";
+
+        if (BarrierTower.DowntimeSlot3 > 0)
+            SlotThreeDowntime.text = $"Inactive for {BarrierTower.DowntimeSlot3} turn(s)";
+        else
+            SlotThreeDowntime.text = "Ready";
+
+        if (!BarrierTower.improveUpgrade.built)
+        {
+            SlotTwoDowntime.text = "Unavailable (Requires Improvement Upgrade)";
+            SlotThreeDowntime.text = "Unavailable (Requires Improvement Upgrade)";
+
+        }
     }
-
-    public void AddNMWorkerButton()
-    {
-        LumberSite.natureWorkers++;
-        LumberSite.IdleWorkers--;
-        UpdateVisibility();
-    }
-
-    public void RemovNMWorkerButton()
-    {
-        LumberSite.natureWorkers--;
-        LumberSite.IdleWorkers++;
-        UpdateVisibility();
-    }
-
-    public void AddPrefabWorkerButton()
-    {
-        LumberSite.carpenterWorkers += 2;
-        LumberSite.IdleWorkers -= 2;
-        UpdateVisibility();
-    }
-
-    public void RemovPrefabWorkerButton()
-    {
-        LumberSite.carpenterWorkers -= 2;
-        LumberSite.IdleWorkers += 2;
-        UpdateVisibility();
-    }
-
-    void UpdateVisibility()
-    {
-        RemoveWoodWorker.interactable = LumberSite.woodWorkers > 0;
-        AddWoodWorker.interactable = LumberSite.IdleWorkers > 0;
-        RemoveGreenhouseWorker.interactable = LumberSite.natureWorkers > 0 && LumberSite.greenHouseUpgrade.built;
-        AddGreenhouseWorker.interactable = LumberSite.IdleWorkers > 0 && LumberSite.greenHouseUpgrade.built;
-        RemoveCarpenterWorker.interactable = LumberSite.carpenterWorkers > 0 && LumberSite.carpenterUpgrade.built;
-        AddCarpenterWorker.interactable = LumberSite.IdleWorkers >= 2 && LumberSite.carpenterUpgrade.built;
-
-        IdleWorkers.text = LumberSite.IdleWorkers.ToString();
-        WoodWorkers.text = LumberSite.woodWorkers.ToString();
-        NMWorkers.text = LumberSite.natureWorkers.ToString();
-        PrefabWorkers.text = LumberSite.carpenterWorkers.ToString();
-
-    }
-
 }

@@ -1398,7 +1398,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             return _stamPct;
         }
     }
-        private float _barrierPct = 1f;
+    private float _barrierPct = 1f;
     public float BarrierPct
     {
         get

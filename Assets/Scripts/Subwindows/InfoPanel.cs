@@ -86,7 +86,7 @@ public class InfoPanel
         else
             UnitInfoPanel.ExpBar.value = 1;
         UnitInfoPanel.HealthBar.value = actor.HealthPct;
-        UnitInfoPanel.BarrierhBar.value = actor.BarrierPct;
+        UnitInfoPanel.BarrierBar.value = actor.BarrierPct;
         UnitInfoPanel.ManaBar.value = (float)actor.Mana / actor.MaxMana;
     }
 

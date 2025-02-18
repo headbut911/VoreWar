@@ -1431,6 +1431,13 @@ public class MapEditor : SceneBase
                     State.World.Constructibles = contstruct.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
+                case MapBuildingType.BarrierTower:
+                    BarrierTower newBarrierTower = new BarrierTower(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newBarrierTower);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
             }
             RedrawTiles();
             RedrawVillages();
@@ -1659,6 +1666,8 @@ public class MapEditor : SceneBase
                     constructibles.Add(new Quarry(construct.Position));
                 if (construct.Type == ConstructibleType.CasterTower)
                     constructibles.Add(new CasterTower(construct.Position));
+                if (construct.Type == ConstructibleType.BarrierTower)
+                    constructibles.Add(new BarrierTower(construct.Position));
                 /*
                 if (construct.Type == ConstructibleType.Quarry)
                     constructibles.Add(new Quarry(construct.Position));

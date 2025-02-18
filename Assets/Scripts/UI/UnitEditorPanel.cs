@@ -184,7 +184,7 @@ public class UnitEditorPanel : CustomizerPanel
         {
             InfoPanel.ExpBar = ExpBar;
             InfoPanel.HealthBar = HealthBar;
-            InfoPanel.BarrierhBar = BarrierBar;
+            InfoPanel.BarrierBar = BarrierBar;
             InfoPanel.ManaBar = ManaBar;
             UnitEditor = new UnitEditor(actor, this, InfoPanel);
             SetUpRaces();
@@ -230,7 +230,7 @@ public class UnitEditorPanel : CustomizerPanel
         {
             InfoPanel.ExpBar = ExpBar;
             InfoPanel.HealthBar = HealthBar;
-            InfoPanel.BarrierhBar = BarrierBar;
+            InfoPanel.BarrierBar = BarrierBar;
             InfoPanel.ManaBar = ManaBar;
             UnitEditor = new UnitEditor(unit, this, InfoPanel);
             SetUpRaces();
