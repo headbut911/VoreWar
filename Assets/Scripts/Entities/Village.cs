@@ -494,6 +494,7 @@ public class Village
             Happiness += .2f + ((targetHappy - Happiness) * .03f);
         else
             Happiness -= ((Happiness - targetHappy) * .06f);
+        Happiness += AcademyResearch.GetValueFromEmpire(Empire, AcademyResearchType.Happiness);
         UpdateNetBoosts();
         Growth();
         HealStandbyUnits();

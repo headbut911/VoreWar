@@ -67,6 +67,11 @@ public class Empire
     public Dictionary<int, bool> EventHappened;
 
     [OdinSerialize]
+    public Dictionary<AcademyResearchType, int> AcademyResearchCompleted;
+    [OdinSerialize]
+    public int AcademyUpgradeEXPCost;
+
+    [OdinSerialize]
     public List<int> RecentEvents;
 
     [OdinSerialize]
@@ -195,6 +200,8 @@ public class Empire
         TacticalAIType = args.tacticalAI;
         Boosts = new EmpireBoosts();
         EventHappened = new Dictionary<int, bool>();
+        AcademyUpgradeEXPCost = Config.BuildCon.AcademyUpgradeCost;
+        AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
         RecentEvents = new List<int>();
 
         var raceFlags = State.RaceSettings.GetRaceTraits(Race);
@@ -218,6 +225,8 @@ public class Empire
             Reports = new List<StrategicReport>();
         if (EventHappened == null)
             EventHappened = new Dictionary<int, bool>();
+        if (AcademyResearchCompleted == null)
+            AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
     }
 
     internal void CheckEvent()
@@ -260,12 +269,18 @@ public class Empire
                 Income += Config.GoldMineIncome;
             }
         }
-        foreach (ConstructibleBuilding constructible in State.World.Constructibles)
+        foreach (ConstructibleBuilding constructible in Buildings)
         {
             // Only add building here if it generates or removes income.
-            if (constructible is WorkCamp && constructible.Owner == this)
+            if (constructible is WorkCamp)
             {
                 Income += 10;
+            }
+            if (constructible is Academy)
+            {
+                Academy academy = constructible as Academy;
+                Income -= academy.Income1;
+                Income -= academy.Income2;
             }
         }
         Income += Boosts.WealthAdd;

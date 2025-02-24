@@ -11,12 +11,12 @@
     DefEncampment = 12,
 
     //Utility
-    AdventureGuild = 20,
-    BlackMagicTower = 21,
+    Academy = 20,
+    DarkMagicTower = 21,
     TemporalTower = 22,
 
     //Manupulation
-    Laborotory = 30,
+    Laboratory = 30,
     Teleporter = 31,
     TownHall = 32
 

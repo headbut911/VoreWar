@@ -674,6 +674,7 @@ public class Recruit_Mode : SceneBase
         int effectiveXP = Math.Max((int)(unit.Experience - baseXP), 10);
         int diff = Math.Max((int)(effectiveXP - (unit.SavedCopy?.Experience ?? 0)), 10);
         int cost = 20 + (int)(effectiveXP * 0.1f + 0.2f * diff);
+        cost = (int)Math.Round(cost - (cost * (0.125f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.ImprintCost))));
 
         string previous = "";
 

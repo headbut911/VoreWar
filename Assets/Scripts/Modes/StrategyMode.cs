@@ -2533,6 +2533,36 @@ public class StrategyMode : SceneBase
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
+                            case ConstructibleType.Academy:
+                                newBuilding = new Academy(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
+                            case ConstructibleType.DarkMagicTower:
+                                newBuilding = new BlackMagicTower(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
+                            case ConstructibleType.TemporalTower:
+                                newBuilding = new TemporalTower(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
+                            case ConstructibleType.Laboratory:
+                                newBuilding = new Laboratory(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
+                            case ConstructibleType.Teleporter:
+                                newBuilding = new Teleporter(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
+                            case ConstructibleType.TownHall:
+                                newBuilding = new TownHall(new Vec2i(x,y));
+                                newBuilding.Owner = ActingEmpire;
+                                newBuilding.ConstructBuilding();
+                                break;
                         }
                     }
                     if (Input.GetMouseButtonDown(1))
@@ -2812,8 +2842,8 @@ public class StrategyMode : SceneBase
                     case ConstructibleType.CasterTower:
                     case ConstructibleType.BarrierTower:
                     case ConstructibleType.DefEncampment:
-                    case ConstructibleType.AdventureGuild:
-                    case ConstructibleType.BlackMagicTower:
+                    case ConstructibleType.Academy:
+                    case ConstructibleType.DarkMagicTower:
                     case ConstructibleType.TemporalTower:
                         buildingRangeOn = true;
                         foreach (var tile in StrategicUtilities.GetTilesInRange(constructible.Position, Config.BuildCon.BuildingPassiveRange))

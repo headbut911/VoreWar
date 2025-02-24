@@ -19,6 +19,12 @@ public class BuildingFunctionsPanel : MonoBehaviour
     public CasterTowerPanel CasterTower;
     public BarrierTowerPanel BarrierTower;
     public DefenseEncampmentPanel DefenseEncampment;
+    public AcademyPanel Academy;
+    public BlackMagicTowerPanel BlackMagicTower;
+    public TemporalTowerPanel TemporalTower;
+    public LaboratoryPanel Laborotory;
+    public TeleporterPanel Teleporter;
+    public TownHallPanel TownHall;
 
 
     public void Open(ConstructibleBuilding building)
@@ -68,6 +74,42 @@ public class BuildingFunctionsPanel : MonoBehaviour
             ActiveObject.SetActive(true);
             DefenseEncampment.Open(building);
         }
+        else if (building is Academy)
+        {
+            ActiveObject = Academy.gameObject;
+            ActiveObject.SetActive(true);
+            Academy.Open(building);
+        }
+        else if (building is BlackMagicTower)
+        {
+            ActiveObject = BlackMagicTower.gameObject;
+            ActiveObject.SetActive(true);
+            BlackMagicTower.Open(building);
+        }
+        else if (building is TemporalTower)
+        {
+            ActiveObject = TemporalTower.gameObject;
+            ActiveObject.SetActive(true);
+            TemporalTower.Open(building);
+        }
+        else if (building is Laboratory)
+        {
+            ActiveObject = Laborotory.gameObject;
+            ActiveObject.SetActive(true);
+            Laborotory.Open(building);
+        }
+        else if (building is Teleporter)
+        {
+            ActiveObject = Teleporter.gameObject;
+            ActiveObject.SetActive(true);
+            Teleporter.Open(building);
+        }
+        else if (building is TownHall)
+        {
+            ActiveObject = TownHall.gameObject;
+            ActiveObject.SetActive(true);
+            TownHall.Open(building);
+        }
         else
             NoFunction.SetActive(true);
     }
@@ -83,6 +125,12 @@ public class BuildingFunctionsPanel : MonoBehaviour
         CasterTower.gameObject.SetActive(false);
         BarrierTower.gameObject.SetActive(false);
         DefenseEncampment.gameObject.SetActive(false);
+        Academy.gameObject.SetActive(false);
+        BlackMagicTower.gameObject.SetActive(false);
+        TemporalTower.gameObject.SetActive(false);
+        Laborotory.gameObject.SetActive(false);
+        Teleporter.gameObject.SetActive(false);
+        TownHall.gameObject.SetActive(false);
     }
     public void Close()
     {

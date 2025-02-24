@@ -1445,6 +1445,48 @@ public class MapEditor : SceneBase
                     State.World.Constructibles = contstruct.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
+                case MapBuildingType.AdventureGuild:
+                    Academy newAdventureGuild = new Academy(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newAdventureGuild);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
+                case MapBuildingType.BlackMagicTower:
+                    BlackMagicTower newBlackMagicTower = new BlackMagicTower(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newBlackMagicTower);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
+                case MapBuildingType.TemporalTower:
+                    TemporalTower newTemporalTower = new TemporalTower(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newTemporalTower);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
+                case MapBuildingType.Laborotory:
+                    Laboratory newLaborotory = new Laboratory(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newLaborotory);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
+                case MapBuildingType.Teleporter:
+                    Teleporter newTeleporter = new Teleporter(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newTeleporter);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
+                case MapBuildingType.TownHall:
+                    TownHall newTownHall = new TownHall(clickLocation);
+                    contstruct = State.World.Constructibles.ToList();
+                    contstruct.Add(newTownHall);
+                    State.World.Constructibles = contstruct.ToArray();
+                    LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
+                    break;
             }
             RedrawTiles();
             RedrawVillages();
@@ -1677,6 +1719,18 @@ public class MapEditor : SceneBase
                     constructibles.Add(new BarrierTower(construct.Position));
                 if (construct.Type == ConstructibleType.DefEncampment)
                     constructibles.Add(new DefenseEncampment(construct.Position));
+                if (construct.Type == ConstructibleType.Academy)
+                    constructibles.Add(new Academy(construct.Position));
+                if (construct.Type == ConstructibleType.DarkMagicTower)
+                    constructibles.Add(new BlackMagicTower(construct.Position));
+                if (construct.Type == ConstructibleType.TemporalTower)
+                    constructibles.Add(new TemporalTower(construct.Position));
+                if (construct.Type == ConstructibleType.Laboratory)
+                    constructibles.Add(new Laboratory(construct.Position));
+                if (construct.Type == ConstructibleType.Teleporter)
+                    constructibles.Add(new Teleporter(construct.Position));
+                if (construct.Type == ConstructibleType.TownHall)
+                    constructibles.Add(new TownHall(construct.Position));
             }
             if (constructibles.Count > 0)
                 State.World.Constructibles = constructibles.ToArray();

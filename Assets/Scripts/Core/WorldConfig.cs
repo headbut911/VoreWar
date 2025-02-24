@@ -358,6 +358,12 @@ public class WorldConfig
             new CasterTower(null),
             new BarrierTower(null),
             new DefenseEncampment(null),
+            new Academy(null),
+            new BlackMagicTower(null),
+            new TemporalTower(null),
+            new Laboratory(null),
+            new Teleporter(null),
+            new TownHall(null),
         };
     }
 

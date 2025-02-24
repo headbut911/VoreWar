@@ -199,30 +199,32 @@ public class Army
 
     public int GetMaxMovement()
     {
+        int movement = 0;
         if (Units.Count <= Config.ScoutMax)
         {
             SCooldownOffset = ((Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod) - (int)SCooldown);
             MPMod = Mathf.MoveTowards(MPMod, 0, MPCurve);
             if (-1f > MPMod)
-                return 0;
+                movement = 0;
             else if (Config.ArmyMP < (int)SCooldown)
             {
                 if ((int)SCooldownOffset > 0f)
-                    return ((int)SCooldownOffset);
+                    movement = ((int)SCooldownOffset);
                 else
-                    return 1;
+                    movement = 1;
             }
-            return (Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod);
+            movement = (Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod);
         }
         else
         {
             MPMod = Mathf.MoveTowards(MPMod, 0, MPCurve);
            if (-1f > MPMod)
-                return 0;
+                movement = 0;
            if (SCooldown > (Config.ArmyMP + (int)(Config.ArmyMP * MPMod)))
-                return 1;
-            return Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
+                movement = 1;
+            movement = Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
         }
+        return movement + (int)Math.Floor(AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.ArmyMP));
     }
 
     public void RefreshMovementMode()

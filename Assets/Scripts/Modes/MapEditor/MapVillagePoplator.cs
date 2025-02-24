@@ -128,6 +128,18 @@ class MapVillagePopulator
                 newConstructibles.Add(new BarrierTower(map.constructibles[i].Position));
             if (map.constructibles[i].Type == ConstructibleType.DefEncampment)
                 newConstructibles.Add(new DefenseEncampment(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.Academy)
+                newConstructibles.Add(new Academy(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.DarkMagicTower)
+                newConstructibles.Add(new BlackMagicTower(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.TemporalTower)
+                newConstructibles.Add(new TemporalTower(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.Laboratory)
+                newConstructibles.Add(new Laboratory(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.Teleporter)
+                newConstructibles.Add(new Teleporter(map.constructibles[i].Position));
+            if (map.constructibles[i].Type == ConstructibleType.TownHall)
+                newConstructibles.Add(new TownHall(map.constructibles[i].Position));
         }
         claimables = newConstructibles.ToArray();
     }
