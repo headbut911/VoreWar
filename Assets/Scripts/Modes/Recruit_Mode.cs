@@ -1399,8 +1399,12 @@ public class Recruit_Mode : SceneBase
         }
         List<MercenaryContainer> list;
         list = village.Mercenaries.Concat(village.Adventurers).ToList();
-        foreach (var merc in list)
+        foreach (var mercRaw in list)
         {
+            MercenaryContainer merc = new MercenaryContainer();
+            merc.Unit = mercRaw.Unit;
+            merc.Title = mercRaw.Title;
+            merc.Cost = mercRaw.Cost - (int)Math.Round(mercRaw.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
             GameObject obj = Instantiate(MercenaryScreenUI.HireableObject, MercenaryScreenUI.Folder);
             UIUnitSprite sprite = obj.GetComponentInChildren<UIUnitSprite>();
             Actor_Unit actor = new Actor_Unit(new Vec2i(0, 0), merc.Unit);

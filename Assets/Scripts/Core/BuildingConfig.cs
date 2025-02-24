@@ -114,7 +114,7 @@ public class BuildingConfig
     internal GeneralBuildingConfig DarkMagicTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
     internal BuildingUpgrade DarkMagicTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "Improve Equipment", "Invest in better gear. Units will now come with one random equipment. They also have a higher chance to use a heavy weapon.");
     internal BuildingUpgrade DarkMagicTowerSoulUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "Bastion", "The amount of units that reinforce the battle is increased by 50%. Increase maximum reinforcemets by 50%");
-    internal BuildingUpgrade DarkMagicTowerLevelUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "Tactical Training", "Construct training grounds. Increases how well units scale with leader's level by 50%. Halve unit training time.");
+    internal BuildingUpgrade DarkMagicTowerAfflictionUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "Tactical Training", "Tower spends mana to afflict nearby enemy armies.");
 
 }
 
