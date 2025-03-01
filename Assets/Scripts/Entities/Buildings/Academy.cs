@@ -44,7 +44,7 @@ class Academy : ConstructibleBuilding
         {
             int outgoingEXP = (int)(StoredEXP * DistributedEXP);
             StoredEXP -= outgoingEXP;
-            var armies = StrategicUtilities.GetAllyArmyWithinXTiles(this, 3);
+            var armies = StrategicUtilities.GetAllyArmyWithinXTiles(this, Config.BuildCon.BuildingPassiveRange);
             int unitCount = 0;
             foreach (Army army in armies)
             {

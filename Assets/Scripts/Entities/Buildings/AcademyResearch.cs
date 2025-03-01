@@ -29,6 +29,8 @@ public static class AcademyResearch
 {
     public static float GetValueFromEmpire(Empire empire, AcademyResearchType type)
     {
+        if (empire == null)
+            return 0f;
         if (!empire.AcademyResearchCompleted.Keys.Contains(type))
         {
             return 0;

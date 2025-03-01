@@ -18,4 +18,5 @@ public class AcademyPanelResearchItemPrefab : MonoBehaviour
 
     internal Empire Owner;
     internal AcademyResearchType associatedResearch;
+    internal Func<Empire, int> functinoCall;
 }

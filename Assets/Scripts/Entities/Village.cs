@@ -147,7 +147,8 @@ public class Village
 
         float maxPopCalc = (float)FarmCount + NetBoosts.FarmsEquivalent;
         maxPopCalc *= (float)Config.VillagersPerFarm;
-        Maxpop = (int)(maxPopCalc * NetBoosts.PopulationMaxMult) + NetBoosts.PopulationMaxAdd;
+        Maxpop = (int)(maxPopCalc * NetBoosts.PopulationMaxMult);
+        Maxpop += (int)(Maxpop * (0.1f * AcademyResearch.GetValueFromEmpire(Empire, AcademyResearchType.VilPopMax)));
         VillagePopulation.CheckMaxpop(Maxpop);
 
         int baseGarrisonSize = (State.World.GetEmpireOfSide(Side)?.MaxGarrisonSize ?? 0);
@@ -622,6 +623,8 @@ public class Village
 
             growthPct *= NetBoosts.PopulationGrowthMult;
 
+            growthPct *= 1 + 0.1f * AcademyResearch.GetValueFromEmpire(Empire, AcademyResearchType.PopBreedInc);
+
             double unnamedContrib = 0;
 
             VillagePopulation.Population.ForEach(pop =>
@@ -919,7 +922,7 @@ public class Village
             Empire.RecalculateBoosts(State.World.Villages);
             total += Empire.StartingXP;
         }
-
+        total += 20 * (int)AcademyResearch.GetValueFromEmpire(Empire, AcademyResearchType.StartingEXP);
         return total;
     }
 
@@ -1216,7 +1219,11 @@ public class Village
                 }
                 if (Adventurers?.Count > 0)
                 {
-                    MercenaryContainer merc = Adventurers.OrderByDescending(s => s.Unit.Experience).First();
+                    MercenaryContainer mercRaw = Adventurers.OrderByDescending(s => s.Unit.Experience).First();
+                    MercenaryContainer merc = new MercenaryContainer();
+                    merc.Unit = mercRaw.Unit;
+                    merc.Title = mercRaw.Title;
+                    merc.Cost = mercRaw.Cost - (int)Math.Round(mercRaw.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
                     if (empire.Gold > merc.Cost && StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
                     {
                         HireSpecialUnit(empire, army, merc);
@@ -1225,7 +1232,11 @@ public class Village
                 }
                 if (Mercenaries?.Count > 0 && empire.Gold > 600)
                 {
-                    MercenaryContainer merc = Mercenaries.OrderByDescending(s => s.Unit.Experience).First();
+                    MercenaryContainer mercRaw = Mercenaries.OrderByDescending(s => s.Unit.Experience).First();
+                    MercenaryContainer merc = new MercenaryContainer();
+                    merc.Unit = mercRaw.Unit;
+                    merc.Title = mercRaw.Title;
+                    merc.Cost = mercRaw.Cost - (int)Math.Round(mercRaw.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
                     if (empire.Gold > merc.Cost && StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
                     {
                         HireSpecialUnit(empire, army, merc);

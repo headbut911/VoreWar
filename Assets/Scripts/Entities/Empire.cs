@@ -33,7 +33,11 @@ public class Empire
     [OdinSerialize]
     public int MaxArmySize;
     [OdinSerialize]
+    public int OrigMaxArmySize;
+    [OdinSerialize]
     public int MaxGarrisonSize;
+    [OdinSerialize]
+    public int OrigMaxGarrisonSize;
 
     [OdinSerialize]
     public string Name;
@@ -174,10 +178,13 @@ public class Empire
         Side = args.side;
         Team = args.team;
         MaxArmySize = args.maxArmySize;
+        OrigMaxArmySize = args.maxArmySize;
         MaxGarrisonSize = args.maxGarrisonSize;
+        OrigMaxGarrisonSize = args.maxGarrisonSize;
         Armies = new List<Army>();
         Buildings = new List<ConstructibleBuilding>();
         OwnedTiles = new List<Vec2i>();
+        AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
         constructionResources = new ConstructionResources();
         constructionResources.Reset();
         Name = Race.ToString();
@@ -201,7 +208,6 @@ public class Empire
         Boosts = new EmpireBoosts();
         EventHappened = new Dictionary<int, bool>();
         AcademyUpgradeEXPCost = Config.BuildCon.AcademyUpgradeCost;
-        AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
         RecentEvents = new List<int>();
 
         var raceFlags = State.RaceSettings.GetRaceTraits(Race);
@@ -254,7 +260,8 @@ public class Empire
         {
             for (int i = 0; i < Armies.Count; i++)
             {
-                Income = Income - GetUpkeep();
+                int upkeep = GetUpkeep();
+                Income = Income - (int)(upkeep - (upkeep * 0.125f * AcademyResearch.GetValueFromEmpire(this, AcademyResearchType.GoldMineIncome)));
                 if (AddToStats)
                 {
                     State.World.Stats.CollectedGold(Armies[i].Units.Count * 2, Armies[i].Side);
@@ -266,7 +273,7 @@ public class Empire
         {
             if (claimable is GoldMine && claimable.Owner == this)
             {
-                Income += Config.GoldMineIncome;
+                Income += Config.GoldMineIncome + (int)(Config.GoldMineIncome * 0.125f * AcademyResearch.GetValueFromEmpire(this, AcademyResearchType.GoldMineIncome));
             }
         }
         foreach (ConstructibleBuilding constructible in Buildings)
@@ -467,13 +474,17 @@ public class Empire
                 teamVillageList.Add(theVillage);
             }
         }
-
+        List<Empire> checkedEmpire = new List<Empire>();
         foreach (var village in teamVillageList)
         {
             Boosts.WealthAdd += village.NetBoosts.TeamWealthAdd;
             Boosts.StartingExpAdd += village.NetBoosts.TeamStartingExpAdd;
+            if (!checkedEmpire.Contains(village.Empire))
+            {
+                Boosts.StartingExpAdd += 10 * (int)AcademyResearch.GetValueFromEmpire(village.Empire, AcademyResearchType.TeamEXP);
+                checkedEmpire.Add(village.Empire);
+            }
         }
-
         return Boosts;
     }
 

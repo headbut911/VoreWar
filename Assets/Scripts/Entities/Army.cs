@@ -640,6 +640,7 @@ public class Army
         {
             HealRate = State.World.Villages[InVillageIndex].Healrate();
         }
+        HealRate *= 1 + 0.25f * AcademyResearch.GetValueFromEmpire(Empire, AcademyResearchType.ArmyHealRate);
     }
 
     internal void ProcessInVillageOnTurn()
@@ -720,6 +721,7 @@ public class Army
     internal void Train(int level)
     {
         int xpGain = TrainingGetExpValue(level);
+        xpGain += (int)Math.Round(xpGain * 0.25f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.TrainingEXP));
         int cost = TrainingGetCost(level);
 
         if (empire.Gold >= cost)

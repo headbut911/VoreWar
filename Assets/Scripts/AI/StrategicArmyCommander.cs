@@ -186,13 +186,22 @@ class StrategicArmyCommander
                 {
                     if (Config.AICanHireSpecialMercs)
                     {
-                        foreach (var merc in MercenaryHouse.UniqueMercs.OrderByDescending(s => s.Cost))
+                        foreach (var mercRaw in MercenaryHouse.UniqueMercs.OrderByDescending(s => s.Cost))
                         {
+
+                            MercenaryContainer merc = new MercenaryContainer();
+                            merc.Unit = mercRaw.Unit;
+                            merc.Title = mercRaw.Title;
+                            merc.Cost = mercRaw.Cost - (int)Math.Round(mercRaw.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
                             HireSpecialMerc(army, merc);
                         }
                     }
-                    foreach (var merc in mercHouseArmyIsIn.Mercenaries.OrderByDescending(s => s.Unit.Experience / s.Cost))
+                    foreach (var mercRaw in mercHouseArmyIsIn.Mercenaries.OrderByDescending(s => s.Unit.Experience / s.Cost))
                     {
+                        MercenaryContainer merc = new MercenaryContainer();
+                        merc.Unit = mercRaw.Unit;
+                        merc.Title = mercRaw.Title;
+                        merc.Cost = mercRaw.Cost - (int)Math.Round(mercRaw.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
                         HireMerc(army, mercHouseArmyIsIn, merc);
                     }
                 }

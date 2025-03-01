@@ -86,6 +86,7 @@ public class AcademyPanel : MonoBehaviour
             AcademyResearchType type = (AcademyResearchType)j;
             PrefabInstance = Instantiate(Prefab, Folder);
             AcademyPanelResearchItemPrefab newPrefab = PrefabInstance.GetComponent<AcademyPanelResearchItemPrefab>();
+            newPrefab.functinoCall = null;
             switch (type)
             {
                 case AcademyResearchType.ArmyMP:
@@ -115,10 +116,12 @@ public class AcademyPanel : MonoBehaviour
                 case AcademyResearchType.ArmySize:
                     newPrefab.Name.text = "Ancient Formations";
                     newPrefab.Effect.text = "+5% Maximum Army Size";
+                    newPrefab.functinoCall = (e) => e.MaxArmySize = e.OrigMaxArmySize + (int)Math.Ceiling(e.OrigMaxArmySize * 0.05f * (Academy.Owner.AcademyResearchCompleted.Keys.Contains(type) ? Academy.Owner.AcademyResearchCompleted[type] : 0));
                     break;
                 case AcademyResearchType.GarrisonSize:
                     newPrefab.Name.text = "Militia Operation";
                     newPrefab.Effect.text = "+5% Maximum Garrison Size";
+                    newPrefab.functinoCall = (e) => e.MaxArmySize = e.OrigMaxGarrisonSize + (int)Math.Ceiling(e.OrigMaxGarrisonSize * 0.05f * (Academy.Owner.AcademyResearchCompleted.Keys.Contains(type) ? Academy.Owner.AcademyResearchCompleted[type] : 0));
                     break;
                 case AcademyResearchType.FOWSightRange:
                     newPrefab.Name.text = "Low Vision Scouting";
@@ -138,11 +141,11 @@ public class AcademyPanel : MonoBehaviour
                     break;
                 case AcademyResearchType.TeamEXP:
                     newPrefab.Name.text = "Outsourced Training";
-                    newPrefab.Effect.text = "+50 Team EXP";
+                    newPrefab.Effect.text = "+10 Team EXP";
                     break;
                 case AcademyResearchType.StartingEXP:
                     newPrefab.Name.text = "Public Preparedness";
-                    newPrefab.Effect.text = "+100 Starting EXP";
+                    newPrefab.Effect.text = "+20 Starting EXP";
                     break;
                 case AcademyResearchType.UpkeepReduction:
                     newPrefab.Name.text = "Contract Development";
@@ -163,6 +166,10 @@ public class AcademyPanel : MonoBehaviour
                     if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildCon.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
                     {
                         newPrefab.ConductButton.interactable = false;
+                    }
+                    if (newPrefab.functinoCall != null)
+                    {
+                        newPrefab.functinoCall.Invoke(Academy.Owner);
                     }
                 });
                 if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildCon.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
