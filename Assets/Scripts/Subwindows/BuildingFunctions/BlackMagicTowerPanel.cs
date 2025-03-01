@@ -12,25 +12,27 @@ public class BlackMagicTowerPanel : MonoBehaviour
 {
     public GameObject AfflictionHolder;
 
-    public Button SacButton;
-    public Button ResButton;
-
     public Button NecrosisButton;
     public Button ErrosionButton;
     public Button AgonyButton;
     public Button LethargyButton;
     public TextMeshProUGUI AfflictionDescription;
 
+
+    public TextMeshProUGUI PactLevel;
+
     public TextMeshProUGUI SoulPower;
+    public TextMeshProUGUI MaxSP;
 
     BlackMagicTower BlackMagicTower;
     public void Open(ConstructibleBuilding building)
     {
         BlackMagicTower = (BlackMagicTower)building;
-        SacButton.interactable = false;
-        ResButton.interactable = false;
 
-        AfflictionHolder.SetActive(BlackMagicTower.afflictUpgrade.built);
+        SoulPower.text = BlackMagicTower.SoulPower.ToString();
+        MaxSP.text = BlackMagicTower.SoulPowerReq.ToString();
+        PactLevel.text = BlackMagicTower.PactLevel.ToString();
+
         NecrosisButton.onClick.AddListenerOnce(() =>
         {
             UpdateButtonInteract();
@@ -82,8 +84,20 @@ public class BlackMagicTowerPanel : MonoBehaviour
     public void UpdateButtonInteract()
     {
         NecrosisButton.interactable = true;
-        ErrosionButton.interactable = true;
-        AgonyButton.interactable = true;
-        LethargyButton.interactable = true;
+        if (BlackMagicTower.PactLevel > 3)
+            ErrosionButton.interactable = true;
+        else
+            ErrosionButton.interactable = false;
+
+        if (BlackMagicTower.PactLevel > 9)
+            AgonyButton.interactable = true;
+        else
+            AgonyButton.interactable = false;
+
+        if (BlackMagicTower.PactLevel > 6)
+            LethargyButton.interactable = true;
+        else
+            LethargyButton.interactable = false;
+
     }
 }
