@@ -142,11 +142,17 @@ public class BuildingConfig
     [OdinSerialize]
     internal GeneralBuildingConfig DarkMagicTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
     [OdinSerialize]
-    internal int DarkMagicTowerArmyAutoSac = 5;
+    internal int DarkMagicTowerDurationImprovement = 5;
+    [OdinSerialize]
+    internal int DarkMagicTowerAccImprovement = 10;
+    [OdinSerialize]
+    internal int DarkMagicTowerSoulPointBase = 100;
+    [OdinSerialize]
+    internal float DarkMagicTowerSoulPointMult = 1.5f;
     [OdinSerialize]
     internal BuildingUpgrade DarkMagicTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Increased Maximum Pact level to 10");
     [OdinSerialize]
-    internal BuildingUpgrade DarkMagicTowerSoulUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Ally deaths also increase Soul Points.");
+    internal BuildingUpgrade DarkMagicTowerSoulUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Soul points gained are doubled.");
     [OdinSerialize]
     internal BuildingUpgrade DarkMagicTowerAfflictionUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Pact level increases effect of afflictions");
 

@@ -1549,6 +1549,22 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (GetStatusEffect(StatusEffectType.Webbed) != null)
             bonus -= GetStatBase(stat) * .3f;
 
+        if (GetStatusEffect(StatusEffectType.Lethargy) != null)
+        {
+            StatusEffect eff = GetStatusEffect(StatusEffectType.Lethargy);
+            if (stat == Stat.Strength)
+            {
+                bonus -= GetStatBase(stat) * (eff.Strength * eff.Duration / 50);
+            }
+            if (stat == Stat.Dexterity)
+            {
+                bonus -= GetStatBase(stat) * (eff.Strength * eff.Duration / 50);
+            }
+            if (stat == Stat.Agility)
+            {
+                bonus -= GetStatBase(stat) * (eff.Strength * eff.Duration / 50);
+            }
+        }
 
         return Mathf.RoundToInt(bonus);
 
@@ -1687,12 +1703,18 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
     public int Heal(int amount)
     {
         int diff = MaxHealth - Health;
-        Health += amount;
+        int modAmount = amount;
+        if (GetStatusEffect(StatusEffectType.Necrosis) != null)
+        {
+            float effect = 0.25f * GetStatusEffect(StatusEffectType.Necrosis).Strength;
+            modAmount -= (int)Math.Round(modAmount * effect);
+        }
+        Health += modAmount;
         if (Health > MaxHealth)
         {
             Health = MaxHealth;
         }
-        int actualHeal = Math.Min(diff, amount);
+        int actualHeal = Math.Min(diff, modAmount);
         State.GameManager.TacticalMode?.TacticalStats?.RegisterHealing(actualHeal, Side);
         return actualHeal;
     }

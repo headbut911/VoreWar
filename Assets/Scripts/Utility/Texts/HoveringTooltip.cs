@@ -245,6 +245,18 @@ public class HoveringTooltip : MonoBehaviour
                         return $"(Spell) Unit is taking damage over time\nTurns Remaining: {effect.Duration}";
                     case StatusEffectType.DivineShield:
                         return $"(Spell) Unit was embraced by a divine being, providing damage mitigation\nTurns Remaining: {effect.Duration}";
+                    case StatusEffectType.Weakness:
+                        return $"Unit's stats are lowered by {effect.Duration}% for the rest of the battle.";
+                    case StatusEffectType.Bolstered:
+                        return $"Unit's stats are boosted by {effect.Duration}% for the rest of the battle.";
+                    case StatusEffectType.Necrosis:
+                        return $"Unit's healing is reduced by {effect.Strength * 25}% \nTurns Remaining: {effect.Duration}";
+                    case StatusEffectType.Errosion:
+                        return $"Unit's weapo nand digstion damage taken is increased by {effect.Strength * 20}% \nTurns Remaining: {effect.Duration}";
+                    case StatusEffectType.Lethargy:
+                        return $"Unit's Str,Dex, and Agi are reduced by {(effect.Strength * effect.Duration / 50)*100}% \nTurns Remaining: {effect.Duration}";
+                    case StatusEffectType.Agony:
+                        return $"Unit takes an additional 35% weapon damage, which is dealt over the duration of the effect.\n Stored damage: {(int)Math.Round(effect.Strength)}\nIncoming damage: {(int)Math.Round(effect.Strength / effect.Duration)}\n Turns Remaining: {effect.Duration}";
                 }
             }
         }

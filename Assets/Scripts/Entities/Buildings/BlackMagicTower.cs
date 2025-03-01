@@ -17,10 +17,12 @@ class BlackMagicTower : ConstructibleBuilding
     [OdinSerialize]
     internal StatusEffectType Affliction;
 
+    internal int SoulPowerReq => (int)(Config.BuildCon.DarkMagicTowerSoulPointBase + Config.BuildCon.DarkMagicTowerSoulPointBase * (PactLevel * Config.BuildCon.DarkMagicTowerSoulPointMult));
+
     public BlackMagicTower(Vec2i location) : base(location)
     {
         Name = "Dark Magic Tower";
-        Desc = "The dark magic tower can preserve and restore unimprinted units.";
+        Desc = "The dark magic tower can afflict enemy armies with debilitating debuffs in combat.";
         spriteID = 56;
         buildingType = ConstructibleType.DarkMagicTower;
 
@@ -38,7 +40,15 @@ class BlackMagicTower : ConstructibleBuilding
     }
     internal override void RunBuildingFunction()
     {
-
+        if (SoulPower > SoulPowerReq)
+        {
+            SoulPower -= SoulPowerReq;
+            PactLevel++;
+            if (PactLevel >= 10)
+            {
+                PactLevel = 10;
+            }
+        }
     }
 }
 

@@ -70,9 +70,9 @@
     Weakness = 35,
     /// <summary>All stats are increased by 1 + 1% per stack.</summary>
     Bolstered = 36,
-    /// <summary>Healing on unit is reduced</summary>
+    /// <summary>Healing on unit is reduced based on effect strength</summary>
     Necrosis = 37,
-    /// <summary>Unit takes increased damage based on remaining duration</summary>
+    /// <summary>Unit takes increased damage based on effect strength</summary>
     Errosion = 38,
     /// <summary>Unit takes part of the damage it took after this effect expires</summary>
     Agony = 39,

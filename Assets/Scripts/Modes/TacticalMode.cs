@@ -603,7 +603,50 @@ public class TacticalMode : SceneBase
         if (!State.GameManager.PureTactical)
         {
             foreach (ConstructibleBuilding building in attackerBuildingsInRange)
-            {                
+            {
+                if (building is BlackMagicTower)
+                {
+                    BlackMagicTower darkMagicTower = building as BlackMagicTower;
+                    int acc = 5;
+                    int durr = 3;
+                    int eff = 1 + (darkMagicTower.afflictUpgrade.built ? darkMagicTower.PactLevel : 0);
+                    switch (darkMagicTower.Affliction)
+                    {
+                        case StatusEffectType.Necrosis:
+                            if (darkMagicTower.PactLevel >= 1)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            if (darkMagicTower.PactLevel >= 2)
+                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                            break;
+                        case StatusEffectType.Errosion:
+                            if (darkMagicTower.PactLevel >= 4)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            if (darkMagicTower.PactLevel >= 5)
+                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                            break;
+                        case StatusEffectType.Lethargy:
+                            if (darkMagicTower.PactLevel >= 7)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            if (darkMagicTower.PactLevel >= 8)
+                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                            break;
+                        case StatusEffectType.Agony:
+                            if (darkMagicTower.PactLevel >= 10)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            eff = 0;
+                            durr *= 2;
+                            break;
+                        default:
+                            break;
+                    }
+                    foreach (Actor_Unit unit in defenders)
+                    {
+                        if (acc > State.Rand.Next(20))
+                        {
+                            unit.Unit.ApplyStatusEffect(darkMagicTower.Affliction, eff, durr);
+                        }
+                    }
+                }
                 if (building is BarrierTower)
                 {
                     BarrierTower barrierTower = (BarrierTower)building;
@@ -869,7 +912,99 @@ public class TacticalMode : SceneBase
                         summonCount--;
                     }
                 }
-
+                if (building is BarrierTower)
+                {
+                    BarrierTower barrierTower = (BarrierTower)building;
+                    if (barrierTower.AvailCores <= 0)
+                    {
+                        continue;
+                    }
+                    if (barrierTower.CoreProtection && !AIDefender)
+                    {
+                        bool shouldskip = false;
+                        StartCoroutine(WaitForBuildingInput());
+                        var box = Instantiate(State.GameManager.DialogBoxPrefab).GetComponent<DialogBox>();
+                        Action action = delegate ()
+                        {
+                            shouldskip = true;
+                            blockActive = false;
+                        };
+                        box.SetData(action, "No", "Yes", $"Would you like to activate the barrier tower for this battle?\nAvailable Cores: {barrierTower.AvailCores}\nA {barrierTower.CurrentDowntimeValue} turn downtime will be incured if used.", () => blockActive = false);
+                        if (shouldskip)
+                        {
+                            continue;
+                        }
+                    }
+                    if (!Config.BuildCon.BarrierTowerIgnoreDowntime)
+                    {
+                        if (barrierTower.DowntimeSlot1 <= 0)
+                        {
+                            barrierTower.DowntimeSlot1 = barrierTower.CurrentDowntimeValue;
+                        }
+                        else if (barrierTower.DowntimeSlot2 <= 0 && barrierTower.improveUpgrade.built)
+                        {
+                            barrierTower.DowntimeSlot2 = barrierTower.CurrentDowntimeValue;
+                        }
+                        else if (barrierTower.DowntimeSlot3 <= 0 && barrierTower.improveUpgrade.built)
+                        {
+                            barrierTower.DowntimeSlot3 = barrierTower.CurrentDowntimeValue;
+                        }
+                    }
+                    foreach (Actor_Unit unit in defenders)
+                    {
+                        unit.Unit.RestoreBarrier(Config.BuildCon.BarrierTowerBaseBarrierStrength * barrierTower.BarrierMagnitude);
+                        if (barrierTower.healUpgrade.built && barrierTower.MendingMagnitude > 0)
+                        {
+                            unit.Unit.ApplyStatusEffect(StatusEffectType.Mending, barrierTower.MendingMagnitude, 4 + barrierTower.MendingMagnitude);
+                        }
+                        if (barrierTower.buffUpgrade.built && barrierTower.EmpowerMagnitude > 0)
+                        {
+                            unit.Unit.ApplyStatusEffect(StatusEffectType.Empowered, 3f, barrierTower.EmpowerMagnitude);
+                        }
+                    }
+                }
+                if (building is BlackMagicTower)
+                {
+                    BlackMagicTower darkMagicTower = building as BlackMagicTower;
+                    int acc = 5;
+                    int durr = 3;
+                    int eff = 1 + (darkMagicTower.afflictUpgrade.built ? darkMagicTower.PactLevel : 0);
+                    switch (darkMagicTower.Affliction)
+                    {
+                        case StatusEffectType.Necrosis:
+                            if (darkMagicTower.PactLevel >= 1)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            if (darkMagicTower.PactLevel >= 2)
+                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                            break;
+                        case StatusEffectType.Errosion:
+                            if (darkMagicTower.PactLevel >= 4)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            if (darkMagicTower.PactLevel >= 5)
+                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                            break;
+                        case StatusEffectType.Lethargy:
+                            if (darkMagicTower.PactLevel >= 7)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            if (darkMagicTower.PactLevel >= 8)
+                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                            break;
+                        case StatusEffectType.Agony:
+                            if (darkMagicTower.PactLevel >= 10)
+                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                            eff = 0;
+                            break;
+                        default:
+                            break;
+                    }
+                    foreach (Actor_Unit unit in attackers)
+                    {
+                        if (acc > State.Rand.Next(20))
+                        {
+                            unit.Unit.ApplyStatusEffect(darkMagicTower.Affliction, eff, durr);
+                        }
+                    }
+                }
                 if (building is CasterTower)
                 {
                     CasterTower casterTower = (CasterTower)building;
@@ -4447,6 +4582,16 @@ Turns: {currentTurn}
             BattleReviewText.SetActive(false);
             foreach (Actor_Unit actor in units.ToList())
             {
+
+                if (actor.Unit.IsDead)
+                {
+                    List<BlackMagicTower> possible_BlackTowers = defenderBuildingsInRange.Where(b => b is BlackMagicTower).Cast<BlackMagicTower>().ToList();
+                    foreach (BlackMagicTower tower in possible_BlackTowers)
+                    {
+                        tower.SoulPower += actor.Unit.Level * (tower.soulUpgrade.built ? 2 : 1);
+                    }
+                }
+
                 if (actor.Unit.Type == UnitType.Reinforcement && actor.Unit.IsDead == false)
                 {
                     List<DefenseEncampment> possible_camps = defenderBuildingsInRange.Where(b => b is DefenseEncampment).Cast<DefenseEncampment>().ToList();

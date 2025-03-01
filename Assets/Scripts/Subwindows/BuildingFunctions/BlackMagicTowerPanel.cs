@@ -55,8 +55,28 @@ public class BlackMagicTowerPanel : MonoBehaviour
             LethargyButton.interactable = false;
             BlackMagicTower.Affliction = StatusEffectType.Lethargy;
         });
-
         UpdateButtonInteract();
+        switch (BlackMagicTower.Affliction)
+        {
+            case StatusEffectType.Necrosis:
+                NecrosisButton.interactable = false;
+                AfflictionDescription.text = "Necrosis reduces healing of enemy units. Can cause healing to deal damage if the effect is strong enough.";
+                break;
+            case StatusEffectType.Errosion:
+                ErrosionButton.interactable = false;
+                AfflictionDescription.text = "Errosion greatly increases the damage enemy units take during it's duration.";
+                break;
+            case StatusEffectType.Agony:
+                AgonyButton.interactable = false;
+                AfflictionDescription.text = "Agony causes enemy units to take damage over time. It has a longer duration compared to other afflictions.";
+                break;
+            case StatusEffectType.Lethargy:
+                LethargyButton.interactable = false;
+                AfflictionDescription.text = "Lethargy reduces the Strength, Dexterity, and Agility of enemy units, the strength wears off as the effect expires.";
+                break;
+            default:
+                break;
+        }
     }
 
     public void UpdateButtonInteract()

@@ -1051,6 +1051,9 @@ public class Actor_Unit
             if (target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null)
                 damageScalar /= 2;
 
+            if (target.Unit.GetStatusEffect(StatusEffectType.Errosion) != null)
+                damageScalar += damageScalar * (target.Unit.GetStatusEffect(StatusEffectType.Errosion).Strength / 5);
+
             if (Unit.GetStatusEffect(StatusEffectType.Valor) != null)
             {
                 damageScalar *= 1.25f;
@@ -2436,6 +2439,13 @@ public class Actor_Unit
         
         RubCount = 0;
         TurnsSinceLastDamage++;
+        if (Unit.GetStatusEffect(StatusEffectType.Agony) != null)
+        {
+            StatusEffect eff = Unit.GetStatusEffect(StatusEffectType.Agony);
+            int totalDamage = (int)Math.Round(eff.Strength / eff.Duration);
+            Damage(totalDamage, true, true);
+            eff.Strength -= totalDamage;
+        }
     }
 
     //Traits that should be applied before MP is refreshed.
@@ -2589,6 +2599,11 @@ public class Actor_Unit
         UnitSprite.DisplayDamage(modifiedDamage, spellDamage);
         modifiedDamage = Unit.DamageBarrier(modifiedDamage);
         SubtractHealth(modifiedDamage);
+        if (Unit.GetStatusEffect(StatusEffectType.Agony) != null)
+        {
+            StatusEffect eff = Unit.GetStatusEffect(StatusEffectType.Agony);
+            eff.Strength += modifiedDamage * 0.35f;
+        }
         if ((State.Rand.NextDouble() > Unit.HealthPct))
         {
             if (Unit.HasTrait(Traits.Cowardly))
