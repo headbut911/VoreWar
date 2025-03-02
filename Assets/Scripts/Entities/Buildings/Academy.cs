@@ -25,7 +25,7 @@ class Academy : ConstructibleBuilding
         spriteID = 48;
         buildingType = ConstructibleType.Academy;
 
-        ApplyConfigStats(Config.BuildCon.CasterTower);
+        ApplyConfigStats(Config.BuildCon.Academy);
         improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.AcademyImproveUpgrade);
         researchUpgrade = AddUpgrade(researchUpgrade, Config.BuildCon.AcademyResearchUpgrade);
         efficiencyUpgrade = AddUpgrade(efficiencyUpgrade, Config.BuildCon.AcademyEfficiencyUpgrade);

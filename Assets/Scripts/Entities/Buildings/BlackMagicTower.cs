@@ -26,7 +26,7 @@ class BlackMagicTower : ConstructibleBuilding
         spriteID = 56;
         buildingType = ConstructibleType.DarkMagicTower;
 
-        ApplyConfigStats(Config.BuildCon.CasterTower);
+        ApplyConfigStats(Config.BuildCon.DarkMagicTower);
         improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.DarkMagicTowerImproveUpgrade);
         soulUpgrade = AddUpgrade(soulUpgrade, Config.BuildCon.DarkMagicTowerSoulUpgrade);
         afflictUpgrade = AddUpgrade(afflictUpgrade, Config.BuildCon.DarkMagicTowerAfflictionUpgrade);

@@ -156,6 +156,16 @@ public class BuildingConfig
     [OdinSerialize]
     internal BuildingUpgrade DarkMagicTowerAfflictionUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Pact level increases effect of afflictions");
 
+    //Temporal Tower
+    [OdinSerialize]
+    internal GeneralBuildingConfig TemporalTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    [OdinSerialize]
+    internal BuildingUpgrade TemporalTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Tower increases ally empire MP by 1");
+    [OdinSerialize]
+    internal BuildingUpgrade TemporalTowerTuneUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Enemy Empire armies now also have their MP reduced by 1.");
+    [OdinSerialize]
+    internal BuildingUpgrade TemporalTowerDisruptUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Monster armies now have their MP reduced to 1 while within range");
+
 }
 
 public class GeneralBuildingConfig

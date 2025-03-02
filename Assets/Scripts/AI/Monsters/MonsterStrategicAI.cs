@@ -27,6 +27,7 @@ class MonsterStrategicAI : IStrategicAI
     {
         foreach (Army army in empire.Armies.ToList())
         {
+            army.IsMonsterArmy = true;
             if (army.RemainingMP < 1)
                 continue;
             if (path != null && pathIsFor == army)
@@ -364,7 +365,6 @@ class MonsterStrategicAI : IStrategicAI
                 return;
             }
         }
-        Debug.Log(timedMovementType);
         if ((!spawner.MonsterScoutMP) && army.RemainingMP > Config.ArmyMP)
             army.RemainingMP = Config.ArmyMP;
         if(timedMovementType == Config.DayNightMovemntType.Night && !State.World.IsNight && Config.DayNightEnabled) //DayNight Modification (zero's out monster AP based on their settings)

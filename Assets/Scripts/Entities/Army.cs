@@ -96,6 +96,9 @@ public class Army
     [OdinSerialize]
     private ItemStock itemStock;
 
+    [OdinSerialize]
+    public bool IsMonsterArmy = false;
+
     internal ItemStock ItemStock
     {
         get { if (itemStock == null) itemStock = new ItemStock(); return itemStock; }
@@ -224,6 +227,42 @@ public class Army
                 movement = 1;
             movement = Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
         }
+
+        var temporalTowers = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(this, Config.BuildCon.BuildingPassiveRange).Where(b => b is TemporalTower);
+        if (temporalTowers != null)
+        {
+            foreach (var building in temporalTowers)
+            {
+                TemporalTower tower = building as TemporalTower;
+                if (Empire.IsEnemy(tower.Owner))
+                {
+                    if (IsMonsterArmy)
+                    {
+                        if (tower.disruptUpgrade.built)
+                        {
+                            movement = 1;
+                            break;
+                        }
+                        else 
+                        {
+                            movement -= 1;
+                        }
+                    }
+                    else if (tower.tuneUpgrade.built)
+                    {
+                        movement -= 1;
+
+                    }
+                }
+                else if (tower.improveUpgrade.built)
+                {
+                    movement += 1;
+                }
+            }
+        }
+        if (movement < 0)
+            { movement = 0; }
+
         return movement + (int)Math.Floor(AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.ArmyMP));
     }
 

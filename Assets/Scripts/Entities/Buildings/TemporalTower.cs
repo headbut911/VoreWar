@@ -5,8 +5,8 @@ using System.Collections.Generic;
 class TemporalTower : ConstructibleBuilding
 {
     public BuildingUpgrade improveUpgrade;
-    public BuildingUpgrade forceUpgrade;
-    public BuildingUpgrade buffUpgrade;
+    public BuildingUpgrade tuneUpgrade;
+    public BuildingUpgrade disruptUpgrade;
     
     public TemporalTower(Vec2i location) : base(location)
     {
@@ -15,10 +15,10 @@ class TemporalTower : ConstructibleBuilding
         spriteID = 64;
         buildingType = ConstructibleType.TemporalTower;
 
-        ApplyConfigStats(Config.BuildCon.CasterTower);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.CasterTowerImproveUpgrade);
-        forceUpgrade = AddUpgrade(forceUpgrade, Config.BuildCon.CasterTowerForceUpgrade);
-        buffUpgrade = AddUpgrade(buffUpgrade, Config.BuildCon.CasterTowerBuffUpgrade);
+        ApplyConfigStats(Config.BuildCon.TemporalTower);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.TemporalTowerImproveUpgrade);
+        tuneUpgrade = AddUpgrade(tuneUpgrade, Config.BuildCon.TemporalTowerTuneUpgrade);
+        disruptUpgrade = AddUpgrade(disruptUpgrade, Config.BuildCon.TemporalTowerDisruptUpgrade);
     }
     internal override void RunBuildingFunction()
     {
