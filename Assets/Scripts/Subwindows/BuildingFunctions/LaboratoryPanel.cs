@@ -15,6 +15,5 @@ public class LaboratoryPanel : MonoBehaviour
     public void Open(ConstructibleBuilding building)
     {
         Laborotory = (Laboratory)building;
-
     }
 }

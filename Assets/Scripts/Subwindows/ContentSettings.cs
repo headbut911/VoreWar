@@ -1410,7 +1410,7 @@ public class ContentSettings : MonoBehaviour
         PlayerPrefs.SetFloat("DigestionSpeedMult", DigestionSpeedMult.value);
         PlayerPrefs.SetFloat("AbsorbSpeedMult", AbsorbSpeedMult.value);
         PlayerPrefs.SetFloat("BellyRubEffMult", BellyRubEffMult.value);
-        PlayerPrefs.SetInt("BellyRubEffMult", (int)BellyRubsPerTurn.value);
+        PlayerPrefs.SetInt("BellyRubsPerTurn", (int)BellyRubsPerTurn.value);
         PlayerPrefs.SetFloat("DigestionRamp", DigestionRamp.value);
         PlayerPrefs.SetInt("DigestionRampTurn", (int)DigestionRampTurn.value);
         PlayerPrefs.SetInt("DigestionRampCap", (int)DigestionRampCap.value);

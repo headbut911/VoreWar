@@ -73,6 +73,14 @@ public enum CustomTraitComp
     OnLevelUpAllowAnyStat,
     Scale,
     StatMult,
+    StrengthMult,
+    DexterityMult,
+    VoracityMult,
+    AgilityMult,
+    WillMult,
+    MindMult,
+    EnduranceMult,
+    StomachMult,
     VirtualDexMult,
     VirtualStrMult,
     FireDamageTaken,
@@ -190,7 +198,7 @@ public class CustomTrait : MonoBehaviour
         ExternalTraitHandler.CustomTraitRemover(rem);
         if (State.CustomTraitList.Contains(rem))
         {
-            State.CustomTraitList.Remove(rem);
+            State.CustomTraitList.Remove(rem);  
         }
         DiscardClose();
     }
@@ -472,6 +480,38 @@ public class CustomTrait : MonoBehaviour
             case CustomTraitComp.StatMult:
                 ToolTipName.text = "Stat Multiplier";
                 ToolTipDesc.text = "Unit's stats are multiplied by this value.";
+                break;
+            case CustomTraitComp.StrengthMult:
+                ToolTipName.text = "Strength Multiplier";
+                ToolTipDesc.text = "Unit's strength is multiplied by this value.";
+                break;
+            case CustomTraitComp.DexterityMult:
+                ToolTipName.text = "Dexterity Multiplier";
+                ToolTipDesc.text = "Unit's dexterity is multiplied by this value.";
+                break;
+            case CustomTraitComp.VoracityMult:
+                ToolTipName.text = "Voracity Multiplier";
+                ToolTipDesc.text = "Unit's voracity is multiplied by this value.";
+                break;
+            case CustomTraitComp.StomachMult:
+                ToolTipName.text = "Stomach Multiplier";
+                ToolTipDesc.text = "Unit's stomach is multiplied by this value.";
+                break;
+            case CustomTraitComp.AgilityMult:
+                ToolTipName.text = "Agility Multiplier";
+                ToolTipDesc.text = "Unit's agility is multiplied by this value.";
+                break;
+            case CustomTraitComp.EnduranceMult:
+                ToolTipName.text = "Endurance Multiplier";
+                ToolTipDesc.text = "Unit's endurance is multiplied by this value.";
+                break;
+            case CustomTraitComp.MindMult:
+                ToolTipName.text = "Mind Multiplier";
+                ToolTipDesc.text = "Unit's mind is multiplied by this value.";
+                break;
+            case CustomTraitComp.WillMult:
+                ToolTipName.text = "Will Multiplier";
+                ToolTipDesc.text = "Unit's will is multiplied by this value.";
                 break;
             case CustomTraitComp.VirtualDexMult:
                 ToolTipName.text = "Virtual Dexterity Multiplier";

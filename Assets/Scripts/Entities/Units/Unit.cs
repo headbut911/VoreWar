@@ -1576,7 +1576,35 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         total *= GetScale();
 
         total *= TraitBoosts.StatMult;
-
+        switch (stat)
+        {
+            case Stat.Strength:
+                total *= TraitBoosts.StrengthMult;
+                break;
+            case Stat.Dexterity:
+                total *= TraitBoosts.DexterityMult;
+                break;
+            case Stat.Voracity:
+                total *= TraitBoosts.VoracityMult;
+                break;
+            case Stat.Agility:
+                total *= TraitBoosts.AgilityMult;
+                break;
+            case Stat.Will:
+                total *= TraitBoosts.WillMult;
+                break;
+            case Stat.Mind:
+                total *= TraitBoosts.MindMult;
+                break;
+            case Stat.Endurance:
+                total *= TraitBoosts.EnduranceMult;
+                break;
+            case Stat.Stomach:
+                total *= TraitBoosts.StomachMult;
+                break;
+            default:
+                break;
+        }
         if (total < 1)
             return 1;
 

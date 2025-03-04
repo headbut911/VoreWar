@@ -76,6 +76,14 @@ class PermanentBoosts
     internal bool OnLevelUpAllowAnyStat = false;
     internal float Scale = 1f;
     internal float StatMult = 1f;
+    internal float StrengthMult = 1f;
+    internal float DexterityMult = 1f;
+    internal float VoracityMult = 1f;
+    internal float AgilityMult = 1f;
+    internal float WillMult = 1f;
+    internal float MindMult = 1f;
+    internal float EnduranceMult = 1f;
+    internal float StomachMult = 1f;
     internal float VirtualDexMult = 1;
     internal float VirtualStrMult = 1;
     internal float FireDamageTaken = 1;

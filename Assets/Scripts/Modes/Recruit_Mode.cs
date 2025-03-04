@@ -42,6 +42,7 @@ public class Recruit_Mode : SceneBase
     public ConfigAutoLevelUpPanel ConfigAutoLevelUpUI;
     public RecruitUI RaceUI;
     public RecruitUI PopUI;
+    public PotionInv potionInv;
 
     public RecruitCheatsPanel CheatMenu;
 
@@ -429,6 +430,7 @@ public class Recruit_Mode : SceneBase
                 VillageUI.gameObject.SetActive(false);
                 CustomizerUI.gameObject.SetActive(false);
                 ShopUI.gameObject.SetActive(false);
+                potionInv.gameObject.SetActive(false);
                 HireUI.gameObject.SetActive(false);
                 BulkBuyUI.gameObject.SetActive(false);
                 RenameUI.gameObject.SetActive(false);
@@ -507,6 +509,14 @@ public class Recruit_Mode : SceneBase
                 }
                 SetUpPopUI();
                 BlockerUI.SetActive(true);
+                break;
+            case 40:
+                BlockerUI.SetActive(true);
+                BuildPotionInventory();
+                break;
+
+            case 50:
+                UpdateUnitInfoPanel();
                 break;
 
             case 60:
@@ -1237,6 +1247,24 @@ public class Recruit_Mode : SceneBase
             {
                 shop = new Shop(empire, village, unit, army, ShopUI, village != null);
                 ShopUI.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    void BuildPotionInventory()
+    {
+        if (army.Units.Count > selectedIndex)
+        {
+            Unit unit = army.Units[selectedIndex];
+            if (unit != null)
+            {
+                potionInv.gameObject.SetActive(true);
+                LaboratoryPotion testPot = new LaboratoryPotion();
+                testPot.AddStatMod(Stat.Endurance, 15);
+                testPot.AddStatMod(Stat.Agility, -15);
+                testPot.AddPositiveTrait(Traits.AccuteDodge);
+                empire.EmpirePotions.Add(testPot, 3);
+                potionInv.Open(empire, unit);
             }
         }
     }

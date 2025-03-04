@@ -76,6 +76,9 @@ public class Empire
     public int AcademyUpgradeEXPCost;
 
     [OdinSerialize]
+    public Dictionary<LaboratoryPotion, int> EmpirePotions;
+
+    [OdinSerialize]
     public List<int> RecentEvents;
 
     [OdinSerialize]
@@ -185,6 +188,7 @@ public class Empire
         Buildings = new List<ConstructibleBuilding>();
         OwnedTiles = new List<Vec2i>();
         AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
+        EmpirePotions = new Dictionary<LaboratoryPotion, int>();
         constructionResources = new ConstructionResources();
         constructionResources.Reset();
         Name = Race.ToString();
@@ -233,6 +237,8 @@ public class Empire
             EventHappened = new Dictionary<int, bool>();
         if (AcademyResearchCompleted == null)
             AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
+        if (EmpirePotions == null)
+            EmpirePotions = new Dictionary<LaboratoryPotion, int>();
     }
 
     internal void CheckEvent()

@@ -213,6 +213,30 @@ public class CustomTraitBoost
                         case CustomTraitComp.StatMult:
                             s.StatMult *= value;
                             break;
+                        case CustomTraitComp.StrengthMult:
+                            s.StrengthMult *= value;
+                            break;
+                        case CustomTraitComp.DexterityMult:
+                            s.DexterityMult *= value;
+                            break;
+                        case CustomTraitComp.VoracityMult:
+                            s.VoracityMult *= value;
+                            break;
+                        case CustomTraitComp.AgilityMult:
+                            s.AgilityMult *= value;
+                            break;
+                        case CustomTraitComp.WillMult:
+                            s.WillMult *= value;
+                            break;
+                        case CustomTraitComp.MindMult:
+                            s.MindMult *= value;
+                            break;
+                        case CustomTraitComp.EnduranceMult:
+                            s.EnduranceMult *= value;
+                            break;
+                        case CustomTraitComp.StomachMult:
+                            s.StomachMult *= value;
+                            break;
                         case CustomTraitComp.VirtualDexMult:
                             s.VirtualDexMult *= value;
                             break;
