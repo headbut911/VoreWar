@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class ContentSettings : MonoBehaviour
 {
+    public GameObject[] SettingsPanels;
     public Slider FemaleFraction;
     public Slider HermFraction;
     public Slider HermNameFraction;
@@ -197,23 +198,7 @@ public class ContentSettings : MonoBehaviour
 
     public Text TooltipText;
 
-    public GameObject GameplayPanel;
-    public GameObject RacesPanel;
-    public GameObject GenderPanel;
-    public GameObject AppearancePanel;
-    public GameObject VoreMiscPanel;
-    public GameObject VoreMisc2Panel;
-    public GameObject VoreMisc3Panel;
-    public GameObject BuildingPanel;
-
-    public Button GameplayButton;
-    public Button RacesButton;
-    public Button GenderButton;
-    public Button AppearanceButton;
-    public Button VoreMiscButton;
-    public Button VoreMisc2Button;
-    public Button VoreMisc3Button;
-    public Button BuildingButton;
+    public TMP_Dropdown PageSelector;
 
     List<ToggleObject> Toggles;
 
@@ -579,161 +564,13 @@ public class ContentSettings : MonoBehaviour
     }
 
 
-    public void ActivateGameplay()
+    public void ActivatePage()
     {
-        GameplayPanel.SetActive(true);
-        RacesPanel.SetActive(false);
-        GenderPanel.SetActive(false);
-        AppearancePanel.SetActive(false);
-        VoreMiscPanel.SetActive(false);
-        VoreMisc2Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(false);
-        BuildingPanel.SetActive(false);
-        GameplayButton.interactable = false;
-        RacesButton.interactable = true;
-        GenderButton.interactable = true;
-        AppearanceButton.interactable = true;
-        VoreMiscButton.interactable = true;
-        VoreMisc2Button.interactable = true;
-        VoreMisc3Button.interactable = true;
-        BuildingButton.interactable = true;
-    }
-
-    public void ActivateRaces()
-    {
-        GameplayPanel.SetActive(false);
-        RacesPanel.SetActive(true);
-        GenderPanel.SetActive(false);
-        AppearancePanel.SetActive(false);
-        VoreMiscPanel.SetActive(false);
-        VoreMisc2Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(false);
-        BuildingPanel.SetActive(false);
-        GameplayButton.interactable = true;
-        RacesButton.interactable = false;
-        GenderButton.interactable = true;
-        AppearanceButton.interactable = true;
-        VoreMiscButton.interactable = true;
-        VoreMisc2Button.interactable = true;
-        VoreMisc3Button.interactable = true;
-        BuildingButton.interactable = true;
-        MonsterSpawnerFolder.position = new Vector3();
-    }
-    public void ActivateGender()
-    {
-        GameplayPanel.SetActive(false);
-        RacesPanel.SetActive(false);
-        GenderPanel.SetActive(true);
-        AppearancePanel.SetActive(false);
-        VoreMiscPanel.SetActive(false);
-        VoreMisc2Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(false);
-        BuildingPanel.SetActive(false);
-        GameplayButton.interactable = true;
-        RacesButton.interactable = true;
-        GenderButton.interactable = false;
-        AppearanceButton.interactable = true;
-        VoreMiscButton.interactable = true;
-        VoreMisc2Button.interactable = true;
-        BuildingButton.interactable = true;
-    }
-    public void ActivateAppearance()
-    {
-        GameplayPanel.SetActive(false);
-        RacesPanel.SetActive(false);
-        GenderPanel.SetActive(false);
-        AppearancePanel.SetActive(true);
-        VoreMiscPanel.SetActive(false);
-        VoreMisc2Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(false);
-        BuildingPanel.SetActive(false);
-        GameplayButton.interactable = true;
-        RacesButton.interactable = true;
-        GenderButton.interactable = true;
-        AppearanceButton.interactable = false;
-        VoreMiscButton.interactable = true;
-        VoreMisc2Button.interactable = true;
-        VoreMisc3Button.interactable = true;
-        BuildingButton.interactable = true;
-    }
-
-    public void ActivateVoreMisc()
-    {
-        GameplayPanel.SetActive(false);
-        RacesPanel.SetActive(false);
-        GenderPanel.SetActive(false);
-        AppearancePanel.SetActive(false);
-        VoreMiscPanel.SetActive(true);
-        VoreMisc2Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(false);
-        BuildingPanel.SetActive(false);
-        GameplayButton.interactable = true;
-        RacesButton.interactable = true;
-        GenderButton.interactable = true;
-        AppearanceButton.interactable = true;
-        VoreMiscButton.interactable = false;
-        VoreMisc2Button.interactable = true;
-        VoreMisc3Button.interactable = true;
-        BuildingButton.interactable = true;
-    }
-
-    public void ActivateVoreMisc2()
-    {
-        GameplayPanel.SetActive(false);
-        RacesPanel.SetActive(false);
-        GenderPanel.SetActive(false);
-        AppearancePanel.SetActive(false);
-        VoreMiscPanel.SetActive(false);
-        VoreMisc2Panel.SetActive(true);
-        VoreMisc3Panel.SetActive(false);
-        BuildingPanel.SetActive(false);
-        GameplayButton.interactable = true;
-        RacesButton.interactable = true;
-        GenderButton.interactable = true;
-        AppearanceButton.interactable = true;
-        VoreMiscButton.interactable = true;
-        VoreMisc2Button.interactable = false;
-        VoreMisc3Button.interactable = true;
-        BuildingButton.interactable = true;
-    }
-    public void ActivateVoreMisc3()
-    {
-        GameplayPanel.SetActive(false);
-        RacesPanel.SetActive(false);
-        GenderPanel.SetActive(false);
-        AppearancePanel.SetActive(false);
-        VoreMiscPanel.SetActive(false);
-        VoreMisc2Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(true);
-        BuildingPanel.SetActive(false);
-        GameplayButton.interactable = true;
-        RacesButton.interactable = true;
-        GenderButton.interactable = true;
-        AppearanceButton.interactable = true;
-        VoreMiscButton.interactable = true;
-        VoreMisc2Button.interactable = true;
-        VoreMisc3Button.interactable = false;
-        BuildingButton.interactable = true;
-    }
-    public void ActivateBuilding()
-    {
-        GameplayPanel.SetActive(false);
-        RacesPanel.SetActive(false);
-        GenderPanel.SetActive(false);
-        AppearancePanel.SetActive(false);
-        VoreMiscPanel.SetActive(false);
-        VoreMisc2Panel.SetActive(false);
-        VoreMisc3Panel.SetActive(false);
-        BuildingPanel.SetActive(true);
-        GameplayButton.interactable = true;
-        RacesButton.interactable = true;
-        GenderButton.interactable = true;
-        AppearanceButton.interactable = true;
-        VoreMiscButton.interactable = true;
-        VoreMisc2Button.interactable = true;
-        VoreMisc3Button.interactable = true;
-        BuildingButton.interactable = false;
+        for (int i = 0; i < SettingsPanels.Length; i++)
+        {
+            SettingsPanels[i].SetActive(false);
+        }
+        SettingsPanels[PageSelector.value].SetActive(true);
     }
 
     public void ConfirmRefresh()
@@ -937,10 +774,10 @@ public class ContentSettings : MonoBehaviour
         WeightLossFractionBreasts.value = Config.WeightLossFractionBreasts;
         WeightLossFractionBody.value = Config.WeightLossFractionBody;
         WeightLossFractionDick.value = Config.WeightLossFractionDick;
-        GrowthMod.text = (Config.GrowthMod*100).ToString();
-        GrowthCap.text = (Config.GrowthCap*100).ToString();
+        GrowthMod.text = (Config.GrowthMod * 100).ToString();
+        GrowthCap.text = (Config.GrowthCap * 100).ToString();
         GrowthDecayOffset.text = (Config.GrowthDecayOffset * 100).ToString();
-        GrowthDecayIncreaseRate.text = (Config.GrowthDecayIncreaseRate*1000).ToString();
+        GrowthDecayIncreaseRate.text = (Config.GrowthDecayIncreaseRate * 1000).ToString();
         FurryFraction.value = Config.FurryFraction;
         TacticalWaterValue.value = Config.TacticalWaterValue;
         TacticalTerrainFrequency.value = Config.TacticalTerrainFrequency;
@@ -1169,19 +1006,19 @@ public class ContentSettings : MonoBehaviour
         Config.World.WeightLossFractionBody = WeightLossFractionBody.value;
         Config.World.WeightLossFractionDick = WeightLossFractionDick.value;
         if (int.TryParse(GrowthMod.text, out int gm))
-            Config.World.GrowthMod = gm/100f;
+            Config.World.GrowthMod = gm / 100f;
         else
             Config.World.GrowthMod = 1;
         if (int.TryParse(GrowthCap.text, out int gc))
-            Config.World.GrowthCap = gc/100f;
+            Config.World.GrowthCap = gc / 100f;
         else
             Config.World.GrowthCap = 5f;
         if (int.TryParse(GrowthDecayIncreaseRate.text, out int gir))
-            Config.World.GrowthDecayIncreaseRate = gir/1000f;
+            Config.World.GrowthDecayIncreaseRate = gir / 1000f;
         else
             Config.World.GrowthDecayIncreaseRate = 0.04f;
         if (int.TryParse(GrowthDecayOffset.text, out int gos))
-            Config.World.GrowthDecayOffset = gos/100f;
+            Config.World.GrowthDecayOffset = gos / 100f;
         else
             Config.World.GrowthDecayOffset = 0f;
         Config.World.TacticalTerrainFrequency = TacticalTerrainFrequency.value;
@@ -1376,19 +1213,19 @@ public class ContentSettings : MonoBehaviour
         PlayerPrefs.SetFloat("WeightLossFractionBody", WeightLossFractionBody.value);
         PlayerPrefs.SetFloat("WeightLossFractionDick", WeightLossFractionDick.value);
         if (int.TryParse(GrowthDecayIncreaseRate.text, out int gir))
-            PlayerPrefs.SetFloat("GrowthDecayIncreaseRate", gir/1000f);
+            PlayerPrefs.SetFloat("GrowthDecayIncreaseRate", gir / 1000f);
         else
             PlayerPrefs.SetFloat("GrowthDecayIncreaseRate", 0.04f);
         if (int.TryParse(GrowthDecayOffset.text, out int gos))
-            PlayerPrefs.SetFloat("GrowthDecayOffset", gos/100f);
+            PlayerPrefs.SetFloat("GrowthDecayOffset", gos / 100f);
         else
             PlayerPrefs.SetFloat("GrowthDecayOffset", 0);
         if (int.TryParse(GrowthMod.text, out int gm))
-            PlayerPrefs.SetFloat("GrowthMod", gm/100f);
+            PlayerPrefs.SetFloat("GrowthMod", gm / 100f);
         else
             PlayerPrefs.SetFloat("GrowthMod", 1f);
         if (int.TryParse(GrowthCap.text, out int gc))
-            PlayerPrefs.SetFloat("GrowthCap", gc/100f);
+            PlayerPrefs.SetFloat("GrowthCap", gc / 100f);
         else
             PlayerPrefs.SetFloat("GrowthCap", 5f);
         PlayerPrefs.SetFloat("TacticalWaterValue", TacticalWaterValue.value);
