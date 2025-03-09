@@ -9,6 +9,7 @@ using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
 
 public enum TacticalAIType
 {
@@ -736,8 +737,8 @@ public class CreateStrategicGame : MonoBehaviour
             var racePar = RaceParameters.GetTraitData(actor.Unit);
             text.text = $"{(Race)i}\nBody Size: {State.RaceSettings.GetBodySize(actor.Unit.Race)}\nBase Stomach Size: {State.RaceSettings.GetStomachSize(actor.Unit.Race)}\nFavored Stat: {State.RaceSettings.GetFavoredStat(actor.Unit.Race)}\nDefault Traits:\n{State.RaceSettings.ListTraits(actor.Unit.Race)}";
             sprite.UpdateSprites(actor);
-            dcosttext.text = State.RaceSettings.GetDeployCost(actor.Unit.Race).ToString();
-            upkeeptext.text = State.RaceSettings.GetUpkeep(actor.Unit.Race).ToString();
+            dcosttext.text = (State.RaceSettings.GetDeployCost(actor.Unit.Race) * actor.Unit.TraitBoosts.DeployCostMult).ToString();
+            upkeeptext.text = (State.RaceSettings.GetUpkeep(actor.Unit.Race) * actor.Unit.TraitBoosts.UpkeepMult).ToString();
             Button button = obj.GetComponentInChildren<Button>();
             int temp = i;
             button.onClick.AddListener(() => AddRace(temp));

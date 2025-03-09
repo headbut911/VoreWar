@@ -252,6 +252,12 @@ public class CustomTraitBoost
                         case CustomTraitComp.SightRangeBoost:
                             s.SightRangeBoost += (int)value;
                             break;
+                        case CustomTraitComp.DeployCostMult:
+                            s.DeployCostMult *= value;
+                            break;
+                        case CustomTraitComp.UpkeepMult:
+                            s.UpkeepMult *= value;
+                            break;
                         default:
                             break;
                     }

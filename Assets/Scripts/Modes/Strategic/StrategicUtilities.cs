@@ -1204,7 +1204,7 @@ static class StrategicUtilities
     static public bool ArmyCanFitUnit(Army army, Unit unit)
     {
         army.RecalculateSizeValue();
-        if (army.RemainnigSize - State.RaceSettings.GetDeployCost(unit.Race) >= 0 )
+        if (army.RemainnigSize - (State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult) >= 0)
         {
             return true;
         }

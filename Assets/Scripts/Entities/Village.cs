@@ -708,7 +708,7 @@ public class Village
                         localArmy.Units.Add(unit.unit);
                         localArmy.RecalculateSizeValue();
                     }
-                    else if (localArmy == null && Empire.Armies.Count < Config.MaxArmies)
+                    else if (localArmy == null && StrategicUtilities.ArmyCanFitUnit(localArmy, unit.unit))
                     {
                         Empire.Reports.Add(new StrategicReport($"{unit.unit.Name} (Leader) has arrived at {Name} and created a new army there", new Vec2(Position.x, Position.y)));
                         Army army = new Army(Empire, new Vec2i(Position.x, Position.y), Side);
@@ -1194,7 +1194,7 @@ public class Village
             return null;
         if (empire.Gold >= Config.ArmyCost)
         {
-            if (army.Units.Count < army.MaxSize)
+            if (army.RemainnigSize > 0)
             {
                 if ((army.Units.Count + 1) > Config.ScoutMax && army.RemainingMP > Config.ArmyMP)
                 {
@@ -1246,30 +1246,34 @@ public class Village
                 if (VillagePopulation.GetRecruitables().Count > 0 && army.Side == Side)
                 {
                     Unit unit = VillagePopulation.GetRecruitables().OrderByDescending(s => s.Experience).First();
-
-                    var startingExp = GetStartingXp();
-                    if (unit.Experience < startingExp)
-                        unit.SetExp(startingExp);
-                    unit.AddTraits(GetTraitsToAdd());
-                    army.Units.Add(unit);
-                    unit.Side = army.Side;
-                    empire.SpendGold(Config.ArmyCost);
-                    VillagePopulation.RemoveHireable(unit);
-                    army.RecalculateSizeValue();
-                    return unit;
+                    if (StrategicUtilities.ArmyCanFitUnit(army, unit))
+                    {
+                        var startingExp = GetStartingXp();
+                        if (unit.Experience < startingExp)
+                            unit.SetExp(startingExp);
+                        unit.AddTraits(GetTraitsToAdd());
+                        army.Units.Add(unit);
+                        unit.Side = army.Side;
+                        empire.SpendGold(Config.ArmyCost);
+                        VillagePopulation.RemoveHireable(unit);
+                        army.RecalculateSizeValue();
+                        return unit;
+                    }
                 }
                 else
                 {
                     var unitRace = VillagePopulation.RandomRaceByWeight();
                     Unit unit = new Unit(empire.Side, unitRace, empire.StartingXP, State.World.GetEmpireOfRace(unitRace)?.CanVore ?? true);
-                    unit.AddTraits(GetTraitsToAdd());
-                    army.Units.Add(unit);
-                    State.World.Stats.SoldiersRecruited(1, Side);
-                    empire.SpendGold(Config.ArmyCost);
-                    VillagePopulation.RemoveRacePop(unit.Race, 1);
-                    return unit;
+                    if (StrategicUtilities.ArmyCanFitUnit(army, unit))
+                    {
+                        unit.AddTraits(GetTraitsToAdd());
+                        army.Units.Add(unit);
+                        State.World.Stats.SoldiersRecruited(1, Side);
+                        empire.SpendGold(Config.ArmyCost);
+                        VillagePopulation.RemoveRacePop(unit.Race, 1);
+                        return unit;
+                    }
                 }
-
             }
         }
         return null;

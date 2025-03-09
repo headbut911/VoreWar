@@ -4166,7 +4166,7 @@ Turns: {currentTurn}
         UpdateActorColor(actor);
         if (actor.Unit.Type != UnitType.Summon)
         {
-            if (armies[1] != null && armies[1].Units.Count < armies[1].MaxSize)
+            if (armies[1] != null && StrategicUtilities.ArmyCanFitUnit(armies[1], actor.Unit))
             {
                 armies[1].Units.Add(actor.Unit);
             }
@@ -4188,7 +4188,7 @@ Turns: {currentTurn}
         UpdateActorColor(actor);
         if (actor.Unit.Type != UnitType.Summon)
         {
-            if (armies[0] != null && armies[0].Units.Count < armies[0].MaxSize)
+            if (armies[0] != null && StrategicUtilities.ArmyCanFitUnit(armies[0], actor.Unit))
             {
                 armies[0].Units.Add(actor.Unit);
             }
@@ -5084,14 +5084,14 @@ Turns: {currentTurn}
                     State.World.Stats?.SoldiersLost(1, unit.Side);
                 }
             }
-            while (army.Units.Count() < army.MaxSize && actors.Any())
+            while (StrategicUtilities.ArmyCanFitUnit(army, actors[0].Unit) && actors.Any())
             {
                 army.Units.Add(actors[0].Unit);
                 actors.RemoveAt(0);
             }
-            while (army.Units.Count() > army.MaxSize)
+            while (StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last()))
             {
-                var last = army.Units.Last();
+                var last = army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last();
                 army.Units.Remove(last);
                 actors.Add(new Actor_Unit(last));
             }

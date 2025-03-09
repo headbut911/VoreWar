@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class Empire
 {
@@ -406,7 +407,7 @@ public class Empire
     private void PlaceLeader(Village capital)
     {
         var CapitalArmy = StrategicUtilities.ArmyAt(capital.Position);
-        if (CapitalArmy != null && CapitalArmy.Units.Count < MaxArmySize && CapitalArmy.Side == Side)
+        if (CapitalArmy != null && StrategicUtilities.ArmyCanFitUnit(CapitalArmy, Leader) && CapitalArmy.Side == Side)
             CapitalArmy.Units.Add(Leader);
         else
         {
@@ -518,7 +519,7 @@ public class Empire
                 if (Config.World.ArmyUpkeep >= 0)
                     totalCost += Config.World.ArmyUpkeep;
                 else
-                    totalCost += State.RaceSettings.GetUpkeep(unit.Race);
+                    totalCost += State.RaceSettings.GetUpkeep(unit.Race) * unit.TraitBoosts.UpkeepMult;
             }
         }
         return (int)Math.Round(totalCost);
@@ -535,9 +536,21 @@ public class Empire
         {
             foreach(Unit unit in army.Units)
             {
-                currentCoeff += Mathf.MoveTowards(currentCoeff, State.RaceSettings.GetUpkeep(unit.Race), 10f);
+                currentCoeff += Mathf.MoveTowards(currentCoeff, State.RaceSettings.GetUpkeep(unit.Race) * unit.TraitBoosts.UpkeepMult, 10f);
             }
         }
         return currentCoeff;
+    }
+    internal float GetAvgDeployCost()
+    {
+        float ideal_size_Mult = 0;
+        foreach (var army in Armies)
+        {
+            ideal_size_Mult += army.GetAverageArmyDeployment();
+        }
+        if (ideal_size_Mult == 0)
+            State.RaceSettings.GetDeployCost(Race);
+        ideal_size_Mult /= Armies.Count;
+        return ideal_size_Mult;
     }
 }

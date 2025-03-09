@@ -89,6 +89,8 @@ class PermanentBoosts
     internal float FireDamageTaken = 1;
     internal float GrowthDecayRate = 1;
     internal int SightRangeBoost = 0;
+    internal float DeployCostMult = 1f;
+    internal float UpkeepMult = 1f;
 }
 
 class DirectionalStat

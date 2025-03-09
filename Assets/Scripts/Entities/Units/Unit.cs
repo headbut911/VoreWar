@@ -2536,12 +2536,10 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             if (ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, item))
             {
-                Debug.Log("TrueCOndition.");
                 ActivateConditionalTrait(item.id);
             }
             else
             {
-                Debug.Log("UnTrueCOndition.");
                 DeactivateConditionalTrait(item.id);
             }
         }

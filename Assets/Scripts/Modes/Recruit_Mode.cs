@@ -615,7 +615,7 @@ public class Recruit_Mode : SceneBase
         {
             if (army == null)
                 return;
-            if (army.Units.Count == empire.MaxArmySize)
+            if (army.RemainnigSize <= 0)
             {
                 State.GameManager.CreateMessageBox("Army is already maximum size");
                 return;
@@ -1357,7 +1357,7 @@ public class Recruit_Mode : SceneBase
             StatRow2.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Will).ToString();
             StatRow3.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Endurance).ToString();
             StatRow3.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Agility).ToString();
-            DeployCost.transform.GetChild(1).GetComponent<Text>().text = State.RaceSettings.GetDeployCost(merc.Unit.Race).ToString();
+            DeployCost.transform.GetChild(1).GetComponent<Text>().text = (State.RaceSettings.GetDeployCost(merc.Unit.Race) * merc.Unit.TraitBoosts.DeployCostMult).ToString();
             if (actor.PredatorComponent != null)
             {
                 StatRow4.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Voracity).ToString();
@@ -1365,7 +1365,7 @@ public class Recruit_Mode : SceneBase
             }
             else
                 StatRow4.SetActive(false);
-            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)" + " + (" + State.RaceSettings.GetUpkeep(merc.Unit.Race) + "G/turn)";
+            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)" + " + (" + State.RaceSettings.GetUpkeep(merc.Unit.Race) * merc.Unit.TraitBoosts.UpkeepMult + "G/turn)";
             TraitList.text = RaceEditorPanel.TraitListToText(merc.Unit.GetTraits, true).Replace(", ", "\n");
 
             actor.UpdateBestWeapons();
@@ -1488,7 +1488,7 @@ public class Recruit_Mode : SceneBase
             StatRow2.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Will).ToString();
             StatRow3.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Endurance).ToString();
             StatRow3.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Agility).ToString();
-            DeployCost.transform.GetChild(1).GetComponent<Text>().text = State.RaceSettings.GetDeployCost(merc.Unit.Race).ToString();
+            DeployCost.transform.GetChild(1).GetComponent<Text>().text = (State.RaceSettings.GetDeployCost(merc.Unit.Race) * merc.Unit.TraitBoosts.DeployCostMult).ToString();
             if (actor.PredatorComponent != null)
             {
                 StatRow4.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = merc.Unit.GetStatBase(Stat.Voracity).ToString();
@@ -1496,7 +1496,7 @@ public class Recruit_Mode : SceneBase
             }
             else
                 StatRow4.SetActive(false);
-            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)" + " + (" + State.RaceSettings.GetUpkeep(merc.Unit.Race) + "G/turn)";
+            HireButton.text = "Hire Unit (" + merc.Cost.ToString() + "G)" + " + (" + State.RaceSettings.GetUpkeep(merc.Unit.Race) * merc.Unit.TraitBoosts.UpkeepMult + "G/turn)";
 
             //text.text = $"{merc.Title}\nLevel: {merc.Unit.Level} Exp: {(int)merc.Unit.Experience}\n" +
             //    $"Items: {merc.Unit.GetItem(0)?.Name} {merc.Unit.GetItem(1)?.Name}\n" +
@@ -1523,7 +1523,7 @@ public class Recruit_Mode : SceneBase
 
     void UpdateMercenaryScreenText()
     {
-        MercenaryScreenUI.ArmySize.text = $"Army Size {army.RemainnigSize} / {army.MaxSize}";
+        MercenaryScreenUI.ArmySize.text = $"Army Size {army.UsedSize} / {army.MaxSize}";
         MercenaryScreenUI.RemainingGold.text = $"Remaining Gold: {empire.Gold}";
     }
 
@@ -1709,7 +1709,7 @@ public class Recruit_Mode : SceneBase
         Army destinationArmy = null;
         foreach (Army a in empire.Armies)
         {
-            if (a.Position.GetDistance(army.Position) < 2 && a.Units.Count < a.MaxSize)
+            if (a.Position.GetDistance(army.Position) < 2 && StrategicUtilities.ArmyCanFitUnit(a, unit))
             {
                 destinationArmy = a;
             }

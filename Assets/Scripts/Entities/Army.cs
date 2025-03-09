@@ -91,7 +91,8 @@ public class Army
     public float HealRate;
 
     [OdinSerialize]
-    public float RemainnigSize;
+    public float UsedSize;
+    public float RemainnigSize => MaxSize - UsedSize;
 
     [OdinSerialize]
     private ItemStock itemStock;
@@ -137,7 +138,7 @@ public class Army
         Position = p;
         Units = new List<Unit>();
         JustCreated = true;
-        RemainnigSize = MaxSize;
+        UsedSize = 0;
 
         NameArmy(empire);
         if (empire.Side < 32)
@@ -854,10 +855,21 @@ public class Army
 
     internal void RecalculateSizeValue()
     {
-        RemainnigSize = MaxSize;
+        UsedSize = 0;
         foreach (Unit unit in Units)
         {
-            RemainnigSize -= State.RaceSettings.GetDeployCost(unit.Race);
+            UsedSize += State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult;
         }
+    }
+
+    internal float GetAverageArmyDeployment()
+    {
+        float avgDeploy = 0;
+        foreach (Unit unit in Units)
+        {
+            avgDeploy += State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult;
+        }
+        avgDeploy /= Units.Count;
+        return avgDeploy;
     }
 }

@@ -170,6 +170,8 @@ public class BuildingConfig
     [OdinSerialize]
     internal GeneralBuildingConfig Laboratory = new GeneralBuildingConfig(250, 2, -1, 0, 0);
     [OdinSerialize]
+    internal int LaboratoryUpfrontCost = 100;
+    [OdinSerialize]
     internal BuildingUpgrade LaboratoryImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Tower increases ally empire MP by 1");
     [OdinSerialize]
     internal BuildingUpgrade LaboratoryTuneUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Enemy Empire armies now also have their MP reduced by 1.");

@@ -86,6 +86,8 @@ public enum CustomTraitComp
     FireDamageTaken,
     GrowthDecayRate,
     SightRangeBoost,
+    DeployCostMult,
+    UpkeepMult,
 
     enumcounter, // should always be last
 }
@@ -532,6 +534,14 @@ public class CustomTrait : MonoBehaviour
             case CustomTraitComp.SightRangeBoost:
                 ToolTipName.text = "Sight Range";
                 ToolTipDesc.text = "The tile range a unit will have. \n Note: This is a whole number. Decimals will be truncated";
+                break;
+            case CustomTraitComp.DeployCostMult:
+                ToolTipName.text = "Deployment Cost Multiplier";
+                ToolTipDesc.text = "Multiplies the value of a unit's deployment cost, adjusting how many spots it takes in an army.";
+                break;
+            case CustomTraitComp.UpkeepMult:
+                ToolTipName.text = "Upkeep Multiplier";
+                ToolTipDesc.text = "Multiplies the value of a unit's upkeep";
                 break;
             default:
                 ToolTipName.text = "";
