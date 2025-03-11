@@ -119,7 +119,7 @@ class StrategicArmyCommander
             {
                 UpdateEquipmentAndRecruit(army);
             }
-            if (army.AIMode == AIMode.Resupply && army.Units.Count == maxArmySize && StrategicUtilities.NumberOfDesiredUpgrades(army) == 0)
+            if (army.AIMode == AIMode.Resupply && army.MostlyFull && StrategicUtilities.NumberOfDesiredUpgrades(army) == 0)
                 army.AIMode = AIMode.Default;
         }
     }
@@ -165,18 +165,18 @@ class StrategicArmyCommander
                 }
 
 
-                if (army.InVillageIndex != -1 && empire.Gold > 4500 && Config.AICanHireSpecialMercs && MercenaryHouse.UniqueMercs.Count > 0 && army.Units.Count() < empire.MaxArmySize && NavigateToMercenaries(army, (int)(3f * army.GetMaxMovement())))
+                if (army.InVillageIndex != -1 && empire.Gold > 4500 && Config.AICanHireSpecialMercs && MercenaryHouse.UniqueMercs.Count > 0 && !army.MostlyFull && NavigateToMercenaries(army, (int)(3f * army.GetMaxMovement())))
                 {
                     break;
                 }
 
-                if (army.InVillageIndex != -1 && empire.Gold > 1500 && army.Units.Count() < empire.MaxArmySize && NavigateToMercenaries(army, (int)(2f * army.GetMaxMovement())))
+                if (army.InVillageIndex != -1 && empire.Gold > 1500 && !army.MostlyFull && NavigateToMercenaries(army, (int)(2f * army.GetMaxMovement())))
                 {
                     break;
                 }
 
 
-                if (army.InVillageIndex != -1 && empire.Gold > 500 && army.Units.Count() < empire.MaxArmySize && NavigateToMercenaries(army, (int)(1f * army.GetMaxMovement())))
+                if (army.InVillageIndex != -1 && empire.Gold > 500 && !army.MostlyFull && NavigateToMercenaries(army, (int)(1f * army.GetMaxMovement())))
                 {
                     break;
                 }
@@ -208,13 +208,13 @@ class StrategicArmyCommander
 
                 if (villageArmyIsIn == null || villageArmyIsIn.GetTotalPop() < 12)
                 {
-                    if (NavigateToFriendlyVillage(army, army.Units.Count != maxArmySize))
+                    if (NavigateToFriendlyVillage(army, !army.MostlyFull))
                         break;
                     Attack(army, 1);
                     break;
                 }
                 UpdateEquipmentAndRecruit(army);
-                if (army.Units.Count == maxArmySize && StrategicUtilities.NumberOfDesiredUpgrades(army) == 0)
+                if (army.MostlyFull && StrategicUtilities.NumberOfDesiredUpgrades(army) == 0)
                     army.AIMode = AIMode.Default;
                 else
                     army.RemainingMP = 0;
@@ -420,7 +420,7 @@ class StrategicArmyCommander
             if ((army.InVillageIndex > -1 && StrategicUtilities.NumberOfDesiredUpgrades(army) > 0) == false)
                 army.AIMode = AIMode.Default;
 
-        float need = 32 * (((float)maxArmySize - army.Units.Count()) / maxArmySize) + StrategicUtilities.NumberOfDesiredUpgrades(army);
+        float need = 32 * (1-army.PercentFull) + StrategicUtilities.NumberOfDesiredUpgrades(army);
         if (need > 4 && empire.Gold >= 40 && empire.Income > 25)
         {
             var path = StrategyPathfinder.GetPathToClosestObject(empire, army, Villages.Where(s => s.Side == army.Side).Select(s => s.Position).ToArray(), army.RemainingMP, 5, army.movementMode == Army.MovementMode.Flight);
@@ -507,21 +507,27 @@ class StrategicArmyCommander
         Village village = State.World.Villages[army.InVillageIndex];
         army.ItemStock.SellAllWeaponsAndAccessories(empire);
         StrategicUtilities.UpgradeUnitsIfAtLeastLevel(army, village, 4);
-        if (army.Units.Count != maxArmySize)
+        if (!army.MostlyFull)
         {
-            int goldPerTroop = empire.Gold / (maxArmySize - army.Units.Count());
-            for (int i = 0; i < maxArmySize; i++)
+            int goldPerTroop = (int)(empire.Gold / (army.Units.Count() * army.GetAverageArmyDeployment()));
+            while (!army.MostlyFull)
             {
+                army.RecalculateSizeValue();
+                Unit newUnit = null;
                 if (smarterAI && empire.Gold > 40)
-                    RecruitUnitAndEquip(army, village, 2);
-                else if (goldPerTroop > 40 && army.Units.Count < maxArmySize && village.GetTotalPop() > 3 && empire.Income > 15)
-                    RecruitUnitAndEquip(army, village, 2);
-                else if (empire.Gold > 16 && army.Units.Count < maxArmySize && village.GetTotalPop() > 3 && empire.Income > 5)
-                    RecruitUnitAndEquip(army, village, 1);
+                    newUnit = RecruitUnitAndEquip(army, village, 2);
+                else if (goldPerTroop > 40 && village.GetTotalPop() > 3 && empire.Income > 15)
+                    newUnit = RecruitUnitAndEquip(army, village, 2);
+                else if (empire.Gold > 16 && village.GetTotalPop() > 3 && empire.Income > 5)
+                    newUnit = RecruitUnitAndEquip(army, village, 1);
                 else
                     break;
+                if (newUnit == null)
+                {
+                    break;
+                }
             }
-            if (army.AIMode == AIMode.Resupply && army.Units.Count() == maxArmySize)
+            if (army.AIMode == AIMode.Resupply && army.MostlyFull)
                 army.AIMode = AIMode.Default;
 
         }
@@ -532,7 +538,7 @@ class StrategicArmyCommander
     {
         if (village.GetTotalPop() < 4)
             return null;
-        if (army.Units.Count >= army.MaxSize)
+        if (army.RemainnigSize <= 0)
             return null;
         if (empire.Leader?.Health <= 0)
             return ResurrectLeader(army, village);

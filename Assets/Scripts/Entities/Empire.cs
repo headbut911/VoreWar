@@ -530,16 +530,21 @@ public class Empire
         if (Config.World.ArmyUpkeep >= 0)
             return Config.World.ArmyUpkeep;
 
-        float currentCoeff = Config.World.ArmyUpkeep;
-
+        float currentCoeff = 0;
+        int unitCount = 0;
         foreach (Army army in Armies)
         {
             foreach(Unit unit in army.Units)
             {
-                currentCoeff += Mathf.MoveTowards(currentCoeff, State.RaceSettings.GetUpkeep(unit.Race) * unit.TraitBoosts.UpkeepMult, 10f);
+                currentCoeff += State.RaceSettings.GetUpkeep(unit.Race) * unit.TraitBoosts.UpkeepMult;
+                unitCount++;
             }
         }
-        return currentCoeff;
+        if (unitCount == 0)
+        {
+            return 3;
+        }
+        return currentCoeff/unitCount;
     }
     internal float GetAvgDeployCost()
     {

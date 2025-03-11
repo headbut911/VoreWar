@@ -93,6 +93,8 @@ public class Army
     [OdinSerialize]
     public float UsedSize;
     public float RemainnigSize => MaxSize - UsedSize;
+    public float PercentFull => UsedSize / MaxSize;
+    public bool MostlyFull => RemainnigSize - Empire.GetAvgDeployCost() <= 0; //Checks if army can fit any more units on average
 
     [OdinSerialize]
     private ItemStock itemStock;

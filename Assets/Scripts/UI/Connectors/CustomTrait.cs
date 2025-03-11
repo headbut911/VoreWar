@@ -537,7 +537,7 @@ public class CustomTrait : MonoBehaviour
                 break;
             case CustomTraitComp.DeployCostMult:
                 ToolTipName.text = "Deployment Cost Multiplier";
-                ToolTipDesc.text = "Multiplies the value of a unit's deployment cost, adjusting how many spots it takes in an army.";
+                ToolTipDesc.text = "Multiplies the value of a unit's deployment cost, adjusting how many spots it takes in an army. Take caution setting this to a low decimal value.";
                 break;
             case CustomTraitComp.UpkeepMult:
                 ToolTipName.text = "Upkeep Multiplier";
