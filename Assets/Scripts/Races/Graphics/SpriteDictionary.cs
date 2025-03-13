@@ -281,6 +281,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Feit;
     public Sprite[] Taraluxia;
     public Sprite[] TaraTailStrikes;
+    public Sprite[] Xelhilde;
     
     [Header("Bosses")]
     public Sprite[] Abakhanskya;
@@ -337,6 +338,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Terminid;
     public Sprite[] FeralOrcas;
     public Sprite[] Otachi;
+    public Sprite[] BoomBunnies;
 
 
     public Sprite[] Cake;
