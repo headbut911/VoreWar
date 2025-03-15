@@ -88,7 +88,7 @@ public class PotionInv : MonoBehaviour
         returnString += "\n";
         foreach (var item in potion.StatModifiers.Where(s => s.Value > 0))
         {
-            returnString += $"Grants +{item.Value.ToString()} {item.Value.ToString()}";
+            returnString += $"Grants +{item.Value.ToString()} {item.Key.ToString()}";
             if (!item.Equals(last))
             {
                 returnString += ",";

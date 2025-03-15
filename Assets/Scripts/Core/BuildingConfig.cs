@@ -172,11 +172,23 @@ public class BuildingConfig
     [OdinSerialize]
     internal int LaboratoryUpfrontCost = 100;
     [OdinSerialize]
-    internal BuildingUpgrade LaboratoryImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Tower increases ally empire MP by 1");
+    internal int LaboratoryBaseUnitPrice= 100;
     [OdinSerialize]
-    internal BuildingUpgrade LaboratoryTuneUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Enemy Empire armies now also have their MP reduced by 1.");
+    internal float LaboratoryBulkDiscount = 0.5f;
     [OdinSerialize]
-    internal BuildingUpgrade LaboratoryDisruptUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Monster armies now have their MP reduced to 1 while within range");
+    internal int LaboratoryBulkMin = 5;
+    [OdinSerialize]
+    internal int LaboratoryBulkMax = 50;
+    [OdinSerialize]
+    internal int LaboratoryBaseRollCount = 4;
+    [OdinSerialize]
+    internal float LaboratoryBaseTraitChance = 0.6f;
+    [OdinSerialize]
+    internal BuildingUpgrade LaboratoryImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Increases max rolls per potion.");
+    [OdinSerialize]
+    internal BuildingUpgrade LaboratoryIngredientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Expands types of availible ingredients.");
+    [OdinSerialize]
+    internal BuildingUpgrade LaboratoryBoostUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Chance of boosting effect of low quality ingredients.");
 
 }
 

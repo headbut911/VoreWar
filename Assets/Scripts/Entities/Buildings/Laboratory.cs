@@ -5,20 +5,20 @@ using System.Collections.Generic;
 class Laboratory : ConstructibleBuilding
 {
     public BuildingUpgrade improveUpgrade;
-    public BuildingUpgrade pay2winUpgrade;
-    public BuildingUpgrade buffUpgrade;
+    public BuildingUpgrade ingredientUpgrade;
+    public BuildingUpgrade boostUpgrade;
     
     public Laboratory(Vec2i location) : base(location)
     {
         Name = "Laboratory";
         Desc = "The laboratory is used to purchase potions that can modify a unit.";
-        spriteID = 72;
+        spriteID = 80;
         buildingType = ConstructibleType.Laboratory;
 
         ApplyConfigStats(Config.BuildCon.Laboratory);
         improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.LaboratoryImproveUpgrade);
-        pay2winUpgrade = AddUpgrade(pay2winUpgrade, Config.BuildCon.CasterTowerForceUpgrade);
-        buffUpgrade = AddUpgrade(buffUpgrade, Config.BuildCon.CasterTowerBuffUpgrade);
+        ingredientUpgrade = AddUpgrade(ingredientUpgrade, Config.BuildCon.LaboratoryIngredientUpgrade);
+        boostUpgrade = AddUpgrade(boostUpgrade, Config.BuildCon.LaboratoryBoostUpgrade);
     }
     internal override void RunBuildingFunction()
     {
