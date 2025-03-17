@@ -195,12 +195,66 @@ public class BuildingSettings : MonoBehaviour
         rootObject.lumberSite.lodgeUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteLodgeUpgrade);
         rootObject.lumberSite.greenhouseUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteGreenHouseUpgrade);
         rootObject.lumberSite.carpenterUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteCarpenterUpgrade);
+        
+        rootObject.lumberSite = new LumberCampTempClass(Config.BuildConfig.LumberSite, Config.BuildConfig.LumberSiteWorkerCap);
+        rootObject.lumberSite.lodgeUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteLodgeUpgrade);
+        rootObject.lumberSite.greenhouseUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteGreenHouseUpgrade);
+        rootObject.lumberSite.carpenterUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteCarpenterUpgrade);
+
+        rootObject.quarry = new QuarryTempClass(Config.BuildConfig.Quarry, Config.BuildConfig.QuarryStoneMin, Config.BuildConfig.QuarryStoneMax, Config.BuildConfig.QuarryOreMin, Config.BuildConfig.QuarryOreMax, Config.BuildConfig.QuarryMSMin, Config.BuildConfig.QuarryMSMax, Config.BuildConfig.QuarryGoldMin, Config.BuildConfig.QuarryGoldMax);
+        rootObject.quarry.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.QuarryImproveUpgrade);
+        rootObject.quarry.deepUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.QuarryDeepUpgrade);
+        rootObject.quarry.leyLineUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.QuarryLeyLineUpgrade);
+
+        rootObject.casterTower = new CasterTowerTempClass(Config.BuildConfig.CasterTower, Config.BuildConfig.CasterTowerManaChargesMax, Config.BuildConfig.CasterTowerManaChargesRegen, Config.BuildConfig.CasterTowerBaseChargeCost, Config.BuildConfig.CasterTowerBetterTierChargeCost, Config.BuildConfig.CasterTowerBuffChargeCost);
+        rootObject.casterTower.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.CasterTowerImproveUpgrade);
+        rootObject.casterTower.forceUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.CasterTowerForceUpgrade);
+        rootObject.casterTower.buffUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.CasterTowerBuffUpgrade);
+
+        rootObject.barrierTower = new BarrierTowerTempClass(Config.BuildConfig.BarrierTower, Config.BuildConfig.BarrierTowerBaseBarrierStrength, Config.BuildConfig.BarrierTowerIgnoreDowntime);
+        rootObject.barrierTower.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.BarrierTowerImproveUpgrade);
+        rootObject.barrierTower.healUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.BarrierTowerHealUpgrade);
+        rootObject.barrierTower.buffUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.BarrierTowerBuffUpgrade);
+
+        rootObject.defEncamp = new DefEncampTempClass(Config.BuildConfig.DefenseEncampment, Config.BuildConfig.DefenseEncampmentArmyPercentage, Config.BuildConfig.DefenseEncampmentUnitScale, Config.BuildConfig.DefenseEncampmentMaxGarrisonSizeScale, Config.BuildConfig.DefenseEncampmentTrainTime);
+        rootObject.defEncamp.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.DefenseEncampmentImproveUpgrade);
+        rootObject.defEncamp.levelUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.DefenseEncampmentLevelUpgrade);
+        rootObject.defEncamp.unitUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.DefenseEncampmentUnitsUpgrade);
+
+        rootObject.academy = new AcademyTempClass(Config.BuildConfig.Academy, Config.BuildConfig.AcademyEXPPerGold, Config.BuildConfig.AcademyMaximumUpgrades, Config.BuildConfig.AcademyUpgradeCost, Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade);
+        rootObject.academy.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.AcademyImproveUpgrade);
+        rootObject.academy.effUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.AcademyEfficiencyUpgrade);
+        rootObject.academy.researchUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.AcademyResearchUpgrade);
+
+        rootObject.darkMagicTower = new DarkMagicTowerTempClass(Config.BuildConfig.DarkMagicTower, Config.BuildConfig.DarkMagicTowerDurationImprovement, Config.BuildConfig.DarkMagicTowerAccImprovement, Config.BuildConfig.DarkMagicTowerSoulPointBase, Config.BuildConfig.DarkMagicTowerSoulPointMult);
+        rootObject.darkMagicTower.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.DarkMagicTowerImproveUpgrade);
+        rootObject.darkMagicTower.soulUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.DarkMagicTowerSoulUpgrade);
+        rootObject.darkMagicTower.afflictUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.DarkMagicTowerAfflictionUpgrade);
+
+        rootObject.temporalTower = new TemporalTowerTempClass(Config.BuildConfig.TemporalTower);
+        rootObject.temporalTower.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TemporalTowerImproveUpgrade);
+        rootObject.temporalTower.disruptUpgrade= new BuildingUpgradeTempClass(Config.BuildConfig.TemporalTowerDisruptUpgrade);
+        rootObject.temporalTower.tuneUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TemporalTowerTuneUpgrade);
+
+        rootObject.laboratory = new LaboratoryTempClass(Config.BuildConfig.Laboratory, Config.BuildConfig.LaboratoryUpfrontCost, Config.BuildConfig.LaboratoryBaseUnitPrice, Config.BuildConfig.LaboratoryBulkDiscount, Config.BuildConfig.LaboratoryBulkMin, Config.BuildConfig.LaboratoryBulkMax, Config.BuildConfig.LaboratoryBaseRollCount, Config.BuildConfig.LaboratoryBaseTraitChance);
+        rootObject.laboratory.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TemporalTowerImproveUpgrade);
+        rootObject.laboratory.ingredientUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LaboratoryIngredientUpgrade);
+        rootObject.laboratory.boostUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LaboratoryBoostUpgrade);
+
+        rootObject.teleporter = new TeleporterTempClass(Config.BuildConfig.Teleporter, Config.BuildConfig.TeleporterMaxCapacity, Config.BuildConfig.TeleporterCapacityRegen, Config.BuildConfig.TeleporterPerUnitCapacity, Config.BuildConfig.TeleporterPerUnitCapacityMod);
+        rootObject.teleporter.stoneUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TeleporterStoneUpgrade);
+        rootObject.teleporter.ancientUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TeleporterAncientUpgrade);
+        rootObject.teleporter.capacityUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TeleporterCapacityUpgrade);
+
+        rootObject.townHall = new TownHallTempClass(Config.BuildConfig.TownHall);
+        rootObject.townHall.manualUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TownHallManualUpgrade);
+        rootObject.townHall.prefabUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TownHallPrefabUpgrade);
+        rootObject.townHall.manaStoneUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TownHallManaStoneUpgrade);
 
         using (StreamWriter file = new StreamWriter($"{State.StorageDirectory}buildingConfig.json"))
         {
             JsonSerializer serializer = new JsonSerializer();
             serializer.Serialize(file, rootObject);
-
         }
 
     }
@@ -229,9 +283,99 @@ public class BuildingSettings : MonoBehaviour
         LoadUpgrade("workCamp", "merchantUpgrade", Config.BuildConfig.WorkCampMerchantUpgrade);
         LoadUpgrade("workCamp", "improveUpgrade", Config.BuildConfig.WorkCampImproveUpgrade);
 
-        LoadBuilding("lumberSite", Config.BuildConfig.WorkCamp);
+        LoadBuilding("lumberSite", Config.BuildConfig.LumberSite);
         Config.BuildConfig.LumberSiteWorkerCap = results["lumberSite"]["workerCap"].ToObject<int>();
+        LoadUpgrade("lumberSite", "lodgeUpgrade", Config.BuildConfig.LumberSiteLodgeUpgrade);
+        LoadUpgrade("lumberSite", "greenhouseUpgrade", Config.BuildConfig.LumberSiteGreenHouseUpgrade);
+        LoadUpgrade("lumberSite", "carpenterUpgrade", Config.BuildConfig.LumberSiteCarpenterUpgrade);
 
+        LoadBuilding("quarry", Config.BuildConfig.LumberSite);
+        Config.BuildConfig.QuarryStoneMin = results["quarry"]["stoneMin"].ToObject<int>();
+        Config.BuildConfig.QuarryStoneMax = results["quarry"]["stoneMax"].ToObject<int>();
+        Config.BuildConfig.QuarryOreMin = results["quarry"]["oreMin"].ToObject<int>();
+        Config.BuildConfig.QuarryOreMax = results["quarry"]["oreMax"].ToObject<int>();
+        Config.BuildConfig.QuarryMSMin = results["quarry"]["msMin"].ToObject<int>();
+        Config.BuildConfig.QuarryMSMax = results["quarry"]["msMax"].ToObject<int>();
+        Config.BuildConfig.QuarryGoldMin = results["quarry"]["goldMin"].ToObject<int>();
+        Config.BuildConfig.QuarryGoldMax = results["quarry"]["goldMax"].ToObject<int>();
+        LoadUpgrade("quarry", "improveUpgrade", Config.BuildConfig.QuarryImproveUpgrade);
+        LoadUpgrade("quarry", "deepUpgrade", Config.BuildConfig.QuarryDeepUpgrade);
+        LoadUpgrade("quarry", "leyLineUpgrade", Config.BuildConfig.QuarryLeyLineUpgrade);
+
+        LoadBuilding("casterTower", Config.BuildConfig.CasterTower);
+        Config.BuildConfig.CasterTowerManaChargesMax= results["casterTower"]["chargeMax"].ToObject<int>();
+        Config.BuildConfig.CasterTowerManaChargesRegen= results["casterTower"]["chargeRegen"].ToObject<int>();
+        Config.BuildConfig.CasterTowerBaseChargeCost= results["casterTower"]["chargeBaseCost"].ToObject<int>();
+        Config.BuildConfig.CasterTowerBetterTierChargeCost= results["casterTower"]["chargeBetterCost"].ToObject<int>();
+        Config.BuildConfig.CasterTowerBuffChargeCost= results["casterTower"]["chargeBuffCost"].ToObject<int>();
+        LoadUpgrade("casterTower", "improveUpgrade", Config.BuildConfig.CasterTowerImproveUpgrade);
+        LoadUpgrade("casterTower", "forceUpgrade", Config.BuildConfig.CasterTowerForceUpgrade);
+        LoadUpgrade("casterTower", "buffUpgrade", Config.BuildConfig.CasterTowerBuffUpgrade);
+
+        LoadBuilding("barrierTower", Config.BuildConfig.BarrierTower);
+        Config.BuildConfig.BarrierTowerBaseBarrierStrength = results["barrierTower"]["baseBarrierStrength"].ToObject<int>();
+        Config.BuildConfig.BarrierTowerIgnoreDowntime = results["barrierTower"]["ignoreDowntime"].ToObject<bool>();
+        LoadUpgrade("barrierTower", "improveUpgrade", Config.BuildConfig.BarrierTowerImproveUpgrade);
+        LoadUpgrade("barrierTower", "healUpgrade", Config.BuildConfig.BarrierTowerHealUpgrade);
+        LoadUpgrade("barrierTower", "buffUpgrade", Config.BuildConfig.BarrierTowerBuffUpgrade);
+
+        LoadBuilding("defEncamp", Config.BuildConfig.DefenseEncampment);
+        Config.BuildConfig.DefenseEncampmentArmyPercentage = results["defEncamp"]["armyPercentage"].ToObject<float>();
+        Config.BuildConfig.DefenseEncampmentUnitScale = results["defEncamp"]["unitScale"].ToObject<float>();
+        Config.BuildConfig.DefenseEncampmentMaxGarrisonSizeScale = results["defEncamp"]["garrisonSizeScale"].ToObject<float>();
+        Config.BuildConfig.DefenseEncampmentTrainTime = results["defEncamp"]["trainTime"].ToObject<int>();
+        LoadUpgrade("defEncamp", "improveUpgrade", Config.BuildConfig.DefenseEncampmentImproveUpgrade);
+        LoadUpgrade("defEncamp", "levelUpgrade", Config.BuildConfig.DefenseEncampmentLevelUpgrade);
+        LoadUpgrade("defEncamp", "unitUpgrade", Config.BuildConfig.DefenseEncampmentUnitsUpgrade);
+
+        LoadBuilding("academy", Config.BuildConfig.Academy);
+        Config.BuildConfig.AcademyEXPPerGold = results["academy"]["expGold"].ToObject<int>();
+        Config.BuildConfig.AcademyMaximumUpgrades = results["academy"]["maxUpgrades"].ToObject<int>();
+        Config.BuildConfig.AcademyUpgradeCost = results["academy"]["upgradeCost"].ToObject<int>();
+        Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade = results["costInc"]["stoneMin"].ToObject<float>();
+        LoadUpgrade("academy", "improveUpgrade", Config.BuildConfig.AcademyImproveUpgrade);
+        LoadUpgrade("academy", "researchUpgrade", Config.BuildConfig.AcademyResearchUpgrade);
+        LoadUpgrade("academy", "effUpgrade", Config.BuildConfig.AcademyEfficiencyUpgrade);
+
+        LoadBuilding("darkMagicTower", Config.BuildConfig.DarkMagicTower);
+        Config.BuildConfig.DarkMagicTowerDurationImprovement = results["durImprovement"]["stoneMin"].ToObject<int>();
+        Config.BuildConfig.DarkMagicTowerAccImprovement = results["accImprovement"]["stoneMin"].ToObject<int>();
+        Config.BuildConfig.DarkMagicTowerSoulPointBase= results["soulPointBase"]["stoneMin"].ToObject<int>();
+        Config.BuildConfig.DarkMagicTowerSoulPointMult = results["soulPointMult"]["stoneMin"].ToObject<float>();
+        LoadUpgrade("darkMagicTower", "improveUpgrade", Config.BuildConfig.DarkMagicTowerImproveUpgrade);
+        LoadUpgrade("darkMagicTower", "soulUpgrade", Config.BuildConfig.DarkMagicTowerSoulUpgrade);
+        LoadUpgrade("darkMagicTower", "afflictUpgrade", Config.BuildConfig.DarkMagicTowerAfflictionUpgrade);
+
+        LoadBuilding("temporalTower", Config.BuildConfig.TemporalTower);
+        LoadUpgrade("temporalTower", "improveUpgrade", Config.BuildConfig.TemporalTowerImproveUpgrade);
+        LoadUpgrade("temporalTower", "disruptUpgrade", Config.BuildConfig.TemporalTowerDisruptUpgrade);
+        LoadUpgrade("temporalTower", "tuneUpgrade", Config.BuildConfig.TemporalTowerTuneUpgrade);
+
+        LoadBuilding("laboratory", Config.BuildConfig.Laboratory);
+        Config.BuildConfig.LaboratoryUpfrontCost = results["teleporter"]["upfrontCost"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBaseUnitPrice = results["teleporter"]["baseUnitPrice"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBulkDiscount = results["teleporter"]["bulkDiscount"].ToObject<float>();
+        Config.BuildConfig.LaboratoryBulkMin = results["teleporter"]["bulkMin"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBulkMax = results["teleporter"]["bulkMax"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBaseRollCount = results["teleporter"]["baseRollCount"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBaseTraitChance = results["teleporter"]["baseTraitChance"].ToObject<float>();
+        LoadUpgrade("laboratory", "improveUpgrade", Config.BuildConfig.LaboratoryImproveUpgrade);
+        LoadUpgrade("laboratory", "ingredientUpgrade", Config.BuildConfig.LaboratoryIngredientUpgrade);
+        LoadUpgrade("laboratory", "boostUpgrade", Config.BuildConfig.LaboratoryBoostUpgrade);
+
+        LoadBuilding("teleporter", Config.BuildConfig.Teleporter);
+        Config.BuildConfig.TeleporterMaxCapacity = results["teleporter"]["maxCapacity"].ToObject<float>();
+        Config.BuildConfig.TeleporterCapacityRegen = results["teleporter"]["capRegen"].ToObject<float>();
+        Config.BuildConfig.TeleporterPerUnitCapacity = results["teleporter"]["perUnitCap"].ToObject<bool>();
+        Config.BuildConfig.TeleporterPerUnitCapacityMod = results["teleporter"]["perUnitCapMod"].ToObject<float>();
+        LoadUpgrade("teleporter", "stoneUpgrade", Config.BuildConfig.TeleporterStoneUpgrade);
+        LoadUpgrade("teleporter", "capacityUpgrade", Config.BuildConfig.TeleporterCapacityUpgrade);
+        LoadUpgrade("teleporter", "ancientUpgrade", Config.BuildConfig.TeleporterAncientUpgrade);
+
+        LoadBuilding("townHall", Config.BuildConfig.TownHall);
+        LoadUpgrade("townHall", "manualUpgrade", Config.BuildConfig.TownHallManualUpgrade);
+        LoadUpgrade("townHall", "prefabUpgrade", Config.BuildConfig.TownHallPrefabUpgrade);
+        LoadUpgrade("townHall", "manaStoneUpgrade", Config.BuildConfig.TownHallManaStoneUpgrade);
 
         void LoadBuilding(string buildingName, GeneralBuildingConfig BuildingObect)
         {
@@ -282,6 +426,16 @@ public class BuildingSettings : MonoBehaviour
         public int BuildingSystemTurnLockout { get; set; }
         public WorkCampTempClass workCamp { get; set; }
         public LumberCampTempClass lumberSite { get; set; }
+        public QuarryTempClass quarry { get; set; }
+        public CasterTowerTempClass casterTower { get; set; }
+        public BarrierTowerTempClass barrierTower { get; set; }
+        public DefEncampTempClass defEncamp { get; set; }
+        public AcademyTempClass academy { get; set; }
+        public DarkMagicTowerTempClass darkMagicTower { get; set; }
+        public TemporalTowerTempClass temporalTower { get; set; }
+        public LaboratoryTempClass laboratory { get; set; }
+        public TeleporterTempClass teleporter { get; set; }
+        public TownHallTempClass townHall { get; set; }
 
     }
 
@@ -332,6 +486,182 @@ public class BuildingSettings : MonoBehaviour
         {
             standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
             this.workerCap = cap;
+        }
+    }
+    class QuarryTempClass : BuildingStandardInherit
+    {
+        public int stoneMin { get; set; }
+        public int stoneMax { get; set; }
+        public int oreMin { get; set; }
+        public int oreMax { get; set; }
+        public int msMin { get; set; }
+        public int msMax { get; set; }
+        public int goldMin { get; set; }
+        public int goldMax { get; set; }
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass deepUpgrade { get; set; }
+        public BuildingUpgradeTempClass leyLineUpgrade { get; set; }
+        internal QuarryTempClass(GeneralBuildingConfig configClass, int sMin, int sMax, int oMin, int oMax, int mMin, int mMax, int gMin, int gMax)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            stoneMin = sMin;
+            stoneMax = sMax;
+            oreMin = oMin;
+            oreMax = oMax;
+            msMin = mMin;
+            msMax = mMax;
+            goldMin = gMin;
+            goldMax = gMax;
+        }
+    }
+    class CasterTowerTempClass : BuildingStandardInherit
+    {
+        public int chargeMax { get; set; }
+        public int chargeRegen { get; set; }
+        public int chargeBaseCost { get; set; }
+        public int chargeBetterCost { get; set; }
+        public int chargeBuffCost { get; set; }
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass forceUpgrade { get; set; }
+        public BuildingUpgradeTempClass buffUpgrade { get; set; }
+        internal CasterTowerTempClass(GeneralBuildingConfig configClass, int cMax,int cRegen,int cBaseCost, int cBetterCost, int cBuffCost)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            chargeMax = cMax;
+            chargeRegen = cRegen;
+            chargeBaseCost = cBaseCost;
+            chargeBetterCost = cBetterCost;
+            chargeBuffCost = cBuffCost;
+        }
+    }
+    class BarrierTowerTempClass : BuildingStandardInherit
+    {
+        public int baseBarrierStrength { get; set; }
+        public bool ignoreDowntime { get; set; }
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass healUpgrade { get; set; }
+        public BuildingUpgradeTempClass buffUpgrade { get; set; }
+        internal BarrierTowerTempClass(GeneralBuildingConfig configClass, int baseStr,bool ignoreDT)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            baseBarrierStrength = baseStr;
+            ignoreDowntime = ignoreDT;
+        }
+    }
+    class DefEncampTempClass : BuildingStandardInherit
+    {
+        public float armyPercentage { get; set; }
+        public float unitScale { get; set; }
+        public float garrisonSizeScale { get; set; }
+        public int trainTime { get; set; }
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass unitUpgrade { get; set; }
+        public BuildingUpgradeTempClass levelUpgrade { get; set; }
+        internal DefEncampTempClass(GeneralBuildingConfig configClass, float armyPct, float uScale, float garScale, int tTime)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            armyPercentage = armyPct;
+            unitScale = uScale;
+            garrisonSizeScale = garScale;
+            trainTime = tTime;
+        }
+    }
+    class AcademyTempClass : BuildingStandardInherit
+    {
+        public int expGold { get; set; }
+        public int maxUpgrades { get; set; }
+        public int upgradeCost { get; set; }
+        public float costInc { get; set; }
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass researchUpgrade { get; set; }
+        public BuildingUpgradeTempClass effUpgrade { get; set; }
+        internal AcademyTempClass(GeneralBuildingConfig configClass, int expG, int mUpgrade, int upgCost, float costMult)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            expGold = expG;
+            maxUpgrades = mUpgrade;
+            upgradeCost = upgradeCost;
+            costInc = costMult;
+        }
+    }
+    class DarkMagicTowerTempClass : BuildingStandardInherit
+    {
+        public int durImprovement { get; set; }
+        public int accImprovement { get; set; }
+        public int soulPointBase{ get; set; }
+        public float soulPointMult { get; set; }
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass afflictUpgrade { get; set; }
+        public BuildingUpgradeTempClass soulUpgrade { get; set; }
+        internal DarkMagicTowerTempClass(GeneralBuildingConfig configClass, int durImp, int accImp, int spBase, float spMult)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            durImprovement = durImp;
+            accImprovement = accImp;
+            soulPointBase = spBase;
+            soulPointMult = spMult;
+        }
+    }
+    class TemporalTowerTempClass : BuildingStandardInherit
+    {
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass tuneUpgrade { get; set; }
+        public BuildingUpgradeTempClass disruptUpgrade { get; set; }
+        internal TemporalTowerTempClass(GeneralBuildingConfig configClass)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+        }
+    }
+    class LaboratoryTempClass : BuildingStandardInherit
+    {
+        public int upfrontCost { get; set; }
+        public int baseUnitPrice { get; set; }
+        public float bulkDiscount { get; set; }
+        public int bulkMin { get; set; }
+        public int bulkMax { get; set; }
+        public int baseRollCount { get; set; }
+        public float baseTraitChance { get; set; }
+        public BuildingUpgradeTempClass improveUpgrade { get; set; }
+        public BuildingUpgradeTempClass ingredientUpgrade { get; set; }
+        public BuildingUpgradeTempClass boostUpgrade { get; set; }
+        internal LaboratoryTempClass(GeneralBuildingConfig configClass, int upCost, int uPrice, float disc, int bMin, int bMax, int rCount, float tChance)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            upfrontCost = upCost;
+            baseUnitPrice = uPrice;
+            bulkDiscount = disc;
+            bulkMin = bMin;
+            bulkMax = bMax;
+            baseRollCount = rCount;
+            baseTraitChance = tChance;
+        }
+    }
+    class TeleporterTempClass : BuildingStandardInherit
+    {
+        public float maxCapacity { get; set; }
+        public float capRegen { get; set; }
+        public bool perUnitCap { get; set; }
+        public float perUnitCapMod { get; set; }
+        public BuildingUpgradeTempClass stoneUpgrade { get; set; }
+        public BuildingUpgradeTempClass ancientUpgrade { get; set; }
+        public BuildingUpgradeTempClass capacityUpgrade { get; set; }
+        internal TeleporterTempClass(GeneralBuildingConfig configClass, float maxCap, float capReg, bool pUnit, float cMod)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
+            maxCapacity = maxCap;
+            capRegen = capReg;
+            perUnitCap = pUnit;
+            perUnitCapMod = cMod;
+        }
+    }
+    class TownHallTempClass : BuildingStandardInherit
+    {
+        public BuildingUpgradeTempClass manualUpgrade { get; set; }
+        public BuildingUpgradeTempClass prefabUpgrade { get; set; }
+        public BuildingUpgradeTempClass manaStoneUpgrade { get; set; }
+        internal TownHallTempClass(GeneralBuildingConfig configClass)
+        {
+            standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
         }
     }
     class BuildingUpgradeTempClass

@@ -121,7 +121,7 @@ public class BuildingConfig
     [OdinSerialize]
     internal BuildingUpgrade DefenseEncampmentLevelUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "Tactical Training", "Construct training grounds. Increases how well units scale with leader's level by 50%. Halve unit training time.");
 
-    //Academy Tower
+    //Academy
     [OdinSerialize]
     internal GeneralBuildingConfig Academy = new GeneralBuildingConfig(250, 2, -1, 0, 0);
     [OdinSerialize]
