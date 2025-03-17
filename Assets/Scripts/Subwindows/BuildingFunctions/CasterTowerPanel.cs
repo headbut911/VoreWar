@@ -51,7 +51,7 @@ public class CasterTowerPanel : MonoBehaviour
         UpdateSliderValues();
 
         CurrentMana.text = CasterTower.ManaCharges.ToString();
-        MaxMana.text = (Config.BuildCon.CasterTowerManaChargesMax * (CasterTower.improveUpgrade.built ? 2 : 1)).ToString();
+        MaxMana.text = (Config.BuildConfig.CasterTowerManaChargesMax * (CasterTower.improveUpgrade.built ? 2 : 1)).ToString();
 
         valueFireballCasts.onValueChanged.AddListenerOnce((float newVal) =>
         {

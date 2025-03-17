@@ -217,17 +217,17 @@ public class WorkCampPanel : MonoBehaviour
         switch (type)
         {
             case ConstructionresourceType.wood:
-                return Config.BuildCon.WorkCampItemPrice.Wood;
+                return Config.BuildConfig.WorkCampItemPrice.Wood;
             case ConstructionresourceType.stone:
-                return Config.BuildCon.WorkCampItemPrice.Stone;
+                return Config.BuildConfig.WorkCampItemPrice.Stone;
             case ConstructionresourceType.ores:
-                return Config.BuildCon.WorkCampItemPrice.Ores;
+                return Config.BuildConfig.WorkCampItemPrice.Ores;
             case ConstructionresourceType.naturalmaterials:
-                return Config.BuildCon.WorkCampItemPrice.NaturalMaterials;
+                return Config.BuildConfig.WorkCampItemPrice.NaturalMaterials;
             case ConstructionresourceType.prefabs:
-                return Config.BuildCon.WorkCampItemPrice.Prefabs;
+                return Config.BuildConfig.WorkCampItemPrice.Prefabs;
             case ConstructionresourceType.manastones:
-                return Config.BuildCon.WorkCampItemPrice.ManaStones;
+                return Config.BuildConfig.WorkCampItemPrice.ManaStones;
             default:
                 break;
         }

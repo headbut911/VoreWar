@@ -54,7 +54,12 @@ public class BuildMenu : MonoBehaviour
             currentPrefab.Ores.text = building.ResourceToBuild.Ores.ToString();
             currentPrefab.ManaStones.text = building.ResourceToBuild.ManaStones.ToString();
             currentPrefab.linkedBuilding = building.buildingType;
-            if (!empire.constructionResources.CanBuildWithCurrentResources(building.ResourceToBuild) || building.GoldCost > empire.Gold)
+            currentPrefab.BuildLimit.text = $"{empire.EmpireBuildingLimit[building.buildingType]} Remaining";
+            if (empire.EmpireBuildingLimit[building.buildingType] <= -1)
+            {
+                currentPrefab.BuildLimit.gameObject.SetActive(false);
+            }
+            if (!empire.constructionResources.CanBuildWithCurrentResources(building.ResourceToBuild) || building.GoldCost > empire.Gold || !empire.WithinBuildLimit(building.buildingType))
             {
                 currentPrefab.Construct.interactable = false;
             }

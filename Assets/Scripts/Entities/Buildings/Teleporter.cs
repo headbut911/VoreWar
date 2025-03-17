@@ -17,18 +17,18 @@ class Teleporter : ConstructibleBuilding
         spriteID = 72;
         buildingType = ConstructibleType.Teleporter;
 
-        ApplyConfigStats(Config.BuildCon.Teleporter);
-        stoneUpgrade = AddUpgrade(stoneUpgrade, Config.BuildCon.TeleporterStoneUpgrade);
-        capacityUpgrade = AddUpgrade(capacityUpgrade, Config.BuildCon.TeleporterCapacityUpgrade);
-        ancientUpgrade = AddUpgrade(ancientUpgrade, Config.BuildCon.TeleporterAncientUpgrade);
-        TeleportCapacity = Config.BuildCon.TeleporterMaxCapacity;
+        ApplyConfigStats(Config.BuildConfig.Teleporter);
+        stoneUpgrade = AddUpgrade(stoneUpgrade, Config.BuildConfig.TeleporterStoneUpgrade);
+        capacityUpgrade = AddUpgrade(capacityUpgrade, Config.BuildConfig.TeleporterCapacityUpgrade);
+        ancientUpgrade = AddUpgrade(ancientUpgrade, Config.BuildConfig.TeleporterAncientUpgrade);
+        TeleportCapacity = Config.BuildConfig.TeleporterMaxCapacity;
     }
     internal override void RunBuildingFunction()
     {
-        TeleportCapacity += Config.BuildCon.TeleporterCapacityRegen;
-        if (TeleportCapacity > Config.BuildCon.TeleporterMaxCapacity && !capacityUpgrade.built)
+        TeleportCapacity += Config.BuildConfig.TeleporterCapacityRegen;
+        if (TeleportCapacity > Config.BuildConfig.TeleporterMaxCapacity && !capacityUpgrade.built)
         {
-            TeleportCapacity = Config.BuildCon.TeleporterMaxCapacity;
+            TeleportCapacity = Config.BuildConfig.TeleporterMaxCapacity;
         }
     }
 }

@@ -17,10 +17,10 @@ class Quarry : ConstructibleBuilding
         spriteID = 16;
         buildingType = ConstructibleType.Quarry;
 
-        ApplyConfigStats(Config.BuildCon.Quarry);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.QuarryImproveUpgrade);
-        deepUpgrade = AddUpgrade(deepUpgrade, Config.BuildCon.QuarryDeepUpgrade);
-        leyUpgrade = AddUpgrade(leyUpgrade, Config.BuildCon.QuarryLeyLineUpgrade);
+        ApplyConfigStats(Config.BuildConfig.Quarry);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.QuarryImproveUpgrade);
+        deepUpgrade = AddUpgrade(deepUpgrade, Config.BuildConfig.QuarryDeepUpgrade);
+        leyUpgrade = AddUpgrade(leyUpgrade, Config.BuildConfig.QuarryLeyLineUpgrade);
 
         ActionPlan = 0;
     }
@@ -36,14 +36,14 @@ class Quarry : ConstructibleBuilding
             switch (ActionPlan)
             {
                 case 0:
-                    StoneRoll = State.Rand.Next(Config.BuildCon.QuarryStoneMin + 1, Config.BuildCon.QuarryStoneMax + 1) ;
-                    OreRoll = State.Rand.Next(Config.BuildCon.QuarryOreMin + 1, Config.BuildCon.QuarryOreMax + 1);
-                    MSRoll = State.Rand.Next(Config.BuildCon.QuarryMSMin + 1, Config.BuildCon.QuarryMSMax + 1);
+                    StoneRoll = State.Rand.Next(Config.BuildConfig.QuarryStoneMin + 1, Config.BuildConfig.QuarryStoneMax + 1) ;
+                    OreRoll = State.Rand.Next(Config.BuildConfig.QuarryOreMin + 1, Config.BuildConfig.QuarryOreMax + 1);
+                    MSRoll = State.Rand.Next(Config.BuildConfig.QuarryMSMin + 1, Config.BuildConfig.QuarryMSMax + 1);
                     break;
                 case 1:
-                    StoneRoll = State.Rand.Next((int)Math.Ceiling(Config.BuildCon.QuarryStoneMin * 0.5f), (int)Math.Ceiling(Config.BuildCon.QuarryStoneMin * 1.75f));
-                    OreRoll = State.Rand.Next((int)Math.Ceiling(Config.BuildCon.QuarryOreMin * 0.5f), (int)Math.Ceiling(Config.BuildCon.QuarryOreMax * 1.75f));
-                    MSRoll = State.Rand.Next((int)Math.Ceiling(Config.BuildCon.QuarryMSMin * 0.5f), (int)Math.Ceiling(Config.BuildCon.QuarryMSMax * 1.75f));
+                    StoneRoll = State.Rand.Next((int)Math.Ceiling(Config.BuildConfig.QuarryStoneMin * 0.5f), (int)Math.Ceiling(Config.BuildConfig.QuarryStoneMin * 1.75f));
+                    OreRoll = State.Rand.Next((int)Math.Ceiling(Config.BuildConfig.QuarryOreMin * 0.5f), (int)Math.Ceiling(Config.BuildConfig.QuarryOreMax * 1.75f));
+                    MSRoll = State.Rand.Next((int)Math.Ceiling(Config.BuildConfig.QuarryMSMin * 0.5f), (int)Math.Ceiling(Config.BuildConfig.QuarryMSMax * 1.75f));
                     break;
                 case 2:
                     int mode = 0;
@@ -53,37 +53,37 @@ class Quarry : ConstructibleBuilding
                         mode = State.Rand.Next(4);
                         if (mode == 0)
                         {
-                            GoldRoll = Config.BuildCon.QuarryGoldMax;
+                            GoldRoll = Config.BuildConfig.QuarryGoldMax;
                         }
                         else if (mode == 1)
                         {
-                            StoneRoll = Config.BuildCon.QuarryStoneMax;
+                            StoneRoll = Config.BuildConfig.QuarryStoneMax;
                         }
                         else if (mode == 2)
                         {
-                            OreRoll = Config.BuildCon.QuarryOreMax;
+                            OreRoll = Config.BuildConfig.QuarryOreMax;
                         }
                         else
                         {
-                            MSRoll = Config.BuildCon.QuarryMSMax;
+                            MSRoll = Config.BuildConfig.QuarryMSMax;
                         }
                         rolls++;
                     }
                     break;
                 case 3:
-                    StoneRoll = State.Rand.Next(0, Config.BuildCon.QuarryStoneMin + Config.BuildCon.QuarryStoneMax);
-                    OreRoll = State.Rand.Next(0, Config.BuildCon.QuarryOreMin + Config.BuildCon.QuarryOreMax);
-                    MSRoll = State.Rand.Next(0, Config.BuildCon.QuarryStoneMin + Config.BuildCon.QuarryStoneMax);
-                    GoldRoll= State.Rand.Next(0, Config.BuildCon.QuarryGoldMin + Config.BuildCon.QuarryGoldMax);
+                    StoneRoll = State.Rand.Next(0, Config.BuildConfig.QuarryStoneMin + Config.BuildConfig.QuarryStoneMax);
+                    OreRoll = State.Rand.Next(0, Config.BuildConfig.QuarryOreMin + Config.BuildConfig.QuarryOreMax);
+                    MSRoll = State.Rand.Next(0, Config.BuildConfig.QuarryStoneMin + Config.BuildConfig.QuarryStoneMax);
+                    GoldRoll= State.Rand.Next(0, Config.BuildConfig.QuarryGoldMin + Config.BuildConfig.QuarryGoldMax);
                     break;
                 case 4:
                     if (State.Rand.Next(10) >= 6)
-                        OreRoll = State.Rand.Next(Config.BuildCon.QuarryOreMin * 2, Config.BuildCon.QuarryOreMax * 2);
+                        OreRoll = State.Rand.Next(Config.BuildConfig.QuarryOreMin * 2, Config.BuildConfig.QuarryOreMax * 2);
                     else
-                        MSRoll = State.Rand.Next(Config.BuildCon.QuarryStoneMin * 2, Config.BuildCon.QuarryStoneMax * 2);
+                        MSRoll = State.Rand.Next(Config.BuildConfig.QuarryStoneMin * 2, Config.BuildConfig.QuarryStoneMax * 2);
                     break;
                 case 5:
-                    GoldRoll = State.Rand.Next(0, Config.BuildCon.QuarryStoneMax * 2);
+                    GoldRoll = State.Rand.Next(0, Config.BuildConfig.QuarryStoneMax * 2);
                     break;
                 default:
                     break;
@@ -94,32 +94,32 @@ class Quarry : ConstructibleBuilding
             switch (ActionPlan)
             {
                 case 0:
-                    StoneRoll = State.Rand.Next(Config.BuildCon.QuarryStoneMin, Config.BuildCon.QuarryStoneMax);
-                    OreRoll = State.Rand.Next(Config.BuildCon.QuarryOreMin, Config.BuildCon.QuarryOreMax);
-                    MSRoll = State.Rand.Next(Config.BuildCon.QuarryMSMin, Config.BuildCon.QuarryMSMax);
+                    StoneRoll = State.Rand.Next(Config.BuildConfig.QuarryStoneMin, Config.BuildConfig.QuarryStoneMax);
+                    OreRoll = State.Rand.Next(Config.BuildConfig.QuarryOreMin, Config.BuildConfig.QuarryOreMax);
+                    MSRoll = State.Rand.Next(Config.BuildConfig.QuarryMSMin, Config.BuildConfig.QuarryMSMax);
                     break;
                 case 1:
-                    StoneRoll = State.Rand.Next((int)Math.Floor(Config.BuildCon.QuarryStoneMin * 0.5f), (int)Math.Ceiling(Config.BuildCon.QuarryStoneMin * 1.5f));
-                    OreRoll = State.Rand.Next((int)Math.Floor(Config.BuildCon.QuarryOreMin * 0.5f), (int)Math.Ceiling(Config.BuildCon.QuarryOreMax * 1.5f));
-                    MSRoll = State.Rand.Next((int)Math.Floor(Config.BuildCon.QuarryMSMin * 0.5f), (int)Math.Ceiling(Config.BuildCon.QuarryMSMax * 1.5f));
+                    StoneRoll = State.Rand.Next((int)Math.Floor(Config.BuildConfig.QuarryStoneMin * 0.5f), (int)Math.Ceiling(Config.BuildConfig.QuarryStoneMin * 1.5f));
+                    OreRoll = State.Rand.Next((int)Math.Floor(Config.BuildConfig.QuarryOreMin * 0.5f), (int)Math.Ceiling(Config.BuildConfig.QuarryOreMax * 1.5f));
+                    MSRoll = State.Rand.Next((int)Math.Floor(Config.BuildConfig.QuarryMSMin * 0.5f), (int)Math.Ceiling(Config.BuildConfig.QuarryMSMax * 1.5f));
                     break;
                 case 2:
                     int mode = State.Rand.Next(4);
                     if (mode == 0)
                     {
-                        GoldRoll = Config.BuildCon.QuarryGoldMax;
+                        GoldRoll = Config.BuildConfig.QuarryGoldMax;
                     }
                     else if (mode == 1)
                     {
-                        StoneRoll = Config.BuildCon.QuarryStoneMax;
+                        StoneRoll = Config.BuildConfig.QuarryStoneMax;
                     }
                     else if (mode == 2)
                     {
-                        OreRoll = Config.BuildCon.QuarryOreMax;
+                        OreRoll = Config.BuildConfig.QuarryOreMax;
                     }
                     else
                     {
-                        MSRoll = Config.BuildCon.QuarryMSMax;
+                        MSRoll = Config.BuildConfig.QuarryMSMax;
                     }
                     break;
                 default:

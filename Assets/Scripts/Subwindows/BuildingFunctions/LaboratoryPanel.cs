@@ -54,18 +54,18 @@ public class LaboratoryPanel : MonoBehaviour
         UnitCostList = new int[4];
         OptionIngredients = new PotionIngredient[4];
 
-        StartPotion.GetComponentInChildren<Text>().text = $"New Potion\n ({Config.BuildCon.LaboratoryUpfrontCost} G)";
-        if (Laboratory.Owner.Gold < Config.BuildCon.LaboratoryUpfrontCost)
+        StartPotion.GetComponentInChildren<Text>().text = $"New Potion\n ({Config.BuildConfig.LaboratoryUpfrontCost} G)";
+        if (Laboratory.Owner.Gold < Config.BuildConfig.LaboratoryUpfrontCost)
         {
             StartPotion.interactable = false;
         }
         BrewPanel.gameObject.SetActive(false);
         StartPotion.onClick.AddListenerOnce(() =>
         {
-            Laboratory.Owner.SpendGold(Config.BuildCon.LaboratoryUpfrontCost);
+            Laboratory.Owner.SpendGold(Config.BuildConfig.LaboratoryUpfrontCost);
             BeginPotion();
         });
-        StartPotion.interactable = Laboratory.Owner.Gold >= Config.BuildCon.LaboratoryUpfrontCost;
+        StartPotion.interactable = Laboratory.Owner.Gold >= Config.BuildConfig.LaboratoryUpfrontCost;
         BrewPotion.onClick.AddListenerOnce(() =>
         {
             EndPotion();
@@ -104,10 +104,10 @@ public class LaboratoryPanel : MonoBehaviour
             }
         });
 
-        UnitPriceValue = Config.BuildCon.LaboratoryBaseUnitPrice;
+        UnitPriceValue = Config.BuildConfig.LaboratoryBaseUnitPrice;
         UnitPrice.text = UnitPriceValue.ToString();
         TotalCost.text = TotalCostValue.ToString();
-        TraitChanceValue = Config.BuildCon.LaboratoryBaseTraitChance;
+        TraitChanceValue = Config.BuildConfig.LaboratoryBaseTraitChance;
         DiscountValue = GetDiscount();
         Discount.text = ((int)((1 - DiscountValue) * 100)).ToString();
         BrewCount.text = BrewCountValue.ToString();
@@ -143,13 +143,13 @@ public class LaboratoryPanel : MonoBehaviour
         TraitChance.text = "Trait from Effect: " + ((int)(TraitChanceValue * 100)).ToString() + " %";
         RemainingIngredientPicks.text = $"Remaining Picks: {RemainingRolls}";
         PotionRollStats = new int[9];
-        UnitPriceValue = Config.BuildCon.LaboratoryBaseUnitPrice;
+        UnitPriceValue = Config.BuildConfig.LaboratoryBaseUnitPrice;
         UnitPrice.text = UnitPriceValue.ToString();
         newPotion = new LaboratoryPotion();
-        TraitChanceValue = Config.BuildCon.LaboratoryBaseTraitChance;
+        TraitChanceValue = Config.BuildConfig.LaboratoryBaseTraitChance;
         DiscountValue = 1f;
         Discount.text = ((int)((1 - DiscountValue) * 100)).ToString();
-        RemainingRolls = Config.BuildCon.LaboratoryBaseRollCount * (Laboratory.improveUpgrade.built ? 2 : 1);
+        RemainingRolls = Config.BuildConfig.LaboratoryBaseRollCount * (Laboratory.improveUpgrade.built ? 2 : 1);
         for (int i = 0; i < RolledStats.Count(); i++)
         {
             RolledStats[i].text = ((TraitTier)i).ToString() + $" Effect: {PotionRollStats[i]}";
@@ -166,7 +166,7 @@ public class LaboratoryPanel : MonoBehaviour
         PotionIngredient ingRoll = (PotionIngredient)State.Rand.Next(Laboratory.ingredientUpgrade.built ? (int)PotionIngredient.PotionIngredientCounter : (int)PotionIngredient.Powerful);
         OptionIngredients[id] = ingRoll;
         OptionTitle[id].text = $"{ingRoll.ToString()} Ingredient";
-        int baselineCost = Config.BuildCon.LaboratoryBaseUnitPrice;
+        int baselineCost = Config.BuildConfig.LaboratoryBaseUnitPrice;
         int CostAdd = 0;
         switch (ingRoll)
         {
@@ -412,7 +412,7 @@ public class LaboratoryPanel : MonoBehaviour
         BrewPotion.interactable = false;
         IncCount.interactable = false;
         DecCount.interactable = false;
-        StartPotion.interactable = Laboratory.Owner.Gold >= Config.BuildCon.LaboratoryUpfrontCost;
+        StartPotion.interactable = Laboratory.Owner.Gold >= Config.BuildConfig.LaboratoryUpfrontCost;
         if (UnitPriceValue < 0)
         {
             UnitPriceValue = 0;
@@ -487,13 +487,13 @@ public class LaboratoryPanel : MonoBehaviour
     float GetDiscount()
     {
         float discountTotal = 1f;
-        if (BrewCountValue >= Config.BuildCon.LaboratoryBulkMax)
+        if (BrewCountValue >= Config.BuildConfig.LaboratoryBulkMax)
         {
-            return Config.BuildCon.LaboratoryBulkDiscount;
+            return Config.BuildConfig.LaboratoryBulkDiscount;
         }
-        if (BrewCountValue >= Config.BuildCon.LaboratoryBulkMin)
+        if (BrewCountValue >= Config.BuildConfig.LaboratoryBulkMin)
         {
-            return 1f - (Config.BuildCon.LaboratoryBulkDiscount * ((float)BrewCountValue / (float)Config.BuildCon.LaboratoryBulkMax));
+            return 1f - (Config.BuildConfig.LaboratoryBulkDiscount * ((float)BrewCountValue / (float)Config.BuildConfig.LaboratoryBulkMax));
         }
         return discountTotal;
     }

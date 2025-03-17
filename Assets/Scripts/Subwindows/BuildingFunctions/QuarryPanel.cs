@@ -118,10 +118,10 @@ public class QuarryPanel : MonoBehaviour
                 break;
         }
 
-        int Oresmin = Quarry.deepUpgrade.built ? Config.BuildCon.QuarryOreMin : 0;
-        int Oresmax = Quarry.deepUpgrade.built ? Config.BuildCon.QuarryOreMax: 0;
-        int MSmin = Quarry.leyUpgrade.built ? Config.BuildCon.QuarryMSMin: 0;
-        int MSmax = Quarry.leyUpgrade.built ? Config.BuildCon.QuarryMSMax: 0;
+        int Oresmin = Quarry.deepUpgrade.built ? Config.BuildConfig.QuarryOreMin : 0;
+        int Oresmax = Quarry.deepUpgrade.built ? Config.BuildConfig.QuarryOreMax: 0;
+        int MSmin = Quarry.leyUpgrade.built ? Config.BuildConfig.QuarryMSMin: 0;
+        int MSmax = Quarry.leyUpgrade.built ? Config.BuildConfig.QuarryMSMax: 0;
 
         if (!Quarry.improveUpgrade.built)
         {
@@ -133,24 +133,24 @@ public class QuarryPanel : MonoBehaviour
             {
                 case 0:
                     ActionPlanDescription.text = $"The quarry operates normally, providing no benefits or drawbacks.";
-                    StoneText.text = $"{Config.BuildCon.QuarryStoneMin} - {Config.BuildCon.QuarryStoneMax}";
+                    StoneText.text = $"{Config.BuildConfig.QuarryStoneMin} - {Config.BuildConfig.QuarryStoneMax}";
                     OresText.text = $"{Oresmin} - {Oresmax}";
                     MSText.text = $"{MSmin} - {MSmax}";
                     GoldText.text = $"0";
                     break;
                 case 1:
                     ActionPlanDescription.text = $"Workers search for new deposits while ignoring old ones, increases the max and reduces the min by 50%.";
-                    StoneText.text = $"{(int)Math.Floor(Config.BuildCon.QuarryStoneMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildCon.QuarryStoneMax * 1.5f)}";
+                    StoneText.text = $"{(int)Math.Floor(Config.BuildConfig.QuarryStoneMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildConfig.QuarryStoneMax * 1.5f)}";
                     OresText.text = $"{(int)Math.Ceiling(Oresmin * 0.5f)} - {(int)Math.Ceiling(Oresmax * 1.5f)}";
-                    MSText.text = $"{(int)Math.Floor(Config.BuildCon.QuarryGoldMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildCon.QuarryGoldMax * 1.5f)}";
+                    MSText.text = $"{(int)Math.Floor(Config.BuildConfig.QuarryGoldMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildConfig.QuarryGoldMax * 1.5f)}";
                     GoldText.text = $"0";
                     break;
                 case 2:
                     ActionPlanDescription.text = $"Workers group together, focusing on mining as much as possible from one kind of material.";
-                    StoneText.text = $"25% for {Config.BuildCon.QuarryStoneMax}";
+                    StoneText.text = $"25% for {Config.BuildConfig.QuarryStoneMax}";
                     OresText.text = $"25% for {Oresmax}";
                     MSText.text = $"25% for {MSmax}";
-                    GoldText.text = $"25% for {Config.BuildCon.QuarryGoldMax}";
+                    GoldText.text = $"25% for {Config.BuildConfig.QuarryGoldMax}";
                     break;
                 default:
                     break;
@@ -162,31 +162,31 @@ public class QuarryPanel : MonoBehaviour
             {
                 case 0:
                     ActionPlanDescription.text = $"The quarry operates normally, providing no benefits or drawbacks";
-                    StoneText.text = $"{Config.BuildCon.QuarryStoneMin + 1} - {Config.BuildCon.QuarryStoneMax + 1}";
+                    StoneText.text = $"{Config.BuildConfig.QuarryStoneMin + 1} - {Config.BuildConfig.QuarryStoneMax + 1}";
                     OresText.text = $"{Oresmin + 1} - {Oresmax + 1}";
                     MSText.text = $"{MSmin + 1} - {MSmax + 1}";
                     GoldText.text = $"0";
                     break;
                 case 1:
                     ActionPlanDescription.text = $"Workers search for new deposits while ignoring old ones, increases the max and reduces the min by 50%.";
-                    StoneText.text = $"{(int)Math.Floor(Config.BuildCon.QuarryStoneMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildCon.QuarryStoneMax * 1.5f)}";
+                    StoneText.text = $"{(int)Math.Floor(Config.BuildConfig.QuarryStoneMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildConfig.QuarryStoneMax * 1.5f)}";
                     OresText.text = $"{(int)Math.Ceiling(Oresmin * 0.5f)} - {(int)Math.Ceiling(Oresmax * 1.5f)}";
-                    MSText.text = $"{(int)Math.Floor(Config.BuildCon.QuarryGoldMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildCon.QuarryGoldMax * 1.5f)}";
+                    MSText.text = $"{(int)Math.Floor(Config.BuildConfig.QuarryGoldMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildConfig.QuarryGoldMax * 1.5f)}";
                     GoldText.text = $"0";
                     break;
                 case 2:
                     ActionPlanDescription.text = $"Workers group together, focusing on mining as much as possible from one kind of material. Rolls twice.";
-                    StoneText.text = $"25% for {Config.BuildCon.QuarryStoneMax}";
+                    StoneText.text = $"25% for {Config.BuildConfig.QuarryStoneMax}";
                     OresText.text = $"25% for {Oresmax}";
                     MSText.text = $"25% for {MSmax}";
-                    GoldText.text = $"25% for {Config.BuildCon.QuarryGoldMax}";
+                    GoldText.text = $"25% for {Config.BuildConfig.QuarryGoldMax}";
                     break;
                 case 3:
                     ActionPlanDescription.text = $"Quarry removes all saftey restrictions. The new minimum is set to 0 and the old minimum is added to the maximum.";
-                    StoneText.text = $"0 - {Config.BuildCon.QuarryStoneMax + Config.BuildCon.QuarryStoneMin}";
+                    StoneText.text = $"0 - {Config.BuildConfig.QuarryStoneMax + Config.BuildConfig.QuarryStoneMin}";
                     OresText.text = $"0 - {Oresmax + Oresmin}";
                     MSText.text = $"0 - {MSmax + MSmin}";
-                    GoldText.text = $"0 - {Config.BuildCon.QuarryGoldMax + Config.BuildCon.QuarryGoldMin}";
+                    GoldText.text = $"0 - {Config.BuildConfig.QuarryGoldMax + Config.BuildConfig.QuarryGoldMin}";
                     break;
                 case 4:
                     ActionPlanDescription.text = $"Quarry focuses on only gathering high quality materials. Gold and standard stone are ignored in favore of Ore and Manastones.";
@@ -200,7 +200,7 @@ public class QuarryPanel : MonoBehaviour
                     StoneText.text = $"0";
                     OresText.text = $"0";
                     MSText.text = $"0";
-                    GoldText.text = $"0 - {Config.BuildCon.QuarryGoldMax * 2}";
+                    GoldText.text = $"0 - {Config.BuildConfig.QuarryGoldMax * 2}";
                     break;
                 default:
                     break;

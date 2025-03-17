@@ -59,6 +59,10 @@ public abstract class ConstructibleBuilding
         Owner.Buildings.Add(this);
         turnsToCompletion = baseBuildTurns;
         Owner.constructionResources.SpendProvidedResources(ResourceToBuild);
+        if (Owner.EmpireBuildingLimit[buildingType] > 0)
+        {
+            Owner.EmpireBuildingLimit[buildingType] = Owner.EmpireBuildingLimit[buildingType] - 1;
+        }
         Owner.SpendGold(GoldCost);
         var contstruct = State.World.Constructibles.ToList();
         contstruct.Add(this);

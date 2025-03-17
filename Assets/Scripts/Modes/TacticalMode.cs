@@ -614,25 +614,25 @@ public class TacticalMode : SceneBase
                     {
                         case StatusEffectType.Necrosis:
                             if (darkMagicTower.PactLevel >= 1)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             if (darkMagicTower.PactLevel >= 2)
-                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                                durr += Config.BuildConfig.DarkMagicTowerDurationImprovement;
                             break;
                         case StatusEffectType.Errosion:
                             if (darkMagicTower.PactLevel >= 4)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             if (darkMagicTower.PactLevel >= 5)
-                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                                durr += Config.BuildConfig.DarkMagicTowerDurationImprovement;
                             break;
                         case StatusEffectType.Lethargy:
                             if (darkMagicTower.PactLevel >= 7)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             if (darkMagicTower.PactLevel >= 8)
-                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                                durr += Config.BuildConfig.DarkMagicTowerDurationImprovement;
                             break;
                         case StatusEffectType.Agony:
                             if (darkMagicTower.PactLevel >= 10)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             eff = 0;
                             durr *= 2;
                             break;
@@ -670,7 +670,7 @@ public class TacticalMode : SceneBase
                             continue;
                         }
                     }
-                    if (!Config.BuildCon.BarrierTowerIgnoreDowntime)
+                    if (!Config.BuildConfig.BarrierTowerIgnoreDowntime)
                     {
                         if (barrierTower.DowntimeSlot1 <= 0)
                         {
@@ -687,7 +687,7 @@ public class TacticalMode : SceneBase
                     }
                     foreach (Actor_Unit unit in attackers)
                     {
-                        unit.Unit.RestoreBarrier(Config.BuildCon.BarrierTowerBaseBarrierStrength * barrierTower.BarrierMagnitude);
+                        unit.Unit.RestoreBarrier(Config.BuildConfig.BarrierTowerBaseBarrierStrength * barrierTower.BarrierMagnitude);
                         if (barrierTower.healUpgrade.built && barrierTower.MendingMagnitude > 0)
                         {
                             unit.Unit.ApplyStatusEffect(StatusEffectType.Mending, barrierTower.MendingMagnitude, 4 + barrierTower.MendingMagnitude);
@@ -723,7 +723,7 @@ public class TacticalMode : SceneBase
                                 {
                                     SpellList.Fireball.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
-                                    casterTower.ManaCharges -= Config.BuildCon.CasterTowerBaseChargeCost;
+                                    casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
                                 }
                                 break;
@@ -733,7 +733,7 @@ public class TacticalMode : SceneBase
                                 {
                                     SpellList.PowerBolt.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
-                                    casterTower.ManaCharges -= Config.BuildCon.CasterTowerBaseChargeCost;
+                                    casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
                                 }
                                 break;
@@ -743,7 +743,7 @@ public class TacticalMode : SceneBase
                                 {
                                     SpellList.LightningBolt.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
-                                    casterTower.ManaCharges -= Config.BuildCon.CasterTowerBaseChargeCost;
+                                    casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
                                 }
                                 break;
@@ -755,7 +755,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Shield.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -768,7 +768,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Speed.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -781,7 +781,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Valor.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -794,7 +794,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Predation.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -807,7 +807,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.IceBlast.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }
@@ -820,7 +820,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Pyre.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }
@@ -833,7 +833,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Flamberge.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }
@@ -846,7 +846,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.ForkLightning.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }
@@ -865,12 +865,12 @@ public class TacticalMode : SceneBase
                 if (building is DefenseEncampment)
                 {
                     DefenseEncampment defenseEncampment = (DefenseEncampment)building;
-                    int summonCount = (int)Math.Ceiling(attackers.Count() * (Config.BuildCon.DefenseEncampmentArmyPercentage * (defenseEncampment.unitUpgrade.built ? 1.5f : 1)));
+                    int summonCount = (int)Math.Ceiling(attackers.Count() * (Config.BuildConfig.DefenseEncampmentArmyPercentage * (defenseEncampment.unitUpgrade.built ? 1.5f : 1)));
                     while (summonCount > 0 && defenseEncampment.AvailibleDefenders > 0)
                     {
                         Empire empire = armies[1].Empire;
                         float advancedChance = 0.2f * (defenseEncampment.improveUpgrade.built ? 4f : 1);
-                        float unitScale = Config.BuildCon.DefenseEncampmentUnitScale * (defenseEncampment.levelUpgrade.built ? 1.5f : 1);
+                        float unitScale = Config.BuildConfig.DefenseEncampmentUnitScale * (defenseEncampment.levelUpgrade.built ? 1.5f : 1);
                         Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor(empire.Leader.Level * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, armies[1].Side, empire.Race, 0, empire.CanVore);
                         newUnit.Type = UnitType.Reinforcement;
                         Actor_Unit unit = new Actor_Unit(mapGen.RandomActorPosition(tiles, BlockedTile, units, TacticalMapGenerator.SpawnLocation.lower, newUnit.GetBestRanged() == null), newUnit);
@@ -935,7 +935,7 @@ public class TacticalMode : SceneBase
                             continue;
                         }
                     }
-                    if (!Config.BuildCon.BarrierTowerIgnoreDowntime)
+                    if (!Config.BuildConfig.BarrierTowerIgnoreDowntime)
                     {
                         if (barrierTower.DowntimeSlot1 <= 0)
                         {
@@ -952,7 +952,7 @@ public class TacticalMode : SceneBase
                     }
                     foreach (Actor_Unit unit in defenders)
                     {
-                        unit.Unit.RestoreBarrier(Config.BuildCon.BarrierTowerBaseBarrierStrength * barrierTower.BarrierMagnitude);
+                        unit.Unit.RestoreBarrier(Config.BuildConfig.BarrierTowerBaseBarrierStrength * barrierTower.BarrierMagnitude);
                         if (barrierTower.healUpgrade.built && barrierTower.MendingMagnitude > 0)
                         {
                             unit.Unit.ApplyStatusEffect(StatusEffectType.Mending, barrierTower.MendingMagnitude, 4 + barrierTower.MendingMagnitude);
@@ -973,25 +973,25 @@ public class TacticalMode : SceneBase
                     {
                         case StatusEffectType.Necrosis:
                             if (darkMagicTower.PactLevel >= 1)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             if (darkMagicTower.PactLevel >= 2)
-                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                                durr += Config.BuildConfig.DarkMagicTowerDurationImprovement;
                             break;
                         case StatusEffectType.Errosion:
                             if (darkMagicTower.PactLevel >= 4)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             if (darkMagicTower.PactLevel >= 5)
-                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                                durr += Config.BuildConfig.DarkMagicTowerDurationImprovement;
                             break;
                         case StatusEffectType.Lethargy:
                             if (darkMagicTower.PactLevel >= 7)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             if (darkMagicTower.PactLevel >= 8)
-                                durr += Config.BuildCon.DarkMagicTowerDurationImprovement;
+                                durr += Config.BuildConfig.DarkMagicTowerDurationImprovement;
                             break;
                         case StatusEffectType.Agony:
                             if (darkMagicTower.PactLevel >= 10)
-                                acc = Config.BuildCon.DarkMagicTowerAccImprovement;
+                                acc = Config.BuildConfig.DarkMagicTowerAccImprovement;
                             eff = 0;
                             break;
                         default:
@@ -1030,7 +1030,7 @@ public class TacticalMode : SceneBase
                                 {
                                     SpellList.Fireball.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
-                                    casterTower.ManaCharges -= Config.BuildCon.CasterTowerBaseChargeCost;
+                                    casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
                                 }
                                 break;
@@ -1040,7 +1040,7 @@ public class TacticalMode : SceneBase
                                 {
                                     SpellList.PowerBolt.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
-                                    casterTower.ManaCharges -= Config.BuildCon.CasterTowerBaseChargeCost;
+                                    casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
                                 }
                                 break;
@@ -1050,7 +1050,7 @@ public class TacticalMode : SceneBase
                                 {
                                     SpellList.LightningBolt.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
-                                    casterTower.ManaCharges -= Config.BuildCon.CasterTowerBaseChargeCost;
+                                    casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
                                 }
                                 break;
@@ -1062,7 +1062,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Shield.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -1075,7 +1075,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Speed.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -1088,7 +1088,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Valor.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -1101,7 +1101,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Predation.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBuffChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBuffChargeCost;
                                         counter--;
                                     }
                                 }
@@ -1114,7 +1114,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.IceBlast.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }
@@ -1127,7 +1127,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Pyre.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }
@@ -1140,7 +1140,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.Flamberge.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }
@@ -1153,7 +1153,7 @@ public class TacticalMode : SceneBase
                                     {
                                         SpellList.ForkLightning.TryCast(unit, attackers[State.Rand.Next(attackers.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
-                                        casterTower.ManaCharges -= Config.BuildCon.CasterTowerBetterTierChargeCost;
+                                        casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
                                     }
                                 }

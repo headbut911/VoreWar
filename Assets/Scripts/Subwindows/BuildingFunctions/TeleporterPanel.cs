@@ -34,8 +34,8 @@ public class TeleporterPanel : MonoBehaviour
         StandardArmies = new List<Army>();
         TeleportButtons = new List<Button>();
         int children = NearbyFolder.childCount;
-        TeleportCapacity.text = $"Capacity: {Teleporter.TeleportCapacity} {(Teleporter.capacityUpgrade.built ? "" : $"/ {Config.BuildCon.TeleporterMaxCapacity}")}";
-        TeleportRegen.text = $"+{Config.BuildCon.TeleporterCapacityRegen} / turn";
+        TeleportCapacity.text = $"Capacity: {Teleporter.TeleportCapacity} {(Teleporter.capacityUpgrade.built ? "" : $"/ {Config.BuildConfig.TeleporterMaxCapacity}")}";
+        TeleportRegen.text = $"+{Config.BuildConfig.TeleporterCapacityRegen} / turn";
         for (int i = children - 1; i >= 0; i--)
         {
             Destroy(NearbyFolder.GetChild(i).gameObject);
@@ -71,7 +71,7 @@ public class TeleporterPanel : MonoBehaviour
             float CapUse = 0;
             foreach (Unit unit in army.Units)
             {
-                CapUse += State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult * Config.BuildCon.TeleporterPerUnitCapacityMod;
+                CapUse += State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult * Config.BuildConfig.TeleporterPerUnitCapacityMod;
             }
 
             newAvailPrefab.ArmyName.text = army.Name;

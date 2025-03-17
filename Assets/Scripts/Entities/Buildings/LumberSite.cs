@@ -21,14 +21,14 @@ class LumberSite : ConstructibleBuilding
         spriteID = 8;
         buildingType = ConstructibleType.LumberSite;
 
-        ApplyConfigStats(Config.BuildCon.LumberSite);
-        lodgeUpgrade = AddUpgrade(lodgeUpgrade, Config.BuildCon.LumberSiteLodgeUpgrade);
-        carpenterUpgrade = AddUpgrade(carpenterUpgrade, Config.BuildCon.LumberSiteCarpenterUpgrade);
-        greenHouseUpgrade = AddUpgrade(greenHouseUpgrade, Config.BuildCon.LumberSiteGreenHouseUpgrade);
+        ApplyConfigStats(Config.BuildConfig.LumberSite);
+        lodgeUpgrade = AddUpgrade(lodgeUpgrade, Config.BuildConfig.LumberSiteLodgeUpgrade);
+        carpenterUpgrade = AddUpgrade(carpenterUpgrade, Config.BuildConfig.LumberSiteCarpenterUpgrade);
+        greenHouseUpgrade = AddUpgrade(greenHouseUpgrade, Config.BuildConfig.LumberSiteGreenHouseUpgrade);
 
 
         IdleWorkers = 0;
-        woodWorkers = Config.BuildCon.LumberSiteWorkerCap;
+        woodWorkers = Config.BuildConfig.LumberSiteWorkerCap;
         natureWorkers = 0;
         carpenterWorkers = 0;
         
@@ -41,7 +41,7 @@ class LumberSite : ConstructibleBuilding
 
         if (lodgeUpgrade.built)
         {
-            IdleWorkers = Config.BuildCon.LumberSiteWorkerCap * 2;
+            IdleWorkers = Config.BuildConfig.LumberSiteWorkerCap * 2;
         }
 
         if (carpenterUpgrade.built)

@@ -15,10 +15,10 @@ class Laboratory : ConstructibleBuilding
         spriteID = 80;
         buildingType = ConstructibleType.Laboratory;
 
-        ApplyConfigStats(Config.BuildCon.Laboratory);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.LaboratoryImproveUpgrade);
-        ingredientUpgrade = AddUpgrade(ingredientUpgrade, Config.BuildCon.LaboratoryIngredientUpgrade);
-        boostUpgrade = AddUpgrade(boostUpgrade, Config.BuildCon.LaboratoryBoostUpgrade);
+        ApplyConfigStats(Config.BuildConfig.Laboratory);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.LaboratoryImproveUpgrade);
+        ingredientUpgrade = AddUpgrade(ingredientUpgrade, Config.BuildConfig.LaboratoryIngredientUpgrade);
+        boostUpgrade = AddUpgrade(boostUpgrade, Config.BuildConfig.LaboratoryBoostUpgrade);
     }
     internal override void RunBuildingFunction()
     {

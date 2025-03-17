@@ -8,6 +8,7 @@ public class BuildingPrefab : MonoBehaviour
     public TextMeshProUGUI BuildingName;
     public TextMeshProUGUI BuildingDesc;
     public TextMeshProUGUI BuildTurns;
+    public TextMeshProUGUI BuildLimit;
     public TextMeshProUGUI GoldCost;
 
     public TextMeshProUGUI Wood;

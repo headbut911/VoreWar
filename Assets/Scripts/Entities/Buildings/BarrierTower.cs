@@ -32,10 +32,10 @@ class BarrierTower : ConstructibleBuilding
         spriteID = 32;
         buildingType = ConstructibleType.BarrierTower;
 
-        ApplyConfigStats(Config.BuildCon.BarrierTower);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.BarrierTowerImproveUpgrade);
-        healUpgrade = AddUpgrade(healUpgrade, Config.BuildCon.BarrierTowerHealUpgrade);
-        buffUpgrade = AddUpgrade(buffUpgrade, Config.BuildCon.BarrierTowerBuffUpgrade);
+        ApplyConfigStats(Config.BuildConfig.BarrierTower);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.BarrierTowerImproveUpgrade);
+        healUpgrade = AddUpgrade(healUpgrade, Config.BuildConfig.BarrierTowerHealUpgrade);
+        buffUpgrade = AddUpgrade(buffUpgrade, Config.BuildConfig.BarrierTowerBuffUpgrade);
 
         DowntimeSlot1 = 0;
         DowntimeSlot2 = 0;

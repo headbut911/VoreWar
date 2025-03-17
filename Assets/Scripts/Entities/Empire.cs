@@ -3,6 +3,7 @@ using OdinSerializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
 
@@ -76,6 +77,8 @@ public class Empire
     [OdinSerialize]
     public int AcademyUpgradeEXPCost;
 
+    [OdinSerialize]
+    public Dictionary<ConstructibleType, int> EmpireBuildingLimit;
     [OdinSerialize]
     public Dictionary<LaboratoryPotion, int> EmpirePotions;
 
@@ -187,6 +190,7 @@ public class Empire
         OrigMaxGarrisonSize = args.maxGarrisonSize;
         Armies = new List<Army>();
         Buildings = new List<ConstructibleBuilding>();
+        InitBuildLimit();
         OwnedTiles = new List<Vec2i>();
         AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
         EmpirePotions = new Dictionary<LaboratoryPotion, int>();
@@ -212,7 +216,7 @@ public class Empire
         TacticalAIType = args.tacticalAI;
         Boosts = new EmpireBoosts();
         EventHappened = new Dictionary<int, bool>();
-        AcademyUpgradeEXPCost = Config.BuildCon.AcademyUpgradeCost;
+        AcademyUpgradeEXPCost = Config.BuildConfig.AcademyUpgradeCost;
         RecentEvents = new List<int>();
 
         var raceFlags = State.RaceSettings.GetRaceTraits(Race);
@@ -557,5 +561,34 @@ public class Empire
             State.RaceSettings.GetDeployCost(Race);
         ideal_size_Mult /= Armies.Count;
         return ideal_size_Mult;
+    }
+
+    internal void InitBuildLimit()
+    {
+        EmpireBuildingLimit = new Dictionary<ConstructibleType, int>
+        {
+            [ConstructibleType.WorkCamp] = Config.BuildConfig.WorkCamp.BuildLimit,
+            [ConstructibleType.LumberSite] = Config.BuildConfig.LumberSite.BuildLimit,
+            [ConstructibleType.Quarry] = Config.BuildConfig.Quarry.BuildLimit,
+            [ConstructibleType.CasterTower] = Config.BuildConfig.CasterTower.BuildLimit,
+            [ConstructibleType.BarrierTower] = Config.BuildConfig.BarrierTower.BuildLimit,
+            [ConstructibleType.DefEncampment] = Config.BuildConfig.DefenseEncampment.BuildLimit,
+            [ConstructibleType.Academy] = Config.BuildConfig.Academy.BuildLimit,
+            [ConstructibleType.DarkMagicTower] = Config.BuildConfig.DarkMagicTower.BuildLimit,
+            [ConstructibleType.TemporalTower] = Config.BuildConfig.TemporalTower.BuildLimit,
+            [ConstructibleType.Teleporter] = Config.BuildConfig.Teleporter.BuildLimit,
+            [ConstructibleType.Laboratory] = Config.BuildConfig.Laboratory.BuildLimit,
+            [ConstructibleType.TownHall] = Config.BuildConfig.TownHall.BuildLimit,
+        };
+        EmpireBuildingLimit[ConstructibleType.WorkCamp] = 0;
+    }
+
+    internal bool WithinBuildLimit(ConstructibleType type)
+    {
+        if (EmpireBuildingLimit[type] == 0)
+        {
+            return false;
+        }
+        return true;
     }
 }

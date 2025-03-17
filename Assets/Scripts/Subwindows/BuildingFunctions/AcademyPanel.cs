@@ -33,7 +33,7 @@ public class AcademyPanel : MonoBehaviour
         Academy = (Academy)building;
         StoredEXP.text = Academy.StoredEXP.ToString();
         EXPCost.text = Academy.Owner.AcademyUpgradeEXPCost.ToString();
-        CurrentEXPRate.text = (Academy.totalIncome * Config.BuildCon.AcademyEXPPerGold).ToString();
+        CurrentEXPRate.text = (Academy.totalIncome * Config.BuildConfig.AcademyEXPPerGold).ToString();
         IncomeSliderValue.text = Academy.Income1.ToString();
         IncomeSlider.value = Academy.Income1;
         BonusIncomeSliderValue.text = Academy.Income2.ToString();
@@ -53,19 +53,19 @@ public class AcademyPanel : MonoBehaviour
         {
             Academy.Income1 = (int)newVal;
             IncomeSliderValue.text = newVal.ToString();
-            CurrentEXPRate.text = (Academy.totalIncome * Config.BuildCon.AcademyEXPPerGold).ToString();
+            CurrentEXPRate.text = (Academy.totalIncome * Config.BuildConfig.AcademyEXPPerGold).ToString();
         });
         BonusIncomeSlider.onValueChanged.AddListenerOnce((float newVal) =>
         {
             Academy.Income2 = (int)newVal;
             BonusIncomeSliderValue.text = newVal.ToString();
-            CurrentEXPRate.text = (Academy.totalIncome * Config.BuildCon.AcademyEXPPerGold).ToString();
+            CurrentEXPRate.text = (Academy.totalIncome * Config.BuildConfig.AcademyEXPPerGold).ToString();
         });
         EXPDistributeSlider.onValueChanged.AddListenerOnce((float newVal) =>
         {
             Academy.DistributedEXP = newVal;
             EXPDistributeSliderValue.text = newVal.ToString();
-            CurrentEXPRate.text = (Academy.totalIncome * Config.BuildCon.AcademyEXPPerGold).ToString();
+            CurrentEXPRate.text = (Academy.totalIncome * Config.BuildConfig.AcademyEXPPerGold).ToString();
         });
 
         int children = Folder.childCount;
@@ -154,16 +154,16 @@ public class AcademyPanel : MonoBehaviour
                 default:
                     break;
             }
-            newPrefab.Maximum.text = Config.BuildCon.AcademyMaximumUpgrades.ToString();
+            newPrefab.Maximum.text = Config.BuildConfig.AcademyMaximumUpgrades.ToString();
             if (Academy.Owner.AcademyResearchCompleted.Keys.Contains(type))
             {
                 newPrefab.Current.text = Academy.Owner.AcademyResearchCompleted[type].ToString();
                 newPrefab.ConductButton.onClick.AddListenerOnce(() =>
                 {
                     Academy.Owner.AcademyResearchCompleted[type] = Academy.Owner.AcademyResearchCompleted[type] + 1;
-                    Academy.Owner.AcademyUpgradeEXPCost = (int)(Academy.Owner.AcademyUpgradeEXPCost * Config.BuildCon.AcademyCostIncreaseMultPerUpgrade);
+                    Academy.Owner.AcademyUpgradeEXPCost = (int)(Academy.Owner.AcademyUpgradeEXPCost * Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade);
                     EXPCost.text = Academy.Owner.AcademyUpgradeEXPCost.ToString();
-                    if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildCon.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
+                    if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildConfig.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
                     {
                         newPrefab.ConductButton.interactable = false;
                     }
@@ -172,7 +172,7 @@ public class AcademyPanel : MonoBehaviour
                         newPrefab.functinoCall.Invoke(Academy.Owner);
                     }
                 });
-                if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildCon.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
+                if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildConfig.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
                 {
                     newPrefab.ConductButton.interactable = false;
                 }
@@ -183,9 +183,9 @@ public class AcademyPanel : MonoBehaviour
                 newPrefab.ConductButton.onClick.AddListenerOnce(() =>
                 {
                     Academy.Owner.AcademyResearchCompleted.Add(type, 1);
-                    Academy.Owner.AcademyUpgradeEXPCost = (int)(Academy.Owner.AcademyUpgradeEXPCost * Config.BuildCon.AcademyCostIncreaseMultPerUpgrade);
+                    Academy.Owner.AcademyUpgradeEXPCost = (int)(Academy.Owner.AcademyUpgradeEXPCost * Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade);
                     EXPCost.text = Academy.Owner.AcademyUpgradeEXPCost.ToString();
-                    if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildCon.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
+                    if (Academy.Owner.AcademyResearchCompleted[type] >= Config.BuildConfig.AcademyMaximumUpgrades || Academy.Owner.AcademyUpgradeEXPCost >= Academy.StoredEXP)
                     {
                         newPrefab.ConductButton.interactable = false;
                     }

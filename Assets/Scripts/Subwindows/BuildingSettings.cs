@@ -44,18 +44,18 @@ public class BuildingSettings : MonoBehaviour
                 WorkCampSettings.gameObject.SetActive(false);
                 break;
             case 1: // Work Camp
-                SaveText(Config.BuildCon.WorkCamp.Resources);
-                Config.BuildCon.WorkCamp.Gold = int.TryParse(GoldCost.text, out int wcg) ? wcg : 15;
-                Config.BuildCon.WorkCamp.BuildTime = int.TryParse(ConstructionTurns.text, out int wcct) ? wcct : 2;
-                Config.BuildCon.WorkCamp.BuildLimit = int.TryParse(BuildLimit.text, out int wcbl) ? wcbl : -1;
+                SaveText(Config.BuildConfig.WorkCamp.Resources);
+                Config.BuildConfig.WorkCamp.Gold = int.TryParse(GoldCost.text, out int wcg) ? wcg : 15;
+                Config.BuildConfig.WorkCamp.BuildTime = int.TryParse(ConstructionTurns.text, out int wcct) ? wcct : 2;
+                Config.BuildConfig.WorkCamp.BuildLimit = int.TryParse(BuildLimit.text, out int wcbl) ? wcbl : -1;
                 WorkCampSettings.gameObject.SetActive(false);
                 WorkCampSettings.Save();
                 break;
             case 2: // Lumber Site
-                SaveText(Config.BuildCon.LumberSite.Resources);
-                Config.BuildCon.LumberSite.Gold = int.TryParse(GoldCost.text, out int lsg) ? lsg : 15;
-                Config.BuildCon.LumberSite.BuildTime = int.TryParse(ConstructionTurns.text, out int lsct) ? lsct : 2;
-                Config.BuildCon.LumberSite.BuildLimit = int.TryParse(BuildLimit.text, out int lsbl) ? lsbl : -1;
+                SaveText(Config.BuildConfig.LumberSite.Resources);
+                Config.BuildConfig.LumberSite.Gold = int.TryParse(GoldCost.text, out int lsg) ? lsg : 15;
+                Config.BuildConfig.LumberSite.BuildTime = int.TryParse(ConstructionTurns.text, out int lsct) ? lsct : 2;
+                Config.BuildConfig.LumberSite.BuildLimit = int.TryParse(BuildLimit.text, out int lsbl) ? lsbl : -1;
                 LumberSiteSettings.gameObject.SetActive(false);
                 LumberSiteSettings.Save();
                 break;
@@ -153,27 +153,27 @@ public class BuildingSettings : MonoBehaviour
 
     private void WorkCamp()
     {
-        SetText(Config.BuildCon.WorkCamp.Resources);
-        GoldCost.text = Config.BuildCon.WorkCamp.Gold.ToString();
-        ConstructionTurns.text = Config.BuildCon.WorkCamp.BuildTime.ToString();
-        BuildLimit.text = Config.BuildCon.WorkCamp.BuildLimit.ToString();
+        SetText(Config.BuildConfig.WorkCamp.Resources);
+        GoldCost.text = Config.BuildConfig.WorkCamp.Gold.ToString();
+        ConstructionTurns.text = Config.BuildConfig.WorkCamp.BuildTime.ToString();
+        BuildLimit.text = Config.BuildConfig.WorkCamp.BuildLimit.ToString();
         WorkCampSettings.Load();
-        buildingUpgrades.Add(Config.BuildCon.WorkCampImproveUpgrade);
-        buildingUpgrades.Add(Config.BuildCon.WorkCampMerchantUpgrade);
-        buildingUpgrades.Add(Config.BuildCon.WorkCampTradeUpgrade);
+        buildingUpgrades.Add(Config.BuildConfig.WorkCampImproveUpgrade);
+        buildingUpgrades.Add(Config.BuildConfig.WorkCampMerchantUpgrade);
+        buildingUpgrades.Add(Config.BuildConfig.WorkCampTradeUpgrade);
         WorkCampSettings.gameObject.SetActive(true);
     }
     
     private void LumberSite()
     {
-        SetText(Config.BuildCon.LumberSite.Resources);
-        GoldCost.text = Config.BuildCon.LumberSite.Gold.ToString();
-        ConstructionTurns.text = Config.BuildCon.LumberSite.BuildTime.ToString();
-        BuildLimit.text = Config.BuildCon.LumberSite.BuildLimit.ToString();
+        SetText(Config.BuildConfig.LumberSite.Resources);
+        GoldCost.text = Config.BuildConfig.LumberSite.Gold.ToString();
+        ConstructionTurns.text = Config.BuildConfig.LumberSite.BuildTime.ToString();
+        BuildLimit.text = Config.BuildConfig.LumberSite.BuildLimit.ToString();
         LumberSiteSettings.Load();
-        buildingUpgrades.Add(Config.BuildCon.LumberSiteCarpenterUpgrade);
-        buildingUpgrades.Add(Config.BuildCon.LumberSiteGreenHouseUpgrade);
-        buildingUpgrades.Add(Config.BuildCon.LumberSiteLodgeUpgrade);
+        buildingUpgrades.Add(Config.BuildConfig.LumberSiteCarpenterUpgrade);
+        buildingUpgrades.Add(Config.BuildConfig.LumberSiteGreenHouseUpgrade);
+        buildingUpgrades.Add(Config.BuildConfig.LumberSiteLodgeUpgrade);
         LumberSiteSettings.gameObject.SetActive(true);
     }
 
@@ -181,20 +181,20 @@ public class BuildingSettings : MonoBehaviour
     {
         var rootObject = new RootObject();
 
-        rootObject.BuildingSystemEnabled = Config.BuildCon.BuildingSystemEnabled;
-        rootObject.BuildingSystemTurnLockout = Config.BuildCon.BuildingSystemTurnLockout;
+        rootObject.BuildingSystemEnabled = Config.BuildConfig.BuildingSystemEnabled;
+        rootObject.BuildingSystemTurnLockout = Config.BuildConfig.BuildingSystemTurnLockout;
 
-        rootObject.workCamp = new WorkCampTempClass(Config.BuildCon.WorkCamp, Config.BuildCon.WorkCampGoldPerTurn);
-        rootObject.workCamp.stock = new ConstructionResourcesTempClass(Config.BuildCon.WorkCampTurnStock);
-        rootObject.workCamp.price = new ConstructionResourcesTempClass(Config.BuildCon.WorkCampItemPrice);
-        rootObject.workCamp.tradeUpgrade = new BuildingUpgradeTempClass(Config.BuildCon.WorkCampTradeUpgrade);
-        rootObject.workCamp.merchantUpgrade = new BuildingUpgradeTempClass(Config.BuildCon.WorkCampMerchantUpgrade);
-        rootObject.workCamp.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildCon.WorkCampImproveUpgrade);
+        rootObject.workCamp = new WorkCampTempClass(Config.BuildConfig.WorkCamp, Config.BuildConfig.WorkCampGoldPerTurn);
+        rootObject.workCamp.stock = new ConstructionResourcesTempClass(Config.BuildConfig.WorkCampTurnStock);
+        rootObject.workCamp.price = new ConstructionResourcesTempClass(Config.BuildConfig.WorkCampItemPrice);
+        rootObject.workCamp.tradeUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.WorkCampTradeUpgrade);
+        rootObject.workCamp.merchantUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.WorkCampMerchantUpgrade);
+        rootObject.workCamp.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.WorkCampImproveUpgrade);
 
-        rootObject.lumberSite = new LumberCampTempClass(Config.BuildCon.LumberSite, Config.BuildCon.LumberSiteWorkerCap);
-        rootObject.lumberSite.lodgeUpgrade = new BuildingUpgradeTempClass(Config.BuildCon.LumberSiteLodgeUpgrade);
-        rootObject.lumberSite.greenhouseUpgrade = new BuildingUpgradeTempClass(Config.BuildCon.LumberSiteGreenHouseUpgrade);
-        rootObject.lumberSite.carpenterUpgrade = new BuildingUpgradeTempClass(Config.BuildCon.LumberSiteCarpenterUpgrade);
+        rootObject.lumberSite = new LumberCampTempClass(Config.BuildConfig.LumberSite, Config.BuildConfig.LumberSiteWorkerCap);
+        rootObject.lumberSite.lodgeUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteLodgeUpgrade);
+        rootObject.lumberSite.greenhouseUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteGreenHouseUpgrade);
+        rootObject.lumberSite.carpenterUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteCarpenterUpgrade);
 
         using (StreamWriter file = new StreamWriter($"{State.StorageDirectory}buildingConfig.json"))
         {
@@ -218,19 +218,19 @@ public class BuildingSettings : MonoBehaviour
             return;
         }
 
-        Config.BuildCon.BuildingSystemEnabled = results["BuildingSystemEnabled"].ToObject<bool>();
-        Config.BuildCon.BuildingSystemTurnLockout = int.TryParse(results["BuildingSystemTurnLockout"].ToString(), out int wcbstl) ? wcbstl : 1;
+        Config.BuildConfig.BuildingSystemEnabled = results["BuildingSystemEnabled"].ToObject<bool>();
+        Config.BuildConfig.BuildingSystemTurnLockout = int.TryParse(results["BuildingSystemTurnLockout"].ToString(), out int wcbstl) ? wcbstl : 1;
 
-        LoadBuilding("workCamp", Config.BuildCon.WorkCamp);
-        Config.BuildCon.WorkCampGoldPerTurn = results["workCamp"]["goldPerTurn"].ToObject<int>();
-        LoadResource("workCamp", "stock", Config.BuildCon.WorkCampTurnStock);
-        LoadResource("workCamp", "price", Config.BuildCon.WorkCampItemPrice);
-        LoadUpgrade("workCamp", "tradeUpgrade", Config.BuildCon.WorkCampTradeUpgrade);
-        LoadUpgrade("workCamp", "merchantUpgrade", Config.BuildCon.WorkCampMerchantUpgrade);
-        LoadUpgrade("workCamp", "improveUpgrade", Config.BuildCon.WorkCampImproveUpgrade);
+        LoadBuilding("workCamp", Config.BuildConfig.WorkCamp);
+        Config.BuildConfig.WorkCampGoldPerTurn = results["workCamp"]["goldPerTurn"].ToObject<int>();
+        LoadResource("workCamp", "stock", Config.BuildConfig.WorkCampTurnStock);
+        LoadResource("workCamp", "price", Config.BuildConfig.WorkCampItemPrice);
+        LoadUpgrade("workCamp", "tradeUpgrade", Config.BuildConfig.WorkCampTradeUpgrade);
+        LoadUpgrade("workCamp", "merchantUpgrade", Config.BuildConfig.WorkCampMerchantUpgrade);
+        LoadUpgrade("workCamp", "improveUpgrade", Config.BuildConfig.WorkCampImproveUpgrade);
 
-        LoadBuilding("lumberSite", Config.BuildCon.WorkCamp);
-        Config.BuildCon.LumberSiteWorkerCap = results["lumberSite"]["workerCap"].ToObject<int>();
+        LoadBuilding("lumberSite", Config.BuildConfig.WorkCamp);
+        Config.BuildConfig.LumberSiteWorkerCap = results["lumberSite"]["workerCap"].ToObject<int>();
 
 
         void LoadBuilding(string buildingName, GeneralBuildingConfig BuildingObect)

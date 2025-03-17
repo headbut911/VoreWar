@@ -20,12 +20,12 @@ class CasterTower : ConstructibleBuilding
         spriteID = 24;
         buildingType = ConstructibleType.CasterTower;
 
-        ApplyConfigStats(Config.BuildCon.CasterTower);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.CasterTowerImproveUpgrade);
-        forceUpgrade = AddUpgrade(forceUpgrade, Config.BuildCon.CasterTowerForceUpgrade);
-        buffUpgrade = AddUpgrade(buffUpgrade, Config.BuildCon.CasterTowerBuffUpgrade);
+        ApplyConfigStats(Config.BuildConfig.CasterTower);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.CasterTowerImproveUpgrade);
+        forceUpgrade = AddUpgrade(forceUpgrade, Config.BuildConfig.CasterTowerForceUpgrade);
+        buffUpgrade = AddUpgrade(buffUpgrade, Config.BuildConfig.CasterTowerBuffUpgrade);
 
-        ManaCharges = Config.BuildCon.CasterTowerManaChargesMax;
+        ManaCharges = Config.BuildConfig.CasterTowerManaChargesMax;
 
         spellCasts = new Dictionary<SpellTypes, int> 
         {
@@ -46,8 +46,8 @@ class CasterTower : ConstructibleBuilding
     }
     internal override void RunBuildingFunction()
     {
-        int ManaChargesMax = Config.BuildCon.CasterTowerManaChargesMax * (improveUpgrade.built ? 2 : 1);
-        int ManaChargesRegen = Config.BuildCon.CasterTowerManaChargesRegen * (improveUpgrade.built ? 2 : 1);
+        int ManaChargesMax = Config.BuildConfig.CasterTowerManaChargesMax * (improveUpgrade.built ? 2 : 1);
+        int ManaChargesRegen = Config.BuildConfig.CasterTowerManaChargesRegen * (improveUpgrade.built ? 2 : 1);
         if (ManaChargesMax > ManaCharges)
         {
             ManaCharges += ManaChargesRegen;

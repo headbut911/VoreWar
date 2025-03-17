@@ -389,7 +389,7 @@ static class Config
 
     //Everything below this line should be mirrored in BuildingConfig to ensure proper saving
 
-    internal static BuildingConfig BuildCon = new BuildingConfig();
+    internal static BuildingConfig BuildConfig = new BuildingConfig();
 
 
     internal static bool WinterActive()

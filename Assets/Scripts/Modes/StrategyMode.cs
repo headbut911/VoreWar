@@ -2494,8 +2494,8 @@ public class StrategyMode : SceneBase
                 {
                     TilemapLayers[14].ClearAllTiles();
                     TilemapLayers[14].SetTile(new Vector3Int(x, y, 0), BuildIndicator[2]);
-
-                    if (Input.GetMouseButtonDown(0) && StrategicUtilities.IsSpaceOpenForBuild(new Vec2i(x, y)))
+                    Vec2i position = new Vec2i(x, y);
+                    if (Input.GetMouseButtonDown(0) && StrategicUtilities.IsSpaceOpenForBuild(position) && StrategicTileInfo.CanWalkInto(State.World.Tiles[position.x, position.y]))
                     {
                         BuildMode = false;
                         TilemapLayers[14].ClearAllTiles();
@@ -2504,62 +2504,62 @@ public class StrategyMode : SceneBase
                         switch (SelectedConstruction)
                         {
                             case ConstructibleType.WorkCamp:
-                                newBuilding = new WorkCamp(new Vec2i(x,y));
+                                newBuilding = new WorkCamp(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.LumberSite:
-                                newBuilding = new LumberSite(new Vec2i(x,y));
+                                newBuilding = new LumberSite(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.Quarry:
-                                newBuilding = new Quarry(new Vec2i(x,y));
+                                newBuilding = new Quarry(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.CasterTower:
-                                newBuilding = new CasterTower(new Vec2i(x,y));
+                                newBuilding = new CasterTower(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.BarrierTower:
-                                newBuilding = new BarrierTower(new Vec2i(x,y));
+                                newBuilding = new BarrierTower(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.DefEncampment:
-                                newBuilding = new DefenseEncampment(new Vec2i(x,y));
+                                newBuilding = new DefenseEncampment(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.Academy:
-                                newBuilding = new Academy(new Vec2i(x,y));
+                                newBuilding = new Academy(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.DarkMagicTower:
-                                newBuilding = new BlackMagicTower(new Vec2i(x,y));
+                                newBuilding = new BlackMagicTower(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.TemporalTower:
-                                newBuilding = new TemporalTower(new Vec2i(x,y));
+                                newBuilding = new TemporalTower(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.Laboratory:
-                                newBuilding = new Laboratory(new Vec2i(x,y));
+                                newBuilding = new Laboratory(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.Teleporter:
-                                newBuilding = new Teleporter(new Vec2i(x,y));
+                                newBuilding = new Teleporter(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
                             case ConstructibleType.TownHall:
-                                newBuilding = new TownHall(new Vec2i(x,y));
+                                newBuilding = new TownHall(position);
                                 newBuilding.Owner = ActingEmpire;
                                 newBuilding.ConstructBuilding();
                                 break;
@@ -2846,7 +2846,7 @@ public class StrategyMode : SceneBase
                     case ConstructibleType.DarkMagicTower:
                     case ConstructibleType.TemporalTower:
                         buildingRangeOn = true;
-                        foreach (var tile in StrategicUtilities.GetTilesInRange(constructible.Position, Config.BuildCon.BuildingPassiveRange))
+                        foreach (var tile in StrategicUtilities.GetTilesInRange(constructible.Position, Config.BuildConfig.BuildingPassiveRange))
                         {
                             TilemapLayers[14].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[1]);
                         }

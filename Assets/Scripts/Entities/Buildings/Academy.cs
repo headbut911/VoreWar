@@ -25,10 +25,10 @@ class Academy : ConstructibleBuilding
         spriteID = 48;
         buildingType = ConstructibleType.Academy;
 
-        ApplyConfigStats(Config.BuildCon.Academy);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.AcademyImproveUpgrade);
-        researchUpgrade = AddUpgrade(researchUpgrade, Config.BuildCon.AcademyResearchUpgrade);
-        efficiencyUpgrade = AddUpgrade(efficiencyUpgrade, Config.BuildCon.AcademyEfficiencyUpgrade);
+        ApplyConfigStats(Config.BuildConfig.Academy);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.AcademyImproveUpgrade);
+        researchUpgrade = AddUpgrade(researchUpgrade, Config.BuildConfig.AcademyResearchUpgrade);
+        efficiencyUpgrade = AddUpgrade(efficiencyUpgrade, Config.BuildConfig.AcademyEfficiencyUpgrade);
         StoredEXP = 0;
         Income1 = 0;
         Income2 = 0;
@@ -38,13 +38,13 @@ class Academy : ConstructibleBuilding
     {
         if (Owner.Gold + Owner.Income > 0)
         {
-            StoredEXP += totalIncome * Config.BuildCon.AcademyEXPPerGold;
+            StoredEXP += totalIncome * Config.BuildConfig.AcademyEXPPerGold;
         }
         if (DistributedEXP > 0)
         {
             int outgoingEXP = (int)(StoredEXP * DistributedEXP);
             StoredEXP -= outgoingEXP;
-            var armies = StrategicUtilities.GetAllyArmyWithinXTiles(this, Config.BuildCon.BuildingPassiveRange);
+            var armies = StrategicUtilities.GetAllyArmyWithinXTiles(this, Config.BuildConfig.BuildingPassiveRange);
             int unitCount = 0;
             foreach (Army army in armies)
             {

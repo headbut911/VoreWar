@@ -233,7 +233,7 @@ public class Army
             movement = Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
         }
 
-        var temporalTowers = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(this, Config.BuildCon.BuildingPassiveRange).Where(b => b is TemporalTower);
+        var temporalTowers = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(this, Config.BuildConfig.BuildingPassiveRange).Where(b => b is TemporalTower);
         if (temporalTowers != null)
         {
             foreach (var building in temporalTowers)

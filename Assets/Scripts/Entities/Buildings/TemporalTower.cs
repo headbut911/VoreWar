@@ -15,10 +15,10 @@ class TemporalTower : ConstructibleBuilding
         spriteID = 64;
         buildingType = ConstructibleType.TemporalTower;
 
-        ApplyConfigStats(Config.BuildCon.TemporalTower);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.TemporalTowerImproveUpgrade);
-        tuneUpgrade = AddUpgrade(tuneUpgrade, Config.BuildCon.TemporalTowerTuneUpgrade);
-        disruptUpgrade = AddUpgrade(disruptUpgrade, Config.BuildCon.TemporalTowerDisruptUpgrade);
+        ApplyConfigStats(Config.BuildConfig.TemporalTower);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.TemporalTowerImproveUpgrade);
+        tuneUpgrade = AddUpgrade(tuneUpgrade, Config.BuildConfig.TemporalTowerTuneUpgrade);
+        disruptUpgrade = AddUpgrade(disruptUpgrade, Config.BuildConfig.TemporalTowerDisruptUpgrade);
     }
     internal override void RunBuildingFunction()
     {

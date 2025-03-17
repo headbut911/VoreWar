@@ -25,8 +25,8 @@ public class WorkCampSettings : MonoBehaviour
 
     internal void Save()
     {
-        Config.BuildCon.WorkCampGoldPerTurn = int.TryParse(GoldPerTurn.text, out int gpt) ? gpt : 100;
-        Config.BuildCon.WorkCampTurnStock.SetResources(
+        Config.BuildConfig.WorkCampGoldPerTurn = int.TryParse(GoldPerTurn.text, out int gpt) ? gpt : 100;
+        Config.BuildConfig.WorkCampTurnStock.SetResources(
             int.TryParse(WoodStock.text, out int ws) ? ws : 10,
             int.TryParse(StoneStock.text, out int ss) ? ss : 10,
             int.TryParse(NaturalMaterialsStock.text, out int nms) ? nms : 5,
@@ -35,7 +35,7 @@ public class WorkCampSettings : MonoBehaviour
             int.TryParse(ManaStonesStock.text, out int mss) ?  mss : 3
             );
 
-        Config.BuildCon.WorkCampItemPrice.SetResources(
+        Config.BuildConfig.WorkCampItemPrice.SetResources(
             int.TryParse(WoodPrice.text, out int wp) ? wp : 10,
             int.TryParse(StonePrice.text, out int sp) ? sp : 10,
             int.TryParse(NaturalMaterialsPrice.text, out int nmp) ? nmp : 25,
@@ -47,20 +47,20 @@ public class WorkCampSettings : MonoBehaviour
 
     internal void Load()
     {
-        GoldPerTurn.text = Config.BuildCon.WorkCampGoldPerTurn.ToString();
+        GoldPerTurn.text = Config.BuildConfig.WorkCampGoldPerTurn.ToString();
 
-        WoodStock.text = Config.BuildCon.WorkCampTurnStock.Wood.ToString();
-        StoneStock.text = Config.BuildCon.WorkCampTurnStock.Wood.ToString();
-        NaturalMaterialsStock.text = Config.BuildCon.WorkCampTurnStock.Stone.ToString();
-        OresStock.text = Config.BuildCon.WorkCampTurnStock.Ores.ToString();
-        PrefabsStock.text = Config.BuildCon.WorkCampTurnStock.Prefabs.ToString();
-        ManaStonesStock.text = Config.BuildCon.WorkCampTurnStock.ManaStones.ToString();
+        WoodStock.text = Config.BuildConfig.WorkCampTurnStock.Wood.ToString();
+        StoneStock.text = Config.BuildConfig.WorkCampTurnStock.Wood.ToString();
+        NaturalMaterialsStock.text = Config.BuildConfig.WorkCampTurnStock.Stone.ToString();
+        OresStock.text = Config.BuildConfig.WorkCampTurnStock.Ores.ToString();
+        PrefabsStock.text = Config.BuildConfig.WorkCampTurnStock.Prefabs.ToString();
+        ManaStonesStock.text = Config.BuildConfig.WorkCampTurnStock.ManaStones.ToString();
 
-        WoodPrice.text = Config.BuildCon.WorkCampItemPrice.Wood.ToString();
-        StonePrice.text = Config.BuildCon.WorkCampItemPrice.Stone.ToString();
-        NaturalMaterialsPrice.text = Config.BuildCon.WorkCampItemPrice.NaturalMaterials.ToString();
-        OresPrice.text = Config.BuildCon.WorkCampItemPrice.Ores.ToString();
-        PrefabsPrice.text = Config.BuildCon.WorkCampItemPrice.Prefabs.ToString();
-        ManaStonesPrice.text = Config.BuildCon.WorkCampItemPrice.ManaStones.ToString();
+        WoodPrice.text = Config.BuildConfig.WorkCampItemPrice.Wood.ToString();
+        StonePrice.text = Config.BuildConfig.WorkCampItemPrice.Stone.ToString();
+        NaturalMaterialsPrice.text = Config.BuildConfig.WorkCampItemPrice.NaturalMaterials.ToString();
+        OresPrice.text = Config.BuildConfig.WorkCampItemPrice.Ores.ToString();
+        PrefabsPrice.text = Config.BuildConfig.WorkCampItemPrice.Prefabs.ToString();
+        ManaStonesPrice.text = Config.BuildConfig.WorkCampItemPrice.ManaStones.ToString();
     }
 }

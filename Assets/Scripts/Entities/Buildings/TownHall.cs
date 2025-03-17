@@ -16,10 +16,10 @@ class TownHall : ConstructibleBuilding
         spriteID = 88;
         buildingType = ConstructibleType.TownHall;
 
-        ApplyConfigStats(Config.BuildCon.CasterTower);
-        standardUpgrade = AddUpgrade(standardUpgrade, Config.BuildCon.TownHallManualUpgrade);
-        prefabUpgrade = AddUpgrade(prefabUpgrade, Config.BuildCon.TownHallPrefabUpgrade);
-        manaStoneUpgrade = AddUpgrade(manaStoneUpgrade, Config.BuildCon.TownHallManaStoneUpgrade);
+        ApplyConfigStats(Config.BuildConfig.CasterTower);
+        standardUpgrade = AddUpgrade(standardUpgrade, Config.BuildConfig.TownHallManualUpgrade);
+        prefabUpgrade = AddUpgrade(prefabUpgrade, Config.BuildConfig.TownHallPrefabUpgrade);
+        manaStoneUpgrade = AddUpgrade(manaStoneUpgrade, Config.BuildConfig.TownHallManaStoneUpgrade);
     }
     internal override void RunBuildingFunction()
     {
@@ -36,7 +36,40 @@ class TownHall : ConstructibleBuilding
                 {
                     if (j != 0 || i != 0)
                     {
-                        State.World.Tiles[Position.x + i, Position.y + j] = StrategicTileType.field;
+                        StrategicTileType current = State.World.Tiles[Position.x + i, Position.y + j];
+                        StrategicTileType replace = StrategicTileType.field;
+                        if (current == StrategicTileType.field ||
+                            current == StrategicTileType.fieldAshen ||
+                            current == StrategicTileType.fieldDesert ||
+                            current == StrategicTileType.fieldsavannah ||
+                            current == StrategicTileType.fieldSmallIslands ||
+                            current == StrategicTileType.fieldSnow||
+                            !StrategicTileInfo.CanWalkInto(current))
+                        {
+                            continue;
+                        }
+                        else if (current == StrategicTileType.ashen || current == StrategicTileType.ashenHills || current == StrategicTileType.volcanic)
+                        {
+                            replace = StrategicTileType.fieldAshen;
+                        }
+                        else if (current == StrategicTileType.desert || current == StrategicTileType.sandHills)
+                        {
+                            replace = StrategicTileType.fieldDesert;
+                        }
+                        else if (current == StrategicTileType.savannah)
+                        {
+                            replace = StrategicTileType.fieldsavannah;
+                        }
+                        else if (current == StrategicTileType.smallIslands || current == StrategicTileType.shallowWater)
+                        {
+                            replace = StrategicTileType.fieldSmallIslands;
+                        }
+                        else if (current == StrategicTileType.snow || current == StrategicTileType.ice || current == StrategicTileType.snowHills || current == StrategicTileType.snowTrees)
+                        {
+                            replace = StrategicTileType.fieldSnow;
+                        }
+                        
+                        State.World.Tiles[Position.x + i, Position.y + j] = replace;
                     }
                     //DestroyVillagesAtTile(new Vec2i(x + i, y + j));
                 }

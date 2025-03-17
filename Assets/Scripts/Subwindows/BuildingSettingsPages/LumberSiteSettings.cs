@@ -11,11 +11,11 @@ public class LumberSiteSettings : MonoBehaviour
 
     internal void Save()
     {
-        Config.BuildCon.LumberSiteWorkerCap = int.TryParse(WorkerCap.text, out int wc) ? wc : 2;
+        Config.BuildConfig.LumberSiteWorkerCap = int.TryParse(WorkerCap.text, out int wc) ? wc : 2;
     }
 
     internal void Load()
     {
-        WorkerCap.text = Config.BuildCon.LumberSiteWorkerCap.ToString();
+        WorkerCap.text = Config.BuildConfig.LumberSiteWorkerCap.ToString();
     }
 }

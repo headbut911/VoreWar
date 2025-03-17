@@ -12,7 +12,7 @@ class DefenseEncampment : ConstructibleBuilding
     [OdinSerialize]
     internal int TrainTimer;
 
-    internal int maxDefenders => (int)(Owner.MaxGarrisonSize * Config.BuildCon.DefenseEncampmentMaxGarrisonSizeScale * (unitUpgrade.built ? 1.5f : 1));
+    internal int maxDefenders => (int)(Owner.MaxGarrisonSize * Config.BuildConfig.DefenseEncampmentMaxGarrisonSizeScale * (unitUpgrade.built ? 1.5f : 1));
 
     public DefenseEncampment(Vec2i location) : base(location)
     {
@@ -21,10 +21,10 @@ class DefenseEncampment : ConstructibleBuilding
         spriteID = 40;
         buildingType = ConstructibleType.DefEncampment;
 
-        ApplyConfigStats(Config.BuildCon.DefenseEncampment);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.DefenseEncampmentImproveUpgrade);
-        unitUpgrade = AddUpgrade(unitUpgrade, Config.BuildCon.DefenseEncampmentUnitsUpgrade);
-        levelUpgrade = AddUpgrade(levelUpgrade, Config.BuildCon.DefenseEncampmentLevelUpgrade);
+        ApplyConfigStats(Config.BuildConfig.DefenseEncampment);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.DefenseEncampmentImproveUpgrade);
+        unitUpgrade = AddUpgrade(unitUpgrade, Config.BuildConfig.DefenseEncampmentUnitsUpgrade);
+        levelUpgrade = AddUpgrade(levelUpgrade, Config.BuildConfig.DefenseEncampmentLevelUpgrade);
 
         AvailibleDefenders = 0;
         TrainTimer = 0;
@@ -37,7 +37,7 @@ class DefenseEncampment : ConstructibleBuilding
             if (TrainTimer < 0)
             {
                 AvailibleDefenders++;
-                TrainTimer = (int)Math.Ceiling(Config.BuildCon.DefenseEncampmentTrainTime * (levelUpgrade.built ? 0.5 : 1));
+                TrainTimer = (int)Math.Ceiling(Config.BuildConfig.DefenseEncampmentTrainTime * (levelUpgrade.built ? 0.5 : 1));
             }
         }
 

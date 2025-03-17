@@ -17,7 +17,7 @@ class BlackMagicTower : ConstructibleBuilding
     [OdinSerialize]
     internal StatusEffectType Affliction;
 
-    internal int SoulPowerReq => (int)(Config.BuildCon.DarkMagicTowerSoulPointBase + Config.BuildCon.DarkMagicTowerSoulPointBase * (PactLevel * Config.BuildCon.DarkMagicTowerSoulPointMult));
+    internal int SoulPowerReq => (int)(Config.BuildConfig.DarkMagicTowerSoulPointBase + Config.BuildConfig.DarkMagicTowerSoulPointBase * (PactLevel * Config.BuildConfig.DarkMagicTowerSoulPointMult));
 
     public BlackMagicTower(Vec2i location) : base(location)
     {
@@ -26,10 +26,10 @@ class BlackMagicTower : ConstructibleBuilding
         spriteID = 56;
         buildingType = ConstructibleType.DarkMagicTower;
 
-        ApplyConfigStats(Config.BuildCon.DarkMagicTower);
-        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildCon.DarkMagicTowerImproveUpgrade);
-        soulUpgrade = AddUpgrade(soulUpgrade, Config.BuildCon.DarkMagicTowerSoulUpgrade);
-        afflictUpgrade = AddUpgrade(afflictUpgrade, Config.BuildCon.DarkMagicTowerAfflictionUpgrade);
+        ApplyConfigStats(Config.BuildConfig.DarkMagicTower);
+        improveUpgrade = AddUpgrade(improveUpgrade, Config.BuildConfig.DarkMagicTowerImproveUpgrade);
+        soulUpgrade = AddUpgrade(soulUpgrade, Config.BuildConfig.DarkMagicTowerSoulUpgrade);
+        afflictUpgrade = AddUpgrade(afflictUpgrade, Config.BuildConfig.DarkMagicTowerAfflictionUpgrade);
 
         storedUnits = new Dictionary<Unit, int>();
         Unit newUnit = new NPC_unit(10, false, 2, 0, Race.Fairies, 0, false);
