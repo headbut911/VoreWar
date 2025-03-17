@@ -202,11 +202,21 @@ public class BuildingConfig
     [OdinSerialize]
     internal float TeleporterPerUnitCapacityMod = 0.1f;
     [OdinSerialize]
-    internal BuildingUpgrade TeleporterStoneUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "", "");
+    internal BuildingUpgrade TeleporterStoneUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Warp Stone", "Attune an army to return to this Teleporter at any time.");
     [OdinSerialize]
-    internal BuildingUpgrade TeleporterAncientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(0, 0, 0, 0, 0, 0), "", "");
+    internal BuildingUpgrade TeleporterAncientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(0, 0, 0, 0, 0, 0), "Ancient Tuning", "Allows this teleporter to send and recive armies from Ancient Teleporters");
     [OdinSerialize]
-    internal BuildingUpgrade TeleporterCapacityUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "", "");
+    internal BuildingUpgrade TeleporterCapacityUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Warp Gate", "Remove the capacity cap, allowing it to regenerate indefinitely.");
+
+    //Town Hall
+    [OdinSerialize]
+    internal GeneralBuildingConfig TownHall = new GeneralBuildingConfig(0, 2, -1, 0, 0);
+    [OdinSerialize]
+    internal BuildingUpgrade TownHallManualUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Construect Village", "Use standard construction methods to build a new village from the ground up.");
+    [OdinSerialize]
+    internal BuildingUpgrade TownHallPrefabUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(0, 0, 0, 0, 0, 0), "Use Prefabs", "Use premade structures to lay the groundwork, greatly speeding up village creation and reducing required materials.");
+    [OdinSerialize]
+    internal BuildingUpgrade TownHallManaStoneUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Conjure Village", "Use the power stored in manastones to rapidly conjure a village and cultivate farms.");
 }
 
 public class GeneralBuildingConfig

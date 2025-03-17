@@ -2495,7 +2495,7 @@ public class StrategyMode : SceneBase
                     TilemapLayers[14].ClearAllTiles();
                     TilemapLayers[14].SetTile(new Vector3Int(x, y, 0), BuildIndicator[2]);
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0) && StrategicUtilities.IsSpaceOpenForBuild(new Vec2i(x, y)))
                     {
                         BuildMode = false;
                         TilemapLayers[14].ClearAllTiles();

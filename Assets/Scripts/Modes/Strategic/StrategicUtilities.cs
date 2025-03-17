@@ -174,6 +174,19 @@ static class StrategicUtilities
         return null;
     }
 
+    public static bool IsSpaceOpenForBuild(Vec2i location)
+    {
+        if (GetVillageAt(location) == null && 
+            GetMercenaryHouseAt(location) == null && 
+            GetTeleAt(location)==null &&
+            GetClaimableAt(location) == null &&
+            GetConstructibleAt(location) == null)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public static void TryClaim(Vec2i location, Empire empire)
     {
         if (empire.Race == Race.Goblins)
