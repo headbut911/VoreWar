@@ -66,6 +66,8 @@ public class Army
 
     [OdinSerialize]
     internal int MonsterTurnsRemaining;
+    [OdinSerialize]
+    internal Teleporter LinkedTeleporter = null;
 
     public bool DevourThisTurn { get; private set; } = false;
 

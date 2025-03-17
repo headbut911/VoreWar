@@ -166,7 +166,7 @@ public class BuildingConfig
     [OdinSerialize]
     internal BuildingUpgrade TemporalTowerDisruptUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Monster armies now have their MP reduced to 1 while within range");
 
-    //Temporal Tower
+    //Laboratory
     [OdinSerialize]
     internal GeneralBuildingConfig Laboratory = new GeneralBuildingConfig(250, 2, -1, 0, 0);
     [OdinSerialize]
@@ -190,6 +190,23 @@ public class BuildingConfig
     [OdinSerialize]
     internal BuildingUpgrade LaboratoryBoostUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Chance of boosting effect of low quality ingredients.");
 
+    //Teleporter
+    [OdinSerialize]
+    internal GeneralBuildingConfig Teleporter = new GeneralBuildingConfig(0, 2, -1, 0, 0);
+    [OdinSerialize]
+    internal float TeleporterMaxCapacity = 3f;
+    [OdinSerialize]
+    internal float TeleporterCapacityRegen = 0.5f;
+    [OdinSerialize]
+    internal bool TeleporterPerUnitCapacity = false;
+    [OdinSerialize]
+    internal float TeleporterPerUnitCapacityMod = 0.1f;
+    [OdinSerialize]
+    internal BuildingUpgrade TeleporterStoneUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "", "");
+    [OdinSerialize]
+    internal BuildingUpgrade TeleporterAncientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(0, 0, 0, 0, 0, 0), "", "");
+    [OdinSerialize]
+    internal BuildingUpgrade TeleporterCapacityUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "", "");
 }
 
 public class GeneralBuildingConfig
