@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class BuildingSettings : MonoBehaviour
 {
     public Toggle BuildingSystemEnabled;
     public InputField BuildingSystemTurnLockout;
+    public InputField BuildingPassiveRange;
 
     public TMP_Dropdown BuildingDropdown;
 
@@ -31,6 +33,16 @@ public class BuildingSettings : MonoBehaviour
     public GameObject NoneSettings;
     public WorkCampSettings WorkCampSettings;
     public LumberSiteSettings LumberSiteSettings;
+    public QuarrySettings QuarrySettings;
+    public CasterTowerSettings CasterTowerSettings;
+    public BarrierTowerSettings BarrierTowerSettings;
+    public DefEncampSettings DefEncampSettings;
+    public AcademySettings AcademySettings;
+    public DarkMagicTowerSettings DarkMagicTowerSettings;
+    public TemporalTowerSettings TemporalTowerSettings;
+    public LaboratorySettings LaboratorySettings;
+    public TeleporterSettings TeleporterSettings;
+    public TownHallSettings TownHallSettings;
 
 
     List<BuildingUpgrade> buildingUpgrades = new List<BuildingUpgrade>();
@@ -59,6 +71,86 @@ public class BuildingSettings : MonoBehaviour
                 LumberSiteSettings.gameObject.SetActive(false);
                 LumberSiteSettings.Save();
                 break;
+            case 3: // Quarry
+                SaveText(Config.BuildConfig.Quarry.Resources);
+                Config.BuildConfig.Quarry.Gold = int.TryParse(GoldCost.text, out int qsg) ? qsg : 15;
+                Config.BuildConfig.Quarry.BuildTime = int.TryParse(ConstructionTurns.text, out int qct) ? qct : 2;
+                Config.BuildConfig.Quarry.BuildLimit = int.TryParse(BuildLimit.text, out int qbl) ? qbl : -1;
+                QuarrySettings.gameObject.SetActive(false);
+                QuarrySettings.Save();
+                break;
+            case 4: // Caster Tower
+                SaveText(Config.BuildConfig.CasterTower.Resources);
+                Config.BuildConfig.CasterTower.Gold = int.TryParse(GoldCost.text, out int ctsg) ? ctsg : 15;
+                Config.BuildConfig.CasterTower.BuildTime = int.TryParse(ConstructionTurns.text, out int ctct) ? ctct : 2;
+                Config.BuildConfig.CasterTower.BuildLimit = int.TryParse(BuildLimit.text, out int ctbl) ? ctbl : -1;
+                CasterTowerSettings.gameObject.SetActive(false);
+                CasterTowerSettings.Save();
+                break;
+            case 5: // Barrier Tower
+                SaveText(Config.BuildConfig.BarrierTower.Resources);
+                Config.BuildConfig.BarrierTower.Gold = int.TryParse(GoldCost.text, out int btsg) ? btsg : 15;
+                Config.BuildConfig.BarrierTower.BuildTime = int.TryParse(ConstructionTurns.text, out int btct) ? btct : 2;
+                Config.BuildConfig.BarrierTower.BuildLimit = int.TryParse(BuildLimit.text, out int btbl) ? btbl : -1;
+                BarrierTowerSettings.gameObject.SetActive(false);
+                BarrierTowerSettings.Save();
+                break;
+            case 6: // DefEncampSettings
+                SaveText(Config.BuildConfig.DefenseEncampment.Resources);
+                Config.BuildConfig.DefenseEncampment.Gold = int.TryParse(GoldCost.text, out int desg) ? desg : 15;
+                Config.BuildConfig.DefenseEncampment.BuildTime = int.TryParse(ConstructionTurns.text, out int dect) ? dect : 2;
+                Config.BuildConfig.DefenseEncampment.BuildLimit = int.TryParse(BuildLimit.text, out int debl) ? debl : -1;
+                DefEncampSettings.gameObject.SetActive(false);
+                DefEncampSettings.Save();
+                break;
+            case 7: // Academy
+                SaveText(Config.BuildConfig.Academy.Resources);
+                Config.BuildConfig.Academy.Gold = int.TryParse(GoldCost.text, out int asg) ? asg : 15;
+                Config.BuildConfig.Academy.BuildTime = int.TryParse(ConstructionTurns.text, out int act) ? act : 2;
+                Config.BuildConfig.Academy.BuildLimit = int.TryParse(BuildLimit.text, out int abl) ? abl : -1;
+                AcademySettings.gameObject.SetActive(false);
+                AcademySettings.Save();
+                break;
+            case 8: // DarkMagicTower
+                SaveText(Config.BuildConfig.DarkMagicTower.Resources);
+                Config.BuildConfig.DarkMagicTower.Gold = int.TryParse(GoldCost.text, out int dtsg) ? dtsg : 15;
+                Config.BuildConfig.DarkMagicTower.BuildTime = int.TryParse(ConstructionTurns.text, out int dtct) ? dtct : 2;
+                Config.BuildConfig.DarkMagicTower.BuildLimit = int.TryParse(BuildLimit.text, out int dtbl) ? dtbl : -1;
+                DarkMagicTowerSettings.gameObject.SetActive(false);
+                DarkMagicTowerSettings.Save();
+                break;
+            case 9: // TemporalTower
+                SaveText(Config.BuildConfig.TemporalTower.Resources);
+                Config.BuildConfig.TemporalTower.Gold = int.TryParse(GoldCost.text, out int ttsg) ? ttsg : 15;
+                Config.BuildConfig.TemporalTower.BuildTime = int.TryParse(ConstructionTurns.text, out int ttct) ? ttct : 2;
+                Config.BuildConfig.TemporalTower.BuildLimit = int.TryParse(BuildLimit.text, out int ttbl) ? ttbl : -1;
+                TemporalTowerSettings.gameObject.SetActive(false);
+                TemporalTowerSettings.Save();
+                break;
+            case 10: // Laboratory
+                SaveText(Config.BuildConfig.Laboratory.Resources);
+                Config.BuildConfig.Laboratory.Gold = int.TryParse(GoldCost.text, out int lssg) ? lssg : 15;
+                Config.BuildConfig.Laboratory.BuildTime = int.TryParse(ConstructionTurns.text, out int lct) ? lct : 2;
+                Config.BuildConfig.Laboratory.BuildLimit = int.TryParse(BuildLimit.text, out int lbl) ? lbl : -1;
+                LaboratorySettings.gameObject.SetActive(false);
+                LaboratorySettings.Save();
+                break;
+            case 11: // Teleporter
+                SaveText(Config.BuildConfig.Teleporter.Resources);
+                Config.BuildConfig.Teleporter.Gold = int.TryParse(GoldCost.text, out int tg) ? tg : 15;
+                Config.BuildConfig.Teleporter.BuildTime = int.TryParse(ConstructionTurns.text, out int tt) ? tt : 2;
+                Config.BuildConfig.Teleporter.BuildLimit = int.TryParse(BuildLimit.text, out int tbl) ? tbl : -1;
+                TeleporterSettings.gameObject.SetActive(false);
+                TeleporterSettings.Save();
+                break;
+            case 12: // TownHall
+                SaveText(Config.BuildConfig.TownHall.Resources);
+                Config.BuildConfig.TownHall.Gold = int.TryParse(GoldCost.text, out int thg) ? thg : 15;
+                Config.BuildConfig.TownHall.BuildTime = int.TryParse(ConstructionTurns.text, out int tht) ? tht : 2;
+                Config.BuildConfig.TownHall.BuildLimit = int.TryParse(BuildLimit.text, out int thbl) ? thbl : -1;
+                TownHallSettings.gameObject.SetActive(false);
+                TownHallSettings.Save();
+                break;
             default:
                 break;
         }
@@ -71,10 +163,52 @@ public class BuildingSettings : MonoBehaviour
             case 0: // None
                 break;
             case 1: // Work Camp
-                WorkCamp();
+                LoadBuildingSetting(WorkCampSettings.gameObject, Config.BuildConfig.WorkCamp, new List<BuildingUpgrade> { Config.BuildConfig.WorkCampImproveUpgrade, Config.BuildConfig.WorkCampTradeUpgrade, Config.BuildConfig.WorkCampMerchantUpgrade});
+                WorkCampSettings.Load();
                 break;
-            case 2: // Work Camp
-                LumberSite();
+            case 2: // LumberSite
+                LoadBuildingSetting(LumberSiteSettings.gameObject, Config.BuildConfig.LumberSite, new List<BuildingUpgrade> { Config.BuildConfig.LumberSiteLodgeUpgrade, Config.BuildConfig.LumberSiteCarpenterUpgrade, Config.BuildConfig.LumberSiteGreenHouseUpgrade });
+                LumberSiteSettings.Load();
+                break;
+            case 3: // Quarry
+                LoadBuildingSetting(QuarrySettings.gameObject, Config.BuildConfig.Quarry, new List<BuildingUpgrade> { Config.BuildConfig.QuarryImproveUpgrade, Config.BuildConfig.QuarryDeepUpgrade, Config.BuildConfig.QuarryLeyLineUpgrade});
+                QuarrySettings.Load();
+                break;
+            case 4: // CasterTower
+                LoadBuildingSetting(CasterTowerSettings.gameObject, Config.BuildConfig.CasterTower, new List<BuildingUpgrade> { Config.BuildConfig.CasterTowerImproveUpgrade, Config.BuildConfig.CasterTowerForceUpgrade, Config.BuildConfig.CasterTowerBuffUpgrade });
+                CasterTowerSettings.Load();
+                break;
+            case 5: // BarrierTower
+                LoadBuildingSetting(BarrierTowerSettings.gameObject, Config.BuildConfig.BarrierTower, new List<BuildingUpgrade> { Config.BuildConfig.BarrierTowerImproveUpgrade, Config.BuildConfig.BarrierTowerHealUpgrade, Config.BuildConfig.BarrierTowerBuffUpgrade });
+                BarrierTowerSettings.Load();
+                break;
+            case 6: // DefenseEncampment
+                LoadBuildingSetting(DefEncampSettings.gameObject, Config.BuildConfig.DefenseEncampment, new List<BuildingUpgrade> { Config.BuildConfig.DefenseEncampmentImproveUpgrade, Config.BuildConfig.DefenseEncampmentUnitsUpgrade, Config.BuildConfig.DefenseEncampmentLevelUpgrade });
+                DefEncampSettings.Load();
+                break;
+            case 7: // Academy
+                LoadBuildingSetting(AcademySettings.gameObject, Config.BuildConfig.Academy, new List<BuildingUpgrade> { Config.BuildConfig.AcademyImproveUpgrade, Config.BuildConfig.AcademyResearchUpgrade, Config.BuildConfig.AcademyEfficiencyUpgrade });
+                AcademySettings.Load();
+                break;
+            case 8: // DarkMagicTower
+                LoadBuildingSetting(DarkMagicTowerSettings.gameObject, Config.BuildConfig.DarkMagicTower, new List<BuildingUpgrade> { Config.BuildConfig.DarkMagicTowerImproveUpgrade, Config.BuildConfig.DarkMagicTowerSoulUpgrade, Config.BuildConfig.DarkMagicTowerAfflictionUpgrade });
+                DarkMagicTowerSettings.Load();
+                break;
+            case 9: // TemporalTower
+                LoadBuildingSetting(TemporalTowerSettings.gameObject, Config.BuildConfig.TemporalTower, new List<BuildingUpgrade> { Config.BuildConfig.TemporalTowerImproveUpgrade, Config.BuildConfig.TemporalTowerTuneUpgrade, Config.BuildConfig.TemporalTowerDisruptUpgrade });
+                TemporalTowerSettings.Load();
+                break;
+            case 10: // Laboratory
+                LoadBuildingSetting(LaboratorySettings.gameObject, Config.BuildConfig.Laboratory, new List<BuildingUpgrade> { Config.BuildConfig.LaboratoryImproveUpgrade, Config.BuildConfig.LaboratoryIngredientUpgrade, Config.BuildConfig.LaboratoryBoostUpgrade });
+                LaboratorySettings.Load();
+                break;
+            case 11: // Teleporter
+                LoadBuildingSetting(TeleporterSettings.gameObject, Config.BuildConfig.Teleporter, new List<BuildingUpgrade> { Config.BuildConfig.TeleporterStoneUpgrade, Config.BuildConfig.TeleporterAncientUpgrade, Config.BuildConfig.TeleporterCapacityUpgrade });
+                TeleporterSettings.Load();
+                break;
+            case 12: // TownHall
+                LoadBuildingSetting(TownHallSettings.gameObject, Config.BuildConfig.TownHall, new List<BuildingUpgrade> { Config.BuildConfig.TownHallManualUpgrade, Config.BuildConfig.TownHallPrefabUpgrade, Config.BuildConfig.TownHallManaStoneUpgrade });
+                TownHallSettings.Load();
                 break;
             default:
                 break;
@@ -151,30 +285,17 @@ public class BuildingSettings : MonoBehaviour
         }
     }
 
-    private void WorkCamp()
+    private void LoadBuildingSetting(GameObject SettingsPage, GeneralBuildingConfig building, List<BuildingUpgrade> upgrades)
     {
-        SetText(Config.BuildConfig.WorkCamp.Resources);
-        GoldCost.text = Config.BuildConfig.WorkCamp.Gold.ToString();
-        ConstructionTurns.text = Config.BuildConfig.WorkCamp.BuildTime.ToString();
-        BuildLimit.text = Config.BuildConfig.WorkCamp.BuildLimit.ToString();
-        WorkCampSettings.Load();
-        buildingUpgrades.Add(Config.BuildConfig.WorkCampImproveUpgrade);
-        buildingUpgrades.Add(Config.BuildConfig.WorkCampMerchantUpgrade);
-        buildingUpgrades.Add(Config.BuildConfig.WorkCampTradeUpgrade);
-        WorkCampSettings.gameObject.SetActive(true);
-    }
-    
-    private void LumberSite()
-    {
-        SetText(Config.BuildConfig.LumberSite.Resources);
-        GoldCost.text = Config.BuildConfig.LumberSite.Gold.ToString();
-        ConstructionTurns.text = Config.BuildConfig.LumberSite.BuildTime.ToString();
-        BuildLimit.text = Config.BuildConfig.LumberSite.BuildLimit.ToString();
-        LumberSiteSettings.Load();
-        buildingUpgrades.Add(Config.BuildConfig.LumberSiteCarpenterUpgrade);
-        buildingUpgrades.Add(Config.BuildConfig.LumberSiteGreenHouseUpgrade);
-        buildingUpgrades.Add(Config.BuildConfig.LumberSiteLodgeUpgrade);
-        LumberSiteSettings.gameObject.SetActive(true);
+        SetText(building.Resources);
+        GoldCost.text = building.Gold.ToString();
+        ConstructionTurns.text = building.BuildTime.ToString();
+        BuildLimit.text = building.BuildLimit.ToString();
+        foreach (BuildingUpgrade upgrade in upgrades)
+        {
+            buildingUpgrades.Add(upgrade);
+        }
+        SettingsPage.SetActive(true);
     }
 
     internal void HardSave()
@@ -183,6 +304,7 @@ public class BuildingSettings : MonoBehaviour
 
         rootObject.BuildingSystemEnabled = Config.BuildConfig.BuildingSystemEnabled;
         rootObject.BuildingSystemTurnLockout = Config.BuildConfig.BuildingSystemTurnLockout;
+        rootObject.BuildingPassiveRange = Config.BuildConfig.BuildingPassiveRange;
 
         rootObject.workCamp = new WorkCampTempClass(Config.BuildConfig.WorkCamp, Config.BuildConfig.WorkCampGoldPerTurn);
         rootObject.workCamp.stock = new ConstructionResourcesTempClass(Config.BuildConfig.WorkCampTurnStock);
@@ -274,6 +396,7 @@ public class BuildingSettings : MonoBehaviour
 
         Config.BuildConfig.BuildingSystemEnabled = results["BuildingSystemEnabled"].ToObject<bool>();
         Config.BuildConfig.BuildingSystemTurnLockout = int.TryParse(results["BuildingSystemTurnLockout"].ToString(), out int wcbstl) ? wcbstl : 1;
+        Config.BuildConfig.BuildingPassiveRange = int.TryParse(results["BuildingPassiveRange"].ToString(), out int bpr) ? bpr: 3;
 
         LoadBuilding("workCamp", Config.BuildConfig.WorkCamp);
         Config.BuildConfig.WorkCampGoldPerTurn = results["workCamp"]["goldPerTurn"].ToObject<int>();
@@ -424,6 +547,7 @@ public class BuildingSettings : MonoBehaviour
     {
         public bool BuildingSystemEnabled { get; set; }
         public int BuildingSystemTurnLockout { get; set; }
+        public int BuildingPassiveRange { get; set; }
         public WorkCampTempClass workCamp { get; set; }
         public LumberCampTempClass lumberSite { get; set; }
         public QuarryTempClass quarry { get; set; }

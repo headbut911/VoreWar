@@ -709,6 +709,10 @@ public class ContentSettings : MonoBehaviour
     {
         TooltipText.text = DefaultTooltips.Tooltip(value);
     }
+    internal void ChangeBuildingToolTip(int value)
+    {
+        TooltipText.text = BuildingTooltips. Tooltip(value);
+    }
 
     public void CorpsesChanged()
     {
