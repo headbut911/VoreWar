@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeMenu : MonoBehaviour
 {
@@ -22,11 +23,15 @@ public class UpgradeMenu : MonoBehaviour
     public TextMeshProUGUI CurrentPrefabs;
     public TextMeshProUGUI CurrentMS;
 
+    public Button PsudoDeconstructBuilding;
+    public Button ConfirmDeconstructBuilding;
+
     Dictionary<UpgradePrefab, BuildingUpgrade> upgradePrefabs;
 
     public void Open(ConstructibleBuilding building)
     {
         ClearFolder();
+        PsudoDeconstructBuilding.gameObject.SetActive(true);
         CurrentGold.text = building.Owner.Gold.ToString();
         CurrentWood.text = building.Owner.constructionResources.Wood.ToString();
         CurrentStone.text = building.Owner.constructionResources.Stone.ToString();
@@ -36,7 +41,7 @@ public class UpgradeMenu : MonoBehaviour
         CurrentMS.text = building.Owner.constructionResources.ManaStones.ToString();
 
         upgradePrefabs = new Dictionary<UpgradePrefab, BuildingUpgrade>();
-
+        ConfirmDeconstructBuilding.onClick.AddListenerOnce(() => { DeconstructBuilding(building); });
         foreach (BuildingUpgrade upgrade in building.Upgrades)
         {
             if (upgrade.built)
@@ -100,6 +105,19 @@ public class UpgradeMenu : MonoBehaviour
             Destroy(UpgradeFolder.GetChild(i).gameObject);
         }
     }
+    public void RemoveConf()
+    {
+        PsudoDeconstructBuilding.gameObject.SetActive(false);
+    }
+    public void DeconstructBuilding(ConstructibleBuilding building)
+    {
+        building.Owner.Buildings.Remove(building);
+        List<ConstructibleBuilding> bLis = State.World.Constructibles.ToList();
+        bLis.Remove(building);
+        State.World.Constructibles = bLis.ToArray();
+        Close();
+    }
+
     public void Close()
     {
         ClearFolder();

@@ -375,6 +375,7 @@ public class StrategyMode : SceneBase
         StatusBarUI.EmpireStatus.interactable = ActingEmpire?.StrategicAI == null || OnlyAIPlayers;
         StatusBarUI.ShowTurnReport.gameObject.SetActive(ActingEmpire?.StrategicAI == null && ActingEmpire.Reports.Count > 0);
         StatusBarUI.RecreateWorld.gameObject.SetActive(false);
+        StatusBarUI.Build.gameObject.SetActive(Config.BuildConfig.BuildingSystemEnabled);
         EnemyTurnText.SetActive(ActingEmpire?.StrategicAI != null);
     }
 
