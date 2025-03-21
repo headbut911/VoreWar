@@ -35,6 +35,8 @@ public class StrategicAI : IStrategicAI
 
     StrategicArmyCommander ArmyCommander;
 
+    StrategicBuildingContractor BuildingContractor;
+
     int idealArmySize;
 
     int AISide => empire.Side;
@@ -51,11 +53,29 @@ public class StrategicAI : IStrategicAI
         ArmyCommander = new StrategicArmyCommander(empire, empire.MaxArmySize, smarterAI);
     }
 
+    void RegenBuildingContractor()
+    {
+        BuildingContractor = new StrategicBuildingContractor(empire);
+    }
+
     public bool RunAI()
     {
-        if (ArmyCommander == null)
-            RegenArmyCommander();
-        return ArmyCommander.GiveOrder();
+        if (Config.BuildConfig.BuildingSystemEnabled)
+        {           
+            if (ArmyCommander == null)
+                RegenArmyCommander();
+            if (BuildingContractor == null)
+                RegenBuildingContractor();
+            BuildingContractor.AssessBuildStatus();
+            return ArmyCommander.GiveOrder();
+        }
+        else
+        {
+            if (ArmyCommander == null)
+                RegenArmyCommander();
+            return ArmyCommander.GiveOrder();
+        }
+
     }
 
 

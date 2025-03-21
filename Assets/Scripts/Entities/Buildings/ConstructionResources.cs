@@ -1,4 +1,5 @@
 ﻿using OdinSerializer;
+using System.Collections.Generic;
 
 public enum ConstructionresourceType
 {
@@ -94,6 +95,10 @@ public class ConstructionResources
         }
     }
 
+    /// <summary>
+    /// Checks if caller has resources needed of required.
+    /// </summary>
+    /// <returns></returns>
     public bool CanBuildWithCurrentResources(ConstructionResources required)
     {
         if (!HasNeededResource(ConstructionresourceType.wood, required.Wood)) return false;
@@ -144,6 +149,36 @@ public class ConstructionResources
         NaturalMaterials = nm;
         Prefabs = prefabs;
         ManaStones = ms;
+    }
+
+    public Dictionary<ConstructionresourceType, int> NeededResources(ConstructionResources required)
+    {
+        Dictionary<ConstructionresourceType, int> req = new Dictionary<ConstructionresourceType, int>();
+        if (!HasNeededResource(ConstructionresourceType.wood, required.Wood))
+        {
+            req.Add(ConstructionresourceType.wood, Wood - required.Wood);
+        }
+        if (!HasNeededResource(ConstructionresourceType.stone, required.Stone))
+        {
+            req.Add(ConstructionresourceType.stone, Stone - required.Stone);
+        }
+        if (!HasNeededResource(ConstructionresourceType.ores, required.Ores))
+        {
+            req.Add(ConstructionresourceType.ores, Ores - required.Ores);
+        }
+        if (!HasNeededResource(ConstructionresourceType.naturalmaterials, required.NaturalMaterials))
+        {
+            req.Add(ConstructionresourceType.naturalmaterials, NaturalMaterials - required.NaturalMaterials);
+        }
+        if (!HasNeededResource(ConstructionresourceType.prefabs, required.Prefabs))
+        {
+            req.Add(ConstructionresourceType.prefabs, Prefabs - required.Prefabs);
+        }
+        if (!HasNeededResource(ConstructionresourceType.manastones, required.ManaStones))
+        {
+            req.Add(ConstructionresourceType.manastones, ManaStones - required.ManaStones);
+        }
+        return req;
     }
 }
 

@@ -2439,7 +2439,7 @@ MonoBehaviour:
   BuildingName: {fileID: 4312512002726876028}
   BuildingDesc: {fileID: 6026539154940480744}
   BuildTurns: {fileID: 2715288245857876553}
-  BuildLimit: {fileID: 0}
+  BuildLimit: {fileID: 6568030579221055193}
   GoldCost: {fileID: 5659473695902308185}
   Wood: {fileID: 2576400300615577781}
   NaturalMaterials: {fileID: 3752282579590393688}

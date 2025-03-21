@@ -310,6 +310,15 @@ public class Empire
         State.World.Stats.SpentGold(gold, Side);
     }
 
+    /// <summary>
+    /// Not to be confuese with SpendGold.
+    /// Made for storage in the bulding AI.
+    /// </summary>
+    public void RemoveGold(int gold)
+    {
+        this.gold -= gold;
+    }
+
     public void AddGold(int gold)
     {
         this.gold += gold;

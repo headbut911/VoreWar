@@ -302,9 +302,9 @@ public class BuildingSettings : MonoBehaviour
     {
         var rootObject = new RootObject();
 
-        rootObject.BuildingSystemEnabled = Config.BuildConfig.BuildingSystemEnabled;
-        rootObject.BuildingSystemTurnLockout = Config.BuildConfig.BuildingSystemTurnLockout;
-        rootObject.BuildingPassiveRange = Config.BuildConfig.BuildingPassiveRange;
+        rootObject.BuildingSystemEnabled = BuildingSystemEnabled.isOn;
+        rootObject.BuildingSystemTurnLockout = int.TryParse(BuildingSystemTurnLockout.text, out int bstl) ? bstl : 5;
+        rootObject.BuildingPassiveRange = int.TryParse(BuildingPassiveRange.text, out int bpr) ? bpr : 3;
 
         rootObject.workCamp = new WorkCampTempClass(Config.BuildConfig.WorkCamp, Config.BuildConfig.WorkCampGoldPerTurn);
         rootObject.workCamp.stock = new ConstructionResourcesTempClass(Config.BuildConfig.WorkCampTurnStock);
@@ -395,8 +395,12 @@ public class BuildingSettings : MonoBehaviour
         }
 
         Config.BuildConfig.BuildingSystemEnabled = results["BuildingSystemEnabled"].ToObject<bool>();
+        BuildingSystemEnabled.isOn = Config.BuildConfig.BuildingSystemEnabled;
         Config.BuildConfig.BuildingSystemTurnLockout = int.TryParse(results["BuildingSystemTurnLockout"].ToString(), out int wcbstl) ? wcbstl : 1;
+        BuildingSystemTurnLockout.text = Config.BuildConfig.BuildingSystemTurnLockout.ToString();
         Config.BuildConfig.BuildingPassiveRange = int.TryParse(results["BuildingPassiveRange"].ToString(), out int bpr) ? bpr: 3;
+        BuildingPassiveRange.text = Config.BuildConfig.BuildingPassiveRange.ToString();
+
 
         LoadBuilding("workCamp", Config.BuildConfig.WorkCamp);
         Config.BuildConfig.WorkCampGoldPerTurn = results["workCamp"]["goldPerTurn"].ToObject<int>();
@@ -455,16 +459,16 @@ public class BuildingSettings : MonoBehaviour
         Config.BuildConfig.AcademyEXPPerGold = results["academy"]["expGold"].ToObject<int>();
         Config.BuildConfig.AcademyMaximumUpgrades = results["academy"]["maxUpgrades"].ToObject<int>();
         Config.BuildConfig.AcademyUpgradeCost = results["academy"]["upgradeCost"].ToObject<int>();
-        Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade = results["costInc"]["stoneMin"].ToObject<float>();
+        Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade = results["academy"]["costInc"].ToObject<float>();
         LoadUpgrade("academy", "improveUpgrade", Config.BuildConfig.AcademyImproveUpgrade);
         LoadUpgrade("academy", "researchUpgrade", Config.BuildConfig.AcademyResearchUpgrade);
         LoadUpgrade("academy", "effUpgrade", Config.BuildConfig.AcademyEfficiencyUpgrade);
 
         LoadBuilding("darkMagicTower", Config.BuildConfig.DarkMagicTower);
-        Config.BuildConfig.DarkMagicTowerDurationImprovement = results["durImprovement"]["stoneMin"].ToObject<int>();
-        Config.BuildConfig.DarkMagicTowerAccImprovement = results["accImprovement"]["stoneMin"].ToObject<int>();
-        Config.BuildConfig.DarkMagicTowerSoulPointBase= results["soulPointBase"]["stoneMin"].ToObject<int>();
-        Config.BuildConfig.DarkMagicTowerSoulPointMult = results["soulPointMult"]["stoneMin"].ToObject<float>();
+        Config.BuildConfig.DarkMagicTowerDurationImprovement = results["darkMagicTower"]["durImprovement"].ToObject<int>();
+        Config.BuildConfig.DarkMagicTowerAccImprovement = results["darkMagicTower"]["accImprovement"].ToObject<int>();
+        Config.BuildConfig.DarkMagicTowerSoulPointBase= results["darkMagicTower"]["soulPointBase"].ToObject<int>();
+        Config.BuildConfig.DarkMagicTowerSoulPointMult = results["darkMagicTower"]["soulPointMult"].ToObject<float>();
         LoadUpgrade("darkMagicTower", "improveUpgrade", Config.BuildConfig.DarkMagicTowerImproveUpgrade);
         LoadUpgrade("darkMagicTower", "soulUpgrade", Config.BuildConfig.DarkMagicTowerSoulUpgrade);
         LoadUpgrade("darkMagicTower", "afflictUpgrade", Config.BuildConfig.DarkMagicTowerAfflictionUpgrade);
@@ -475,13 +479,13 @@ public class BuildingSettings : MonoBehaviour
         LoadUpgrade("temporalTower", "tuneUpgrade", Config.BuildConfig.TemporalTowerTuneUpgrade);
 
         LoadBuilding("laboratory", Config.BuildConfig.Laboratory);
-        Config.BuildConfig.LaboratoryUpfrontCost = results["teleporter"]["upfrontCost"].ToObject<int>();
-        Config.BuildConfig.LaboratoryBaseUnitPrice = results["teleporter"]["baseUnitPrice"].ToObject<int>();
-        Config.BuildConfig.LaboratoryBulkDiscount = results["teleporter"]["bulkDiscount"].ToObject<float>();
-        Config.BuildConfig.LaboratoryBulkMin = results["teleporter"]["bulkMin"].ToObject<int>();
-        Config.BuildConfig.LaboratoryBulkMax = results["teleporter"]["bulkMax"].ToObject<int>();
-        Config.BuildConfig.LaboratoryBaseRollCount = results["teleporter"]["baseRollCount"].ToObject<int>();
-        Config.BuildConfig.LaboratoryBaseTraitChance = results["teleporter"]["baseTraitChance"].ToObject<float>();
+        Config.BuildConfig.LaboratoryUpfrontCost = results["laboratory"]["upfrontCost"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBaseUnitPrice = results["laboratory"]["baseUnitPrice"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBulkDiscount = results["laboratory"]["bulkDiscount"].ToObject<float>();
+        Config.BuildConfig.LaboratoryBulkMin = results["laboratory"]["bulkMin"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBulkMax = results["laboratory"]["bulkMax"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBaseRollCount = results["laboratory"]["baseRollCount"].ToObject<int>();
+        Config.BuildConfig.LaboratoryBaseTraitChance = results["laboratory"]["baseTraitChance"].ToObject<float>();
         LoadUpgrade("laboratory", "improveUpgrade", Config.BuildConfig.LaboratoryImproveUpgrade);
         LoadUpgrade("laboratory", "ingredientUpgrade", Config.BuildConfig.LaboratoryIngredientUpgrade);
         LoadUpgrade("laboratory", "boostUpgrade", Config.BuildConfig.LaboratoryBoostUpgrade);
