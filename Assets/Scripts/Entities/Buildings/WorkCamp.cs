@@ -1,4 +1,4 @@
-﻿class WorkCamp : ConstructibleBuilding
+﻿public class WorkCamp : ConstructibleBuilding
 {
     public BuildingUpgrade postUpgrade;
     public BuildingUpgrade merchantUpgrade;

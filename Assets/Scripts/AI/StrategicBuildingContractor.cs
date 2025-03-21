@@ -9,7 +9,16 @@ class StrategicBuildingContractor
 
     BuildingUpgrade upgradeWanted;
     ConstructibleBuilding buildingWanted;
+    ConstructionResources resourceWanted;
     ConstructibleBuilding activeBuilding;
+
+    int switchTimer;
+    float switchChance => switchTimer * (-0.1f);
+    bool hasWoodGeneration => empire.Buildings.Where(b=>b is WorkCamp || b is LumberSite).Any();
+    bool hasStoneGeneration => empire.Buildings.Where(b=>b is WorkCamp || b is Quarry).Any();
+    bool hasOreGeneration => empire.Buildings.Where(b=>b is Quarry && ((Quarry)b).deepUpgrade.built).Any();
+    bool hasManaStoneGeneration => empire.Buildings.Where(b=>b is Quarry && ((Quarry)b).leyUpgrade.built).Any();
+
     public StrategicBuildingContractor(Empire empire)
     {
         this.empire = empire;
@@ -17,12 +26,16 @@ class StrategicBuildingContractor
         upgradeWanted = null;
         buildingWanted = null;
         activeBuilding = null;
+        resourceWanted = null;
+        switchTimer = 0;
     }
 
     internal bool AssessBuildStatus()
     {
         RunGoldStashing();
         RunAllBuildingActives();
+
+        switchTimer--;     
         return true;
     }
 
@@ -105,10 +118,20 @@ class StrategicBuildingContractor
         // If we want an upgrade, buy, if not and low on gold, sell
         if (upgradeWanted != null)
         {
-            // Pull in a bit more gold to buy
+            // Pull in a bit more gold to buy resources
             BankGold(empire.Gold / 10);
-            
+
             //get count of needed resource
+            Dictionary<ConstructionresourceType, int> neededResource = empire.constructionResources.NeededResources(resourceWanted);
+            foreach (var item in neededResource)
+            {
+                int count = item.Value;
+                // While we have enough gold, and item is in stock, and we still need the item
+                while (goldBank > Config.BuildConfig.WorkCampItemPrice.ResourceCountFromType(item.Key) && AIBuildingUtilityFunctions.WorkCampUtility.PurchaseResource(item.Key, workCamp) && count >= 1)
+                {
+                    count--;
+                }
+            }
         }
         else 
         { 
@@ -134,5 +157,21 @@ class StrategicBuildingContractor
         goldBank -= gold;
         empire.RemoveGold(gold * -1);
         empire.SpendGold(gold);
+    }
+    /// <summary>
+    /// Switches the desired project if it gets stuck.
+    /// </summary>
+    internal bool ShouldSwitch() 
+    {
+        if (switchTimer > 0)
+        {
+            return false;
+        }
+        if (State.Rand.NextDouble() > switchChance)
+        {
+            return false;
+        }
+        switchTimer = 5;
+        return true;
     }
 }

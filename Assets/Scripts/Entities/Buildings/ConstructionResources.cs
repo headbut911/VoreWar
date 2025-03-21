@@ -180,5 +180,27 @@ public class ConstructionResources
         }
         return req;
     }
+
+    public int ResourceCountFromType(ConstructionresourceType type)
+    {
+        switch (type)
+        {
+            case ConstructionresourceType.wood:
+                return Wood;
+            case ConstructionresourceType.stone:
+                return Stone;
+            case ConstructionresourceType.ores:
+                return Ores;
+            case ConstructionresourceType.naturalmaterials:
+                return NaturalMaterials;
+            case ConstructionresourceType.prefabs:
+                return Prefabs;
+            case ConstructionresourceType.manastones:
+                return ManaStones;
+            default:
+                break;
+        }
+        return 0;
+    }
 }
 

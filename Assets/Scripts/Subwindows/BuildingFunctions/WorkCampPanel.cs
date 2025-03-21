@@ -137,12 +137,12 @@ public class WorkCampPanel : MonoBehaviour
         InStockItems[5].text = ((WorkCamp)building).inStockItems.ManaStones.ToString();
 
 
-        ItemPrice[0].text = "10";
-        ItemPrice[1].text = "10";
-        ItemPrice[2].text = "30";
-        ItemPrice[3].text = "30";
-        ItemPrice[4].text = "70";
-        ItemPrice[5].text = "70";
+        ItemPrice[0].text = Config.BuildConfig.WorkCampItemPrice.Wood.ToString();
+        ItemPrice[1].text = Config.BuildConfig.WorkCampItemPrice.Stone.ToString();
+        ItemPrice[2].text = Config.BuildConfig.WorkCampItemPrice.NaturalMaterials.ToString();
+        ItemPrice[3].text = Config.BuildConfig.WorkCampItemPrice.Ores.ToString();
+        ItemPrice[4].text = Config.BuildConfig.WorkCampItemPrice.Prefabs.ToString();
+        ItemPrice[5].text = Config.BuildConfig.WorkCampItemPrice.ManaStones.ToString();
 
         if (((WorkCamp)building).inStockItems.Wood <= 0 ||  GetItemPrice(ConstructionresourceType.wood, (WorkCamp)building) > building.Owner.Gold)
         {
