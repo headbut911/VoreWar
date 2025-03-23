@@ -26,6 +26,7 @@ public class BuildingSettings : MonoBehaviour
 
     public InputField ConstructionTurns;
     public InputField BuildLimit;
+    public Toggle AICanBuild;
 
     public GameObject UpgradeEditPrefab;
     public Transform UpgradeFolder;
@@ -50,110 +51,104 @@ public class BuildingSettings : MonoBehaviour
 
     public void DropdownUpdate()
     {
+        GeneralBuildingConfig currentPage = new GeneralBuildingConfig();
         switch (currentDropdownValue)
         {
             case 0: // None
                 WorkCampSettings.gameObject.SetActive(false);
+                LumberSiteSettings.gameObject.SetActive(false);
+                QuarrySettings.gameObject.SetActive(false);
+                CasterTowerSettings.gameObject.SetActive(false);
+                BarrierTowerSettings.gameObject.SetActive(false);
+                WorkCampSettings.gameObject.SetActive(false);
+                DefEncampSettings.gameObject.SetActive(false);
+                AcademySettings.gameObject.SetActive(false);
+                DarkMagicTowerSettings.gameObject.SetActive(false);
+                TemporalTowerSettings.gameObject.SetActive(false);
+                LaboratorySettings.gameObject.SetActive(false);
+                LaboratorySettings.gameObject.SetActive(false);
+                TownHallSettings.gameObject.SetActive(false);
                 break;
             case 1: // Work Camp
                 SaveText(Config.BuildConfig.WorkCamp.Resources);
-                Config.BuildConfig.WorkCamp.Gold = int.TryParse(GoldCost.text, out int wcg) ? wcg : 15;
-                Config.BuildConfig.WorkCamp.BuildTime = int.TryParse(ConstructionTurns.text, out int wcct) ? wcct : 2;
-                Config.BuildConfig.WorkCamp.BuildLimit = int.TryParse(BuildLimit.text, out int wcbl) ? wcbl : -1;
+                currentPage = Config.BuildConfig.WorkCamp;
                 WorkCampSettings.gameObject.SetActive(false);
                 WorkCampSettings.Save();
                 break;
             case 2: // Lumber Site
                 SaveText(Config.BuildConfig.LumberSite.Resources);
-                Config.BuildConfig.LumberSite.Gold = int.TryParse(GoldCost.text, out int lsg) ? lsg : 15;
-                Config.BuildConfig.LumberSite.BuildTime = int.TryParse(ConstructionTurns.text, out int lsct) ? lsct : 2;
-                Config.BuildConfig.LumberSite.BuildLimit = int.TryParse(BuildLimit.text, out int lsbl) ? lsbl : -1;
+                currentPage = Config.BuildConfig.LumberSite;
                 LumberSiteSettings.gameObject.SetActive(false);
                 LumberSiteSettings.Save();
                 break;
             case 3: // Quarry
                 SaveText(Config.BuildConfig.Quarry.Resources);
-                Config.BuildConfig.Quarry.Gold = int.TryParse(GoldCost.text, out int qsg) ? qsg : 15;
-                Config.BuildConfig.Quarry.BuildTime = int.TryParse(ConstructionTurns.text, out int qct) ? qct : 2;
-                Config.BuildConfig.Quarry.BuildLimit = int.TryParse(BuildLimit.text, out int qbl) ? qbl : -1;
+                currentPage = Config.BuildConfig.Quarry;
                 QuarrySettings.gameObject.SetActive(false);
                 QuarrySettings.Save();
                 break;
             case 4: // Caster Tower
                 SaveText(Config.BuildConfig.CasterTower.Resources);
-                Config.BuildConfig.CasterTower.Gold = int.TryParse(GoldCost.text, out int ctsg) ? ctsg : 15;
-                Config.BuildConfig.CasterTower.BuildTime = int.TryParse(ConstructionTurns.text, out int ctct) ? ctct : 2;
-                Config.BuildConfig.CasterTower.BuildLimit = int.TryParse(BuildLimit.text, out int ctbl) ? ctbl : -1;
+                currentPage = Config.BuildConfig.CasterTower;
                 CasterTowerSettings.gameObject.SetActive(false);
                 CasterTowerSettings.Save();
                 break;
             case 5: // Barrier Tower
-                SaveText(Config.BuildConfig.BarrierTower.Resources);
-                Config.BuildConfig.BarrierTower.Gold = int.TryParse(GoldCost.text, out int btsg) ? btsg : 15;
-                Config.BuildConfig.BarrierTower.BuildTime = int.TryParse(ConstructionTurns.text, out int btct) ? btct : 2;
-                Config.BuildConfig.BarrierTower.BuildLimit = int.TryParse(BuildLimit.text, out int btbl) ? btbl : -1;
+                SaveText(Config.BuildConfig.BarrierTower.Resources); 
+                currentPage = Config.BuildConfig.BarrierTower;
                 BarrierTowerSettings.gameObject.SetActive(false);
                 BarrierTowerSettings.Save();
                 break;
             case 6: // DefEncampSettings
                 SaveText(Config.BuildConfig.DefenseEncampment.Resources);
-                Config.BuildConfig.DefenseEncampment.Gold = int.TryParse(GoldCost.text, out int desg) ? desg : 15;
-                Config.BuildConfig.DefenseEncampment.BuildTime = int.TryParse(ConstructionTurns.text, out int dect) ? dect : 2;
-                Config.BuildConfig.DefenseEncampment.BuildLimit = int.TryParse(BuildLimit.text, out int debl) ? debl : -1;
+                currentPage = Config.BuildConfig.DefenseEncampment;
                 DefEncampSettings.gameObject.SetActive(false);
                 DefEncampSettings.Save();
                 break;
             case 7: // Academy
                 SaveText(Config.BuildConfig.Academy.Resources);
-                Config.BuildConfig.Academy.Gold = int.TryParse(GoldCost.text, out int asg) ? asg : 15;
-                Config.BuildConfig.Academy.BuildTime = int.TryParse(ConstructionTurns.text, out int act) ? act : 2;
-                Config.BuildConfig.Academy.BuildLimit = int.TryParse(BuildLimit.text, out int abl) ? abl : -1;
+                currentPage = Config.BuildConfig.Academy;
                 AcademySettings.gameObject.SetActive(false);
                 AcademySettings.Save();
                 break;
             case 8: // DarkMagicTower
                 SaveText(Config.BuildConfig.DarkMagicTower.Resources);
-                Config.BuildConfig.DarkMagicTower.Gold = int.TryParse(GoldCost.text, out int dtsg) ? dtsg : 15;
-                Config.BuildConfig.DarkMagicTower.BuildTime = int.TryParse(ConstructionTurns.text, out int dtct) ? dtct : 2;
-                Config.BuildConfig.DarkMagicTower.BuildLimit = int.TryParse(BuildLimit.text, out int dtbl) ? dtbl : -1;
+                currentPage = Config.BuildConfig.DarkMagicTower;
                 DarkMagicTowerSettings.gameObject.SetActive(false);
                 DarkMagicTowerSettings.Save();
                 break;
             case 9: // TemporalTower
                 SaveText(Config.BuildConfig.TemporalTower.Resources);
-                Config.BuildConfig.TemporalTower.Gold = int.TryParse(GoldCost.text, out int ttsg) ? ttsg : 15;
-                Config.BuildConfig.TemporalTower.BuildTime = int.TryParse(ConstructionTurns.text, out int ttct) ? ttct : 2;
-                Config.BuildConfig.TemporalTower.BuildLimit = int.TryParse(BuildLimit.text, out int ttbl) ? ttbl : -1;
+                currentPage = Config.BuildConfig.TemporalTower;
                 TemporalTowerSettings.gameObject.SetActive(false);
                 TemporalTowerSettings.Save();
                 break;
             case 10: // Laboratory
-                SaveText(Config.BuildConfig.Laboratory.Resources);
-                Config.BuildConfig.Laboratory.Gold = int.TryParse(GoldCost.text, out int lssg) ? lssg : 15;
-                Config.BuildConfig.Laboratory.BuildTime = int.TryParse(ConstructionTurns.text, out int lct) ? lct : 2;
-                Config.BuildConfig.Laboratory.BuildLimit = int.TryParse(BuildLimit.text, out int lbl) ? lbl : -1;
+                SaveText(Config.BuildConfig.Laboratory.Resources); 
+                currentPage = Config.BuildConfig.Laboratory;
                 LaboratorySettings.gameObject.SetActive(false);
                 LaboratorySettings.Save();
                 break;
             case 11: // Teleporter
                 SaveText(Config.BuildConfig.Teleporter.Resources);
-                Config.BuildConfig.Teleporter.Gold = int.TryParse(GoldCost.text, out int tg) ? tg : 15;
-                Config.BuildConfig.Teleporter.BuildTime = int.TryParse(ConstructionTurns.text, out int tt) ? tt : 2;
-                Config.BuildConfig.Teleporter.BuildLimit = int.TryParse(BuildLimit.text, out int tbl) ? tbl : -1;
+                currentPage = Config.BuildConfig.Teleporter;
                 TeleporterSettings.gameObject.SetActive(false);
                 TeleporterSettings.Save();
                 break;
             case 12: // TownHall
                 SaveText(Config.BuildConfig.TownHall.Resources);
-                Config.BuildConfig.TownHall.Gold = int.TryParse(GoldCost.text, out int thg) ? thg : 15;
-                Config.BuildConfig.TownHall.BuildTime = int.TryParse(ConstructionTurns.text, out int tht) ? tht : 2;
-                Config.BuildConfig.TownHall.BuildLimit = int.TryParse(BuildLimit.text, out int thbl) ? thbl : -1;
+                currentPage = Config.BuildConfig.TownHall;
                 TownHallSettings.gameObject.SetActive(false);
                 TownHallSettings.Save();
                 break;
             default:
                 break;
         }
+
+        currentPage.Gold = int.TryParse(GoldCost.text, out int wcg) ? wcg : 15;
+        currentPage.BuildTime = int.TryParse(ConstructionTurns.text, out int wcct) ? wcct : 2;
+        currentPage.BuildLimit = int.TryParse(BuildLimit.text, out int wcbl) ? wcbl : -1;
+        currentPage.AICanBuild = AICanBuild.isOn;
 
         buildingUpgrades.Clear();
         ClearFolder();
@@ -291,6 +286,7 @@ public class BuildingSettings : MonoBehaviour
         GoldCost.text = building.Gold.ToString();
         ConstructionTurns.text = building.BuildTime.ToString();
         BuildLimit.text = building.BuildLimit.ToString();
+        AICanBuild.isOn = building.AICanBuild;
         foreach (BuildingUpgrade upgrade in upgrades)
         {
             buildingUpgrades.Add(upgrade);

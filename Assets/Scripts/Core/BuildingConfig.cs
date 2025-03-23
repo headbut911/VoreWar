@@ -16,7 +16,7 @@ public class BuildingConfig
     //Specific Building Settings
     //Work Camp
     [OdinSerialize]
-    internal GeneralBuildingConfig WorkCamp = new GeneralBuildingConfig(15, 2, -1);
+    internal GeneralBuildingConfig WorkCamp = new GeneralBuildingConfig(15, 2, -1,0,0,0,0,15,0);
     [OdinSerialize]
     internal int WorkCampGoldPerTurn = 100;
     [OdinSerialize]

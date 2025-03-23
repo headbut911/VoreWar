@@ -37,62 +37,62 @@ public class WorkCampPanel : MonoBehaviour
         RefreshUI(building);
         BuyWood.onClick.AddListenerOnce(() =>
         {
-            PurchaceItem(ConstructionresourceType.wood, (WorkCamp)building);
+            PurchaceItem(ConstructionResourceType.wood, (WorkCamp)building);
             RefreshUI(building);
         });
         SellWood.onClick.AddListenerOnce(() =>
         {
-            SellItem(ConstructionresourceType.wood, (WorkCamp)building);
+            SellItem(ConstructionResourceType.wood, (WorkCamp)building);
             RefreshUI(building);
         });
         BuyStone.onClick.AddListenerOnce(() =>
         {
-            PurchaceItem(ConstructionresourceType.stone, (WorkCamp)building);
+            PurchaceItem(ConstructionResourceType.stone, (WorkCamp)building);
             RefreshUI(building);
         });
         SellStone.onClick.AddListenerOnce(() =>
         {
-            SellItem(ConstructionresourceType.stone, (WorkCamp)building);
+            SellItem(ConstructionResourceType.stone, (WorkCamp)building);
             RefreshUI(building);
         });
         BuyNM.onClick.AddListenerOnce(() =>
         {
-            PurchaceItem(ConstructionresourceType.naturalmaterials, (WorkCamp)building);
+            PurchaceItem(ConstructionResourceType.naturalmaterials, (WorkCamp)building);
             RefreshUI(building);
         });
         SellNM.onClick.AddListenerOnce(() =>
         {
-            SellItem(ConstructionresourceType.naturalmaterials, (WorkCamp)building);
+            SellItem(ConstructionResourceType.naturalmaterials, (WorkCamp)building);
             RefreshUI(building);
         });
         BuyOres.onClick.AddListenerOnce(() =>
         {
-            PurchaceItem(ConstructionresourceType.ores, (WorkCamp)building);
+            PurchaceItem(ConstructionResourceType.ores, (WorkCamp)building);
             RefreshUI(building);
         });
         SellOres.onClick.AddListenerOnce(() =>
         {
-            SellItem(ConstructionresourceType.ores, (WorkCamp)building);
+            SellItem(ConstructionResourceType.ores, (WorkCamp)building);
             RefreshUI(building);
         });
         BuyPrefabs.onClick.AddListenerOnce(() =>
         {
-            PurchaceItem(ConstructionresourceType.prefabs, (WorkCamp)building);
+            PurchaceItem(ConstructionResourceType.prefabs, (WorkCamp)building);
             RefreshUI(building);
         });
         SellPrefabs.onClick.AddListenerOnce(() =>
         {
-            SellItem(ConstructionresourceType.prefabs, (WorkCamp)building);
+            SellItem(ConstructionResourceType.prefabs, (WorkCamp)building);
             RefreshUI(building);
         });
         BuyMS.onClick.AddListenerOnce(() =>
         {
-            PurchaceItem(ConstructionresourceType.manastones, (WorkCamp)building);
+            PurchaceItem(ConstructionResourceType.manastones, (WorkCamp)building);
             RefreshUI(building);
         });
         BuyMS.onClick.AddListenerOnce(() =>
         {
-            SellItem(ConstructionresourceType.manastones, (WorkCamp)building);
+            SellItem(ConstructionResourceType.manastones, (WorkCamp)building);
             RefreshUI(building);
         });
     }
@@ -144,89 +144,89 @@ public class WorkCampPanel : MonoBehaviour
         ItemPrice[4].text = Config.BuildConfig.WorkCampItemPrice.Prefabs.ToString();
         ItemPrice[5].text = Config.BuildConfig.WorkCampItemPrice.ManaStones.ToString();
 
-        if (((WorkCamp)building).inStockItems.Wood <= 0 ||  GetItemPrice(ConstructionresourceType.wood, (WorkCamp)building) > building.Owner.Gold)
+        if (((WorkCamp)building).inStockItems.Wood <= 0 ||  GetItemPrice(ConstructionResourceType.wood, (WorkCamp)building) > building.Owner.Gold)
         {
             BuyWood.interactable = false;
         }
-        if (building.Owner.constructionResources.Wood <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.wood, (WorkCamp)building))
+        if (building.Owner.constructionResources.Wood <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionResourceType.wood, (WorkCamp)building))
         {
             SellWood.interactable = false;
         }
 
-        if (((WorkCamp)building).inStockItems.Stone <= 0 ||  GetItemPrice(ConstructionresourceType.stone, (WorkCamp)building) > building.Owner.Gold)
+        if (((WorkCamp)building).inStockItems.Stone <= 0 ||  GetItemPrice(ConstructionResourceType.stone, (WorkCamp)building) > building.Owner.Gold)
         {
             BuyStone.interactable = false;
         }
-        if (building.Owner.constructionResources.Stone <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.stone, (WorkCamp)building))
+        if (building.Owner.constructionResources.Stone <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionResourceType.stone, (WorkCamp)building))
         {
             SellStone.interactable = false;
         }
 
-        if (((WorkCamp)building).inStockItems.NaturalMaterials <= 0 ||  GetItemPrice(ConstructionresourceType.naturalmaterials, (WorkCamp)building) > building.Owner.Gold)
+        if (((WorkCamp)building).inStockItems.NaturalMaterials <= 0 ||  GetItemPrice(ConstructionResourceType.naturalmaterials, (WorkCamp)building) > building.Owner.Gold)
         {
             BuyNM.interactable = false;
         }
-        if (building.Owner.constructionResources.NaturalMaterials <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.naturalmaterials, (WorkCamp)building))
+        if (building.Owner.constructionResources.NaturalMaterials <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionResourceType.naturalmaterials, (WorkCamp)building))
         {
             SellNM.interactable = false;
         }
 
-        if (((WorkCamp)building).inStockItems.Ores <= 0 ||  GetItemPrice(ConstructionresourceType.ores, (WorkCamp)building) > building.Owner.Gold)
+        if (((WorkCamp)building).inStockItems.Ores <= 0 ||  GetItemPrice(ConstructionResourceType.ores, (WorkCamp)building) > building.Owner.Gold)
         {
             BuyOres.interactable = false;
         }
-        if (building.Owner.constructionResources.Ores <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.ores, (WorkCamp)building))
+        if (building.Owner.constructionResources.Ores <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionResourceType.ores, (WorkCamp)building))
         {
             SellOres.interactable = false;
         }
 
-        if (((WorkCamp)building).inStockItems.Prefabs <= 0 ||  GetItemPrice(ConstructionresourceType.prefabs, (WorkCamp)building) > building.Owner.Gold)
+        if (((WorkCamp)building).inStockItems.Prefabs <= 0 ||  GetItemPrice(ConstructionResourceType.prefabs, (WorkCamp)building) > building.Owner.Gold)
         {
             BuyPrefabs.interactable = false;
         }
-        if (building.Owner.constructionResources.Prefabs <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.prefabs, (WorkCamp)building))
+        if (building.Owner.constructionResources.Prefabs <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionResourceType.prefabs, (WorkCamp)building))
         {
             SellPrefabs.interactable = false;
         }
 
-        if (((WorkCamp)building).inStockItems.ManaStones <= 0 ||  GetItemPrice(ConstructionresourceType.manastones, (WorkCamp)building) > building.Owner.Gold)
+        if (((WorkCamp)building).inStockItems.ManaStones <= 0 ||  GetItemPrice(ConstructionResourceType.manastones, (WorkCamp)building) > building.Owner.Gold)
         {
             BuyMS.interactable = false;
         }
-        if (building.Owner.constructionResources.ManaStones <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionresourceType.manastones, (WorkCamp)building))
+        if (building.Owner.constructionResources.ManaStones <= 0 || ((WorkCamp)building).currentGold < GetItemPrice(ConstructionResourceType.manastones, (WorkCamp)building))
         {
             SellMS.interactable = false;
         }
     }
 
-    void PurchaceItem(ConstructionresourceType type, WorkCamp building)
+    void PurchaceItem(ConstructionResourceType type, WorkCamp building)
     {
         building.inStockItems.SpendResource(type, 1);
         building.Owner.SpendGold(GetItemPrice(type, building));
         building.Owner.constructionResources.AddResource(type, 1);
     }
     
-    void SellItem(ConstructionresourceType type, WorkCamp building)
+    void SellItem(ConstructionResourceType type, WorkCamp building)
     {
         building.inStockItems.AddResource(type, 1);
         building.Owner.AddGold(GetItemPrice(type, building));
         building.Owner.constructionResources.SpendResource(type, 1);
     }
-    int GetItemPrice(ConstructionresourceType type, WorkCamp building)
+    int GetItemPrice(ConstructionResourceType type, WorkCamp building)
     {
         switch (type)
         {
-            case ConstructionresourceType.wood:
+            case ConstructionResourceType.wood:
                 return Config.BuildConfig.WorkCampItemPrice.Wood;
-            case ConstructionresourceType.stone:
+            case ConstructionResourceType.stone:
                 return Config.BuildConfig.WorkCampItemPrice.Stone;
-            case ConstructionresourceType.ores:
+            case ConstructionResourceType.ores:
                 return Config.BuildConfig.WorkCampItemPrice.Ores;
-            case ConstructionresourceType.naturalmaterials:
+            case ConstructionResourceType.naturalmaterials:
                 return Config.BuildConfig.WorkCampItemPrice.NaturalMaterials;
-            case ConstructionresourceType.prefabs:
+            case ConstructionResourceType.prefabs:
                 return Config.BuildConfig.WorkCampItemPrice.Prefabs;
-            case ConstructionresourceType.manastones:
+            case ConstructionResourceType.manastones:
                 return Config.BuildConfig.WorkCampItemPrice.ManaStones;
             default:
                 break;

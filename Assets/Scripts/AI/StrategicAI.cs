@@ -60,22 +60,9 @@ public class StrategicAI : IStrategicAI
 
     public bool RunAI()
     {
-        if (Config.BuildConfig.BuildingSystemEnabled)
-        {           
-            if (ArmyCommander == null)
-                RegenArmyCommander();
-            if (BuildingContractor == null)
-                RegenBuildingContractor();
-            BuildingContractor.AssessBuildStatus();
-            return ArmyCommander.GiveOrder();
-        }
-        else
-        {
-            if (ArmyCommander == null)
-                RegenArmyCommander();
-            return ArmyCommander.GiveOrder();
-        }
-
+        if (ArmyCommander == null)
+            RegenArmyCommander();
+        return ArmyCommander.GiveOrder();
     }
 
 
@@ -89,6 +76,13 @@ public class StrategicAI : IStrategicAI
 
         if (Config.Diplomacy)
             ProcessRelations();
+
+        if (Config.BuildConfig.BuildingSystemEnabled)
+        {
+            if (BuildingContractor == null)
+                RegenBuildingContractor();
+            BuildingContractor.AssessBuildStatus();
+        }
 
         if (ArmyCommander == null)
             RegenArmyCommander();
@@ -140,10 +134,9 @@ public class StrategicAI : IStrategicAI
             unitCost = Config.ArmyCost + State.World.ItemRepository.GetItem(ItemType.CompoundBow).Cost;
             forcedHeavyWeapon = true;
         }
-        Debug.Log("Checking Army Buy");
         if (empire.Gold > 50 + minThreshold + minArmySize * unitCost && empire.Income > 10 && (idealUnitCount - currentUnitCount >= minArmySize || currentUnitCount == 0) && empire.Armies.Count() < Config.MaxArmies)
         {
-            Debug.Log("Buying Army");
+
             purchasedArmy = PurchaseArmy(unitCost, ref currentUnitCount, forcedHeavyWeapon);
             for (int i = 0; i < 10; i++) //Can purchase additional armies if absolutely loaded with cash
             {
@@ -531,8 +524,6 @@ public class StrategicAI : IStrategicAI
             idealArmySize = village.GetTotalPop() - 3;
         if (idealArmySize < 4 && Math.Floor(empire.MaxArmySize / empire.GetAvgDeployCost()) > idealArmySize)
             return null;
-
-        Debug.Log(idealArmySize);
         
         if (Config.AICanCheatSpecialMercs && MercenaryHouse.UniqueMercs?.Count > 0)
         {

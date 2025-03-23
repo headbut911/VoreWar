@@ -26,8 +26,8 @@
     internal override void RunBuildingFunction()
     {
         ConstructionResources ownerResource = Owner.constructionResources;
-        ownerResource.AddResource(ConstructionresourceType.wood, Config.BuildConfig.WorkCampGenerationPerTurn);
-        ownerResource.AddResource(ConstructionresourceType.stone, Config.BuildConfig.WorkCampGenerationPerTurn);
+        ownerResource.AddResource(ConstructionResourceType.wood, Config.BuildConfig.WorkCampGenerationPerTurn);
+        ownerResource.AddResource(ConstructionResourceType.stone, Config.BuildConfig.WorkCampGenerationPerTurn);
 
         if (postUpgrade.built || merchantUpgrade.built) 
         {
@@ -37,8 +37,8 @@
         if (improveUpgrade.built)
         {
             inStockItems.SetResources(Config.BuildConfig.WorkCampTurnStock.Wood, Config.BuildConfig.WorkCampTurnStock.Stone,Config.BuildConfig.WorkCampTurnStock.NaturalMaterials, Config.BuildConfig.WorkCampTurnStock.Ores, Config.BuildConfig.WorkCampTurnStock.Prefabs, Config.BuildConfig.WorkCampTurnStock.ManaStones);
-            ownerResource.AddResource(ConstructionresourceType.wood, Config.BuildConfig.WorkCampGenerationPerTurn);
-            ownerResource.AddResource(ConstructionresourceType.stone, Config.BuildConfig.WorkCampGenerationPerTurn);
+            ownerResource.AddResource(ConstructionResourceType.wood, Config.BuildConfig.WorkCampGenerationPerTurn);
+            ownerResource.AddResource(ConstructionResourceType.stone, Config.BuildConfig.WorkCampGenerationPerTurn);
         }
     }
 }

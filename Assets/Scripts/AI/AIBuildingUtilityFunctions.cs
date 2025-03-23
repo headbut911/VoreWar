@@ -7,7 +7,7 @@ public static class AIBuildingUtilityFunctions
 {
     public static class WorkCampUtility 
     { 
-        public static int GetRequiredGold(Dictionary<ConstructionresourceType, int> incoming)
+        public static int GetRequiredGold(Dictionary<ConstructionResourceType, int> incoming)
         {
             int cost = 0;
             foreach (var item in incoming)
@@ -16,7 +16,7 @@ public static class AIBuildingUtilityFunctions
             }
             return cost;
         }
-        public static bool PurchaseResource(ConstructionresourceType resource, WorkCamp camp)
+        public static bool PurchaseResource(ConstructionResourceType resource, WorkCamp camp)
         {
             if (camp.inStockItems.ResourceCountFromType(resource) > 0)
             {

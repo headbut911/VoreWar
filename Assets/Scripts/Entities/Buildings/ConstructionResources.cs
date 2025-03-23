@@ -1,7 +1,7 @@
 ﻿using OdinSerializer;
 using System.Collections.Generic;
 
-public enum ConstructionresourceType
+public enum ConstructionResourceType
 {
     wood,
     stone,
@@ -53,42 +53,42 @@ public class ConstructionResources
         ManaStones = 0;
     }
 
-    public void AddResource(ConstructionresourceType type, int amount)
+    public void AddResource(ConstructionResourceType type, int amount)
     {
         switch (type)
         {
-            case ConstructionresourceType.wood:
+            case ConstructionResourceType.wood:
                 Wood += amount; break;
-            case ConstructionresourceType.stone:
+            case ConstructionResourceType.stone:
                 Stone += amount; break;
-            case ConstructionresourceType.ores:
+            case ConstructionResourceType.ores:
                 Ores += amount; break;
-            case ConstructionresourceType.naturalmaterials:
+            case ConstructionResourceType.naturalmaterials:
                 NaturalMaterials += amount; break;
-            case ConstructionresourceType.prefabs:
+            case ConstructionResourceType.prefabs:
                 Prefabs += amount; break;
-            case ConstructionresourceType.manastones:
+            case ConstructionResourceType.manastones:
                 ManaStones += amount; break;
             default:
                 break;
         }
     }
 
-    public void SpendResource(ConstructionresourceType type, int amount)
+    public void SpendResource(ConstructionResourceType type, int amount)
     {
         switch (type)
         {
-            case ConstructionresourceType.wood:
+            case ConstructionResourceType.wood:
                 Wood -= amount; break;
-            case ConstructionresourceType.stone:
+            case ConstructionResourceType.stone:
                 Stone -= amount; break;
-            case ConstructionresourceType.ores:
+            case ConstructionResourceType.ores:
                 Ores -= amount; break;
-            case ConstructionresourceType.naturalmaterials:
+            case ConstructionResourceType.naturalmaterials:
                 NaturalMaterials -= amount; break;
-            case ConstructionresourceType.prefabs:
+            case ConstructionResourceType.prefabs:
                 Prefabs += amount; break;
-            case ConstructionresourceType.manastones:
+            case ConstructionResourceType.manastones:
                 ManaStones -= amount; break;
             default:
                 break;
@@ -101,12 +101,12 @@ public class ConstructionResources
     /// <returns></returns>
     public bool CanBuildWithCurrentResources(ConstructionResources required)
     {
-        if (!HasNeededResource(ConstructionresourceType.wood, required.Wood)) return false;
-        if (!HasNeededResource(ConstructionresourceType.stone, required.Stone)) return false;
-        if (!HasNeededResource(ConstructionresourceType.ores, required.Ores)) return false;
-        if (!HasNeededResource(ConstructionresourceType.naturalmaterials, required.NaturalMaterials)) return false;
-        if (!HasNeededResource(ConstructionresourceType.prefabs, required.Prefabs)) return false;
-        if (!HasNeededResource(ConstructionresourceType.manastones, required.ManaStones)) return false;
+        if (!HasNeededResource(ConstructionResourceType.wood, required.Wood)) return false;
+        if (!HasNeededResource(ConstructionResourceType.stone, required.Stone)) return false;
+        if (!HasNeededResource(ConstructionResourceType.ores, required.Ores)) return false;
+        if (!HasNeededResource(ConstructionResourceType.naturalmaterials, required.NaturalMaterials)) return false;
+        if (!HasNeededResource(ConstructionResourceType.prefabs, required.Prefabs)) return false;
+        if (!HasNeededResource(ConstructionResourceType.manastones, required.ManaStones)) return false;
         return true;
     }
     public void SpendProvidedResources(ConstructionResources required)
@@ -119,21 +119,21 @@ public class ConstructionResources
         ManaStones -= required.ManaStones;
     }
 
-    public bool HasNeededResource(ConstructionresourceType type, int amount)
+    public bool HasNeededResource(ConstructionResourceType type, int amount)
     {
         switch (type)
         {
-            case ConstructionresourceType.wood:
+            case ConstructionResourceType.wood:
                 return Wood >= amount;
-            case ConstructionresourceType.stone:
+            case ConstructionResourceType.stone:
                 return Stone >= amount;
-            case ConstructionresourceType.ores:
+            case ConstructionResourceType.ores:
                 return Ores >= amount;
-            case ConstructionresourceType.naturalmaterials:
+            case ConstructionResourceType.naturalmaterials:
                 return NaturalMaterials >= amount;
-            case ConstructionresourceType.prefabs:
+            case ConstructionResourceType.prefabs:
                 return Prefabs >= amount;
-            case ConstructionresourceType.manastones:
+            case ConstructionResourceType.manastones:
                 return ManaStones >= amount;
             default:
                 break;
@@ -151,51 +151,51 @@ public class ConstructionResources
         ManaStones = ms;
     }
 
-    public Dictionary<ConstructionresourceType, int> NeededResources(ConstructionResources required)
+    public Dictionary<ConstructionResourceType, int> NeededResources(ConstructionResources required)
     {
-        Dictionary<ConstructionresourceType, int> req = new Dictionary<ConstructionresourceType, int>();
-        if (!HasNeededResource(ConstructionresourceType.wood, required.Wood))
+        Dictionary<ConstructionResourceType, int> req = new Dictionary<ConstructionResourceType, int>();
+        if (!HasNeededResource(ConstructionResourceType.wood, required.Wood))
         {
-            req.Add(ConstructionresourceType.wood, Wood - required.Wood);
+            req.Add(ConstructionResourceType.wood, Wood - required.Wood);
         }
-        if (!HasNeededResource(ConstructionresourceType.stone, required.Stone))
+        if (!HasNeededResource(ConstructionResourceType.stone, required.Stone))
         {
-            req.Add(ConstructionresourceType.stone, Stone - required.Stone);
+            req.Add(ConstructionResourceType.stone, Stone - required.Stone);
         }
-        if (!HasNeededResource(ConstructionresourceType.ores, required.Ores))
+        if (!HasNeededResource(ConstructionResourceType.ores, required.Ores))
         {
-            req.Add(ConstructionresourceType.ores, Ores - required.Ores);
+            req.Add(ConstructionResourceType.ores, Ores - required.Ores);
         }
-        if (!HasNeededResource(ConstructionresourceType.naturalmaterials, required.NaturalMaterials))
+        if (!HasNeededResource(ConstructionResourceType.naturalmaterials, required.NaturalMaterials))
         {
-            req.Add(ConstructionresourceType.naturalmaterials, NaturalMaterials - required.NaturalMaterials);
+            req.Add(ConstructionResourceType.naturalmaterials, NaturalMaterials - required.NaturalMaterials);
         }
-        if (!HasNeededResource(ConstructionresourceType.prefabs, required.Prefabs))
+        if (!HasNeededResource(ConstructionResourceType.prefabs, required.Prefabs))
         {
-            req.Add(ConstructionresourceType.prefabs, Prefabs - required.Prefabs);
+            req.Add(ConstructionResourceType.prefabs, Prefabs - required.Prefabs);
         }
-        if (!HasNeededResource(ConstructionresourceType.manastones, required.ManaStones))
+        if (!HasNeededResource(ConstructionResourceType.manastones, required.ManaStones))
         {
-            req.Add(ConstructionresourceType.manastones, ManaStones - required.ManaStones);
+            req.Add(ConstructionResourceType.manastones, ManaStones - required.ManaStones);
         }
         return req;
     }
 
-    public int ResourceCountFromType(ConstructionresourceType type)
+    public int ResourceCountFromType(ConstructionResourceType type)
     {
         switch (type)
         {
-            case ConstructionresourceType.wood:
+            case ConstructionResourceType.wood:
                 return Wood;
-            case ConstructionresourceType.stone:
+            case ConstructionResourceType.stone:
                 return Stone;
-            case ConstructionresourceType.ores:
+            case ConstructionResourceType.ores:
                 return Ores;
-            case ConstructionresourceType.naturalmaterials:
+            case ConstructionResourceType.naturalmaterials:
                 return NaturalMaterials;
-            case ConstructionresourceType.prefabs:
+            case ConstructionResourceType.prefabs:
                 return Prefabs;
-            case ConstructionresourceType.manastones:
+            case ConstructionResourceType.manastones:
                 return ManaStones;
             default:
                 break;

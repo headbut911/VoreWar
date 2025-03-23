@@ -37,7 +37,7 @@ class LumberSite : ConstructibleBuilding
     internal override void RunBuildingFunction()
     {
         ConstructionResources ownerResource = Owner.constructionResources;
-        ownerResource.AddResource(ConstructionresourceType.wood, woodWorkers + IdleWorkers);
+        ownerResource.AddResource(ConstructionResourceType.wood, woodWorkers + IdleWorkers);
 
         if (lodgeUpgrade.built)
         {
@@ -46,12 +46,12 @@ class LumberSite : ConstructibleBuilding
 
         if (carpenterUpgrade.built)
         {
-            ownerResource.AddResource(ConstructionresourceType.naturalmaterials, natureWorkers);
+            ownerResource.AddResource(ConstructionResourceType.naturalmaterials, natureWorkers);
         }
 
         if (greenHouseUpgrade.built)
         {
-            ownerResource.AddResource(ConstructionresourceType.prefabs, carpenterWorkers);
+            ownerResource.AddResource(ConstructionResourceType.prefabs, carpenterWorkers);
 
         }
     }
