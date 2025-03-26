@@ -184,6 +184,8 @@ public class BuildingConfig
     [OdinSerialize]
     internal float LaboratoryBaseTraitChance = 0.6f;
     [OdinSerialize]
+    internal int LaboratoryAIPotionMult = 1;
+    [OdinSerialize]
     internal BuildingUpgrade LaboratoryImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Increases max rolls per potion.");
     [OdinSerialize]
     internal BuildingUpgrade LaboratoryIngredientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Expands types of availible ingredients.");

@@ -14,6 +14,7 @@ public class LaboratorySettings : MonoBehaviour
     public InputField BulkMax;
     public InputField BaseRollCount;
     public InputField BaseTraitChance;
+    public InputField AIPotionMult;
 
     internal void Save()
     {
@@ -24,6 +25,7 @@ public class LaboratorySettings : MonoBehaviour
         Config.BuildConfig.LaboratoryBulkMax = int.TryParse(BulkMax.text, out int mmi) ? mmi : 50;
         Config.BuildConfig.LaboratoryBaseRollCount = int.TryParse(BaseRollCount.text, out int mmu) ? mmu : 4;
         Config.BuildConfig.LaboratoryBaseTraitChance = float.TryParse(BaseTraitChance.text, out float mme) ? mme : 0.6f;
+        Config.BuildConfig.LaboratoryAIPotionMult = int.TryParse(AIPotionMult.text, out int pm) ? pm: 1;
 
     }
 
@@ -36,5 +38,6 @@ public class LaboratorySettings : MonoBehaviour
         BulkMax.text = Config.BuildConfig.LaboratoryBulkMax.ToString();
         BaseRollCount.text = Config.BuildConfig.LaboratoryBaseRollCount.ToString();
         BaseTraitChance.text = Config.BuildConfig.LaboratoryBaseTraitChance.ToString();
+        AIPotionMult.text = Config.BuildConfig.LaboratoryAIPotionMult.ToString();
     }
 }

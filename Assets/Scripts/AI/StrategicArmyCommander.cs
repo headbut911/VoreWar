@@ -402,6 +402,20 @@ class StrategicArmyCommander
             }
         }
 
+        foreach (ConstructibleBuilding construct in State.World.Constructibles)
+        {
+            if (construct.Owner == null || empire.IsEnemy(construct.Owner))
+            {
+                Army defender = StrategicUtilities.ArmyAt(construct.Position);
+                if (defender != null && StrategicUtilities.ArmyPower(defender) > MaxDefenderStrength * StrategicUtilities.ArmyPower(army))
+                    continue;
+                potentialTargets.Add(construct.Position);
+                int value = 38;
+                value -= construct.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
+                potentialTargetValue.Add(value);
+            }
+        }
+
         SetClosestPathWithPriority(army, potentialTargets.ToArray(), potentialTargetValue.ToArray());
     }
 

@@ -1259,11 +1259,6 @@ public class Recruit_Mode : SceneBase
             if (unit != null)
             {
                 potionInv.gameObject.SetActive(true);
-                LaboratoryPotion testPot = new LaboratoryPotion();
-                testPot.AddStatMod(Stat.Endurance, 15);
-                testPot.AddStatMod(Stat.Agility, -15);
-                testPot.AddPositiveTrait(Traits.AccuteDodge);
-                empire.EmpirePotions.Add(testPot, 3);
                 potionInv.Open(empire, unit);
             }
         }
