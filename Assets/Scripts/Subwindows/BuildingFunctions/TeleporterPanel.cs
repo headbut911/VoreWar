@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using UnityEngine.WSA;
 
@@ -51,9 +52,16 @@ public class TeleporterPanel : MonoBehaviour
             {
                 continue;
             }
-            StandardArmies = StandardArmies.Union(StrategicUtilities.GetAllyArmyWithinXTiles(tele, 1)).ToList();
-        }        
-        NeabyArmies = StrategicUtilities.GetAllyArmyWithinXTiles(Teleporter, 1);
+            StandardArmies = StandardArmies.Union(StrategicUtilities.GetOwnerArmyWithinXTiles(tele, 1)).ToList();
+        }
+        if (Teleporter.ancientUpgrade.built)
+        {
+            foreach (var anctele in State.World.AncientTeleporters)
+            {
+                StandardArmies = StandardArmies.Union(StrategicUtilities.GetAllyArmyWithinXTiles(anctele.Position, 1)).ToList();
+            }
+        }    
+        NeabyArmies = StrategicUtilities.GetOwnerArmyWithinXTiles(Teleporter, 1);
         if (Teleporter.stoneUpgrade.built)
         {
             foreach (var item in Teleporter.Owner.Armies.Where(a => a.LinkedTeleporter == Teleporter))
@@ -73,7 +81,10 @@ public class TeleporterPanel : MonoBehaviour
             {
                 CapUse += State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult * Config.BuildConfig.TeleporterPerUnitCapacityMod;
             }
-
+            if (Config.BuildConfig.TeleporterPerUnitCapacity)
+            {
+                CapUse = 1;
+            }
             newAvailPrefab.ArmyName.text = army.Name;
             newAvailPrefab.CapacityUse.text = $"Requires: {CapUse} Capacity";
             newAvailPrefab.WarpButton.onClick.AddListenerOnce(() =>

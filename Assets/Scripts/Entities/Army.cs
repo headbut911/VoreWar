@@ -68,6 +68,10 @@ public class Army
     internal int MonsterTurnsRemaining;
     [OdinSerialize]
     internal Teleporter LinkedTeleporter = null;
+    [OdinSerialize]
+    internal int teleportStoneCoolDown = 0;
+    [OdinSerialize]
+    internal int teleportCoolDown = 0;
 
     public bool DevourThisTurn { get; private set; } = false;
 
@@ -203,6 +207,8 @@ public class Army
         GetTileHealRate();
         ProcessInVillageOnTurn();
         SCooldown = 0;
+        teleportStoneCoolDown = teleportStoneCoolDown >= 0 ? teleportStoneCoolDown - 1 : 0;
+        teleportCoolDown = teleportCoolDown >= 0 ? teleportCoolDown - 1 : 0;
     }
 
     public int GetMaxMovement()

@@ -787,12 +787,22 @@ static class StrategicUtilities
         }
         return armyList;
     }
-    internal static List<Army> GetAllyArmyWithinXTiles(ConstructibleBuilding building, int tiles)
+    internal static List<Army> GetOwnerArmyWithinXTiles(ConstructibleBuilding building, int tiles)
     {
         List<Army> armyList = new List<Army>();
-        foreach (Army allyArmy in GetAllAlliedArmies(building.Owner))
+        foreach (Army allyArmy in building.Owner.Armies)
         {
             if (allyArmy.Position.GetNumberOfMovesDistance(building.Position) <= tiles)
+                armyList.Add(allyArmy);
+        }
+        return armyList;
+    }
+    internal static List<Army> GetAllyArmyWithinXTiles(Vec2i pos, int tiles)
+    {
+        List<Army> armyList = new List<Army>();
+        foreach (Army allyArmy in GetAllArmies())
+        {
+            if (allyArmy.Position.GetNumberOfMovesDistance(pos) <= tiles)
                 armyList.Add(allyArmy);
         }
         return armyList;

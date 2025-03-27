@@ -31,5 +31,31 @@ class Teleporter : ConstructibleBuilding
             TeleportCapacity = Config.BuildConfig.TeleporterMaxCapacity;
         }
     }
+
+    public bool CanTeleportArmy(Army army, bool useCap = false)
+    {
+        if (Config.BuildConfig.TeleporterPerUnitCapacity && TeleportCapacity >= 1)
+        {
+            if (useCap)
+            {
+                TeleportCapacity -= 1;
+            }
+            return true;
+        }
+        float CapUse = 0;
+        foreach (Unit unit in army.Units)
+        {
+            CapUse += State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult * Config.BuildConfig.TeleporterPerUnitCapacityMod;
+        }
+        if (CapUse > TeleportCapacity)
+        {
+            return false;
+        }
+        if (useCap)
+        {
+            TeleportCapacity -= CapUse;
+        }
+        return true;
+    }
 }
 

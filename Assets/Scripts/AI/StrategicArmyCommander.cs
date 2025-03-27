@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AssetUsageDetectorNamespace;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -143,6 +144,18 @@ class StrategicArmyCommander
             case AIMode.Heal:
                 if (army.InVillageIndex == -1)
                 {
+                    if (army.LinkedTeleporter != null)
+                    {
+                        if (army.teleportStoneCoolDown <= 0)
+                        {
+                            if (army.LinkedTeleporter.CanTeleportArmy(army, true))
+                            {
+                                army.SetPosition(army.LinkedTeleporter.Position);
+                                army.Destination = null;
+                                army.teleportStoneCoolDown = 3;
+                            }
+                        }
+                    }
                     if (NavigateToFriendlyVillage(army, false))
                         break;
                     Attack(army, 1);
@@ -413,6 +426,24 @@ class StrategicArmyCommander
                 int value = 38;
                 value -= construct.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
                 potentialTargetValue.Add(value);
+            }
+
+            if (construct.Owner == empire && construct is Teleporter && construct.active && army.teleportCoolDown <= 0)
+            {
+                //Needs to have another teleporter to be a valid target
+                if ((((Teleporter)construct).ancientUpgrade.built && State.World.AncientTeleporters.Count() >= 1)|| empire.Buildings.Where(b => b is Teleporter).Count() >= 2)
+                {
+                    //Target Teleport needs to also have enough capacity to take army if ancient teleporting is not acceptable
+                    if ((((Teleporter)construct).ancientUpgrade.built || State.World.AncientTeleporters.Count() == 0) && empire.Buildings.Where(b => b is Teleporter && ((Teleporter)b).CanTeleportArmy(army)).Count() >= 1)
+                    {
+                        potentialTargets.Add(construct.Position);
+                        int value = 25;
+                        value += (army.LinkedTeleporter == null & ((Teleporter)construct).stoneUpgrade.built) ? 5 : 0;
+                        value += (((Teleporter)construct).ancientUpgrade.built) ? 5 : 0;
+                        value -= construct.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
+                        potentialTargetValue.Add(value);
+                    }
+                }
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VersionControl.Git;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
 
@@ -647,7 +648,23 @@ class StrategicBuildingContractor
     }
     internal void RunTeleporter()
     {
-        Teleporter teleporter = activeBuilding as Teleporter;       
+        Teleporter teleporter = activeBuilding as Teleporter;
+        foreach (Army army in StrategicUtilities.GetOwnerArmyWithinXTiles(teleporter,1))
+        {
+            //link this army to teleporter if able
+            if (teleporter.stoneUpgrade.built)
+            {
+                army.LinkedTeleporter = teleporter;
+            }
+            // Teleport to an ancient teleporter, will most likely give a more forward position.
+            if (teleporter.ancientUpgrade.built && State.Rand.Next(4) != 0)
+            {
+                army.SetPosition(State.World.AncientTeleporters[State.Rand.Next(State.World.AncientTeleporters.Count())].Position);
+                army.Destination = null;
+                army.teleportCoolDown = 3;
+            }
+        }
+        
     }
 
     /// <summary>
