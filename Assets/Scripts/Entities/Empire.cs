@@ -589,7 +589,6 @@ public class Empire
             [ConstructibleType.Laboratory] = Config.BuildConfig.Laboratory.BuildLimit,
             [ConstructibleType.TownHall] = Config.BuildConfig.TownHall.BuildLimit,
         };
-        EmpireBuildingLimit[ConstructibleType.WorkCamp] = 0;
     }
 
     internal bool WithinBuildLimit(ConstructibleType type)

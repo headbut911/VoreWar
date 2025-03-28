@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using Unity.VersionControl.Git;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
@@ -115,6 +116,13 @@ class StrategicBuildingContractor
         {
             locs.Remove(mer.Position);
         }
+        foreach (var loc in locs)
+        {
+            if (!StrategicTileInfo.CanWalkInto(State.World.Tiles[loc.x, loc.y]))
+            {
+                locs.Remove(loc);
+            }
+        }
 
         return locs[State.Rand.Next(locs.Count)];
     }
@@ -221,7 +229,6 @@ class StrategicBuildingContractor
     internal void RunWorkCamp()
     {
         WorkCamp workCamp = activeBuilding as WorkCamp;
-
         // If we want an upgrade, buy resources
         if (resourceWanted != null)
         {
@@ -233,6 +240,14 @@ class StrategicBuildingContractor
             Dictionary<ConstructionResourceType, int> generatedResource = GetGeneration();
             foreach (var item in neededResource)
             {
+                if (!workCamp.postUpgrade.built && (item.Key == ConstructionResourceType.wood || item.Key == ConstructionResourceType.stone))
+                {
+                    continue;
+                }
+                if (!workCamp.merchantUpgrade.built && (item.Key == ConstructionResourceType.naturalmaterials || item.Key == ConstructionResourceType.ores|| item.Key == ConstructionResourceType.prefabs || item.Key == ConstructionResourceType.manastones))
+                {
+                    continue;
+                }
                 // skip buying if we reach goal with two turns of generation
                 if (generatedResource[item.Key] * 2 >= neededResource[item.Key])
                 {
@@ -710,7 +725,7 @@ class StrategicBuildingContractor
         {
             return false;
         }
-        switchTimer = 5;
+        switchTimer = empire.Buildings.Count();
         return true;
     }
 
@@ -732,12 +747,10 @@ class StrategicBuildingContractor
         double chanceForUpgrade = (upgradesNeeded / 10) / Math.Pow(buidlingsConstructed, 0.5f);
         if (chanceForUpgrade > State.Rand.NextDouble())
         {
-            Debug.Log("Chose Upgrade");
             DecideUpgrade();
         }
         else
         {
-            Debug.Log("Chose Building");
             DecideBuilding();          
         }
     }

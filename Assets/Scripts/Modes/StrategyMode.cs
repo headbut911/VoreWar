@@ -995,7 +995,7 @@ public class StrategyMode : SceneBase
         foreach (var teleporter in State.World.AncientTeleporters)
         {
             GameObject tele = Instantiate(SpriteCategories[2], new Vector3(teleporter.Position.x, teleporter.Position.y), new Quaternion(), VillageFolder);
-            tele.GetComponent<SpriteRenderer>().sprite = Sprites[16];
+            tele.GetComponent<SpriteRenderer>().sprite = Buildings[96];
             tele.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
         foreach (var claimable in State.World.Claimables)
