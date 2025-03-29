@@ -12,6 +12,12 @@ public class BuildingConfig
     public int BuildingSystemTurnLockout = 0;
     [OdinSerialize]
     internal int BuildingPassiveRange = 3;
+    [OdinSerialize]
+    internal int EmpireBuildingCapture = 0;
+    [OdinSerialize]
+    internal int MonsterBuildingCapture = 0;
+    [OdinSerialize]
+    internal int BuildingCaptureTurns = 2;
 
     //Specific Building Settings
     //Work Camp

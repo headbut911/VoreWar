@@ -8,7 +8,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using static UnityEngine.UI.CanvasScaler;
 
 public class StrategyMode : SceneBase
 {
@@ -1034,7 +1033,13 @@ public class StrategyMode : SceneBase
             villColored.GetComponent<SpriteRenderer>().color = constructable.Owner?.UnityColor ?? Color.clear;
             currentBuildingTiles.Add(vill);
             currentBuildingTiles.Add(villColored);
-            if (!constructable.active)
+            if (constructable.ruined)
+            {
+                GameObject disabled = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
+                disabled.GetComponent<SpriteRenderer>().sprite = Buildings[98];
+                disabled.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            } 
+            else if (!constructable.active)
             {
                 GameObject hammer = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
                 hammer.GetComponent<SpriteRenderer>().sprite = Buildings[97];
@@ -2496,7 +2501,7 @@ public class StrategyMode : SceneBase
                     TilemapLayers[14].ClearAllTiles();
                     TilemapLayers[14].SetTile(new Vector3Int(x, y, 0), BuildIndicator[2]);
                     Vec2i position = new Vec2i(x, y);
-                    if (Input.GetMouseButtonDown(0) && StrategicUtilities.IsSpaceOpenForBuild(position) && StrategicTileInfo.CanWalkInto(State.World.Tiles[position.x, position.y]))
+                    if (Input.GetMouseButtonDown(0) && StrategicUtilities.IsSpaceOpenForBuild(position) && StrategicTileInfo.CanWalkInto(State.World.Tiles[position.x, position.y]) && TilemapLayers[13].GetTile(new Vector3Int(x, y, 0)) != BuildIndicator[1])
                     {
                         BuildMode = false;
                         TilemapLayers[14].ClearAllTiles();
@@ -2829,7 +2834,11 @@ public class StrategyMode : SceneBase
 
                 VillageTooltip.Text.text = $"{constructible.Name}\nOwner: {owner_name}";
 
-                if (constructible.constructing)
+                if (constructible.ruined)
+                {
+                    VillageTooltip.Text.text += $"\n Building Disabled" ;
+                }
+                else if (constructible.constructing)
                 {
                     VillageTooltip.Text.text += $"\n Constructing in {constructible.turnsToCompletion} turn(s)" ;
                 }

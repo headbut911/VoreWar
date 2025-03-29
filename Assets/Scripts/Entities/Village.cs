@@ -708,7 +708,7 @@ public class Village
                         localArmy.Units.Add(unit.unit);
                         localArmy.RecalculateSizeValue();
                     }
-                    else if (localArmy == null && StrategicUtilities.ArmyCanFitUnit(localArmy, unit.unit))
+                    else if (localArmy == null)
                     {
                         Empire.Reports.Add(new StrategicReport($"{unit.unit.Name} (Leader) has arrived at {Name} and created a new army there", new Vec2(Position.x, Position.y)));
                         Army army = new Army(Empire, new Vec2i(Position.x, Position.y), Side);
@@ -1260,7 +1260,6 @@ public class Village
                     {
                         unit.AddTraits(GetTraitsToAdd());
                         army.Units.Add(unit);
-                        Debug.Log($"Adding {unit.Name}");
                         State.World.Stats.SoldiersRecruited(1, Side);
                         empire.SpendGold(Config.ArmyCost);
                         VillagePopulation.RemoveRacePop(unit.Race, 1);

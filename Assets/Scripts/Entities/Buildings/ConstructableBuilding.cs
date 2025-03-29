@@ -1,6 +1,7 @@
 ﻿using OdinSerializer;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 
 public abstract class ConstructibleBuilding
@@ -25,10 +26,14 @@ public abstract class ConstructibleBuilding
     internal int turnsToUpgrade;
     [OdinSerialize]
     internal int baseBuildTurns;
+    [OdinSerialize]
+    internal bool ruined;
     public int upgradeStage => Upgrades.Where(u=> u.built).Count();
     public bool constructing => turnsToCompletion > 0;
     public bool upgrading => turnsToUpgrade > 0;
-    public bool active => !constructing && !upgrading;
+    public bool enemyOnTop => StrategicUtilities.GetEnemyArmyWithinXTiles(this,0).Any();
+    public bool allyOnTop => StrategicUtilities.GetOwnerArmyWithinXTiles(this,0).Any();
+    public bool active => !constructing && !upgrading && !enemyOnTop && !ruined;
 
     [OdinSerialize]
     internal bool enabled = true;
@@ -43,6 +48,9 @@ public abstract class ConstructibleBuilding
     internal int spriteID;
 
     [OdinSerialize]
+    internal int CaptureTime;
+
+    [OdinSerialize]
     internal ConstructibleType buildingType;
     protected ConstructibleBuilding(Vec2i location)
     {
@@ -51,6 +59,7 @@ public abstract class ConstructibleBuilding
         ResourceToBuild = new ConstructionResources();
         baseBuildTurns = -1;
         Upgrades = new List<BuildingUpgrade>();
+        CaptureTime = Config.BuildConfig.BuildingCaptureTurns;
     }
 
     internal abstract void RunBuildingFunction();
@@ -74,6 +83,70 @@ public abstract class ConstructibleBuilding
 
     public void RunBuildingTurn()
     {
+        if (enemyOnTop)
+        {
+            CaptureTime--;
+            if (CaptureTime <= 0)
+            {
+                if (StrategicUtilities.GetEnemyArmyWithinXTiles(this, 0).First().Empire.Race >= Race.Vagrants)
+                {
+                    switch (Config.BuildConfig.MonsterBuildingCapture)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            StrategicUtilities.TryClaim(Position, StrategicUtilities.GetEnemyArmyWithinXTiles(this, 0).First().Empire);
+                            break;
+                        case 2:
+                            ruined = true;
+                            CaptureTime = Config.BuildConfig.BuildingCaptureTurns;
+                            break;
+                        case 3:
+                            Owner.Buildings.Remove(this);
+                            Owner.EmpireBuildingLimit[buildingType] = Owner.EmpireBuildingLimit[buildingType] + 1;
+                            List<ConstructibleBuilding> bLis = State.World.Constructibles.ToList();
+                            bLis.Remove(this);
+                            State.World.Constructibles = bLis.ToArray();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    switch (Config.BuildConfig.EmpireBuildingCapture)
+                    {
+                        case 0:
+                            break;
+                        case 1:
+                            StrategicUtilities.TryClaim(Position, StrategicUtilities.GetEnemyArmyWithinXTiles(this, 0).First().Empire);
+                            break;
+                        case 2:
+                            ruined = true;
+                            CaptureTime = Config.BuildConfig.BuildingCaptureTurns;
+                            break;
+                        case 3:
+                            Owner.Buildings.Remove(this);
+                            Owner.EmpireBuildingLimit[buildingType] = Owner.EmpireBuildingLimit[buildingType] + 1;
+                            List<ConstructibleBuilding> bLis = State.World.Constructibles.ToList();
+                            bLis.Remove(this);
+                            State.World.Constructibles = bLis.ToArray();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+            return;
+        }
+        else
+        {
+            CaptureTime = Config.BuildConfig.BuildingCaptureTurns;
+        }
+        if (allyOnTop)
+        {
+            ruined = false;
+        }
         if (constructing)
         {
             turnsToCompletion--;

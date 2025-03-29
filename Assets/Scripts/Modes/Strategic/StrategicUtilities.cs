@@ -229,10 +229,12 @@ static class StrategicUtilities
                 {
                     return;
                 }
-                if (construct.Owner != empire)
+                if (construct.Owner != empire && construct.CaptureTime <= 0)
                 {
                     State.GameManager.StrategyMode.UndoMoves.Clear();
                     RelationsManager.GoldMineTaken(empire, construct.Owner);
+                    construct.Owner.Buildings.Remove(construct);
+                    empire.Buildings.Add(construct);
                     construct.Owner = empire;
                 }
 
@@ -783,7 +785,9 @@ static class StrategicUtilities
         foreach (Army enemyArmy in GetAllHostileArmies(building.Owner))
         {
             if (enemyArmy.Position.GetNumberOfMovesDistance(building.Position) <= tiles)
+            {
                 armyList.Add(enemyArmy);
+            }
         }
         return armyList;
     }

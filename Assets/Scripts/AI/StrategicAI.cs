@@ -77,7 +77,8 @@ public class StrategicAI : IStrategicAI
         if (Config.Diplomacy)
             ProcessRelations();
 
-        if (Config.BuildConfig.BuildingSystemEnabled)
+        // Don't run buildings unless system is enabled or one is captured off of map.
+        if (Config.BuildConfig.BuildingSystemEnabled || empire.Buildings.Count() > 0)
         {
             if (BuildingContractor == null)
                 RegenBuildingContractor();

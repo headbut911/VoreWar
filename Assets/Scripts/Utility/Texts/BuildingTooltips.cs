@@ -7,7 +7,7 @@
             case 1:
                 return "Enables building button and allows the AI to construct enabled buildings. Does not disable buildings placed in the map editor.";
             case 2:
-                return "Prevents buildings from being built until this turn.";
+                return "Prevents buildings from being built until this turn. Buildings already placed on the map can still be used and upgraded.";
             case 3:
                 return "Affects the range of some buildings effects. Recommended: 2-4.";
             case 4:
@@ -133,6 +133,8 @@
             case 64:
                 return "Determines if an army should use its units deployment cost to determine capacity use, or just one capacity.";
             case 65:
+                return "The multiplier converting a unit's deployment cost to capacity.\nExample: A value of 0.1 will cause an army of 15 units with 1 deployment cost to require 1.5 capacity.";
+            case 66:
                 return "The multiplier converting a unit's deployment cost to capacity.\nExample: A value of 0.1 will cause an army of 15 units with 1 deployment cost to require 1.5 capacity.";
             default:
                 return "";

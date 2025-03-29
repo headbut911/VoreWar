@@ -33,7 +33,7 @@ public class BuildingFunctionsPanel : MonoBehaviour
             return;
         ActiveObject = NoFunction;
         ClearObjects();
-        if (building is WorkCamp)
+       if (building is WorkCamp)
         {
             if (((WorkCamp)building).postUpgrade.built)
             {

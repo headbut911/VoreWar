@@ -421,6 +421,24 @@ class MonsterStrategicAI : IStrategicAI
             }
         }
 
+        foreach (ConstructibleBuilding construct in State.World.Constructibles)
+        {
+            if (empire.IsEnemy(construct.Owner) && !construct.ruined && Config.BuildConfig.MonsterBuildingCapture != 0)
+            {
+                Army defender = StrategicUtilities.ArmyAt(construct.Position);
+                if (defender != null && StrategicUtilities.ArmyPower(defender) > MaxDefenderStrength * StrategicUtilities.ArmyPower(army))
+                    continue;
+                potentialTargets.Add(construct.Position);
+                int value = -6;
+                // Stay on building to trigger capture effect
+                if (construct.Position == army.Position)
+                {
+                    value = 100;
+                }
+                potentialTargetValue.Add(value);
+            }
+        }
+
         SetClosestPathWithPriority(army, potentialTargets.ToArray(), potentialTargetValue.ToArray());
     }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public enum AIMode
 {
@@ -417,7 +418,7 @@ class StrategicArmyCommander
 
         foreach (ConstructibleBuilding construct in State.World.Constructibles)
         {
-            if (construct.Owner == null || empire.IsEnemy(construct.Owner))
+            if (construct.Owner == null || (empire.IsEnemy(construct.Owner) && !construct.ruined && Config.BuildConfig.EmpireBuildingCapture != 0))
             {
                 Army defender = StrategicUtilities.ArmyAt(construct.Position);
                 if (defender != null && StrategicUtilities.ArmyPower(defender) > MaxDefenderStrength * StrategicUtilities.ArmyPower(army))
@@ -425,6 +426,11 @@ class StrategicArmyCommander
                 potentialTargets.Add(construct.Position);
                 int value = 38;
                 value -= construct.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
+                // Stay on building to trigger capture effect
+                if (construct.Position == army.Position)
+                {
+                    value = 100;
+                }
                 potentialTargetValue.Add(value);
             }
 

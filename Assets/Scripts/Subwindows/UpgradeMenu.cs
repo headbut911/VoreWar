@@ -69,7 +69,7 @@ public class UpgradeMenu : MonoBehaviour
                 RefreshFolderInteractables(building);
                 State.GameManager.StrategyMode.RedrawVillages();
             });
-            if (!building.Owner.constructionResources.CanBuildWithCurrentResources(upgrade.ResourceToUpgrade) || upgrade.GoldCost > building.Owner.Gold)
+            if (!building.Owner.constructionResources.CanBuildWithCurrentResources(upgrade.ResourceToUpgrade) || upgrade.GoldCost > building.Owner.Gold || building.ruined)
                 currentPrefab.DoUpgrade.interactable = false;
             upgradePrefabs.Add(currentPrefab, upgrade);
         }

@@ -61,7 +61,7 @@ class StrategicBuildingContractor
         {
             BuildUpgrades();
         }
-        if (buildingWanted >= 0)
+        if (buildingWanted >= 0 && State.World.Turn >= Config.BuildConfig.BuildingSystemTurnLockout && Config.BuildConfig.BuildingSystemEnabled)
         {
             Vec2i loc = LocateGoodLocation();
             if (loc != null)
@@ -93,7 +93,7 @@ class StrategicBuildingContractor
         {
             return null;
         }
-        List<Vec2i> locs = empire.OwnedTiles;
+        List<Vec2i> locs = empire.OwnedTiles.Distinct().ToList();
 
         // player can't build on following, so nor should AI
         foreach (var vil in State.World.Villages)

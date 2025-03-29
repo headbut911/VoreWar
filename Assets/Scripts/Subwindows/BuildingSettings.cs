@@ -13,8 +13,11 @@ public class BuildingSettings : MonoBehaviour
     public Toggle BuildingSystemEnabled;
     public InputField BuildingSystemTurnLockout;
     public InputField BuildingPassiveRange;
+    public InputField BuildingCaptureTurns;
 
     public TMP_Dropdown BuildingDropdown;
+    public TMP_Dropdown EmpireCaptureDropdown;
+    public TMP_Dropdown MonsterCaptureDropdown;
 
     public InputField WoodCost;
     public InputField NaturalMaterialsCost;
@@ -301,6 +304,9 @@ public class BuildingSettings : MonoBehaviour
         rootObject.BuildingSystemEnabled = BuildingSystemEnabled.isOn;
         rootObject.BuildingSystemTurnLockout = int.TryParse(BuildingSystemTurnLockout.text, out int bstl) ? bstl : 5;
         rootObject.BuildingPassiveRange = int.TryParse(BuildingPassiveRange.text, out int bpr) ? bpr : 3;
+        rootObject.CaptureTurns = int.TryParse(BuildingCaptureTurns.text, out int bct) ? bct : 2;
+        rootObject.EmpireCapture = EmpireCaptureDropdown.value;
+        rootObject.MonsterCapture = MonsterCaptureDropdown.value;
 
         rootObject.workCamp = new WorkCampTempClass(Config.BuildConfig.WorkCamp, Config.BuildConfig.WorkCampGoldPerTurn);
         rootObject.workCamp.stock = new ConstructionResourcesTempClass(Config.BuildConfig.WorkCampTurnStock);
@@ -354,7 +360,7 @@ public class BuildingSettings : MonoBehaviour
         rootObject.temporalTower.disruptUpgrade= new BuildingUpgradeTempClass(Config.BuildConfig.TemporalTowerDisruptUpgrade);
         rootObject.temporalTower.tuneUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TemporalTowerTuneUpgrade);
 
-        rootObject.laboratory = new LaboratoryTempClass(Config.BuildConfig.Laboratory, Config.BuildConfig.LaboratoryUpfrontCost, Config.BuildConfig.LaboratoryBaseUnitPrice, Config.BuildConfig.LaboratoryBulkDiscount, Config.BuildConfig.LaboratoryBulkMin, Config.BuildConfig.LaboratoryBulkMax, Config.BuildConfig.LaboratoryBaseRollCount, Config.BuildConfig.LaboratoryBaseTraitChance);
+        rootObject.laboratory = new LaboratoryTempClass(Config.BuildConfig.Laboratory, Config.BuildConfig.LaboratoryUpfrontCost, Config.BuildConfig.LaboratoryBaseUnitPrice, Config.BuildConfig.LaboratoryBulkDiscount, Config.BuildConfig.LaboratoryBulkMin, Config.BuildConfig.LaboratoryBulkMax, Config.BuildConfig.LaboratoryBaseRollCount, Config.BuildConfig.LaboratoryBaseTraitChance, Config.BuildConfig.LaboratoryAIPotionMult);
         rootObject.laboratory.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.TemporalTowerImproveUpgrade);
         rootObject.laboratory.ingredientUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LaboratoryIngredientUpgrade);
         rootObject.laboratory.boostUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LaboratoryBoostUpgrade);
@@ -396,6 +402,12 @@ public class BuildingSettings : MonoBehaviour
         BuildingSystemTurnLockout.text = Config.BuildConfig.BuildingSystemTurnLockout.ToString();
         Config.BuildConfig.BuildingPassiveRange = int.TryParse(results["BuildingPassiveRange"].ToString(), out int bpr) ? bpr: 3;
         BuildingPassiveRange.text = Config.BuildConfig.BuildingPassiveRange.ToString();
+        Config.BuildConfig.EmpireBuildingCapture = results["EmpireCapture"].ToObject<int>();
+        EmpireCaptureDropdown.value = Config.BuildConfig.EmpireBuildingCapture;
+        Config.BuildConfig.MonsterBuildingCapture = results["MonsterCapture"].ToObject<int>();
+        MonsterCaptureDropdown.value = Config.BuildConfig.MonsterBuildingCapture;
+        Config.BuildConfig.BuildingCaptureTurns = results["CaptureTurns"].ToObject<int>();
+        BuildingCaptureTurns.text = Config.BuildConfig.BuildingCaptureTurns.ToString();
 
 
         LoadBuilding("workCamp", Config.BuildConfig.WorkCamp);
@@ -548,6 +560,9 @@ public class BuildingSettings : MonoBehaviour
         public bool BuildingSystemEnabled { get; set; }
         public int BuildingSystemTurnLockout { get; set; }
         public int BuildingPassiveRange { get; set; }
+        public int EmpireCapture { get; set; }
+        public int MonsterCapture { get; set; }
+        public int CaptureTurns { get; set; }
         public WorkCampTempClass workCamp { get; set; }
         public LumberCampTempClass lumberSite { get; set; }
         public QuarryTempClass quarry { get; set; }
@@ -745,10 +760,11 @@ public class BuildingSettings : MonoBehaviour
         public int bulkMax { get; set; }
         public int baseRollCount { get; set; }
         public float baseTraitChance { get; set; }
+        public int AIPotionMult { get; set; }
         public BuildingUpgradeTempClass improveUpgrade { get; set; }
         public BuildingUpgradeTempClass ingredientUpgrade { get; set; }
         public BuildingUpgradeTempClass boostUpgrade { get; set; }
-        internal LaboratoryTempClass(GeneralBuildingConfig configClass, int upCost, int uPrice, float disc, int bMin, int bMax, int rCount, float tChance)
+        internal LaboratoryTempClass(GeneralBuildingConfig configClass, int upCost, int uPrice, float disc, int bMin, int bMax, int rCount, float tChance, int aim)
         {
             standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
             upfrontCost = upCost;
@@ -758,6 +774,7 @@ public class BuildingSettings : MonoBehaviour
             bulkMax = bMax;
             baseRollCount = rCount;
             baseTraitChance = tChance;
+            AIPotionMult = aim;
         }
     }
     class TeleporterTempClass : BuildingStandardInherit
