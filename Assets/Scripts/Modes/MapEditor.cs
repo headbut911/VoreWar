@@ -184,10 +184,12 @@ public class MapEditor : SceneBase
     public Sprite[] Sprites;
     public Sprite[] Buildings;
     public Sprite[] VillageSprites;
+    public Sprite[] WallMultiSprites;
     GameObject[] SpriteCategories;
 
     public Transform VillageFolder;
     public Transform ArmyFolder;
+    public Transform WallRoadsFolder;
 
     public TMP_Dropdown BrushType;
 
@@ -200,7 +202,7 @@ public class MapEditor : SceneBase
     {
         MercenaryHouse,
         GoldMine,
-        AncientTeleporter
+        AncientTeleporter,
     }
     public enum MapBuildingType
     {
@@ -215,7 +217,7 @@ public class MapEditor : SceneBase
         DefEncampment,
 
         //Utility
-        AdventureGuild,
+        Academy,
         BlackMagicTower,
         TemporalTower,
 
@@ -398,6 +400,9 @@ public class MapEditor : SceneBase
             case SpecialType.GoldMine:
                 Tooltip.text = $"Place Gold Mine";
                 break;
+            case SpecialType.AncientTeleporter:
+                Tooltip.text = $"Place Ancient Teleporter";
+                break;
         }
 
 
@@ -421,7 +426,43 @@ public class MapEditor : SceneBase
             case MapBuildingType.WorkCamp:
                 Tooltip.text = $"Place Work Camp";
                 break;
+            case MapBuildingType.LumberSite:
+                Tooltip.text = $"Place Lumber Site";
+                break;
+            case MapBuildingType.Quarry:
+                Tooltip.text = $"Place Quarry";
+                break;
+            case MapBuildingType.CasterTower:
+                Tooltip.text = $"Place Caster Tower";
+                break;
+            case MapBuildingType.BarrierTower:
+                Tooltip.text = $"Place Barrier Tower";
+                break;
+            case MapBuildingType.DefEncampment:
+                Tooltip.text = $"Place Defense Encampment";
+                break;
+            case MapBuildingType.Academy:
+                Tooltip.text = $"Place Academy";
+                break;
+            case MapBuildingType.BlackMagicTower:
+                Tooltip.text = $"Place Dark Magic Tower";
+                break;
+            case MapBuildingType.TemporalTower:
+                Tooltip.text = $"Place Temporal Tower";
+                break;
+            case MapBuildingType.Laborotory:
+                Tooltip.text = $"Place Laborotory";
+                break;
+            case MapBuildingType.Teleporter:
+                Tooltip.text = $"Place Teleporter";
+                break;
+            case MapBuildingType.TownHall:
+                Tooltip.text = $"Place Town Hall";
+                break;
+            default:
+                break;
         }
+
 
 
     }
@@ -552,6 +593,9 @@ public class MapEditor : SceneBase
                 break;
             case StrategicDoodadType.virtualBridgeIntersection:
                 Tooltip.text = $"Place sea path tile (An alternate bridge)\nAlso looks better than bridges for things such as wide bridges or diagonal bridges\nMakes walkable and lowers movement cost to 1";
+                break;
+            case StrategicDoodadType.wall:
+                Tooltip.text = $"Place a wall, making the tile impassible to walking.";
                 break;
             case StrategicDoodadType.SpawnerVagrant:
                 Tooltip.text = $"Place a monster spawn location for Vagrants, they have to spawn within 2 tiles of a spawner if at least one exists";
@@ -749,7 +793,54 @@ public class MapEditor : SceneBase
                     {
                         if (doodads[i, j] < StrategicDoodadType.SpawnerVagrant)
                         {
-                            TilemapLayers[3].SetTile(new Vector3Int(i, j, 0), DoodadTypes[-1 + (int)doodads[i, j]]);
+                            if (doodads[i, j] == StrategicDoodadType.wall)
+                            {
+                                bool north = j + 1 <= tiles.GetUpperBound(1) ? doodads[i, j + 1] == StrategicDoodadType.wall : false;
+                                bool east = i + 1 <= tiles.GetUpperBound(0) ? doodads[i + 1, j] == StrategicDoodadType.wall : false;
+                                bool south = j - 1 >= 0 ? doodads[i, j - 1] == StrategicDoodadType.wall : false;
+                                bool west = i - 1 >= 0 ? doodads[i - 1, j] == StrategicDoodadType.wall : false;
+                                int spr = 0;   
+
+                                if (north && east && south && west)                                
+                                    spr = 7;                                
+                                else if (north && east && south)
+                                    spr = 13;
+                                else if (north && east && west)
+                                    spr = 14;
+                                else if (north && south && west)
+                                    spr = 12;
+                                else if (east && south && west)
+                                    spr = 15;
+                                else if (north && east)
+                                    spr = 11;
+                                else if (north && south)
+                                    spr = 4;
+                                else if (north && west)
+                                    spr = 10;
+                                else if (east && south)
+                                    spr = 9;
+                                else if (south && west)
+                                    spr = 8;
+                                else if (east && west)
+                                    spr = 1;
+                                else if (north)
+                                    spr = 6;
+                                else if (east)
+                                    spr = 2;
+                                else if (south)
+                                    spr = 5;
+                                else if (west)
+                                    spr = 3;
+
+                                GameObject wall = Instantiate(SpriteCategories[2], new Vector3(i,j,0), new Quaternion(), WallRoadsFolder);
+                                wall.name = "Wall";
+                                wall.GetComponent<SpriteRenderer>().sprite = WallMultiSprites[spr];
+                                wall.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                            }
+                            else
+                            {
+                                TilemapLayers[3].SetTile(new Vector3Int(i, j, 0), DoodadTypes[-1 + (int)doodads[i, j]]);
+                            }
                         }
                         else
                         {
@@ -1060,7 +1151,7 @@ public class MapEditor : SceneBase
         foreach (var teleporter in State.World.AncientTeleporters)
         {
             GameObject tele = Instantiate(SpriteCategories[2], new Vector3(teleporter.Position.x, teleporter.Position.y), new Quaternion(), VillageFolder);
-            tele.GetComponent<SpriteRenderer>().sprite = Sprites[16];
+            tele.GetComponent<SpriteRenderer>().sprite = Buildings[96];
             tele.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
         foreach (var claimable in State.World.Claimables)
@@ -1445,7 +1536,7 @@ public class MapEditor : SceneBase
                     State.World.Constructibles = contstruct.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
-                case MapBuildingType.AdventureGuild:
+                case MapBuildingType.Academy:
                     Academy newAdventureGuild = new Academy(clickLocation);
                     contstruct = State.World.Constructibles.ToList();
                     contstruct.Add(newAdventureGuild);
@@ -1786,7 +1877,6 @@ public class MapEditor : SceneBase
 
             if (constructible is WorkCamp)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.WorkCamp, constructible.Position));
-            /*
             if (constructible is LumberSite)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.LumberSite, constructible.Position));
             if (constructible is Quarry)
@@ -1795,21 +1885,20 @@ public class MapEditor : SceneBase
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.CasterTower, constructible.Position));
             if (constructible is BarrierTower)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.BarrierTower, constructible.Position));
-            if (constructible is DefEncampment)
+            if (constructible is DefenseEncampment)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.DefEncampment, constructible.Position));
-            if (constructible is AdventureGuild)
-                storedConstructibles.Add(new MapConstructible(ConstructibleType.AdventureGuild, constructible.Position));
+            if (constructible is Academy)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.Academy, constructible.Position));
             if (constructible is BlackMagicTower)
-                storedConstructibles.Add(new MapConstructible(ConstructibleType.BlackMagicTower, constructible.Position));
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.DarkMagicTower, constructible.Position));
             if (constructible is TemporalTower)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.TemporalTower, constructible.Position));
-            if (constructible is Laborotory)
-                storedConstructibles.Add(new MapConstructible(ConstructibleType.Laborotory, constructible.Position));
+            if (constructible is Laboratory)
+                storedConstructibles.Add(new MapConstructible(ConstructibleType.Laboratory, constructible.Position));
             if (constructible is Teleporter)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.Teleporter, constructible.Position));
             if (constructible is TownHall)
                 storedConstructibles.Add(new MapConstructible(ConstructibleType.TownHall, constructible.Position));
-            */
 
         }
         Map map = new Map

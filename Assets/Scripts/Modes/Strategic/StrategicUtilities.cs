@@ -52,6 +52,10 @@ static class StrategicUtilities
     public static Army[] GetAllHostileArmies(Empire empire, bool includeGoblins = false)
     {
         List<Army> hostileArmies = new List<Army>();
+        if (empire == null)
+        {
+            return hostileArmies.ToArray();
+        }
         foreach (Empire hostileEmpire in State.World.AllActiveEmpires)
         {
             if (empire.IsEnemy(hostileEmpire) == false || (includeGoblins == false && hostileEmpire.Team == -200))
@@ -66,6 +70,10 @@ static class StrategicUtilities
     public static Army[] GetAllAlliedArmies(Empire empire, bool includeGoblins = false)
     {
         List<Army> allyArmies = new List<Army>();
+        if (empire == null)
+        {
+            return allyArmies.ToArray();
+        }
         foreach (Empire hostileEmpire in State.World.AllActiveEmpires)
         {
             if (empire.IsEnemy(hostileEmpire) == true || (includeGoblins == false && hostileEmpire.Team == -200))
@@ -229,11 +237,14 @@ static class StrategicUtilities
                 {
                     return;
                 }
-                if (construct.Owner != empire && construct.CaptureTime <= 0)
+                if (construct.Owner != empire && (construct.CaptureTime <= 0 || construct.Owner == null))
                 {
                     State.GameManager.StrategyMode.UndoMoves.Clear();
                     RelationsManager.GoldMineTaken(empire, construct.Owner);
-                    construct.Owner.Buildings.Remove(construct);
+                    if (construct.Owner != null)
+                    {
+                        construct.Owner.Buildings.Remove(construct);
+                    }
                     empire.Buildings.Add(construct);
                     construct.Owner = empire;
                 }

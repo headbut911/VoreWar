@@ -125,12 +125,14 @@ public class StrategyMode : SceneBase
     public Sprite[] Sprites;
     public Sprite[] Buildings;
     public Sprite[] VillageSprites;
+    public Sprite[] WallMultiSprites;
     public GameObject[] SpriteCategories;
 
     public Sprite[] Banners;
 
     public Transform VillageFolder;
     public Transform ArmyFolder;
+    public Transform WallRoadFolder;
 
     public ArmyStatusPanel ArmyStatusUI;
     public StatusBarPanel StatusBarUI;
@@ -859,12 +861,61 @@ public class StrategyMode : SceneBase
         StrategicDoodadType[,] doodads = State.World.Doodads;
         if (doodads != null)
         {
+
             for (int i = 0; i <= doodads.GetUpperBound(0); i++)
             {
                 for (int j = 0; j <= doodads.GetUpperBound(1); j++)
                 {
                     if (doodads[i, j] > 0 && doodads[i, j] < StrategicDoodadType.SpawnerVagrant)
-                        TilemapLayers[3].SetTile(new Vector3Int(i, j, 0), DoodadTypes[-1 + (int)doodads[i, j]]);
+                    {
+                        if (doodads[i, j] == StrategicDoodadType.wall)
+                        {
+                            bool north = j + 1 <= tiles.GetUpperBound(1) ? doodads[i, j + 1] == StrategicDoodadType.wall : false;
+                            bool east = i + 1 <= tiles.GetUpperBound(0) ? doodads[i + 1, j] == StrategicDoodadType.wall : false;
+                            bool south = j - 1 >= 0 ? doodads[i, j - 1] == StrategicDoodadType.wall : false;
+                            bool west = i - 1 >= 0 ? doodads[i - 1, j] == StrategicDoodadType.wall : false;
+                            int spr = 0;
+
+                            if (north && east && south && west)
+                                spr = 7;
+                            else if (north && east && south)
+                                spr = 13;
+                            else if (north && east && west)
+                                spr = 14;
+                            else if (north && south && west)
+                                spr = 12;
+                            else if (east && south && west)
+                                spr = 15;
+                            else if (north && east)
+                                spr = 11;
+                            else if (north && south)
+                                spr = 4;
+                            else if (north && west)
+                                spr = 10;
+                            else if (east && south)
+                                spr = 9;
+                            else if (south && west)
+                                spr = 8;
+                            else if (east && west)
+                                spr = 1;
+                            else if (north)
+                                spr = 6;
+                            else if (east)
+                                spr = 2;
+                            else if (south)
+                                spr = 5;
+                            else if (west)
+                                spr = 3;
+
+                            GameObject wall = Instantiate(SpriteCategories[4], new Vector3(i, j, 0), new Quaternion(), WallRoadFolder);
+                            wall.GetComponent<SpriteRenderer>().sprite = WallMultiSprites[spr];
+                            wall.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                        }
+                        else
+                        {
+                            TilemapLayers[3].SetTile(new Vector3Int(i, j, 0), DoodadTypes[-1 + (int)doodads[i, j]]);
+                        }
+                    }
                 }
             }
         }
@@ -1820,7 +1871,7 @@ public class StrategyMode : SceneBase
         StatusBarUI.EmpireStatus.interactable = OnlyAIPlayers;
         foreach (Village vil in State.World.Villages.Where(s => s.Side == ActingEmpire.Side))
         {
-            ClaimWithinXTilesOf(vil.Position, 1);
+            ClaimWithinXTilesOf(vil.Position, 2);
         }
         if (startingIndex + 1 >= State.World.EmpireOrder.Count)
         {
@@ -1986,7 +2037,14 @@ public class StrategyMode : SceneBase
         if (ActingEmpire.KnockedOut == false && StrategicUtilities.GetAllArmies().Where(s => s.Empire.IsAlly(ActingEmpire)).Any() == false && State.World.Villages.Where(s => s.Empire.IsAlly(ActingEmpire)).Count() == 0 && ActingEmpire is MonsterEmpire == false)
         {
             ActingEmpire.KnockedOut = true;
-
+            if (ActingEmpire.Buildings.Any())
+            {
+                foreach (var item in ActingEmpire.Buildings)
+                {
+                    item.Owner = null;
+                    ActingEmpire.Buildings.Remove(item);
+                }
+            }
             if (ActingEmpire.StrategicAI == null)
             {
                 OnlyAIPlayers = true;

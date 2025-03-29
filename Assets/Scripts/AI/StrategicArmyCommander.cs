@@ -434,6 +434,15 @@ class StrategicArmyCommander
                 potentialTargetValue.Add(value);
             }
 
+            // ReEnable disabled buildings if nearby
+            if (construct.Owner == empire && construct.ruined)
+            {
+                potentialTargets.Add(construct.Position);
+                int value = 38;
+                value -= construct.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
+                potentialTargetValue.Add(value);
+            }
+
             if (construct.Owner == empire && construct is Teleporter && construct.active && army.teleportCoolDown <= 0)
             {
                 //Needs to have another teleporter to be a valid target
