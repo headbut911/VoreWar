@@ -36,7 +36,7 @@ public class BuildingConfig
     [OdinSerialize]
     internal BuildingUpgrade WorkCampMerchantUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(15, 15, 10, 10, 0, 0), "Merchant Guild Branch", "Work camp can now be used to purchase and sell Ores, Natural Materials, Prefabs, and Mana Stones.");
     [OdinSerialize]
-    internal BuildingUpgrade WorkCampImproveUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 25, 10, 5, 10, 0), "Improve Camp", "Improve the work camp, triples the max stock and doubles the stone and wood produced every turn.");
+    internal BuildingUpgrade WorkCampImproveUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 25, 10, 5, 15, 0), "Improve Camp", "Improve the work camp, triples the max stock and doubles the stone and wood produced every turn.");
 
     //Lumber Site
     [OdinSerialize]
@@ -44,11 +44,11 @@ public class BuildingConfig
     [OdinSerialize]
     internal int LumberSiteWorkerCap = 2;
     [OdinSerialize]
-    internal BuildingUpgrade LumberSiteLodgeUpgrade = new BuildingUpgrade(250, 3, new ConstructionResources(20, 10, 0, 0, 0, 0), "Improve Lodge", "Construct better living spaces, doubles the worker cap.");
+    internal BuildingUpgrade LumberSiteLodgeUpgrade = new BuildingUpgrade(350, 3, new ConstructionResources(20, 10, 0, 0, 0, 0), "Improve Lodge", "Construct better living spaces, doubles the worker cap.");
     [OdinSerialize]
     internal BuildingUpgrade LumberSiteCarpenterUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 5, 25, 0, 0), "Carpentry", "Construct a workshop, allowing 2 workers to be assigned to produce a Prefab.");
     [OdinSerialize]
-    internal BuildingUpgrade LumberSiteGreenHouseUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 15, 0, 0, 0, 0), "Greenhouse", "Construct a greenhouse, enabling workers to be assinged to cultivating natural materials.");
+    internal BuildingUpgrade LumberSiteGreenHouseUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(30, 15, 0, 0, 0, 0), "Greenhouse", "Construct a greenhouse, enabling workers to be assinged to cultivating natural materials.");
     [OdinSerialize]
 
     //Lumber Site
@@ -74,11 +74,11 @@ public class BuildingConfig
     [OdinSerialize]
     internal BuildingUpgrade QuarryDeepUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 15, 0, 0, 0), "Deep Mining", "Preform additional tunneling, allowing ores to be collected.");
     [OdinSerialize]
-    internal BuildingUpgrade QuarryLeyLineUpgrade = new BuildingUpgrade(150, 2, new ConstructionResources(30, 30, 15, 15, 0, 0), "Leyline Tap", "Cosntruct proper protective measures, allowing mana stones to be collected.");
+    internal BuildingUpgrade QuarryLeyLineUpgrade = new BuildingUpgrade(350, 4, new ConstructionResources(30, 30, 15, 15, 0, 0), "Leyline Tap", "Cosntruct proper protective measures, allowing mana stones to be collected.");
 
     //Caster Tower
     [OdinSerialize]
-    internal GeneralBuildingConfig CasterTower = new GeneralBuildingConfig(250, 2, -1, 15, 25, 5, 10);
+    internal GeneralBuildingConfig CasterTower = new GeneralBuildingConfig(250, 3, -1, 15, 25, 5, 10);
     [OdinSerialize]
     internal int CasterTowerManaChargesMax = 20;
     [OdinSerialize]
@@ -94,25 +94,25 @@ public class BuildingConfig
     [OdinSerialize] 
     internal BuildingUpgrade CasterTowerForceUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 10, 0, 15, 0, 5), "Forceful Focus", "Install better casting foci, adds higher tier spells to the spell pool.");
     [OdinSerialize] 
-    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(50, 20, 15, 5, 5, 0), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
+    internal BuildingUpgrade CasterTowerBuffUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(40, 20, 15, 5, 5, 0), "Spell Library", "Construct a tome library, adds buffing spells to the spell pool and allows count of spells to be set.");
 
     //Barrier Tower
     [OdinSerialize]
-    internal GeneralBuildingConfig BarrierTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    internal GeneralBuildingConfig BarrierTower = new GeneralBuildingConfig(250, 2, -1, 15, 40, 5, 5);
     [OdinSerialize]
     internal int BarrierTowerBaseBarrierStrength = 10;
     [OdinSerialize]
     internal bool BarrierTowerIgnoreDowntime = false;
     [OdinSerialize]
-    internal BuildingUpgrade BarrierTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(25, 25, 0, 0, 0, 10), "Improve Tower", "Boosts tower funciton by installing mana stones. Adds two parallel casts, both with individual downtimes.");
+    internal BuildingUpgrade BarrierTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(25, 25, 0, 0, 0, 10), "Improve Tower", "Boosts tower funciton by installing mana stones. Adds two additional barrier cores, both with individual downtimes.");
     [OdinSerialize]
-    internal BuildingUpgrade BarrierTowerHealUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(30, 30, 15, 25, 0, 0), "Soothing Barrier", "Barriers are infused with resotrative properties, tower applies a long lasting mending status to all ally units.");
+    internal BuildingUpgrade BarrierTowerHealUpgrade = new BuildingUpgrade(350, 3, new ConstructionResources(30, 30, 15, 25, 5, 0), "Soothing Barrier", "Barriers are infused with resotrative properties, tower applies a long lasting mending status to all ally units.");
     [OdinSerialize]
-    internal BuildingUpgrade BarrierTowerBuffUpgrade = new BuildingUpgrade(300, 2, new ConstructionResources(50, 20, 15, 5, 5, 0), "Invigorating Barrier", "Barriers are infused with empowering properties, tower applies an empowered buff to all ally units.");
+    internal BuildingUpgrade BarrierTowerBuffUpgrade = new BuildingUpgrade(300, 4, new ConstructionResources(20, 30, 15, 15, 0, 10), "Invigorating Barrier", "Barriers are infused with empowering properties, tower applies an empowered buff to all ally units.");
 
     //Defense Encampment
     [OdinSerialize]
-    internal GeneralBuildingConfig DefenseEncampment = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    internal GeneralBuildingConfig DefenseEncampment = new GeneralBuildingConfig(250, 2, -1, 20, 10, 5, 15);
     [OdinSerialize]
     internal float DefenseEncampmentArmyPercentage = 0.2f;
     [OdinSerialize]
@@ -121,15 +121,15 @@ public class BuildingConfig
     internal float DefenseEncampmentMaxGarrisonSizeScale = 0.5f;
     [OdinSerialize]
     internal int DefenseEncampmentTrainTime = 4;
-    internal BuildingUpgrade DefenseEncampmentImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "Improve Equipment", "Invest in better gear. Units will now come with one random equipment. They also have a higher chance to use a heavy weapon.");
+    internal BuildingUpgrade DefenseEncampmentImproveUpgrade = new BuildingUpgrade(350, 3, new ConstructionResources(40, 10, 15, 35, 0, 0), "Improve Equipment", "Invest in better gear. Units will now come with one random equipment. They also have a higher chance to use a heavy weapon.");
     [OdinSerialize]
-    internal BuildingUpgrade DefenseEncampmentUnitsUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "Bastion", "The amount of units that reinforce the battle is increased by 50%. Increase maximum reinforcemets by 50%");
+    internal BuildingUpgrade DefenseEncampmentUnitsUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 30, 0, 15, 25, 0), "Bastion", "The amount of units that reinforce the battle is increased by 50%. Increase maximum reinforcemets by 50%");
     [OdinSerialize]
-    internal BuildingUpgrade DefenseEncampmentLevelUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "Tactical Training", "Construct training grounds. Increases how well units scale with leader's level by 50%. Halve unit training time.");
+    internal BuildingUpgrade DefenseEncampmentLevelUpgrade = new BuildingUpgrade(550, 3, new ConstructionResources(10, 10, 0, 15, 15, 0), "Tactical Training", "Construct training grounds. Increases how well units scale with leader's level by 50%. Halve unit training time.");
 
     //Academy
     [OdinSerialize]
-    internal GeneralBuildingConfig Academy = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    internal GeneralBuildingConfig Academy = new GeneralBuildingConfig(200, 2, -1, 35, 10, 15, 5, 5, 0);
     [OdinSerialize]
     internal int AcademyEXPPerGold = 5;
     [OdinSerialize]
@@ -138,15 +138,15 @@ public class BuildingConfig
     internal int AcademyUpgradeCost = 1000;
     [OdinSerialize]
     internal float AcademyCostIncreaseMultPerUpgrade = 1.5f;
-    internal BuildingUpgrade AcademyImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Allows for additional funds to be allocated.");
+    internal BuildingUpgrade AcademyImproveUpgrade = new BuildingUpgrade(500, 3, new ConstructionResources(30, 10, 15, 0, 15, 0), "Finance Wing", "Construct space for academy finance. Allows for additional funds to be allocated.");
     [OdinSerialize]
-    internal BuildingUpgrade AcademyResearchUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Unlock research that can apply buffs to the whole empire.");
+    internal BuildingUpgrade AcademyResearchUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(30, 30, 0, 15, 25, 0), "Research Wing", "Construct space for research. Unlock research that can apply buffs to the whole empire.");
     [OdinSerialize]
-    internal BuildingUpgrade AcademyEfficiencyUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Allow a higher ammount of Stored EXP to be distributed per turn");
+    internal BuildingUpgrade AcademyEfficiencyUpgrade = new BuildingUpgrade(350, 3, new ConstructionResources(20, 10, 0, 15, 15, 0), "Seminar Wing", "Construct space for seminar. Allow a higher ammount of Stored EXP to be distributed per turn");
 
     //Dark Magic Tower
     [OdinSerialize]
-    internal GeneralBuildingConfig DarkMagicTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    internal GeneralBuildingConfig DarkMagicTower = new GeneralBuildingConfig(400, 2, -1, 10, 25, 5, 5, 0, 5);
     [OdinSerialize]
     internal int DarkMagicTowerDurationImprovement = 5;
     [OdinSerialize]
@@ -156,25 +156,25 @@ public class BuildingConfig
     [OdinSerialize]
     internal float DarkMagicTowerSoulPointMult = 1.5f;
     [OdinSerialize]
-    internal BuildingUpgrade DarkMagicTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Increased Maximum Pact level to 10");
+    internal BuildingUpgrade DarkMagicTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 15), "Improve Tower", "Increased Maximum Pact level to 10");
     [OdinSerialize]
-    internal BuildingUpgrade DarkMagicTowerSoulUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Soul points gained are doubled.");
+    internal BuildingUpgrade DarkMagicTowerSoulUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 30, 0, 15, 5, 10), "Soul trap", "Soul points gained are doubled.");
     [OdinSerialize]
-    internal BuildingUpgrade DarkMagicTowerAfflictionUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Pact level increases effect of afflictions");
+    internal BuildingUpgrade DarkMagicTowerAfflictionUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 10, 15, 15, 15), "Pact Potency", "Pact level increases effect of afflictions");
 
     //Temporal Tower
     [OdinSerialize]
-    internal GeneralBuildingConfig TemporalTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    internal GeneralBuildingConfig TemporalTower = new GeneralBuildingConfig(200, 2, -1, 20, 30, 10, 20);
     [OdinSerialize]
-    internal BuildingUpgrade TemporalTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Tower increases ally empire MP by 1");
+    internal BuildingUpgrade TemporalTowerImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(10, 10, 15, 35, 0, 10), "Reverse Flow", "Tower increases ally empire MP by 1");
     [OdinSerialize]
-    internal BuildingUpgrade TemporalTowerTuneUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Enemy Empire armies now also have their MP reduced by 1.");
+    internal BuildingUpgrade TemporalTowerTuneUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 20, 0, 15, 0, 10), "Tuned Focus", "Enemy Empire armies now also have their MP reduced by 1.");
     [OdinSerialize]
-    internal BuildingUpgrade TemporalTowerDisruptUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Monster armies now have their MP reduced to 1 while within range");
+    internal BuildingUpgrade TemporalTowerDisruptUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 20, 0, 15, 15, 15), "Monster Debilitation", "Monster armies now have their MP reduced to 1 while within range");
 
     //Laboratory
     [OdinSerialize]
-    internal GeneralBuildingConfig Laboratory = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    internal GeneralBuildingConfig Laboratory = new GeneralBuildingConfig(500, 2, -1, 20, 30, 20, 20);
     [OdinSerialize]
     internal int LaboratoryUpfrontCost = 100;
     [OdinSerialize]
@@ -192,15 +192,15 @@ public class BuildingConfig
     [OdinSerialize]
     internal int LaboratoryAIPotionMult = 1;
     [OdinSerialize]
-    internal BuildingUpgrade LaboratoryImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(40, 10, 15, 35, 0, 0), "", "Increases max rolls per potion.");
+    internal BuildingUpgrade LaboratoryImproveUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(10, 10, 15, 35, 0, 0), "Improve Equipment", "Increases max rolls per potion.");
     [OdinSerialize]
-    internal BuildingUpgrade LaboratoryIngredientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 50, 0, 15, 25, 0), "", "Expands types of availible ingredients.");
+    internal BuildingUpgrade LaboratoryIngredientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 30, 0, 15, 25, 0), "Potent Potions", "Expands types of availible ingredients.");
     [OdinSerialize]
-    internal BuildingUpgrade LaboratoryBoostUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 0), "", "Chance of boosting effect of low quality ingredients.");
+    internal BuildingUpgrade LaboratoryBoostUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(10, 10, 0, 15, 15, 10), "Synthetic Solvents", "Chance of boosting effect of low quality ingredients.");
 
     //Teleporter
     [OdinSerialize]
-    internal GeneralBuildingConfig Teleporter = new GeneralBuildingConfig(0, 2, -1, 0, 0);
+    internal GeneralBuildingConfig Teleporter = new GeneralBuildingConfig(200, 2, -1, 10, 30);
     [OdinSerialize]
     internal float TeleporterMaxCapacity = 3f;
     [OdinSerialize]
@@ -210,21 +210,21 @@ public class BuildingConfig
     [OdinSerialize]
     internal float TeleporterPerUnitCapacityMod = 0.1f;
     [OdinSerialize]
-    internal BuildingUpgrade TeleporterStoneUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Warp Stone", "Attune an army to return to this Teleporter at any time.");
+    internal BuildingUpgrade TeleporterStoneUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(0, 50, 0, 25, 0, 15), "Warp Stone", "Attune an army to return to this Teleporter at any time.");
     [OdinSerialize]
-    internal BuildingUpgrade TeleporterAncientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(0, 0, 0, 0, 0, 0), "Ancient Tuning", "Allows this teleporter to send and recive armies from Ancient Teleporters");
+    internal BuildingUpgrade TeleporterAncientUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 20, 0, 15, 0, 10), "Ancient Tuning", "Allows this teleporter to send and recive armies from Ancient Teleporters");
     [OdinSerialize]
-    internal BuildingUpgrade TeleporterCapacityUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Warp Gate", "Remove the capacity cap, allowing it to regenerate indefinitely.");
+    internal BuildingUpgrade TeleporterCapacityUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(0, 20, 20, 20, 0, 20), "Warp Gate", "Remove the capacity cap, allowing it to regenerate indefinitely.");
 
     //Town Hall
     [OdinSerialize]
-    internal GeneralBuildingConfig TownHall = new GeneralBuildingConfig(0, 2, -1, 0, 0);
+    internal GeneralBuildingConfig TownHall = new GeneralBuildingConfig(300, 2, -1, 20, 20, 10, 10);
     [OdinSerialize]
-    internal BuildingUpgrade TownHallManualUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Construct Village", "Use standard construction methods to build a new village from the ground up.");
+    internal BuildingUpgrade TownHallManualUpgrade = new BuildingUpgrade(300, 10, new ConstructionResources(50, 50, 15, 15, 0, 0), "Construct Village", "Use standard construction methods to build a new village from the ground up.");
     [OdinSerialize]
-    internal BuildingUpgrade TownHallPrefabUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(0, 0, 0, 0, 0, 0), "Prefab Construction", "Use premade structures to lay the groundwork, greatly speeding up village creation and reducing required materials.");
+    internal BuildingUpgrade TownHallPrefabUpgrade = new BuildingUpgrade(400, 6, new ConstructionResources(10, 20, 0, 0, 25, 0), "Prefab Construction", "Use premade structures to lay the groundwork, greatly speeding up village creation and reducing required materials.");
     [OdinSerialize]
-    internal BuildingUpgrade TownHallManaStoneUpgrade = new BuildingUpgrade(350, 2, new ConstructionResources(0, 0, 0, 0, 0, 0), "Conjure Village", "Use the power stored in manastones to rapidly conjure a village and cultivate farms.");
+    internal BuildingUpgrade TownHallManaStoneUpgrade = new BuildingUpgrade(600, 2, new ConstructionResources(0, 0, 0, 0, 0, 50), "Conjure Village", "Use the power stored in manastones to rapidly conjure a village and cultivate farms.");
 }
 
 public class GeneralBuildingConfig
