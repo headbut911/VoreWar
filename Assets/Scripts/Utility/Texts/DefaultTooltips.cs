@@ -765,9 +765,9 @@ Does not retroactively affect already created units.";
             case 313:
                 return "Controls if when a unit auto-surrenders if they are healed to full health. Can be changed from if only defecting units are healed, only units that remain loyal are healed, or if all auto-surrendered units are healed.";
             case 314:
-                return "Sets the per turn value one unit of this race will occur on the empire it's apart of.";
+                return "Enables explosive fluffles of Boom Bunnies.";
             case 315:
-                return "Sets the ammont of slots in an army this unit takes up.";
+                return "Sets the amont of slots in an army this unit takes up.";
             case 316:
                 return "Sets a soft cap on AP.  Every AP past this value will take double the regen than the last.\n Example: At a value of 4, A unit that would normally start with 10 AP will instead start with 6 AP. The first point of AP past 4 requires 2 AP and the second requires 4 AP, resulting in 6.";
             case 317:
@@ -785,7 +785,7 @@ Does not retroactively affect already created units.";
             case 323:
                 return "Sets the interval the above damage modifier will be applied. Only applies to targets outside of the bounds.\n Example: With an interval value of 5, bounds of 10, and modifier of 0.1, a unit of size 25 will have 10% increased damage against a unit of size 10, ~15% increased accuracy against a unit of size 7, and 20% increased accuracy against a unit of size 5";
             case 324:
-                return "Enables explosive fluffles of Boom Bunnies.";
+                return "Sets the upkeep one unit of this race will incur.";
 
             default:
                 return "";

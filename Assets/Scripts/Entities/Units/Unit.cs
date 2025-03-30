@@ -133,8 +133,7 @@ public class Unit
             if (oldMax > 1 && oldMax != _maxHealth && _healthPct > 0)
             {
                 int healthChange = (int)Math.Round((_maxHealth - oldMax) * _healthPct);
-                if (healthChange > 0)
-                    Health = Math.Min(_maxHealth,Math.Max(1, Health + healthChange));
+                Health = Math.Min(_maxHealth,Math.Max(1, Health + healthChange));
             }
             return (int)(_maxHealth * TraitBoosts.HealthMultiplier);
         }

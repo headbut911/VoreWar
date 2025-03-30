@@ -2615,7 +2615,7 @@ public class Actor_Unit
 
         if (Unit.HasTrait(Traits.Timid) && ((Unit.NearbyEnemies - 1) > Unit.NearbyFriendlies))
         {
-            Unit.ApplyStatusEffect(StatusEffectType.Shaken, .2f, 1);
+            Unit.ApplyStatusEffect(StatusEffectType.Shaken, .2f, 2);
         }
 
         if (Unit.HasTrait(Traits.FoodComaProne))
