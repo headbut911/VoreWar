@@ -88,12 +88,30 @@ class StrategicArmyCommander
                 if (army.MoveTo(newLoc))
                     StrategicUtilities.StartBattle(army);
                 else if (position == army.Position)
+                {
                     army.RemainingMP = 0; //This prevents the army from wasting time trying to move into a forest with 1 mp repeatedly
+                }
                 return true;
 
             }
             else
             {
+                //Teleport army if target is Ancient Teleporter to a random one
+                List<AncientTeleporter> target_Tele = StrategicUtilities.GetAncientTeleportersWithinXTiles(army.Position,1);
+                if (target_Tele != null)
+                {
+                    Debug.Log(State.World.AncientTeleporters.Count());
+                    if (target_Tele.Count() >= 1)
+                    {
+                        if (StrategicUtilities.GetAllyArmyWithinXTiles(target_Tele.First().Position, 1, army.Empire).ToList().Contains(army))
+                        {
+                            List<AncientTeleporter> tp = State.World.AncientTeleporters.Where((t) => t != target_Tele.First()).ToList();
+                            army.SetPosition(tp[State.Rand.Next(tp.Count())].Position);
+                            army.Destination = null;
+                        }
+                    }
+
+                }
                 GenerateTaskForArmy(army);
                 if (path == null || path.Count == 0)
                     army.RemainingMP = 0;
@@ -414,6 +432,18 @@ class StrategicArmyCommander
                 value -= claimable.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
                 potentialTargetValue.Add(value);
             }
+        }
+
+        //Here for maps that are linked via teleporter or something, idk, just need AI to be able to use it, even it priority is low
+        foreach (AncientTeleporter tele in State.World.AncientTeleporters)
+        {
+            Army defender = StrategicUtilities.ArmyAt(tele.Position);
+            if (defender != null && StrategicUtilities.ArmyPower(defender) > MaxDefenderStrength * StrategicUtilities.ArmyPower(army))
+                continue;
+            potentialTargets.Add(tele.Position);
+            int value = 18;
+            value -= tele.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
+            potentialTargetValue.Add(value);
         }
 
         foreach (ConstructibleBuilding construct in State.World.Constructibles)

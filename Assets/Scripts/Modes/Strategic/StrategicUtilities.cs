@@ -812,15 +812,27 @@ static class StrategicUtilities
         }
         return armyList;
     }
-    internal static List<Army> GetAllyArmyWithinXTiles(Vec2i pos, int tiles)
+    internal static List<Army> GetAllyArmyWithinXTiles(Vec2i pos, int tiles, Empire empire)
     {
         List<Army> armyList = new List<Army>();
-        foreach (Army allyArmy in GetAllArmies())
+        foreach (Army allyArmy in GetAllArmies().Where(a=> a.Empire == empire))
         {
             if (allyArmy.Position.GetNumberOfMovesDistance(pos) <= tiles)
                 armyList.Add(allyArmy);
         }
+
         return armyList;
+    }
+    internal static List<AncientTeleporter> GetAncientTeleportersWithinXTiles(Vec2i pos, int tiles)
+    {
+        List<AncientTeleporter> teleList = new List<AncientTeleporter>();
+        foreach (AncientTeleporter tele in State.World.AncientTeleporters)
+        {
+            if (tele.Position.GetNumberOfMovesDistance(pos) <= tiles)
+                teleList.Add(tele);
+        }
+
+        return teleList;
     }
     internal static List<ConstructibleBuilding> GetEnemyBuildingsWithinXTiles(Army army, int tiles)
     {

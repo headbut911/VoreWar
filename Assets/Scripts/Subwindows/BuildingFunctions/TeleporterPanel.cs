@@ -1,14 +1,8 @@
-﻿using MapObjects;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 
 public class TeleporterPanel : MonoBehaviour
 {
@@ -31,7 +25,7 @@ public class TeleporterPanel : MonoBehaviour
     public void Open(ConstructibleBuilding building)
     {
         Teleporter = (Teleporter)building;
-        NearbyHolder.SetActive(Teleporter.capacityUpgrade.built || Teleporter.stoneUpgrade.built);
+        NearbyHolder.SetActive(Teleporter.stoneUpgrade.built);
         StandardArmies = new List<Army>();
         TeleportButtons = new List<Button>();
         int children = NearbyFolder.childCount;
@@ -58,7 +52,7 @@ public class TeleporterPanel : MonoBehaviour
         {
             foreach (var anctele in State.World.AncientTeleporters)
             {
-                StandardArmies = StandardArmies.Union(StrategicUtilities.GetAllyArmyWithinXTiles(anctele.Position, 1)).ToList();
+                StandardArmies = StandardArmies.Union(StrategicUtilities.GetAllyArmyWithinXTiles(anctele.Position, 1, Teleporter.Owner)).ToList();
             }
         }    
         NeabyArmies = StrategicUtilities.GetOwnerArmyWithinXTiles(Teleporter, 1);

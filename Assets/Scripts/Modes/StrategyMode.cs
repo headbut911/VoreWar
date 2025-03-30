@@ -141,6 +141,7 @@ public class StrategyMode : SceneBase
     public TrainPanel TrainUI;
     public BuildMenu BuildMenu;
     public UpgradeMenu UpgradeMenu;
+    public AncientTeleporterMenu AncientTeleportMenu;
     public GameObject EnemyTurnText;
     public GameObject PausedText;
 
@@ -2328,6 +2329,14 @@ public class StrategyMode : SceneBase
                     return;
             }
 
+            for (int i = 0; i < State.World.AncientTeleporters.Length; i++)
+            {
+                if (State.World.AncientTeleporters[i].Position.GetDistance(clickLocation) == 0)
+                {
+                    AncientTeleportMenu.Open(State.World.AncientTeleporters[i], ActingEmpire);
+                    return;
+                }
+            }
             SelectedArmy = null;
         }
     }
