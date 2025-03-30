@@ -12,6 +12,11 @@ public class BuildMenu : MonoBehaviour
 {
 
 
+    public Button HelpButton;
+    public GameObject HelpHolder;
+    public GameObject[] HelpPanels;
+    public TMP_Dropdown PageSelector;
+
     public GameObject BuildItemPrefab;
     public Transform BuildingFolder;
 
@@ -28,6 +33,7 @@ public class BuildMenu : MonoBehaviour
         ClearFolder();
         State.GameManager.StrategyMode.Paused = true;
         gameObject.SetActive(true);
+        HelpHolder.SetActive(false);
         Config.World.ReloadBuildingInfo();
         var enabledBuildings = Config.World.GetBuildingInfo();
         CurrentGold.text = empire.Gold.ToString();
@@ -85,5 +91,23 @@ public class BuildMenu : MonoBehaviour
         gameObject.SetActive(false);
         State.GameManager.StrategyMode.Paused = false;
         State.GameManager.StrategyMode.BuildMode = false;
+    }
+
+    public void OpenHelp()
+    {
+        HelpHolder.SetActive(true);
+    }
+    public void CloseHelp()
+    {
+        HelpHolder.SetActive(false);
+    }
+
+    public void ActivatePage()
+    {
+        for (int i = 0; i < HelpPanels.Length; i++)
+        {
+            HelpPanels[i].SetActive(false);
+        }
+        HelpPanels[PageSelector.value].SetActive(true);
     }
 }

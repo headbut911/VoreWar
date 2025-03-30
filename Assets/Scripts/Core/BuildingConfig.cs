@@ -78,7 +78,7 @@ public class BuildingConfig
 
     //Caster Tower
     [OdinSerialize]
-    internal GeneralBuildingConfig CasterTower = new GeneralBuildingConfig(250, 2, -1, 0, 0);
+    internal GeneralBuildingConfig CasterTower = new GeneralBuildingConfig(250, 2, -1, 15, 25, 5, 10);
     [OdinSerialize]
     internal int CasterTowerManaChargesMax = 20;
     [OdinSerialize]

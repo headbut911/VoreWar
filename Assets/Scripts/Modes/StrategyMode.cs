@@ -3076,24 +3076,21 @@ public class StrategyMode : SceneBase
     {
         SelectedArmy = null;
         BuildMode = true;
-        List<Vec2i> validtiles = ActingEmpire.OwnedTiles;
+        //List<Vec2i> validtiles = ActingEmpire.OwnedTiles;
         List<Vec2i> invalidtiles = new List<Vec2i>();
         SelectedConstruction = selected;
         foreach (var empire in State.World.MainEmpires)
         {
-            if (ActingEmpire.IsAlly(empire))
-            {
-                validtiles.AddRange(empire.OwnedTiles);
-            }
-            else
+            if (!ActingEmpire.IsAlly(empire))
             {
                 invalidtiles.AddRange(empire.OwnedTiles);
             }
         }
+        /*
         foreach (var tile in validtiles)
         {
             TilemapLayers[13].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[0]);
-        }
+        }*/
         foreach (var tile in invalidtiles)
         {
             TilemapLayers[13].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[1]);

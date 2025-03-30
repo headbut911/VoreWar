@@ -435,7 +435,7 @@ class StrategicArmyCommander
         }
 
         //Here for maps that are linked via teleporter or something, idk, just need AI to be able to use it, even it priority is low
-        foreach (AncientTeleporter tele in State.World.AncientTeleporters)
+        foreach (AncientTeleporter tele in StrategicUtilities.GetUnoccupiedAncientTeleporter(army.Empire))
         {
             Army defender = StrategicUtilities.ArmyAt(tele.Position);
             if (defender != null && StrategicUtilities.ArmyPower(defender) > MaxDefenderStrength * StrategicUtilities.ArmyPower(army))
