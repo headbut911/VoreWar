@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
+using UnityEditor.Experimental.UIElements.GraphView;
 
 public class Actor_Unit
 {
@@ -257,6 +258,22 @@ public class Actor_Unit
             if (Unit.HasTrait(Traits.Slacker) && Unit.HasTrait(Traits.Juggernaut))
             {
                 TurnsSlacking++;
+            }
+        }
+
+        if (Movement > Config.TacticalMovementHardCap && Config.TacticalMovementHardCap > 0)
+        {
+            Movement = Config.TacticalMovementHardCap;
+        }
+        if (Movement > Config.TacticalMovementSoftCap && Config.TacticalMovementSoftCap >= 0)
+        {
+            int excess = Movement - Config.TacticalMovementSoftCap;
+            int required = 2;
+            Movement = Config.TacticalMovementSoftCap;
+            while (excess >= required) 
+            {
+                Movement++;
+                required *= 2;
             }
         }
     }
@@ -980,6 +997,26 @@ public class Actor_Unit
 
         odds *= Unit.TraitBoosts.FlatHitReduction;
 
+        if (Config.SizeAccuracyMod > 0 && Config.SizeAccuracyInterval > 0)
+        {
+            float sizeDiff = Math.Abs(BodySize() - attacker.BodySize());
+            if (sizeDiff > Config.SizeAccuracyLowerBound)
+            {
+                float oddMod = ((sizeDiff - Config.SizeAccuracyLowerBound) / Config.SizeAccuracyInterval) * Config.SizeAccuracyMod;
+                float oddMult = 1f;
+                // If we are larger than the attacker, increase accuracy of attack. Otherwise, reduce it
+                if (BodySize() > attacker.BodySize())
+                {
+                    oddMult += oddMod;
+                }
+                else
+                {
+                    oddMult -= oddMod;
+                }
+                odds *= oddMult;
+            }
+        }
+
         if (Config.BoostedAccuracy)
             odds = 100 - ((100 - odds) * .5f);
 
@@ -1142,6 +1179,27 @@ public class Actor_Unit
         {
             damage *= 3;
         }
+
+        if (Config.SizeDamageMod > 0 && Config.SizeDamageInterval > 0)
+        {
+            float sizeDiff = Math.Abs(BodySize() - target.BodySize());
+            if (sizeDiff > Config.SizeDamageLowerBound)
+            {
+                float damMod = ((sizeDiff - Config.SizeDamageLowerBound) / Config.SizeDamageInterval) * Config.SizeDamageMod;
+                float damMult = 1f;
+                // If we are larger than the attacker, increase damage of attack. Otherwise, reduce it
+                if (BodySize() > target.BodySize())
+                {
+                    damMult += damMod;
+                }
+                else
+                {
+                    damMult -= damMod;
+                }
+                damage = (int)Math.Round(damage * damMult);
+            }
+        }
+
         if (damage < 1)
             damage = 1;
         return damage;

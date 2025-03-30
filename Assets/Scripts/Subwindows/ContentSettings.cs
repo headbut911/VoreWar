@@ -265,6 +265,16 @@ public class ContentSettings : MonoBehaviour
     public Slider SurrenderedPredEscapeMult;
     public Slider SurrenderedPredAutoRegur;
 
+    public InputField TacticalMovementSoftCap;
+    public InputField TacticalMovementHardCap;
+    public InputField SizeAccuracyMod;
+    public InputField SizeAccuracyLowerBound;
+    public InputField SizeAccuracyInterval;
+    public InputField SizeDamageMod;
+    public InputField SizeDamageLowerBound;
+    public InputField SizeDamageInterval;
+
+
 
     List<ToggleObject> MercToggles;
 
@@ -671,6 +681,14 @@ public class ContentSettings : MonoBehaviour
         Config.World.OverallMonsterCapModifier = PlayerPrefs.GetFloat("OverallMonsterCapModifier", 1);
         Config.World.OverallMonsterSpawnRateModifier = PlayerPrefs.GetFloat("OverallMonsterSpawnRateModifier", 1);
         Config.World.RevealTurn = PlayerPrefs.GetInt("RevealTurn", 50);
+        Config.World.TacticalMovementSoftCap = PlayerPrefs.GetInt("TacticalMovementSoftCap", -1);
+        Config.World.TacticalMovementHardCap = PlayerPrefs.GetInt("TacticalMovementHardCap", -1);
+        Config.World.SizeAccuracyMod = PlayerPrefs.GetFloat("SizeAccuracyMod", 0);
+        Config.World.SizeAccuracyLowerBound = PlayerPrefs.GetFloat("SizeAccuracyLowerBound", 10);
+        Config.World.SizeAccuracyInterval = PlayerPrefs.GetInt("SizeAccuracyInterval", 5);
+        Config.World.SizeDamageMod = PlayerPrefs.GetFloat("SizeDamageMod", 0);
+        Config.World.SizeDamageLowerBound = PlayerPrefs.GetFloat("SizeDamageLowerBound", 10);
+        Config.World.SizeDamageInterval = PlayerPrefs.GetInt("SizeDamageInterval", 5);
         MonsterDropdownChanged();
         if (Config.World.SpawnerInfo == null)
             Config.World.ResetSpawnerDictionary();
@@ -873,6 +891,14 @@ public class ContentSettings : MonoBehaviour
         FemaleTraits.text = RaceEditorPanel.TraitListToText(Config.FemaleTraits);
         HermTraits.text = RaceEditorPanel.TraitListToText(Config.HermTraits);
         SpawnTraits.text = RaceEditorPanel.TraitListToText(Config.SpawnTraits);
+        TacticalMovementSoftCap.text = Config.TacticalMovementSoftCap.ToString();
+        TacticalMovementHardCap.text = Config.TacticalMovementHardCap.ToString();
+        SizeAccuracyMod.text = Config.SizeAccuracyMod.ToString();
+        SizeAccuracyLowerBound.text = Config.SizeAccuracyLowerBound.ToString();
+        SizeAccuracyInterval.text = Config.SizeAccuracyInterval.ToString();
+        SizeDamageMod.text = Config.SizeDamageMod.ToString();
+        SizeDamageLowerBound.text = Config.SizeDamageLowerBound.ToString();
+        SizeDamageInterval.text = Config.SizeDamageInterval.ToString();
         RefreshSliderText();
 
         foreach (MonsterSpawnerPanel spawner in MonsterSpawners)
@@ -1104,6 +1130,45 @@ public class ContentSettings : MonoBehaviour
         Config.World.OverallMonsterCapModifier = OverallMonsterCapModifier.value;
         Config.World.OverallMonsterSpawnRateModifier = OverallMonsterSpawnRateModifier.value;
 
+        if (int.TryParse(TacticalMovementSoftCap.text, out int tmsc))
+            Config.World.TacticalMovementSoftCap = tmsc;
+        else
+            Config.World.TacticalMovementSoftCap = -1;
+
+        if (int.TryParse(TacticalMovementHardCap.text, out int tmhc))
+            Config.World.TacticalMovementHardCap = tmhc;
+        else
+            Config.World.TacticalMovementHardCap = -1;
+
+        if (float.TryParse(SizeAccuracyMod.text, out float sam))
+            Config.World.SizeAccuracyMod = sam;
+        else
+            Config.World.SizeAccuracyMod = 0;
+
+        if (float.TryParse(SizeAccuracyLowerBound.text, out float salb))
+            Config.World.SizeAccuracyLowerBound = salb;
+        else
+            Config.World.SizeAccuracyLowerBound = 10;
+
+        if (int.TryParse(SizeAccuracyInterval.text, out int sai))
+            Config.World.SizeAccuracyInterval = sai;
+        else
+            Config.World.SizeAccuracyInterval = 5;
+
+        if (float.TryParse(SizeDamageMod.text, out float sdm))
+            Config.World.SizeDamageMod = sdm;
+        else
+            Config.World.SizeDamageMod = 0;
+
+        if (float.TryParse(SizeDamageLowerBound.text, out float sdlb))
+            Config.World.SizeDamageLowerBound = sdlb;
+        else
+            Config.World.SizeDamageLowerBound = 10;
+
+        if (int.TryParse(SizeDamageInterval.text, out int sdi))
+            Config.World.SizeDamageInterval = sdi;
+        else
+            Config.World.SizeDamageInterval = 5;
 
         foreach (MonsterSpawnerPanel spawner in MonsterSpawners)
         {
@@ -1310,6 +1375,40 @@ public class ContentSettings : MonoBehaviour
         PlayerPrefs.SetFloat("CritDamageMod", CritDamageMod.value);
         PlayerPrefs.SetFloat("BaseGrazeChance", BaseGrazeChance.value);
         PlayerPrefs.SetFloat("GrazeDamageMod", GrazeDamageMod.value);
+
+
+        if (int.TryParse(TacticalMovementSoftCap.text, out int tmsc))
+            PlayerPrefs.SetFloat("TacticalMovementSoftCap", tmsc);
+        else
+            PlayerPrefs.SetFloat("TacticalMovementSoftCap", -1);
+        if (int.TryParse(TacticalMovementHardCap.text, out int tmhc))
+            PlayerPrefs.SetFloat("TacticalMovementHardCap", tmhc);
+        else
+            PlayerPrefs.SetFloat("TacticalMovementHardCap", -1);
+        if (float.TryParse(SizeAccuracyMod.text, out float sam))
+            PlayerPrefs.SetFloat("SizeAccuracyMod", sam);
+        else
+            PlayerPrefs.SetFloat("SizeAccuracyMod", 0);
+        if (float.TryParse(SizeAccuracyLowerBound.text, out float salb))
+            PlayerPrefs.SetFloat("SizeAccuracyLowerBound", salb);
+        else
+            PlayerPrefs.SetFloat("SizeAccuracyLowerBound", 10);
+        if (int.TryParse(SizeAccuracyInterval.text, out int sai))
+            PlayerPrefs.SetFloat("SizeAccuracyInterval", sai);
+        else
+            PlayerPrefs.SetFloat("SizeAccuracyInterval", 5);
+        if (float.TryParse(SizeDamageMod.text, out float sbm))
+            PlayerPrefs.SetFloat("SizeDamageMod", sbm);
+        else
+            PlayerPrefs.SetFloat("SizeDamageMod", 0);
+        if (float.TryParse(SizeDamageLowerBound.text, out float sblb))
+            PlayerPrefs.SetFloat("SizeDamageLowerBound", sblb);
+        else
+            PlayerPrefs.SetFloat("SizeDamageLowerBound", 10);
+        if (int.TryParse(SizeDamageInterval.text, out int sbi))
+            PlayerPrefs.SetFloat("SizeDamageInterval", sbi);
+        else
+            PlayerPrefs.SetFloat("SizeDamageInterval", 5);
 
         foreach (MonsterSpawnerPanel spawner in MonsterSpawners)
         {

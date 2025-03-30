@@ -270,6 +270,23 @@ public class WorldConfig
     [OdinSerialize]
     internal float SurrenderedPredAutoRegur = 0;
 
+    [OdinSerialize]
+    internal int TacticalMovementSoftCap = -1;
+    [OdinSerialize]
+    internal int TacticalMovementHardCap = -1;
+    [OdinSerialize]
+    internal float SizeAccuracyMod = 0;
+    [OdinSerialize]
+    internal float SizeAccuracyLowerBound = 10;
+    [OdinSerialize]
+    internal int SizeAccuracyInterval = 5;
+    [OdinSerialize]
+    internal float SizeDamageMod = 0f;
+    [OdinSerialize]
+    internal float SizeDamageLowerBound = 10;
+    [OdinSerialize]
+    internal int SizeDamageInterval = 5;
+
     internal bool GetValue(string name)
     {
         if (Toggles == null)
