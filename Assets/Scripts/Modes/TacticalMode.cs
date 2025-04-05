@@ -4585,16 +4585,27 @@ Turns: {currentTurn}
 
                 if (actor.Unit.IsDead)
                 {
-                    List<BlackMagicTower> possible_BlackTowers = defenderBuildingsInRange.Where(b => b is BlackMagicTower).Cast<BlackMagicTower>().ToList();
-                    foreach (BlackMagicTower tower in possible_BlackTowers)
+                    if (defenderBuildingsInRange != null)
                     {
-                        tower.SoulPower += actor.Unit.Level * (tower.soulUpgrade.built ? 2 : 1);
+                        IEnumerable<BlackMagicTower> possible_BlackTowers = defenderBuildingsInRange.Where(b => b is BlackMagicTower).Cast<BlackMagicTower>();
+                        foreach (BlackMagicTower tower in possible_BlackTowers)
+                        {
+                            tower.SoulPower += actor.Unit.Level * (tower.soulUpgrade.built ? 2 : 1);
+                        }
+                    }
+                    if (attackerBuildingsInRange != null)
+                    {
+                        IEnumerable<BlackMagicTower> possible_BlackTowers = attackerBuildingsInRange.Where(b => b is BlackMagicTower).Cast<BlackMagicTower>();
+                        foreach (BlackMagicTower tower in possible_BlackTowers)
+                        {
+                            tower.SoulPower += actor.Unit.Level * (tower.soulUpgrade.built ? 2 : 1);
+                        }
                     }
                 }
 
                 if (actor.Unit.Type == UnitType.Reinforcement && actor.Unit.IsDead == false)
                 {
-                    List<DefenseEncampment> possible_camps = defenderBuildingsInRange.Where(b => b is DefenseEncampment).Cast<DefenseEncampment>().ToList();
+                    IEnumerable<DefenseEncampment> possible_camps = defenderBuildingsInRange.Where(b => b is DefenseEncampment).Cast<DefenseEncampment>();
                     if (possible_camps != null)
                     {
                         DefenseEncampment camp = possible_camps.Where(d => d.maxDefenders > d.AvailibleDefenders).First();

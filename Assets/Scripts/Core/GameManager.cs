@@ -402,8 +402,11 @@ public class GameManager : MonoBehaviour
             }
 
         }
-        TacticalMode.attackerBuildingsInRange = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(invader, Config.BuildConfig.BuildingPassiveRange);
-        TacticalMode.defenderBuildingsInRange = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(defender, Config.BuildConfig.BuildingPassiveRange);
+        TacticalMode.attackerBuildingsInRange = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(invader.Position, attackerEmpire, Config.BuildConfig.BuildingPassiveRange);
+        if (defender != null)
+            TacticalMode.defenderBuildingsInRange = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(defender.Position, defenderEmpire, Config.BuildConfig.BuildingPassiveRange);
+        else
+            TacticalMode.defenderBuildingsInRange = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(village.Position, defenderEmpire, Config.BuildConfig.BuildingPassiveRange);
 
         TacticalMode.ClearNames();
         TacticalMode.Begin(tiletype, village, invader, defender, attackerEmpire?.TacticalAIType ?? TacticalAIType.Full, defenderType, tacticalBattleOverride);

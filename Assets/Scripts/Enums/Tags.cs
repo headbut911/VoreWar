@@ -443,6 +443,8 @@ public enum Traits
     CurseOfCraving = 524,
     /// <summary>At the start of battle, this unit has a 25% chance to teleported into a random predator.</summary>
     CurseOfPreyportaion = 525,
+    /// <summary>Prevents the AI from using weapons. AI will still buy weapons.</summary>
+    VoreObsession = 526,
 
 
 

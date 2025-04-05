@@ -89,6 +89,10 @@ static class StrategicUtilities
     public static ConstructibleBuilding[] GetAllHostileBuildings(Empire empire)
     {
         List<ConstructibleBuilding> hostileBuildings = new List<ConstructibleBuilding>();
+        if (empire.Buildings == null)
+        {
+            empire.Buildings = new List<ConstructibleBuilding>();
+        }
         foreach (Empire hostileEmpire in State.World.AllActiveEmpires)
         {
             if (empire.IsEnemy(hostileEmpire) == false)
@@ -844,15 +848,15 @@ static class StrategicUtilities
         }
         return buildingList;
     }
-    internal static List<ConstructibleBuilding> GetActiveEmpireBuildingsWithinXTiles(Army army, int tiles)
+    internal static List<ConstructibleBuilding> GetActiveEmpireBuildingsWithinXTiles(Vec2i position, Empire empire, int tiles)
     {
         List<ConstructibleBuilding> buildingList = new List<ConstructibleBuilding>();
-        foreach (ConstructibleBuilding empireBuilding in army.Empire.Buildings)
+        foreach (ConstructibleBuilding empireBuilding in empire.Buildings)
         {
             if (!empireBuilding.active)
                continue;
          
-            if (empireBuilding.Position.GetNumberOfMovesDistance(army.Position) <= tiles)
+            if (empireBuilding.Position.GetNumberOfMovesDistance(position) <= tiles)
                 buildingList.Add(empireBuilding);
         }
         return buildingList;
