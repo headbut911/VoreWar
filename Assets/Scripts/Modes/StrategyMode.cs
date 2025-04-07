@@ -1134,7 +1134,7 @@ public class StrategyMode : SceneBase
                 empire.ArmyCleanup();
             }
         }
-        StatusBarUI.Build.onClick.AddListener(() => BuildMenu.Open(ActingEmpire));
+        StatusBarUI.Build.onClick.AddListenerOnce(() => BuildMenu.Open(ActingEmpire));
         ActingEmpire.CalcIncome(State.World.Villages);
         if (ActingEmpire.StrategicAI == null || OnlyAIPlayers || Config.CheatExtraStrategicInfo || State.World.MainEmpires.Where(s => s.IsAlly(ActingEmpire) && s.StrategicAI == null).Any())
         {
@@ -2023,7 +2023,7 @@ public class StrategyMode : SceneBase
             StatusBarUI.EmpireStatus.interactable = ActingEmpire.IsAlly(LastHumanEmpire) || OnlyAIPlayers;
             EnemyTurnText.SetActive(true);
         }
-        StatusBarUI.Build.onClick.AddListener(() => BuildMenu.Open(ActingEmpire));
+        StatusBarUI.Build.onClick.AddListenerOnce(() => BuildMenu.Open(ActingEmpire));
         runningQueued = true;
         Regenerate();
     }
