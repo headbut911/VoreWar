@@ -1,8 +1,4 @@
-﻿using OdinSerializer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Experimental.UIElements.GraphView;
+﻿using System.Linq;
 
 public enum AcademyResearchType
 {

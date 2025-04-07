@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using Unity.VersionControl.Git;
-using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 class StrategicBuildingContractor
 {
