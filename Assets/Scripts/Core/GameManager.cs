@@ -201,7 +201,10 @@ public class GameManager : MonoBehaviour
         Menu.UIPanel.SetActive(false);
         menuOpen = false;
         if (currentScene == StrategyMode)
+        {
             StrategyMode.ButtonCallback(70);
+            StrategyMode.StatusBarUI.Build.gameObject.SetActive(Config.BuildConfig.BuildingSystemEnabled);
+        }
     }
 
     public void CloseStatsScreen()

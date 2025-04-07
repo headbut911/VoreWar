@@ -1499,6 +1499,7 @@ public class ContentSettings : MonoBehaviour
     public void Exit()
     {
         SetValues();
+        buildingSettings.SoftSave();
         gameObject.SetActive(false);
     }
 
@@ -1508,6 +1509,7 @@ public class ContentSettings : MonoBehaviour
         SaveValues();
 
         buildingSettings.DropdownUpdate();
+        buildingSettings.SoftSave();
         buildingSettings.HardSave();
 
         gameObject.SetActive(false);

@@ -296,6 +296,14 @@ public class BuildingSettings : MonoBehaviour
         }
         SettingsPage.SetActive(true);
     }
+    internal void SoftSave(){
+        Config.BuildConfig.BuildingSystemEnabled = BuildingSystemEnabled.isOn;
+        Config.BuildConfig.BuildingSystemTurnLockout = int.TryParse(BuildingSystemTurnLockout.text, out int bstl) ? bstl : 5;
+        Config.BuildConfig.BuildingPassiveRange = int.TryParse(BuildingPassiveRange.text, out int bpr) ? bpr : 3;
+        Config.BuildConfig.BuildingCaptureTurns = int.TryParse(BuildingCaptureTurns.text, out int bct) ? bct : 2;
+        Config.BuildConfig.EmpireBuildingCapture = EmpireCaptureDropdown.value;
+        Config.BuildConfig.MonsterBuildingCapture = MonsterCaptureDropdown.value;
+    }
 
     internal void HardSave()
     {

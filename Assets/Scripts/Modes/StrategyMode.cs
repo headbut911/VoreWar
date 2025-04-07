@@ -142,6 +142,7 @@ public class StrategyMode : SceneBase
     public BuildMenu BuildMenu;
     public UpgradeMenu UpgradeMenu;
     public AncientTeleporterMenu AncientTeleportMenu;
+    public BuildingArmyPopup BuildingArmyPopup;
     public GameObject EnemyTurnText;
     public GameObject PausedText;
 
@@ -1351,7 +1352,7 @@ public class StrategyMode : SceneBase
                         Devour(SelectedArmy, numToEat);
                         subWindowUp = false;
                         DevourUI.gameObject.SetActive(false);
-                        break;
+                        break; 
                     case 14:
                         DevourUI.gameObject.SetActive(false);
                         subWindowUp = false;
@@ -2221,6 +2222,19 @@ public class StrategyMode : SceneBase
             {
                 if (army.Position.GetDistance(clickLocation) < 1)
                 {
+                    var building = StrategicUtilities.GetConstructibleAt(army.Position);
+                    bool buildingOwned = false;
+                    if (building != null)
+                    {
+                        if (building.Owner == ActingEmpire)
+                        {
+                            buildingOwned = true;
+                        }
+                    }
+                    else if (buildingOwned)
+                    {
+                        BuildingArmyPopup.Open(army, building);
+                    }
                     if (SelectedArmy != army)
                     {
                         SelectedArmy = army;
@@ -2239,10 +2253,23 @@ public class StrategyMode : SceneBase
             {
                 if (army.Position.GetDistance(clickLocation) < 1)
                 {
+                    var building = StrategicUtilities.GetConstructibleAt(army.Position);
+                    bool buildingOwned = false;
+                    if (building != null)
+                    {
+                        if (building.Owner == ActingEmpire)
+                        {
+                            buildingOwned = true;
+                        }
+                    }
                     Village village = StrategicUtilities.GetVillageAt(army.Position);
                     if (village != null)
                     {
                         State.GameManager.ActivateRecruitMode(village, ActingEmpire);
+                    }
+                    else if (buildingOwned)
+                    {
+                        BuildingArmyPopup.Open(army, building);
                     }
                     else
                     {
@@ -2262,10 +2289,23 @@ public class StrategyMode : SceneBase
             {
                 if (army.Position.GetDistance(clickLocation) < 1)
                 {
+                    var building = StrategicUtilities.GetConstructibleAt(army.Position);
+                    bool buildingOwned = false;
+                    if (building != null)
+                    {
+                        if (building.Owner == ActingEmpire)
+                        {
+                            buildingOwned = true;
+                        }
+                    }
                     Village village = StrategicUtilities.GetVillageAt(army.Position);
                     if (village != null)
                     {
                         State.GameManager.ActivateRecruitMode(village, ActingEmpire);
+                    }
+                    else if (buildingOwned)
+                    {
+                        BuildingArmyPopup.Open(army, building);
                     }
                     else
                     {
@@ -2284,6 +2324,19 @@ public class StrategyMode : SceneBase
             {
                 if (army.Position.GetDistance(clickLocation) < 1)
                 {
+                    var building = StrategicUtilities.GetConstructibleAt(army.Position);
+                    bool buildingOwned = false;
+                    if (building != null)
+                    {
+                        if (building.Owner == ActingEmpire)
+                        {
+                            buildingOwned = true;
+                        }
+                    }
+                    else if (buildingOwned)
+                    {
+                        BuildingArmyPopup.Open(army, building);
+                    }
                     Village village = StrategicUtilities.GetVillageAt(army.Position);
                     if (village != null)
                     {

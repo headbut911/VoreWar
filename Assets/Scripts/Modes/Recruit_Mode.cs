@@ -171,7 +171,10 @@ public class Recruit_Mode : SceneBase
             }
 
         }
-        army.RecalculateSizeValue();
+        if (army != null)
+        {
+            army.RecalculateSizeValue();
+        }
         BannerType.gameObject.SetActive(army != null);
         InitializeBanners();
 
@@ -239,6 +242,7 @@ public class Recruit_Mode : SceneBase
         ArmyUI.Customizer.interactable = validUnit;
         if (village != null)
             RecruitUI.ImprintUnit.interactable = validUnit && activatingEmpire == ActivatingEmpire.Self && unit.Type != UnitType.SpecialMercenary && unit != army?.Empire.Leader;
+        RecruitUI.ApplyPotion.interactable = validUnit && empire.EmpirePotions.Count() > 0;
     }
 
     public void RefreshRecruitPanelButtons()
@@ -1561,6 +1565,7 @@ public class Recruit_Mode : SceneBase
             GameObject StatRow3 = obj.transform.GetChild(2).GetChild(0).GetChild(0).GetChild(5).gameObject;
             GameObject StatRow4 = obj.transform.GetChild(2).GetChild(0).GetChild(0).GetChild(6).gameObject;
             Text TraitList = obj.transform.GetChild(2).GetChild(0).GetChild(1).GetChild(0).GetChild(0).gameObject.GetComponent<Text>();
+            Text DeployCost = obj.transform.GetChild(2).GetChild(0).GetChild(2).GetChild(1).gameObject.GetComponent<Text>();
 
             string gender;
             if (actor.Unit.GetGender() != Gender.None)
@@ -1572,6 +1577,7 @@ public class Recruit_Mode : SceneBase
                 GenderText.text = $"{gender}";
             }
             EXPText.text = $"Level {unit.Level} ({(int)unit.Experience} EXP)";
+            DeployCost.text = (State.RaceSettings.GetDeployCost(unit.Race) * unit.TraitBoosts.DeployCostMult).ToString();
             if (actor.Unit.HasTrait(Traits.Resourceful))
             {
                 EquipRow.transform.GetChild(2).gameObject.SetActive(true);

@@ -782,7 +782,7 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.SpectralStep:
                 return "Unit can move past (but not stop on) any units. Not recommended to use with Blitz or PassThrough.";
             case Traits.VoreObsession:
-                return "Unit can move past (but not stop on) any units. Not recommended to use with Blitz or PassThrough.";
+                return "Prevents the AI from using weapons. AI will still buy weapons.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }
