@@ -14,6 +14,7 @@ public enum ItemType
     Gauntlet,
     Gloves,
     Shoes,
+    MedKit,
 
     //FireBomb,
 
@@ -114,6 +115,7 @@ public class ItemRepository
             new Accessory(name:"Gauntlet", description:"+6 strength", cost:8, changedStat:(int)Stat.Strength, statBonus:6 ),
             new Accessory(name:"Gloves", description:"+6 dexterity", cost:10, changedStat:(int)Stat.Dexterity, statBonus:6 ),
             new Accessory(name:"Shoes", description:"+2 agility, +1 movement tile", cost:6, changedStat:(int)Stat.Agility, statBonus:2),
+            new Accessory(name:"Alchemist Kit", description:"Grants \"Tend Wounds\" ability, heals target by 12-20 HP (-1 supply). +3 supplies per battle. If unit survives combat army heals 20%. Is quite heavy (-2 agility)", cost:85, changedStat:(int)Stat.Agility, statBonus:-2 ),
 
             //new SpellBook("Fire Bomb", "A belt of incendiary grenades", 60, 1, SpellTypes.FireBomb),
 

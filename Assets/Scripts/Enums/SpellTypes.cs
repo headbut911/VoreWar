@@ -71,5 +71,6 @@
     Conduit = 115,
     Flamberge = 116,
     Explode = 117,
+    TendWounds = 118,
 }
 

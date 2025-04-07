@@ -70,5 +70,7 @@
     Frozen = 35,
     /// <summary>Increases damage recived from electric spells.</summary>
     Static = 36,
+    /// <summary>A "Supply" variable used for misc in combat items (currently only the 'MedKit').</summary>
+    Supplies = 37,
 }
 
