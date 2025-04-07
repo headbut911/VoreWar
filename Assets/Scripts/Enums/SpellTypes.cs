@@ -74,5 +74,6 @@
     ForkLightning = 117,
     Explode = 118,
     SweepingSwallow = 119,
+    TendWounds = 120,
 }
 
