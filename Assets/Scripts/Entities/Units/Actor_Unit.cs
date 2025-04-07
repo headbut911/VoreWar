@@ -305,6 +305,21 @@ public class Actor_Unit
             Unit.ApplyStatusEffect(StatusEffectType.Respawns, 1, 1);
         if (Unit.HasTrait(Traits.RespawnerIII) && (State.GameManager.TacticalMode.currentTurn == 1) && State.GameManager.TacticalMode.attackersTurnCheck == true)
             Unit.ApplyStatusEffect(StatusEffectType.Respawns, 3, 3);
+        if (Unit.HasSpecificWeapon(ItemType.MedKit) && (State.GameManager.TacticalMode.currentTurn == 1) && State.GameManager.TacticalMode.attackersTurnCheck == true)
+            Unit.ApplyStatusEffect(StatusEffectType.Supplies, 3, 3);
+        if (Unit.HasSpecificWeapon(ItemType.MedKit))
+        {
+            if (Unit.GetStatusEffect(StatusEffectType.Supplies) != null)
+            {
+                Unit.MultiUseSpells.Add(SpellList.TendWounds.SpellType);
+                Unit.UpdateSpells();
+            }
+            else
+            {
+                Unit.MultiUseSpells.Remove(SpellList.TendWounds.SpellType);
+                Unit.UpdateSpells();
+            }
+        }
         int sizePenalty = (int)(PredatorComponent?.Fullness ?? 0);
         sizePenalty = (int)(sizePenalty * Unit.TraitBoosts.SpeedLossFromWeightMultiplier);
         int bonus = 0;

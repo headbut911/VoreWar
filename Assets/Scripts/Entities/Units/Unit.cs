@@ -3179,6 +3179,20 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
     }
 
+    internal void RemoveSupplies()
+    {
+        var supp = GetStatusEffect(StatusEffectType.Supplies);
+        if (supp != null)
+        {
+            int reduction = 1;
+            supp.Duration -= reduction;
+            supp.Strength -= reduction;
+            if (supp.Duration <= 0)
+                StatusEffects.Remove(supp);
+        }
+
+    }
+
     internal void AddStagger()
     {
         var stag = GetStatusEffect(StatusEffectType.Staggering);
@@ -3279,7 +3293,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             NonFatalDamage((int)effect.Strength, "virus");
         foreach (var eff in StatusEffects.ToList())
         {
-            if (eff.Type == StatusEffectType.Respawns || eff.Type == StatusEffectType.BladeDance || eff.Type == StatusEffectType.Tenacious || eff.Type == StatusEffectType.Focus || eff.Type == StatusEffectType.Weakness || eff.Type == StatusEffectType.Bolstered)
+            if (eff.Type == StatusEffectType.Respawns || eff.Type == StatusEffectType.BladeDance || eff.Type == StatusEffectType.Tenacious || eff.Type == StatusEffectType.Focus || eff.Type == StatusEffectType.Weakness || eff.Type == StatusEffectType.Bolstered || eff.Type == StatusEffectType.Supplies)
                 continue;
             var actor = TacticalUtilities.Units.Where(s => s.Unit == this).FirstOrDefault();
             var pred = actor.SelfPrey?.Predator;

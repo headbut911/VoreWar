@@ -50,6 +50,7 @@ static class SpellList
     static internal readonly StatusSpell Meditate;
     static internal readonly StatusSpell Shield;
     static internal readonly StatusSpell Mending;
+    static internal readonly Spell TendWounds;
     static internal readonly StatusSpell Speed;
     static internal readonly StatusSpell Valor;
     static internal readonly StatusSpell Predation;
@@ -305,6 +306,36 @@ static class SpellList
             },
         };
         SpellDict[SpellTypes.Mending] = Mending;
+
+        TendWounds = new Spell()
+        {
+            Name = "Tend Wounds",
+            Id = "tendwounds",
+            SpellType = SpellTypes.TendWounds,
+            Description = "Heals target by 12-20 hp",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Ally },
+            Range = new Range(1),
+            Tier = -1,
+            Resistable = false,
+            OnExecute = (a, t) =>
+            {
+                a.CastSpell(TendWounds, t);
+                a.Unit.RemoveSupplies();
+                if (a.Unit.HasSpecificWeapon(ItemType.MedKit))
+                {
+                    a.Unit.UseableSpells.Remove(SpellList.TendWounds);
+                    a.Unit.MultiUseSpells.Remove(SpellList.TendWounds.SpellType);
+                }
+                int healing = 10 + State.Rand.Next(1,6) + State.Rand.Next(1,6);
+                t.Unit.Heal(healing);
+                if(a.Unit == t.Unit)
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{t.Unit.Name}</b> tended {LogUtilities.GPPHis(t.Unit)} own wounds for {healing} HP.");
+                else
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{a.Unit.Name}</b> tended <b>{LogUtilities.ApostrophizeWithOrWithoutS(t.Unit.Name)}</b> wounds for {healing} HP.");
+                TacticalGraphicalEffects.CreateGenericMagic(a.Position, t.Position, t, TacticalGraphicalEffects.SpellEffectIcon.Heal);
+            },
+        };
+        SpellDict[SpellTypes.TendWounds] = TendWounds;
 
         Speed = new StatusSpell()
         {

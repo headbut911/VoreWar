@@ -4580,9 +4580,16 @@ Turns: {currentTurn}
                 return false;
             }
             ProcessReplaceable(remainingAttackers);
-
+            int medicCheck = 0;
             foreach (Actor_Unit actor in units)
             {
+                if (actor.Unit.HasSpecificWeapon(ItemType.MedKit) && actor.Unit.IsDead == false)
+                    medicCheck = 1;
+            }
+            foreach (Actor_Unit actor in units)
+            {
+                if (medicCheck == 1)
+                    actor.Unit.HealPercentage(0.20f);
                 actor.Unit.GiveExp(4);
                 if (actor.Unit.TraitBoosts.HealthRegen > 0 && actor.Unit.IsDead == false)
                     actor.Unit.HealPercentage(1);
