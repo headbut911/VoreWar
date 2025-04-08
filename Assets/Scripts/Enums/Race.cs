@@ -34,6 +34,7 @@
     Aabayx = 29,
     Mice = 30,
     MatronsMinions = 31,
+    Gnolls = 32,
 
     Succubi = 50,
     Tigers = 51,

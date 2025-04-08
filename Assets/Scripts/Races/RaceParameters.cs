@@ -36,6 +36,7 @@ static class RaceParameters
     static readonly RaceTraits Deer;
     static readonly RaceTraits Aabayx;
     static readonly RaceTraits Mice;
+    static readonly RaceTraits Gnolls;
     static readonly RaceTraits Succubi;
     static readonly RaceTraits Tigers;
     static readonly RaceTraits Goblins;
@@ -362,6 +363,8 @@ static class RaceParameters
                 return Xelhilde;
             case Race.BoomBunnies:
                 return BoomBunnies;
+            case Race.Gnolls:
+                return Gnolls;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -504,7 +507,7 @@ static class RaceParameters
             Traits.Intimidating
         },
 
-            RaceDescription = "Emerging from dense jungles, the Lizards are eager to expand their presence in the universe. Their hard scales offered them great protection from the thorns and insects of their former home, and still offer natural resistance from harm.",
+            RaceDescription = "Emerging from dense jungles, the Lizards are eager to expand their presence in the world. Their hard scales offered them great protection from the thorns and insects of their former home, and still offer natural resistance from harm.",
         };
 
 
@@ -937,6 +940,21 @@ static class RaceParameters
             RaceAI = RaceAI.ServantRace
         };
 
+        Gnolls = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 18,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            RacialTraits = new List<Traits>()
+            {
+                Traits.PackVoracity,
+                Traits.SenseWeakness,
+                Traits.Biter,
+            },
+            RaceDescription = "A race of brutish and cunning beings hailing from the mountainous regions of the east.  Normally tribal, these hyena-like mammals are prone to in-fighting and cannibalism over petty disputes-- such as whose shadow is larger.  The Gnolls were most often seen around mercenary camps in small packs.  Much to the dismay of the other nations of this world, however, a powerful leader has appeared and managed to amass them into a warlike nation of their own.",
+        };
+
         Succubi = new RaceTraits()
         {
             BodySize = 10,
@@ -965,7 +983,6 @@ static class RaceParameters
             },
         };
 
-
         Tigers = new RaceTraits()
         {
             BodySize = 10,
@@ -991,8 +1008,6 @@ static class RaceParameters
             },
             RaceDescription = "Somewhat enigmatic, it is uncertain if the Tigers are native to this realm or came from elsewhere. They do not seem interested in settling down though, joining armies to test their considerable skills in battle instead.",
         };
-
-
 
         Goblins = new RaceTraits()
         {
