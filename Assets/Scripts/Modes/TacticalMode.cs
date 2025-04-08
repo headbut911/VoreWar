@@ -1030,6 +1030,9 @@ Turns: {currentTurn}
                 case Race.Slimes:
                     wallType = WallType.Slime;
                     break;
+                case Race.Gnolls:
+                    wallType = WallType.WoodenPallisade;
+                    break;
                 default:
                     wallType = WallType.Stone;
                     break;
