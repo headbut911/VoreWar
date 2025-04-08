@@ -366,6 +366,10 @@ public class CreateStrategicGame : MonoBehaviour
             byte[] bytes = File.ReadAllBytes(filename);
             var tempWorld = SerializationUtility.DeserializeValue<World>(bytes, DataFormat.Binary);
             Config.World = tempWorld.ConfigStorage;
+            if (tempWorld.BuildingConfigStorage != null)
+            {
+                Config.BuildConfig = tempWorld.BuildingConfigStorage;
+            }
         }
         catch
         {

@@ -49,9 +49,9 @@ public class BuildingConfig
     internal BuildingUpgrade LumberSiteCarpenterUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(20, 10, 5, 25, 0, 0), "Carpentry", "Construct a workshop, allowing 2 workers to be assigned to produce a Prefab.");
     [OdinSerialize]
     internal BuildingUpgrade LumberSiteGreenHouseUpgrade = new BuildingUpgrade(250, 2, new ConstructionResources(30, 15, 0, 0, 0, 0), "Greenhouse", "Construct a greenhouse, enabling workers to be assinged to cultivating natural materials.");
-    [OdinSerialize]
 
     //Lumber Site
+    [OdinSerialize]
     internal GeneralBuildingConfig Quarry = new GeneralBuildingConfig(50, 2, -1, 5, 5);
     [OdinSerialize]
     internal int QuarryStoneMin = 1;
@@ -121,6 +121,7 @@ public class BuildingConfig
     internal float DefenseEncampmentMaxGarrisonSizeScale = 0.5f;
     [OdinSerialize]
     internal int DefenseEncampmentTrainTime = 4;
+    [OdinSerialize]
     internal BuildingUpgrade DefenseEncampmentImproveUpgrade = new BuildingUpgrade(350, 3, new ConstructionResources(40, 10, 15, 35, 0, 0), "Improve Equipment", "Invest in better gear. Units will now come with one random equipment. They also have a higher chance to use a heavy weapon.");
     [OdinSerialize]
     internal BuildingUpgrade DefenseEncampmentUnitsUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(10, 30, 0, 15, 25, 0), "Bastion", "The amount of units that reinforce the battle is increased by 50%. Increase maximum reinforcemets by 50%");
@@ -138,6 +139,7 @@ public class BuildingConfig
     internal int AcademyUpgradeCost = 1000;
     [OdinSerialize]
     internal float AcademyCostIncreaseMultPerUpgrade = 1.5f;
+    [OdinSerialize]
     internal BuildingUpgrade AcademyImproveUpgrade = new BuildingUpgrade(500, 3, new ConstructionResources(30, 10, 15, 0, 15, 0), "Finance Wing", "Construct space for academy finance. Allows for additional funds to be allocated.");
     [OdinSerialize]
     internal BuildingUpgrade AcademyResearchUpgrade = new BuildingUpgrade(300, 3, new ConstructionResources(30, 30, 0, 15, 25, 0), "Research Wing", "Construct space for research. Unlock research that can apply buffs to the whole empire.");

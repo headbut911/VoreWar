@@ -305,6 +305,15 @@ public class BuildingSettings : MonoBehaviour
         Config.BuildConfig.MonsterBuildingCapture = MonsterCaptureDropdown.value;
     }
 
+    internal void SoftLoad(){
+        BuildingSystemEnabled.isOn = Config.BuildConfig.BuildingSystemEnabled;
+        BuildingSystemTurnLockout.text = Config.BuildConfig.BuildingSystemTurnLockout.ToString();
+        BuildingPassiveRange.text = Config.BuildConfig.BuildingPassiveRange.ToString();
+        BuildingCaptureTurns.text = Config.BuildConfig.BuildingCaptureTurns.ToString();
+        EmpireCaptureDropdown.value = Config.BuildConfig.EmpireBuildingCapture;
+        MonsterCaptureDropdown.value = Config.BuildConfig.MonsterBuildingCapture;
+    }
+
     internal void HardSave()
     {
         var rootObject = new RootObject();
@@ -392,6 +401,7 @@ public class BuildingSettings : MonoBehaviour
     }
     internal void HardLoad()
     {
+        Debug.Log("Hard Load");
         string json = File.ReadAllText($"{State.StorageDirectory}buildingConfig.json");
         JObject results = new JObject();
         try

@@ -379,6 +379,11 @@ public static class State
                 return;
             }
             Config.World = World.ConfigStorage;
+            if (World.BuildingConfigStorage != null)
+            {
+                Debug.Log("Setting not null");
+                Config.BuildConfig = World.BuildingConfigStorage;
+            }
             GameManager.Menu.Options.LoadFromStored();
             GameManager.Menu.CheatMenu.LoadFromStored();
 

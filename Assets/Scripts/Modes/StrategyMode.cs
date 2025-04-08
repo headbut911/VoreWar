@@ -1891,6 +1891,17 @@ public class StrategyMode : SceneBase
             }
             State.EventList.CheckStartAIEvent();
 
+            foreach (var building in State.World.Constructibles)
+            {
+                if (building.Owner != null)
+                {
+                    if (building.Owner.KnockedOut)
+                    {
+                        building.Owner = null;
+                    }
+                }
+            }
+
             RelationsManager.TurnElapsed();
             ActingEmpire = State.World.EmpireOrder[0];
             if (State.World.MonsterEmpires.Count() < World.MonsterCount)

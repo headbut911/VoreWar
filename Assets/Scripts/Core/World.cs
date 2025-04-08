@@ -25,6 +25,7 @@ public class World
     public Empire ActingEmpire;
     public ItemRepository ItemRepository;
     public WorldConfig ConfigStorage;
+    public BuildingConfig BuildingConfigStorage;
     public StrategicStats Stats;
     public TacticalData TacticalData;
 
@@ -65,6 +66,7 @@ public class World
         Config.CenteredEmpire = new bool[Config.NumberOfRaces];
         State.World = this;
         ConfigStorage = Config.World;
+        BuildingConfigStorage = Config.BuildConfig;
         ItemRepository = new ItemRepository();
         if (MapEditorVersion)
         {
@@ -91,6 +93,7 @@ public class World
         State.World = this;
         StrategyPathfinder.Initialized = false;
         ConfigStorage = Config.World;
+        BuildingConfigStorage = Config.BuildConfig;
 
         if (map == null)
         {

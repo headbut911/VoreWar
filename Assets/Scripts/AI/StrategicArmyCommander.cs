@@ -99,7 +99,6 @@ class StrategicArmyCommander
                 List<AncientTeleporter> target_Tele = StrategicUtilities.GetAncientTeleportersWithinXTiles(army.Position,1);
                 if (target_Tele != null)
                 {
-                    Debug.Log(State.World.AncientTeleporters.Count());
                     if (target_Tele.Count() >= 1)
                     {
                         if (StrategicUtilities.GetAllyArmyWithinXTiles(target_Tele.First().Position, 1, army.Empire).ToList().Contains(army))

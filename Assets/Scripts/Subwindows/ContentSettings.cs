@@ -788,6 +788,7 @@ public class ContentSettings : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+        buildingSettings.SoftLoad();
         foreach (ToggleObject toggle in Toggles)
         {
             toggle.Toggle.isOn = Config.World.GetValue(toggle.Name);
