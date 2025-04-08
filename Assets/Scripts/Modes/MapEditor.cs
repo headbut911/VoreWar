@@ -762,7 +762,7 @@ public class MapEditor : SceneBase
 
     public void RedrawTiles()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < TilemapLayers.Count(); i++)
         {
             TilemapLayers[i].ClearAllTiles();
         }
@@ -1004,7 +1004,7 @@ public class MapEditor : SceneBase
                 }
                 else if (overTiles[i, j] != 0)
                 {
-                    TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(overTiles[i, j], i, j)]);
+                    TilemapLayers[12].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(overTiles[i, j], i, j)]);
                 }
                 else
                 {
@@ -1012,7 +1012,7 @@ public class MapEditor : SceneBase
                     if (type != -1)
                     {
                         TileBase tile_base = State.GameManager.StrategyMode.TileDictionary.Objects[type];
-                        TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), tile_base);
+                        TilemapLayers[12].SetTile(new Vector3Int(i, j, 0), tile_base);
                     }
 
 
@@ -1708,18 +1708,18 @@ public class MapEditor : SceneBase
             RedrawVillages();
         }
         ConstructibleBuilding constructibleAtTile = StrategicUtilities.GetConstructibleAt(clickLocation);
-        if (claimableAtTile != null)
+        if (constructibleAtTile != null)
         {
             LastActionBuilder.Add(() =>
             {
-                var tempClaimables = State.World.Claimables.ToList();
-                tempClaimables.Add(claimableAtTile);
-                State.World.Claimables = tempClaimables.ToArray();
+                var tempConst = State.World.Constructibles.ToList();
+                tempConst.Add(constructibleAtTile);
+                State.World.Constructibles = tempConst.ToArray();
                 RedrawVillages();
             });
-            var claimables = State.World.Claimables.ToList();
-            claimables.Remove(claimableAtTile);
-            State.World.Claimables = claimables.ToArray();
+            var constructibles = State.World.Constructibles.ToList();
+            constructibles.Remove(constructibleAtTile);
+            State.World.Constructibles = constructibles.ToArray();
             RedrawVillages();
         }
     }
@@ -1741,7 +1741,9 @@ public class MapEditor : SceneBase
         UndoActions.Clear();
 
         tiles = map.Tiles;
+        State.World.Tiles = tiles;
         doodads = map.Doodads;
+        State.World.Doodads = doodads;
         List<Village> newVillages = new List<Village>();
         for (int i = 0; i < map.storedVillages.Length; i++)
         {
@@ -1911,6 +1913,8 @@ public class MapEditor : SceneBase
             storedVillages = storedVillages.ToArray(),
             mercLocations = storedMercLocations.ToArray(),
             claimables = storedClaimables.ToArray(),
+            teleLocations = storedTeleLocations.ToArray(),
+            constructibles = storedConstructibles.ToArray(),
         };
 
         byte[] bytes = SerializationUtility.SerializeValue(map, DataFormat.Binary);
