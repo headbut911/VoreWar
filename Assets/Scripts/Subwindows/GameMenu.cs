@@ -13,6 +13,7 @@ public class GameMenu : MonoBehaviour
     public RandomizerTraitEditor RandomizerTraitEditor;
     public CustomTraitEditor CustomTraitEditor;
     public ConditionalTraitsEditor CondTraitEditor;
+    public UnitTagEditor UnitTagEditor;
 
     public HelpPanel HelpUI;
 
@@ -84,6 +85,11 @@ public class GameMenu : MonoBehaviour
     {
         CondTraitEditor.gameObject.SetActive(true);
         CondTraitEditor.Open();
+    }
+    public void OpenUnitTags()
+    {
+        UnitTagEditor.gameObject.SetActive(true);
+        UnitTagEditor.Open();
     }
     public void LoadHelp()
     {

@@ -21,6 +21,7 @@ public static class State
     public static List<RandomizeList> RandomizeLists;
     public static List<CustomTraitBoost> CustomTraitList;
     public static List<ConditionalTraitContainer> ConditionalTraitList;
+    public static List<UnitTag> UnitTagList;
     public static Dictionary<TaggedTrait,bool> UntaggedTraits;
 
     internal static EventList EventList;
@@ -35,6 +36,7 @@ public static class State
     public static string MapDirectory;
     public static string CustomTraitDirectory;
     public static string ConditionalTraitDirectory;
+    public static string UnitTagDirectory;
 
     public static int RaceSlot;
     public static string RaceSaveDataName;
@@ -48,6 +50,7 @@ public static class State
             MapDirectory = Application.persistentDataPath + $"Maps{Path.DirectorySeparatorChar}";
             CustomTraitDirectory = Application.persistentDataPath + $"CustomTraits{Path.DirectorySeparatorChar}";
             ConditionalTraitDirectory = Application.persistentDataPath + $"ConditionalTraits{Path.DirectorySeparatorChar}";
+            UnitTagDirectory = Application.persistentDataPath + $"UnitTags{Path.DirectorySeparatorChar}";
         }
         else
         {
@@ -56,6 +59,7 @@ public static class State
             MapDirectory = $"UserData{Path.DirectorySeparatorChar}Maps{Path.DirectorySeparatorChar}";
             CustomTraitDirectory = $"UserData{Path.DirectorySeparatorChar}CustomTraits{Path.DirectorySeparatorChar}";
             ConditionalTraitDirectory = $"UserData{Path.DirectorySeparatorChar}ConditionalTraits{Path.DirectorySeparatorChar}";
+            UnitTagDirectory = $"UserData{Path.DirectorySeparatorChar}UnitTags{Path.DirectorySeparatorChar}";
         }
         try
         {
@@ -64,6 +68,7 @@ public static class State
             Directory.CreateDirectory(SaveDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(CustomTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(ConditionalTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
+            Directory.CreateDirectory(UnitTagDirectory.TrimEnd(new char[] { '\\', '/' }));
         }
         catch
         {
@@ -72,11 +77,13 @@ public static class State
             MapDirectory = Application.persistentDataPath + $"Maps{Path.DirectorySeparatorChar}";
             CustomTraitDirectory = Application.persistentDataPath + $"CustomTraits{Path.DirectorySeparatorChar}";
             ConditionalTraitDirectory = Application.persistentDataPath + $"ConditionalTraits{Path.DirectorySeparatorChar}";
+            UnitTagDirectory = Application.persistentDataPath + $"UnitTags{Path.DirectorySeparatorChar}";
             Directory.CreateDirectory(StorageDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(MapDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(SaveDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(CustomTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
             Directory.CreateDirectory(ConditionalTraitDirectory.TrimEnd(new char[] { '\\', '/' }));
+            Directory.CreateDirectory(UnitTagDirectory.TrimEnd(new char[] { '\\', '/' }));
         }
 
 
@@ -123,12 +130,14 @@ public static class State
         AssimilateList = new AssimilateList();
         CustomTraitList = new List<CustomTraitBoost>();
         ConditionalTraitList = new List<ConditionalTraitContainer>();
+        UnitTagList = new List<UnitTag>();
         UntaggedTraits = new Dictionary<TaggedTrait, bool>();
 
         TieredTraitsList = ExternalTraitHandler.TaggedTraitParser();
         TieredTraitsTagsList = new List<string>();
         ExternalTraitHandler.CustomTraitParser();
         ExternalTraitHandler.ConditionalTraitParser();
+        ExternalTraitHandler.UnitTagParser();
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
         List<string> lines;

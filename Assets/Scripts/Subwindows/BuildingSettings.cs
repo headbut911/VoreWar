@@ -401,7 +401,6 @@ public class BuildingSettings : MonoBehaviour
     }
     internal void HardLoad()
     {
-        Debug.Log("Hard Load");
         string json = File.ReadAllText($"{State.StorageDirectory}buildingConfig.json");
         JObject results = new JObject();
         try

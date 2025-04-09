@@ -320,6 +320,8 @@ class RaceSettingsItem
     internal int StomachSize;
     [OdinSerialize]
     internal List<Traits> RaceTraits;
+    [OdinSerialize]
+    internal List<int> RaceTags;
 
     [OdinSerialize]
     internal List<VoreType> AllowedVoreTypes;
@@ -412,6 +414,7 @@ class RaceSettingsItem
         StomachSize = racePar.StomachSize;
 
         RaceTraits = racePar.RacialTraits.ToList();
+        RaceTags = racePar.RacialTags.ToList();
         AllowedVoreTypes = racePar.AllowedVoreTypes.ToList();
 
         SpawnRace = racePar.SpawnRace;

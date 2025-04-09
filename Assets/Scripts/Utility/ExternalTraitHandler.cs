@@ -241,6 +241,78 @@ public class ExternalTraitHandler
             File.Delete($"{State.ConditionalTraitDirectory}{trait.name}.json");
     }
 
+    public static bool UnitTagSaver(UnitTag tag)
+    {
+        bool modifying = false;
+        foreach (var item in State.UnitTagList)
+        {
+            if (item.name.ToLower() == tag.name.ToLower() && item.id == tag.id)
+            {
+                modifying = true;
+                break;
+            }
+        }
+
+        if (!modifying && File.Exists($"{State.UnitTagDirectory}{tag.name}.json"))
+        {
+            return false;
+        }
+
+        var rootObject = new UnitTagTempClass();
+        rootObject.id = tag.id;
+        rootObject.name = tag.name;
+        rootObject.modifiers = new List<UnitTagModifierTempClass>();
+        foreach (var item in tag.modifiers)
+        {
+            var modifier = new UnitTagModifierTempClass();
+            modifier.id = item.id;
+            modifier.tagEffect = item.tagEffect;
+            modifier.tagCase = item.tagCase;
+            modifier.target = item.target;
+            modifier.modifierValue = item.modifierValue;
+            modifier.targetValue = item.targetValue;
+            rootObject.modifiers.Add(modifier);
+        }
+
+        using (StreamWriter sw = new StreamWriter($"{State.UnitTagDirectory} {tag.name}.json"))
+        {
+            sw.WriteLine(JsonConvert.SerializeObject(tag));
+
+        }
+        return true;
+    }
+
+    public static void UnitTagRemover(UnitTag tag)
+    {
+        if (File.Exists($"{State.UnitTagDirectory}{tag.name}.json"))
+            File.Delete($"{State.UnitTagDirectory}{tag.name}.json");
+    }
+
+    public static void UnitTagParser()
+    {
+        {
+            string readContents;
+            string[] files = Directory.GetFiles(State.UnitTagDirectory, "*.json", SearchOption.AllDirectories);
+            foreach (string file in files)
+            {
+                using (StreamReader streamReader = new StreamReader(file))
+                {
+                    readContents = streamReader.ReadToEnd();
+                }
+                JObject results = JObject.Parse(readContents);
+
+                UnitTag loadedTag = new UnitTag();
+                loadedTag.TraitDictionary = new Dictionary<Traits, bool>();
+                loadedTag.id = results["id"].ToObject<int>();
+                loadedTag.name = results["name"].ToString();
+                loadedTag.modifiers = results["modifiers"].ToObject<List<UnitTagModifier>>();
+                loadedTag.TraitDictionary = results["TraitDictionary"].ToObject<Dictionary<Traits, bool>> ();
+                State.UnitTagList.Add(loadedTag);
+
+            }
+        }
+    }
+
     class RootObject
     {
         public List<TaggedTraitTempClass> traits { get; set; }
@@ -274,5 +346,23 @@ public class ExternalTraitHandler
         public bool filled { get; set; }
         public List<TraitCondition> conditionVariable { get; set; }
         public List<TraitConditionArithmeticOperator> arithmeticOperator { get; set; }
+    }
+
+    class UnitTagTempClass 
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public List<UnitTagModifierTempClass> modifiers { get; set; }
+        public Dictionary<Traits, bool> TraitDictionary { get; set; }
+    }
+
+    class UnitTagModifierTempClass
+    {
+        public int id { get; set; }
+        public UnitTagModifierEffect tagEffect { get; set; }
+        public UnitTagModifierCase tagCase { get; set; }
+        public UnitTagModifierTarget target { get; set; }
+        public float modifierValue { get; set; }
+        public int targetValue { get; set; }
     }
 }
