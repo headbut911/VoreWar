@@ -13,4 +13,5 @@ public class UnitTagModifierItem : MonoBehaviour
     public TMP_Dropdown tagTarget;
     public TMP_Dropdown targetValue;
     public InputField modifierValue;
+    public Slider targetSlider;
 }

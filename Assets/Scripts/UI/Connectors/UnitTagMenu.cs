@@ -1,14 +1,9 @@
-﻿using CruxClothing;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 
 public enum UnitTagModifierEffect
 {    
@@ -40,30 +35,41 @@ public enum UnitTagModifierCase
     FromTargetIf,
     FromTargetIfNot,
     FromAnyTarget, // ignores target
+    AgainstTargetIfSelfIs,
+    AgainstTargetIfSelfIsNot,
 }
 public enum UnitTagModifierTarget
 {
     All,
-    Race,
-    Trait,
-    Tag,
-    Gender,
-    StatusEffect,
-    Enemy,
-    Ally,
+    IsRace,
+    HasTrait,
+    HasTag,
+    IsGender,
+    HasStatusEffect,
+    HasAnyStatusEffect,
+    IsUnitType,
+    IsEnemy,
+    IsAlly,
     HasRanged,
     HasMelee,
     HasMagicBook,
-    EmpireRace,
-    MercenaryRace,
-    MonsterRace,
-    SpecialMercenaryRace,
-    Predator,
-    Full,
-    Digesting,
-    Absorbing,
-    GreaterLevel,
-    GreaterBodySize,
+    IsEmpireRace,
+    IsMercenaryRace,
+    IsMonsterRace,
+    IsSpecialMercenaryRace,
+    IsPredator,
+    IsFull,
+    IsDigesting,
+    IsAbsorbing,
+    IsGreaterLevel,
+    IsGreaterBodySize,
+    HasGreaterStatTotal,
+    HasGreaterHealthPct,
+    HasGreaterMandPct,
+    IsOverHealthPct,
+    IsOverManaPct,
+    HasBarrier,
+    HasGreaterBarrier,
 }
 
 public class UnitTagMenu : MonoBehaviour
@@ -163,9 +169,11 @@ public class UnitTagMenu : MonoBehaviour
         ob.tagTarget.onValueChanged.AddListener((int val) =>
         {
             UnitTagModifierTarget targetType = (UnitTagModifierTarget)val;
+            ob.targetValue.gameObject.SetActive(false);
+            ob.targetSlider.gameObject.SetActive(false);
             switch (targetType)
             {
-                case UnitTagModifierTarget.Race:
+                case UnitTagModifierTarget.IsRace:
                     ob.targetValue.gameObject.SetActive(true);
                     // Populate target race dropdown
                     ob.targetValue.options.Clear();
@@ -175,7 +183,7 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     ob.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.Trait:
+                case UnitTagModifierTarget.HasTrait:
                     ob.targetValue.gameObject.SetActive(true);
                     // Populate Trait Dropdown
                     ob.targetValue.options.Clear();
@@ -200,7 +208,7 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     ob.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.Tag:
+                case UnitTagModifierTarget.HasTag:
                     ob.targetValue.gameObject.SetActive(true);
                     // Populate target tag dropdown
                     ob.targetValue.options.Clear();
@@ -210,7 +218,7 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     ob.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.Gender:
+                case UnitTagModifierTarget.IsGender:
                     ob.targetValue.gameObject.SetActive(true);
                     // Populate target gender dropdown
                     ob.targetValue.options.Clear();
@@ -220,7 +228,7 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     ob.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.StatusEffect:
+                case UnitTagModifierTarget.HasStatusEffect:
                     ob.targetValue.gameObject.SetActive(true);
                     // Populate target status effect dropdown
                     ob.targetValue.options.Clear();
@@ -230,8 +238,22 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     ob.targetValue.RefreshShownValue();
                     break;
+                case UnitTagModifierTarget.IsUnitType:
+                    ob.targetValue.gameObject.SetActive(true);
+                    // Populate target status effect dropdown
+                    ob.targetValue.options.Clear();
+                    foreach (UnitType unitType in ((UnitType[])Enum.GetValues(typeof(UnitType))))
+                    {
+                        ob.targetValue.options.Add(new TMP_Dropdown.OptionData(unitType.ToString()));
+                    }
+                    ob.targetValue.RefreshShownValue();
+                    break;
+                case UnitTagModifierTarget.IsOverHealthPct:
+                case UnitTagModifierTarget.IsOverManaPct:
+                    ob.targetSlider.gameObject.SetActive(true);
+                    ob.targetValue.options.Clear();
+                    break;
                 default:
-                    ob.targetValue.gameObject.SetActive(false);
                     ob.targetValue.options.Clear();
                     break;
             }
@@ -243,11 +265,13 @@ public class UnitTagMenu : MonoBehaviour
             {
                 ob.tagTarget.gameObject.SetActive(false);
                 ob.targetValue.gameObject.SetActive(false);
+                ob.targetSlider.gameObject.SetActive(false);
             }
             else
             {
                 ob.tagTarget.gameObject.SetActive(true);
                 ob.targetValue.gameObject.SetActive(ob.targetValue.IsActive());
+                ob.targetSlider.gameObject.SetActive(ob.targetSlider.IsActive());
             }
         });
         ob.targetValue.gameObject.SetActive(false);
@@ -264,19 +288,25 @@ public class UnitTagMenu : MonoBehaviour
             loadMod.tagEffect.value = (int)item.tagEffect;
             loadMod.tagCase.value = (int)item.tagCase;
             loadMod.tagTarget.value = (int)item.target;
+            loadMod.targetValue.gameObject.SetActive(false);
+            loadMod.targetSlider.gameObject.SetActive(false);
             switch (item.target)
             {
-                case UnitTagModifierTarget.Race:
+                case UnitTagModifierTarget.IsRace:
                     loadMod.targetValue.gameObject.SetActive(true);
                     // Populate target race dropdown
                     loadMod.targetValue.options.Clear();
                     foreach (Race targetRace in ((Race[])Enum.GetValues(typeof(Race))))
                     {
                         loadMod.targetValue.options.Add(new TMP_Dropdown.OptionData(targetRace.ToString()));
+                        if (targetRace == (Race)item.targetValue)
+                        {
+                            loadMod.targetValue.value = loadMod.targetValue.options.Count();
+                        }
                     }
                     loadMod.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.Trait:
+                case UnitTagModifierTarget.HasTrait:
                     loadMod.targetValue.gameObject.SetActive(true);
                     // Populate Trait Dropdown
                     loadMod.targetValue.options.Clear();
@@ -301,7 +331,7 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     loadMod.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.Tag:
+                case UnitTagModifierTarget.HasTag:
                     loadMod.targetValue.gameObject.SetActive(true);
                     // Populate target tag dropdown
                     loadMod.targetValue.options.Clear();
@@ -311,7 +341,7 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     loadMod.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.Gender:
+                case UnitTagModifierTarget.IsGender:
                     loadMod.targetValue.gameObject.SetActive(true);
                     // Populate target gender dropdown
                     loadMod.targetValue.options.Clear();
@@ -321,7 +351,7 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     loadMod.targetValue.RefreshShownValue();
                     break;
-                case UnitTagModifierTarget.StatusEffect:
+                case UnitTagModifierTarget.HasStatusEffect:
                     loadMod.targetValue.gameObject.SetActive(true);
                     // Populate target status effect dropdown
                     loadMod.targetValue.options.Clear();
@@ -331,13 +361,31 @@ public class UnitTagMenu : MonoBehaviour
                     }
                     loadMod.targetValue.RefreshShownValue();
                     break;
-                default:
+                case UnitTagModifierTarget.IsUnitType:
+                    loadMod.targetValue.gameObject.SetActive(true);
+                    // Populate target status effect dropdown
+                    loadMod.targetValue.options.Clear();
+                    foreach (UnitType unitType in ((UnitType[])Enum.GetValues(typeof(UnitType))))
+                    {
+                        loadMod.targetValue.options.Add(new TMP_Dropdown.OptionData(unitType.ToString()));
+                    }
+                    loadMod.targetValue.RefreshShownValue();
+                    break;
+                case UnitTagModifierTarget.IsOverHealthPct:
+                case UnitTagModifierTarget.IsOverManaPct:
+                    loadMod.targetSlider.gameObject.SetActive(true);
+                    loadMod.targetSlider.value = item.targetValue;
                     loadMod.targetValue.gameObject.SetActive(false);
                     loadMod.targetValue.options.Clear();
                     break;
+                default:
+                    loadMod.targetValue.gameObject.SetActive(false);
+                    loadMod.targetSlider.gameObject.SetActive(false);
+                    loadMod.targetValue.options.Clear();
+                    break;
             }
-            loadMod.targetValue.value = item.targetValue;
             loadMod.modifierValue.text = item.modifierValue.ToString();
+            ModifierList.Add(loadMod);
         }
     }
 
@@ -351,15 +399,17 @@ public class UnitTagMenu : MonoBehaviour
             newMod.id = unitTag.modifiers.Count();
             newMod.modifierValue = float.TryParse(mod.modifierValue.text, out float mv) ? mv : 1;
             newMod.target = (UnitTagModifierTarget)mod.tagTarget.value;
+            newMod.tagEffect = (UnitTagModifierEffect)mod.tagEffect.value;
+            newMod.tagCase = (UnitTagModifierCase)mod.tagCase.value;
             switch (newMod.target)
             {
-                case UnitTagModifierTarget.Race:
+                case UnitTagModifierTarget.IsRace:
                     if (Enum.TryParse(mod.targetValue.options[mod.targetValue.value].text, out Race race))
                     {
                         newMod.targetValue = (int)race;
                     }
                     break;
-                case UnitTagModifierTarget.Trait:
+                case UnitTagModifierTarget.HasTrait:
                     if (State.RandomizeLists.Any(rl => rl.name == mod.targetValue.options[mod.targetValue.value].text))
                     {
                         newMod.targetValue = (int)State.RandomizeLists.Where(rl => rl.name == mod.targetValue.options[mod.targetValue.value].text).FirstOrDefault()?.id;
@@ -377,20 +427,30 @@ public class UnitTagMenu : MonoBehaviour
                         newMod.targetValue = (int)trait;
                     }
                     break;
-                case UnitTagModifierTarget.Tag:
+                case UnitTagModifierTarget.HasTag:
                     newMod.targetValue = mod.targetValue.value;
                     break;
-                case UnitTagModifierTarget.Gender:
+                case UnitTagModifierTarget.IsGender:
                     if (Enum.TryParse(mod.targetValue.options[mod.targetValue.value].text, out Gender gender))
                     {
                         newMod.targetValue = (int)gender;
                     }
                     break;
-                case UnitTagModifierTarget.StatusEffect:
+                case UnitTagModifierTarget.HasStatusEffect:
                     if (Enum.TryParse(mod.targetValue.options[mod.targetValue.value].text, out StatusEffectType statusEffect))
                     {
                         newMod.targetValue = (int)statusEffect;
                     }
+                    break;
+                case UnitTagModifierTarget.IsUnitType:
+                    if (Enum.TryParse(mod.targetValue.options[mod.targetValue.value].text, out UnitType unitType))
+                    {
+                        newMod.targetValue = (int)unitType;
+                    }
+                    break;
+                case UnitTagModifierTarget.IsOverHealthPct:
+                case UnitTagModifierTarget.IsOverManaPct:
+                    newMod.targetValue = mod.targetValue.value;
                     break;
                 default:
                     break;
