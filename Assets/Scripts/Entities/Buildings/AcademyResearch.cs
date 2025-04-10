@@ -27,6 +27,8 @@ public static class AcademyResearch
     {
         if (empire == null)
             return 0f;
+        if (empire.AcademyResearchCompleted == null)
+            return 0f;
         if (!empire.AcademyResearchCompleted.Keys.Contains(type))
         {
             return 0;

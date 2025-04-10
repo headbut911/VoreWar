@@ -119,7 +119,6 @@ public class StartMode : SceneBase
         CreateStrategicGame.gameObject.SetActive(false);
         CreateTacticalGame.gameObject.SetActive(false);
         State.GameManager.Menu.ContentSettings.Refresh();
-        Debug.Log("Return");
     }
 
     public void TutorialMode()

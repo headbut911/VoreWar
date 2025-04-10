@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -14,4 +15,9 @@ public class UnitTagModifierItem : MonoBehaviour
     public TMP_Dropdown targetValue;
     public InputField modifierValue;
     public Slider targetSlider;
+
+    public void RefreshSliderText()
+    {
+        targetSlider.GetComponentInChildren<Text>().text = $"{targetSlider.value}";
+    }
 }

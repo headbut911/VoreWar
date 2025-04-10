@@ -251,6 +251,7 @@ public class UnitTagMenu : MonoBehaviour
                 case UnitTagModifierTarget.IsOverHealthPct:
                 case UnitTagModifierTarget.IsOverManaPct:
                     ob.targetSlider.gameObject.SetActive(true);
+                    ob.RefreshSliderText();
                     ob.targetValue.options.Clear();
                     break;
                 default:
@@ -275,6 +276,7 @@ public class UnitTagMenu : MonoBehaviour
             }
         });
         ob.targetValue.gameObject.SetActive(false);
+        ob.targetSlider.gameObject.SetActive(false);
         return ob;
     }
 
@@ -375,6 +377,7 @@ public class UnitTagMenu : MonoBehaviour
                 case UnitTagModifierTarget.IsOverManaPct:
                     loadMod.targetSlider.gameObject.SetActive(true);
                     loadMod.targetSlider.value = item.targetValue;
+                    loadMod.RefreshSliderText();
                     loadMod.targetValue.gameObject.SetActive(false);
                     loadMod.targetValue.options.Clear();
                     break;
@@ -475,6 +478,7 @@ public class UnitTagMenu : MonoBehaviour
             Destroy(Folder.GetChild(i).gameObject);
         }
         gameObject.SetActive(false);
+        ModifierList.Clear();
         UnitTagEditor.Open();
     }
 
@@ -486,6 +490,7 @@ public class UnitTagMenu : MonoBehaviour
         {
             State.UnitTagList.Remove(rem);  
         }
+        ModifierList.Clear();
         DiscardClose();        
     }
 }
