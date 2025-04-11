@@ -188,20 +188,7 @@ public class ExternalTraitHandler
     }
     public static bool ConditionalTraitSaver(ConditionalTraitContainer trait)
     {
-        bool modifying = false;
-        foreach (var item in State.ConditionalTraitList)
-        {
-            if (item.name.ToLower() == trait.name.ToLower() && item.id == trait.id)
-            {
-                modifying = true;
-                break;
-            }
-        }
-
-        if (!modifying && File.Exists($"{State.ConditionalTraitDirectory}{trait.name}.json"))
-        {
-            return false;
-        }
+        ConditionalTraitRemover(trait);
 
         var rootObject = new ConditionalTraitTempClass();
         rootObject.id = trait.id;
@@ -243,20 +230,7 @@ public class ExternalTraitHandler
 
     public static bool UnitTagSaver(UnitTag tag)
     {
-        bool modifying = false;
-        foreach (var item in State.UnitTagList)
-        {
-            if (item.name.ToLower() == tag.name.ToLower() && item.id == tag.id)
-            {
-                modifying = true;
-                break;
-            }
-        }
-
-        if (!modifying && File.Exists($"{State.UnitTagDirectory}{tag.name}.json"))
-        {
-            return false;
-        }
+        UnitTagRemover(tag);
 
         var rootObject = new UnitTagTempClass();
         rootObject.id = tag.id;
@@ -273,7 +247,6 @@ public class ExternalTraitHandler
             modifier.targetValue = item.targetValue;
             rootObject.modifiers.Add(modifier);
         }
-
         using (StreamWriter sw = new StreamWriter($"{State.UnitTagDirectory} {tag.name}.json"))
         {
             sw.WriteLine(JsonConvert.SerializeObject(tag));
@@ -290,6 +263,7 @@ public class ExternalTraitHandler
 
     public static void UnitTagParser()
     {
+        try
         {
             string readContents;
             string[] files = Directory.GetFiles(State.UnitTagDirectory, "*.json", SearchOption.AllDirectories);
@@ -302,14 +276,18 @@ public class ExternalTraitHandler
                 JObject results = JObject.Parse(readContents);
 
                 UnitTag loadedTag = new UnitTag();
-                loadedTag.TraitDictionary = new Dictionary<Traits, bool>();
+                loadedTag.AssociatedTraits = new List<Traits>();
                 loadedTag.id = results["id"].ToObject<int>();
                 loadedTag.name = results["name"].ToString();
                 loadedTag.modifiers = results["modifiers"].ToObject<List<UnitTagModifier>>();
-                loadedTag.TraitDictionary = results["TraitDictionary"].ToObject<Dictionary<Traits, bool>> ();
+                loadedTag.AssociatedTraits = results["AssociatedTraits"].ToObject<List<Traits>>();
                 State.UnitTagList.Add(loadedTag);
 
             }
+        }
+        catch (Exception ex) 
+        { 
+        
         }
     }
 
@@ -353,7 +331,7 @@ public class ExternalTraitHandler
         public int id { get; set; }
         public string name { get; set; }
         public List<UnitTagModifierTempClass> modifiers { get; set; }
-        public Dictionary<Traits, bool> TraitDictionary { get; set; }
+        public List<Traits> AssociatedTraits { get; set; }
     }
 
     class UnitTagModifierTempClass

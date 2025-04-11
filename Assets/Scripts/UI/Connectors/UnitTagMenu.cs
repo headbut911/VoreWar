@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,8 +36,10 @@ public enum UnitTagModifierCase
     FromTargetIf,
     FromTargetIfNot,
     FromAnyTarget, // ignores target
-    AgainstTargetIfSelfIs,
-    AgainstTargetIfSelfIsNot,
+    AgainstAnyIfSelfIs, // target is owner of tag
+    AgainstAnyIfSelfIsNot, // target is owner of tag
+    FromAnyIfSelfIs, // target is owner of tag
+    FromAnyIfSelfIsNot, // target is owner of tag
 }
 public enum UnitTagModifierTarget
 {
@@ -81,13 +84,15 @@ public class UnitTagMenu : MonoBehaviour
 
     public InputField name;
 
-    public Button SelectTraitsButton;
-
     public Button AddBtn;
     internal Button newModButton;
 
     public UnitTagModifierItem ModifierPrefab;
     internal List<UnitTagModifierItem> ModifierList;
+
+    List<Traits> CurrentTraits;
+    public TMP_Dropdown TraitDropdown;
+    public TextMeshProUGUI TraitList;
 
     internal void Open(int id)
     {
@@ -96,13 +101,33 @@ public class UnitTagMenu : MonoBehaviour
         current_id = id;
         ModifierList = new List<UnitTagModifierItem>();
         unitTag = State.UnitTagList.Where(x => x.id == current_id).FirstOrDefault();
+
+
+        TraitDropdown.options.Clear();
+        foreach (RandomizeList rl in State.RandomizeLists)
+        {
+            TraitDropdown.options.Add(new TMP_Dropdown.OptionData(rl.name.ToString()));
+        }
+        foreach (CustomTraitBoost ct in State.CustomTraitList)
+        {
+            TraitDropdown.options.Add(new TMP_Dropdown.OptionData(ct.name.ToString()));
+        }
+        foreach (ConditionalTraitContainer cdt in State.ConditionalTraitList)
+        {
+            TraitDropdown.options.Add(new TMP_Dropdown.OptionData(cdt.name.ToString()));
+        }
+        foreach (Traits traitId in ((Traits[])Enum.GetValues(typeof(Traits))).OrderBy(s =>
+        {
+            return s >= Traits.LightningSpeed ? "ZZZ" + s.ToString() : s.ToString();
+        }))
+        {
+            TraitDropdown.options.Add(new TMP_Dropdown.OptionData(traitId.ToString()));
+        }
+        TraitDropdown.RefreshShownValue();
+
         LoadTag();
         CreateAddButton();
-
-        SelectTraitsButton.onClick.AddListener(() =>
-        {
-            State.GameManager.VariableEditor.Open(unitTag);
-        });
+        UpdateInteractable();
     }
 
     private void CreateAddButton()
@@ -163,7 +188,7 @@ public class UnitTagMenu : MonoBehaviour
         ob.DeleteButton.onClick.AddListenerOnce(() =>
         {
             ModifierList.Remove(ob);
-            Destroy(ob);
+            Destroy(ob.gameObject);
         });
 
         ob.tagTarget.onValueChanged.AddListener((int val) =>
@@ -284,6 +309,7 @@ public class UnitTagMenu : MonoBehaviour
     public void LoadTag()
     {
         name.text = unitTag.name;
+        CurrentTraits = unitTag.AssociatedTraits;
         foreach (var item in unitTag.modifiers)
         {
             UnitTagModifierItem loadMod = CreateModifierItem();
@@ -395,6 +421,8 @@ public class UnitTagMenu : MonoBehaviour
     public void SaveTag()
     {
         unitTag.name = name.text;
+        unitTag.AssociatedTraits = CurrentTraits;
+        unitTag.modifiers.Clear();
 
         foreach (var mod in ModifierList)
         {
@@ -462,6 +490,74 @@ public class UnitTagMenu : MonoBehaviour
         }
         ExternalTraitHandler.UnitTagSaver(unitTag);
 
+    }
+
+    public void AddTrait()
+    {
+        if (State.RandomizeLists.Any(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Add((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Add((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (State.ConditionalTraitList.Any(cdt => cdt.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Add((Traits)State.ConditionalTraitList.Where(cdt => cdt.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
+        {
+            if (CurrentTraits.Contains(trait) == false)
+                CurrentTraits.Add(trait);
+        }
+        UpdateInteractable();
+    }
+    public void RemoveTrait()
+    {
+        if (State.RandomizeLists.Any(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Remove((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Remove((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (State.ConditionalTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Remove((Traits)State.ConditionalTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
+        {
+            CurrentTraits.Remove(trait);
+        }
+        UpdateInteractable();
+    }
+
+    public void UpdateInteractable()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("Traits:");
+        if (CurrentTraits == null)
+            CurrentTraits = new List<Traits>();
+        foreach (Traits trait in CurrentTraits)
+        {
+            if (State.RandomizeLists.Any(rl => (Traits)rl.id == trait))
+            {
+                sb.AppendLine(State.RandomizeLists.Where(rl => (Traits)rl.id == trait).FirstOrDefault().name);
+            }
+            else if (State.CustomTraitList.Any(ct => (Traits)ct.id == trait))
+            {
+                sb.AppendLine(State.CustomTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name);
+            }
+            else if (State.ConditionalTraitList.Any(ct => (Traits)ct.id == trait))
+            {
+                sb.AppendLine(State.ConditionalTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name);
+            }
+            else
+                sb.AppendLine(trait.ToString());
+        }
+        TraitList.text = sb.ToString();
     }
 
     public void SaveClose()

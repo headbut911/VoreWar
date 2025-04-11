@@ -99,6 +99,7 @@ public class WorkCampPanel : MonoBehaviour
 
     void RefreshUI(ConstructibleBuilding building)
     {
+        CampGold.text = ((WorkCamp)building).currentGold.ToString();
         if (((WorkCamp)building).postUpgrade.built && building.active)
         {
             BuyWood.interactable = true;
@@ -204,13 +205,15 @@ public class WorkCampPanel : MonoBehaviour
         building.inStockItems.SpendResource(type, 1);
         building.Owner.SpendGold(GetItemPrice(type, building));
         building.Owner.constructionResources.AddResource(type, 1);
+        building.currentGold += GetItemPrice(type, building);
     }
-    
+
     void SellItem(ConstructionResourceType type, WorkCamp building)
     {
         building.inStockItems.AddResource(type, 1);
         building.Owner.AddGold(GetItemPrice(type, building));
         building.Owner.constructionResources.SpendResource(type, 1);
+        building.currentGold -= GetItemPrice(type, building);
     }
     int GetItemPrice(ConstructionResourceType type, WorkCamp building)
     {

@@ -31,7 +31,8 @@
 
         if (postUpgrade.built || merchantUpgrade.built) 
         {
-            inStockItems.SetResources(10, 10, 5, 5, 3, 3);
+            currentGold += Config.BuildConfig.WorkCampGoldPerTurn;
+            inStockItems = Config.BuildConfig.WorkCampTurnStock;
         }
 
         if (improveUpgrade.built)

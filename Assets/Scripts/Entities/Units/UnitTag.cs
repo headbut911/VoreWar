@@ -11,5 +11,5 @@ public class UnitTag
     public string name;
     public List<UnitTagModifier> modifiers;
     [AllowEditing]
-    public Dictionary<Traits, bool> TraitDictionary;
+    public List<Traits> AssociatedTraits;
 }

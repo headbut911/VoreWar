@@ -3413,7 +3413,7 @@ internal class RaceTraits
     internal List<Traits> RacialTraits;
     internal List<Traits> LeaderTraits;
     internal List<Traits> SpawnTraits;
-    internal List<int> RacialTags;
+    internal List<int> RacialTags = new List<int>();
     //internal List<Traits> RandomTraits;
     internal List<VoreType> AllowedVoreTypes = new List<VoreType> { VoreType.Anal, VoreType.Oral, VoreType.CockVore, VoreType.BreastVore, VoreType.Unbirth };
     internal Race SpawnRace = Race.none;

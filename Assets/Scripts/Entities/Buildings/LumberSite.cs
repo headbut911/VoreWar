@@ -41,7 +41,11 @@ class LumberSite : ConstructibleBuilding
 
         if (lodgeUpgrade.built)
         {
-            IdleWorkers = Config.BuildConfig.LumberSiteWorkerCap * 2;
+            IdleWorkers = (Config.BuildConfig.LumberSiteWorkerCap * 2) - woodWorkers - natureWorkers - (carpenterWorkers * 2);
+            if (IdleWorkers <= 0)
+            {
+                IdleWorkers = 0;
+            }
         }
 
         if (carpenterUpgrade.built)

@@ -22,6 +22,7 @@ public static class State
     public static List<CustomTraitBoost> CustomTraitList;
     public static List<ConditionalTraitContainer> ConditionalTraitList;
     public static List<UnitTag> UnitTagList;
+    public static Dictionary<Traits, List<int>> UnitTagAssociatedTraitDictionary;
     public static Dictionary<TaggedTrait,bool> UntaggedTraits;
 
     internal static EventList EventList;
@@ -131,6 +132,7 @@ public static class State
         CustomTraitList = new List<CustomTraitBoost>();
         ConditionalTraitList = new List<ConditionalTraitContainer>();
         UnitTagList = new List<UnitTag>();
+        UnitTagAssociatedTraitDictionary = new Dictionary<Traits, List<int>>();
         UntaggedTraits = new Dictionary<TaggedTrait, bool>();
 
         TieredTraitsList = ExternalTraitHandler.TaggedTraitParser();
@@ -138,7 +140,7 @@ public static class State
         ExternalTraitHandler.CustomTraitParser();
         ExternalTraitHandler.ConditionalTraitParser();
         ExternalTraitHandler.UnitTagParser();
-
+        TagConditionChecker.CompileTraitTagAssociateDict();
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
         List<string> lines;
         RandomizeLists = new List<RandomizeList>();

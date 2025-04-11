@@ -85,7 +85,7 @@ public class UnitTagEditor : MonoBehaviour
             newUnitTag.name = "NewTag";
             newUnitTag.id = ut.id;
             newUnitTag.modifiers = new List<UnitTagModifier>();
-            newUnitTag.TraitDictionary = new Dictionary<Traits, bool>();
+            newUnitTag.AssociatedTraits = new List<Traits>();
             State.UnitTagList.Add(newUnitTag);
             ut.modifybtn.onClick.AddListener(() =>
             {
@@ -109,6 +109,7 @@ public class UnitTagEditor : MonoBehaviour
 
     public void Close()
     {
+        TagConditionChecker.CompileTraitTagAssociateDict();
         gameObject.SetActive(false);
         int children = Folder.childCount;
         for (int i = children - 1; i >= 0; i--)
