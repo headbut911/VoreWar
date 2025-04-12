@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 
 interface IVoreCallback
@@ -1171,7 +1172,7 @@ public class PredatorComponent
         float sizeDiff = (preyUnit.Unit.GetScale(2) * preyMass) / (unit.GetScale(2) * predMass);
         float preyBoosts = (((preyUnit.Unit.TraitBoosts.Outgoing.Nutrition - 1) * .2f) + 1f) * preyUnit.Unit.TraitBoosts.Outgoing.GrowthRate;
         float predBoosts = (((unit.TraitBoosts.Incoming.Nutrition - 1) * .2f) + 1f) * unit.TraitBoosts.Incoming.GrowthRate * Config.GrowthMod;
-        return sizeDiff * preyBoosts * predBoosts;
+        return sizeDiff * preyBoosts * predBoosts * TagConditionChecker.ApplyTagEffect(unit, preyUnit.Unit, UnitTagModifierEffect.GrowthRateMult);
     }
 
     int ApplySettingsToDamage(int incoming_damage, Prey preyUnit)
@@ -1212,6 +1213,7 @@ public class PredatorComponent
         predScore *= unit.TraitBoosts.Outgoing.DigestionRate;
         preyScore /= preyUnit.Unit.TraitBoosts.Incoming.DigestionRate;
         int damage = (int)Math.Round(predScore / preyScore);
+        damage = (int)(damage * TagConditionChecker.ApplyTagEffect(unit, preyUnit.Unit, UnitTagModifierEffect.DigestionRateMult));
         damage = ApplySettingsToDamage(damage, preyUnit);
         if (unit.HasTrait(Traits.SleepItOff) && unit.GetStatusEffect(StatusEffectType.Sleeping) != null)
             damage *= 2;
@@ -1621,6 +1623,7 @@ public class PredatorComponent
 
             speedFactor *= unit.TraitBoosts.Outgoing.AbsorptionRate;
             speedFactor *= preyUnit.Unit.TraitBoosts.Incoming.AbsorptionRate;
+            speedFactor *= TagConditionChecker.ApplyTagEffect(unit, preyUnit.Unit, UnitTagModifierEffect.AbsorptionRateMult);
 
             if (speedFactor > 4f && speedFactor < 1000)
                 speedFactor = 4f;
@@ -1639,7 +1642,9 @@ public class PredatorComponent
             preyUnit.Actor.SubtractHealth(healthReduction);
             
             totalHeal += Math.Max((int)(healthReduction / 2 * preyUnit.Unit.TraitBoosts.Outgoing.Nutrition * unit.TraitBoosts.Incoming.Nutrition), 1);
+            totalHeal = (int)(totalHeal * TagConditionChecker.ApplyTagEffect(unit, preyUnit.Unit, UnitTagModifierEffect.NutritionMult));
             var baseManaGain = healthReduction * (preyUnit.Unit.TraitBoosts.Outgoing.ManaAbsorbHundreths + unit.TraitBoosts.Incoming.ManaAbsorbHundreths);
+            baseManaGain += (int)TagConditionChecker.ApplyTagEffect(unit, preyUnit.Unit, UnitTagModifierEffect.ManaAbsorbHundreths);
             var totalManaGain = baseManaGain / 100 + (State.Rand.Next(100) < (baseManaGain % 100) ? 1 : 0);
             float resource_boost = (actor.RampStacks >= Config.DigestionRampCap && Config.DigestionRampCap > 0 ? Config.DigestionRampCap : (float)Math.Floor(actor.RampStacks));
             if (Config.AbsorbResourceModBoost == 1)
@@ -3222,6 +3227,7 @@ public class PredatorComponent
         float odds = attackerScore / (attackerScore + defenderScore) * 100;
 
         odds *= actor.Unit.TraitBoosts.FlatHitReduction;
+        odds *= TagConditionChecker.ApplyTagEffect(unit, attacker.Unit, UnitTagModifierEffect.VoreOddsMult);
 
         if (includeSecondaries)
         {

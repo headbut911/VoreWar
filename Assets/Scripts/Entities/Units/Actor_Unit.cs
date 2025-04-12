@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using UnityEditorInternal.VR;
+using static UnityEngine.UI.CanvasScaler;
+using UnityEditor.Experimental.UIElements.GraphView;
 
 public class Actor_Unit
 {
@@ -833,7 +836,7 @@ public class Actor_Unit
             defenseStat = (int)(defenseStat * currentSpell.ResistanceMult);
         }
 
-        float shift = Unit.TraitBoosts.Incoming.MagicShift + attacker.Unit.TraitBoosts.Outgoing.MagicShift + modifier;
+        float shift = Unit.TraitBoosts.Incoming.MagicShift + attacker.Unit.TraitBoosts.Outgoing.MagicShift + modifier + TagConditionChecker.ApplyTagEffect(Unit, attacker.Unit, UnitTagModifierEffect.MagicShift);
         return (float)attackStat / (attackStat + (defenseStat * (1 + shift)));
     }
 
@@ -915,9 +918,9 @@ public class Actor_Unit
             defenderBonusShift += .05f * (range - 2);
 
         if (ranged)
-            defenderBonusShift += Unit.TraitBoosts.Incoming.RangedShift + attacker.Unit.TraitBoosts.Outgoing.RangedShift + mod;
+            defenderBonusShift += Unit.TraitBoosts.Incoming.RangedShift + attacker.Unit.TraitBoosts.Outgoing.RangedShift + mod + TagConditionChecker.ApplyTagEffect(Unit, attacker.Unit, UnitTagModifierEffect.RangedShift);
         else
-            defenderBonusShift += Unit.TraitBoosts.Incoming.MeleeShift + attacker.Unit.TraitBoosts.Outgoing.MeleeShift + mod;
+            defenderBonusShift += Unit.TraitBoosts.Incoming.MeleeShift + attacker.Unit.TraitBoosts.Outgoing.MeleeShift + mod + TagConditionChecker.ApplyTagEffect(Unit, attacker.Unit, UnitTagModifierEffect.MeleeShift);
 
         if (Unit.HasTrait(Traits.AllOutFirstStrike))
         {
@@ -1038,6 +1041,7 @@ public class Actor_Unit
         {
             float damageScalar = Unit.TraitBoosts.Outgoing.RangedDamage * target.Unit.TraitBoosts.Incoming.RangedDamage;
 			damageScalar *= multiplier;
+			damageScalar *= TagConditionChecker.ApplyTagEffect(Unit, target.Unit, UnitTagModifierEffect.RangedDamageMult);
             if (Unit.HasTrait(Traits.AllOutFirstStrike) && HasAttackedThisCombat == false)
                 damageScalar *= 5;
             if ((target.Unit.GetStatusEffect(StatusEffectType.Petrify) != null) || (target.Unit.GetStatusEffect(StatusEffectType.Frozen) != null))
@@ -1084,6 +1088,7 @@ public class Actor_Unit
         {
 
             float damageScalar = Unit.TraitBoosts.Outgoing.MeleeDamage * target.Unit.TraitBoosts.Incoming.MeleeDamage;
+            damageScalar *= TagConditionChecker.ApplyTagEffect(Unit, target.Unit, UnitTagModifierEffect.MeleeDamageMult);
 
             if (Unit.HasTrait(Traits.AllOutFirstStrike) && HasAttackedThisCombat == false)
                 damageScalar *= 5;
@@ -1577,9 +1582,12 @@ public class Actor_Unit
                 grazechance = GrazeCheck(this, target);
             }
             grazechance += Unit.TraitBoosts.Outgoing.GrazeRateShift - target.Unit.TraitBoosts.Incoming.GrazeRateShift;
+            grazechance += TagConditionChecker.ApplyTagEffect(Unit, target.Unit, UnitTagModifierEffect.GrazeRateShift);
+
             if (State.Rand.NextDouble() < grazechance)
             {
                 float calculatedGrazeDamage = Unit.TraitBoosts.Outgoing.GrazeDamageMult * target.Unit.TraitBoosts.Incoming.GrazeDamageMult;
+                calculatedGrazeDamage *= TagConditionChecker.ApplyTagEffect(Unit, target.Unit, UnitTagModifierEffect.GrazeDamageMult);
                 damageMultiplier *= (calculatedGrazeDamage) * Config.GrazeDamageMod;
                 grazebool = true;
             }
@@ -1591,9 +1599,11 @@ public class Actor_Unit
                 critchance = CritCheck(this, target);
             }
             critchance += Unit.TraitBoosts.Outgoing.CritRateShift - target.Unit.TraitBoosts.Incoming.CritRateShift;
+            critchance += TagConditionChecker.ApplyTagEffect(Unit, target.Unit, UnitTagModifierEffect.CritRateShift);
             if (State.Rand.NextDouble() < critchance)
             {
                 float calculatedCritDamage = Unit.TraitBoosts.Outgoing.CritDamageMult * target.Unit.TraitBoosts.Incoming.CritDamageMult;
+                calculatedCritDamage *= TagConditionChecker.ApplyTagEffect(Unit, target.Unit, UnitTagModifierEffect.CritDamageMult);
                 damageMultiplier *= (calculatedCritDamage) * Config.CritDamageMod;
                 critbool = true;
             }
@@ -1929,7 +1939,7 @@ public class Actor_Unit
             return false;
         if (DefendSpellCheck(spell, attacker, out float chance))
         {
-            damage = (int)(damage * attacker.Unit.TraitBoosts.Outgoing.MagicDamage * Unit.TraitBoosts.Incoming.MagicDamage);
+            damage = (int)(damage * attacker.Unit.TraitBoosts.Outgoing.MagicDamage * Unit.TraitBoosts.Incoming.MagicDamage * TagConditionChecker.ApplyTagEffect(attacker.Unit, Unit, UnitTagModifierEffect.MagicDamageMult));
             State.GameManager.TacticalMode.TacticalStats.RegisterHit(spell, Mathf.Min(damage, Unit.Health), attacker.Unit.Side);
             Damage(damage, true, damageType: spell.DamageType);
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, damage, chance);
@@ -2147,6 +2157,7 @@ public class Actor_Unit
         float odds = attackerScore / (attackerScore + defenderScore) * 100;
 
         odds *= Unit.TraitBoosts.FlatHitReduction;
+        odds *= TagConditionChecker.ApplyTagEffect(Unit, attacker.Unit, UnitTagModifierEffect.VoreOddsMult);
 
         if (includeSecondaries)
         {

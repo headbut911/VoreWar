@@ -392,7 +392,6 @@ public static class State
             Config.World = World.ConfigStorage;
             if (World.BuildingConfigStorage != null)
             {
-                Debug.Log("Setting not null");
                 Config.BuildConfig = World.BuildingConfigStorage;
             }
             GameManager.Menu.Options.LoadFromStored();

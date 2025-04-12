@@ -33,11 +33,11 @@ public enum UnitTagModifierCase
     AgainstTargetIf,
     AgainstTargetIfNot,
     AgainstAnyTarget, // ignores target
+    AgainstAnyIfSelfIs, // target is owner of tag
+    AgainstAnyIfSelfIsNot, // target is owner of tag
     FromTargetIf,
     FromTargetIfNot,
     FromAnyTarget, // ignores target
-    AgainstAnyIfSelfIs, // target is owner of tag
-    AgainstAnyIfSelfIsNot, // target is owner of tag
     FromAnyIfSelfIs, // target is owner of tag
     FromAnyIfSelfIsNot, // target is owner of tag
 }
@@ -55,7 +55,7 @@ public enum UnitTagModifierTarget
     IsAlly,
     HasRanged,
     HasMelee,
-    HasMagicBook,
+    HasSpells,
     IsEmpireRace,
     IsMercenaryRace,
     IsMonsterRace,
