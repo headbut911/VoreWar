@@ -627,6 +627,7 @@ static class LogUtilities
         else if (unit.Race == Race.Ki) return "Jaws";
         else if (unit.Race == Race.Selicia) return "Claws";
         else if (unit.Race == Race.Xelhilde) return "Zweihänder";
+        else if (unit.Race == Race.Olivia) return "Static Fist";
 
         else if (unit.Race == Race.Kangaroos)
         {
