@@ -394,7 +394,7 @@ public class StrategyMode : SceneBase
                 {
                     armiesToReassign.Add(army);
                 }
-                if (army.Side < 32)
+                if (army.Side < 33)
                 {
                     if (army.BannerStyle > (int)BannerTypes.VoreWar && CustomBannerTest.Sprites[army.BannerStyle - 23] != null)
                     {
