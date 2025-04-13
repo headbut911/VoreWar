@@ -116,6 +116,7 @@ static class RaceParameters
     static readonly RaceTraits Otachi;
     static readonly RaceTraits Xelhilde;
     static readonly RaceTraits BoomBunnies;
+    static readonly RaceTraits Olivia;
 
     static Unit tempUnit;
 
@@ -365,6 +366,8 @@ static class RaceParameters
                 return BoomBunnies;
             case Race.Gnolls:
                 return Gnolls;
+            case Race.Olivia:
+                return Olivia;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3403,6 +3406,37 @@ static class RaceParameters
             InnateSpells = new List<SpellTypes>() { SpellTypes.ExplosiveHug },
             RaceDescription = "Exploding rabbits of unknown origin. Many believe that Boom Bunnies are the result of some science experiment left unchecked. Despite their tendency of exploding they are exceedingly friendly and benign once tamed.",
 
+        };
+
+        Olivia = new RaceTraits()
+        {
+            BodySize = 9,
+            StomachSize = 12,
+            FavoredStat = Stat.Mind,
+            HasTail = true,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore},
+            ExpMultiplier = 1.4f,
+            PowerAdjustment = 2f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 12),
+                Dexterity = new RaceStats.StatRange(6, 12),
+                Endurance = new RaceStats.StatRange(8, 13),
+                Mind = new RaceStats.StatRange(15, 23),
+                Will = new RaceStats.StatRange(14, 18),
+                Agility = new RaceStats.StatRange(12, 16),
+                Voracity = new RaceStats.StatRange(7, 11),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Endosoma,
+                Traits.Pounce,
+                Traits.Timid,
+                Traits.Submissive,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.CrossShock, SpellTypes.ArcBolt },
+            RaceDescription = "A small fox with surprisingly strong lightning magic.",
         };
 
     }

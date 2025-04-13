@@ -282,6 +282,8 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Taraluxia;
     public Sprite[] TaraTailStrikes;
     public Sprite[] Xelhilde;
+    public Sprite[] Olivia;
+    public Sprite[] OliviaVoreSprites;
     
     [Header("Bosses")]
     public Sprite[] Abakhanskya;

@@ -956,6 +956,11 @@ public class Unit
             FixedGear = true;
             Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.XelhildeWeapon);
         }
+        else if (race == Race.Olivia)
+        {
+            FixedGear = true;
+            Items[0] = null;
+        }
         else
         {
             FixedGear = false;
