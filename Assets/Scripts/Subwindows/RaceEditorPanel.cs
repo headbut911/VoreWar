@@ -30,6 +30,8 @@ public class RaceEditorPanel : MonoBehaviour
 
     public TMP_Dropdown TraitDropdown;
     public TextMeshProUGUI TraitList;
+    public TMP_Dropdown TagDropdown;
+    public TextMeshProUGUI TagList;
 
     public Toggle UnbirthDisabled;
     public Toggle CockVoreDisabled;
@@ -55,6 +57,8 @@ public class RaceEditorPanel : MonoBehaviour
     public InputField MaxStomach;
 
     public InputField PowerAdjustment;
+    public InputField Upkeep;
+    public InputField DeployCost;
 
     public Toggle OverrideClothed;
     public Slider ClothedFraction;
@@ -88,11 +92,18 @@ public class RaceEditorPanel : MonoBehaviour
 
     public GameObject GeneralPanel;
     public GameObject TraitsPanel;
+    public GameObject TaggedTraitsPanel;
+    public GameObject UnitTagsPanel;
 
     public Button GeneralButton;
     public Button TraitsButton;
+    public Button TaggedTraitsButton;
+    public Button UnitTagsButton;
+
+    public TaggedTraitEditor taggedTraitEditor;
 
     List<Traits> CurrentTraits;
+    List<int> CurrentTags;
 
 
     Race PreviousRace = (Race)(-1);
@@ -113,6 +124,14 @@ public class RaceEditorPanel : MonoBehaviour
             {
                 TraitDropdown.options.Add(new TMP_Dropdown.OptionData(rl.name.ToString()));
             }
+            foreach (CustomTraitBoost ct in State.CustomTraitList)
+            {
+                TraitDropdown.options.Add(new TMP_Dropdown.OptionData(ct.name.ToString()));
+            }
+            foreach (ConditionalTraitContainer cdt in State.ConditionalTraitList)
+            {
+                TraitDropdown.options.Add(new TMP_Dropdown.OptionData(cdt.name.ToString()));
+            }
             foreach (Traits traitId in ((Traits[])Enum.GetValues(typeof(Traits))).OrderBy(s =>
              {
                  return s >= Traits.LightningSpeed ? "ZZZ" + s.ToString() : s.ToString();
@@ -121,6 +140,13 @@ public class RaceEditorPanel : MonoBehaviour
                 TraitDropdown.options.Add(new TMP_Dropdown.OptionData(traitId.ToString()));
             }
             TraitDropdown.RefreshShownValue();
+
+            TagDropdown.options.Clear();
+            foreach (UnitTag ut in State.UnitTagList)
+            {
+                TagDropdown.options.Add(new TMP_Dropdown.OptionData(ut.name));
+            }
+        TagDropdown.RefreshShownValue();
 
         if (FavoredStat.options?.Any() == false)
         {
@@ -210,6 +236,12 @@ public class RaceEditorPanel : MonoBehaviour
         if (State.RandomizeLists.Any(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text)){
             CurrentTraits.Add((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
         }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text)){
+            CurrentTraits.Add((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (State.ConditionalTraitList.Any(cdt => cdt.name == TraitDropdown.options[TraitDropdown.value].text)){
+            CurrentTraits.Add((Traits)State.ConditionalTraitList.Where(cdt => cdt.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
         if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
         {
             if (CurrentTraits.Contains(trait) == false)
@@ -226,6 +258,24 @@ public class RaceEditorPanel : MonoBehaviour
             {
                 RaceSettingsItem item = State.RaceSettings.Get(race);
                 item.RaceTraits.Add((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            AddTrait();
+        }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTraits.Add((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            AddTrait();
+        }
+        if (State.ConditionalTraitList.Any(cdt => cdt.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTraits.Add((Traits)State.ConditionalTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
             }
             AddTrait();
         }
@@ -248,6 +298,14 @@ public class RaceEditorPanel : MonoBehaviour
         {
             CurrentTraits.Remove((Traits)State.RandomizeLists.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
         }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Remove((Traits)State.CustomTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        if (State.ConditionalTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            CurrentTraits.Remove((Traits)State.ConditionalTraitList.Where(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
             if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
         {
             CurrentTraits.Remove(trait);
@@ -266,6 +324,24 @@ public class RaceEditorPanel : MonoBehaviour
             }
             RemoveTrait();
         }
+        if (State.CustomTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTraits.Remove((Traits)State.CustomTraitList.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            RemoveTrait();
+        }
+        if (State.ConditionalTraitList.Any(ct => ct.name == TraitDropdown.options[TraitDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTraits.Remove((Traits)State.ConditionalTraitList.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            RemoveTrait();
+        }
         if (Enum.TryParse(TraitDropdown.options[TraitDropdown.value].text, out Traits trait))
         {
             foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
@@ -276,6 +352,52 @@ public class RaceEditorPanel : MonoBehaviour
             RemoveTrait();
         }
 
+    }
+
+    public void AddTag()
+    {
+
+        if (State.UnitTagList.Any(ut => ut.id == TraitDropdown.value))
+        {
+            CurrentTags.Add(TraitDropdown.value);
+        }
+        UpdateInteractable();
+    }
+
+    public void AddTagALL()
+    {
+        if (State.UnitTagList.Any(ut => ut.name == TagDropdown.options[TagDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTags.Add((int)State.UnitTagList.Where(ut => ut.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            AddTag();
+        }
+
+    }
+
+    public void RemoveTag()
+    {
+        if (State.UnitTagList.Any(ut => ut.name == TagDropdown.options[TagDropdown.value].text))
+        {
+            CurrentTags.Remove((int)State.UnitTagList.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+        }
+        UpdateInteractable();
+    }
+
+    public void RemoveTagALL()
+    {
+        if (State.UnitTagList.Any(ut => ut.name == TagDropdown.options[TagDropdown.value].text))
+        {
+            foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
+            {
+                RaceSettingsItem item = State.RaceSettings.Get(race);
+                item.RaceTags.Remove((int)State.UnitTagList.Where(ut => ut.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            }
+            RemoveTag();
+        }
     }
 
     internal void SaveRace()
@@ -362,6 +484,7 @@ public class RaceEditorPanel : MonoBehaviour
 
 
                 item.RaceTraits = CurrentTraits.ToList();
+                item.RaceTags = CurrentTags.ToList();
                 List<VoreType> newtypes = racePar.AllowedVoreTypes.ToList();
                 if (UnbirthDisabled.isOn) newtypes.Remove(VoreType.Unbirth);
                 if (CockVoreDisabled.isOn) newtypes.Remove(VoreType.CockVore);
@@ -398,6 +521,8 @@ public class RaceEditorPanel : MonoBehaviour
                 if (item.Stats.Stomach.Roll < 1) item.Stats.Strength.Roll = 1;
 
                 item.PowerAdjustment = Convert.ToInt32(PowerAdjustment.text)/100f;
+                item.Upkeep = float.TryParse(Upkeep.text, out float outputUpkeep) ? outputUpkeep : 1;
+                item.DeployCost = float.TryParse(DeployCost.text, out float outputDeploy) ? outputDeploy : 1;
 
                 item.FemaleTraits = TextToTraitList(FemaleTraits.text);
                 item.MaleTraits = TextToTraitList(MaleTraits.text);
@@ -435,6 +560,20 @@ public class RaceEditorPanel : MonoBehaviour
                 traits.Add((Traits)rl.id);
             }
         }
+        foreach (CustomTraitBoost ct in State.CustomTraitList)
+        {
+            if (text.ToLower().Contains(ct.name.ToString().ToLower()))
+            {
+                traits.Add((Traits)ct.id);
+            }
+        }
+        foreach (ConditionalTraitContainer ct in State.ConditionalTraitList)
+        {
+            if (text.ToLower().Contains(ct.name.ToString().ToLower()))
+            {
+                traits.Add((Traits)ct.id);
+            }
+        }
         foreach (Traits trait in (Stat[])Enum.GetValues(typeof(Traits)))
         {
             if (text.ToLower().Contains(trait.ToString().ToLower()))
@@ -463,6 +602,10 @@ public class RaceEditorPanel : MonoBehaviour
                 ret += ", ";
             if (State.RandomizeLists.Any(rl => (Traits)rl.id == trait))
                 ret += State.RandomizeLists.Where(rl => (Traits)rl.id == trait).FirstOrDefault().name;  
+            else if (State.CustomTraitList.Any(ct => (Traits)ct.id == trait))
+                ret += State.CustomTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name;  
+            else if (State.ConditionalTraitList.Any(ct => (Traits)ct.id == trait))
+                ret += State.ConditionalTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name;  
             else
                 ret += trait.ToString();
         }
@@ -555,6 +698,9 @@ public class RaceEditorPanel : MonoBehaviour
             CurrentTraits = item.RaceTraits.ToList();
             if (CurrentTraits == null)
                 CurrentTraits = new List<Traits>();
+            CurrentTags = item.RaceTags;
+            if (CurrentTags == null)
+                CurrentTags = new List<int>();
             UnbirthDisabled.isOn = !item.AllowedVoreTypes.Contains(VoreType.Unbirth);
             UnbirthDisabled.interactable = racePar.AllowedVoreTypes.Contains(VoreType.Unbirth);
             CockVoreDisabled.isOn = !item.AllowedVoreTypes.Contains(VoreType.CockVore);
@@ -589,6 +735,21 @@ public class RaceEditorPanel : MonoBehaviour
                 powerAdj = racePar.PowerAdjustment;
             }
             PowerAdjustment.text = (powerAdj*100).ToString();
+
+            var depCost = item.DeployCost;
+            if (depCost == 0f)
+            {
+                depCost = racePar.DeployCost;
+            }
+            DeployCost.text = depCost.ToString();
+
+            var upMult = item.Upkeep;
+            if (upMult == 0f)
+            {
+                upMult = racePar.Upkeep;
+            }
+            Upkeep.text = upMult.ToString();
+
             FemaleTraits.text = TraitListToText(item.FemaleTraits);
             MaleTraits.text = TraitListToText(item.MaleTraits);
             HermTraits.text = TraitListToText(item.HermTraits);
@@ -694,10 +855,29 @@ public class RaceEditorPanel : MonoBehaviour
             if (State.RandomizeLists.Any(rl => (Traits)rl.id == trait))
             {
                 sb.AppendLine(State.RandomizeLists.Where(rl => (Traits)rl.id == trait).FirstOrDefault().name);
-            } else
+            } 
+            else if (State.CustomTraitList.Any(ct => (Traits)ct.id == trait))
+            {
+                sb.AppendLine(State.CustomTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name);
+            } 
+            else if (State.ConditionalTraitList.Any(ct => (Traits)ct.id == trait))
+            {
+                sb.AppendLine(State.ConditionalTraitList.Where(ct => (Traits)ct.id == trait).FirstOrDefault().name);
+            } 
+            else
                 sb.AppendLine(trait.ToString());
         }
         TraitList.text = sb.ToString();
+
+        sb = new StringBuilder();
+        sb.AppendLine("Race Tags:");
+        if (CurrentTags == null)
+            CurrentTags = new List<int>();
+        foreach (int unitTag in CurrentTags)
+        {
+            sb.AppendLine(State.UnitTagList.Where(ct => ct.id == unitTag).FirstOrDefault().name);
+        }
+        TagList.text = sb.ToString();
     }
 
     public void CloseAndSave()
@@ -773,21 +953,69 @@ public class RaceEditorPanel : MonoBehaviour
         LoadRace();
         UpdateInteractable();
     }
+    public void ModifyUnitTags()
+    {
+        State.GameManager.Menu.OpenUnitTags();
+    }
 
     public void ActivateGeneral()
     {
         GeneralPanel.SetActive(true);
         TraitsPanel.SetActive(false);
+        UnitTagsPanel.SetActive(false);
+        TaggedTraitsPanel.SetActive(false);
         GeneralButton.interactable = false;
+        TaggedTraitsButton.interactable = false;
         TraitsButton.interactable = true;
+        UnitTagsButton.interactable = true;
     }
 
     public void ActivateTraits()
     {
         GeneralPanel.SetActive(false);
         TraitsPanel.SetActive(true);
+        TaggedTraitsPanel.SetActive(false);
+        UnitTagsPanel.SetActive(false);
         GeneralButton.interactable = true;
         TraitsButton.interactable = false;
+        TaggedTraitsButton.interactable = true;
+        UnitTagsButton.interactable = true;
+    }
+    public void ActivateTags()
+    {
+        GeneralPanel.SetActive(false);
+        TraitsPanel.SetActive(false);
+        TaggedTraitsPanel.SetActive(false);
+        UnitTagsPanel.SetActive(true);
+        GeneralButton.interactable = true;
+        TraitsButton.interactable = true;
+        TaggedTraitsButton.interactable = true;
+        UnitTagsButton.interactable = false;
+    }
+    public void ActivateTaggedTraitsPanel()
+    {
+        GeneralPanel.SetActive(false);
+        TraitsPanel.SetActive(false);
+        UnitTagsPanel.SetActive(false);
+        UnitTagsPanel.SetActive(false);
+        Enum.TryParse(RaceDropdown.options[RaceDropdown.value].text, out Race race);
+        taggedTraitEditor.Open(race, CurrentTraits);
+        GeneralButton.interactable = false;
+        TraitsButton.interactable = false;
+        TaggedTraitsButton.interactable = false;
+        UnitTagsButton.interactable = true;
+    }
+    public void CloseTaggedTraitsPanel()
+    {
+        GeneralPanel.SetActive(false);
+        TraitsPanel.SetActive(true);
+        UnitTagsPanel.SetActive(false);
+        CurrentTraits = taggedTraitEditor.Close();
+        GeneralButton.interactable = true;
+        TraitsButton.interactable = false;
+        TaggedTraitsButton.interactable = true;
+        UnitTagsButton.interactable = true;
+        UpdateInteractable();
     }
 }
     

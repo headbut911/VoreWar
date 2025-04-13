@@ -120,6 +120,20 @@ class RaceSettings
         return RaceParameters.GetRaceTraits(race).StomachSize;
     }
 
+    internal float GetDeployCost(Race race)
+    {
+        if (Races.ContainsKey(race))
+            return Get(race).DeployCost;
+        return RaceParameters.GetRaceTraits(race).DeployCost;
+    }
+
+    internal float GetUpkeep(Race race)
+    {
+        if (Races.ContainsKey(race))
+            return Get(race).Upkeep;
+        return RaceParameters.GetRaceTraits(race).Upkeep;
+    }
+
     internal List<Traits> GetRaceTraits(Race? race)
     {
         if (race == null)
@@ -306,6 +320,8 @@ class RaceSettingsItem
     internal int StomachSize;
     [OdinSerialize]
     internal List<Traits> RaceTraits;
+    [OdinSerialize]
+    internal List<int> RaceTags;
 
     [OdinSerialize]
     internal List<VoreType> AllowedVoreTypes;
@@ -373,6 +389,10 @@ class RaceSettingsItem
 
     [OdinSerialize]
     internal float PowerAdjustment;
+    [OdinSerialize]
+    internal float Upkeep;
+    [OdinSerialize]
+    internal float DeployCost;
 
 
 
@@ -394,6 +414,7 @@ class RaceSettingsItem
         StomachSize = racePar.StomachSize;
 
         RaceTraits = racePar.RacialTraits.ToList();
+        RaceTags = racePar.RacialTags.ToList();
         AllowedVoreTypes = racePar.AllowedVoreTypes.ToList();
 
         SpawnRace = racePar.SpawnRace;
@@ -444,6 +465,8 @@ class RaceSettingsItem
         RaceAI = racePar.RaceAI;
 
         PowerAdjustment = racePar.PowerAdjustment;
+        Upkeep = racePar.Upkeep;
+        DeployCost = racePar.DeployCost;
 
         //DisplayGraphics = race;
 

@@ -50,12 +50,16 @@ class Prey
 
     public void UpdateEscapeRate()
     {
-        if (Actor.Surrendered || (Predator.Unit.HasTrait(Traits.Endosoma) && (Unit.FixedSide == Predator.Unit.GetApparentSide(Unit)) || Unit.GetStatusEffect(StatusEffectType.Hypnotized)?.Strength == Predator.Unit.FixedSide))
+        if (Actor.Surrendered || ((Predator.Unit.HasTrait(Traits.FriendlyStomach) || Predator.Unit.HasTrait(Traits.Endosoma)) && (Unit.FixedSide == Predator.Unit.GetApparentSide(Unit)) || Unit.GetStatusEffect(StatusEffectType.Hypnotized)?.Strength == Predator.Unit.FixedSide))
         {
             EscapeRate = 0;
             return;
         }
-
+        if (Predator.Unit.HasTrait(Traits.Endosoma) && Unit.Stamina <= 0)
+        {
+            EscapeRate = 0;
+            return;
+        }
         float predVoracity = Mathf.Pow(15 + Predator.Unit.GetStat(Stat.Voracity), 1.5f);
         float predStomach = Mathf.Pow(15 + Predator.Unit.GetStat(Stat.Stomach), 1.5f);
         float preyStrength = Mathf.Pow(15 + Unit.GetStat(Stat.Strength), 1.5f);
@@ -100,6 +104,7 @@ class Prey
 
         EscapeRate = (preyScore / (predScore + preyScore));
         EscapeRate *= Predator.Surrendered ? Config.SurrenderedPredEscapeMult : 1;
+        EscapeRate *= TagConditionChecker.ApplyTagEffect(Unit, Predator.Unit, UnitTagModifierEffect.ChanceToEscapeMult);
         //float statRatio = (float)Predator.Unit.GetStat(Stat.Stomach) / (Unit.GetStat(Stat.Strength) + Unit.GetStat(Stat.Dexterity) + Unit.GetStat(Stat.Will)) * 3;
         //float healthRatio = (Predator.Unit.Health / (float)Predator.Unit.MaxHealth) / (Unit.Health / (float)Unit.MaxHealth);
         //float timeRatio;
