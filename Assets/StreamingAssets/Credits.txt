@@ -1,29 +1,26 @@
 
 
-CREDITS:
-
+CODE:
 Original game by <b>darkevilme/WarpedRealities</b>
 Converting the game to Unity / C# and all the new features - <b>Aurilika</b>
 <i>None of us would be here if not for the amazing work by these two!
 Give your Cat/Dog units many pets and please feed your Auri!</i>
 
-Current Main Dev team:
+<u>Additional testing / bug fixing / coding by</u>
 <b>Selicia</b>
 <b>Cattitude</b>
 <b>Scarabyte</b>
+<b>Sheights</b>
 <b>CaneSugarCat</b>
 <b>Wolfwar106</b>
-<b>Sheights</b>
-<b>Flame Valxsarion</b>
+<b>Ignis Flamescale</b>
 
-
-CODE:
 Crux Race code by <b>ChemicalCrux</b>
 FeralLions setup, name pool and behavior by <b>Cattitude</b>.
 Also implemented farts and added the belly rub hand, traits, fixes and other additions to the code base.
 Animated bellies, death skull and tactical chat long improvements - <b>Baif</b>
-Animated Breasts by <b>Flame Valxsarion</b>, borrowing and repurposing code from the bellies
 Asymmetrical Breast Vore by <b>GreenSlime</b>
+Animated Breasts by <b>Ignis Flamescale</b>, borrowing and repurposing code from the bellies
 Alt vore code mostly by <b>KuroTenko</b> (breast vore, unbirth and cockvore)
 Scat V2 by <b>dddddd2</b>
 Multi-race villages code by <b>Danthebur</b>
@@ -36,23 +33,32 @@ Random Traits system implemented by <b>Cattitude</b>
 Options/Content menus makeover by <b>Scarabyte</b>
 Day/Night cycle by <b>CaneSugarCat</b>
 Metamorphosis functionality by <b>KuroTenko</b>
-Lizards AV/UB vore pose implementation by <b>Flame Valxsarion</b>
+Lizards AV/UB implementation by <b>Ignis Flamescale</b>
 Special thanks to <b>Sheights</b> for fixing the errors that the above caused
-Condoms for CV disposal implemented by <b>Flame Valxsarion</b>
+Condoms for CV disposal implemented by <b>Ignis Flamescale</b>
 Clean Disposal (Diapers) implemented by <b>Wolfwar106</b>
-NearbyEnemies variable functionality by <b>CaneSugarCat</b>
-(NEW) Wide variety of digestion tweak options by <b>CaneSugarCat</b>
-(NEW) New spells framework by <b>CaneSugarCat</b>, you absolute wizard!
-(NEW) New spells by <b>Wolfwar106</b>, you similarly absolute wizard!
-(NEW) OV/UB/TV stealing and transfers by <b>Wolfwar106</b>
-(NEW) Surrender autoheal (Goddess' Mercy) functionality by <b>Wolfwar106</b>
-
-
-<b>SOUND EFFECTS</b>
+Clean Disposal (Diapers) log messages by <b>Mocha</b>
 Almost all of the digestion sounds are from <b>chemicalcrux</b>
-(NEW) A few new vore SFX recorded by <b>Flame Valxsarion</b>. Yes, even <i>those</i> ones.
-(NEW) New spell SFX by <b>Wolfwar106</b>
+Additional Vore sound effects recorded by <b>Ignis Flamescale</b>
 Additional Sound effects obtained from <b>https://www.zapsplat.com</b>
+NearbyEnemies variable functionality by <b>CaneSugarCat</b>
+Per Race upkeep and Deployment implemented by <b>CaneSugarCat</b>
+Tagged Trait system implemented by <b>CaneSugarCat</b>
+Custom Trait system implemented by <b>CaneSugarCat</b>
+Conditional Trait system implemented by <b>CaneSugarCat</b>
+Unit Tag system implemented by <b>CaneSugarCat</b>
+Building system implemented by <b>CaneSugarCat</b>
+
+[Old Graphics (now removed, but they helped guide the early stages, and were inspirations for their replacements):
+[Base character sprites (Base model / cat /dog) by <b>Rayen</b> (I modified them to a higher resolution, and added the foxes wolves and bunnies.)
+Imps / Lamia / Clothing sprites / Fox tail / The high quality village sprites by <b>GreenSlime</b>
+Lizard sprites, Crypters sprites, base model fur patches by <b>failbird105</b>
+Slime sprites and the very large breast/cock sizes by <b>Turbotowns</b>
+Scylla sprites by <b>LLEPAICG</b>
+Harpysprites by <b>Kligor</b>
+Alternate breast sizes by <b>KuroTenko</b>
+Equine sprites by <b>Anonymouse_Equine</b>]
+Some of the remaining sprites are still by <b>darkevilme</b>, but most of the tactical and strategic ground tiles are adapted from cc0 files.]
 
 
 <b>WRITERS:</b>
@@ -60,23 +66,16 @@ A significant amount of log messages by <b>Katar</b>
 A good percentage of the town names are by <b>Katar</b>
 A significant amount of log messages by <b>HarryS</b>
 Most of the scat tactical log text from <b>InfernoTheDragon</b> or <b>Cattitude</b>
+Additional scat log messages by <b>Ignis Flamescale</b>
 CV and Condom disposal messages by <b>Cartography</b>
-(NEW) Additional scat/AV/CV/Condom log messages by <b>Flame Valxsarion</b>
 Fart log messages by <b>Cattitude</b>
-Clean Disposal (Diapers) log messages by <b>Mocha</b>
-Wide arrays of synonyms applied throughout the TacLog by <b>Flame Valxsarion</b>
+Wide array of synonyms applied throughout the TacLog by <b>Ignis Flamescale</b>
 Deer Log messages by <b>@bane of Fun#6036</b>
-(NEW) Many new vore steal/transfer messages by <b>Wolfwar106</b>
-Orca logs messages by <b>InfernoTheDragon</b>
-Feit's log messages by <b>InfernoTheDragon</b>
-Abakhanskya's log messages by <b>Abakhanskya</b>
-Cierihaka's log messages by <b>Abakhanskya</b>
-(NEW) New events by <b>WolfWar106</b>
 
 
 <b>ARTISTS:</b>
 
-<b><u>Abakhanskya:</b></u>
+<b><u>Novoyetelo:</b></u>
 Abakhanskya
 Cierihaka
 
@@ -97,11 +96,6 @@ Feral Lions
 <b><u>dddddd2:</b></u>
 Scat V2
 
-<u><b>Flame Valxsarion</b></u>
-Lizard outfits
-Lizards (UB/AV Sprites)
-Sergals
-
 <b><u>GreenSlime:</b></u>
 Cats
 Dogs
@@ -109,7 +103,7 @@ Wolves
 Foxes
 Bunnies
 Humans
-and their base update 
+and their update 
 (w/ <b>Micadi</b>)
 Asura
 Auri
@@ -123,7 +117,7 @@ Harpies
 Imps
 Kobolds
 Lamia
-Lizards (Main Sprites)
+Lizards
 Panthers
 Puca
 Scylla
@@ -159,9 +153,13 @@ Voilin
 Wyvern
 Wyvern Matrons
 
+<u><b>Ignis Flamescale</b></u>
+Lizard outfits
+Lizard UB/AV pose
+Sergals
+
 <b><u>Inferno The Dragon:</b></u>
-Feral Orcas 
-(W/ Sel bellies by <b>HarryS</b>)
+Feral Orcas
 
 <b><u>Komaru:</b></u>
 Scat sprites
@@ -176,37 +174,40 @@ Scorch
 Vision
 
 <b><u>Micadi:</b></u>
-Alraune
-Ants
-Avians
 Bees
-Cockatrice
-Deer
-Demi Bats
 Driders
-Earthworms
-Gazelle
-(NEW) Gnolls
+Alraune
 Gryphons
-Hippos
-Feit
-Feral Foxes
-Feral Lizards
-Frogs
-Komodos
-Mantis
-Merfolk
-Monitors
-(NEW) Raiju
-Sharks
-Singularity
 Slugs
-(NEW) Taraluxia (w/ anims and edits by Flame)
-Terminids
+Demi Bats
+Feral Foxes
+Hippos
+Merfolk
+Vipers
+Mantis
+Avians
+Ants
+Warrior Ants
+Frogs
+Gazelle
+Sharks
+Earthworms
+Komodos
+Feral Lizards
+Cockatrice
+Monitors
+Deer
 Terrorbirds
 Vargul
-Vipers
-Warrior Ants
+Terminids
+Feit
+Singularity
+Taraluxia
+Gnolls
+Smudger
+Raiju
+SpaceRoach
+Skapa
 
 <b><u>PotatoFarmer:</b></u>
 Dew Sprites
@@ -219,40 +220,27 @@ Goodra
 Diaper sprites
 Hamsters
 Plate Armor
-Red Wolf United Mercenaries
-
-
-[Old Graphics (now removed, but they helped guide the early stages, and were inspirations for their replacements):
-[Base character sprites (Base model / cat /dog) by <b>Rayen</b> (I modified them to a higher resolution, and added the foxes wolves and bunnies.)
-Imps / Lamia / Clothing sprites / Fox tail / The high quality village sprites by <b>GreenSlime</b>
-Lizard sprites, Crypters sprites, base model fur patches by <b>Dolly-decimal</b>
-Slime sprites and the very large breast/cock sizes by <b>Turbotowns</b>
-Scylla sprites by <b>LLEPAICG</b>
-Harpysprites by <b>Kligor</b>
-Alternate breast sizes by <b>KuroTenko</b>
-Equine sprites by <b>Anonymouse_Equine</b>]
-Some of the remaining sprites are still by <b>darkevilme</b>, but most of the tactical and strategic ground tiles are adapted from cc0 files.]
+Xelhilde
 
 
 <b>CHARACTER RIGHTS:</b>
-<i>The Unique Mercs are all OCs
-and as such we must respect their owner's wishes.
-These characters can not be used outside of this game 
+<i>These are all OCs and as such we must respect their wishes.
+These characters can <b>not</b> be used outside of this game 
 without explicit permission from their owners.</i>
 
 <b><u>Selicia:</b></u>
 Selicia
 Zera
 
-<b><u>GramzonTheDragon:</b></u>
-Feit
-(NEW)Taraluxia
+<b><u>InfernoTheDragon:</b></u>
 Zoey
+Feit
+Taraluxia
 
 <b><u>Magentasaur:</b></u>
-D.R.A.C.O.
 Scorch
 Vision
+D.R.A.C.O.
 
 <b><u>SecretlyKoishi:</b></u>
 Erin
@@ -263,26 +251,32 @@ Asura
 <b><u>Aurilika:</b></u>
 Auri
 
-<b><u>Abakhanskya:</b></u>
+<b><u>Novoyetelo:</b></u>
 Abakhanskya
 Cierihaka(?)
 
 <b><u>StarSpectre:</b></u>
 Singularity
 
+<b><u>CaneSugarCat:</b></u>
+Salix
+
+<b><u>Wolfwar106:</b></u>
+Xelhilde
+
 <b><u>GAME FREAK/Creatures Inc./Nintendo:</b></u>
 Goodra
 (Feels weird, I know.  But credit where its due.)
 
 
-<b><u><i>Note from Flame</b></u></i> 
-I know I'm missing a bunch of stuff
-as this game is over six years old now and I can
+<b><u><i>Note from Ignis</b></u></i> 
+I know I'm missing a bunch of stuff 
+as this game is seven years old now and I can 
 only recall so much information on my own.
 I'm especially unclear on who wrote what log messages
 Or who wrote the events for that matter.
-If you see anything missing that you would
-like added, please don't hesitate to contact
+If you see anything missing that you would 
+like added, please don't hesitate to contact 
 me and let me know!
 
 
