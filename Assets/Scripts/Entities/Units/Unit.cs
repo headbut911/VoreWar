@@ -132,8 +132,11 @@ public class Unit
             _maxHealth = GetStat(Stat.Endurance) * 2 + GetStat(Stat.Strength);
             if (oldMax > 1 && oldMax != _maxHealth && _healthPct > 0)
             {
+                int lowestHP = 0;
+                if ((_maxHealth - oldMax) * _healthPct > 0.4)
+                    lowestHP = 1;
                 int healthChange = (int)Math.Round((_maxHealth - oldMax) * _healthPct);
-                Health = Math.Min(_maxHealth,Math.Max(1, Health + healthChange));
+                Health = Math.Min(_maxHealth,Math.Max(lowestHP, Health + healthChange));
             }
             return (int)(_maxHealth * TraitBoosts.HealthMultiplier);
         }
