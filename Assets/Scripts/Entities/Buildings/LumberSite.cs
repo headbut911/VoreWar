@@ -48,12 +48,12 @@ class LumberSite : ConstructibleBuilding
             }
         }
 
-        if (carpenterUpgrade.built)
+        if (greenHouseUpgrade.built)
         {
             ownerResource.AddResource(ConstructionResourceType.naturalmaterials, natureWorkers);
         }
 
-        if (greenHouseUpgrade.built)
+        if (carpenterUpgrade.built)
         {
             ownerResource.AddResource(ConstructionResourceType.prefabs, carpenterWorkers);
 
