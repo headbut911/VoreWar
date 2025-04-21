@@ -201,6 +201,7 @@ public class ItemRepository
             new Weapon(name:"Orca Jaws", description:"The fearsome jaws of a killer whale", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Exploding Paw", description:"Normaly a bunny's punch would be a laughable attack, but this bunny's paws seem to explode on contact. So...", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Otachi Claws", description:"The all-powerful kaiju claws of the Otachi.", cost:4, graphic:0, damage:6, range:1),
+            new Weapon(name:"Slime Tackle", description:"Slime attack.", cost:4, graphic:0, damage:4, range:1),
         };
 
         specialItems = new List<Item>()

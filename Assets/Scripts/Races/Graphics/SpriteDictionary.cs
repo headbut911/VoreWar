@@ -242,9 +242,13 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] MiceVore1;
     public Sprite[] MiceVore2;
     public Sprite[] MiceVore3;
+
     public Sprite[] GnollClothes;
     public Sprite[] GnollsBodyParts;
     public Sprite[] GnollsVoreParts;
+
+    public Sprite[] CentaurParts;
+    public Sprite[] TaurTorso;
 
     [Header("Unique Mercenaries")]
     public Sprite[] Selicia;
@@ -339,6 +343,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] FeralOrcas;
     public Sprite[] Otachi;
     public Sprite[] BoomBunnies;
+    public Sprite[] FeralSlime;
 
 
     public Sprite[] Cake;

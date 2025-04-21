@@ -37,6 +37,7 @@ static class RaceParameters
     static readonly RaceTraits Aabayx;
     static readonly RaceTraits Mice;
     static readonly RaceTraits Gnolls;
+    static readonly RaceTraits Centaur;
     static readonly RaceTraits Succubi;
     static readonly RaceTraits Tigers;
     static readonly RaceTraits Goblins;
@@ -116,6 +117,7 @@ static class RaceParameters
     static readonly RaceTraits Otachi;
     static readonly RaceTraits Xelhilde;
     static readonly RaceTraits BoomBunnies;
+    static readonly RaceTraits FeralSlime;
 
     static Unit tempUnit;
 
@@ -365,6 +367,10 @@ static class RaceParameters
                 return BoomBunnies;
             case Race.Gnolls:
                 return Gnolls;
+            case Race.Centaur:
+                return Centaur;
+            case Race.FeralSlime:
+                return FeralSlime;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -1021,6 +1027,21 @@ static class RaceParameters
                 Traits.Biter,
             },
             RaceDescription = "A race of brutish and cunning beings hailing from the mountainous regions of the east.  Normally tribal, these hyena-like mammals are prone to in-fighting and cannibalism over petty disputes-- such as whose shadow is larger.  The Gnolls were most often seen around mercenary camps in small packs.  Much to the dismay of the other nations of this world, however, a powerful leader has appeared and managed to amass them into a warlike nation of their own.",
+        };
+
+        Centaur = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 18,
+            HasTail = true,
+            FavoredStat = Stat.Endurance,
+            RacialTraits = new List<Traits>()
+            {
+                Traits.DualStomach,
+                Traits.Charge,
+                Traits.Biter,
+            },
+            RaceDescription = "Man-Horse thing.",
         };
 
         Succubi = new RaceTraits()
@@ -3403,6 +3424,20 @@ static class RaceParameters
             InnateSpells = new List<SpellTypes>() { SpellTypes.ExplosiveHug },
             RaceDescription = "Exploding rabbits of unknown origin. Many believe that Boom Bunnies are the result of some science experiment left unchecked. Despite their tendency of exploding they are exceedingly friendly and benign once tamed.",
 
+        };
+
+        FeralSlime = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 18,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral},
+            FavoredStat = Stat.Endurance,
+            RacialTraits = new List<Traits>()
+            {
+                Traits.BoggingSlime,
+                Traits.Ravenous,
+            },
+            RaceDescription = "Bubble.",
         };
 
     }
