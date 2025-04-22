@@ -112,7 +112,7 @@ class StrategicBuildingContractor
         {
             locs.Remove(mer.Position);
         }
-        foreach (var loc in locs)
+        foreach (var loc in locs.ToList())
         {
             if (!StrategicTileInfo.CanWalkInto(State.World.Tiles[loc.x, loc.y]))
             {
