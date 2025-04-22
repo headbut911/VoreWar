@@ -310,10 +310,4 @@ class Centaur : TaurHumanHalf
             return State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
         }
     }
-    static ColorSwapPalette FurryColor(Actor_Unit actor)
-    {
-        if (actor.Unit.Furry)
-            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedFur, actor.Unit.AccessoryColor);
-        return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, actor.Unit.SkinColor);
-    }
 }

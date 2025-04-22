@@ -3428,16 +3428,29 @@ static class RaceParameters
 
         FeralSlime = new RaceTraits()
         {
-            BodySize = 12,
-            StomachSize = 18,
+            BodySize = 7,
+            StomachSize = 20,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral},
             FavoredStat = Stat.Endurance,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 10),
+                Dexterity = new RaceStats.StatRange(2, 4),
+                Endurance = new RaceStats.StatRange(10, 15),
+                Mind = new RaceStats.StatRange(6, 8),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(5, 8),
+                Voracity = new RaceStats.StatRange(10, 18),
+                Stomach = new RaceStats.StatRange(10, 15),
+            },
             RacialTraits = new List<Traits>()
             {
                 Traits.BoggingSlime,
-                Traits.Ravenous,
+                Traits.SoftBody,
+                Traits.GelatinousBody,
+
             },
-            RaceDescription = "Bubble.",
+            RaceDescription = "One of the most basic monsters. The humble slime pursues anything that moves. They may or may not taste like assorted friuts.",
         };
 
     }

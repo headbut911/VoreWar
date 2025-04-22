@@ -562,6 +562,9 @@ public class StrategyMode : SceneBase
                             case StrategicDoodadType.SpawnerBoomBunnies:
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.BoomBunnies));
                                 break;
+                            case StrategicDoodadType.SpawnerFeralSlime:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.FeralSlime));
+                                break;
                         }
                     }
                 }
@@ -2752,7 +2755,7 @@ public class StrategyMode : SceneBase
 
         if (ActingEmpire.StrategicAI != null)
         {
-            AI(Time.deltaTime);
+                AI(Time.deltaTime);
         }
         else
         {
