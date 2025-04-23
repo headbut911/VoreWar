@@ -8,7 +8,7 @@ using UnityEngine;
 class TaurHumanHalf : BlankSlate
 {
     //readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.CentaurParts;
-    bool oversize = false;
+    internal bool oversize = false;
     public TaurHumanHalf()
     {
         EyeTypes = 6;
@@ -435,7 +435,7 @@ class TaurHumanHalf : BlankSlate
             return State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
         }
     }
-    static ColorSwapPalette FurryColor(Actor_Unit actor)
+    internal static ColorSwapPalette FurryColor(Actor_Unit actor)
     {
         if (actor.Unit.Furry)
             return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedFur, actor.Unit.AccessoryColor);

@@ -1031,17 +1031,17 @@ static class RaceParameters
 
         Centaur = new RaceTraits()
         {
-            BodySize = 12,
-            StomachSize = 18,
+            BodySize = 20,
+            StomachSize = 20,
             HasTail = true,
             FavoredStat = Stat.Endurance,
             RacialTraits = new List<Traits>()
             {
                 Traits.DualStomach,
                 Traits.Charge,
-                Traits.Biter,
+                Traits.AwkwardShape,
             },
-            RaceDescription = "Man-Horse thing.",
+            RaceDescription = "It's a Man-Horse thing!",
         };
 
         Succubi = new RaceTraits()

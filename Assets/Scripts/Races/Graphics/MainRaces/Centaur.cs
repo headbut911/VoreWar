@@ -8,13 +8,13 @@ using UnityEngine;
 class Centaur : TaurHumanHalf
 {
     //readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.CentaurParts;
-    bool oversize = false;
+    int HumanBodyOffsetX = 25;
+    int HumanBodyOffsetY = 49;
     public Centaur()
     {
         AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.FeralHorseSkin); // Main body, legs, head, tail upper
         GentleAnimation = true;
         WeightGainDisabled = true;
-        CanBeGender = new List<Gender>() { Gender.Male, Gender.Female, Gender.Hermaphrodite };
         TailTypes = 6;
 
         Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
@@ -30,6 +30,21 @@ class Centaur : TaurHumanHalf
         SecondaryBelly = new SpriteExtraInfo(7, SecondaryBellySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor)); // Second Stomach
         Dick = new SpriteExtraInfo(4, DickSprite, WhiteColored);
         Balls = new SpriteExtraInfo(3, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor));
+
+        AllowedMainClothingTypes = new List<MainClothing>()
+        {
+            new GenericTop1(),
+            new GenericTop2(),
+            new GenericTop3(),
+            new GenericTop4(),
+            new GenericTop5(),
+            new GenericTop6(),
+            new GenericTop7(),
+            new MaleTop(),
+            new MaleTop3(),
+            new MaleTop5(),
+            new MaleTop6(),
+        };
     }
     internal override int BreastSizes => 8;
 
@@ -41,7 +56,7 @@ class Centaur : TaurHumanHalf
 
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
-        OffsetAllHumanParts(actor, 25, 49);
+        OffsetAllHumanParts(actor, HumanBodyOffsetX, HumanBodyOffsetY);
     }
 
     protected override Sprite AccessorySprite(Actor_Unit actor) // Mane
@@ -308,6 +323,682 @@ class Centaur : TaurHumanHalf
         else
         {
             return State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+        }
+    }
+
+
+
+    class GenericTop1 : MainClothing
+    {
+        public GenericTop1()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[57];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60001;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Centaur.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[56];
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[0 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+            clothing2.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing2.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+            clothing3.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing3.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+    class GenericTop2 : MainClothing
+    {
+        public GenericTop2()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[58];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60002;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Centaur.oversize)
+            {
+                clothing1.GetSprite = (s) => null;
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[8 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+            clothing2.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing2.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+            clothing3.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing3.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+    class GenericTop3 : MainClothing
+    {
+        public GenericTop3()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[60];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60003;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Centaur.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[59];
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[16 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+            clothing2.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing2.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+            clothing3.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing3.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+    class GenericTop4 : MainClothing
+    {
+        public GenericTop4()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[62];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60004;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Centaur.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[61];
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[24 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+            clothing2.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing2.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+            clothing3.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing3.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+    class GenericTop5 : MainClothing
+    {
+        public GenericTop5()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[64];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60005;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Centaur.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[63];
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[32 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+            clothing2.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing2.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+            clothing3.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing3.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+    class GenericTop6 : MainClothing
+    {
+        public GenericTop6()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[66];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60006;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Centaur.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[65];
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[40 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+            clothing2.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing2.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+            clothing3.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing3.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+    class GenericTop7 : MainClothing
+    {
+        public GenericTop7()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[68];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60007;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Centaur.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[67];
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[48 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+            clothing2.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing2.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+            clothing3.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing3.YOffset = (Races.Centaur.HumanBodyOffsetY) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop : MainClothing
+    {
+        public MaleTop()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[5];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            Type = 60008;
+            FixedColor = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[0];
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop2 : MainClothing
+    {
+        public MaleTop2()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[5];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            Type = 60009;
+            FixedColor = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.HasBelly)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[4];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[1 + actor.Unit.BodySize];
+            }
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop3 : MainClothing
+    {
+        public MaleTop3()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[11];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 60010;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[6];
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop4 : MainClothing
+    {
+        public MaleTop4()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[11];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 60011;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.HasBelly)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[10];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[7 + actor.Unit.BodySize];
+            }
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop5 : MainClothing
+    {
+        public MaleTop5()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[14];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 60012;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.Unit.BodySize == 2)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[13];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[12];
+            }
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop6 : MainClothing
+    {
+        public MaleTop6()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[16];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            Type = 60013;
+            FixedColor = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[15];
+
+            clothing1.XOffset = (Races.Centaur.HumanBodyOffsetX) * .625f;
+            clothing1.YOffset = (Races.Centaur.HumanBodyOffsetY - 1) * .625f;
+
+            base.Configure(sprite, actor);
         }
     }
 }
