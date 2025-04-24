@@ -35,7 +35,6 @@
     Mice = 30,
     MatronsMinions = 31,
     Gnolls = 32,
-    Centaur = 33,
 
     Succubi = 50,
     Tigers = 51,
@@ -52,6 +51,7 @@
     Youko = 62,
     Hamsters = 63,
     RwuMercenaries = 64,
+    Centaur = 65,
 
     Vagrants = 100,
     Serpents = 101,

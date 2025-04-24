@@ -37,7 +37,6 @@
     static internal Abakhanskya Abakhanskya = new Abakhanskya();
     static internal MatronsMinions MatronsMinions = new MatronsMinions();
     static internal Gnolls Gnolls = new Gnolls();
-    static internal Centaur Centaur = new Centaur();
 
     static internal Tigers Tigers = new Tigers();
     static internal Goblins Goblins = new Goblins();
@@ -52,6 +51,7 @@
     static internal Vargul Vargul = new Vargul();
     static internal Hamsters Hamsters = new Hamsters();
     static internal RwuMercenaries RwuMercenaries = new RwuMercenaries();
+    static internal Centaur Centaur = new Centaur();
 
     static internal Vagrants Vagrants = new Vagrants();
     static internal Serpents Serpents = new Serpents();
