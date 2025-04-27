@@ -5104,10 +5104,15 @@ Turns: {currentTurn}
                     State.World.Stats?.SoldiersLost(1, unit.Side);
                 }
             }
-            while (StrategicUtilities.ArmyCanFitUnit(army, actors[0].Unit) && actors.Any())
+            if (actors.Any())
             {
-                army.Units.Add(actors[0].Unit);
-                actors.RemoveAt(0);
+                while (StrategicUtilities.ArmyCanFitUnit(army, actors[0].Unit))
+                {
+                    army.Units.Add(actors[0].Unit);
+                    actors.RemoveAt(0);
+                    if (!army.Units.Any())
+                        break;
+                }
             }
             while (StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last()))
             {
