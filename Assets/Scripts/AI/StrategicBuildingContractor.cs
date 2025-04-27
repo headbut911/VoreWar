@@ -76,8 +76,8 @@ class StrategicBuildingContractor
         {
             return;
         }
-        // Stashes 0% to 30% of current gold
-        int transact = (empire.Gold / 10) * State.Rand.Next(4);
+        // Stashes 10% of current gold and 20% of income
+        int transact = (empire.Gold / 10) + empire.Income / 5;
         //Debug.Log($"Adding {transact} to bank.");
         TransactGold(transact);
     }
