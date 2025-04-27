@@ -5114,6 +5114,8 @@ Turns: {currentTurn}
                 var last = army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last();
                 army.Units.Remove(last);
                 actors.Add(new Actor_Unit(last));
+                if (!army.Units.Any())
+                    break;
             }
         }
 
