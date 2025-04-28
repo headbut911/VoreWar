@@ -5110,7 +5110,7 @@ Turns: {currentTurn}
                 {
                     army.Units.Add(actors[0].Unit);
                     actors.RemoveAt(0);
-                    if (!army.Units.Any())
+                    if (!actors.Any())
                         break;
                 }
             }

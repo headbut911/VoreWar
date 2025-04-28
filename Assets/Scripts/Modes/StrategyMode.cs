@@ -2058,7 +2058,7 @@ public class StrategyMode : SceneBase
             ActingEmpire.KnockedOut = true;
             if (ActingEmpire.Buildings.Any())
             {
-                foreach (var item in ActingEmpire.Buildings)
+                foreach (var item in ActingEmpire.Buildings.ToList())
                 {
                     item.Owner = null;
                     ActingEmpire.Buildings.Remove(item);
