@@ -1387,6 +1387,8 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Dexterity,
+            DeployCost = 1,
+            Upkeep = 6f,
             PowerAdjustment = 1.1f,
             RaceStats = new RaceStats()
             {
@@ -3356,6 +3358,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal},
             ExpMultiplier = 1.4f,
             PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 13f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(23, 28),
@@ -3386,6 +3390,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth},
             ExpMultiplier = 1f,
             PowerAdjustment = .75f,
+            DeployCost = 1,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 10),
@@ -3417,6 +3423,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore},
             ExpMultiplier = 1.4f,
             PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 9f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 12),
