@@ -805,6 +805,23 @@ public class PredatorComponent
         return target;
     }
 
+    public void FreeRandomPreyNow()//Code for prey's hex spell. Selects a random living prey that a pred has consumed and releases them, prioritses hostiles units to the pred.
+    {
+        List<Prey> preyUnits = new List<Prey>();
+        preyUnits.AddRange(prey);
+        //var alives = preyUnits.Where(s => s.Unit.IsDead == false).ToArray();
+        var alives = preyUnits.Where(s => s.Unit.IsDead == false && TacticalUtilities.TreatAsHostile(actor, s.Actor)).ToArray();
+        if (alives.Length == 0)
+            alives = preyUnits.Where(s => s.Unit.IsDead == false).ToArray();
+        var target = alives[State.Rand.Next(alives.Length)];
+        State.GameManager.TacticalMode.TacticalStats.RegisterFreed(unit.Side);
+        if (State.Rand.Next(2) == 0)
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> succumbs to the hex and releases <b>{target.Unit.Name}</b>.");
+        else
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"The effects from the hex overwhelms <b>{actor.Unit.Name}</b> causing {LogUtilities.GPPHim(actor.Unit)} to release <b>{target.Unit.Name}</b>.");
+        target.Predator.PredatorComponent.FreePrey(target, true);
+    }
+
     internal void FreeGreatEscapePrey(Prey preyUnit)
     {
         TacticalUtilities.Log.LogGreatEscapeFlee(unit, preyUnit.Unit, Location(preyUnit));

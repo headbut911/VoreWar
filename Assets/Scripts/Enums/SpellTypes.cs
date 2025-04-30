@@ -52,6 +52,7 @@
     CrossShock = 44,
     JoltCrash = 45,
     ArcBolt = 46,
+    PreysHex = 47,
 
     AlraunePuff = 70,
     Web = 71,
