@@ -517,6 +517,17 @@ public class TacticalMode : SceneBase
             actor.allowedToDefect = !actor.DefectedThisTurn && TacticalUtilities.GetPreferredSide(actor.Unit, actor.Unit.Side, actor.Unit.Side == attackerSide ? defenderSide : attackerSide) != actor.Unit.Side;
             actor.DefectedThisTurn = false;
             actor.Unit.Heal(actor.Unit.GetLeaderBonus() * 3); // mainly for the new Stat boosts => maxHealth option, but eh why not have it for everyone anyway?
+            foreach (var item in actor.Unit.Items)
+            {
+                if (item is Equipment)
+                {
+                    Equipment equipment = item as Equipment;
+                    if (equipment.Activators.Contains(EquipmentActivator.OnTacticalTurnStart))
+                    {
+                        equipment.EquipmentFunction.Invoke(actor.Unit, null);
+                    }
+                }
+            }
         }
 
 
@@ -4472,7 +4483,7 @@ Turns: {currentTurn}
 
         if (remainingAttackers == 0 || remainingDefenders == 0)
         {
-            foreach (Actor_Unit actor in units)
+            foreach (Actor_Unit actor in units.ToList())
             {
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && (actor.TurnsSinceLastDamage < 2 & !actor.Unit.HasTrait(Traits.CurseOfImmolation))) return false;
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && !actor.Unit.hiddenFixedSide && units.Any(u => u.Targetable && !u.Fled && u.Visible && TacticalUtilities.TreatAsHostile(actor, u))) return false;
@@ -4587,6 +4598,18 @@ Turns: {currentTurn}
                 if (actor.Unit.TraitBoosts.HealthRegen > 0 && actor.Unit.IsDead == false)
                     actor.Unit.HealPercentage(1);
                 actor.Unit.StatusEffects.Clear();
+                foreach (var item in actor.Unit.Items)
+                {
+                    if (item is Equipment)
+                    {
+                        Equipment equipment = item as Equipment;
+                        if (equipment.Activators.Contains(EquipmentActivator.OnTacticalBattleEnd))
+                        {
+                            equipment.EquipmentFunction.Invoke(actor.Unit, null);
+                        }
+                    }
+                }
+
             }
             BattleReviewText.SetActive(false);
             foreach (Actor_Unit actor in units.ToList())

@@ -1570,6 +1570,18 @@ public class Actor_Unit
             }
         }
 
+        foreach (var item in Unit.Items)
+        {
+            if (item is Equipment)
+            {
+                Equipment equipment = item as Equipment;
+                if (equipment.Activators.Contains(EquipmentActivator.OnAttack))
+                {
+                    equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                }
+            }
+        }
+
         float origDamageMult = damageMultiplier;
         bool grazebool = false;
         bool critbool = false;
@@ -1646,6 +1658,18 @@ public class Actor_Unit
                 State.GameManager.SoundManager.PlaySwing(this);
                 if (target.Defend(this, ref damage, true, out float chance, canKill))
                 {
+                    foreach (var item in Unit.Items)
+                    {
+                        if (item is Equipment)
+                        {
+                            Equipment equipment = item as Equipment;
+                            if (equipment.Activators.Contains(EquipmentActivator.OnHit))
+                            {
+                                equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                            }
+                        }
+                    }
+
                     foreach (IAttackStatusEffect trait in Unit.AttackStatusEffects)
                     {
                         trait.ApplyStatusEffect(this, target, true, damage);
@@ -1689,6 +1713,17 @@ public class Actor_Unit
                     TacticalUtilities.Log.RegisterMiss(Unit, target.Unit, weapon, chance);
                     if (Unit.HasTrait(Traits.Tenacious))
                         Unit.AddTenacious();
+                    foreach (var item in Unit.Items)
+                    {
+                        if (item is Equipment)
+                        {
+                            Equipment equipment = item as Equipment;
+                            if (equipment.Activators.Contains(EquipmentActivator.OnMiss))
+                            {
+                                equipment.EquipmentFunction.Invoke(Unit, null);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1715,6 +1750,18 @@ public class Actor_Unit
                 int damage = WeaponDamageAgainstTarget(target, false, multiplier: damageMultiplier, forceBite);
                 if (target.Defend(this, ref damage, false, out float chance, canKill))
                 {
+                    foreach (var item in Unit.Items)
+                    {
+                        if (item is Equipment)
+                        {
+                            Equipment equipment = item as Equipment;
+                            if (equipment.Activators.Contains(EquipmentActivator.OnHit))
+                            {
+                                equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                            }
+                        }
+                    }
+
                     foreach (IAttackStatusEffect trait in Unit.AttackStatusEffects)
                     {
                         trait.ApplyStatusEffect(this, target, false, damage);
@@ -1775,6 +1822,17 @@ public class Actor_Unit
                             Unit.BodyAccentType2 = 0;
                         else
                             Unit.BodyAccentType2++;
+                    }
+                    foreach (var item in Unit.Items)
+                    {
+                        if (item is Equipment)
+                        {
+                            Equipment equipment = item as Equipment;
+                            if (equipment.Activators.Contains(EquipmentActivator.OnMiss))
+                            {
+                                equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                            }
+                        }
                     }
                 }
             }
@@ -2063,6 +2121,18 @@ public class Actor_Unit
 
     public bool Defend(Actor_Unit attacker, ref int damage, bool ranged, out float chance, bool canKill = true)
     {
+        foreach (var item in Unit.Items)
+        {
+            if (item is Equipment)
+            {
+                Equipment equipment = item as Equipment;
+                if (equipment.Activators.Contains(EquipmentActivator.WhenAttacked))
+                {
+                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit);
+                }
+            }
+        }
+
         if (TacticalUtilities.SneakAttackCheck(attacker.Unit, Unit))
         {
             attacker.Unit.hiddenFixedSide = false;
@@ -2088,10 +2158,36 @@ public class Actor_Unit
                 Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 3, 3);
                 Unit.ApplyStatusEffect(StatusEffectType.Shaken, .2f, 2);
             }
+
+            foreach (var item in Unit.Items)
+            {
+                if (item is Equipment)
+                {
+                    Equipment equipment = item as Equipment;
+                    if (equipment.Activators.Contains(EquipmentActivator.WhenHit))
+                    {
+                        equipment.EquipmentFunction.Invoke(Unit, attacker.Unit);
+                    }
+                }
+            }
+
             return true;
         }
         else
             UnitSprite.DisplayDamage(0);
+
+        foreach (var item in Unit.Items)
+        {
+            if (item is Equipment)
+            {
+                Equipment equipment = item as Equipment;
+                if (equipment.Activators.Contains(EquipmentActivator.WhenMissed))
+                {
+                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit);
+                }
+            }
+        }
+
         return false;
     }
 
@@ -2517,6 +2613,18 @@ public class Actor_Unit
     public void NewTurn()
     {
         AIAvoidEat--;
+
+        foreach (var item in Unit.Items)
+        {
+            if (item is Equipment)
+            {
+                Equipment equipment = item as Equipment;
+                if (equipment.Activators.Contains(EquipmentActivator.OnTacticalTurnStart))
+                {
+                    equipment.EquipmentFunction.Invoke(Unit, null);
+                }
+            }
+        }
 
         NewTurnPreMPTraits();
 
