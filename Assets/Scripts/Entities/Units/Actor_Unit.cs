@@ -1570,18 +1570,6 @@ public class Actor_Unit
             }
         }
 
-        foreach (var item in Unit.Items)
-        {
-            if (item is Equipment)
-            {
-                Equipment equipment = item as Equipment;
-                if (equipment.Activators.Contains(EquipmentActivator.OnAttack))
-                {
-                    equipment.EquipmentFunction.Invoke(Unit, target.Unit, null);
-                }
-            }
-        }
-
         float origDamageMult = damageMultiplier;
         bool grazebool = false;
         bool critbool = false;
@@ -1655,20 +1643,12 @@ public class Actor_Unit
                 int remainingHealth = target.Unit.Health;
                 int damage = WeaponDamageAgainstTarget(target, true, multiplier: damageMultiplier);
 
+                EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnRangedAttack, [Unit, target.Unit, damage]);
+
                 State.GameManager.SoundManager.PlaySwing(this);
                 if (target.Defend(this, ref damage, true, out float chance, canKill))
                 {
-                    foreach (var item in Unit.Items)
-                    {
-                        if (item is Equipment)
-                        {
-                            Equipment equipment = item as Equipment;
-                            if (equipment.Activators.Contains(EquipmentActivator.OnHit))
-                            {
-                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, null);
-                            }
-                        }
-                    }
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnRangedHit, [Unit, target.Unit, damage]);
 
                     foreach (IAttackStatusEffect trait in Unit.AttackStatusEffects)
                     {
@@ -1713,17 +1693,9 @@ public class Actor_Unit
                     TacticalUtilities.Log.RegisterMiss(Unit, target.Unit, weapon, chance);
                     if (Unit.HasTrait(Traits.Tenacious))
                         Unit.AddTenacious();
-                    foreach (var item in Unit.Items)
-                    {
-                        if (item is Equipment)
-                        {
-                            Equipment equipment = item as Equipment;
-                            if (equipment.Activators.Contains(EquipmentActivator.OnMiss))
-                            {
-                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, null);
-                            }
-                        }
-                    }
+
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnRangedMiss, [Unit, target.Unit, damage]);
+
                 }
             }
         }
@@ -1748,19 +1720,13 @@ public class Actor_Unit
                     Movement = 0;
                 int remainingHealth = target.Unit.Health;
                 int damage = WeaponDamageAgainstTarget(target, false, multiplier: damageMultiplier, forceBite);
+
+                EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeAttack, [Unit, target.Unit, damage]);
+
                 if (target.Defend(this, ref damage, false, out float chance, canKill))
                 {
-                    foreach (var item in Unit.Items)
-                    {
-                        if (item is Equipment)
-                        {
-                            Equipment equipment = item as Equipment;
-                            if (equipment.Activators.Contains(EquipmentActivator.OnHit))
-                            {
-                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, damage);
-                            }
-                        }
-                    }
+
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeHit, [Unit, target.Unit, damage]);
 
                     foreach (IAttackStatusEffect trait in Unit.AttackStatusEffects)
                     {
@@ -1823,17 +1789,9 @@ public class Actor_Unit
                         else
                             Unit.BodyAccentType2++;
                     }
-                    foreach (var item in Unit.Items)
-                    {
-                        if (item is Equipment)
-                        {
-                            Equipment equipment = item as Equipment;
-                            if (equipment.Activators.Contains(EquipmentActivator.OnMiss))
-                            {
-                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, damage);
-                            }
-                        }
-                    }
+
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeMiss, [Unit, target.Unit, damage]);
+                   
                 }
             }
 
@@ -1995,9 +1953,13 @@ public class Actor_Unit
         }
         if (Unit.IsDead)
             return false;
+
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenTargetedBySpellDamage, [Unit, attacker.Unit, damage]);
+
         if (DefendSpellCheck(spell, attacker, out float chance))
         {
             damage = (int)(damage * attacker.Unit.TraitBoosts.Outgoing.MagicDamage * Unit.TraitBoosts.Incoming.MagicDamage * TagConditionChecker.ApplyTagEffect(attacker.Unit, Unit, UnitTagModifierEffect.MagicDamageMult));
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenHitBySpellDamage, [Unit, attacker.Unit, damage]);
             State.GameManager.TacticalMode.TacticalStats.RegisterHit(spell, Mathf.Min(damage, Unit.Health), attacker.Unit.Side);
             Damage(damage, true, damageType: spell.DamageType);
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, damage, chance);
@@ -2031,6 +1993,7 @@ public class Actor_Unit
             UnitSprite.DisplayDamage(0);
             State.GameManager.TacticalMode.Log.RegisterSpellMiss(attacker.Unit, Unit, spell.SpellType, chance);
             attacker.Unit.GiveScaledExp(.25f * Unit.ExpMultiplier, Unit.Level - Unit.Level);
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenMissedBySpellDamage, [Unit, attacker.Unit, damage]);
         }
 
         return false;
@@ -2055,10 +2018,15 @@ public class Actor_Unit
                 attacker.sidesAttackedThisBattle = new List<int>();
             attacker.sidesAttackedThisBattle.Add(Unit.GetApparentSide());
         }
+
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenTargetedBySpellStatus, [Unit, attacker.Unit, spell]);
+
+
         if (DefendSpellCheck(spell, attacker, out float chance, sneakAttack ? -0.3f : 0f, stat))
         {
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, 0, chance);
             Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this));
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenHitBySpellStatus, [Unit, attacker.Unit, spell]);
             if (spell.Id == "charm")
             {
                 UnitSprite.DisplayCharm();
@@ -2114,6 +2082,7 @@ public class Actor_Unit
             }
 
             State.GameManager.TacticalMode.Log.RegisterSpellMiss(attacker.Unit, Unit, spell.SpellType, chance);
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenMissedBySpellStatus, [Unit, attacker.Unit, spell]);
         }
 
         return false;
@@ -2121,17 +2090,7 @@ public class Actor_Unit
 
     public bool Defend(Actor_Unit attacker, ref int damage, bool ranged, out float chance, bool canKill = true)
     {
-        foreach (var item in Unit.Items)
-        {
-            if (item is Equipment)
-            {
-                Equipment equipment = item as Equipment;
-                if (equipment.Activators.Contains(EquipmentActivator.WhenAttacked))
-                {
-                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit, damage);
-                }
-            }
-        }
+        EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedAttacked : EquipmentActivator.WhenMeleeAttacked, [Unit, attacker.Unit, damage]);
 
         if (TacticalUtilities.SneakAttackCheck(attacker.Unit, Unit))
         {
@@ -2159,34 +2118,14 @@ public class Actor_Unit
                 Unit.ApplyStatusEffect(StatusEffectType.Shaken, .2f, 2);
             }
 
-            foreach (var item in Unit.Items)
-            {
-                if (item is Equipment)
-                {
-                    Equipment equipment = item as Equipment;
-                    if (equipment.Activators.Contains(EquipmentActivator.WhenHit))
-                    {
-                        equipment.EquipmentFunction.Invoke(Unit, attacker.Unit, damage);
-                    }
-                }
-            }
+            EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedHit : EquipmentActivator.WhenMeleeHit, [Unit, attacker.Unit, damage]);
 
             return true;
         }
         else
             UnitSprite.DisplayDamage(0);
 
-        foreach (var item in Unit.Items)
-        {
-            if (item is Equipment)
-            {
-                Equipment equipment = item as Equipment;
-                if (equipment.Activators.Contains(EquipmentActivator.WhenMissed))
-                {
-                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit, damage);
-                }
-            }
-        }
+        EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedMissed : EquipmentActivator.WhenMeleeMissed, [Unit, attacker.Unit, damage]);
 
         return false;
     }
@@ -2613,18 +2552,7 @@ public class Actor_Unit
     public void NewTurn()
     {
         AIAvoidEat--;
-
-        foreach (var item in Unit.Items)
-        {
-            if (item is Equipment)
-            {
-                Equipment equipment = item as Equipment;
-                if (equipment.Activators.Contains(EquipmentActivator.OnTacticalTurnStart))
-                {
-                    equipment.EquipmentFunction.Invoke(Unit, null, null);
-                }
-            }
-        }
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnTacticalTurnStart, [Unit, null, null]);
 
         NewTurnPreMPTraits();
 
@@ -3153,6 +3081,8 @@ public class Actor_Unit
             return;
         State.GameManager.SoundManager.PlaySpellCast(spell, this);
 
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnSpellCast, [Unit, target, spell]);
+
         if (target != null)
         {
             if (spell.AreaOfEffect > 0 && spell.AOEType == AreaOfEffectType.Full)
@@ -3247,6 +3177,8 @@ public class Actor_Unit
         bool hit = false;
 
         State.GameManager.SoundManager.PlaySpellCast(spell, this);
+
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnSpellCast, [Unit, target, spell]);
 
         if (target != null)
         {

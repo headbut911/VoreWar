@@ -517,17 +517,8 @@ public class TacticalMode : SceneBase
             actor.allowedToDefect = !actor.DefectedThisTurn && TacticalUtilities.GetPreferredSide(actor.Unit, actor.Unit.Side, actor.Unit.Side == attackerSide ? defenderSide : attackerSide) != actor.Unit.Side;
             actor.DefectedThisTurn = false;
             actor.Unit.Heal(actor.Unit.GetLeaderBonus() * 3); // mainly for the new Stat boosts => maxHealth option, but eh why not have it for everyone anyway?
-            foreach (var item in actor.Unit.Items)
-            {
-                if (item is Equipment)
-                {
-                    Equipment equipment = item as Equipment;
-                    if (equipment.Activators.Contains(EquipmentActivator.OnTacticalTurnStart))
-                    {
-                        equipment.EquipmentFunction.Invoke(actor.Unit, armies[actor.Unit.Side], null);
-                    }
-                }
-            }
+            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, [actor.Unit, armies[actor.Unit.Side], null]);
+  
         }
 
 
@@ -4598,17 +4589,8 @@ Turns: {currentTurn}
                 if (actor.Unit.TraitBoosts.HealthRegen > 0 && actor.Unit.IsDead == false)
                     actor.Unit.HealPercentage(1);
                 actor.Unit.StatusEffects.Clear();
-                foreach (var item in actor.Unit.Items)
-                {
-                    if (item is Equipment)
-                    {
-                        Equipment equipment = item as Equipment;
-                        if (equipment.Activators.Contains(EquipmentActivator.OnTacticalBattleEnd))
-                        {
-                            equipment.EquipmentFunction.Invoke(actor.Unit, armies[actor.Unit.Side], null);
-                        }
-                    }
-                }
+
+                EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, [actor.Unit, armies[actor.Unit.Side], null]);
 
             }
             BattleReviewText.SetActive(false);

@@ -194,17 +194,9 @@ public class Army
                 else
                     unit.BaseScale = Math.Max(1, unit.BaseScale * ((1 - Config.GrowthDecayOffset) - Config.GrowthDecayIncreaseRate * (unit.BaseScale - 1)));  // default decayIncreaseRate = 0.04f
             }
-            foreach (var item in unit.Items)
-            {
-                if (item is Equipment)
-                {
-                    Equipment equipment = item as Equipment;
-                    if (equipment.Activators.Contains(EquipmentActivator.OnStrategicTurnStart))
-                    {
-                        equipment.EquipmentFunction.Invoke(unit, this, null);
-                    }
-                }
-            }
+
+            EquipmentFunctions.CheckEquipment(unit, EquipmentActivator.OnStrategicTurnStart, [unit, this, null]);
+
         }
         RefreshMovementMode();
 
