@@ -1577,7 +1577,7 @@ public class Actor_Unit
                 Equipment equipment = item as Equipment;
                 if (equipment.Activators.Contains(EquipmentActivator.OnAttack))
                 {
-                    equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                    equipment.EquipmentFunction.Invoke(Unit, target.Unit, null);
                 }
             }
         }
@@ -1665,7 +1665,7 @@ public class Actor_Unit
                             Equipment equipment = item as Equipment;
                             if (equipment.Activators.Contains(EquipmentActivator.OnHit))
                             {
-                                equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, null);
                             }
                         }
                     }
@@ -1720,7 +1720,7 @@ public class Actor_Unit
                             Equipment equipment = item as Equipment;
                             if (equipment.Activators.Contains(EquipmentActivator.OnMiss))
                             {
-                                equipment.EquipmentFunction.Invoke(Unit, null);
+                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, null);
                             }
                         }
                     }
@@ -1757,7 +1757,7 @@ public class Actor_Unit
                             Equipment equipment = item as Equipment;
                             if (equipment.Activators.Contains(EquipmentActivator.OnHit))
                             {
-                                equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, damage);
                             }
                         }
                     }
@@ -1830,7 +1830,7 @@ public class Actor_Unit
                             Equipment equipment = item as Equipment;
                             if (equipment.Activators.Contains(EquipmentActivator.OnMiss))
                             {
-                                equipment.EquipmentFunction.Invoke(Unit, target.Unit);
+                                equipment.EquipmentFunction.Invoke(Unit, target.Unit, damage);
                             }
                         }
                     }
@@ -2128,7 +2128,7 @@ public class Actor_Unit
                 Equipment equipment = item as Equipment;
                 if (equipment.Activators.Contains(EquipmentActivator.WhenAttacked))
                 {
-                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit);
+                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit, damage);
                 }
             }
         }
@@ -2166,7 +2166,7 @@ public class Actor_Unit
                     Equipment equipment = item as Equipment;
                     if (equipment.Activators.Contains(EquipmentActivator.WhenHit))
                     {
-                        equipment.EquipmentFunction.Invoke(Unit, attacker.Unit);
+                        equipment.EquipmentFunction.Invoke(Unit, attacker.Unit, damage);
                     }
                 }
             }
@@ -2183,7 +2183,7 @@ public class Actor_Unit
                 Equipment equipment = item as Equipment;
                 if (equipment.Activators.Contains(EquipmentActivator.WhenMissed))
                 {
-                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit);
+                    equipment.EquipmentFunction.Invoke(Unit, attacker.Unit, damage);
                 }
             }
         }
@@ -2621,7 +2621,7 @@ public class Actor_Unit
                 Equipment equipment = item as Equipment;
                 if (equipment.Activators.Contains(EquipmentActivator.OnTacticalTurnStart))
                 {
-                    equipment.EquipmentFunction.Invoke(Unit, null);
+                    equipment.EquipmentFunction.Invoke(Unit, null, null);
                 }
             }
         }

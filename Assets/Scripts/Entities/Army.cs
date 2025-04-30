@@ -201,7 +201,7 @@ public class Army
                     Equipment equipment = item as Equipment;
                     if (equipment.Activators.Contains(EquipmentActivator.OnStrategicTurnStart))
                     {
-                        equipment.EquipmentFunction.Invoke(unit, null);
+                        equipment.EquipmentFunction.Invoke(unit, this, null);
                     }
                 }
             }

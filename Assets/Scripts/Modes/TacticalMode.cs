@@ -524,7 +524,7 @@ public class TacticalMode : SceneBase
                     Equipment equipment = item as Equipment;
                     if (equipment.Activators.Contains(EquipmentActivator.OnTacticalTurnStart))
                     {
-                        equipment.EquipmentFunction.Invoke(actor.Unit, null);
+                        equipment.EquipmentFunction.Invoke(actor.Unit, armies[actor.Unit.Side], null);
                     }
                 }
             }
@@ -4605,7 +4605,7 @@ Turns: {currentTurn}
                         Equipment equipment = item as Equipment;
                         if (equipment.Activators.Contains(EquipmentActivator.OnTacticalBattleEnd))
                         {
-                            equipment.EquipmentFunction.Invoke(actor.Unit, null);
+                            equipment.EquipmentFunction.Invoke(actor.Unit, armies[actor.Unit.Side], null);
                         }
                     }
                 }
