@@ -419,6 +419,7 @@ public class WorldConfig
             ["VagrantsEnabled"] = false,
             ["AnimatedBellies"] = true,
             ["DigestionSkulls"] = true,
+            ["BellyRubHands"] = true,
             ["Bones"] = true,
             ["CleanDisposal"] = false,
             ["Scat"] = false,

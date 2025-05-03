@@ -1751,7 +1751,7 @@ public abstract class TacticalAI : ITacticalAI
         List<PotentialTarget> targets = new List<PotentialTarget>();
         foreach (Actor_Unit unit in actors)
         {
-            if (unit.Targetable && unit.Unit.Side == AISide)
+            if (unit.Targetable && unit.Unit.Side == AISide && unit.Surrendered == false)
             {
                 int distance = unit.Position.GetNumberOfMovesDistance(actor.Position);
                 if (distance < actor.Movement)
