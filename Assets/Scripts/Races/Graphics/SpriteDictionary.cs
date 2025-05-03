@@ -248,6 +248,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] GnollsVoreParts;
 
     public Sprite[] CentaurParts;
+    public Sprite[] CentaurTorsoAddOns;
     public Sprite[] TaurTorso;
 
     [Header("Unique Mercenaries")]

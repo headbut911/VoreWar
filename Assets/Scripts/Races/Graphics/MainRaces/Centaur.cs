@@ -16,8 +16,8 @@ class Centaur : TaurHumanHalf
         GentleAnimation = true;
         WeightGainDisabled = true;
         TailTypes = 6;
+        EarTypes = 4;
 
-        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
         BodyAccessory = new SpriteExtraInfo(10, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor)); // Horse Body
         BodyAccent = new SpriteExtraInfo(1, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor)); // right hind leg
         BodyAccent2 = new SpriteExtraInfo(8, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor)); // tail
@@ -27,6 +27,7 @@ class Centaur : TaurHumanHalf
         BodyAccent6 = new SpriteExtraInfo(1, BodyAccentSprite6, null, null); // right hind hoof
         BodyAccent7 = new SpriteExtraInfo(4, BodyAccentSprite7, null, null); // left hind hoof
         BodyAccent8 = new SpriteExtraInfo(11, BodyAccentSprite8, null, null); // Front Hooves
+        BodyAccent9 = new SpriteExtraInfo(25, BodyAccentSprite9, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor)); // Ears
         SecondaryBelly = new SpriteExtraInfo(7, SecondaryBellySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor)); // Second Stomach
         Dick = new SpriteExtraInfo(4, DickSprite, WhiteColored);
         Balls = new SpriteExtraInfo(3, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor));
@@ -57,6 +58,7 @@ class Centaur : TaurHumanHalf
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
         OffsetAllHumanParts(actor, HumanBodyOffsetX, HumanBodyOffsetY);
+        AddOffset(BodyAccent9, HumanBodyOffsetX * .625f, HumanBodyOffsetY * .625f);
     }
 
     protected override Sprite AccessorySprite(Actor_Unit actor) // Mane
@@ -119,6 +121,12 @@ class Centaur : TaurHumanHalf
         if (actor.IsOralVoring)
             return State.GameManager.SpriteDictionary.CentaurParts[3]; 
         return State.GameManager.SpriteDictionary.CentaurParts[2]; 
+    }
+    protected override Sprite BodyAccentSprite9(Actor_Unit actor) // Face
+    {
+        if (actor.Unit.EarType == 3)
+            return null; 
+        return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[8 + actor.Unit.EarType];
     }
 
     protected override Sprite SecondaryBellySprite(Actor_Unit actor) // Second Stomach
@@ -235,21 +243,21 @@ class Centaur : TaurHumanHalf
             switch (actor.GetWeaponSprite())
             {
                 case 0:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[132];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[0];
                 case 1:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[133];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[1];
                 case 2:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[134];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[4];
                 case 3:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[135];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[5];
                 case 4:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[136];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[2];
                 case 5:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[138];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[3];
                 case 6:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[139];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[6];
                 case 7:
-                    return State.GameManager.SpriteDictionary.HumansBodySprites3[141];
+                    return State.GameManager.SpriteDictionary.CentaurTorsoAddOns[7];
                 default:
                     return null;
             }
@@ -257,6 +265,38 @@ class Centaur : TaurHumanHalf
         else
         {
             return null;
+        }
+    }
+
+    protected override Sprite BodySprite(Actor_Unit actor) // Body
+    {
+
+        if (actor.Unit.HasWeapon == false)
+        {
+            if (actor.IsAttacking) return State.GameManager.SpriteDictionary.TaurTorso[3 + (actor.Unit.HasBreasts ? 0 : 4)];
+            return State.GameManager.SpriteDictionary.TaurTorso[0 + (actor.Unit.HasBreasts ? 0 : 4)];
+        }
+
+        switch (actor.GetWeaponSprite())
+        {
+            case 0:
+                return State.GameManager.SpriteDictionary.TaurTorso[1 + (actor.Unit.HasBreasts ? 0 : 4)];
+            case 1:
+                return State.GameManager.SpriteDictionary.TaurTorso[2 + (actor.Unit.HasBreasts ? 0 : 4)];
+            case 2:
+                return State.GameManager.SpriteDictionary.TaurTorso[1 + (actor.Unit.HasBreasts ? 0 : 4)];
+            case 3:
+                return State.GameManager.SpriteDictionary.TaurTorso[2 + (actor.Unit.HasBreasts ? 0 : 4)];
+            case 4:
+                return State.GameManager.SpriteDictionary.TaurTorso[2 + (actor.Unit.HasBreasts ? 0 : 4)];
+            case 5:
+                return State.GameManager.SpriteDictionary.TaurTorso[1 + (actor.Unit.HasBreasts ? 0 : 4)];
+            case 6:
+                return State.GameManager.SpriteDictionary.TaurTorso[2 + (actor.Unit.HasBreasts ? 0 : 4)];
+            case 7:
+                return State.GameManager.SpriteDictionary.TaurTorso[3 + (actor.Unit.HasBreasts ? 0 : 4)];
+            default:
+                return State.GameManager.SpriteDictionary.TaurTorso[0 + (actor.Unit.HasBreasts ? 0 : 4)];
         }
     }
     protected override Sprite BreastsSprite(Actor_Unit actor)

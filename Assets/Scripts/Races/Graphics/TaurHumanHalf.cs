@@ -30,7 +30,7 @@ class TaurHumanHalf : BlankSlate
         Hair2 = new SpriteExtraInfo(1, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor)); // human part
         Hair3 = new SpriteExtraInfo(15, HairSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor)); // Eyebrows human part
         Body = new SpriteExtraInfo(11, BodySprite, null, (s) => FurryColor(s));// Human Body
-        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored); // human part
+        Weapon = new SpriteExtraInfo(11, WeaponSprite, WhiteColored); // human part
         Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => FurryColor(s)); // human part
         SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => FurryColor(s)); // human part
         Belly = new SpriteExtraInfo(14, null, null, (s) => FurryColor(s));// human part
