@@ -786,6 +786,8 @@ Does not retroactively affect already created units.";
                 return "Sets the interval the above damage modifier will be applied. Only applies to targets outside of the bounds.\n Example: With an interval value of 5, bounds of 10, and modifier of 0.1, a unit of size 25 will have 10% increased damage against a unit of size 10, ~15% increased accuracy against a unit of size 7, and 20% increased accuracy against a unit of size 5";
             case 324:
                 return "Sets the upkeep one unit of this race will incur.";
+            case 325:
+                return "When enabled, a hand effect displays when a pred has been belly rubbed.";
             default:
                 return "";
         }
