@@ -517,8 +517,8 @@ public class TacticalMode : SceneBase
             actor.allowedToDefect = !actor.DefectedThisTurn && TacticalUtilities.GetPreferredSide(actor.Unit, actor.Unit.Side, actor.Unit.Side == attackerSide ? defenderSide : attackerSide) != actor.Unit.Side;
             actor.DefectedThisTurn = false;
             actor.Unit.Heal(actor.Unit.GetLeaderBonus() * 3); // mainly for the new Stat boosts => maxHealth option, but eh why not have it for everyone anyway?
-            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, [actor.Unit, armies[actor.Unit.Side], null]);
-  
+            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor.Unit, armies[actor.Unit.Side], null });
+            EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);  
         }
 
 
@@ -4590,7 +4590,7 @@ Turns: {currentTurn}
                     actor.Unit.HealPercentage(1);
                 actor.Unit.StatusEffects.Clear();
 
-                EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, [actor.Unit, armies[actor.Unit.Side], null]);
+                EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, new object[] { actor.Unit, armies[actor.Unit.Side], null });
 
             }
             BattleReviewText.SetActive(false);

@@ -453,6 +453,7 @@ public class WorldConfig
             ["AbsorbRateDivision"] = false,
             ["AbsorbLoss"] = false,
             ["AbsorbBoostDeadOnly"] = false,
+            ["BellyRubHand"] = true,
         };
 
         foreach (Race race in ((Race[])Enum.GetValues(typeof(Race))).Where(s => (int)s >= 0))

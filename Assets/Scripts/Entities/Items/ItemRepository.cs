@@ -16,6 +16,10 @@ public enum ItemType
     Gloves,
     Shoes,
 
+    BarrierRing,
+    HealthPotion,
+    ManaPotion,
+
     //FireBomb,
 
     Meditate,
@@ -52,6 +56,7 @@ public enum ItemType
     Diminishment,
     GateMaw,
     Resurrection,
+
 }
 
 
@@ -115,6 +120,23 @@ public class ItemRepository
             new Accessory(name:"Gauntlet", description:"+6 strength", cost:8, changedStat:(int)Stat.Strength, statBonus:6 ),
             new Accessory(name:"Gloves", description:"+6 dexterity", cost:10, changedStat:(int)Stat.Dexterity, statBonus:6 ),
             new Accessory(name:"Shoes", description:"+2 agility, +1 movement tile", cost:6, changedStat:(int)Stat.Agility, statBonus:2),
+
+            new Equipment(name:"Health Potion", description:"Heals 20 HP if below 50% HP at start of turn, single use", cost:6, tier:1, type: EquipmentType.Uses, func: new Dictionary<EquipmentActivator, Action<object, object, object>>
+            {
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentHealthPotion((Unit)x)
+            }),
+            new Equipment(name:"Mana Potion", description:"Grants 20 Mana if below 50% Mana at start of turn, three uses", cost:6, tier:1, type: EquipmentType.Uses, uses: 3, func: new Dictionary<EquipmentActivator, Action<object, object, object>>
+            {
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentManaPotion((Unit)x)
+            }),
+            new Equipment(name:"Barrier Ring", description:"+10 barrier at start of battle", cost:15, tier:2, func: new Dictionary<EquipmentActivator, Action<object, object, object>>
+            {
+                [EquipmentActivator.OnTacticalBattleStart] = (x,y,z) => ((Unit)x).RestoreBarrier(10)
+            }),
+            new Equipment(name:"Ranger Emblem", description:"Once per turn, grants +1 MP when missing a ranged attack.", cost:6, tier:3, type: EquipmentType.RechargeTactical, func: new Dictionary<EquipmentActivator, Action<object, object, object>>
+            {
+                [EquipmentActivator.OnRangedMiss] = (x,y,z) => ((Actor_Unit)x).Movement++
+            }),
 
             //new SpellBook("Fire Bomb", "A belt of incendiary grenades", 60, 1, SpellTypes.FireBomb),
 
