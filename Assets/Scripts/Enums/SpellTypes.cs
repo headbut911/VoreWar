@@ -51,6 +51,7 @@
     Icicle = 43,
     CrossShock = 44,
     JoltCrash = 45,
+    ArcBolt = 46,
 
     AlraunePuff = 70,
     Web = 71,

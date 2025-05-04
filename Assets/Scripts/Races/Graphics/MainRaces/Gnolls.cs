@@ -244,7 +244,7 @@ class Gnolls : DefaultRaceData
     protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Tail
     {
         if (actor.Unit.TailType == 0) return BodySprites[69];
-        else return BodySprites[138];
+        else return BodySprites[139];
     }
 
     protected override Sprite BodySprite(Actor_Unit actor)

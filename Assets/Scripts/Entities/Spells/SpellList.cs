@@ -46,6 +46,7 @@ static class SpellList
     static internal readonly DamageSpell PowerBolt;
     static internal readonly DamageSpell Icicle;
     static internal readonly DamageSpell LightningBolt;
+    static internal readonly DamageSpell ArcBolt;
     static internal readonly DamageSpell JoltCrash;
     static internal readonly StatusSpell Meditate;
     static internal readonly StatusSpell Shield;
@@ -210,6 +211,28 @@ static class SpellList
             },
         };
         SpellDict[SpellTypes.LightningBolt] = LightningBolt;
+
+        ArcBolt = new DamageSpell()
+        {
+            Name = "Arc Bolt",
+            Id = "arc-bolt",
+            SpellType = SpellTypes.ArcBolt,
+            Description = "Deals high electric damage to a single target",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy },
+            Range = new Range(7),
+            AreaOfEffect = 0,
+            Tier = 2,
+            Resistable = true,
+            DamageType = DamageTypes.Elec,
+            Damage = (a, t) => 15 + a.Unit.GetStat(Stat.Mind) / 10,
+            OnExecute = (a, t) =>
+            {
+                a.CastOffensiveSpell(ArcBolt, t);
+                State.GameManager.SoundManager.PlaySpellCast(LightningBolt, a);
+                TacticalGraphicalEffects.CreateGenericMagic(a.Position, t.Position, t);
+            },
+        };
+        SpellDict[SpellTypes.ArcBolt] = ArcBolt;
 
         JoltCrash = new DamageSpell()
         {
