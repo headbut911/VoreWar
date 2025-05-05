@@ -234,8 +234,20 @@ public class Empire
 
     }
 
-    public void LoadFix()
+    public void LoadFix()//Add empire-based null checks for newly added internal(s) or protected(s) and the like to this void so that on loading an older version empires will recive them
     {
+        if (Buildings == null)
+        Buildings = new List<ConstructibleBuilding>();
+        if (EmpireBuildingLimit == null)
+        InitBuildLimit();
+        if (OwnedTiles == null)
+        OwnedTiles = new List<Vec2i>();
+        if (constructionResources == null)
+        {
+            constructionResources = new ConstructionResources();
+            constructionResources.Reset();
+            constructionResources.SetResources(10, 10, 10, 10, 10, 10);
+        }
         if (Reports == null)
             Reports = new List<StrategicReport>();
         if (EventHappened == null)

@@ -2228,9 +2228,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
     }
 
-    internal void ReloadTraits()
+    internal void ReloadTraits()//Add unit-based null checks for newly added internal(s) or protected(s) to this void so that on loading an older version saves, units will recive them
     {
         Tags = new List<Traits>();
+        if (AllConditionalTraits == null)
+            AllConditionalTraits = new Dictionary<ConditionalTraitContainer, bool>();
         if (Config.RaceTraitsEnabled)
             Tags.AddRange(State.RaceSettings.GetRaceTraits(HiddenUnit.Race));
         if (HiddenUnit.HasBreasts && HiddenUnit.HasDick == false)
