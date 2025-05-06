@@ -3024,7 +3024,7 @@ static class StoredLogTexts
             new EventString((i) => $"<b>{i.Unit.Name}</b> catches <b>{i.Target.Name}</b> off guard and crams {GPPHim(i.Target)} down {GPPHis(i.Unit)} tail.", priority: 8),
             new EventString((i) => $"<b>{i.Unit.Name}</b> slurps up <b>{i.Target.Name}</b> with {GPPHis(i.Unit)} tail!", priority: 8),
             new EventString((i) => $"<b>{i.Unit.Name}</b> yanks <b>{i.Target.Name}</b> into {GPPHis(i.Unit)} hungry tail maw.", priority: 8),
-            new EventString((i) => $"<b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> struggles are for naught as {GPPHe(i.Target)} vanishe{SIfSingular(i.Target)} into <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> ravenous tail.", priority: 8),
+            new EventString((i) => $"<b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> struggles are for naught as {GetRandomStringFrom($"{GPPHe(i.Target)} vanish{EsIfSingular(i.Target)}", $"{GPPHe(i.Target)} vanish{EsIfSingular(i.Target)}", $"{GPPHe(i.Target)} vanish{EsIfSingular(i.Target)}", $"{GPPHe(i.Target)} vanish{EsIfSingular(i.Target)}", "they vanishe")} into <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> ravenous tail.", priority: 8),
 
             new EventString((i) => $"<b>{i.Unit.Name}</b> blows <b>{i.Target.Name}</b> a kiss before sliding the tip of {GPPHis(i.Unit)} tail over <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> head and slurping the {GetPreyDesc(i.Target)} {GetRaceDescSingl(i.Target)} up!", actorRace: Race.Succubi, priority: 9),
             new EventString((i) => $"<b>{i.Unit.Name}</b> distracts <b>{i.Target.Name}</b> with a tight sensual hug, just enough for {GPPHis(i.Unit)} to suck <b>{i.Target.Name}</b> into {GPPHis(i.Unit)} tail!", actorRace: Race.Succubi, priority: 9),
