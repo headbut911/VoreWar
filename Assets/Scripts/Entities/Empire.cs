@@ -269,10 +269,10 @@ public class Empire
         }
         if (Side < 50)
         {
+            int upkeep = GetUpkeep();
+            Income = Income - (int)(upkeep - (upkeep * 0.125f * AcademyResearch.GetValueFromEmpire(this, AcademyResearchType.GoldMineIncome)));
             for (int i = 0; i < Armies.Count; i++)
             {
-                int upkeep = GetUpkeep();
-                Income = Income - (int)(upkeep - (upkeep * 0.125f * AcademyResearch.GetValueFromEmpire(this, AcademyResearchType.GoldMineIncome)));
                 if (AddToStats)
                 {
                     State.World.Stats.CollectedGold(Armies[i].Units.Count * 2, Armies[i].Side);
