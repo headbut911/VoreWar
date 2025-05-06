@@ -626,7 +626,7 @@ static class SpellList
             Range = new Range(5),
             Tier = 1,
             Resistable = true,
-            ResistanceMult = 1.10f,
+            ResistanceMult = 0.90f,
             Damage = (a, t) => 1 + a.Unit.GetStat(Stat.Mind) / 25,
             OnExecute = (a, t) =>
             {
