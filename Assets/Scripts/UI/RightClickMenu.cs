@@ -585,6 +585,11 @@ public class RightClickMenu : MonoBehaviour
                     PounceButtons[currentButton].GetComponentInChildren<Text>().text = $"Too bulky to {targetedAction.Name}";
                     PounceButtons[currentButton].interactable = false;
                 }
+                if (data.Actor.Unit.Race == Race.Ki && data.Target.Unit.Race != Race.Selicia && type == SpecialAction.CockVore)
+                {
+                    PounceButtons[currentButton].GetComponentInChildren<Text>().text = $"Ki's cock is for Selicia only";
+                    PounceButtons[currentButton].interactable = false;
+                }
                 else if (data.Actor.BodySize() < data.Target.BodySize() * 3 && data.Actor.Unit.HasTrait(Traits.TightNethers) && (type == SpecialAction.CockVore || type == SpecialAction.Unbirth))
                 {
                     PounceButtons[currentButton].GetComponentInChildren<Text>().text = $"Too large to {targetedAction.Name}";
