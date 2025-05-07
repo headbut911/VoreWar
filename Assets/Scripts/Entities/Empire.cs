@@ -31,6 +31,8 @@ public class Empire
     public List<Army> Armies;
     [OdinSerialize]
     public List<ConstructibleBuilding> Buildings;
+    [OdinSerialize]
+    public List<Traits> EmpTraits;
 
     [OdinSerialize]
     public int MaxArmySize;
@@ -190,6 +192,7 @@ public class Empire
         OrigMaxGarrisonSize = args.maxGarrisonSize;
         Armies = new List<Army>();
         Buildings = new List<ConstructibleBuilding>();
+        EmpTraits = new List<Traits>();
         InitBuildLimit();
         OwnedTiles = new List<Vec2i>();
         AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
@@ -256,6 +259,8 @@ public class Empire
             AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
         if (EmpirePotions == null)
             EmpirePotions = new Dictionary<LaboratoryPotion, int>();
+        if (EmpTraits == null)
+            EmpTraits = new List<Traits>();
     }
 
     internal void CheckEvent()
