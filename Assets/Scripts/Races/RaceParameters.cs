@@ -118,6 +118,7 @@ static class RaceParameters
     static readonly RaceTraits Xelhilde;
     static readonly RaceTraits BoomBunnies;
     static readonly RaceTraits FeralSlime;
+    static readonly RaceTraits Olivia;
 
     static Unit tempUnit;
 
@@ -371,6 +372,8 @@ static class RaceParameters
                 return Centaur;
             case Race.FeralSlime:
                 return FeralSlime;
+            case Race.Olivia:
+                return Olivia;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -968,7 +971,7 @@ static class RaceParameters
             StomachSize = 200,
             HasTail = true,
             FavoredStat = Stat.Stomach,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.Anal },
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
             ExpMultiplier = 20f,
             PowerAdjustment = 100f,
             DeployCost = 8,
@@ -1405,6 +1408,8 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Dexterity,
+            DeployCost = 1,
+            Upkeep = 6f,
             PowerAdjustment = 1.1f,
             RaceStats = new RaceStats()
             {
@@ -3374,6 +3379,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal},
             ExpMultiplier = 1.4f,
             PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 13f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(23, 28),
@@ -3404,6 +3411,8 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth},
             ExpMultiplier = 1f,
             PowerAdjustment = .75f,
+            DeployCost = 1,
+            Upkeep = 2f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(6, 10),
@@ -3451,6 +3460,39 @@ static class RaceParameters
 
             },
             RaceDescription = "One of the most basic monsters. The humble slime pursues anything that moves. They may or may not taste like assorted friuts.",
+        };
+
+        Olivia = new RaceTraits()
+        {
+            BodySize = 9,
+            StomachSize = 12,
+            FavoredStat = Stat.Mind,
+            HasTail = true,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore},
+            ExpMultiplier = 1.4f,
+            PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 9f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 12),
+                Dexterity = new RaceStats.StatRange(6, 12),
+                Endurance = new RaceStats.StatRange(8, 13),
+                Mind = new RaceStats.StatRange(15, 23),
+                Will = new RaceStats.StatRange(14, 18),
+                Agility = new RaceStats.StatRange(12, 16),
+                Voracity = new RaceStats.StatRange(7, 11),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Endosoma,
+                Traits.Pounce,
+                Traits.Timid,
+                Traits.Submissive,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.CrossShock, SpellTypes.ArcBolt },
+            RaceDescription = "A small fox with surprisingly strong lightning magic.",
         };
 
     }

@@ -509,6 +509,10 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.MouthType].Label.text = "Helmet";
                 buttons[(int)ButtonTypes.HairStyle].Label.text = "Custom livery (for Sharks)";
                 break;
+            case Race.Olivia:
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Top";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Pants";
+                break;
             case Race.Taraluxia:
                 Taraluxia();
                 break;
