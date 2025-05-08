@@ -793,6 +793,7 @@ public class ContentSettings : MonoBehaviour
     {
         gameObject.SetActive(true);
         buildingSettings.SoftLoad();
+        buildingSettings.LoadBuildingValues();
         foreach (ToggleObject toggle in Toggles)
         {
             toggle.Toggle.isOn = Config.World.GetValue(toggle.Name);

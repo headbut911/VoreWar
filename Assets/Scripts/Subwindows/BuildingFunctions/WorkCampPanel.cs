@@ -90,7 +90,7 @@ public class WorkCampPanel : MonoBehaviour
             PurchaceItem(ConstructionResourceType.manastones, (WorkCamp)building);
             RefreshUI(building);
         });
-        BuyMS.onClick.AddListenerOnce(() =>
+        SellMS.onClick.AddListenerOnce(() =>
         {
             SellItem(ConstructionResourceType.manastones, (WorkCamp)building);
             RefreshUI(building);

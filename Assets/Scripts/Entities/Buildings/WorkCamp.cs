@@ -1,4 +1,6 @@
-﻿public class WorkCamp : ConstructibleBuilding
+﻿using OdinSerializer;
+
+public class WorkCamp : ConstructibleBuilding
 {
     public BuildingUpgrade postUpgrade;
     public BuildingUpgrade merchantUpgrade;
@@ -6,6 +8,7 @@
 
     public ConstructionResources inStockItems;
 
+    [OdinSerialize]
     internal int currentGold;
     public WorkCamp(Vec2i location) : base(location)
     {
@@ -32,12 +35,11 @@
         if (postUpgrade.built || merchantUpgrade.built) 
         {
             currentGold += Config.BuildConfig.WorkCampGoldPerTurn;
-            inStockItems = Config.BuildConfig.WorkCampTurnStock;
+            inStockItems.SetResources(Config.BuildConfig.WorkCampTurnStock);
         }
 
         if (improveUpgrade.built)
         {
-            inStockItems.SetResources(Config.BuildConfig.WorkCampTurnStock.Wood, Config.BuildConfig.WorkCampTurnStock.Stone,Config.BuildConfig.WorkCampTurnStock.NaturalMaterials, Config.BuildConfig.WorkCampTurnStock.Ores, Config.BuildConfig.WorkCampTurnStock.Prefabs, Config.BuildConfig.WorkCampTurnStock.ManaStones);
             ownerResource.AddResource(ConstructionResourceType.wood, Config.BuildConfig.WorkCampGenerationPerTurn);
             ownerResource.AddResource(ConstructionResourceType.stone, Config.BuildConfig.WorkCampGenerationPerTurn);
         }
