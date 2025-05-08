@@ -76,6 +76,24 @@ public class ConditionalTraitConditionChecker
                     if (unit.SelfPrey != null)
                         return true;
                     break;
+                case TraitCondition.Soldier:
+                    return unit.Unit.Type == UnitType.Soldier;
+                case TraitCondition.Leader:
+                    return unit.Unit.Type == UnitType.Leader;
+                case TraitCondition.Mercenary:
+                    return unit.Unit.Type == UnitType.Mercenary;
+                case TraitCondition.Summon:
+                    return unit.Unit.Type == UnitType.Summon;
+                case TraitCondition.SpecialMercenary:
+                    return unit.Unit.Type == UnitType.SpecialMercenary;
+                case TraitCondition.Adventurer:
+                    return unit.Unit.Type == UnitType.Adventurer;
+                case TraitCondition.Spawn:
+                    return unit.Unit.Type == UnitType.Spawn;
+                case TraitCondition.Boss:
+                    return unit.Unit.Type == UnitType.Boss;
+                case TraitCondition.Reinforcement:
+                    return unit.Unit.Type == UnitType.Reinforcement;
                 default:
                     break;
             }
@@ -266,6 +284,24 @@ public class ConditionalTraitConditionChecker
                     return false;
                 case TraitCondition.Prey:
                     return false;
+                case TraitCondition.Soldier:
+                    return unit.Type == UnitType.Soldier;
+                case TraitCondition.Leader:
+                    return unit.Type == UnitType.Leader;
+                case TraitCondition.Mercenary:
+                    return unit.Type == UnitType.Mercenary;
+                case TraitCondition.Summon:
+                    return unit.Type == UnitType.Summon;
+                case TraitCondition.SpecialMercenary:
+                    return unit.Type == UnitType.SpecialMercenary;
+                case TraitCondition.Adventurer:
+                    return unit.Type == UnitType.Adventurer;
+                case TraitCondition.Spawn:
+                    return unit.Type == UnitType.Spawn;
+                case TraitCondition.Boss:
+                    return unit.Type == UnitType.Boss;
+                case TraitCondition.Reinforcement:
+                    return unit.Type == UnitType.Reinforcement;
                 default:
                     break;
             }

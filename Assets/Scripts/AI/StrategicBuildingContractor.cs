@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 class StrategicBuildingContractor
 {
@@ -13,6 +14,8 @@ class StrategicBuildingContractor
     Dictionary<ConstructibleType, GeneralBuildingConfig> buildingInfo;
     ConstructionResources resourceWanted;
     ConstructibleBuilding activeBuilding;
+
+    int turnsWithNoBuildSpace;
 
     int switchTimer;
     float switchChance => switchTimer * (-0.1f);
@@ -62,6 +65,7 @@ class StrategicBuildingContractor
             Vec2i loc = LocateGoodLocation();
             if (loc != null)
             {
+                turnsWithNoBuildSpace = 0;
                 ConstructBuilding(loc, buildingWanted);
             }
         }
@@ -74,10 +78,17 @@ class StrategicBuildingContractor
         // No need to bank, likely have other problems that require remaining gold
         if (empire.Income <= 0)
         {
+            Debug.Log("Returning " + goldBank);
+            TransactGold(goldBank * -1);
             return;
         }
-        // Stashes 0% to 30% of current gold
-        int transact = (empire.Gold / 10) * State.Rand.Next(4);
+        int transact = (empire.Gold / 10) + empire.Income / 5;
+        if (turnsWithNoBuildSpace > 3)
+        {
+            // return gold if there's no space to build anything
+            transact /= 2;
+            return;
+        }
         //Debug.Log($"Adding {transact} to bank.");
         TransactGold(transact);
     }
@@ -89,38 +100,26 @@ class StrategicBuildingContractor
         {
             return null;
         }
-        List<Vec2i> locs = empire.OwnedTiles.Distinct().ToList();
-
         // player can't build on following, so nor should AI
-        foreach (var vil in State.World.Villages)
+        List<Vec2i> ValidLocations = new List<Vec2i>();
+        foreach (Vec2i loc in empire.OwnedTiles)
         {
-            locs.Remove(vil.Position);
-        }
-        foreach (var con in State.World.Constructibles)
-        {
-            locs.Remove(con.Position);
-        }
-        foreach (var cla in State.World.Claimables)
-        {
-            locs.Remove(cla.Position);
-        }
-        foreach (var tele in State.World.AncientTeleporters)
-        {
-            locs.Remove(tele.Position);
-        }
-        foreach (var mer in State.World.MercenaryHouses)
-        {
-            locs.Remove(mer.Position);
-        }
-        foreach (var loc in locs)
-        {
-            if (!StrategicTileInfo.CanWalkInto(State.World.Tiles[loc.x, loc.y]))
+            if (StrategicUtilities.GetVillageAt(loc) == null &&
+                StrategicUtilities.GetMercenaryHouseAt(loc) == null &&
+                StrategicUtilities.GetTeleAt(loc) == null &&
+                StrategicUtilities.GetClaimableAt(loc) == null &&
+                StrategicUtilities.GetConstructibleAt(loc) == null &&
+                StrategicTileInfo.CanWalkInto(State.World.Tiles[loc.x, loc.y]))
             {
-                locs.Remove(loc);
+                ValidLocations.Add(loc);
             }
         }
-
-        return locs[State.Rand.Next(locs.Count)];
+        if (ValidLocations.Count() <= 0)
+        {
+            turnsWithNoBuildSpace++;
+            return null;
+        }
+        return ValidLocations[State.Rand.Next(ValidLocations.Count)];
     }
 
     internal void DecideBuilding()
@@ -132,9 +131,13 @@ class StrategicBuildingContractor
                 AIBuilding.Add(item.Key, item.Value);
         }
 
-        if (AIBuilding.Count <= 0)
+        if (AIBuilding.Count <= 0 || !Config.BuildConfig.BuildingSystemEnabled)
         {
-            // All buildings are off, or constructed, return banked gold so it can be used on other things
+            // All buildings are off, or constructed, return banked gold if not in posetion of a gold spending building so it can be used on other things
+            if (empire.Buildings.Any(b => b is Laboratory))
+            {
+                return;
+            }
             TransactGold(goldBank * -1);
             return;
         }
@@ -387,9 +390,9 @@ class StrategicBuildingContractor
     internal void RunLaboratory()
     {
         Laboratory laboratory = activeBuilding as Laboratory;
-        if (empire.Gold > Config.BuildConfig.LaboratoryBaseUnitPrice * 4 && State.Rand.Next(3) == 0) 
+        if (goldBank + empire.Gold > Config.BuildConfig.LaboratoryBaseUnitPrice * 4 && State.Rand.Next(3) == 0) 
         {
-            int budget = empire.Gold / 2;
+            int budget = goldBank + empire.Gold / 2;
             int potionCost = Config.BuildConfig.LaboratoryBaseUnitPrice;
             int ramainingPicks = State.Rand.Next(Config.BuildConfig.LaboratoryBaseRollCount * (laboratory.improveUpgrade.built ? 2 : 1)) + 1;
             double TraitChanceValue = Config.BuildConfig.LaboratoryBaseTraitChance;

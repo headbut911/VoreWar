@@ -49,7 +49,9 @@ public class WorldConfig
     internal bool CapMaxGarrisonIncrease = true;
 
     [OdinSerialize]
-    internal int MaxSpellLevelDrop = 4;
+    internal int MaxSpellLevelDrop = 4;   
+    [OdinSerialize]
+    internal int MaxEquipmentLevelDrop = 4;
 
     [OdinSerialize]
     internal int ArmyMP = 3;

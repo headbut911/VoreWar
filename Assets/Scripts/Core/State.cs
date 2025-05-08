@@ -502,6 +502,8 @@ public static class State
 
                 if (Config.MaxSpellLevelDrop == 0)
                     Config.World.MaxSpellLevelDrop = 4;
+                if (Config.MaxEquipmentLevelDrop == 0)
+                    Config.World.MaxEquipmentLevelDrop = 4;
             }
 
             if (version < 18 + 1)

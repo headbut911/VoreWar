@@ -16,6 +16,7 @@ public class ConstructionWants
     public bool Defenses = false;
     public bool Mercenaries = false;
     public bool Magic = false;
+    public bool Equipment = false;
 }
 
 public class StrategicAI : IStrategicAI
@@ -347,6 +348,7 @@ public class StrategicAI : IStrategicAI
             HealRate = true,
             Defenses = true,
             Magic = true,
+            Equipment = true,
         });
     }
 
@@ -425,6 +427,14 @@ public class StrategicAI : IStrategicAI
         {
             var resultList = VillageBuildingList.Buildings.Where(pair =>
                 pair.Value.Boosts.SpellLevels > 0
+            );
+            foreach (var result in resultList)
+                validBuildings.Add(result.Key, result.Value);
+        }
+        else if (wants.Equipment)
+        {
+            var resultList = VillageBuildingList.Buildings.Where(pair =>
+                pair.Value.Boosts.EquipmentLevels > 0
             );
             foreach (var result in resultList)
                 validBuildings.Add(result.Key, result.Value);

@@ -227,6 +227,7 @@ static class Config
     internal static int DefaultStartingWeight => World.DefaultStartingWeight;
     internal static int GoldMineIncome => World.GoldMineIncome;
     internal static int MaxSpellLevelDrop => World.MaxSpellLevelDrop;
+    internal static int MaxEquipmentLevelDrop => World.MaxEquipmentLevelDrop;
 
     internal static int ArmyMP => World.ArmyMP;
     internal static int ScoutMP => World.ScoutMP;
@@ -251,6 +252,7 @@ static class Config
 
     internal static bool GoblinCaravans => World.GetValue("GoblinCaravans");
     internal static bool MonstersDropSpells => World.GetValue("MonstersDropSpells");
+    internal static bool MonstersDropEquipment => World.GetValue("MonstersDropEquipment");
 
     internal static bool ExtraRandomHairColors => World.GetValue("ExtraRandomHairColors");
 

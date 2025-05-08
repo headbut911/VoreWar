@@ -43,6 +43,15 @@ public enum TraitCondition
     Digesting,
     Absorbing,
     Prey,
+    Soldier,
+    Leader,
+    Mercenary,
+    Summon,
+    SpecialMercenary,
+    Adventurer,
+    Spawn,
+    Boss,
+    Reinforcement,
 
     conditionCounter, // Should always be last
 }

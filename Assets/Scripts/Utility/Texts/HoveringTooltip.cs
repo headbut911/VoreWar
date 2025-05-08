@@ -296,6 +296,10 @@ public class HoveringTooltip : MonoBehaviour
                     {
                         return $"{book.Description}\n{book.DetailedDescription()}";
                     }
+                    if (AllItems[i] is Equipment equipment)
+                    {
+                        return $"{equipment.Description}\n{equipment.DetailedDescription()}";
+                    }
                 }
             }
         }

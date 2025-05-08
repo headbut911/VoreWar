@@ -4,8 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
-
 public enum UnitType
 {
     Soldier,
@@ -267,6 +265,10 @@ public class Unit
 
     [OdinSerialize]
     public Item[] Items;
+    [OdinSerialize]
+    public int[] ItemUses;
+    [OdinSerialize]
+    public int[] ItemCooldowns;
     [OdinSerialize]
     public string Name { get; set; }
     [OdinSerialize]
@@ -709,6 +711,8 @@ public class Unit
 
         DefaultBreastSize = BreastSize;
         Items = new Item[Config.ItemSlots];
+        ItemUses = new int[] {1, 1, 1};
+        ItemCooldowns = new int[3];
 
 
         ReloadTraits();
@@ -1733,7 +1737,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (actor != null && heal != 0)
             actor.UnitSprite.DisplayDamage(-heal);
         Health += heal;
-
+        EquipmentFunctions.CheckEquipment(this, EquipmentActivator.OnHeal, new object[] { this, heal, null });
     }
 
     public void HealPercentage(float rate)
@@ -1746,6 +1750,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             Health = MaxHealth;
         }
+        EquipmentFunctions.CheckEquipment(this, EquipmentActivator.OnHeal, new object[] { this, h, null });
     }
 
     public int Heal(int amount)
@@ -1763,6 +1768,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             Health = MaxHealth;
         }
         int actualHeal = Math.Min(diff, modAmount);
+        EquipmentFunctions.CheckEquipment(this, EquipmentActivator.OnHeal, new object[] { this, actualHeal, null });
         State.GameManager.TacticalMode?.TacticalStats?.RegisterHealing(actualHeal, Side);
         return actualHeal;
     }
@@ -2892,6 +2898,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             {
                 RemoveAccessory((Accessory)Items[i]);
             }
+            if (Items[i] is Equipment)
+            {
+                ItemCooldowns[i] = 0;
+                ItemUses[i] = 0;
+            }
         }
         Items[i] = item;
         if (Items[i] != null)
@@ -2899,6 +2910,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             if (item is Accessory)
             {
                 AddAccessory((Accessory)item);
+            }
+            if (Items[i] is Equipment)
+            {
+                Equipment equipment = (Equipment)Items[i];
+                ItemUses[i] = equipment.ItemUses;
             }
         }
     }
@@ -3353,6 +3369,26 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
                         }
 
+                    }
+                }
+                if (eff.Type == StatusEffectType.Warping)
+                {
+                    var still = GetStatusEffect(StatusEffectType.WillingPrey);
+                    if (still == null)
+                    {
+                        if (actor != null)
+                        {
+                            if (pred != null)
+                            {
+                                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> warped out of the battle, and out of <b>{pred.Unit.Name}</b>.");
+                                pred.PredatorComponent.FreePrey(actor.SelfPrey, true);
+                            }
+                            else
+                            {
+                                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> warped out of the battle.");
+                            }
+                            State.GameManager.TacticalMode.AttemptRetreat(actor,false,true);
+                        }
                     }
                 }
             }

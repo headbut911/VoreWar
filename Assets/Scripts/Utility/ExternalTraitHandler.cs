@@ -60,7 +60,7 @@ public class ExternalTraitHandler
         }
         catch (Exception e)
         {
-            Debug.LogError(e.Message + " Remove the old trait entry in ./VoreWar/UserData/taggedTraits.json so it refreshes. Sorry about that! ~CSC");
+            Debug.LogError(e.Message + " Remove the old trait entry in ./VoreWar/UserData/taggedTraits.json or delete the file so it refreshes. Sorry about that! ~CSC");
         }
         return taggedTraitsList;
     }

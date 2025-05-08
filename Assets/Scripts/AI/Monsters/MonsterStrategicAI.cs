@@ -258,6 +258,26 @@ class MonsterStrategicAI : IStrategicAI
                     }
                 }
 
+                if (Config.MonstersDropSpells)
+                {
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (State.Rand.Next(3) == 0)
+                        {
+                            if (army.Units[0].Level < 3)
+                                army.ItemStock.AddItem((ItemType)State.World.ItemRepository.GetRandomEquipmentType(1, 2));
+                            else if (army.Units[0].Level < 5)
+                                army.ItemStock.AddItem((ItemType)State.World.ItemRepository.GetRandomEquipmentType(1, 3));
+                            else if (army.Units[0].Level < 7)
+                                army.ItemStock.AddItem((ItemType)State.World.ItemRepository.GetRandomEquipmentType(1, 4));
+                            else if (army.Units[0].Level < 9)
+                                army.ItemStock.AddItem((ItemType)State.World.ItemRepository.GetRandomEquipmentType(2, 4));
+                            else
+                                army.ItemStock.AddItem((ItemType)State.World.ItemRepository.GetRandomEquipmentType(2, 4));
+                        }
+                    }
+                }
+
 
                 foreach (Unit unit in army.Units)
                 {

@@ -440,7 +440,7 @@ class StrategicArmyCommander
                 continue;
             potentialTargets.Add(tele.Position);
             int value = 18;
-            value -= tele.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
+            value -= tele.Position.GetNumberOfMovesDistance(army.Position) / 3;
             potentialTargetValue.Add(value);
         }
 

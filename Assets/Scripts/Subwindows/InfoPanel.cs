@@ -337,6 +337,10 @@ public class InfoPanel
                 return "Boom Bunny";
             case Race.Gnolls:
                 return "Gnoll";
+            case Race.Centaur:
+                return "Centaur";
+            case Race.FeralSlime:
+                return "Feral Slime";
             case Race.none:
                 return "None";
         }
@@ -533,6 +537,10 @@ public class InfoPanel
                 return "Boom Bunny";
             case Race.Gnolls:
                 return "Gnoll";
+            case Race.Centaur:
+                return "Centaur";
+            case Race.FeralSlime:
+                return "Slime";
         }
         return empire.ReplacedRace.ToString();
     }

@@ -82,5 +82,7 @@
     Frozen = 41,
     /// <summary>Increases damage recived from electric spells.</summary>
     Static = 42,
+    /// <summary>When this effect expires, unit flees from battle regadless of location.</summary>
+    Warping = 43,
 }
 
