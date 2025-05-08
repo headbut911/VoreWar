@@ -31,6 +31,8 @@ public class Empire
     public List<Army> Armies;
     [OdinSerialize]
     public List<ConstructibleBuilding> Buildings;
+    [OdinSerialize]
+    public List<Traits> EmpTraits;
 
     [OdinSerialize]
     public int MaxArmySize;
@@ -190,6 +192,7 @@ public class Empire
         OrigMaxGarrisonSize = args.maxGarrisonSize;
         Armies = new List<Army>();
         Buildings = new List<ConstructibleBuilding>();
+        EmpTraits = new List<Traits>();
         InitBuildLimit();
         OwnedTiles = new List<Vec2i>();
         AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
@@ -234,8 +237,20 @@ public class Empire
 
     }
 
-    public void LoadFix()
+    public void LoadFix()//Add empire-based null checks for newly added internal(s) or protected(s) and the like to this void so that on loading an older version empires will recive them
     {
+        if (Buildings == null)
+        Buildings = new List<ConstructibleBuilding>();
+        if (EmpireBuildingLimit == null)
+        InitBuildLimit();
+        if (OwnedTiles == null)
+        OwnedTiles = new List<Vec2i>();
+        if (constructionResources == null)
+        {
+            constructionResources = new ConstructionResources();
+            constructionResources.Reset();
+            constructionResources.SetResources(10, 10, 10, 10, 10, 10);
+        }
         if (Reports == null)
             Reports = new List<StrategicReport>();
         if (EventHappened == null)
@@ -244,6 +259,8 @@ public class Empire
             AcademyResearchCompleted = new Dictionary<AcademyResearchType, int>();
         if (EmpirePotions == null)
             EmpirePotions = new Dictionary<LaboratoryPotion, int>();
+        if (EmpTraits == null)
+            EmpTraits = new List<Traits>();
     }
 
     internal void CheckEvent()
@@ -269,10 +286,10 @@ public class Empire
         }
         if (Side < 50)
         {
+            int upkeep = GetUpkeep();
+            Income = Income - (int)(upkeep - (upkeep * 0.125f * AcademyResearch.GetValueFromEmpire(this, AcademyResearchType.GoldMineIncome)));
             for (int i = 0; i < Armies.Count; i++)
             {
-                int upkeep = GetUpkeep();
-                Income = Income - (int)(upkeep - (upkeep * 0.125f * AcademyResearch.GetValueFromEmpire(this, AcademyResearchType.GoldMineIncome)));
                 if (AddToStats)
                 {
                     State.World.Stats.CollectedGold(Armies[i].Units.Count * 2, Armies[i].Side);

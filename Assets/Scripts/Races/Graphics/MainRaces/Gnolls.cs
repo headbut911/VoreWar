@@ -41,18 +41,18 @@ class Gnolls : DefaultRaceData
         Balls = new SpriteExtraInfo(3, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Critical damage
         Dick = new SpriteExtraInfo(4, DickSprite, null, null); // Strange cylindrical object
         Belly = new SpriteExtraInfo(5, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Snuggle into it
-        Breasts = new SpriteExtraInfo(6, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Left Booba
-        SecondaryBreasts = new SpriteExtraInfo(6, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Right Booba
-        Head = new SpriteExtraInfo(10, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Yes, please! (sorry...)
-        BodyAccent = new SpriteExtraInfo(11, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Face Fur Pattern
-        Mouth = new SpriteExtraInfo(12, MouthSprite, null, null);
-        Eyes = new SpriteExtraInfo(13, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor)); // Iris
-        SecondaryEyes = new SpriteExtraInfo(14, EyesSecondarySprite, null, null); // Sclera
-        Hair = new SpriteExtraInfo(15, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.HairColor)); // Main Hair
-        BodyAccent2 = new SpriteExtraInfo(16, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Outer Ear Fur
-        BodyAccent3 = new SpriteExtraInfo(17, BodyAccentSprite3, null, null); // Inner Ear
-        Hair2 = new SpriteExtraInfo(18, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.HairColor)); // Front Hair
-        Weapon = new SpriteExtraInfo(20, WeaponSprite, WhiteColored);
+        Breasts = new SpriteExtraInfo(13, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Left Booba
+        SecondaryBreasts = new SpriteExtraInfo(13, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Right Booba
+        Head = new SpriteExtraInfo(15, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Yes, please! (sorry...)
+        BodyAccent = new SpriteExtraInfo(16, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Face Fur Pattern
+        Mouth = new SpriteExtraInfo(17, MouthSprite, null, null);
+        Eyes = new SpriteExtraInfo(18, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor)); // Iris
+        SecondaryEyes = new SpriteExtraInfo(19, EyesSecondarySprite, null, null); // Sclera
+        Hair = new SpriteExtraInfo(20, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.HairColor)); // Main Hair
+        BodyAccent2 = new SpriteExtraInfo(21, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Outer Ear Fur
+        BodyAccent3 = new SpriteExtraInfo(22, BodyAccentSprite3, null, null); // Inner Ear
+        Hair2 = new SpriteExtraInfo(23, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.HairColor)); // Front Hair
+        Weapon = new SpriteExtraInfo(12, WeaponSprite, WhiteColored);
 
         LeaderClothes = new GnollLeader();
         Rags = new GnollRags();
@@ -836,7 +836,7 @@ class Gnolls : DefaultRaceData
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             Type = 1524;
             DiscardUsesPalettes = true;
         }
@@ -871,7 +871,7 @@ class Gnolls : DefaultRaceData
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             Type = 1534;
             DiscardUsesPalettes = true;
         }
@@ -906,7 +906,7 @@ class Gnolls : DefaultRaceData
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             Type = 1544;
             DiscardUsesPalettes = true;
         }
@@ -941,8 +941,8 @@ class Gnolls : DefaultRaceData
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
-            clothing2 = new SpriteExtraInfo(8, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(14, null, null);
+            clothing2 = new SpriteExtraInfo(15, null, WhiteColored);
             Type = 1555;
             DiscardUsesPalettes = true;
         }
@@ -980,8 +980,8 @@ class Gnolls : DefaultRaceData
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
-            clothing2 = new SpriteExtraInfo(8, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(14, null, null);
+            clothing2 = new SpriteExtraInfo(15, null, WhiteColored);
             Type = 1574;
             DiscardUsesPalettes = true;
         }
@@ -1020,7 +1020,7 @@ class Gnolls : DefaultRaceData
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             Type = 1588;
             DiscardUsesPalettes = true;
         }
@@ -1056,7 +1056,7 @@ class Gnolls : DefaultRaceData
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             Type = 1544;
             DiscardUsesPalettes = true;
         }
@@ -1141,7 +1141,7 @@ class Gnolls : DefaultRaceData
         {
             coversBreasts = false;
             OccupiesAllSlots = true;
-            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             clothing2 = new SpriteExtraInfo(7, null, null);
             FixedColor = true;
         }
@@ -1179,9 +1179,9 @@ class Gnolls : DefaultRaceData
             coversBreasts = false;
             OccupiesAllSlots = true;
             FixedColor = true;
-            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(14, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
-            clothing3 = new SpriteExtraInfo(19, null, WhiteColored);
+            clothing3 = new SpriteExtraInfo(11, null, WhiteColored);
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -1271,7 +1271,7 @@ class Gnolls : DefaultRaceData
             Type = 207;
             OccupiesAllSlots = true;
             FixedColor = true;
-            clothing1 = new SpriteExtraInfo(7, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(14, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(8, null, WhiteColored);
         }
 
@@ -1306,7 +1306,7 @@ class Gnolls : DefaultRaceData
             coversBreasts = false;
             OccupiesAllSlots = true;
             FixedColor = true;
-            clothing1 = new SpriteExtraInfo(7, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(14, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(8, null, WhiteColored);
         }
 
