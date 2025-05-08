@@ -75,6 +75,7 @@ static class SpellList
     static internal readonly Spell CaptureNet;
     static internal readonly Spell SummonDoppelganger;
     static internal readonly Spell SummonSpawn;
+    static internal readonly DamageSpell PreysHex;
 
     //Quicksand
     static internal readonly StatusSpell PreysCurse;
@@ -179,10 +180,12 @@ static class SpellList
             Damage = (a, t) => 5 + a.Unit.GetStat(Stat.Mind) / 10,
             OnExecute = (a, t) =>
             {
+                int curr = t.Unit.Health;
                 a.CastOffensiveSpell(Icicle, t);
                 TacticalGraphicalEffects.CreateIcicle(a.Position, t.Position, t);
                 State.GameManager.SoundManager.PlaySpellCast(PowerBolt, a);
-                if (State.Rand.Next(3) == 0)
+                bool didSpellHit = curr != t.Unit.Health;
+                if (didSpellHit && State.Rand.Next(3) == 0)
                 {
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{t.Unit.Name} Was frozen solid!");
                     t.Unit.ApplyStatusEffect(StatusEffectType.Frozen, 1f, 2);
@@ -612,6 +615,40 @@ static class SpellList
             },
         };
         SpellDict[SpellTypes.Trance] = Trance;
+
+        PreysHex = new DamageSpell()
+        {
+            Name = "Prey's Hex",
+            Id = "preysHex",
+            SpellType = SpellTypes.PreysHex,
+            Description = "A hex that causes immense nausea and dizziness forcing a predator to release one of their prey, deals minimal damage.",
+            AcceptibleTargets = new List<AbilityTargets>() { AbilityTargets.Enemy },
+            Range = new Range(5),
+            Tier = 1,
+            Resistable = true,
+            ResistanceMult = 0.90f,
+            Damage = (a, t) => 1 + a.Unit.GetStat(Stat.Mind) / 25,
+            OnExecute = (a, t) =>
+            {
+                int curr = t.Unit.Health;
+                a.CastOffensiveSpell(PreysHex, t);
+                bool didSpellHit = curr != t.Unit.Health;
+                if (didSpellHit)
+                {
+                    if (t.PredatorComponent.AlivePrey == 0)
+                    {
+                        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{t.Unit.Name}</b> is dizzy from the hex but has no prey to release.");
+                        TacticalGraphicalEffects.CreateGenericMagic(a.Position, t.Position, t, TacticalGraphicalEffects.SpellEffectIcon.Poison);
+                    }
+                    else
+                    {
+                        t.PredatorComponent.FreeRandomPreyNow();
+                        TacticalGraphicalEffects.CreateGenericMagic(a.Position, t.Position, t, TacticalGraphicalEffects.SpellEffectIcon.Poison);
+                    }
+                }
+            },
+        };
+        SpellDict[SpellTypes.PreysHex] = PreysHex;
 
         FlameWave = new DamageSpell()
         {

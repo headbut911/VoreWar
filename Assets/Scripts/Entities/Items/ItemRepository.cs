@@ -185,6 +185,7 @@ public class ItemRepository
             new SpellBook("Speed Book", "Allows the casting of Speed", 30, 1, SpellTypes.Speed),
             new SpellBook("Valor Book", "Allows the casting of Valor", 30, 1, SpellTypes.Valor),
             new SpellBook("Predation Book", "Allows the casting of Predation", 30, 1, SpellTypes.Predation),
+            new SpellBook("Prey's Hex Book", "Allows the casting of Prey's Hex", 30, 1, SpellTypes.PreysHex),
             new SpellBook("Ice Blast Book", "Allows the casting of Ice Blast", 60, 2, SpellTypes.IceBlast),
             new SpellBook("Pyre Book", "Allows the casting of Pyre", 60, 2, SpellTypes.Pyre),
             new SpellBook("CrossShock Book", "Allows the casting of Cross Shock", 60, 2, SpellTypes.CrossShock),

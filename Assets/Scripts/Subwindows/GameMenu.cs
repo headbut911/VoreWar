@@ -6,6 +6,7 @@ public class GameMenu : MonoBehaviour
     public Options Options;
     public GameObject UIPanel;
     public WorldSettings WorldSettingsUI;
+    public EmpireSettings EmpireSettingsUI;
 
     public SaveLoad SaveLoadScreen;
     public CheatMenu CheatMenu;
@@ -20,6 +21,7 @@ public class GameMenu : MonoBehaviour
     public Button SaveLoadButton;
     public Button OpenMapEditorButton;
     public Button WorldSettingsButton;
+    public Button EmpireSettingsButton;
 
     public GameObject HelpScreen;
 
@@ -31,11 +33,13 @@ public class GameMenu : MonoBehaviour
         {
             OpenMapEditorButton.interactable = false;
             WorldSettingsButton.interactable = false;
+            EmpireSettingsButton.interactable = false;
         }
         else
         {
             OpenMapEditorButton.interactable = true;
             WorldSettingsButton.interactable = true;
+            EmpireSettingsButton.interactable = true;
         }
         SaveLoadButton.interactable = State.TutorialMode == false;
     }
@@ -95,6 +99,18 @@ public class GameMenu : MonoBehaviour
     {
         HelpUI.GenerateButtonsIfNeeded();
         HelpScreen.SetActive(true);
+    }
+
+    public void OpenEmpireTraits()
+    {
+        if (State.World.MainEmpires == null)
+        {
+            State.GameManager.CreateMessageBox("No world is currently loaded, you're in a pure tactical game");
+            return;
+        }
+
+        EmpireSettingsUI.gameObject.SetActive(true);
+        EmpireSettingsUI.Open();
     }
 
     public void CloseHelp()

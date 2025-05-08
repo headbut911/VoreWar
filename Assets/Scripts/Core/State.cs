@@ -1038,14 +1038,14 @@ public static class State
                 {
                     foreach (Empire empire in World.AllActiveEmpires)
                     {
-                        empire.LoadFix(); //Compatibility Temporary fix to bridge the gap between versions
+                        empire.LoadFix(); //Compatibility Temporary fix to bridge the gap between versions; add your null checks here in Empire.cs
                     }
                 }
                 else
                 {
                     foreach (Empire empire in World.MainEmpires)
                     {
-                        empire.LoadFix(); //Compatibility Temporary fix to bridge the gap between versions
+                        empire.LoadFix(); //Compatibility Temporary fix to bridge the gap between versions; add your null checks here in Empire.cs
                     }
                 }
 
@@ -1055,7 +1055,7 @@ public static class State
                     {
                         foreach (Unit unit in army.Units)
                         {
-                            unit.ReloadTraits();
+                            unit.ReloadTraits();//Add unit-based null checks for newly added internal(s) or protected(s) to this void in Unit.cs so that on loading an older version saved units will recive them
                         }
                     }
                 }
