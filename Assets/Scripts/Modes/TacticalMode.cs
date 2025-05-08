@@ -517,6 +517,8 @@ public class TacticalMode : SceneBase
             actor.allowedToDefect = !actor.DefectedThisTurn && TacticalUtilities.GetPreferredSide(actor.Unit, actor.Unit.Side, actor.Unit.Side == attackerSide ? defenderSide : attackerSide) != actor.Unit.Side;
             actor.DefectedThisTurn = false;
             actor.Unit.Heal(actor.Unit.GetLeaderBonus() * 3); // mainly for the new Stat boosts => maxHealth option, but eh why not have it for everyone anyway?
+            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor, armies[actor.Unit.Side], null });
+            EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);  
         }
 
 
@@ -3176,41 +3178,45 @@ Turns: {currentTurn}
         RebuildInfo();
     }
 
-    internal void AttemptRetreat(Actor_Unit actor, bool silent)
+    internal void AttemptRetreat(Actor_Unit actor, bool silent, bool fromWarp = false)
     {
-        if (currentTurn < actor.Unit.TraitBoosts.TurnCanFlee)
+        if (!fromWarp)
         {
-            if (silent == false) State.GameManager.CreateMessageBox($"Can't retreat before the {actor.Unit.TraitBoosts.TurnCanFlee}th turn");
-            return;
-        }
 
-        if (actor.Movement <= 0)
-        {
-            if (silent == false) State.GameManager.CreateMessageBox("Unit needs at least 1 AP to flee");
-            return;
-        }
+            if (currentTurn < actor.Unit.TraitBoosts.TurnCanFlee)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox($"Can't retreat before the {actor.Unit.TraitBoosts.TurnCanFlee}th turn");
+                return;
+            }
 
-        if (actor.Unit.Type == UnitType.Summon)
-        {
-            if (silent == false) State.GameManager.CreateMessageBox("A summoned unit can not flee");
-            return;
-        }
+            if (actor.Movement <= 0)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox("Unit needs at least 1 AP to flee");
+                return;
+            }
 
-        if (actor.Unit.HasTrait(Traits.Fearless))
-        {
-            if (silent == false) State.GameManager.CreateMessageBox("A unit with the fearless trait can not flee");
-            return;
-        }
+            if (actor.Unit.Type == UnitType.Summon)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox("A summoned unit can not flee");
+                return;
+            }
 
-        if (actor.Unit.Type == UnitType.SpecialMercenary)
-        {
-            if (silent == false) State.GameManager.CreateMessageBox($"{actor.Unit.Name}'s pride prevents them from fleeing (Special merc)");
-            return;
+            if (actor.Unit.HasTrait(Traits.Fearless))
+            {
+                if (silent == false) State.GameManager.CreateMessageBox("A unit with the fearless trait can not flee");
+                return;
+            }
+
+            if (actor.Unit.Type == UnitType.SpecialMercenary)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox($"{actor.Unit.Name}'s pride prevents them from fleeing (Special merc)");
+                return;
+            }
         }
 
         if (actor.Unit.Side == defenderSide)
         {
-            if (actor.Position.y == 0)
+            if (actor.Position.y == 0 || fromWarp)
             {
                 RetreatUnit(actor, true);
             }
@@ -3219,7 +3225,7 @@ Turns: {currentTurn}
         }
         else
         {
-            if (actor.Position.y == tiles.GetUpperBound(1))
+            if (actor.Position.y == tiles.GetUpperBound(1) || fromWarp)
             {
                 RetreatUnit(actor, false);
             }
@@ -4472,7 +4478,7 @@ Turns: {currentTurn}
 
         if (remainingAttackers == 0 || remainingDefenders == 0)
         {
-            foreach (Actor_Unit actor in units)
+            foreach (Actor_Unit actor in units.ToList())
             {
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && (actor.TurnsSinceLastDamage < 2 & !actor.Unit.HasTrait(Traits.CurseOfImmolation))) return false;
                 if (actor.Targetable && actor.Visible && !actor.Fled && !actor.Surrendered && !actor.Unit.hiddenFixedSide && units.Any(u => u.Targetable && !u.Fled && u.Visible && TacticalUtilities.TreatAsHostile(actor, u))) return false;
@@ -4587,6 +4593,9 @@ Turns: {currentTurn}
                 if (actor.Unit.TraitBoosts.HealthRegen > 0 && actor.Unit.IsDead == false)
                     actor.Unit.HealPercentage(1);
                 actor.Unit.StatusEffects.Clear();
+
+                EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, new object[] { actor, armies[actor.Unit.Side], null });
+
             }
             BattleReviewText.SetActive(false);
             foreach (Actor_Unit actor in units.ToList())
@@ -5104,16 +5113,23 @@ Turns: {currentTurn}
                     State.World.Stats?.SoldiersLost(1, unit.Side);
                 }
             }
-            while (StrategicUtilities.ArmyCanFitUnit(army, actors[0].Unit) && actors.Any())
+            if (actors.Any())
             {
-                army.Units.Add(actors[0].Unit);
-                actors.RemoveAt(0);
+                while (StrategicUtilities.ArmyCanFitUnit(army, actors[0].Unit))
+                {
+                    army.Units.Add(actors[0].Unit);
+                    actors.RemoveAt(0);
+                    if (!actors.Any())
+                        break;
+                }
             }
             while (StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last()))
             {
                 var last = army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last();
                 army.Units.Remove(last);
                 actors.Add(new Actor_Unit(last));
+                if (!army.Units.Any())
+                    break;
             }
         }
 

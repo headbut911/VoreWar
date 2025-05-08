@@ -51,6 +51,7 @@
     static internal Vargul Vargul = new Vargul();
     static internal Hamsters Hamsters = new Hamsters();
     static internal RwuMercenaries RwuMercenaries = new RwuMercenaries();
+    static internal Centaur Centaur = new Centaur();
 
     static internal Vagrants Vagrants = new Vagrants();
     static internal Serpents Serpents = new Serpents();
@@ -92,6 +93,7 @@
     static internal Dratopyr Dratopyr = new Dratopyr();
     static internal FeralLions FeralLions = new FeralLions();
     static internal BoomBunnies BoomBunnies = new BoomBunnies();
+    static internal FeralSlime FeralSlime = new FeralSlime();
 
     static internal Selicia Selicia = new Selicia();
     static internal Vision Vision = new Vision();
@@ -365,6 +367,10 @@
                 return BoomBunnies;
             case Race.Gnolls:
                 return Gnolls;
+            case Race.Centaur:
+                return Centaur;
+            case Race.FeralSlime:
+                return FeralSlime;
             case Race.Olivia:
                 return Olivia;
         }

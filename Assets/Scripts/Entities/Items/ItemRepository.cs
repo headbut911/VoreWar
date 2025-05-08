@@ -2,6 +2,7 @@ using OdinSerializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 public enum ItemType
 {
@@ -14,6 +15,16 @@ public enum ItemType
     Gauntlet,
     Gloves,
     Shoes,
+
+    HealthPotion, //Tier 1 Equip Start
+    ManaPotion,
+    ShieldRing, //Tier 1 Equip End
+    BarrierRing, //Tier 2 Equip Start
+    ConvergenceGem, //Tier 2 Equip End
+    RangerEmblem, //Tier 3 Equip Start
+    BrambleBand,//Tier 3 Equip End
+    WarpStone, //Tier 4 Equip start
+    GoddessPendant, //Tier 4 Equip End
 
     //FireBomb,
 
@@ -51,6 +62,7 @@ public enum ItemType
     Diminishment,
     GateMaw,
     Resurrection,
+
 }
 
 
@@ -114,6 +126,47 @@ public class ItemRepository
             new Accessory(name:"Gauntlet", description:"+6 strength", cost:8, changedStat:(int)Stat.Strength, statBonus:6 ),
             new Accessory(name:"Gloves", description:"+6 dexterity", cost:10, changedStat:(int)Stat.Dexterity, statBonus:6 ),
             new Accessory(name:"Shoes", description:"+2 agility, +1 movement tile", cost:6, changedStat:(int)Stat.Agility, statBonus:2),
+
+            new Equipment(name:"Health Potion", description:"Heals 20 HP if below 50% HP at start of turn, single use", cost:3, tier:1, type: EquipmentType.Uses, func: new Dictionary<EquipmentActivator, Func < object, object, object, bool >>
+            {
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentHealthPotion(((Actor_Unit)x).Unit)
+            }),
+            new Equipment(name:"Mana Potion", description:"Grants 20 Mana if below 50% Mana at start of turn, three uses", cost:3, tier:1, type: EquipmentType.Uses, uses: 3, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            {
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentManaPotion(((Actor_Unit)x).Unit)
+            }),
+            new Equipment(name:"Shield Ring", description:"Before taking damage, grants 5 barrier, three uses, three turn cooldown", cost:6, tier:1, type: EquipmentType.RechargeTactical, uses: 3, itemCD:3, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            {
+                [EquipmentActivator.WhenRangedHit] = (x,y,z) => {((Actor_Unit)x).Unit.RestoreBarrier(5); return true; },
+                [EquipmentActivator.WhenMeleeHit] = (x,y,z) => {((Actor_Unit)x).Unit.RestoreBarrier(5); return true; }
+            }),
+            new Equipment(name:"Barrier Ring", description:"Provides +10 barrier at start of battle, grants +2 barrier at start of turn if below 10", cost:15, tier:2, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            {
+                [EquipmentActivator.OnTacticalBattleStart] = (x,y,z) => {((Actor_Unit) x).Unit.RestoreBarrier(10); return true;},
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentBarrierRing(((Actor_Unit)x).Unit),
+            }),
+            new Equipment(name:"Convergence Gem", description:"When casting a spell, heals 5 HP. When taking damage, restores 5 mana.", cost:15, tier:2, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            {
+                [EquipmentActivator.OnDamage] = (x,y,z) => {((Actor_Unit)x).Unit.RestoreMana(5); return true; },
+                [EquipmentActivator.OnSpellCast] = (x,y,z) => {((Actor_Unit)x).Unit.Heal(5); return true; },
+            }),
+            new Equipment(name:"Ranger Emblem", description:"Once per turn, grants +1 MP when missing a ranged attack.", cost:20, tier:3, type: EquipmentType.RechargeTactical, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            {
+                [EquipmentActivator.OnRangedMiss] = (x,y,z) => {((Actor_Unit)x).Movement++; return true; }
+            }),
+            new Equipment(name:"Bramble Band", description:"When this unit is hit by a melee attack, the attacker suffer 10% of this unit's edurance as damage.", cost:20, tier:3, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            {
+                [EquipmentActivator.WhenMeleeHit] = (x,y,z) => EquipmentFunctions.UseEquipmentBrambleBand(((Actor_Unit)x).Unit, ((Actor_Unit)y))
+            }),
+            new Equipment(name:"Warp Stone", description:"If below 50% HP at start of turn, causes unit to flee after 2 turns, regardless of location, one strategic turn cooldown.", cost:50, tier:4, type: EquipmentType.RechargeStrategy, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            {
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentWarpStone(((Actor_Unit)x).Unit)
+            }),
+            new Equipment(name:"Goddess Pendant", description:"At start of battle, grant all allies in army 10 stacks of Bolstered. Every five turns, grants one respawn to unit.", cost:75, tier:4, itemCD:5, triggersCD: new bool[] {false,true}, type: EquipmentType.RechargeTactical, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
+            { 
+                [EquipmentActivator.OnTacticalBattleStart] = (x,y,z) => EquipmentFunctions.UseEquipmentGoddessPendantStart((Army)y),
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => {((Actor_Unit)x).Unit.AddRespawns(1); return true; }
+            }),
 
             //new SpellBook("Fire Bomb", "A belt of incendiary grenades", 60, 1, SpellTypes.FireBomb),
 
@@ -202,6 +255,7 @@ public class ItemRepository
             new Weapon(name:"Orca Jaws", description:"The fearsome jaws of a killer whale", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Exploding Paw", description:"Normaly a bunny's punch would be a laughable attack, but this bunny's paws seem to explode on contact. So...", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Otachi Claws", description:"The all-powerful kaiju claws of the Otachi.", cost:4, graphic:0, damage:6, range:1),
+            new Weapon(name:"Slime Tackle", description:"Slime attack.", cost:4, graphic:0, damage:4, range:1),
         };
 
         specialItems = new List<Item>()
@@ -260,6 +314,10 @@ public class ItemRepository
     {
         return GetItem(GetRandomBookType(minTier, maxTier, ignoreLimit));
     }
+    public Item GetRandomEquipment(int minTier = 1, int maxTier = 4, bool ignoreLimit = false)
+    {
+        return GetItem(GetRandomEquipmentType(minTier, maxTier, ignoreLimit));
+    }
 
     public int GetRandomBookType(int minTier = 1, int maxTier = 4, bool ignoreLimit = false)
     {
@@ -276,6 +334,24 @@ public class ItemRepository
         if (maxTier == 2) max = (int)ItemType.Poison;
         if (maxTier == 3) max = (int)ItemType.Summon;
         if (maxTier >= 4) max = (int)ItemType.Resurrection;
+
+        return State.Rand.Next(min, max + 1);
+    }
+    public int GetRandomEquipmentType(int minTier = 1, int maxTier = 4, bool ignoreLimit = false)
+    {
+        if (ignoreLimit == false)
+            maxTier = UnityEngine.Mathf.Clamp(maxTier, 1, Config.MaxEquipmentLevelDrop);
+        minTier = UnityEngine.Mathf.Clamp(minTier, 1, maxTier);
+        int min = (int)ItemType.HealthPotion;
+        int max = (int)ItemType.GoddessPendant;
+        if (minTier == 1) min = (int)ItemType.HealthPotion;
+        if (minTier == 2) min = (int)ItemType.BarrierRing;
+        if (minTier == 3) min = (int)ItemType.RangerEmblem;
+        if (minTier == 4) min = (int)ItemType.WarpStone;
+        if (maxTier == 1) max = (int)ItemType.ShieldRing;
+        if (maxTier == 2) max = (int)ItemType.ConvergenceGem;
+        if (maxTier == 3) max = (int)ItemType.BrambleBand;
+        if (maxTier >= 4) max = (int)ItemType.GoddessPendant;
 
         return State.Rand.Next(min, max + 1);
     }

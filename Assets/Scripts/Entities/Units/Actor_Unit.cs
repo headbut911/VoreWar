@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
-//using UnityEditorInternal.VR;
-using static UnityEngine.UI.CanvasScaler;
 
 public class Actor_Unit
 {
@@ -1642,9 +1640,13 @@ public class Actor_Unit
                 int remainingHealth = target.Unit.Health;
                 int damage = WeaponDamageAgainstTarget(target, true, multiplier: damageMultiplier);
 
+                EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnRangedAttack, new object[] { this, target, damage });
+
                 State.GameManager.SoundManager.PlaySwing(this);
                 if (target.Defend(this, ref damage, true, out float chance, canKill))
                 {
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnRangedHit, new object[] { this, target, damage });
+
                     foreach (IAttackStatusEffect trait in Unit.AttackStatusEffects)
                     {
                         trait.ApplyStatusEffect(this, target, true, damage);
@@ -1688,6 +1690,9 @@ public class Actor_Unit
                     TacticalUtilities.Log.RegisterMiss(Unit, target.Unit, weapon, chance);
                     if (Unit.HasTrait(Traits.Tenacious))
                         Unit.AddTenacious();
+
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnRangedMiss, new object[] { this, target, damage });
+
                 }
             }
         }
@@ -1712,8 +1717,14 @@ public class Actor_Unit
                     Movement = 0;
                 int remainingHealth = target.Unit.Health;
                 int damage = WeaponDamageAgainstTarget(target, false, multiplier: damageMultiplier, forceBite);
+
+                EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeAttack, new object[] { this, target, damage });
+
                 if (target.Defend(this, ref damage, false, out float chance, canKill))
                 {
+
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeHit, new object[] { this, target, damage });
+
                     foreach (IAttackStatusEffect trait in Unit.AttackStatusEffects)
                     {
                         trait.ApplyStatusEffect(this, target, false, damage);
@@ -1775,6 +1786,9 @@ public class Actor_Unit
                         else
                             Unit.BodyAccentType2++;
                     }
+
+                    EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeMiss, new object[] { this, target, damage });
+                   
                 }
             }
 
@@ -1936,9 +1950,13 @@ public class Actor_Unit
         }
         if (Unit.IsDead)
             return false;
+
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenTargetedBySpellDamage, new object[] { this, attacker, damage });
+
         if (DefendSpellCheck(spell, attacker, out float chance))
         {
             damage = (int)(damage * attacker.Unit.TraitBoosts.Outgoing.MagicDamage * Unit.TraitBoosts.Incoming.MagicDamage * TagConditionChecker.ApplyTagEffect(attacker.Unit, Unit, UnitTagModifierEffect.MagicDamageMult));
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenHitBySpellDamage, new object[] { this, attacker, damage });
             State.GameManager.TacticalMode.TacticalStats.RegisterHit(spell, Mathf.Min(damage, Unit.Health), attacker.Unit.Side);
             Damage(damage, true, damageType: spell.DamageType);
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, damage, chance);
@@ -1972,6 +1990,7 @@ public class Actor_Unit
             UnitSprite.DisplayDamage(0);
             State.GameManager.TacticalMode.Log.RegisterSpellMiss(attacker.Unit, Unit, spell.SpellType, chance);
             attacker.Unit.GiveScaledExp(.25f * Unit.ExpMultiplier, Unit.Level - Unit.Level);
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenMissedBySpellDamage, new object[] { this, attacker, damage });
         }
 
         return false;
@@ -1996,10 +2015,15 @@ public class Actor_Unit
                 attacker.sidesAttackedThisBattle = new List<int>();
             attacker.sidesAttackedThisBattle.Add(Unit.GetApparentSide());
         }
+
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenTargetedBySpellStatus, new object[] { this, attacker, spell });
+
+
         if (DefendSpellCheck(spell, attacker, out float chance, sneakAttack ? -0.3f : 0f, stat))
         {
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, 0, chance);
             Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this));
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenHitBySpellStatus, new object[] { this, attacker, spell });
             if (spell.Id == "charm")
             {
                 UnitSprite.DisplayCharm();
@@ -2055,6 +2079,7 @@ public class Actor_Unit
             }
 
             State.GameManager.TacticalMode.Log.RegisterSpellMiss(attacker.Unit, Unit, spell.SpellType, chance);
+            EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenMissedBySpellStatus, new object[] { this, attacker, spell });
         }
 
         return false;
@@ -2062,6 +2087,8 @@ public class Actor_Unit
 
     public bool Defend(Actor_Unit attacker, ref int damage, bool ranged, out float chance, bool canKill = true)
     {
+        EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedAttacked : EquipmentActivator.WhenMeleeAttacked, new object[] { this, attacker, damage });
+
         if (TacticalUtilities.SneakAttackCheck(attacker.Unit, Unit))
         {
             attacker.Unit.hiddenFixedSide = false;
@@ -2081,16 +2108,22 @@ public class Actor_Unit
         float r = (float)State.Rand.NextDouble();
         if (r < chance)
         {
+            EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedHit : EquipmentActivator.WhenMeleeHit, new object[] { this, attacker, damage });
+
             Damage(damage, canKill: canKill);
             if (canKill == false && attacker.Unit.HasTrait(Traits.VenomousBite))
             {
                 Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 3, 3);
                 Unit.ApplyStatusEffect(StatusEffectType.Shaken, .2f, 2);
             }
+
             return true;
         }
         else
             UnitSprite.DisplayDamage(0);
+
+        EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedMissed : EquipmentActivator.WhenMeleeMissed, new object[] { this, attacker, damage });
+
         return false;
     }
 
@@ -2518,6 +2551,9 @@ public class Actor_Unit
     {
         AIAvoidEat--;
 
+        EquipmentFunctions.TickCoolDown(Unit, EquipmentType.RechargeTactical);
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnTacticalTurnStart, new [] { this, null, null });
+
         NewTurnPreMPTraits();
 
         Unit.RestoreMana(Unit.TraitBoosts.ManaRegen);
@@ -2663,6 +2699,7 @@ public class Actor_Unit
         if (Unit.Health > Unit.MaxHealth)
             Unit.Health = Unit.MaxHealth;
         TurnsSinceLastDamage = -1;
+        EquipmentFunctions.CheckEquipment(this.Unit, EquipmentActivator.OnDamage, new object[] { this.Unit, damage, null });
     }
 
     public int CalculateDamageWithResistance(int damage, DamageTypes damageType)
@@ -3045,6 +3082,8 @@ public class Actor_Unit
             return;
         State.GameManager.SoundManager.PlaySpellCast(spell, this);
 
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnSpellCast, new object[] { this, target, spell });
+
         if (target != null)
         {
             if (spell.AreaOfEffect > 0 && spell.AOEType == AreaOfEffectType.Full)
@@ -3139,6 +3178,8 @@ public class Actor_Unit
         bool hit = false;
 
         State.GameManager.SoundManager.PlaySpellCast(spell, this);
+
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnSpellCast, new object[] { this, target, spell } );
 
         if (target != null)
         {

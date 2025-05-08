@@ -51,6 +51,7 @@
     Youko = 62,
     Hamsters = 63,
     RwuMercenaries = 64,
+    Centaur = 65,
 
     Vagrants = 100,
     Serpents = 101,
@@ -98,6 +99,7 @@
     FeralOrcas = 143,
     BoomBunnies = 144,
     Otachi = 145,
+    FeralSlime = 146,
 
     Selicia = 170,
     Vision = 171,

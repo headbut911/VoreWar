@@ -43,6 +43,10 @@ public class BuildMenu : MonoBehaviour
         CurrentOres.text = empire.constructionResources.Ores.ToString();
         CurrentPrefabs.text = empire.constructionResources.Prefabs.ToString();
         CurrentMS.text = empire.constructionResources.ManaStones.ToString();
+        if (Config.BuildConfig.BuildingSystemTurnLockout >= State.World.Turn)
+        {
+            return;
+        }
         foreach (var building in enabledBuildings)
         {
             if (!building.enabled)

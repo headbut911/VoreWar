@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 
 public class Village
@@ -1486,13 +1485,21 @@ public class Village
                     break;
 
             }
-            if (State.Rand.Next(10) == 0)
+            int equiproll = State.Rand.Next(10);
+            if (equiproll == 0)
             {
                 var book = State.World.ItemRepository.GetRandomBook();
                 extraCost = book.Cost * 3 / 4;
 
                 merc.Unit.SetItem(book, 1);
                 merc.Unit.AIClass = merc.Unit.BestSuitedForRanged() ? AIClass.MagicRanged : AIClass.MagicMelee;
+            }
+            if (equiproll >= 8)
+            {
+                var equ = State.World.ItemRepository.GetRandomEquipment();
+                extraCost = equ.Cost * 3 / 4;
+
+                merc.Unit.SetItem(equ, 1);
             }
         }
 

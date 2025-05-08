@@ -92,6 +92,25 @@ class CompleteSprite
         }
 
     }
+    /// <summary>
+    /// Normalizes sprite scale in UI to matche the set pixelsPerUnit based on actual sprite width.
+    /// </summary>
+    public void AdjustSpriteScale()
+    {
+        foreach (var sprite in sprites)
+        {
+            if (sprite != null)
+            {
+                if (sprite.Sprite != null)
+                {
+                    var bodyres = sprite.Sprite.pixelsPerUnit;
+                    var bodywidth = sprite.Sprite.rect.width;
+                    float mult = bodywidth / bodyres;
+                    sprite.GameObject.transform.localScale = new Vector3(mult, mult, sprite.GameObject.transform.localScale.z);
+                }
+            }
+        }
+    }
 
     public SpriteContainer GetSpriteOfType(SpriteType spriteType)
     {
@@ -164,9 +183,6 @@ class CompleteSprite
         sprites[typeInt].Sprite = sprite.GetSprite(actor);
         int sortOrder = sprite.layer + actor.spriteLayerOffset;
         sprites[typeInt].SortOrder = sortOrder;
-
-        
-       
 
     }
 

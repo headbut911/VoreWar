@@ -788,6 +788,8 @@ Does not retroactively affect already created units.";
                 return "Sets the upkeep one unit of this race will incur.";
             case 325:
                 return "When enabled, a hand effect displays when a pred has been belly rubbed.";
+            case 326:
+                return "Controls the maximum level of equipment dropped from monsters or goblins, or that spawn on mercenaries or adventurers.  Note that the maximum also depends on the monsters level, with level 4 equipment not generally appearing until after level 10, but this clamps that to your maximum";
             default:
                 return "";
         }

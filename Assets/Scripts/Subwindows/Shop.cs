@@ -213,6 +213,23 @@ public class Shop
                     }
 
                 }
+
+            }
+            if (item is Equipment equipment)
+            {
+                if (equipment.Tier > ((village?.NetBoosts.EquipmentLevels ?? -5) + 1) && equipment.Tier > 0)
+                {
+                    if (army.ItemStock.HasItem((ItemType)i) == false)
+                    {
+                        shopUI.BuyPanels[i].gameObject.SetActive(false);
+                        continue;
+                    }
+                    else
+                    {
+                        shopUI.BuyPanels[i].BuyButton.interactable = false;
+                    }
+
+                }
             }
 
 
