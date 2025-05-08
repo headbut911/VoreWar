@@ -1249,7 +1249,7 @@ public class ContentSettings : MonoBehaviour
             if (spawner.DayNightMonsterMovemnt.value > 0)
                 info.SetSpawnerCycleMoveType((Config.DayNightMovemntType)(spawner.DayNightMonsterMovemnt.value));
             else
-                info.UsingCustomType = false;
+                info.DNRestrictOn = false;
         }
         if (State.World != null && State.World.MonsterEmpires != null)
         {
