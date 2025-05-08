@@ -1,11 +1,4 @@
-﻿using OdinSerializer;
-using System;
-using System.Collections.Generic;
-using UnityEditor.Experimental.UIElements.GraphView;
-using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
-
-public static class EquipmentFunctions
+﻿public static class EquipmentFunctions
 {
     public static void CheckEquipment(Unit unit, EquipmentActivator activator, object[] args)
     {

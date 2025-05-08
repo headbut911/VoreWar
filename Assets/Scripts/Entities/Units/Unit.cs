@@ -3,10 +3,7 @@ using OdinSerializer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
-
 public enum UnitType
 {
     Soldier,
