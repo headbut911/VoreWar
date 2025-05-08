@@ -552,6 +552,9 @@ public class ContentSettings : MonoBehaviour
             case Race.BoomBunnies:
                 tooltip.value = 314;
                 break;
+            case Race.FeralSlime:
+                tooltip.value = 327;
+                break;
         }
         return spawner;
     }
@@ -793,6 +796,7 @@ public class ContentSettings : MonoBehaviour
     {
         gameObject.SetActive(true);
         buildingSettings.SoftLoad();
+        buildingSettings.LoadBuildingValues();
         foreach (ToggleObject toggle in Toggles)
         {
             toggle.Toggle.isOn = Config.World.GetValue(toggle.Name);
@@ -1248,7 +1252,7 @@ public class ContentSettings : MonoBehaviour
             if (spawner.DayNightMonsterMovemnt.value > 0)
                 info.SetSpawnerCycleMoveType((Config.DayNightMovemntType)(spawner.DayNightMonsterMovemnt.value));
             else
-                info.UsingCustomType = false;
+                info.DNRestrictOn = false;
         }
         if (State.World != null && State.World.MonsterEmpires != null)
         {

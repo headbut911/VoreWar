@@ -97,19 +97,23 @@ class CompleteSprite
     /// </summary>
     public void AdjustSpriteScale()
     {
-        foreach (var sprite in sprites)
+        if (actor.Unit.Race == Race.Centaur)
         {
-            if (sprite != null)
+            foreach (var sprite in sprites)
             {
-                if (sprite.Sprite != null)
+                if (sprite != null)
                 {
-                    var bodyres = sprite.Sprite.pixelsPerUnit;
-                    var bodywidth = sprite.Sprite.rect.width;
-                    float mult = bodywidth / bodyres;
-                    sprite.GameObject.transform.localScale = new Vector3(mult, mult, sprite.GameObject.transform.localScale.z);
+                    if (sprite.Sprite != null)
+                    {
+                        var bodyres = sprite.Sprite.pixelsPerUnit;
+                        var bodywidth = sprite.Sprite.rect.width;
+                        float mult = bodywidth / bodyres;
+                        sprite.GameObject.transform.localScale = new Vector3(mult, mult, sprite.GameObject.transform.localScale.z);
+                    }
                 }
             }
         }
+
     }
 
     public SpriteContainer GetSpriteOfType(SpriteType spriteType)

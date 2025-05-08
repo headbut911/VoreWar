@@ -17,7 +17,7 @@ public class AcademySettings : MonoBehaviour
         Config.BuildConfig.AcademyEXPPerGold = int.TryParse(EXPPerGold.text, out int smi) ? smi : 5;
         Config.BuildConfig.AcademyMaximumUpgrades = int.TryParse(MaximumUpgrades.text, out int sma) ? sma : 4;
         Config.BuildConfig.AcademyUpgradeCost = int.TryParse(UpgradeCost.text, out int mmi) ? mmi : 1000;
-        Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade = float.TryParse(UpgradeCost.text, out float mme) ? mme : 1.5f;
+        Config.BuildConfig.AcademyCostIncreaseMultPerUpgrade = float.TryParse(CostIncreaseMultPerUpgrade.text, out float mme) ? mme : 1.5f;
 
     }
 

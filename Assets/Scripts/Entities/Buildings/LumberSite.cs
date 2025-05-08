@@ -39,13 +39,19 @@ class LumberSite : ConstructibleBuilding
         ConstructionResources ownerResource = Owner.constructionResources;
         ownerResource.AddResource(ConstructionResourceType.wood, woodWorkers + IdleWorkers);
 
+
         if (lodgeUpgrade.built)
         {
             IdleWorkers = (Config.BuildConfig.LumberSiteWorkerCap * 2) - woodWorkers - natureWorkers - (carpenterWorkers * 2);
-            if (IdleWorkers <= 0)
-            {
-                IdleWorkers = 0;
-            }
+        }
+        else
+        {
+            IdleWorkers = (Config.BuildConfig.LumberSiteWorkerCap) - woodWorkers - natureWorkers - (carpenterWorkers * 2);
+        }
+
+        if (IdleWorkers <= 0)
+        {
+            IdleWorkers = 0;
         }
 
         if (greenHouseUpgrade.built)

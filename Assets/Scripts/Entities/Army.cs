@@ -276,7 +276,7 @@ public class Army
         if (movement < 0)
             { movement = 0; }
 
-        return movement + (int)Math.Floor(AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.ArmyMP));
+        return movement + (int)Math.Floor(AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.ArmyMP) * 0.5f);
     }
 
     public void RefreshMovementMode()

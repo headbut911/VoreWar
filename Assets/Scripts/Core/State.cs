@@ -430,7 +430,8 @@ public static class State
                 World.Claimables = new ClaimableBuilding[0];
             if (World.Constructibles == null)
                 World.Constructibles = new ConstructibleBuilding[0];
-
+            ItemRepository newRepo = new ItemRepository();
+            World.ItemRepository = newRepo;
             //Always runs for new versions           
             if (World.SaveVersion != Version && World.AllActiveEmpires != null)
             {
@@ -476,8 +477,6 @@ public static class State
 
                     }
                 }
-                ItemRepository newRepo = new ItemRepository();
-                World.ItemRepository = newRepo;
 
                 foreach (var unit in StrategicUtilities.GetAllUnits())
                 {
@@ -1071,9 +1070,6 @@ public static class State
             }
             else //If Pure Tactical
             {
-                //These two lines are there to catch a pure tactical game with the summon spell.
-                ItemRepository newRepo = new ItemRepository();
-                World.ItemRepository = newRepo;
 
                 Config.WatchAIBattles = true;
                 pureTactical = true;
