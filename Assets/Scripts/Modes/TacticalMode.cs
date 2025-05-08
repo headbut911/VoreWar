@@ -517,7 +517,7 @@ public class TacticalMode : SceneBase
             actor.allowedToDefect = !actor.DefectedThisTurn && TacticalUtilities.GetPreferredSide(actor.Unit, actor.Unit.Side, actor.Unit.Side == attackerSide ? defenderSide : attackerSide) != actor.Unit.Side;
             actor.DefectedThisTurn = false;
             actor.Unit.Heal(actor.Unit.GetLeaderBonus() * 3); // mainly for the new Stat boosts => maxHealth option, but eh why not have it for everyone anyway?
-            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor.Unit, armies[actor.Unit.Side], null });
+            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor, armies[actor.Unit.Side], null });
             EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);  
         }
 
@@ -3178,41 +3178,45 @@ Turns: {currentTurn}
         RebuildInfo();
     }
 
-    internal void AttemptRetreat(Actor_Unit actor, bool silent)
+    internal void AttemptRetreat(Actor_Unit actor, bool silent, bool fromWarp = false)
     {
-        if (currentTurn < actor.Unit.TraitBoosts.TurnCanFlee)
+        if (!fromWarp)
         {
-            if (silent == false) State.GameManager.CreateMessageBox($"Can't retreat before the {actor.Unit.TraitBoosts.TurnCanFlee}th turn");
-            return;
-        }
 
-        if (actor.Movement <= 0)
-        {
-            if (silent == false) State.GameManager.CreateMessageBox("Unit needs at least 1 AP to flee");
-            return;
-        }
+            if (currentTurn < actor.Unit.TraitBoosts.TurnCanFlee)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox($"Can't retreat before the {actor.Unit.TraitBoosts.TurnCanFlee}th turn");
+                return;
+            }
 
-        if (actor.Unit.Type == UnitType.Summon)
-        {
-            if (silent == false) State.GameManager.CreateMessageBox("A summoned unit can not flee");
-            return;
-        }
+            if (actor.Movement <= 0)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox("Unit needs at least 1 AP to flee");
+                return;
+            }
 
-        if (actor.Unit.HasTrait(Traits.Fearless))
-        {
-            if (silent == false) State.GameManager.CreateMessageBox("A unit with the fearless trait can not flee");
-            return;
-        }
+            if (actor.Unit.Type == UnitType.Summon)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox("A summoned unit can not flee");
+                return;
+            }
 
-        if (actor.Unit.Type == UnitType.SpecialMercenary)
-        {
-            if (silent == false) State.GameManager.CreateMessageBox($"{actor.Unit.Name}'s pride prevents them from fleeing (Special merc)");
-            return;
+            if (actor.Unit.HasTrait(Traits.Fearless))
+            {
+                if (silent == false) State.GameManager.CreateMessageBox("A unit with the fearless trait can not flee");
+                return;
+            }
+
+            if (actor.Unit.Type == UnitType.SpecialMercenary)
+            {
+                if (silent == false) State.GameManager.CreateMessageBox($"{actor.Unit.Name}'s pride prevents them from fleeing (Special merc)");
+                return;
+            }
         }
 
         if (actor.Unit.Side == defenderSide)
         {
-            if (actor.Position.y == 0)
+            if (actor.Position.y == 0 || fromWarp)
             {
                 RetreatUnit(actor, true);
             }
@@ -3221,7 +3225,7 @@ Turns: {currentTurn}
         }
         else
         {
-            if (actor.Position.y == tiles.GetUpperBound(1))
+            if (actor.Position.y == tiles.GetUpperBound(1) || fromWarp)
             {
                 RetreatUnit(actor, false);
             }
@@ -4590,7 +4594,7 @@ Turns: {currentTurn}
                     actor.Unit.HealPercentage(1);
                 actor.Unit.StatusEffects.Clear();
 
-                EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, new object[] { actor.Unit, armies[actor.Unit.Side], null });
+                EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, new object[] { actor, armies[actor.Unit.Side], null });
 
             }
             BattleReviewText.SetActive(false);

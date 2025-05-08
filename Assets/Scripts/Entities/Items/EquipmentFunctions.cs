@@ -1,6 +1,7 @@
 ﻿using OdinSerializer;
 using System;
 using System.Collections.Generic;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
 
@@ -61,19 +62,64 @@ public static class EquipmentFunctions
         return -1;
     }
 
-    internal static void UseEquipmentHealthPotion(Unit unit)
+    internal static bool UseEquipmentHealthPotion(Unit unit)
     {
         if (unit.HealthPct <= 0.5f)
         {
             unit.Heal(20);
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{unit.Name}</b> drank a health potion, healing <color=green>20</color> HP.");
+            return true;
         }
+        return false;
     }   
-    internal static void UseEquipmentManaPotion(Unit unit)
+    internal static bool UseEquipmentManaPotion(Unit unit)
     {
-        if (unit.HealthPct <= 0.5f)
+        if (unit.ManaPct <= 0.5f)
         {
-            unit.Heal(20);
-            unit.SetItem(null, GetEquipmentSlot(unit, ItemType.HealthPotion));            
+            unit.RestoreMana(20);
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{unit.Name}</b> drank a mana potion, restoring <color=blue>20</color> mana.");
+            return true;
         }
+        return false;
+
+    }
+    internal static bool UseEquipmentBarrierRing(Unit unit)
+    {
+        if (unit.Barrier <= 8)
+        {
+            unit.RestoreBarrier(2);
+            return true;
+        }
+        else if (unit.Barrier <= 9)
+        {
+            unit.RestoreBarrier(1);
+            return true;
+        }
+        return false;
+    }
+    internal static bool UseEquipmentBrambleBand(Unit unit, Actor_Unit attacker)
+    {
+        int damage = unit.GetStat(Stat.Endurance) / 10;
+        attacker.Damage(damage, false, false);
+        State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{attacker.Unit.Name}</b> took <color=red>{damage}</color> damage from {unit.Name}'s Bramble Band.");
+        return true;
+
+    }
+    internal static bool UseEquipmentWarpStone(Unit unit)
+    {
+        if (unit.HealthPct <= 0.5f && unit.GetStatusEffect(StatusEffectType.Warping) == null)
+        {
+            unit.ApplyStatusEffect(StatusEffectType.Warping, 2, 2);
+            return true;
+        }
+        return false;
+    }
+    internal static bool UseEquipmentGoddessPendantStart(Army army)
+    {
+        foreach (var unit in army.Units)
+        {
+            unit.AddBolster(10);
+        }
+        return true;
     }
 }

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
-using UnityEditorInternal.VR;
-using static UnityEngine.UI.CanvasScaler;
-using UnityEditor.Experimental.UIElements.GraphView;
 
 public class Actor_Unit
 {
@@ -2111,14 +2108,14 @@ public class Actor_Unit
         float r = (float)State.Rand.NextDouble();
         if (r < chance)
         {
+            EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedHit : EquipmentActivator.WhenMeleeHit, new object[] { this, attacker, damage });
+
             Damage(damage, canKill: canKill);
             if (canKill == false && attacker.Unit.HasTrait(Traits.VenomousBite))
             {
                 Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 3, 3);
                 Unit.ApplyStatusEffect(StatusEffectType.Shaken, .2f, 2);
             }
-
-            EquipmentFunctions.CheckEquipment(Unit, ranged ? EquipmentActivator.WhenRangedHit : EquipmentActivator.WhenMeleeHit, new object[] { this, attacker, damage });
 
             return true;
         }
@@ -2554,7 +2551,7 @@ public class Actor_Unit
         AIAvoidEat--;
 
         EquipmentFunctions.TickCoolDown(Unit, EquipmentType.RechargeTactical);
-        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnTacticalTurnStart, new [] { Unit, null, null });
+        EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnTacticalTurnStart, new [] { this, null, null });
 
         NewTurnPreMPTraits();
 

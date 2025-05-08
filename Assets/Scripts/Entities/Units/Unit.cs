@@ -3,6 +3,7 @@ using OdinSerializer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.UIElements.GraphView;
 using UnityEngine;
 using static UnityEngine.UI.CanvasScaler;
 
@@ -3355,6 +3356,26 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
 
                         }
 
+                    }
+                }
+                if (eff.Type == StatusEffectType.Warping)
+                {
+                    var still = GetStatusEffect(StatusEffectType.WillingPrey);
+                    if (still == null)
+                    {
+                        if (actor != null)
+                        {
+                            if (pred != null)
+                            {
+                                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> warped out of the battle, and out of <b>{pred.Unit.Name}</b>.");
+                                pred.PredatorComponent.FreePrey(actor.SelfPrey, true);
+                            }
+                            else
+                            {
+                                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> warped out of the battle.");
+                            }
+                            State.GameManager.TacticalMode.AttemptRetreat(actor,false,true);
+                        }
                     }
                 }
             }

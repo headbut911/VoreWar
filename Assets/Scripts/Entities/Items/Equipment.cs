@@ -6,9 +6,9 @@ using static UnityEngine.UI.CanvasScaler;
 
 public enum EquipmentActivator
 {
-    OnTacticalBattleStart, // Unit, Army, null
-    OnTacticalBattleEnd, // Unit, Army, null
-    OnTacticalTurnStart, // Unit, army, null
+    OnTacticalBattleStart, // ActorUnit, Army, null
+    OnTacticalBattleEnd, // ActorUnit, Army, null
+    OnTacticalTurnStart, // ActorUnit, army, null
     OnStrategicTurnStart, // Unit, army, null
     OnMeleeAttack, // ActorUnit, target, damage
     OnMeleeHit, // ActorUnit, target, damage
@@ -50,7 +50,7 @@ public enum EquipmentType
 public class Equipment : Item
 {
     [OdinSerialize]
-    internal Dictionary<EquipmentActivator, Action<object, object, object>> EquipmentFunction;
+    internal Dictionary<EquipmentActivator, Func<object, object, object, bool>> EquipmentFunction;
     [OdinSerialize]
     internal int Tier { get; private set; }
     [OdinSerialize]
@@ -61,7 +61,7 @@ public class Equipment : Item
     internal int ItemCooldown;
     [OdinSerialize]
     internal bool[] TriggersCooldown; // used for multi-function equipment, not required. Count should match EquipmentFunction, a value of true triggers uses and/or cooldowns, a value of false ignores uses / cooldowns, 
-    public Equipment(string name, string description, int cost, int tier, Dictionary<EquipmentActivator, Action<object, object, object>> func, EquipmentType type = EquipmentType.Normal, int uses = 1, int itemCD = 0, bool[] triggersCD = null)
+    public Equipment(string name, string description, int cost, int tier, Dictionary<EquipmentActivator, Func<object, object, object, bool>> func, EquipmentType type = EquipmentType.Normal, int uses = 1, int itemCD = 0, bool[] triggersCD = null)
     {
         Name = name;
         Description = description;
@@ -78,37 +78,40 @@ public class Equipment : Item
     {
         if (unit.ItemUses[slot] > 0)
         {
-            EquipmentFunction[activator].Invoke(args[0], args[1], args[2]);
-            if (useType != EquipmentType.Normal)
+            if (EquipmentFunction[activator].Invoke(args[0], args[1], args[2]))
             {
-                if (TriggersCooldown != null)
-                    if (TriggersCooldown.Count() == EquipmentFunction.Count())
-                        if (!TriggersCooldown[EquipmentFunction.Keys.ToList().IndexOf(activator)])
-                            return;
+                if (useType != EquipmentType.Normal)
+                {
+                    if (TriggersCooldown != null)
+                        if (TriggersCooldown.Count() == EquipmentFunction.Count())
+                            if (!TriggersCooldown[EquipmentFunction.Keys.ToList().IndexOf(activator)])
+                                return;
 
-                unit.ItemUses[slot] = unit.ItemUses[slot] - 1;
-                if (useType == EquipmentType.RechargeTactical || useType == EquipmentType.RechargeStrategy)
-                {
-                    if (unit.ItemCooldowns[slot] <= 0)
+                    unit.ItemUses[slot] = unit.ItemUses[slot] - 1;
+                    if (useType == EquipmentType.RechargeTactical || useType == EquipmentType.RechargeStrategy)
                     {
-                        unit.ItemCooldowns[slot] = ItemCooldown;
+                        if (unit.ItemCooldowns[slot] <= 0)
+                        {
+                            unit.ItemCooldowns[slot] = ItemCooldown;
+                        }
                     }
-                }
-                if (useType == EquipmentType.RestockTactical || useType == EquipmentType.RestockStrategy)
-                {
-                    if (unit.ItemCooldowns[slot] <= 0 && unit.ItemUses[slot] <= 0)
+                    if (useType == EquipmentType.RestockTactical || useType == EquipmentType.RestockStrategy)
                     {
-                        unit.ItemCooldowns[slot] = ItemCooldown;
+                        if (unit.ItemCooldowns[slot] <= 0 && unit.ItemUses[slot] <= 0)
+                        {
+                            unit.ItemCooldowns[slot] = ItemCooldown;
+                        }
                     }
-                }
-                if (useType == EquipmentType.Uses)
-                {
-                    if (unit.ItemUses[slot] <= 0)
+                    if (useType == EquipmentType.Uses)
                     {
-                        unit.SetItem(null, slot);
+                        if (unit.ItemUses[slot] <= 0)
+                        {
+                            unit.SetItem(null, slot);
+                        }
                     }
                 }
             }
+
         }
     }
 

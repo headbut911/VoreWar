@@ -49,7 +49,9 @@ public class WorldConfig
     internal bool CapMaxGarrisonIncrease = true;
 
     [OdinSerialize]
-    internal int MaxSpellLevelDrop = 4;
+    internal int MaxSpellLevelDrop = 4;   
+    [OdinSerialize]
+    internal int MaxEquipmentLevelDrop = 4;
 
     [OdinSerialize]
     internal int ArmyMP = 3;
@@ -453,7 +455,6 @@ public class WorldConfig
             ["AbsorbRateDivision"] = false,
             ["AbsorbLoss"] = false,
             ["AbsorbBoostDeadOnly"] = false,
-            ["BellyRubHand"] = true,
         };
 
         foreach (Race race in ((Race[])Enum.GetValues(typeof(Race))).Where(s => (int)s >= 0))

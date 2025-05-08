@@ -136,6 +136,7 @@ public class ContentSettings : MonoBehaviour
 
     public TMP_Dropdown DiplomacyScale;
     public TMP_Dropdown MaxSpellLevelDrop;
+    public TMP_Dropdown MaxEquipmentLevelDrop;
 
     public Slider TacticalWaterValue;
     public Slider TacticalTerrainFrequency;
@@ -676,6 +677,7 @@ public class ContentSettings : MonoBehaviour
         Config.World.RandomAIEventRate = PlayerPrefs.GetInt("RandomAIEventRate", 0);
         Config.World.DiplomacyScale = (DiplomacyScale)PlayerPrefs.GetInt("DiplomacyScale", 0);
         Config.World.MaxSpellLevelDrop = PlayerPrefs.GetInt("MaxSpellLevelDrop", 4);
+        Config.World.MaxEquipmentLevelDrop = PlayerPrefs.GetInt("MaxEquipmentLevelDrop", 4);
         Config.World.LeaderTraits = RaceEditorPanel.TextToTraitList(PlayerPrefs.GetString("LeaderTraits", ""));
         Config.World.MaleTraits = RaceEditorPanel.TextToTraitList(PlayerPrefs.GetString("MaleTraits", ""));
         Config.World.FemaleTraits = RaceEditorPanel.TextToTraitList(PlayerPrefs.GetString("FemaleTraits", ""));
@@ -874,6 +876,7 @@ public class ContentSettings : MonoBehaviour
         WinterStuff.value = (int)Config.World.WinterStuff;
         DiplomacyScale.value = (int)Config.DiplomacyScale;
         MaxSpellLevelDrop.value = Config.MaxSpellLevelDrop - 1;
+        MaxEquipmentLevelDrop.value = Config.MaxEquipmentLevelDrop - 1;
         OverallMonsterSpawnRateModifier.value = Config.OverallMonsterSpawnRateModifier;
         OverallMonsterCapModifier.value = Config.OverallMonsterCapModifier;
         MercSortDirection.isOn = PlayerPrefs.GetInt("MercSortDirection", 0) == 1;
@@ -890,6 +893,7 @@ public class ContentSettings : MonoBehaviour
         SucklingPermission.RefreshShownValue();
         DiplomacyScale.RefreshShownValue();
         MaxSpellLevelDrop.RefreshShownValue();
+        MaxEquipmentLevelDrop.RefreshShownValue();
         LeaderTraits.text = RaceEditorPanel.TraitListToText(Config.LeaderTraits);
         MaleTraits.text = RaceEditorPanel.TraitListToText(Config.MaleTraits);
         FemaleTraits.text = RaceEditorPanel.TraitListToText(Config.FemaleTraits);
@@ -1106,6 +1110,7 @@ public class ContentSettings : MonoBehaviour
         Config.World.WinterStuff = (Config.SeasonalType)WinterStuff.value;
         Config.World.DiplomacyScale = (DiplomacyScale)DiplomacyScale.value;
         Config.World.MaxSpellLevelDrop = MaxSpellLevelDrop.value + 1;
+        Config.World.MaxEquipmentLevelDrop = MaxEquipmentLevelDrop.value + 1;
         Config.World.LeaderTraits = RaceEditorPanel.TextToTraitList(LeaderTraits.text);
         Config.World.MaleTraits = RaceEditorPanel.TextToTraitList(MaleTraits.text);
         Config.World.FemaleTraits = RaceEditorPanel.TextToTraitList(FemaleTraits.text);
@@ -1353,6 +1358,7 @@ public class ContentSettings : MonoBehaviour
         PlayerPrefs.SetInt("SucklingPermission", SucklingPermission.value);
         PlayerPrefs.SetInt("DiplomacyScale", DiplomacyScale.value);
         PlayerPrefs.SetInt("MaxSpellLevelDrop", MaxSpellLevelDrop.value + 1);
+        PlayerPrefs.SetInt("MaxEquipmentLevelDrop", MaxEquipmentLevelDrop.value + 1);
         PlayerPrefs.SetInt("MonsterConquestTurns", int.TryParse(MonsterConquestTurns.text, out int monsterTurns) ? monsterTurns : 0);
         PlayerPrefs.SetString("LeaderTraits", LeaderTraits.text);
         PlayerPrefs.SetString("MaleTraits", MaleTraits.text);

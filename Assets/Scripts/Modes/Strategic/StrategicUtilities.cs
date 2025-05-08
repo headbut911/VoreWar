@@ -562,6 +562,10 @@ static class StrategicUtilities
 
             }
         }
+        if (State.Rand.Next(5) == 0)
+        {
+            itemToPurchase = State.World.ItemRepository.GetRandomEquipment(1, village.NetBoosts.EquipmentLevels);
+        }
         if (unit.AIClass == AIClass.MagicMelee || unit.AIClass == AIClass.MagicRanged)
         {
             if (village.buildings.Contains(VillageBuilding.MagicGuild))
