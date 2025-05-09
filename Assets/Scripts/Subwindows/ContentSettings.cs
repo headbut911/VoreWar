@@ -552,6 +552,9 @@ public class ContentSettings : MonoBehaviour
             case Race.BoomBunnies:
                 tooltip.value = 314;
                 break;
+            case Race.FeralSlime:
+                tooltip.value = 327;
+                break;
         }
         return spawner;
     }
