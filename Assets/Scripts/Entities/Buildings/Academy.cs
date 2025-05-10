@@ -53,24 +53,27 @@ class Academy : ConstructibleBuilding
                     unitCount++;
                 }
             }
-            float perUnitEXP = (outgoingEXP / unitCount);
-            float returnedEXP = 0;
-            foreach (Army army in armies)
+            if (unitCount >= 1)
             {
-                foreach (var unit in army.Units)
+                float perUnitEXP = (outgoingEXP / unitCount);
+                float returnedEXP = 0;
+                foreach (Army army in armies)
                 {
-                    int maxEXP = unit.GetExperienceRequiredForLevel(unit.Level + 1);
-                    if (perUnitEXP > maxEXP)
+                    foreach (var unit in army.Units)
                     {
-                        unit.GiveExp(maxEXP);
-                        returnedEXP += perUnitEXP - maxEXP;
+                        int maxEXP = unit.GetExperienceRequiredForLevel(unit.Level + 1);
+                        if (perUnitEXP > maxEXP)
+                        {
+                            unit.GiveExp(maxEXP);
+                            returnedEXP += perUnitEXP - maxEXP;
 
+                        }
+                        else
+                            unit.GiveExp(perUnitEXP);
                     }
-                    else
-                        unit.GiveExp(perUnitEXP);
                 }
+                StoredEXP += (int)returnedEXP;
             }
-            StoredEXP += (int)returnedEXP;
         }
     }
 }

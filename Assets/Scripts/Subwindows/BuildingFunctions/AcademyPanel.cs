@@ -38,7 +38,7 @@ public class AcademyPanel : MonoBehaviour
         IncomeSlider.value = Academy.Income1;
         BonusIncomeSliderValue.text = Academy.Income2.ToString();
         BonusIncomeSlider.value = Academy.Income2;
-        EXPDistributeSliderValue.text = Academy.DistributedEXP.ToString();
+        EXPDistributeSliderValue.text = (Academy.DistributedEXP * 10).ToString();
         EXPDistributeSlider.value = Academy.DistributedEXP;
         if (!Academy.efficiencyUpgrade.built)
         {
