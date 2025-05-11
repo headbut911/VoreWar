@@ -2285,7 +2285,10 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             if (State.World.GetEmpireOfSide(HiddenUnit.Side) == null) {}//Execption fix due to how saves are loaded
             else if (State.World.GetEmpireOfSide(HiddenUnit.Side).EmpTraits != null)
-                Tags.AddRange(State.World.GetEmpireOfSide(HiddenUnit.Side).EmpTraits);
+                foreach (Traits trait in State.World.GetEmpireOfSide(HiddenUnit.Side).EmpTraits)
+                {
+                    AddPermanentTrait(trait);
+                }
         }
         if (RemovedTraits != null)
         {
