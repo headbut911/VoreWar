@@ -26,7 +26,7 @@ internal class ClothingDiscards
     {
         this.location = location;
         this.race = race;
-        this.type = type;
+        this.type = type; // When setting up clothes for a new race this is what the "Type =" is used to identify. If a newer race's type matches an older race's "Type" number in the GenerateSpritePrefab list below the list will prioritise the earliest instance of that "Type" number resulting is using that sprite over the newer instance.
         this.color = color;
         this.name = name;
         this.sortOrder = sortOrder;
@@ -84,6 +84,8 @@ internal class ClothingDiscards
             AllClothes.AddRange(Races.Humans.AllowedWaistTypes);
             AllClothes.AddRange(Races.Vargul.AllowedMainClothingTypes);
             AllClothes.AddRange(Races.Vargul.AllowedWaistTypes);
+            AllClothes.AddRange(Races.Aabayx.AllowedMainClothingTypes);
+            AllClothes.AddRange(Races.Aabayx.AllowedWaistTypes);
             AllClothes = AllClothes.Distinct().ToList();
         }
         var clothingType = AllClothes.Where(s => s.Type == type).FirstOrDefault();
