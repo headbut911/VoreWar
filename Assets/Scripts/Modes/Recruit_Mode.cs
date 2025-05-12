@@ -1375,7 +1375,7 @@ public class Recruit_Mode : SceneBase
                 button.interactable = true;
             else
                 button.interactable = false;
-            button.onClick.AddListener(() => HireMercenary(merc, obj));
+            button.onClick.AddListener(() => HireMercenary(merc, mercRaw, obj));
             button.onClick.AddListener(() => CheckButtonStatus());
             buttonList.Add(button, actor.Unit);
         }
@@ -1383,7 +1383,7 @@ public class Recruit_Mode : SceneBase
         MercenaryScreenUI.gameObject.SetActive(true);
     }
 
-    void HireMercenary(MercenaryContainer merc, GameObject obj)
+    void HireMercenary(MercenaryContainer merc,MercenaryContainer mercRaw, GameObject obj)
     {
         if (empire.Gold >= merc.Cost)
         {
@@ -1394,6 +1394,8 @@ public class Recruit_Mode : SceneBase
                 empire.SpendGold(merc.Cost);
                 mercenaryHouse.Mercenaries.Remove(merc);
                 MercenaryHouse.UniqueMercs.Remove(merc);
+                mercenaryHouse.Mercenaries.Remove(mercRaw);
+                MercenaryHouse.UniqueMercs.Remove(mercRaw);
                 Destroy(obj);
                 UpdateActorList();
                 UpdateMercenaryScreenText();
