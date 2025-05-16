@@ -40,7 +40,7 @@ class Gnolls : DefaultRaceData
         BodyAccessory = new SpriteExtraInfo(2, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Body Fur Pattern
         Balls = new SpriteExtraInfo(3, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Critical damage
         Dick = new SpriteExtraInfo(4, DickSprite, null, null); // Strange cylindrical object
-        Belly = new SpriteExtraInfo(5, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Snuggle into it
+        Belly = new SpriteExtraInfo(8, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Snuggle into it
         Breasts = new SpriteExtraInfo(13, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Left Booba
         SecondaryBreasts = new SpriteExtraInfo(13, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Right Booba
         Head = new SpriteExtraInfo(15, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Yes, please! (sorry...)
@@ -1091,7 +1091,7 @@ class Gnolls : DefaultRaceData
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(9, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             Type = 1579;
             DiscardUsesPalettes = true;
         }
@@ -1121,7 +1121,7 @@ class Gnolls : DefaultRaceData
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(14, null, null);
             Type = 1579;
             DiscardUsesPalettes = true;
         }
@@ -1179,9 +1179,9 @@ class Gnolls : DefaultRaceData
             coversBreasts = false;
             OccupiesAllSlots = true;
             FixedColor = true;
-            clothing1 = new SpriteExtraInfo(14, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
-            clothing3 = new SpriteExtraInfo(11, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(14, null, WhiteColored);//Breast element
+            clothing2 = new SpriteExtraInfo(7, null, WhiteColored);//Bottom
+            clothing3 = new SpriteExtraInfo(11, null, WhiteColored);//Top
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -1272,7 +1272,7 @@ class Gnolls : DefaultRaceData
             OccupiesAllSlots = true;
             FixedColor = true;
             clothing1 = new SpriteExtraInfo(14, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(8, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(7, null, WhiteColored);
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -1307,7 +1307,7 @@ class Gnolls : DefaultRaceData
             OccupiesAllSlots = true;
             FixedColor = true;
             clothing1 = new SpriteExtraInfo(14, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(8, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(7, null, WhiteColored);
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -1366,8 +1366,8 @@ class Gnolls : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Avians3[121];
             coversBreasts = false;
-            clothing1 = new SpriteExtraInfo(8, null, null);
-            clothing2 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing2 = new SpriteExtraInfo(6, null, null);
             Type = 1521;
             DiscardUsesPalettes = true;
         }
@@ -1407,8 +1407,8 @@ class Gnolls : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Avians3[137];
             coversBreasts = false;
-            clothing1 = new SpriteExtraInfo(8, null, null);
-            clothing2 = new SpriteExtraInfo(7, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing2 = new SpriteExtraInfo(6, null, WhiteColored);
             Type = 1537;
             DiscardUsesPalettes = true;
         }
@@ -1448,8 +1448,8 @@ class Gnolls : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Avians3[140];
             coversBreasts = false;
-            clothing1 = new SpriteExtraInfo(8, null, null);
-            clothing2 = new SpriteExtraInfo(7, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing2 = new SpriteExtraInfo(6, null, WhiteColored);
             Type = 1540;
             DiscardUsesPalettes = true;
         }
@@ -1479,8 +1479,8 @@ class Gnolls : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Cockatrice3[47];
             coversBreasts = false;
-            clothing1 = new SpriteExtraInfo(8, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(7, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(7, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(6, null, WhiteColored);
             Type = 61602;
             FixedColor = true;
         }
@@ -1518,8 +1518,8 @@ class Gnolls : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Avians3[121];
             coversBreasts = false;
-            clothing1 = new SpriteExtraInfo(8, null, null);
-            clothing2 = new SpriteExtraInfo(7, null, null);
+            clothing1 = new SpriteExtraInfo(7, null, null);
+            clothing2 = new SpriteExtraInfo(6, null, null);
             Type = 1521;
             DiscardUsesPalettes = true;
         }
