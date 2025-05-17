@@ -378,6 +378,8 @@ static class LogUtilities
                 return GetRandomStringFrom("squeaking", "timid", "cheese-nibbling","skittish");
             case Race.Avians:
                 return GetRandomStringFrom("winged", "feathered", "squawking", "chirping");
+            case Race.MainlandElves:
+                return GetRandomStringFrom("bare skinned", "pointy-eared", "knife-eared");
             default:
                 return "tasty";
         }
@@ -458,6 +460,8 @@ static class LogUtilities
                 return GetRandomStringFrom("indulgent", "greedily snarling", "voracious", "capacious", "insatiable", "dominant", "pleased"); ////new 
             case Race.Avians:
                 return GetRandomStringFrom("winged", "feathered", "swift", "taloned", "hawklike");
+            case Race.MainlandElves:
+                return GetRandomStringFrom("humnle", "cunning", "resourceful");
             default:
                 return "strong";
         }
@@ -602,6 +606,8 @@ static class LogUtilities
                 return GetRandomStringFrom("ice dragon", "dragon", "ice dragoness", "dragoness");
             case Race.BoomBunnies:
                 return GetRandomStringFrom("bunny", GetGenderString(unit, "doe", "buck", "danger lagomorph"), "living-explosive", "fused rabbit");
+            case Race.MainlandElves:
+                return GetRandomStringFrom("elf", GetGenderString(unit, "woman", "man", "elf"), "humanoid");
             default:
                 return "creature";
         }

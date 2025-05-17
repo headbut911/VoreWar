@@ -37,6 +37,7 @@ static class RaceParameters
     static readonly RaceTraits Aabayx;
     static readonly RaceTraits Mice;
     static readonly RaceTraits Gnolls;
+    static readonly RaceTraits MainlandElves;
     static readonly RaceTraits Centaur;
     static readonly RaceTraits Succubi;
     static readonly RaceTraits Tigers;
@@ -374,6 +375,8 @@ static class RaceParameters
                 return FeralSlime;
             case Race.Olivia:
                 return Olivia;
+            case Race.MainlandElves:
+                return MainlandElves;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -1030,6 +1033,22 @@ static class RaceParameters
                 Traits.Biter,
             },
             RaceDescription = "A race of brutish and cunning beings hailing from the mountainous regions of the east.  Normally tribal, these hyena-like mammals are prone to in-fighting and cannibalism over petty disputes-- such as whose shadow is larger.  The Gnolls were most often seen around mercenary camps in small packs.  Much to the dismay of the other nations of this world, however, a powerful leader has appeared and managed to amass them into a warlike nation of their own.",
+        };
+
+        MainlandElves = new RaceTraits()
+        {
+            BodySize = 10,
+            StomachSize = 15,
+            HasTail = false,
+            FavoredStat = Stat.Will,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.AdeptLearner,
+            Traits.Clever
+        },
+            RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
         };
 
         Centaur = new RaceTraits()

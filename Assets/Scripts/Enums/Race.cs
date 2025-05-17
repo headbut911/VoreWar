@@ -35,6 +35,7 @@
     Mice = 30,
     MatronsMinions = 31,
     Gnolls = 32,
+    MainlandElves = 33,
 
     Succubi = 50,
     Tigers = 51,
