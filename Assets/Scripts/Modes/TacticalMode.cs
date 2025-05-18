@@ -602,6 +602,34 @@ public class TacticalMode : SceneBase
 
         ActivatePreBattleTraits();
 
+        if (!State.GameManager.PureTactical)//Apply Empire Traits to units that don't have them at the start of combat
+        {
+            foreach (Actor_Unit actor in attackers)
+            {
+                if (State.World.GetEmpireOfSide(actor.Unit.HiddenUnit.Side).EmpTraits != null)
+                foreach (Traits trait in State.World.GetEmpireOfSide(actor.Unit.HiddenUnit.Side).EmpTraits)
+                {
+                    actor.Unit.AddPermanentTrait(trait);
+                }
+            }
+            foreach (Actor_Unit actor in defenders)
+            {
+                if (State.World.GetEmpireOfSide(actor.Unit.HiddenUnit.Side).EmpTraits != null)
+                foreach (Traits trait in State.World.GetEmpireOfSide(actor.Unit.HiddenUnit.Side).EmpTraits)
+                {
+                    actor.Unit.AddPermanentTrait(trait);
+                }
+            }
+            foreach (Actor_Unit actor in garrison.ToList())
+            {
+                if (State.World.GetEmpireOfSide(actor.Unit.HiddenUnit.Side).EmpTraits != null)
+                foreach (Traits trait in State.World.GetEmpireOfSide(actor.Unit.HiddenUnit.Side).EmpTraits)
+                {
+                    actor.Unit.AddPermanentTrait(trait);
+                }
+            }
+        }
+
         if (!State.GameManager.PureTactical)
         {
             foreach (ConstructibleBuilding building in attackerBuildingsInRange)

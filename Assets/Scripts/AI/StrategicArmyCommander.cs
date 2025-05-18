@@ -223,7 +223,7 @@ class StrategicArmyCommander
                             merc.Unit = mercRaw.Unit;
                             merc.Title = mercRaw.Title;
                             merc.Cost = mercRaw.Cost - (int)Math.Round(mercRaw.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
-                            HireSpecialMerc(army, merc);
+                            HireSpecialMerc(army, merc, mercRaw);
                         }
                     }
                     foreach (var mercRaw in mercHouseArmyIsIn.Mercenaries.OrderByDescending(s => s.Unit.Experience / s.Cost))
@@ -232,7 +232,7 @@ class StrategicArmyCommander
                         merc.Unit = mercRaw.Unit;
                         merc.Title = mercRaw.Title;
                         merc.Cost = mercRaw.Cost - (int)Math.Round(mercRaw.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
-                        HireMerc(army, mercHouseArmyIsIn, merc);
+                        HireMerc(army, mercHouseArmyIsIn, merc, mercRaw);
                     }
                 }
 
@@ -284,7 +284,7 @@ class StrategicArmyCommander
         }
     }
 
-    void HireSpecialMerc(Army army, MercenaryContainer merc)
+    void HireSpecialMerc(Army army, MercenaryContainer merc, MercenaryContainer mercRaw)
     {
         if (empire.Gold >= merc.Cost * 2)
         {
@@ -294,12 +294,13 @@ class StrategicArmyCommander
                 merc.Unit.Side = army.Side;
                 empire.SpendGold(merc.Cost);
                 MercenaryHouse.UniqueMercs.Remove(merc);
+                MercenaryHouse.UniqueMercs.Remove(mercRaw);
                 army.RecalculateSizeValue();
             }
         }
     }
 
-    void HireMerc(Army army, MercenaryHouse house, MercenaryContainer merc)
+    void HireMerc(Army army, MercenaryHouse house, MercenaryContainer merc, MercenaryContainer mercRaw)
     {
         if (empire.Gold >= merc.Cost)
         {
@@ -310,6 +311,8 @@ class StrategicArmyCommander
                 empire.SpendGold(merc.Cost);
                 house.Mercenaries.Remove(merc);
                 MercenaryHouse.UniqueMercs.Remove(merc);
+                house.Mercenaries.Remove(mercRaw);
+                MercenaryHouse.UniqueMercs.Remove(mercRaw);
                 army.RecalculateSizeValue();
             }
         }
