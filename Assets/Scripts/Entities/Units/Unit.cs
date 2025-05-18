@@ -2281,9 +2281,9 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             Tags.AddRange(SharedTraits);
         if (PersistentSharedTraits != null)
             Tags.AddRange(PersistentSharedTraits);
-        if (!State.GameManager.PureTactical && (State.GameManager.CurrentScene == State.GameManager.StrategyMode || State.GameManager.CurrentScene == State.GameManager.TacticalMode))
+        if (!State.GameManager.PureTactical && (State.GameManager.CurrentScene == State.GameManager.StrategyMode || State.GameManager.CurrentScene == State.GameManager.TacticalMode || State.GameManager.CurrentScene == State.GameManager.Recruit_Mode))//Execption fix due to how saves are loaded
         {
-            if (State.World.GetEmpireOfSide(HiddenUnit.Side) == null) {}//Execption fix due to how saves are loaded
+            if (State.World.GetEmpireOfSide(HiddenUnit.Side) == null) {}
             else if (State.World.GetEmpireOfSide(HiddenUnit.Side).EmpTraits != null)
                 foreach (Traits trait in State.World.GetEmpireOfSide(HiddenUnit.Side).EmpTraits)
                 {
