@@ -304,6 +304,7 @@ static class Config
     internal static bool AllowTopless => World.GetValue("AllowTopless");
     internal static bool FactionLeaders => World.FactionLeaders;
     internal static int ItemSlots => World.ItemSlots;
+    internal static int PotionSlots => World.PotionSlots;
 
     internal static bool FlatExperience => World.GetValue("FlatExperience");
     internal static bool FogOfWar => World.GetValue("FogOfWar");

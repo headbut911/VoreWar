@@ -212,6 +212,8 @@ public class WorldConfig
     internal bool FactionLeaders;
     [OdinSerialize]
     internal int ItemSlots;
+    [OdinSerialize]
+    internal int PotionSlots = 3;
 
     [OdinSerialize]
     internal float BurpFraction = .1f;

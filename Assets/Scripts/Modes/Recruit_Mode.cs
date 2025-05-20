@@ -15,6 +15,7 @@ public class Recruit_Mode : SceneBase
     Empire empire;
     internal UnitCustomizer Customizer;
     Shop shop;
+    PotionShop potionShop;
     VillageView villageView;
 
     List<Unit> dismissList;
@@ -29,6 +30,7 @@ public class Recruit_Mode : SceneBase
     public RecruitPanel RecruitUI;
     public ArmySectionsPanel ArmyUI;
     public ShopPanel ShopUI;
+    public ItemPotionPanel PotionUI;
     public RenamePanel RenameUI;
     public LevelUpPanel LevelUpUI;
     public HirePanel HireUI;
@@ -371,7 +373,7 @@ public class Recruit_Mode : SceneBase
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (VillageUI.gameObject.activeSelf || CustomizerUI.gameObject.activeSelf || ShopUI.gameObject.activeSelf || BulkBuyUI.gameObject.activeSelf ||
+            if (VillageUI.gameObject.activeSelf || CustomizerUI.gameObject.activeSelf || ShopUI.gameObject.activeSelf || potionInv.gameObject.activeSelf || PotionUI.gameObject.activeSelf || BulkBuyUI.gameObject.activeSelf ||
                 WeaponStockerUI.gameObject.activeSelf || ConfigAutoLevelUpUI.gameObject.activeSelf || HireUI.gameObject.activeSelf || RenameUI.gameObject.activeSelf)
                 ButtonCallback(10);
             else if (MercenaryScreenUI.gameObject.activeSelf)
@@ -434,6 +436,7 @@ public class Recruit_Mode : SceneBase
                 VillageUI.gameObject.SetActive(false);
                 CustomizerUI.gameObject.SetActive(false);
                 ShopUI.gameObject.SetActive(false);
+                PotionUI.gameObject.SetActive(false);
                 potionInv.gameObject.SetActive(false);
                 HireUI.gameObject.SetActive(false);
                 BulkBuyUI.gameObject.SetActive(false);
@@ -442,6 +445,7 @@ public class Recruit_Mode : SceneBase
                 ConfigAutoLevelUpUI.gameObject.SetActive(false);
                 BlockerUI.SetActive(false);
                 shop = null;
+                potionShop = null;
                 if (selectedIndex != -1 && displayUnits?.Length > selectedIndex && displayUnits[selectedIndex] != null)
                     displayUnits[selectedIndex].UpdateBestWeapons();
                 UpdateUnitInfoPanel();
@@ -517,6 +521,10 @@ public class Recruit_Mode : SceneBase
             case 40:
                 BlockerUI.SetActive(true);
                 BuildPotionInventory();
+                break;
+            case 41:
+                BlockerUI.SetActive(true);
+                BuildPotionShop();
                 break;
 
             case 50:
@@ -1254,6 +1262,18 @@ public class Recruit_Mode : SceneBase
             }
         }
     }
+    void BuildPotionShop()
+    {
+        if (army.Units.Count > selectedIndex)
+        {
+            Unit unit = army.Units[selectedIndex];
+            if (unit != null)
+            {
+                potionShop = new PotionShop(empire, village, unit, army, PotionUI, village != null);
+                PotionUI.gameObject.SetActive(true);
+            }
+        }
+    }
 
     void BuildPotionInventory()
     {
@@ -1283,6 +1303,34 @@ public class Recruit_Mode : SceneBase
             shop.BuyItem(type);
     }
 
+
+
+    internal void PotionShopSellItem(int slot) => potionShop.SellItem(slot);
+    internal void PotionShopTransferToInventory(int slot) => potionShop.TransferItemToInventory(slot);
+    internal void PotionShopTransferItemToCharacter(int type) => potionShop.TransferItemToCharacter(type);
+    internal void PotionShopSellItemFromInventory(int type) => potionShop.SellItemFromInventory(type);
+    internal void PotionShopIncreaseCount(Unit unit, Item type) => potionShop.IncreaseCount(unit, type);
+    internal void PotionShopDecCount(Unit unit, Item type) => potionShop.DecreaseCount(unit, type);
+    internal void PotionShopGenerateBuyButton(int type)
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            var box = Instantiate(State.GameManager.DialogBoxPrefab).GetComponent<DialogBox>();
+            box.SetData(() => { potionShop.BuyItem(type, 5); State.GameManager.Recruit_Mode.SetUpDisplay(); }, "Buy", "Cancel", $"Buy five of this potion? Cost : {potionShop.MultCost(type, 5)}  (you were holding shift)");
+        }
+        else
+            potionShop.BuyItem(type, 1);
+    }
+    internal void PotionShopGenerateBuyTenButton(int type)
+    {
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            var box = Instantiate(State.GameManager.DialogBoxPrefab).GetComponent<DialogBox>();
+            box.SetData(() => { potionShop.BuyItem(type, 50); State.GameManager.Recruit_Mode.SetUpDisplay(); }, "Buy", "Cancel", $"Buy fifty of this potion? Cost : {potionShop.MultCost(type, 50)}  (you were holding shift)");
+        }
+        else
+            potionShop.BuyItem(type, 10);
+    }
 
 
     void BuildMercenaryView(bool special)

@@ -2744,6 +2744,34 @@ Turns: {currentTurn}
         }
     }
 
+    void ShowPotionThrowPercentages(Actor_Unit actor, bool onSelf = false)
+    {
+        foreach (Actor_Unit target in units)
+        {
+            if ((TacticalUtilities.IsUnitControlledByPlayer(target.Unit) && Config.AllowInfighting == false && !(!AIDefender && !AIAttacker)) || actor == target)
+                continue;
+            if (target.Targetable == false || target.Visible == false)
+                continue;
+            int weaponDamage = actor.WeaponDamageAgainstTarget(target, true);
+
+            Vec2i pos = target.Position;
+            if (target.Unit.IsEnemyOfSide(actor.Unit.Side))
+            {
+                if (actor.Position.GetNumberOfMovesDistance(target.Position) <= 3)
+                    target.UnitSprite.DisplayHitPercentage(target.GetAttackChance(actor, true, true), Color.red);
+                else
+                    target.UnitSprite.DisplayHitPercentage(target.GetAttackChance(actor, true, true), Color.black);
+            }
+            else
+            {
+                if (actor.Position.GetNumberOfMovesDistance(target.Position) <= 3)
+                    target.UnitSprite.DisplayHitPercentage(1, Color.red);
+                else
+                    target.UnitSprite.DisplayHitPercentage(1, Color.black);
+            }
+        }
+    }
+
     void RemoveHitPercentages()
     {
         foreach (Actor_Unit target in units)

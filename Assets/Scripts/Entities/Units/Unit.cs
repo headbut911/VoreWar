@@ -270,6 +270,8 @@ public class Unit
     [OdinSerialize]
     public int[] ItemCooldowns;
     [OdinSerialize]
+    public Dictionary<Potion, int[]> EquippedPotions;
+    [OdinSerialize]
     public string Name { get; set; }
     [OdinSerialize]
     public List<string> Pronouns;
@@ -713,6 +715,8 @@ public class Unit
         Items = new Item[Config.ItemSlots];
         ItemUses = new int[] {1, 1, 1};
         ItemCooldowns = new int[3];
+        EquippedPotions = new Dictionary<Potion, int[]>();
+
 
 
         ReloadTraits();
@@ -2319,6 +2323,8 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (HiddenUnit.Predator == false && !HasTrait(Traits.Prey))
             Tags.Add(Traits.Prey);
         SetMaxItems();
+        if (EquippedPotions == null)
+            EquippedPotions = new Dictionary<Potion, int[]>();
         //if (HasTrait(Traits.Shapeshifter) || HasTrait(Traits.Skinwalker))
         //{
         //    if (ShifterShapes == null)

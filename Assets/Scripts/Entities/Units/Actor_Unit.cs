@@ -1476,6 +1476,29 @@ public class Actor_Unit
         }
     }
 
+    public bool ActivatePotion(Actor_Unit target, Potion potion)
+    {
+        if (Movement < 1 || Unit.EquippedPotions == null)
+            return false;
+        if (Unit.EquippedPotions[potion][0] <= 0)
+            return false;
+
+        if (target.Unit.IsEnemyOfSide(Unit.Side))
+        {
+            if (target.GetAttackChance(this, true) <= State.Rand.NextDouble())
+            {
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> threw a {potion.Name} at <b>{target.Unit.Name}</b>, but missed.");
+                return false;
+            }
+        }
+        if (target == this)
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> drank a {potion.Name}.");
+        else
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> threw a {potion.Name} at <b>{target.Unit.Name}</b>.");
+        potion.PotionFunction.Invoke(target, Unit);
+        return true;
+    }
+
     public bool AllInVore(Actor_Unit target, SpecialAction voreType = SpecialAction.None, bool AIAutoPick = false)
     {
         if (Movement < 1 || Unit.HasTrait(Traits.AllIn) == false)
