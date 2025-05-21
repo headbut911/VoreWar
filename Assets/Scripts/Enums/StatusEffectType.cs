@@ -84,5 +84,9 @@
     Static = 42,
     /// <summary>When this effect expires, unit flees from battle regadless of location.</summary>
     Warping = 43,
+    /// <summary></summary>
+    Morphed = 44,
+    /// <summary>Digestion damage reduced by strength per turn remaining</summary>
+    Diluted = 45,
 }
 

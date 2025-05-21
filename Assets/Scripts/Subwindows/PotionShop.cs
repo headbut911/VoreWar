@@ -20,14 +20,14 @@ public class PotionShop
         this.inTown = inTown;
         PotionUI = newPotionUI;
         unitItemSlots = unit.Items.Length;
-        int potionCount = ItemType.IchorOfDoom - ItemType.HealthPotion + 1;
+        int potionCount = ItemType.OmniPotion - ItemType.HealthPotion + 1;
         if (PotionUI.EquippedPotions.Length == 0)
         {
             PotionUI.EquippedPotions = new EquippedPotionPanel[potionCount];
             for (int x = 0; x < potionCount; x++)
             {
                 PotionUI.EquippedPotions[x] = Object.Instantiate(PotionUI.EquippedPrefab, new Vector3(0, 0), new Quaternion(), PotionUI.ButtonFolder).GetComponent<EquippedPotionPanel>();
-                int slot = x + (int)ItemType.HealthPotion - 1;
+                int slot = x + (int)ItemType.HealthPotion;
                 PotionUI.EquippedPotions[x].SellButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopSellItem(slot)); //These are done this way to avoid tying it to the first shop instance
                 PotionUI.EquippedPotions[x].MoveToInventoryButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopTransferToInventory(slot));
                 PotionUI.EquippedPotions[x].IncButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopIncreaseCount(unit, State.World.ItemRepository.GetItem(slot)));
@@ -44,10 +44,11 @@ public class PotionShop
             {
                 PotionUI.BuyPotionPanels[x] = Object.Instantiate(PotionUI.BuyPrefab, new Vector3(0, 0), new Quaternion(), PotionUI.ButtonFolder).GetComponent<BuyPotionPanel>();
                 //shopUI.BuyItemButton[x].GetComponent<RectTransform>().sizeDelta = new Vector2(600, 60);
-                int type = x + (int)ItemType.HealthPotion - 1;
+                int type = x + (int)ItemType.HealthPotion;
                 PotionUI.BuyPotionPanels[x].BuyButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopGenerateBuyButton(type)); //These are done this way to avoid tying it to the first shop instance
                 PotionUI.BuyPotionPanels[x].BuyTenButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopGenerateBuyTenButton(type)); //These are done this way to avoid tying it to the first shop instance
                 PotionUI.BuyPotionPanels[x].EquipFromFromInventoryButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopTransferItemToCharacter(type));
+                PotionUI.BuyPotionPanels[x].EquipToAllButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopTransferItemToAll(type));
                 PotionUI.BuyPotionPanels[x].SellFromInventoryButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopSellItemFromInventory(type));
                 Item item = State.World.ItemRepository.GetItem(type);
                 PotionUI.BuyPotionPanels[x].Description.text = $"{item.Name} - cost {item.Cost} - {item.Description}";
@@ -60,11 +61,11 @@ public class PotionShop
 
     public void TransferItemToInventory(int slot)
     {
-        Potion item = PotionUI.EquippedPotions[slot - (int)ItemType.HealthPotion + 1].associatedPotion;
+        Potion item = PotionUI.EquippedPotions[slot - (int)ItemType.HealthPotion].associatedPotion;
 
         army.ItemStock.AddItem(State.World.ItemRepository.GetItemType(item), unit.EquippedPotions[item][0]);
         unit.EquippedPotions.Remove(item);
-        PotionUI.EquippedPotions[slot - (int)ItemType.HealthPotion + 1].gameObject.SetActive(false);
+        PotionUI.EquippedPotions[slot - (int)ItemType.HealthPotion].gameObject.SetActive(false);
         RegenButtonTextAndClickability();
     }
 
@@ -80,6 +81,34 @@ public class PotionShop
         {
             unit.EquippedPotions.Add((Potion)item, new int[] { 1, 1 });
             army.ItemStock.TakeItem(State.World.ItemRepository.GetItemType(item));
+        }
+        RegenButtonTextAndClickability();
+    }
+
+    public void TransferItemToAll(int type)
+    {
+        Item item = State.World.ItemRepository.GetItem(type);
+
+        foreach (var soldier in army.Units)
+        {
+            if (!army.ItemStock.HasItem(State.World.ItemRepository.GetItemType(item)))
+                break;
+            int totalEquippedPotions = 0;
+            foreach (var potion in soldier.EquippedPotions)
+            {
+                totalEquippedPotions += potion.Value[1];
+            }
+            if (!(Config.PotionSlots - 1 >= totalEquippedPotions))
+                continue;
+            if (soldier.EquippedPotions.ContainsKey((Potion)item))
+            {
+                IncreaseCount(soldier, item);
+            }
+            else
+            {
+                soldier.EquippedPotions.Add((Potion)item, new int[] { 1, 1 });
+                army.ItemStock.TakeItem(State.World.ItemRepository.GetItemType(item));
+            }
         }
         RegenButtonTextAndClickability();
     }
@@ -151,25 +180,13 @@ public class PotionShop
     public bool DecreaseCount(Unit unit, Item type)
     {
         unit.EquippedPotions.TryGetValue((Potion)type, out var currentCount);
-        unit.EquippedPotions[(Potion)type][0] = currentCount[1] - 1;
+        if (currentCount[0] > 0)
+        {
+            unit.EquippedPotions[(Potion)type][0] = currentCount[1] - 1;
+            army.ItemStock.AddItem(State.World.ItemRepository.GetItemType(type));
+        }
         unit.EquippedPotions[(Potion)type][1] = currentCount[1] - 1;
-        army.ItemStock.AddItem(State.World.ItemRepository.GetItemType(type));
         RegenButtonTextAndClickability();
-        return true;
-    }
-    
-    public bool EquipToUnit(Unit unit, Item type)
-    {
-        unit.EquippedPotions.Add((Potion)type, new int[] {1,1});
-        army.ItemStock.TakeItem(State.World.ItemRepository.GetItemType(type));
-        RegenEquipClickable();
-        return true;
-    }
-    
-    public bool RemoveFromUnit(Unit unit, Item type)
-    {
-        army.ItemStock.AddItem(State.World.ItemRepository.GetItemType(type), unit.EquippedPotions[(Potion)type][0]);
-        unit.EquippedPotions.Remove((Potion)type);
         return true;
     }
 
@@ -186,13 +203,14 @@ public class PotionShop
             if (PotionUI.BuyPotionPanels[i] == null)
                 continue;
 
-            int type = i + (int)ItemType.HealthPotion - 1;
+            int type = i + (int)ItemType.HealthPotion;
 
             Item item = State.World.ItemRepository.GetItem(type);
 
             PotionUI.BuyPotionPanels[i].gameObject.SetActive(true);
 
             PotionUI.BuyPotionPanels[i].BuyButton.interactable = inTown;
+            PotionUI.BuyPotionPanels[i].BuyTenButton.interactable = inTown;
             PotionUI.BuyPotionPanels[i].SellFromInventoryButton.interactable = inTown && army.ItemStock.HasItem((ItemType)type);
             int totalEquippedPotions = 0;
             foreach (var potion in unit.EquippedPotions)
@@ -200,6 +218,7 @@ public class PotionShop
                 totalEquippedPotions += potion.Value[1];
             }
             PotionUI.BuyPotionPanels[i].EquipFromFromInventoryButton.interactable = army.ItemStock.HasItem((ItemType)type) && Config.PotionSlots - 1 >= totalEquippedPotions;
+            PotionUI.BuyPotionPanels[i].EquipToAllButton.interactable = army.ItemStock.HasItem((ItemType)type) && Config.PotionSlots - 1 >= totalEquippedPotions;
             PotionUI.BuyPotionPanels[i].InventoryButtonText.text = $"Equip To Unit\n(You have {army.ItemStock.ItemCount((ItemType)type)})";
   
             if (item.Cost > empire.Gold)
@@ -207,7 +226,6 @@ public class PotionShop
   
             if (item.Cost * 10 > empire.Gold)
                 PotionUI.BuyPotionPanels[i].BuyTenButton.interactable = false;
-            PotionUI.BuyPotionPanels[i].associatedPotion = (Potion)item;
         }
     }
 
@@ -218,7 +236,7 @@ public class PotionShop
             if (PotionUI.EquippedPotions[i] == null)
                 continue;
             PotionUI.EquippedPotions[i].gameObject.SetActive(false);
-            int type = i + (int)ItemType.HealthPotion - 1;
+            int type = i + (int)ItemType.HealthPotion;
             Item item = State.World.ItemRepository.GetItem(type);
 
             if (unit.EquippedPotions.Count <= 0)

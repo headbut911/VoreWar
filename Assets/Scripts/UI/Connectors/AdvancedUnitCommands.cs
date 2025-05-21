@@ -53,6 +53,15 @@ public class AdvancedUnitCommands : MonoBehaviour
         {
             SetButtonSpell(actor, spell);
         }
+        
+
+        foreach (var potion in actor.Unit.EquippedPotions)
+        {
+            if (potion.Value[0] > 0)
+            {
+                SetButtonPotion(actor, potion.Key);
+            }
+        }
 
         int maxSize = Math.Min(800 / index, 60);
         for (int i = 0; i < Buttons.Length; i++)
@@ -153,6 +162,43 @@ public class AdvancedUnitCommands : MonoBehaviour
         button.colors = cb;
 
         button.interactable = (actor.Unit.Mana >= ModifiedManaCost || spell.IsFree);
+        button.gameObject.SetActive(true);
+        index++;
+        return button;
+    }
+    internal Button SetButtonPotion(Actor_Unit actor, Potion potion)
+    {
+        Color color = new Color(.669f, .753f, 1);
+        Button button;
+        if (Buttons[index] == null)
+        {
+            button = Instantiate(ButtonPrefab, transform).GetComponent<Button>();
+            var trans = button.GetComponent<RectTransform>();
+            trans.sizeDelta = new Vector2(160, 60);
+            Buttons[index] = button;
+        }
+        else
+        {
+            button = Buttons[index];
+            button.onClick.RemoveAllListeners();
+        }
+        button.GetComponentInChildren<Text>().text = "Throw " + potion.Name;
+        button.onClick.AddListener(new UnityEngine.Events.UnityAction(() => State.GameManager.TacticalMode.SetPotionMode(potion)));
+
+        button.onClick.AddListener(() =>
+        {
+            if (State.GameManager.TacticalMode.ActionMode == 7)
+                State.GameManager.TacticalMode.CommandsUI.SelectorIcon.transform.position = button.transform.position;
+        });
+
+        ColorBlock cb = button.colors;
+        cb.normalColor = color;
+        cb.highlightedColor = color * 1.2f;
+        Color pressed = color * .7f;
+        pressed.a = 1;
+        cb.pressedColor = pressed;
+        button.colors = cb;
+
         button.gameObject.SetActive(true);
         index++;
         return button;

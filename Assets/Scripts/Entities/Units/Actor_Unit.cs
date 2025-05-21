@@ -1475,30 +1475,6 @@ public class Actor_Unit
             }
         }
     }
-
-    public bool ActivatePotion(Actor_Unit target, Potion potion)
-    {
-        if (Movement < 1 || Unit.EquippedPotions == null)
-            return false;
-        if (Unit.EquippedPotions[potion][0] <= 0)
-            return false;
-
-        if (target.Unit.IsEnemyOfSide(Unit.Side))
-        {
-            if (target.GetAttackChance(this, true) <= State.Rand.NextDouble())
-            {
-                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> threw a {potion.Name} at <b>{target.Unit.Name}</b>, but missed.");
-                return false;
-            }
-        }
-        if (target == this)
-            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> drank a {potion.Name}.");
-        else
-            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> threw a {potion.Name} at <b>{target.Unit.Name}</b>.");
-        potion.PotionFunction.Invoke(target, Unit);
-        return true;
-    }
-
     public bool AllInVore(Actor_Unit target, SpecialAction voreType = SpecialAction.None, bool AIAutoPick = false)
     {
         if (Movement < 1 || Unit.HasTrait(Traits.AllIn) == false)
@@ -2045,7 +2021,7 @@ public class Actor_Unit
         if (DefendSpellCheck(spell, attacker, out float chance, sneakAttack ? -0.3f : 0f, stat))
         {
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, 0, chance);
-            Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this));
+            Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this), attacker.Unit, spell.ExpireEffect(attacker, this));
             EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenHitBySpellStatus, new object[] { this, attacker, spell });
             if (spell.Id == "charm")
             {

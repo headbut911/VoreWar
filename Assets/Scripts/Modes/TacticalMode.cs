@@ -156,6 +156,7 @@ public class TacticalMode : SceneBase
     internal Vector2Int Wins;
 
     Spell CurrentSpell;
+    Potion CurrentPotion;
 
     bool attackersTurn;
     public bool attackersTurnCheck;
@@ -274,6 +275,11 @@ public class TacticalMode : SceneBase
                 case 6:
                     if (SelectedUnit != null && SelectedUnit.Targetable)
                         ShowMagicPercentages(SelectedUnit);
+                    StatusUI.ButtonSelection.transform.position = new Vector2(2000f, 2000f);
+                    break;
+                case 7:
+                    if (SelectedUnit != null && SelectedUnit.Targetable)
+                        ShowPotionThrowPercentages(SelectedUnit);
                     StatusUI.ButtonSelection.transform.position = new Vector2(2000f, 2000f);
                     break;
                 default:
@@ -2748,8 +2754,6 @@ Turns: {currentTurn}
     {
         foreach (Actor_Unit target in units)
         {
-            if ((TacticalUtilities.IsUnitControlledByPlayer(target.Unit) && Config.AllowInfighting == false && !(!AIDefender && !AIAttacker)) || actor == target)
-                continue;
             if (target.Targetable == false || target.Visible == false)
                 continue;
             int weaponDamage = actor.WeaponDamageAgainstTarget(target, true);
@@ -3170,6 +3174,15 @@ Turns: {currentTurn}
         {
             CurrentSpell = spell;
             ActionMode = 6;
+        }
+    }
+
+    internal void SetPotionMode(Potion potion)
+    {
+        if (ButtonsInteractable && potion != null && SelectedUnit != null && SelectedUnit.Targetable && SelectedUnit.Movement > 0)
+        {
+            CurrentPotion = potion;
+            ActionMode = 7;
         }
     }
 
@@ -4033,6 +4046,19 @@ Turns: {currentTurn}
                     }
 
                 }
+                if (ActionMode == 7)
+                {
+
+                    int distance = SelectedUnit.Position.GetNumberOfMovesDistance(unit.Position);
+                    if (3 >= distance)
+                    {
+                        CurrentPotion.ActivatePotion(unit, SelectedUnit);
+                        RemoveHitPercentages();
+                        ActionDone();
+                        return;
+                    }
+
+                }
             }
 
         }
@@ -4655,6 +4681,17 @@ Turns: {currentTurn}
                 actor.Unit.StatusEffects.Clear();
 
                 EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, new object[] { actor, armies[actor.Unit.Side == attackerSide ? 0 : 1], null });
+
+                // Refill used potions
+                foreach (var potion in actor.Unit.EquippedPotions)
+                {
+                    int WantedPots = potion.Value[1];
+                    while (WantedPots > actor.Unit.EquippedPotions[potion.Key][0] && armies[actor.Unit.Side == attackerSide ? 0 : 1].ItemStock.HasItem(State.World.ItemRepository.GetItemType(potion.Key)))
+                    {
+                        armies[actor.Unit.Side == attackerSide ? 0 : 1].ItemStock.TakeItem(State.World.ItemRepository.GetItemType(potion.Key));
+                        actor.Unit.EquippedPotions[potion.Key][0] = actor.Unit.EquippedPotions[potion.Key][0] + 1;
+                    }
+                }
 
             }
             BattleReviewText.SetActive(false);

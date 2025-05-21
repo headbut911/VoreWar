@@ -8,8 +8,8 @@ public class BuyPotionPanel : MonoBehaviour
     public Button BuyTenButton;
     public Button SellFromInventoryButton;
     public Button EquipFromFromInventoryButton;
+    public Button EquipToAllButton;
     public Text InventoryButtonText;
     public TextMeshProUGUI Description;
-    public Potion associatedPotion;
 }
 

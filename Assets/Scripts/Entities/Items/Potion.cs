@@ -1,19 +1,18 @@
 ﻿using OdinSerializer;
 using System;
-using System.Collections.Generic;
 
-public class Potion: Item
+public class Potion : Item
 {
     [OdinSerialize]
-    internal Action<object, object> PotionFunction; //Target, Unit
+    internal Action<object, object> PotionFunction; //Target, Unit; This only applies if the potion hits the target
+    [OdinSerialize]
+    internal Action<object, object> TileFunction; // Applies to the tile under the target regardless of if the potion hits or not
     [OdinSerialize]
     internal int Tier { get; private set; }
     [OdinSerialize]
     internal bool NegativeEffect;
-    [OdinSerialize]
-    internal int ItemUses;
 
-    public Potion(string name, string description, int cost, int tier, bool negative, Action<object, object> func)
+    public Potion(string name, string description, int cost, int tier, bool negative, Action<object, object> func, Action<object, object> tileFunc = null)
     {
         Name = name;
         Description = description;
@@ -21,5 +20,32 @@ public class Potion: Item
         Tier = tier;
         NegativeEffect = negative;
         PotionFunction = func;
+        TileFunction = tileFunc;
+    }
+
+    public bool ActivatePotion(Actor_Unit target, Actor_Unit user)
+    {
+        if (TileFunction != null)
+        {
+            TileFunction.Invoke(target.Position, user);
+        }
+        if (target.Unit.IsEnemyOfSide(user.Unit.Side))
+        {
+            if (target.GetAttackChance(user, true) <= State.Rand.NextDouble())
+            {
+                State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{user.Unit.Name}</b> threw a {Name} at <b>{target.Unit.Name}</b>, but missed.");
+                return false;
+            }
+        }
+        if (target == user)
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{target.Unit.Name}</b> used a {Name}.");
+        else
+        {
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{user.Unit.Name}</b> threw a {Name} at <b>{target.Unit.Name}</b>.");
+            TacticalGraphicalEffects.CreatePotion(user.Position, target.Position, target);
+        }
+        PotionFunction.Invoke(target, user);
+        user.Unit.EquippedPotions[this][0] = user.Unit.EquippedPotions[this][0] - 1;
+        return true;
     }
 }

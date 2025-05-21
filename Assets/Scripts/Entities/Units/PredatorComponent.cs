@@ -1235,6 +1235,8 @@ public class PredatorComponent
             damage *= 2;
         if (preyUnit.Unit.GetStatusEffect(StatusEffectType.Errosion) != null)
             damage += (int)(damage * (preyUnit.Unit.GetStatusEffect(StatusEffectType.Errosion).Strength / 2));
+        if (unit.GetStatusEffect(StatusEffectType.Diluted) != null)
+            damage -= (int)(damage * (unit.GetStatusEffect(StatusEffectType.Diluted).Strength * unit.GetStatusEffect(StatusEffectType.Diluted).Duration));
         if (damage < 1)
             damage = 1;
 

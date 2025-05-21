@@ -1738,9 +1738,15 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (heal > MaxHealth - Health)
             heal = MaxHealth - Health;
         var actor = TacticalUtilities.Units.FirstOrDefault(s => s.Unit == this);
+        int modAmount = heal;
+        if (GetStatusEffect(StatusEffectType.Necrosis) != null)
+        {
+            float effect = 0.25f * GetStatusEffect(StatusEffectType.Necrosis).Strength;
+            modAmount -= (int)Math.Round(modAmount * effect);
+        }
         if (actor != null && heal != 0)
-            actor.UnitSprite.DisplayDamage(-heal);
-        Health += heal;
+            actor.UnitSprite.DisplayDamage(-modAmount);
+        Health += modAmount;
         EquipmentFunctions.CheckEquipment(this, EquipmentActivator.OnHeal, new object[] { this, heal, null });
     }
 
@@ -1749,7 +1755,13 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         rate *= TraitBoosts.PassiveHeal;
         int h = (int)(MaxHealth * rate);
         if (h <= 0) { h = 1; }
-        Health += h;
+        int modAmount = h;
+        if (GetStatusEffect(StatusEffectType.Necrosis) != null)
+        {
+            float effect = 0.25f * GetStatusEffect(StatusEffectType.Necrosis).Strength;
+            modAmount -= (int)Math.Round(modAmount * effect);
+        }
+        Health += modAmount;
         if (Health > MaxHealth)
         {
             Health = MaxHealth;
@@ -3019,12 +3031,12 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
     }
 
-    public void ApplyStatusEffect(StatusEffectType type, float strength, int duration)
+    public void ApplyStatusEffect(StatusEffectType type, float strength, int duration, Unit applicator = null, StatusEffect expireEffect = null)
     {
         if (type == StatusEffectType.Poisoned && HasTrait(Traits.PoisonSpit))
             return;
         StatusEffects.Remove(GetStatusEffect(type));                    // if null, nothing happens, otherwise status is effectively overwritten
-        StatusEffects.Add(new StatusEffect(type, strength, duration));
+        StatusEffects.Add(new StatusEffect(type, strength, duration, applicator, expireEffect));
     }
 
     internal StatusEffect GetStatusEffect(StatusEffectType type)
@@ -3302,6 +3314,36 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
     }
 
+    internal void TriggerMorph()
+    {
+        var wkns = GetStatusEffect(StatusEffectType.Morphed);
+        if (wkns == null)
+        {
+            ApplyStatusEffect(StatusEffectType.Morphed, 1, 1, Clone());
+            Race = Race.Dragon;
+            RandomizeAppearance();
+            ReloadTraits();
+        }
+    }
+
+    internal void RevertMorph(Unit unit)
+    {
+        Race = unit.Race;
+        CopyAppearance(unit);
+        ClearAllTraits();
+        Tags = unit.Tags;
+        SharedTraits = unit.SharedTraits;
+        TemporaryTraits = unit.TemporaryTraits;
+        PersistentSharedTraits = unit.PersistentSharedTraits;
+        PermanentTraits.Clear();
+        PermanentTraits = unit.PermanentTraits;
+        RemovedTraits.Clear();
+        RemovedTraits = unit.RemovedTraits;
+        AllConditionalTraits = unit.AllConditionalTraits;
+        InitializeTraits();
+
+    }
+
     internal StatusEffect GetLongestStatusEffect(StatusEffectType type)
     {
         return StatusEffects.Where(s => s.Type == type).OrderByDescending(s => s.Duration).FirstOrDefault();
@@ -3346,6 +3388,14 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             eff.Duration -= 1;
             if (eff.Duration <= 0)
             {
+                if (eff.Type == StatusEffectType.Morphed)
+                {
+                    RevertMorph(eff.Applicator);
+                }
+                if (eff.ExpireEffect != null)
+                {
+                    ApplyStatusEffect(eff.ExpireEffect.Type, eff.ExpireEffect.Strength, eff.ExpireEffect.Duration, eff.ExpireEffect.Applicator, eff.ExpireEffect.ExpireEffect);
+                }
 
                 StatusEffects.Remove(eff);
                 if (eff.Type == StatusEffectType.Diminished)
