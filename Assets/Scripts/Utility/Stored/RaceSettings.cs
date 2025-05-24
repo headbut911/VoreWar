@@ -23,11 +23,13 @@ class RaceSettings
             if (entry.Value.ConversionRace == Race.none) entry.Value.ConversionRace = RaceParameters.GetRaceTraits(entry.Key).ConversionRace;
             if (entry.Value.LeaderRace == Race.none) entry.Value.LeaderRace = RaceParameters.GetRaceTraits(entry.Key).LeaderRace;
             if (entry.Value.SpawnRace == Race.none) entry.Value.SpawnRace = RaceParameters.GetRaceTraits(entry.Key).SpawnRace;
+            if (entry.Value.MorphRace == Race.none) entry.Value.MorphRace = RaceParameters.GetRaceTraits(entry.Key).MorphRace;
             if (entry.Value.ConversionRace == Race.Cats && entry.Value.LeaderRace == Race.Cats && entry.Value.SpawnRace == Race.Cats && entry.Key != Race.Cats)
             {
                 entry.Value.ConversionRace = RaceParameters.GetRaceTraits(entry.Key).ConversionRace;
                 entry.Value.LeaderRace = RaceParameters.GetRaceTraits(entry.Key).LeaderRace;
                 entry.Value.SpawnRace = RaceParameters.GetRaceTraits(entry.Key).SpawnRace;
+                entry.Value.MorphRace = RaceParameters.GetRaceTraits(entry.Key).MorphRace;
             }
         }
         foreach (RaceSettingsItem item in Races.Values)
@@ -272,6 +274,16 @@ class RaceSettings
         return (leaderRace == Race.none) ? race : leaderRace;
     }
 
+    internal Race GetMorphRace(Race race)
+    {
+        Race morphRace = Race.none;
+        if (Races.ContainsKey(race))
+            morphRace = Get(race).MorphRace;
+        if (morphRace == Race.none)
+            morphRace = RaceParameters.GetRaceTraits(race).MorphRace; 
+        return (morphRace == Race.none) ? race : morphRace;
+    }
+
     //internal Race GetDisplayedGraphic(Race race)
     //{
     //    if (Races.ContainsKey(race))
@@ -332,6 +344,8 @@ class RaceSettingsItem
     internal Race ConversionRace;
     [OdinSerialize]
     internal Race LeaderRace;
+    [OdinSerialize]
+    internal Race MorphRace;
 
     [OdinSerialize]
     internal RaceStats Stats;
@@ -420,6 +434,7 @@ class RaceSettingsItem
         SpawnRace = racePar.SpawnRace;
         ConversionRace = racePar.ConversionRace;
         LeaderRace = racePar.ConversionRace;
+        MorphRace = racePar.ConversionRace;
 
         var baseStats = racePar.RaceStats;
 

@@ -3543,6 +3543,7 @@ internal class RaceTraits
     internal Race SpawnRace = Race.none;
     internal Race ConversionRace = Race.none;
     internal Race LeaderRace = Race.none;
+    internal Race MorphRace = Race.none;
     internal List<SpellTypes> InnateSpells = new List<SpellTypes>();
     internal RaceStats RaceStats = new RaceStats();
 

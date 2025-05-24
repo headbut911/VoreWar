@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 public enum UnitType
 {
     Soldier,
@@ -316,6 +317,9 @@ public class Unit
 
     [OdinSerialize]
     public List<Unit> ShifterShapes;
+
+    [OdinSerialize]
+    public Unit MorphUnit = null;
 
     public override string ToString() => Name;
 
@@ -3314,34 +3318,62 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
     }
 
-    internal void TriggerMorph()
+    internal void TriggerMorph(int duration)
     {
         var wkns = GetStatusEffect(StatusEffectType.Morphed);
         if (wkns == null)
         {
-            ApplyStatusEffect(StatusEffectType.Morphed, 1, 1, Clone());
-            Race = Race.Dragon;
-            RandomizeAppearance();
-            ReloadTraits();
+            Unit clone = Clone();
+            clone.Tags = new List<Traits>(Tags);
+            clone.PermanentTraits = new List<Traits>(PermanentTraits);
+            clone.RemovedTraits = new List<Traits>(RemovedTraits);
+            ApplyStatusEffect(StatusEffectType.Morphed, 1, duration, clone);
+            if (MorphUnit == null)
+            {
+                Race = State.RaceSettings.GetMorphRace(Race);
+                RandomizeAppearance();
+                ClearAllTraits();
+                PermanentTraits.Clear();
+                RemovedTraits.Clear();
+                ReloadTraits();
+            }
+            else
+            {
+                Race = MorphUnit.Race;
+                CopyAppearance(MorphUnit);
+                ClearAllTraits();
+                PermanentTraits.Clear();
+                RemovedTraits.Clear();
+                Tags = new List<Traits>(MorphUnit.Tags);
+                PermanentTraits = new List<Traits>(MorphUnit.PermanentTraits);
+                RemovedTraits = new List<Traits>(MorphUnit.RemovedTraits);
+                InitializeTraits();
+                SetMaxItems();
+            }
         }
     }
 
     internal void RevertMorph(Unit unit)
     {
+        MorphUnit = Clone();
+        MorphUnit.Tags = new List<Traits>(Tags);
+        MorphUnit.PermanentTraits = new List<Traits>(PermanentTraits);
+        MorphUnit.RemovedTraits = new List<Traits>(RemovedTraits);
+
         Race = unit.Race;
         CopyAppearance(unit);
         ClearAllTraits();
-        Tags = unit.Tags;
-        SharedTraits = unit.SharedTraits;
-        TemporaryTraits = unit.TemporaryTraits;
-        PersistentSharedTraits = unit.PersistentSharedTraits;
         PermanentTraits.Clear();
-        PermanentTraits = unit.PermanentTraits;
         RemovedTraits.Clear();
-        RemovedTraits = unit.RemovedTraits;
-        AllConditionalTraits = unit.AllConditionalTraits;
-        InitializeTraits();
+        Name = unit.Name;
 
+        Tags = new List<Traits>(unit.Tags);
+        PermanentTraits = new List<Traits>(unit.PermanentTraits);
+        RemovedTraits = new List<Traits>(unit.RemovedTraits);
+        AllConditionalTraits = unit.AllConditionalTraits;
+
+        InitializeTraits();
+        SetMaxItems();
     }
 
     internal StatusEffect GetLongestStatusEffect(StatusEffectType type)

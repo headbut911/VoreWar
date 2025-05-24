@@ -171,7 +171,10 @@ public class PotionShop
     {
         unit.EquippedPotions.TryGetValue((Potion)type, out var currentCount);
         unit.EquippedPotions[(Potion)type][0] = currentCount[1] + 1;
-        unit.EquippedPotions[(Potion)type][1] = currentCount[1] + 1;
+        if (unit.EquippedPotions[(Potion)type][0] > unit.EquippedPotions[(Potion)type][1])
+        {
+            unit.EquippedPotions[(Potion)type][1] = currentCount[1] + 1;
+        }
         army.ItemStock.TakeItem(State.World.ItemRepository.GetItemType(type));
         RegenButtonTextAndClickability();
         return true;

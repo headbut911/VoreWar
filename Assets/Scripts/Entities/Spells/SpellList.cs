@@ -307,7 +307,6 @@ static class SpellList
             OnExecute = (a, t) =>
             {
                 a.CastStatusSpell(Shield, t);
-                t.Unit.TriggerMorph();
                 TacticalGraphicalEffects.CreateGenericMagic(a.Position, t.Position, t, TacticalGraphicalEffects.SpellEffectIcon.Buff);
             },
         };

@@ -394,9 +394,14 @@ static class Config
     public static float SizeAccuracyMod => World.SizeAccuracyMod;
     public static float SizeAccuracyLowerBound => World.SizeAccuracyLowerBound;
     public static int SizeAccuracyInterval => World.SizeAccuracyInterval;
+    public static bool SizeAccuracyInverse => World.GetValue("SizeAccuracyInverse");
+    public static float SizeAccuracyCap => World.SizeAccuracyCap;
     public static float SizeDamageMod => World.SizeDamageMod;
     public static float SizeDamageLowerBound => World.SizeDamageLowerBound;
     public static int SizeDamageInterval => World.SizeDamageInterval;
+    public static bool SizeDamageInverse => World.GetValue("SizeDamageInverse");
+    public static float SizeDamageCap => World.SizeDamageCap;
+
     public static List<ConstructibleBuilding> Buildings=> World.GetBuildingInfo();
 
     //Everything below this line should be mirrored in BuildingConfig to ensure proper saving
