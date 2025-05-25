@@ -367,9 +367,9 @@ public class RaceEditorPanel : MonoBehaviour
     public void AddTag()
     {
 
-        if (State.UnitTagList.Any(ut => ut.id == TraitDropdown.value))
+        if (State.UnitTagList.Any(ut => ut.id == TagDropdown.value))
         {
-            CurrentTags.Add(TraitDropdown.value);
+            CurrentTags.Add(TagDropdown.value);
         }
         UpdateInteractable();
     }
@@ -381,7 +381,7 @@ public class RaceEditorPanel : MonoBehaviour
             foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
             {
                 RaceSettingsItem item = State.RaceSettings.Get(race);
-                item.RaceTags.Add((int)State.UnitTagList.Where(ut => ut.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+                item.RaceTags.Add((int)State.UnitTagList.Where(ut => ut.name == TagDropdown.options[TagDropdown.value].text).FirstOrDefault()?.id);
             }
             AddTag();
         }
@@ -392,7 +392,7 @@ public class RaceEditorPanel : MonoBehaviour
     {
         if (State.UnitTagList.Any(ut => ut.name == TagDropdown.options[TagDropdown.value].text))
         {
-            CurrentTags.Remove((int)State.UnitTagList.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            CurrentTags.Remove((int)State.UnitTagList.Where(rl => rl.name == TagDropdown.options[TagDropdown.value].text).FirstOrDefault()?.id);
         }
         UpdateInteractable();
     }
@@ -404,7 +404,7 @@ public class RaceEditorPanel : MonoBehaviour
             foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
             {
                 RaceSettingsItem item = State.RaceSettings.Get(race);
-                item.RaceTags.Remove((int)State.UnitTagList.Where(ut => ut.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+                item.RaceTags.Remove((int)State.UnitTagList.Where(ut => ut.name == TagDropdown.options[TagDropdown.value].text).FirstOrDefault()?.id);
             }
             RemoveTag();
         }

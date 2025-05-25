@@ -145,6 +145,15 @@ class RaceSettings
         return RaceParameters.GetRaceTraits((Race)race).RacialTraits;
     }
 
+    internal List<int> GetRaceTags(Race? race)
+    {
+        if (race == null)
+            return null;
+        if (Races.ContainsKey((Race)race))
+            return Get((Race)race).RaceTags;
+        return RaceParameters.GetRaceTraits((Race)race).RacialTags;
+    }
+
     internal List<Traits> GetMaleRaceTraits(Race race)
     {
         if (Races.ContainsKey(race))

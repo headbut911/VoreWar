@@ -187,7 +187,13 @@ public class TagConditionChecker
         List<UnitTag> combinedTagLsit = new List<UnitTag>();
 
         //Get tags from race editor IDs
-        foreach (int tagID in RaceParameters.GetRaceTraits(unit.Race).RacialTags)
+        List<int> editorTags = State.RaceSettings.GetRaceTags(unit.Race);
+        if (editorTags == null)
+        {
+            return combinedTagLsit;
+        }
+
+        foreach (int tagID in editorTags)
         {
             UnitTag newTag = State.UnitTagList.FirstOrDefault(x => x.id == tagID);
             if (newTag != null)
