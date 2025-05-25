@@ -210,10 +210,18 @@ public class PotionShop
 
             Item item = State.World.ItemRepository.GetItem(type);
 
+            bool townHasTier = ((Potion)item).Tier > ((village?.NetBoosts.PotionLevel ?? -5) + 1) && ((Potion)item).Tier > 0;
+
+            if (townHasTier &&!army.ItemStock.HasItem((ItemType)type))
+            {
+                PotionUI.BuyPotionPanels[i].gameObject.SetActive(false);
+                continue;
+            }
+
             PotionUI.BuyPotionPanels[i].gameObject.SetActive(true);
 
-            PotionUI.BuyPotionPanels[i].BuyButton.interactable = inTown;
-            PotionUI.BuyPotionPanels[i].BuyTenButton.interactable = inTown;
+            PotionUI.BuyPotionPanels[i].BuyButton.interactable = inTown && !townHasTier;
+            PotionUI.BuyPotionPanels[i].BuyTenButton.interactable = inTown && !townHasTier;
             PotionUI.BuyPotionPanels[i].SellFromInventoryButton.interactable = inTown && army.ItemStock.HasItem((ItemType)type);
             int totalEquippedPotions = 0;
             foreach (var potion in unit.EquippedPotions)
