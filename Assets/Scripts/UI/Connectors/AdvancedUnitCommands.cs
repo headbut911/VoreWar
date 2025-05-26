@@ -182,7 +182,7 @@ public class AdvancedUnitCommands : MonoBehaviour
             button = Buttons[index];
             button.onClick.RemoveAllListeners();
         }
-        button.GetComponentInChildren<Text>().text = "Throw " + potion.Name;
+        button.GetComponentInChildren<Text>().text = potion.Name;
         button.onClick.AddListener(new UnityEngine.Events.UnityAction(() => State.GameManager.TacticalMode.SetPotionMode(potion)));
 
         button.onClick.AddListener(() =>

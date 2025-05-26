@@ -32,7 +32,7 @@ class MainlandElves : DefaultRaceData
         BodyAccent = new SpriteExtraInfo(3, BodyAccentSprite, WhiteColored); // Extra weapon sprite
         BodyAccent2 = new SpriteExtraInfo(0, BodyAccentSprite2, WhiteColored); // Back weapon sprite
         BodyAccent3 = new SpriteExtraInfo(23, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Ear Accessory
-        BodyAccent5 = null;
+        BodyAccent5 = new SpriteExtraInfo(0, BodyAccentSprite5, WhiteColored); // Back weapon sprite;
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
@@ -44,7 +44,7 @@ class MainlandElves : DefaultRaceData
         SecondaryEyes = new SpriteExtraInfo(7, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
         SecondaryAccessory = null;
         Belly = new SpriteExtraInfo(14, null, null, (s) => FurryColor(s));
-        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
+        Weapon = new SpriteExtraInfo(13, WeaponSprite, WhiteColored);
         BackWeapon = null;
         BodySize = null;
         Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => FurryColor(s));
@@ -406,6 +406,36 @@ class MainlandElves : DefaultRaceData
         if (actor.Unit.BodyAccentType1 == 0)
             return null;
         return State.GameManager.SpriteDictionary.MainlandElfParts[actor.Unit.EarType + actor.Unit.BodyAccentType2 * 8];
+    }
+
+    protected override Sprite BodyAccentSprite5(Actor_Unit actor) // Extra weapon sprite
+    {
+        if (actor.Unit.HasWeapon == false)
+        {
+            return null;
+        }
+
+        switch (actor.GetWeaponSprite())
+        {
+            case 0:
+                return null;
+            case 1:
+                return null;
+            case 2:
+                return null;
+            case 3:
+                return null;
+            case 4:
+                return State.GameManager.SpriteDictionary.MainlandElfParts[32];
+            case 5:
+                return null;
+            case 6:
+                return State.GameManager.SpriteDictionary.MainlandElfParts[33];
+            case 7:
+                return null;
+            default:
+                return null;
+        }
     }
 
     protected override Sprite MouthSprite(Actor_Unit actor)

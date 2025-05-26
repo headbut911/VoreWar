@@ -149,7 +149,7 @@ public class Army
         UsedSize = 0;
 
         NameArmy(empire);
-        if (empire.Side < 33)
+        if (empire.Side < Config.NumberOfRaces)
             BannerStyle = empire.BannerType;
         if ((State.World.Turn == 1 && Config.FirstTurnArmiesIdle) || 0 > RemainingMP)
             RemainingMP = 0;
