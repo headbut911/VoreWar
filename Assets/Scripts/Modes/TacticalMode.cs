@@ -2271,7 +2271,7 @@ Turns: {currentTurn}
             int offset;
             if (scatInfo.predRace == Race.Slimes)
             {offset = 2;}
-            else if (scatInfo.predRace == Race.Aabayx)
+            else if (scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {offset = 4;}
             else
             {offset = 0;}

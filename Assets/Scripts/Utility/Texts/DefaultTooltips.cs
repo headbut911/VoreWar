@@ -800,6 +800,8 @@ Does not retroactively affect already created units.";
                 return "Accuracy based on size will not be multiplied or divided by a number higher than this value.\n Negative values disable this setting.";
             case 331:
                 return "Damage based on size will not be multiplied or divided by a number higher than this value.\n Negative values disable this setting.";
+            case 332:
+                return "Enables wandering groups of Virae Ultimae.";
             default:
                 return "";
         }
