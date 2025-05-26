@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+
 public enum UnitType
 {
     Soldier,
@@ -270,6 +271,8 @@ public class Unit
     [OdinSerialize]
     public int[] ItemCooldowns;
     [OdinSerialize]
+    public Dictionary<Potion, int[]> EquippedPotions;
+    [OdinSerialize]
     public string Name { get; set; }
     [OdinSerialize]
     public List<string> Pronouns;
@@ -314,6 +317,9 @@ public class Unit
 
     [OdinSerialize]
     public List<Unit> ShifterShapes;
+
+    [OdinSerialize]
+    public Unit MorphUnit = null;
 
     public override string ToString() => Name;
 
@@ -713,6 +719,8 @@ public class Unit
         Items = new Item[Config.ItemSlots];
         ItemUses = new int[] {1, 1, 1};
         ItemCooldowns = new int[3];
+        EquippedPotions = new Dictionary<Potion, int[]>();
+
 
 
         ReloadTraits();
@@ -1734,9 +1742,15 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (heal > MaxHealth - Health)
             heal = MaxHealth - Health;
         var actor = TacticalUtilities.Units.FirstOrDefault(s => s.Unit == this);
+        int modAmount = heal;
+        if (GetStatusEffect(StatusEffectType.Necrosis) != null)
+        {
+            float effect = 0.25f * GetStatusEffect(StatusEffectType.Necrosis).Strength;
+            modAmount -= (int)Math.Round(modAmount * effect);
+        }
         if (actor != null && heal != 0)
-            actor.UnitSprite.DisplayDamage(-heal);
-        Health += heal;
+            actor.UnitSprite.DisplayDamage(-modAmount);
+        Health += modAmount;
         EquipmentFunctions.CheckEquipment(this, EquipmentActivator.OnHeal, new object[] { this, heal, null });
     }
 
@@ -1745,7 +1759,13 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         rate *= TraitBoosts.PassiveHeal;
         int h = (int)(MaxHealth * rate);
         if (h <= 0) { h = 1; }
-        Health += h;
+        int modAmount = h;
+        if (GetStatusEffect(StatusEffectType.Necrosis) != null)
+        {
+            float effect = 0.25f * GetStatusEffect(StatusEffectType.Necrosis).Strength;
+            modAmount -= (int)Math.Round(modAmount * effect);
+        }
+        Health += modAmount;
         if (Health > MaxHealth)
         {
             Health = MaxHealth;
@@ -2319,6 +2339,8 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         if (HiddenUnit.Predator == false && !HasTrait(Traits.Prey))
             Tags.Add(Traits.Prey);
         SetMaxItems();
+        if (EquippedPotions == null)
+            EquippedPotions = new Dictionary<Potion, int[]>();
         //if (HasTrait(Traits.Shapeshifter) || HasTrait(Traits.Skinwalker))
         //{
         //    if (ShifterShapes == null)
@@ -3013,12 +3035,12 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
     }
 
-    public void ApplyStatusEffect(StatusEffectType type, float strength, int duration)
+    public void ApplyStatusEffect(StatusEffectType type, float strength, int duration, Unit applicator = null, StatusEffect expireEffect = null)
     {
         if (type == StatusEffectType.Poisoned && HasTrait(Traits.PoisonSpit))
             return;
         StatusEffects.Remove(GetStatusEffect(type));                    // if null, nothing happens, otherwise status is effectively overwritten
-        StatusEffects.Add(new StatusEffect(type, strength, duration));
+        StatusEffects.Add(new StatusEffect(type, strength, duration, applicator, expireEffect));
     }
 
     internal StatusEffect GetStatusEffect(StatusEffectType type)
@@ -3296,6 +3318,64 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
     }
 
+    internal void TriggerMorph(int duration)
+    {
+        var wkns = GetStatusEffect(StatusEffectType.Morphed);
+        if (wkns == null)
+        {
+            Unit clone = Clone();
+            clone.Tags = new List<Traits>(Tags);
+            clone.PermanentTraits = new List<Traits>(PermanentTraits);
+            clone.RemovedTraits = new List<Traits>(RemovedTraits);
+            ApplyStatusEffect(StatusEffectType.Morphed, 1, duration, clone);
+            if (MorphUnit == null)
+            {
+                Race = State.RaceSettings.GetMorphRace(Race);
+                RandomizeAppearance();
+                ClearAllTraits();
+                PermanentTraits.Clear();
+                RemovedTraits.Clear();
+                ReloadTraits();
+            }
+            else
+            {
+                Race = MorphUnit.Race;
+                CopyAppearance(MorphUnit);
+                ClearAllTraits();
+                PermanentTraits.Clear();
+                RemovedTraits.Clear();
+                Tags = new List<Traits>(MorphUnit.Tags);
+                PermanentTraits = new List<Traits>(MorphUnit.PermanentTraits);
+                RemovedTraits = new List<Traits>(MorphUnit.RemovedTraits);
+                InitializeTraits();
+                SetMaxItems();
+            }
+        }
+    }
+
+    internal void RevertMorph(Unit unit)
+    {
+        MorphUnit = Clone();
+        MorphUnit.Tags = new List<Traits>(Tags);
+        MorphUnit.PermanentTraits = new List<Traits>(PermanentTraits);
+        MorphUnit.RemovedTraits = new List<Traits>(RemovedTraits);
+
+        Race = unit.Race;
+        CopyAppearance(unit);
+        ClearAllTraits();
+        PermanentTraits.Clear();
+        RemovedTraits.Clear();
+        Name = unit.Name;
+
+        Tags = new List<Traits>(unit.Tags);
+        PermanentTraits = new List<Traits>(unit.PermanentTraits);
+        RemovedTraits = new List<Traits>(unit.RemovedTraits);
+        AllConditionalTraits = unit.AllConditionalTraits;
+
+        InitializeTraits();
+        SetMaxItems();
+    }
+
     internal StatusEffect GetLongestStatusEffect(StatusEffectType type)
     {
         return StatusEffects.Where(s => s.Type == type).OrderByDescending(s => s.Duration).FirstOrDefault();
@@ -3340,6 +3420,14 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             eff.Duration -= 1;
             if (eff.Duration <= 0)
             {
+                if (eff.Type == StatusEffectType.Morphed)
+                {
+                    RevertMorph(eff.Applicator);
+                }
+                if (eff.ExpireEffect != null)
+                {
+                    ApplyStatusEffect(eff.ExpireEffect.Type, eff.ExpireEffect.Strength, eff.ExpireEffect.Duration, eff.ExpireEffect.Applicator, eff.ExpireEffect.ExpireEffect);
+                }
 
                 StatusEffects.Remove(eff);
                 if (eff.Type == StatusEffectType.Diminished)

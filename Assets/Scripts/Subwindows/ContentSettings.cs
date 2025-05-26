@@ -272,9 +272,13 @@ public class ContentSettings : MonoBehaviour
     public InputField SizeAccuracyMod;
     public InputField SizeAccuracyLowerBound;
     public InputField SizeAccuracyInterval;
+    public Toggle SizeAccuracyInverse;
+    public InputField SizeAccuracyCap;
     public InputField SizeDamageMod;
     public InputField SizeDamageLowerBound;
     public InputField SizeDamageInterval;
+    public Toggle SizeDamageInverse;
+    public InputField SizeDamageCap;
 
 
 
@@ -396,6 +400,8 @@ public class ContentSettings : MonoBehaviour
             new ToggleObject(AbsorbRateDivision, "AbsorbRateDivision", false),
             new ToggleObject(AbsorbLoss, "AbsorbLoss", false),
             new ToggleObject(AbsorbBoostDeadOnly, "AbsorbBoostDeadOnly", false),
+            new ToggleObject(SizeAccuracyInverse, "SizeAccuracyInverse", false),
+            new ToggleObject(SizeDamageInverse, "SizeDamageInverse", false),
 
         };
         MercToggles = new List<ToggleObject>();
@@ -552,6 +558,9 @@ public class ContentSettings : MonoBehaviour
             case Race.BoomBunnies:
                 tooltip.value = 314;
                 break;
+            case Race.FeralSlime:
+                tooltip.value = 327;
+                break;
         }
         return spawner;
     }
@@ -693,9 +702,11 @@ public class ContentSettings : MonoBehaviour
         Config.World.SizeAccuracyMod = PlayerPrefs.GetFloat("SizeAccuracyMod", 0);
         Config.World.SizeAccuracyLowerBound = PlayerPrefs.GetFloat("SizeAccuracyLowerBound", 10);
         Config.World.SizeAccuracyInterval = PlayerPrefs.GetInt("SizeAccuracyInterval", 5);
+        Config.World.SizeAccuracyCap = PlayerPrefs.GetFloat("SizeAccuracyCap", -1);
         Config.World.SizeDamageMod = PlayerPrefs.GetFloat("SizeDamageMod", 0);
         Config.World.SizeDamageLowerBound = PlayerPrefs.GetFloat("SizeDamageLowerBound", 10);
         Config.World.SizeDamageInterval = PlayerPrefs.GetInt("SizeDamageInterval", 5);
+        Config.World.SizeDamageCap = PlayerPrefs.GetFloat("SizeDamageCap", -1);
         MonsterDropdownChanged();
         if (Config.World.SpawnerInfo == null)
             Config.World.ResetSpawnerDictionary();
@@ -793,6 +804,7 @@ public class ContentSettings : MonoBehaviour
     {
         gameObject.SetActive(true);
         buildingSettings.SoftLoad();
+        buildingSettings.LoadBuildingValues();
         foreach (ToggleObject toggle in Toggles)
         {
             toggle.Toggle.isOn = Config.World.GetValue(toggle.Name);
@@ -906,9 +918,11 @@ public class ContentSettings : MonoBehaviour
         SizeAccuracyMod.text = Config.SizeAccuracyMod.ToString();
         SizeAccuracyLowerBound.text = Config.SizeAccuracyLowerBound.ToString();
         SizeAccuracyInterval.text = Config.SizeAccuracyInterval.ToString();
+        SizeAccuracyCap.text = Config.SizeAccuracyCap.ToString();
         SizeDamageMod.text = Config.SizeDamageMod.ToString();
         SizeDamageLowerBound.text = Config.SizeDamageLowerBound.ToString();
         SizeDamageInterval.text = Config.SizeDamageInterval.ToString();
+        SizeDamageCap.text = Config.SizeDamageCap.ToString();
         RefreshSliderText();
 
         foreach (MonsterSpawnerPanel spawner in MonsterSpawners)
@@ -1166,6 +1180,11 @@ public class ContentSettings : MonoBehaviour
         else
             Config.World.SizeAccuracyInterval = 5;
 
+        if (int.TryParse(SizeAccuracyCap.text, out int sac))
+            Config.World.SizeAccuracyCap = sac;
+        else
+            Config.World.SizeAccuracyCap = -1;
+
         if (float.TryParse(SizeDamageMod.text, out float sdm))
             Config.World.SizeDamageMod = sdm;
         else
@@ -1180,6 +1199,11 @@ public class ContentSettings : MonoBehaviour
             Config.World.SizeDamageInterval = sdi;
         else
             Config.World.SizeDamageInterval = 5;
+
+        if (int.TryParse(SizeDamageCap.text, out int sdc))
+            Config.World.SizeDamageCap = sdc;
+        else
+            Config.World.SizeDamageCap = -1;
 
         foreach (MonsterSpawnerPanel spawner in MonsterSpawners)
         {
@@ -1248,7 +1272,7 @@ public class ContentSettings : MonoBehaviour
             if (spawner.DayNightMonsterMovemnt.value > 0)
                 info.SetSpawnerCycleMoveType((Config.DayNightMovemntType)(spawner.DayNightMonsterMovemnt.value));
             else
-                info.UsingCustomType = false;
+                info.DNRestrictOn = false;
         }
         if (State.World != null && State.World.MonsterEmpires != null)
         {
@@ -1409,6 +1433,11 @@ public class ContentSettings : MonoBehaviour
             PlayerPrefs.SetFloat("SizeAccuracyInterval", sai);
         else
             PlayerPrefs.SetFloat("SizeAccuracyInterval", 5);
+        if (int.TryParse(SizeAccuracyCap.text, out int sac))
+            PlayerPrefs.SetFloat("SizeAccuracyCap", sac);
+        else
+            PlayerPrefs.SetFloat("SizeAccuracyCap", -1);
+
         if (float.TryParse(SizeDamageMod.text, out float sbm))
             PlayerPrefs.SetFloat("SizeDamageMod", sbm);
         else
@@ -1421,6 +1450,11 @@ public class ContentSettings : MonoBehaviour
             PlayerPrefs.SetFloat("SizeDamageInterval", sbi);
         else
             PlayerPrefs.SetFloat("SizeDamageInterval", 5);
+
+        if (int.TryParse(SizeDamageCap.text, out int sdc))
+            PlayerPrefs.SetFloat("SizeDamageCap", sdc);
+        else
+            PlayerPrefs.SetFloat("SizeDamageCap", -1);
 
         foreach (MonsterSpawnerPanel spawner in MonsterSpawners)
         {

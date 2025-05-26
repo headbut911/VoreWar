@@ -149,7 +149,7 @@ public class Army
         UsedSize = 0;
 
         NameArmy(empire);
-        if (empire.Side < 33)
+        if (empire.Side < Config.NumberOfRaces)
             BannerStyle = empire.BannerType;
         if ((State.World.Turn == 1 && Config.FirstTurnArmiesIdle) || 0 > RemainingMP)
             RemainingMP = 0;
@@ -276,7 +276,7 @@ public class Army
         if (movement < 0)
             { movement = 0; }
 
-        return movement + (int)Math.Floor(AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.ArmyMP));
+        return movement + (int)Math.Floor(AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.ArmyMP) * 0.5f);
     }
 
     public void RefreshMovementMode()

@@ -790,6 +790,16 @@ Does not retroactively affect already created units.";
                 return "When enabled, a hand effect displays when a pred has been belly rubbed.";
             case 326:
                 return "Controls the maximum level of equipment dropped from monsters or goblins, or that spawn on mercenaries or adventurers.  Note that the maximum also depends on the monsters level, with level 4 equipment not generally appearing until after level 10, but this clamps that to your maximum";
+            case 327:
+                return "Enables encounters with feral slimes.";
+            case 328:
+                return "Enable to cause larger units to have a harder time hitting smaller units by the same coefficient.";
+            case 329:
+                return "Enable to cause smaller units to deal less damage against larger units by the same coefficient.";
+            case 330:
+                return "Accuracy based on size will not be multiplied or divided by a number higher than this value.\n Negative values disable this setting.";
+            case 331:
+                return "Damage based on size will not be multiplied or divided by a number higher than this value.\n Negative values disable this setting.";
             default:
                 return "";
         }

@@ -212,6 +212,8 @@ public class WorldConfig
     internal bool FactionLeaders;
     [OdinSerialize]
     internal int ItemSlots;
+    [OdinSerialize]
+    internal int PotionSlots = 3;
 
     [OdinSerialize]
     internal float BurpFraction = .1f;
@@ -283,11 +285,15 @@ public class WorldConfig
     [OdinSerialize]
     internal int SizeAccuracyInterval = 5;
     [OdinSerialize]
+    internal float SizeAccuracyCap = -1;
+    [OdinSerialize]
     internal float SizeDamageMod = 0f;
     [OdinSerialize]
     internal float SizeDamageLowerBound = 10;
     [OdinSerialize]
     internal int SizeDamageInterval = 5;
+    [OdinSerialize]
+    internal float SizeDamageCap = -1;
 
     internal bool GetValue(string name)
     {
@@ -456,6 +462,8 @@ public class WorldConfig
             ["AbsorbRateDivision"] = false,
             ["AbsorbLoss"] = false,
             ["AbsorbBoostDeadOnly"] = false,
+            ["SizeAccuracyInverse"] = false,
+            ["SizeDamageInverse"] = false,
         };
 
         foreach (Race race in ((Race[])Enum.GetValues(typeof(Race))).Where(s => (int)s >= 0))

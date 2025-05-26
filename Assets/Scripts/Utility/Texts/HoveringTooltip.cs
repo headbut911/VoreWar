@@ -258,7 +258,7 @@ public class HoveringTooltip : MonoBehaviour
                     case StatusEffectType.Necrosis:
                         return $"Unit's healing is reduced by {effect.Strength * 25}% \nTurns Remaining: {effect.Duration}";
                     case StatusEffectType.Errosion:
-                        return $"Unit's weapo nand digstion damage taken is increased by {effect.Strength * 20}% \nTurns Remaining: {effect.Duration}";
+                        return $"Unit's weapon taken is increased by {effect.Strength * 20}% and digstion damage taken is increased by {effect.Strength * 50}%\nTurns Remaining: {effect.Duration}";
                     case StatusEffectType.Lethargy:
                         return $"Unit's Str,Dex, and Agi are reduced by {(effect.Strength * effect.Duration / 50)*100}% \nTurns Remaining: {effect.Duration}";
                     case StatusEffectType.Agony:

@@ -21,4 +21,5 @@ public class TacticalEffectPrefabList : MonoBehaviour
     public GameObject CaptureNet;
     public GameObject Icicle;
     public GameObject CrossShock;
+    public GameObject Potion;
 }

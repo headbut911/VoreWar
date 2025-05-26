@@ -13,6 +13,7 @@ public class ArmySectionsPanel : MonoBehaviour
     public Text RecruitSoldier;
 
     public Button Shop;
+    public Button PotionShop;
     public Text ShopText;
     public Text AlliedArmyText;
 

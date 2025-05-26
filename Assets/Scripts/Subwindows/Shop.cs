@@ -232,6 +232,11 @@ public class Shop
                 }
             }
 
+            if (item is Potion)
+            {
+                shopUI.BuyPanels[i].gameObject.SetActive(false);
+            }
+
 
             shopUI.BuyPanels[i].TakeFromInventoryButton.interactable = army.ItemStock.HasItem((ItemType)i);
             shopUI.BuyPanels[i].InventoryButtonText.text = $"Take from army inventory (You have {army.ItemStock.ItemCount((ItemType)i)})";

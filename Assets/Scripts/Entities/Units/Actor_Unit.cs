@@ -1003,17 +1003,24 @@ public class Actor_Unit
             if (sizeDiff > Config.SizeAccuracyLowerBound)
             {
                 float oddMod = ((sizeDiff - Config.SizeAccuracyLowerBound) / Config.SizeAccuracyInterval) * Config.SizeAccuracyMod;
-                float oddMult = 1f;
+                oddMod += 1;
+                if (oddMod > Config.SizeAccuracyCap && Config.SizeAccuracyCap > 0) 
+                {
+                    oddMod = Config.SizeAccuracyCap;
+                }
                 // If we are larger than the attacker, increase accuracy of attack. Otherwise, reduce it
                 if (BodySize() > attacker.BodySize())
                 {
-                    oddMult += oddMod;
+                    odds *= oddMod;
                 }
                 else
                 {
-                    oddMult -= oddMod;
+                    if (Config.SizeAccuracyInverse)
+                    {
+                        odds /= oddMod;
+                    }
                 }
-                odds *= oddMult;
+              
             }
         }
 
@@ -1027,7 +1034,14 @@ public class Actor_Unit
                 odds *= 1 - WillCheckOdds(attacker, this);
             }
         }
-
+        if (odds > 100)
+        {
+            odds = 100;
+        }
+        if (odds < 0)
+        {
+            odds = 0;
+        }
         return odds / 100;
     }
 
@@ -1196,17 +1210,23 @@ public class Actor_Unit
             if (sizeDiff > Config.SizeDamageLowerBound)
             {
                 float damMod = ((sizeDiff - Config.SizeDamageLowerBound) / Config.SizeDamageInterval) * Config.SizeDamageMod;
-                float damMult = 1f;
+                damMod += 1;
+                if (damMod > Config.SizeDamageCap && Config.SizeDamageCap > 0)
+                {
+                    damMod = Config.SizeDamageCap;
+                }
                 // If we are larger than the attacker, increase damage of attack. Otherwise, reduce it
                 if (BodySize() > target.BodySize())
                 {
-                    damMult += damMod;
+                    damage = (int)Math.Round(damage * damMod);
                 }
                 else
                 {
-                    damMult -= damMod;
+                    if (Config.SizeDamageInverse)
+                    {
+                        damage = (int)Math.Round(damage / damMod);
+                    }
                 }
-                damage = (int)Math.Round(damage * damMult);
             }
         }
 
@@ -1475,7 +1495,6 @@ public class Actor_Unit
             }
         }
     }
-
     public bool AllInVore(Actor_Unit target, SpecialAction voreType = SpecialAction.None, bool AIAutoPick = false)
     {
         if (Movement < 1 || Unit.HasTrait(Traits.AllIn) == false)
@@ -2022,7 +2041,7 @@ public class Actor_Unit
         if (DefendSpellCheck(spell, attacker, out float chance, sneakAttack ? -0.3f : 0f, stat))
         {
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, 0, chance);
-            Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this));
+            Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this), attacker.Unit, spell.ExpireEffect(attacker, this));
             EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenHitBySpellStatus, new object[] { this, attacker, spell });
             if (spell.Id == "charm")
             {

@@ -59,6 +59,7 @@ public enum CustomTraitComp
     SpeedBonus,
     MeleeAttacks,
     RangedAttacks,
+    PotionAttacks,
     VoreAttacks,
     SpellAttacks,
     HealthMultiplier,
@@ -478,6 +479,10 @@ public class CustomTrait : MonoBehaviour
             case CustomTraitComp.Scale:
                 ToolTipName.text = "Scale Multiplier";
                 ToolTipDesc.text = "Unit's size and bulk is multiplied by this value.";
+                break;
+            case CustomTraitComp.PotionAttacks:
+                ToolTipName.text = "Potion Uses";
+                ToolTipDesc.text = "Determines how many potions a unit can use in a turn.";
                 break;
             case CustomTraitComp.StatMult:
                 ToolTipName.text = "Stat Multiplier";

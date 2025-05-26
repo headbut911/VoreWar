@@ -125,6 +125,8 @@ static class TacticalActionList
             onExecute: (a, t) => a.PredatorComponent.TailVore(t)));
         TargetedDictionary[SpecialAction.TailVore] = TargetedActions.Last();
 
+
+
         //TargetedActions.Add(new TargetedTacticalAction(
         //   name: "Crop Vore",
         //   requiresPred: true,

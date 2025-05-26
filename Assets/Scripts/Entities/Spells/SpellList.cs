@@ -300,6 +300,7 @@ static class SpellList
             Range = new Range(6),
             Duration = (a, t) => 2 + a.Unit.GetStat(Stat.Mind) / 10,
             Effect = (a, t) => .25f,
+            ExpireEffect = (a, t) => new StatusEffect(StatusEffectType.Mending, 1, 4, null, new StatusEffect(StatusEffectType.Valor, 1, 3)),
             Type = StatusEffectType.Shielded,
             Tier = 1,
             Resistable = false,
@@ -1743,6 +1744,7 @@ class StatusSpell : Spell
 {
     internal Func<Actor_Unit, Actor_Unit, int> Duration;
     internal Func<Actor_Unit, Actor_Unit, float> Effect;
+    internal Func<Actor_Unit, Actor_Unit, StatusEffect> ExpireEffect = null;
     internal StatusEffectType Type;
     internal bool Alraune = false;
 }

@@ -50,8 +50,8 @@ public class WorkCampSettings : MonoBehaviour
         GoldPerTurn.text = Config.BuildConfig.WorkCampGoldPerTurn.ToString();
 
         WoodStock.text = Config.BuildConfig.WorkCampTurnStock.Wood.ToString();
-        StoneStock.text = Config.BuildConfig.WorkCampTurnStock.Wood.ToString();
-        NaturalMaterialsStock.text = Config.BuildConfig.WorkCampTurnStock.Stone.ToString();
+        StoneStock.text = Config.BuildConfig.WorkCampTurnStock.Stone.ToString();
+        NaturalMaterialsStock.text = Config.BuildConfig.WorkCampTurnStock.NaturalMaterials.ToString();
         OresStock.text = Config.BuildConfig.WorkCampTurnStock.Ores.ToString();
         PrefabsStock.text = Config.BuildConfig.WorkCampTurnStock.Prefabs.ToString();
         ManaStonesStock.text = Config.BuildConfig.WorkCampTurnStock.ManaStones.ToString();

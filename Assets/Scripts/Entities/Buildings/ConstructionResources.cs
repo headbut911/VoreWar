@@ -87,7 +87,7 @@ public class ConstructionResources
             case ConstructionResourceType.naturalmaterials:
                 NaturalMaterials -= amount; break;
             case ConstructionResourceType.prefabs:
-                Prefabs += amount; break;
+                Prefabs -= amount; break;
             case ConstructionResourceType.manastones:
                 ManaStones -= amount; break;
             default:
@@ -143,12 +143,33 @@ public class ConstructionResources
 
     public void SetResources(int wood, int stones, int nm, int ores, int prefabs, int ms)
     {
-        Wood = wood;
-        Stone = stones;
-        Ores = ores;
-        NaturalMaterials = nm;
-        Prefabs = prefabs;
-        ManaStones = ms;
+        Wood = 0;
+        Stone = 0;
+        Ores = 0;
+        NaturalMaterials = 0;
+        Prefabs = 0;
+        ManaStones = 0;
+        Wood += wood;
+        Stone += stones;
+        Ores += ores;
+        NaturalMaterials += nm;
+        Prefabs += prefabs;
+        ManaStones += ms;
+    }
+    public void SetResources(ConstructionResources cs)
+    {
+        Wood = 0;
+        Stone = 0;
+        Ores = 0;
+        NaturalMaterials = 0;
+        Prefabs = 0;
+        ManaStones = 0;
+        Wood += cs.Wood;
+        Stone += cs.Stone;
+        Ores += cs.Ores;
+        NaturalMaterials += cs.NaturalMaterials;
+        Prefabs += cs.Prefabs;
+        ManaStones += cs.ManaStones;
     }
 
     public Dictionary<ConstructionResourceType, int> NeededResources(ConstructionResources required)

@@ -16,8 +16,7 @@ public enum ItemType
     Gloves,
     Shoes,
 
-    HealthPotion, //Tier 1 Equip Start
-    ManaPotion,
+    EnduringAmulet, //Tier 1 Equip Start
     ShieldRing, //Tier 1 Equip End
     BarrierRing, //Tier 2 Equip Start
     ConvergenceGem, //Tier 2 Equip End
@@ -25,6 +24,19 @@ public enum ItemType
     BrambleBand,//Tier 3 Equip End
     WarpStone, //Tier 4 Equip start
     GoddessPendant, //Tier 4 Equip End
+
+    HealthPotion, //Tier 1 Equip Start
+    ManaPotion, 
+    HastePotion, //Tier 1 Equip End
+    RejuvinationElixer, //Tier 2 Equip Start
+    FrostLilyExtract,
+    SparkBarkExtract,
+    IchorOfDilution, //Tier 2 Equip End
+    EnlargementPotion, //Tier 3 Equip Start
+    PotionOfPotential,
+    IchorOfErrosion, //Tier 3 Equip End
+    PotionOfPower, //Tier 4 Equip Start
+    OmniPotion, //Tier 4 Equip End
 
     //FireBomb,
 
@@ -127,13 +139,9 @@ public class ItemRepository
             new Accessory(name:"Gloves", description:"+6 dexterity", cost:10, changedStat:(int)Stat.Dexterity, statBonus:6 ),
             new Accessory(name:"Shoes", description:"+2 agility, +1 movement tile", cost:6, changedStat:(int)Stat.Agility, statBonus:2),
 
-            new Equipment(name:"Health Potion", description:"Heals 20 HP if below 50% HP at start of turn, single use", cost:3, tier:1, type: EquipmentType.Uses, func: new Dictionary<EquipmentActivator, Func < object, object, object, bool >>
+            new Equipment(name:"Enduring Amulet", description:"If below 50% HP at start of turn, heal 1% max HP. Five uses per battle.", cost:7, tier:1, type: EquipmentType.RechargeStrategy, uses: 5, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
             {
-                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentHealthPotion(((Actor_Unit)x).Unit)
-            }),
-            new Equipment(name:"Mana Potion", description:"Grants 20 Mana if below 50% Mana at start of turn, three uses", cost:3, tier:1, type: EquipmentType.Uses, uses: 3, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
-            {
-                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentManaPotion(((Actor_Unit)x).Unit)
+                [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => {if(((Actor_Unit)x).Unit.HealthPct <= 0.5f){((Actor_Unit)x).Unit.HealPercentage(0.01f); }; return true; },
             }),
             new Equipment(name:"Shield Ring", description:"Before taking damage, grants 5 barrier, three uses, three turn cooldown", cost:6, tier:1, type: EquipmentType.RechargeTactical, uses: 3, itemCD:3, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
             {
@@ -163,10 +171,25 @@ public class ItemRepository
                 [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => EquipmentFunctions.UseEquipmentWarpStone(((Actor_Unit)x).Unit)
             }),
             new Equipment(name:"Goddess Pendant", description:"At start of battle, grant all allies in army 10 stacks of Bolstered. Every five turns, grants one respawn to unit.", cost:75, tier:4, itemCD:5, triggersCD: new bool[] {false,true}, type: EquipmentType.RechargeTactical, func: new Dictionary<EquipmentActivator, Func <object, object, object, bool>>
-            { 
+            {
                 [EquipmentActivator.OnTacticalBattleStart] = (x,y,z) => EquipmentFunctions.UseEquipmentGoddessPendantStart((Army)y),
                 [EquipmentActivator.OnTacticalTurnStart] = (x,y,z) => {((Actor_Unit)x).Unit.AddRespawns(1); return true; }
             }),
+
+            new Potion(name:"Health Potion", description:"Heals 10 HP when used", cost:5, tier:1, negative:false ,func: (x,y) => ((Actor_Unit)x).Unit.Heal(10)),
+            new Potion(name:"Mana Potion", description:"Restores 10 mana when used", cost:5, tier:1, negative:false ,func: (x,y) => ((Actor_Unit)x).Unit.RestoreMana(10)),
+            new Potion(name:"Haste Potion", description:"Grants Fast for 2 turns, then Valor for 2 turns when used", cost:7, tier:1, negative:false ,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Fast, 1, 2, null, new StatusEffect(StatusEffectType.Valor, 1, 2))),
+            new Potion(name:"Rejuvination Elixir", description:"Restores 50 mana when used. Overcapped mana restores HP instead. Reduce stats by 20% for 3 turns.", cost:10, tier:2, negative:false ,func: (x,y) => {int resto = 50; int diff = resto - ((Actor_Unit)x).Unit.MaxMana - ((Actor_Unit)x).Unit.Mana; ((Actor_Unit)x).Unit.RestoreMana(40); if(diff > 0) ((Actor_Unit)x).Unit.Heal(diff); ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Shaken,0.2f,3); }),
+            new Potion(name:"Frost Lily Extract", description:"Spreads ice on tiles surrounding target. Freezes target if it hits for 3 turns.", cost:12, tier:2, negative:true ,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Frozen,1f,3), tileFunc: (a,b) => TacticalUtilities.CreateEffect((Vec2i)a, TileEffectType.IcePatch, 1, 2, 5)),
+            new Potion(name:"Spark Bark Extract", description:"Spreads Fire on tiles surrounding target. Snares target if it hits for 3 turns.", cost:12, tier:2, negative:true ,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Snared,1f,3), tileFunc: (a,b) => TacticalUtilities.CreateEffect((Vec2i)a, TileEffectType.Fire, 1, 2, 5)),
+            new Potion(name:"Ichor Of Dilution", description:"Reduces Digestion damage of target for 4 turns.", cost:10, tier:2, negative:true ,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Diluted,0.2f,4)),
+            new Potion(name:"Enlargement Elixir", description:"Grants Enlarged for 3 turns, causes Lethargy for 3 turns after the effect ends.", cost:10, tier:3, negative:false ,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Enlarged, 1, 3, null, new StatusEffect(StatusEffectType.Lethargy, 4, 3))),
+            new Potion(name:"Potion Of Potential", description:"Race changes to 'Morph Race' for 3 turns.", cost:15, tier:3, negative:false ,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Morphed, 1, 3)),
+            new Potion(name:"Ichor Of Errosion", description:"Inflicts Errosion for 3 turns, increasing damage taken.", cost:15, tier:3, negative:true,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Errosion, 2, 3)),
+            new Potion(name:"Potion Of Power", description:"Target becomes Empowered for 5 turns, causes Sleep for 1 turn after the effect ends", cost:25, tier:4, negative:false ,func: (x,y) => ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Empowered, 0.5f, 5, null, new StatusEffect(StatusEffectType.Sleeping, 1, 1))),
+            new Potion(name:"OmniPotion", description:"Grants Shield, Mending, Fast, Valor, and Predation for 5 turns.", cost:25, tier:4, negative:false ,func: (x,y) =>  
+            { ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Shielded, .25f, 5); ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Mending, 24, 5); ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Fast, 0.3f, 5); ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Valor, .25f, 5); ((Actor_Unit)x).Unit.ApplyStatusEffect(StatusEffectType.Predation, 25, 5);}), 
+
 
             //new SpellBook("Fire Bomb", "A belt of incendiary grenades", 60, 1, SpellTypes.FireBomb),
 
@@ -318,6 +341,11 @@ public class ItemRepository
     {
         return GetItem(GetRandomEquipmentType(minTier, maxTier, ignoreLimit));
     }
+    
+    public Item GetRandomPotion(int minTier = 1, int maxTier = 4, bool ignoreLimit = false)
+    {
+        return GetItem(GetRandomPotionType(minTier, maxTier, ignoreLimit));
+    }
 
     public int GetRandomBookType(int minTier = 1, int maxTier = 4, bool ignoreLimit = false)
     {
@@ -342,9 +370,9 @@ public class ItemRepository
         if (ignoreLimit == false)
             maxTier = UnityEngine.Mathf.Clamp(maxTier, 1, Config.MaxEquipmentLevelDrop);
         minTier = UnityEngine.Mathf.Clamp(minTier, 1, maxTier);
-        int min = (int)ItemType.HealthPotion;
+        int min = (int)ItemType.EnduringAmulet;
         int max = (int)ItemType.GoddessPendant;
-        if (minTier == 1) min = (int)ItemType.HealthPotion;
+        if (minTier == 1) min = (int)ItemType.EnduringAmulet;
         if (minTier == 2) min = (int)ItemType.BarrierRing;
         if (minTier == 3) min = (int)ItemType.RangerEmblem;
         if (minTier == 4) min = (int)ItemType.WarpStone;
@@ -352,6 +380,24 @@ public class ItemRepository
         if (maxTier == 2) max = (int)ItemType.ConvergenceGem;
         if (maxTier == 3) max = (int)ItemType.BrambleBand;
         if (maxTier >= 4) max = (int)ItemType.GoddessPendant;
+
+        return State.Rand.Next(min, max + 1);
+    }
+    public int GetRandomPotionType(int minTier = 1, int maxTier = 4, bool ignoreLimit = false)
+    {
+        if (ignoreLimit == false)
+            maxTier = UnityEngine.Mathf.Clamp(maxTier, 1, Config.MaxEquipmentLevelDrop);
+        minTier = UnityEngine.Mathf.Clamp(minTier, 1, maxTier);
+        int min = (int)ItemType.EnduringAmulet;
+        int max = (int)ItemType.GoddessPendant;
+        if (minTier == 1) min = (int)ItemType.HealthPotion;
+        if (minTier == 2) min = (int)ItemType.HastePotion;
+        if (minTier == 3) min = (int)ItemType.RejuvinationElixer;
+        if (minTier == 4) min = (int)ItemType.IchorOfDilution;
+        if (maxTier == 1) max = (int)ItemType.EnlargementPotion;
+        if (maxTier == 2) max = (int)ItemType.IchorOfErrosion;
+        if (maxTier == 3) max = (int)ItemType.PotionOfPower;
+        if (maxTier >= 4) max = (int)ItemType.OmniPotion;
 
         return State.Rand.Next(min, max + 1);
     }

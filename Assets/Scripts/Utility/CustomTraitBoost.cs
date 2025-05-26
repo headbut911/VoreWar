@@ -171,6 +171,9 @@ public class CustomTraitBoost
                         case CustomTraitComp.RangedAttacks:
                             s.RangedAttacks *= (int)value;
                             break;
+                        case CustomTraitComp.PotionAttacks:
+                            s.PotionAttacks *= (int)value;
+                            break;
                         case CustomTraitComp.VoreAttacks:
                             s.VoreAttacks *= (int)value;
                             break;

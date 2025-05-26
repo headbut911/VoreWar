@@ -77,6 +77,27 @@ class ItemStock
         }
         return items;
     }
+
+    internal List<ItemType> GetAllPotions()
+    {
+        if (Items == null)
+            Items = new Dictionary<ItemType, int>();
+        List<ItemType> items = new List<ItemType>();
+        foreach (var item in Items)
+        {
+            if (item.Key >= ItemType.HealthPotion && item.Key <= ItemType.OmniPotion)
+            {
+                if (item.Value > 0)
+                {
+                    for (int i = 0; i < item.Value; i++)
+                    {
+                        items.Add(item.Key);
+                    }
+                }
+            }
+        }
+        return items;
+    }
     internal List<ItemType> SellAllWeaponsAndAccessories(Empire empire)
     {
         if (Items == null)

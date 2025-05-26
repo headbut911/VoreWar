@@ -27,6 +27,7 @@ public class RaceEditorPanel : MonoBehaviour
     public TMP_Dropdown SpawnRaceDropdown;
     public TMP_Dropdown ConversionRaceDropdown;
     public TMP_Dropdown LeaderRaceDropdown;
+    public TMP_Dropdown MorphRaceDropdown;
 
     public TMP_Dropdown TraitDropdown;
     public TextMeshProUGUI TraitList;
@@ -193,6 +194,15 @@ public class RaceEditorPanel : MonoBehaviour
             LeaderRaceDropdown.RefreshShownValue();
         }
 
+        if (MorphRaceDropdown.options?.Any() == false)
+        {
+            foreach (Race race in ((Race[])Enum.GetValues(typeof(Race))).Where(s => (int)s >= 0).OrderBy((s) => s.ToString()))
+            {
+                MorphRaceDropdown.options.Add(new TMP_Dropdown.OptionData(race.ToString()));
+            }
+            MorphRaceDropdown.RefreshShownValue();
+        }
+
         if (BannerType.options.Count < 4)
         {
             foreach (BannerTypes type in (BannerTypes[])Enum.GetValues(typeof(BannerTypes)))
@@ -357,9 +367,9 @@ public class RaceEditorPanel : MonoBehaviour
     public void AddTag()
     {
 
-        if (State.UnitTagList.Any(ut => ut.id == TraitDropdown.value))
+        if (State.UnitTagList.Any(ut => ut.id == TagDropdown.value))
         {
-            CurrentTags.Add(TraitDropdown.value);
+            CurrentTags.Add(TagDropdown.value);
         }
         UpdateInteractable();
     }
@@ -371,7 +381,7 @@ public class RaceEditorPanel : MonoBehaviour
             foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
             {
                 RaceSettingsItem item = State.RaceSettings.Get(race);
-                item.RaceTags.Add((int)State.UnitTagList.Where(ut => ut.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+                item.RaceTags.Add((int)State.UnitTagList.Where(ut => ut.name == TagDropdown.options[TagDropdown.value].text).FirstOrDefault()?.id);
             }
             AddTag();
         }
@@ -382,7 +392,7 @@ public class RaceEditorPanel : MonoBehaviour
     {
         if (State.UnitTagList.Any(ut => ut.name == TagDropdown.options[TagDropdown.value].text))
         {
-            CurrentTags.Remove((int)State.UnitTagList.Where(rl => rl.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+            CurrentTags.Remove((int)State.UnitTagList.Where(rl => rl.name == TagDropdown.options[TagDropdown.value].text).FirstOrDefault()?.id);
         }
         UpdateInteractable();
     }
@@ -394,7 +404,7 @@ public class RaceEditorPanel : MonoBehaviour
             foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
             {
                 RaceSettingsItem item = State.RaceSettings.Get(race);
-                item.RaceTags.Remove((int)State.UnitTagList.Where(ut => ut.name == TraitDropdown.options[TraitDropdown.value].text).FirstOrDefault()?.id);
+                item.RaceTags.Remove((int)State.UnitTagList.Where(ut => ut.name == TagDropdown.options[TagDropdown.value].text).FirstOrDefault()?.id);
             }
             RemoveTag();
         }
@@ -440,7 +450,9 @@ public class RaceEditorPanel : MonoBehaviour
                 if (Enum.TryParse(ConversionRaceDropdown.options[ConversionRaceDropdown.value].text, out Race conversionRace))
                     item.ConversionRace = conversionRace;
                 if (Enum.TryParse(LeaderRaceDropdown.options[LeaderRaceDropdown.value].text, out Race leaderRace))
-                    item.LeaderRace = leaderRace;    
+                    item.LeaderRace = leaderRace; 
+                if (Enum.TryParse(MorphRaceDropdown.options[MorphRaceDropdown.value].text, out Race morphRace))
+                    item.MorphRace = morphRace;    
 
                 item.overrideBoob = OverrideBoob.isOn;
                 item.MinBoob = Convert.ToInt32(MinBoob.text) - 1;
@@ -691,6 +703,16 @@ public class RaceEditorPanel : MonoBehaviour
                 }
 
             LeaderRaceDropdown.RefreshShownValue();
+
+            var morphRace = State.RaceSettings.GetMorphRace(race);
+            foreach(TMP_Dropdown.OptionData option in MorphRaceDropdown.options.ToList())
+                if(option.text == morphRace.ToString())
+                {
+                    MorphRaceDropdown.value = MorphRaceDropdown.options.IndexOf(option);
+                    break;
+                }
+
+            MorphRaceDropdown.RefreshShownValue();
 
             BodySize.text = item.BodySize.ToString();
             StomachSize.text = item.StomachSize.ToString();

@@ -37,6 +37,8 @@
     static internal Abakhanskya Abakhanskya = new Abakhanskya();
     static internal MatronsMinions MatronsMinions = new MatronsMinions();
     static internal Gnolls Gnolls = new Gnolls();
+    static internal MainlandElves MainlandElves = new MainlandElves();
+
 
     static internal Tigers Tigers = new Tigers();
     static internal Goblins Goblins = new Goblins();
@@ -373,6 +375,8 @@
                 return FeralSlime;
             case Race.Olivia:
                 return Olivia;
+            case Race.MainlandElves:
+                return MainlandElves;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

@@ -57,6 +57,8 @@ public class StandardTacticalAI : TacticalAI
 
         RunBind(actor);
 
+        if (State.Rand.Next(3) == 0 || actor.Unit.HasWeapon == false)
+            RunPotions(actor);
         if (State.Rand.Next(2) == 0 || actor.Unit.HasWeapon == false)
             RunSpells(actor);
         if (path != null)

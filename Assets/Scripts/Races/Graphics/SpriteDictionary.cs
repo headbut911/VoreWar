@@ -251,6 +251,8 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] CentaurTorsoAddOns;
     public Sprite[] TaurTorso;
 
+    public Sprite[] MainlandElfParts;
+
     [Header("Unique Mercenaries")]
     public Sprite[] Selicia;
     public Sprite[] Vision;

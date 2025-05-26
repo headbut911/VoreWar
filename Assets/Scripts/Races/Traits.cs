@@ -61,6 +61,7 @@ class PermanentBoosts
     internal int SpeedBonus = 0;
     internal int MeleeAttacks = 1;
     internal int RangedAttacks = 1;
+    internal int PotionAttacks = 1;
     internal int VoreAttacks = 1;
     internal int SpellAttacks = 1;
     internal float HealthMultiplier = 1.0f;

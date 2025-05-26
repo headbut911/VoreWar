@@ -152,6 +152,7 @@ public class BuildingSettings : MonoBehaviour
         currentPage.BuildTime = int.TryParse(ConstructionTurns.text, out int wcct) ? wcct : 2;
         currentPage.BuildLimit = int.TryParse(BuildLimit.text, out int wcbl) ? wcbl : -1;
         currentPage.AICanBuild = AICanBuild.isOn;
+        SaveUpgrades();
 
         buildingUpgrades.Clear();
         ClearFolder();
@@ -213,6 +214,144 @@ public class BuildingSettings : MonoBehaviour
         }
         LoadUpgrades();
         currentDropdownValue = BuildingDropdown.value;
+    }
+
+    public void SaveBuildingValues()
+    {
+
+        GeneralBuildingConfig currentPage = new GeneralBuildingConfig();
+        switch (currentDropdownValue)
+        {
+            case 0: // None
+                break;
+            case 1: // Work Camp
+                SaveText(Config.BuildConfig.WorkCamp.Resources);
+                currentPage = Config.BuildConfig.WorkCamp;
+                WorkCampSettings.Save();
+                break;
+            case 2: // Lumber Site
+                SaveText(Config.BuildConfig.LumberSite.Resources);
+                currentPage = Config.BuildConfig.LumberSite;
+                LumberSiteSettings.Save();
+                break;
+            case 3: // Quarry
+                SaveText(Config.BuildConfig.Quarry.Resources);
+                currentPage = Config.BuildConfig.Quarry;
+                QuarrySettings.Save();
+                break;
+            case 4: // Caster Tower
+                SaveText(Config.BuildConfig.CasterTower.Resources);
+                currentPage = Config.BuildConfig.CasterTower;
+                CasterTowerSettings.Save();
+                break;
+            case 5: // Barrier Tower
+                SaveText(Config.BuildConfig.BarrierTower.Resources);
+                currentPage = Config.BuildConfig.BarrierTower;
+                BarrierTowerSettings.Save();
+                break;
+            case 6: // DefEncampSettings
+                SaveText(Config.BuildConfig.DefenseEncampment.Resources);
+                currentPage = Config.BuildConfig.DefenseEncampment;
+                DefEncampSettings.Save();
+                break;
+            case 7: // Academy
+                SaveText(Config.BuildConfig.Academy.Resources);
+                currentPage = Config.BuildConfig.Academy;
+                AcademySettings.Save();
+                break;
+            case 8: // DarkMagicTower
+                SaveText(Config.BuildConfig.DarkMagicTower.Resources);
+                currentPage = Config.BuildConfig.DarkMagicTower;
+                DarkMagicTowerSettings.Save();
+                break;
+            case 9: // TemporalTower
+                SaveText(Config.BuildConfig.TemporalTower.Resources);
+                currentPage = Config.BuildConfig.TemporalTower;
+                TemporalTowerSettings.Save();
+                break;
+            case 10: // Laboratory
+                SaveText(Config.BuildConfig.Laboratory.Resources);
+                currentPage = Config.BuildConfig.Laboratory;
+                LaboratorySettings.Save();
+                break;
+            case 11: // Teleporter
+                SaveText(Config.BuildConfig.Teleporter.Resources);
+                currentPage = Config.BuildConfig.Teleporter;
+                TeleporterSettings.Save();
+                break;
+            case 12: // TownHall
+                SaveText(Config.BuildConfig.TownHall.Resources);
+                currentPage = Config.BuildConfig.TownHall;
+                TownHallSettings.Save();
+                break;
+            default:
+                break;
+        }
+
+        currentPage.Gold = int.TryParse(GoldCost.text, out int wcg) ? wcg : 15;
+        currentPage.BuildTime = int.TryParse(ConstructionTurns.text, out int wcct) ? wcct : 2;
+        currentPage.BuildLimit = int.TryParse(BuildLimit.text, out int wcbl) ? wcbl : -1;
+        currentPage.AICanBuild = AICanBuild.isOn;
+        SaveUpgrades();
+    }
+    public void LoadBuildingValues()
+    {
+        switch (BuildingDropdown.value)
+        {
+            case 0: // None
+                break;
+            case 1: // Work Camp
+                LoadBuildingSetting(WorkCampSettings.gameObject, Config.BuildConfig.WorkCamp, new List<BuildingUpgrade> { Config.BuildConfig.WorkCampImproveUpgrade, Config.BuildConfig.WorkCampTradeUpgrade, Config.BuildConfig.WorkCampMerchantUpgrade });
+                WorkCampSettings.Load();
+                break;
+            case 2: // LumberSite
+                LoadBuildingSetting(LumberSiteSettings.gameObject, Config.BuildConfig.LumberSite, new List<BuildingUpgrade> { Config.BuildConfig.LumberSiteLodgeUpgrade, Config.BuildConfig.LumberSiteCarpenterUpgrade, Config.BuildConfig.LumberSiteGreenHouseUpgrade });
+                LumberSiteSettings.Load();
+                break;
+            case 3: // Quarry
+                LoadBuildingSetting(QuarrySettings.gameObject, Config.BuildConfig.Quarry, new List<BuildingUpgrade> { Config.BuildConfig.QuarryImproveUpgrade, Config.BuildConfig.QuarryDeepUpgrade, Config.BuildConfig.QuarryLeyLineUpgrade });
+                QuarrySettings.Load();
+                break;
+            case 4: // CasterTower
+                LoadBuildingSetting(CasterTowerSettings.gameObject, Config.BuildConfig.CasterTower, new List<BuildingUpgrade> { Config.BuildConfig.CasterTowerImproveUpgrade, Config.BuildConfig.CasterTowerForceUpgrade, Config.BuildConfig.CasterTowerBuffUpgrade });
+                CasterTowerSettings.Load();
+                break;
+            case 5: // BarrierTower
+                LoadBuildingSetting(BarrierTowerSettings.gameObject, Config.BuildConfig.BarrierTower, new List<BuildingUpgrade> { Config.BuildConfig.BarrierTowerImproveUpgrade, Config.BuildConfig.BarrierTowerHealUpgrade, Config.BuildConfig.BarrierTowerBuffUpgrade });
+                BarrierTowerSettings.Load();
+                break;
+            case 6: // DefenseEncampment
+                LoadBuildingSetting(DefEncampSettings.gameObject, Config.BuildConfig.DefenseEncampment, new List<BuildingUpgrade> { Config.BuildConfig.DefenseEncampmentImproveUpgrade, Config.BuildConfig.DefenseEncampmentUnitsUpgrade, Config.BuildConfig.DefenseEncampmentLevelUpgrade });
+                DefEncampSettings.Load();
+                break;
+            case 7: // Academy
+                LoadBuildingSetting(AcademySettings.gameObject, Config.BuildConfig.Academy, new List<BuildingUpgrade> { Config.BuildConfig.AcademyImproveUpgrade, Config.BuildConfig.AcademyResearchUpgrade, Config.BuildConfig.AcademyEfficiencyUpgrade });
+                AcademySettings.Load();
+                break;
+            case 8: // DarkMagicTower
+                LoadBuildingSetting(DarkMagicTowerSettings.gameObject, Config.BuildConfig.DarkMagicTower, new List<BuildingUpgrade> { Config.BuildConfig.DarkMagicTowerImproveUpgrade, Config.BuildConfig.DarkMagicTowerSoulUpgrade, Config.BuildConfig.DarkMagicTowerAfflictionUpgrade });
+                DarkMagicTowerSettings.Load();
+                break;
+            case 9: // TemporalTower
+                LoadBuildingSetting(TemporalTowerSettings.gameObject, Config.BuildConfig.TemporalTower, new List<BuildingUpgrade> { Config.BuildConfig.TemporalTowerImproveUpgrade, Config.BuildConfig.TemporalTowerTuneUpgrade, Config.BuildConfig.TemporalTowerDisruptUpgrade });
+                TemporalTowerSettings.Load();
+                break;
+            case 10: // Laboratory
+                LoadBuildingSetting(LaboratorySettings.gameObject, Config.BuildConfig.Laboratory, new List<BuildingUpgrade> { Config.BuildConfig.LaboratoryImproveUpgrade, Config.BuildConfig.LaboratoryIngredientUpgrade, Config.BuildConfig.LaboratoryBoostUpgrade });
+                LaboratorySettings.Load();
+                break;
+            case 11: // Teleporter
+                LoadBuildingSetting(TeleporterSettings.gameObject, Config.BuildConfig.Teleporter, new List<BuildingUpgrade> { Config.BuildConfig.TeleporterStoneUpgrade, Config.BuildConfig.TeleporterAncientUpgrade, Config.BuildConfig.TeleporterCapacityUpgrade });
+                TeleporterSettings.Load();
+                break;
+            case 12: // TownHall
+                LoadBuildingSetting(TownHallSettings.gameObject, Config.BuildConfig.TownHall, new List<BuildingUpgrade> { Config.BuildConfig.TownHallManualUpgrade, Config.BuildConfig.TownHallPrefabUpgrade, Config.BuildConfig.TownHallManaStoneUpgrade });
+                TownHallSettings.Load();
+                break;
+            default:
+                break;
+        }
+        BuildingDropdown.value = 0;
     }
 
     private void SetText(ConstructionResources resources)
@@ -303,6 +442,7 @@ public class BuildingSettings : MonoBehaviour
         Config.BuildConfig.BuildingCaptureTurns = int.TryParse(BuildingCaptureTurns.text, out int bct) ? bct : 2;
         Config.BuildConfig.EmpireBuildingCapture = EmpireCaptureDropdown.value;
         Config.BuildConfig.MonsterBuildingCapture = MonsterCaptureDropdown.value;
+        SaveBuildingValues();
     }
 
     internal void SoftLoad(){
