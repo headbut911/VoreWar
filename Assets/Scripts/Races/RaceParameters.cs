@@ -3544,8 +3544,9 @@ static class RaceParameters
                 Traits.SlowAbsorption,
                 Traits.Fearless,
                 Traits.Stinger,
-                Traits.HardSkin,
                 Traits.Clumsy,
+                Traits.InfectiousReproduction,
+                Traits.DireInfection,
         },
             RaceDescription = "How the Virae Ultimae are able to function at all with no brain is an enigma. Hearing and perpetual humming are their only ways of interacting with the world minus attacking and attempting to reproduce more of themselves by infecting hosts with their viral injectors. These things operate as brainless biological automata, and their sheer refusal to cease their attack under any conditions can be quite scary.",
         };

@@ -260,6 +260,14 @@ static class TacticalActionList
             minimumMp: 2));
         TargetedDictionary[SpecialAction.AllInVore] = TargetedActions.Last();
 
+        TargetedActions.Add(new TargetedTacticalAction(
+          name: "Dire Infection",
+          requiresPred: false,
+          conditional: (a) => a.Unit.HasTrait(Traits.DireInfection),
+          onClicked: () => State.GameManager.TacticalMode.TrySetSpecialMode(SpecialAction.DireInfection),
+          onExecute: (a, t) => a.DireInfection(t),
+          minimumMp: 1));
+        TargetedDictionary[SpecialAction.DireInfection] = TargetedActions.Last();
 
         //UntargetedActions.Add(new UntargetedTacticalAction("Shapeshift", () => State.GameManager.TacticalMode.ButtonCallback(16), (a) => a.Unit.ShifterShapes != null && a.Unit.ShifterShapes.Count > 1));
         UntargetedActions.Add(new UntargetedTacticalAction("Flee", () => State.GameManager.TacticalMode.ButtonCallback(10), (a) => true));

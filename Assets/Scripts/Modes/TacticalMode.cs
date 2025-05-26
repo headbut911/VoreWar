@@ -2472,6 +2472,9 @@ Turns: {currentTurn}
             case SpecialAction.AllInVore:
                 ShowBoostedVoreHitPercentages(actor, 50);
                 break;
+            case SpecialAction.DireInfection:
+                ShowMeleeHitPercentages(actor, .75f);
+                break;
         }
 
     }
@@ -3656,6 +3659,11 @@ Turns: {currentTurn}
                             if (specialType == SpecialAction.TailStrike)
                             {
                                 UpdateTailStrikeGrid(mouseLocation);
+                            }
+                            break;
+                            if (specialType == SpecialAction.DireInfection)
+                            {
+                                UpdateOTargetGrid(mouseLocation);
                             }
                             break;
                     }
