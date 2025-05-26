@@ -136,6 +136,7 @@ class StrategicArmyCommander
             if (army.InVillageIndex > -1)
             {
                 UpdateEquipmentAndRecruit(army);
+                StockPotions(army, State.World.Villages[army.InVillageIndex]);
             }
             if (army.AIMode == AIMode.Resupply && army.MostlyFull && StrategicUtilities.NumberOfDesiredUpgrades(army) == 0)
                 army.AIMode = AIMode.Default;
@@ -747,5 +748,26 @@ class StrategicArmyCommander
             army.RemainingMP = 0;
     }
 
+    private void StockPotions(Army army, Village village)
+    {
+        int potionBudget = empire.Gold / (3 + empire.Armies.Count);
+        //Reduce budget based on how many potinos we have in stock
+        foreach (var item in army.ItemStock.GetAllPotions())
+        {
+            potionBudget -= State.World.ItemRepository.GetItem(item).Cost;
+        }
+        int counter = 0;
+        while (potionBudget > 0 && counter < 100) 
+        {
+            potionBudget -= PotionShop.BuyItemForArmy(empire, army, State.World.ItemRepository.GetRandomPotion(1, village.NetBoosts.PotionLevel), 1);
+            counter++;
+        }
+        
+        //Equip avil potions to units
+        foreach (var item in army.ItemStock.GetAllPotions())
+        {
+            PotionShop.TransferItemToAllInArmy(item, army);
+        }
+    }
 }
 

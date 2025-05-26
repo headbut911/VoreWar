@@ -1,5 +1,6 @@
 ﻿using OdinSerializer;
 using System;
+using UnityEngine;
 
 public class Potion : Item
 {
@@ -25,6 +26,9 @@ public class Potion : Item
 
     public bool ActivatePotion(Actor_Unit target, Actor_Unit user)
     {
+        if (user.Movement <= 0 || user.Unit.EquippedPotions[this][0] <= 0) return false;
+        user.Unit.EquippedPotions[this][0] = user.Unit.EquippedPotions[this][0] - 1;
+        Debug.Log(user.Unit.EquippedPotions[this][0]);
         if (TileFunction != null)
         {
             TileFunction.Invoke(target.Position, user);
@@ -45,7 +49,16 @@ public class Potion : Item
             TacticalGraphicalEffects.CreatePotion(user.Position, target.Position, target);
         }
         PotionFunction.Invoke(target, user);
-        user.Unit.EquippedPotions[this][0] = user.Unit.EquippedPotions[this][0] - 1;
+        if (user.Unit.TraitBoosts.PotionAttacks > 1)
+        {
+            int movementFraction = 1 + user.MaxMovement() / user.Unit.TraitBoosts.PotionAttacks;
+            if (user.Movement > movementFraction)
+                user.Movement -= movementFraction;
+            else
+                user.Movement = 0;
+        }
+        else
+            user.Movement = 0;
         return true;
     }
 }

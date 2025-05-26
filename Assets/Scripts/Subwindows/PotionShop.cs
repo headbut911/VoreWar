@@ -113,6 +113,39 @@ public class PotionShop
         RegenButtonTextAndClickability();
     }
 
+    public static void TransferItemToAllInArmy(ItemType type, Army army)
+    {
+        Item item = State.World.ItemRepository.GetItem(type);
+
+        foreach (var soldier in army.Units)
+        {
+            if (!army.ItemStock.HasItem(State.World.ItemRepository.GetItemType(item)))
+                break;
+            int totalEquippedPotions = 0;
+            foreach (var potion in soldier.EquippedPotions)
+            {
+                totalEquippedPotions += potion.Value[1];
+            }
+            if (!(Config.PotionSlots - 1 >= totalEquippedPotions))
+                continue;
+            if (soldier.EquippedPotions.ContainsKey((Potion)item))
+            {
+                soldier.EquippedPotions.TryGetValue((Potion)item, out var currentCount);
+                soldier.EquippedPotions[(Potion)item][0] = currentCount[1] + 1;
+                if (soldier.EquippedPotions[(Potion)item][0] > soldier.EquippedPotions[(Potion)item][1])
+                {
+                    soldier.EquippedPotions[(Potion)item][1] = currentCount[1] + 1;
+                }
+                army.ItemStock.TakeItem(State.World.ItemRepository.GetItemType(item));
+            }
+            else
+            {
+                soldier.EquippedPotions.Add((Potion)item, new int[] { 1, 1 });
+                army.ItemStock.TakeItem(State.World.ItemRepository.GetItemType(item));
+            }
+        }
+    }
+
     public void SellItemFromInventory(int type)
     {
         if (army.ItemStock.TakeItem((ItemType)type))
@@ -158,6 +191,20 @@ public class PotionShop
         army.ItemStock.AddItem(State.World.ItemRepository.GetItemType(type), count);
 
         return true;
+    }
+
+    public static int BuyItemForArmy(Empire empire, Army army, Item type, int count)
+    {
+        if (empire.Gold < type.Cost * count)
+        {
+            return -1;
+        }
+
+        empire.SpendGold(type.Cost * count);
+        State.World.Stats.SpentGoldOnArmyEquipment(type.Cost, empire.Side);
+        army.ItemStock.AddItem(State.World.ItemRepository.GetItemType(type), count);
+
+        return type.Cost * count;
     }
 
     internal int MultCost(int type, int count)
