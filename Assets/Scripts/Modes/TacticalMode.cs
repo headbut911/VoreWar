@@ -4052,7 +4052,7 @@ Turns: {currentTurn}
                     int distance = SelectedUnit.Position.GetNumberOfMovesDistance(unit.Position);
                     if (3 >= distance)
                     {
-                        CurrentPotion.ActivatePotion(unit, SelectedUnit);
+                        CurrentPotion.ActivatePotion(SelectedUnit, unit);
                         RemoveHitPercentages();
                         ActionDone();
                         return;
