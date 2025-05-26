@@ -101,6 +101,7 @@
     BoomBunnies = 144,
     Otachi = 145,
     FeralSlime = 146,
+    ViraeUltimae = 147,
 
     Selicia = 170,
     Vision = 171,

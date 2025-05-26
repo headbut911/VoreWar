@@ -343,6 +343,8 @@ public class InfoPanel
                 return "Feral Slime";
             case Race.MainlandElves:
                 return "Elf";
+            case Race.ViraeUltimae:
+                return "Virae Ultimae";
             case Race.none:
                 return "None";
         }
@@ -545,6 +547,8 @@ public class InfoPanel
                 return "Slime";
             case Race.MainlandElves:
                 return "Mainland Elf";
+            case Race.ViraeUltimae:
+                return "Virae Ultimae";
         }
         return empire.ReplacedRace.ToString();
     }

@@ -120,6 +120,7 @@ static class RaceParameters
     static readonly RaceTraits BoomBunnies;
     static readonly RaceTraits FeralSlime;
     static readonly RaceTraits Olivia;
+    static readonly RaceTraits ViraeUltimae;
 
     static Unit tempUnit;
 
@@ -377,6 +378,8 @@ static class RaceParameters
                 return Olivia;
             case Race.MainlandElves:
                 return MainlandElves;
+            case Race.ViraeUltimae:
+                return ViraeUltimae;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3512,6 +3515,39 @@ static class RaceParameters
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.CrossShock, SpellTypes.ArcBolt },
             RaceDescription = "A small fox with surprisingly strong lightning magic.",
+        };
+
+        ViraeUltimae = new RaceTraits()
+        {
+            BodySize = 6,
+            StomachSize = 15,
+            HasTail = false,
+            FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(16, 22),
+                Dexterity = new RaceStats.StatRange(4, 7),
+                Endurance = new RaceStats.StatRange(17, 20),
+                Mind = new RaceStats.StatRange(1, 2),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(5, 7),
+                Voracity = new RaceStats.StatRange(12, 15),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral/*, VoreType.Unbirth, VoreType.Anal*/ },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.ViralDigestion,
+                Traits.AwkwardShape,
+                Traits.SlowAbsorption,
+                Traits.Fearless,
+                Traits.Stinger,
+                Traits.HardSkin,
+                Traits.Clumsy,
+        },
+            RaceDescription = "How the Virae Ultimae are able to function at all with no brain is an enigma. Hearing and perpetual humming are their only ways of interacting with the world minus attacking and attempting to reproduce more of themselves by infecting hosts with their viral injectors. These things operate as brainless biological automata, and their sheer refusal to cease their attack under any conditions can be quite scary.",
         };
 
     }
