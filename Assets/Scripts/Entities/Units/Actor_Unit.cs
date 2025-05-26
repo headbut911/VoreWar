@@ -1542,6 +1542,26 @@ public class Actor_Unit
         return true;
     }
 
+    public bool DireInfection(Actor_Unit target)
+    {
+        if (Movement < 1 || Unit.HasTrait(Traits.DireInfection) == false)
+            return false;
+        List<AbilityTargets> targetTypes = new List<AbilityTargets>();
+        targetTypes.Add(AbilityTargets.Enemy);
+        if (!TacticalUtilities.MeetsQualifier(targetTypes, this, target))
+            return false;
+        if (target.Position.GetNumberOfMovesDistance(Position) > 1)
+            return false;
+
+        Attack(target, false, damageMultiplier: .75f);
+        target.Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 5f, 6);
+        target.Unit.ApplyStatusEffect(StatusEffectType.Snared, 1f, 2);
+        TacticalGraphicalEffects.CreateGenericMagic(Position, target.Position, target, TacticalGraphicalEffects.SpellEffectIcon.Poison);
+        Movement = 0;
+
+        return true;
+    }
+
     public bool Attack(Actor_Unit target, bool ranged, bool forceBite = false, float damageMultiplier = 1, bool canKill = true)
     {
         Weapon weapon;
@@ -1854,6 +1874,11 @@ public class Actor_Unit
             Unit.GeneralStatIncrease(1);
         if (Unit.HasTrait(Traits.TasteForBlood))
             GiveRandomBoost();
+        if (Unit.HasTrait(Traits.InfectiousReproduction) && target.Unit.GetStatusEffect(StatusEffectType.Poisoned) != null)
+        {
+            Race spawnRace = Unit.DetermineSpawnRace();
+            target.PredatorComponent.CreateSpawn(spawnRace, Unit.Side, Unit.Experience / 2, true);
+        }
 
         Unit.GiveScaledExp(4 * target.Unit.ExpMultiplier, Unit.Level - target.Unit.Level);
         if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (target.Unit.HasTrait(Traits.Respawner) || target.Unit.HasTrait(Traits.RespawnerIII)))
