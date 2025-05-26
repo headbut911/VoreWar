@@ -792,6 +792,8 @@ Does not retroactively affect already created units.";
                 return "Controls the maximum level of equipment dropped from monsters or goblins, or that spawn on mercenaries or adventurers.  Note that the maximum also depends on the monsters level, with level 4 equipment not generally appearing until after level 10, but this clamps that to your maximum";
             case 327:
                 return "Enables encounters with feral slimes.";
+            case 328:
+                return "Enables wandering groups of Virae Ultimae.";
             default:
                 return "";
         }

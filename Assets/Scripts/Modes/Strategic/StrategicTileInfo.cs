@@ -85,6 +85,7 @@ public enum StrategicDoodadType
     SpawnerFeralOrcas = 1035,
     SpawnerBoomBunnies = 1036,
     SpawnerFeralSlime = 1037,
+    SpawnerViraeUltimae = 1038,
 }
 
 public enum MovementType
