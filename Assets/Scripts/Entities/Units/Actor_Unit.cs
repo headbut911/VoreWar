@@ -2725,7 +2725,7 @@ public class Actor_Unit
         if (Unit.Health > Unit.MaxHealth)
             Unit.Health = Unit.MaxHealth;
         TurnsSinceLastDamage = -1;
-        EquipmentFunctions.CheckEquipment(this.Unit, EquipmentActivator.OnDamage, new object[] { this.Unit, damage, null });
+        EquipmentFunctions.CheckEquipment(this.Unit, EquipmentActivator.OnDamage, new object[] { this, damage, null });
     }
 
     public int CalculateDamageWithResistance(int damage, DamageTypes damageType)
