@@ -251,6 +251,7 @@ static class TraitList
         [Traits.Submissive] = new Booster("Unit does not try to escape", (s) => s.Incoming.ChanceToEscape *= 0),
         [Traits.EvasiveBattler] = new Booster("This unit can flee from battles on its fourth turn", (s) => s.TurnCanFlee = 4),
         [Traits.Prey] = new Booster("Unit can not vore other units.\nReceives 15% more exp, and heals twice as fast in towns", (s) => { s.ExpGain *= 1.15f; s.PassiveHeal *= 2; }),
+        [Traits.Brainless] = new Booster("Unit can no longer level up 'mind' stat and is locked at 1. (AI will waste levels if AdeptLearner is applied as this will allow levels for 'mind')", (s) => { s.MindMult *= 0f;}),
         [Traits.Clever] = new Booster("Requires less experience to level up", (s) => s.ExpRequired *= 0.7f),
         [Traits.Foolish] = new Booster("Requires additional experience to level up", (s) => s.ExpRequired *= 1.4f),
         [Traits.StrongMelee] = new Booster("Does additional damage in melee", (s) => { s.Outgoing.MeleeDamage *= 1.2f; s.VirtualStrMult *= 1.2f; }),
@@ -346,6 +347,7 @@ static class TraitList
         [Traits.KeenEye] = new Booster("Unit has a 10% chance to deal increased damage when attacking.", (s) => { s.Outgoing.CritRateShift += 0.1f; }),
         [Traits.AccuteDodge] = new Booster("Unit has a 10% chance to minimise recieved damage when being attacked. (Excludes spells and vore damage).", (s) => { s.Outgoing.GrazeRateShift += 0.1f; }),
         [Traits.ViralDigestion] = new ViralDigestion(),
+        [Traits.ViralBiology] = new ViralBiology(),
         [Traits.AwkwardShape] = new Booster("This unit has a very strange body type, making them harder to swallow and providing less sustenance as prey.", (s) => { s.Incoming.VoreOddsMult *= 0.75f; s.Outgoing.Nutrition *= 0.25f; }),
         [Traits.Legendary] = new Booster("<b>This unit is a legendary predator renowned throughout the realm, possessing a wide array of skills learned from generations upon generations of experiences.</b> \n<b>StrongGullet:</b> May attempt <b>2</b> vore attacks per turn, each using half of max AP. \n<b>BornToMove:</b> Total prey does not affect unit's movement speed. \n<b>IronGut:</b> It is much harder for prey to escape this unit's innards once devoured. \n<b>MagicResistance:</b> This unit is harder to hit with magic. \n<b>GreatlyTempered:</b>Recieves less damage from ranged attacks, but full damage from melee attacks. \n<b>WideRanged:</b>Grants GiantSweep and SweepingSwallow abilities. \nCheat Trait", (s) => { s.VoreAttacks += 1; s.SpeedLossFromWeightMultiplier = 0; s.DodgeLossFromWeightMultiplier = 0.2f; s.Outgoing.ChanceToEscape *= 0.5f; s.Incoming.MagicShift += 0.2f; s.Incoming.RangedDamage *= .7f; }),
         [Traits.FireVulnerable] = new Booster("Unit takes extra damage from all sources of fire. (150%)", (s) => s.FireDamageTaken *= 1.5f),
@@ -887,6 +889,21 @@ internal class ViralDigestion : VoreTrait
     public ViralDigestion()
     {
         Description = "Unit has powerful viruses within them, which cause any prey to take additional damage for a few turns even after escaping.";
+    }
+
+    public override bool IsPredTrait => true;
+    public override bool OnRemove(Prey preyUnit, Actor_Unit predUnit, PreyLocation location)
+    {
+        preyUnit.Unit.ApplyStatusEffect(StatusEffectType.Virus, 3, 3);
+        return true;
+    }
+}
+internal class ViralBiology : VoreTraitBooster
+{
+    public ViralBiology()
+    {
+        Description = "This unit's body is entirely comprised of viruses resulting in an overall unconventional biology \n<b>ViralDigestion:</b> Unit uses powerful viruses to digest prey; escaped prey will continue to take additional damage for a few turns. \n<b>AwkwardShape:</b> This unit has an unusual body type; unit is harder to swallow and provids less sustenance as prey. \n<b>SlowAbsorption:</b> Unit absorbs dead prey more slowly. (50%)";
+        Boost = (s) =>{ s.Outgoing.Nutrition *= 0.25f; s.Incoming.VoreOddsMult *= 0.75f; s.Outgoing.AbsorptionRate *= 0.5f;};
     }
 
     public override bool IsPredTrait => true;

@@ -1552,10 +1552,14 @@ public class Actor_Unit
             return false;
         if (target.Position.GetNumberOfMovesDistance(Position) > 1)
             return false;
-
+        int curr = target.Unit.Health;
         Attack(target, false, damageMultiplier: .75f);
-        target.Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 5f, 6);
-        target.Unit.ApplyStatusEffect(StatusEffectType.Snared, 1f, 2);
+        bool didAttackHit = curr != target.Unit.Health;
+        if (didAttackHit)
+        {
+            target.Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 5f, 6);
+            target.Unit.ApplyStatusEffect(StatusEffectType.Snared, 1f, 1);
+        }
         TacticalGraphicalEffects.CreateGenericMagic(Position, target.Position, target, TacticalGraphicalEffects.SpellEffectIcon.Poison);
         Movement = 0;
 

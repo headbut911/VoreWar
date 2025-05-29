@@ -636,7 +636,12 @@ public class InfoPanel
             DEXVal.text = unit.GetStatInfo(Stat.Dexterity);
             ENDVal.text = unit.GetStatInfo(Stat.Endurance);
             AGIVal.text = unit.GetStatInfo(Stat.Agility);
-            MNDVal.text = unit.GetStatInfo(Stat.Mind);
+            if (unit.HasTrait(Traits.Brainless))
+            {
+                MNDVal.text = "<color=red>1</color>";
+            }
+            else
+                MNDVal.text = unit.GetStatInfo(Stat.Mind);
             WLLVal.text = unit.GetStatInfo(Stat.Will);
             if (CanVore)
             {
