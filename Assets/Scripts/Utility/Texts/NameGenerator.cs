@@ -55,6 +55,7 @@ public class NameGenerator
     List<string> feralOrcasNames;
     
 	List<string> goodraNames;
+    List<string> viraeUltimaeNames;
 	
     Dictionary<Race, List<string>> RaceMaleNames;
     Dictionary<Race, List<string>> RaceFemaleNames;
@@ -810,6 +811,40 @@ public class NameGenerator
             "Dragoo",
             "Gooigi",
         };
+        viraeUltimaeNames = new List<string>
+        {
+            "Ppptnnnx",
+            "Pppptnnnx",
+            "Ppptnmnx",
+            "Ppppptnnnnnx",
+            "Pttnnnnnnnx",
+            "Ppptrrnnx",
+            "Bchnnnnrrrrlllll",
+            "Bchnnnrrrllll",
+            "Bchnnrrlll",
+            "Bchnrll",
+            "Bnnnnsss",
+            "Bsnnnnsss",
+            "Bsnsnnnsss",
+            "Bsnsnsnnsss",
+            "Bsnsnsnsnsss",
+            "Bsnsnsnsnssss",
+            "Lnsnssnrs",
+            "Lnssnrssnrs",
+            "Lnr",
+            "Lrnrsrnrsrsrnrrs",
+            "Lnsssnsssssnsrss",
+            "Lnsnssrnrs",
+            "Lnsnnssnnrns",
+            "Pnr",
+            "Pnnr",
+            "Pnrr",
+            "Pnnrr",
+            "Pnnnrr",
+            "Pnnrrr",
+            "Pnnnrrr",
+            "Grhsll",
+        };
         aabayxTownNames = new List<string>
         {
             "Akaryocyte",  ///(this one is the capital, by the way)
@@ -1059,6 +1094,9 @@ public class NameGenerator
                 break;
 			case Race.Goodra:
                 list = goodraNames;
+                break;
+			case Race.ViraeUltimae:
+                list = viraeUltimaeNames;
                 break;
         }
         if (list != null)

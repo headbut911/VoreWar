@@ -570,6 +570,10 @@ public enum Traits
     InfectiousReproduction  = 307,
     /// <summary>Provides the DireInfection ability which debilitates the target for 1 turn reducing movement to 1 and badly poisons them for 6 turns.</summary>
     DireInfection  = 308,
+    /// <summary>Unit no longer has a 'mind' stat.</summary>
+    Brainless  = 309,
+    /// <summary>ViralDigestion, AwkwardShape, and SlowAbsorption in one trait.</summary>
+    ViralBiology  = 310,
 
 
     // Growth-related section
