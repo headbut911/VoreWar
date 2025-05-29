@@ -349,6 +349,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Otachi;
     public Sprite[] BoomBunnies;
     public Sprite[] FeralSlime;
+    public Sprite[] ViraeUltimae;
 
 
     public Sprite[] Cake;

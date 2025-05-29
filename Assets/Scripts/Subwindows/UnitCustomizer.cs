@@ -516,6 +516,9 @@ public class UnitCustomizer
             case Race.Taraluxia:
                 Taraluxia();
                 break;
+            case Race.ViraeUltimae:
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Head Color";
+                break;
         }
     }
 

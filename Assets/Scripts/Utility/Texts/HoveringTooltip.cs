@@ -787,6 +787,10 @@ public class HoveringTooltip : MonoBehaviour
                 return "Unit can move past (but not stop on) any units. Not recommended to use with Blitz or PassThrough.";
             case Traits.VoreObsession:
                 return "Prevents the AI from using weapons. AI will still buy weapons.";
+            case Traits.InfectiousReproduction:
+                return "Upon landing a killing blow on a poisoned target the target will create 1 of this unit's spawn race.";
+            case Traits.DireInfection:
+                return "A melee attack that debilitates the target for 1 turn reducing movement to 1 and badly poisons them for 6 turns.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

@@ -2271,7 +2271,7 @@ Turns: {currentTurn}
             int offset;
             if (scatInfo.predRace == Race.Slimes)
             {offset = 2;}
-            else if (scatInfo.predRace == Race.Aabayx)
+            else if (scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {offset = 4;}
             else
             {offset = 0;}
@@ -2471,6 +2471,9 @@ Turns: {currentTurn}
                 break;
             case SpecialAction.AllInVore:
                 ShowBoostedVoreHitPercentages(actor, 50);
+                break;
+            case SpecialAction.DireInfection:
+                ShowMeleeHitPercentages(actor, .75f);
                 break;
         }
 
@@ -3656,6 +3659,11 @@ Turns: {currentTurn}
                             if (specialType == SpecialAction.TailStrike)
                             {
                                 UpdateTailStrikeGrid(mouseLocation);
+                            }
+                            break;
+                            if (specialType == SpecialAction.DireInfection)
+                            {
+                                UpdateOTargetGrid(mouseLocation);
                             }
                             break;
                     }

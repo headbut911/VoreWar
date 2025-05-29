@@ -27,9 +27,9 @@ class ScatV2Discard : MiscDiscard
         scatFront.sortingOrder = sortOrder + 1 + scatInfo.bonesInfos.Count;
 
 
-        if (scatInfo.predRace == Race.Aabayx)
+        if (scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
         {}// No color changes needed
-        else if (color != -1 && scatInfo.predRace != Race.Aabayx)
+        else if (color != -1 && scatInfo.predRace != Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
         {
             scatBack.color = ColorPaletteMap.GetSlimeBaseColor(color);
             scatFront.color = ColorPaletteMap.GetSlimeBaseColor(color);
@@ -49,7 +49,7 @@ class ScatV2Discard : MiscDiscard
         if (scatInfo.preySize < 9)
         {
             int rndNum = Random.Range(0, State.GameManager.SpriteDictionary.ScatV2SBack.Length);
-            if(scatInfo.predRace == Race.Aabayx)
+            if(scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {
                 scatBack.sprite = State.GameManager.SpriteDictionary.ScatViralV2SBack[rndNum];
                 scatFront.sprite = State.GameManager.SpriteDictionary.ScatViralV2SFront[rndNum];
@@ -63,7 +63,7 @@ class ScatV2Discard : MiscDiscard
         else if (scatInfo.preySize > 15)
         {
             int rndNum = Random.Range(0, State.GameManager.SpriteDictionary.ScatV2LBack.Length);
-            if(scatInfo.predRace == Race.Aabayx)
+            if(scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {
                 scatBack.sprite = State.GameManager.SpriteDictionary.ScatViralV2SBack[rndNum];
                 scatFront.sprite = State.GameManager.SpriteDictionary.ScatViralV2SFront[rndNum];
@@ -82,7 +82,7 @@ class ScatV2Discard : MiscDiscard
         else
         {
             int rndNum = Random.Range(0, State.GameManager.SpriteDictionary.ScatV2MBack.Length);
-            if(scatInfo.predRace == Race.Aabayx)
+            if(scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {
                 scatBack.sprite = State.GameManager.SpriteDictionary.ScatViralV2SBack[rndNum];
                 scatFront.sprite = State.GameManager.SpriteDictionary.ScatViralV2SFront[rndNum];
