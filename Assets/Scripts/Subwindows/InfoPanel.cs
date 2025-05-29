@@ -343,6 +343,8 @@ public class InfoPanel
                 return "Feral Slime";
             case Race.MainlandElves:
                 return "Elf";
+            case Race.ViraeUltimae:
+                return "Virae Ultimae";
             case Race.none:
                 return "None";
         }
@@ -545,6 +547,8 @@ public class InfoPanel
                 return "Slime";
             case Race.MainlandElves:
                 return "Mainland Elf";
+            case Race.ViraeUltimae:
+                return "Virae Ultimae";
         }
         return empire.ReplacedRace.ToString();
     }
@@ -632,7 +636,12 @@ public class InfoPanel
             DEXVal.text = unit.GetStatInfo(Stat.Dexterity);
             ENDVal.text = unit.GetStatInfo(Stat.Endurance);
             AGIVal.text = unit.GetStatInfo(Stat.Agility);
-            MNDVal.text = unit.GetStatInfo(Stat.Mind);
+            if (unit.HasTrait(Traits.Brainless))
+            {
+                MNDVal.text = "<color=red>1</color>";
+            }
+            else
+                MNDVal.text = unit.GetStatInfo(Stat.Mind);
             WLLVal.text = unit.GetStatInfo(Stat.Will);
             if (CanVore)
             {

@@ -97,6 +97,7 @@
     static internal FeralLions FeralLions = new FeralLions();
     static internal BoomBunnies BoomBunnies = new BoomBunnies();
     static internal FeralSlime FeralSlime = new FeralSlime();
+    static internal ViraeUltimae ViraeUltimae = new ViraeUltimae();
 
     static internal Selicia Selicia = new Selicia();
     static internal Vision Vision = new Vision();
@@ -378,6 +379,8 @@
                 return Olivia;
             case Race.MainlandElves:
                 return MainlandElves;
+            case Race.ViraeUltimae:
+                return ViraeUltimae;
             case Race.Bears:
                 return Bears;
         }

@@ -561,6 +561,9 @@ public class ContentSettings : MonoBehaviour
             case Race.FeralSlime:
                 tooltip.value = 327;
                 break;
+            case Race.ViraeUltimae:
+                tooltip.value = 332;
+                break;
         }
         return spawner;
     }

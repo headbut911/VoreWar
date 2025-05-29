@@ -6,7 +6,7 @@ using System.Linq;
 
 public class World
 {
-    internal const int MonsterCount = 37;
+    internal const int MonsterCount = 38;//Be sure to increase when adding new monsters
     [OdinSerialize]
     public int Turn = 1;
     [OdinSerialize]
@@ -222,7 +222,7 @@ public class World
 
     }
 
-    internal void InitializeMonsters()
+    internal void InitializeMonsters()//Be sure to increase the MonsterCount at the top of this .cs when adding new monsters
     {
         MonsterEmpires = new MonsterEmpire[MonsterCount];
         MonsterEmpires[0] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Vagrants, UnityEngine.Color.white, UnityEngine.Color.white, 9, StrategyAIType.Monster, TacticalAIType.Full, 996, 32, 0));
@@ -262,6 +262,7 @@ public class World
         MonsterEmpires[34] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Terminid, UnityEngine.Color.white, UnityEngine.Color.white, 61, StrategyAIType.Monster, TacticalAIType.Full, 1028, 32, 0));
         MonsterEmpires[35] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.FeralOrcas, UnityEngine.Color.white, UnityEngine.Color.white, 62, StrategyAIType.Monster, TacticalAIType.Full, 1029, 32, 0));
         MonsterEmpires[36] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.BoomBunnies, UnityEngine.Color.white, UnityEngine.Color.white, 64, StrategyAIType.Monster, TacticalAIType.Full, 1030, 32, 0));
+        MonsterEmpires[37] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.ViraeUltimae, UnityEngine.Color.white, UnityEngine.Color.white, 66, StrategyAIType.Monster, TacticalAIType.Full, 1031, 32, 0));
         foreach (var emp in MonsterEmpires)
         {
             SpawnerInfo spawner = Config.SpawnerInfo(emp.Race);
