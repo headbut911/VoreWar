@@ -718,7 +718,7 @@ static class RaceParameters
 
         Equines = new RaceTraits()
         {
-            BodySize = 10,
+            BodySize = 16,
             StomachSize = 16,
             HasTail = true,
             FavoredStat = Stat.Strength,
@@ -1057,18 +1057,18 @@ static class RaceParameters
 
         Bears = new RaceTraits()
         {
-            BodySize = 10,
-            StomachSize = 15,
+            BodySize = 15,
+            StomachSize = 20,
             HasTail = false,
-            FavoredStat = Stat.Will,
+            FavoredStat = Stat.Endurance,
             DeployCost = 1,
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
-            Traits.AdeptLearner,
-            Traits.Clever
+            Traits.Intimidating,
+            Traits.HardSkin,
         },
-            RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
+            RaceDescription = "",
         };
 
         Centaur = new RaceTraits()
@@ -1083,7 +1083,7 @@ static class RaceParameters
                 Traits.Charge,
                 Traits.AwkwardShape,
             },
-            RaceDescription = "It's a Man-Horse thing!",
+            RaceDescription = "Half horse, half human!",
         };
 
         Succubi = new RaceTraits()
