@@ -38,6 +38,7 @@
     static internal MatronsMinions MatronsMinions = new MatronsMinions();
     static internal Gnolls Gnolls = new Gnolls();
     static internal MainlandElves MainlandElves = new MainlandElves();
+    static internal Bears Bears = new Bears();
 
 
     static internal Tigers Tigers = new Tigers();
@@ -377,6 +378,8 @@
                 return Olivia;
             case Race.MainlandElves:
                 return MainlandElves;
+            case Race.Bears:
+                return Bears;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

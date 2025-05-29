@@ -38,6 +38,7 @@ static class RaceParameters
     static readonly RaceTraits Mice;
     static readonly RaceTraits Gnolls;
     static readonly RaceTraits MainlandElves;
+    static readonly RaceTraits Bears;
     static readonly RaceTraits Centaur;
     static readonly RaceTraits Succubi;
     static readonly RaceTraits Tigers;
@@ -377,6 +378,8 @@ static class RaceParameters
                 return Olivia;
             case Race.MainlandElves:
                 return MainlandElves;
+            case Race.Bears:
+                return Bears;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -1036,6 +1039,22 @@ static class RaceParameters
         };
 
         MainlandElves = new RaceTraits()
+        {
+            BodySize = 10,
+            StomachSize = 15,
+            HasTail = false,
+            FavoredStat = Stat.Will,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.AdeptLearner,
+            Traits.Clever
+        },
+            RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
+        };
+
+        Bears = new RaceTraits()
         {
             BodySize = 10,
             StomachSize = 15,
