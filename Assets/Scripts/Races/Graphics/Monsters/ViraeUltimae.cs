@@ -23,6 +23,9 @@ class ViraeUltimae : DefaultRaceData
         AvoidedMainClothingTypes = 0;
         AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.AabayxSkin); // Head color
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.AabayxSkin);// Body color
+        GentleAnimation = true;
+        WeightGainDisabled = true;
+        CanBeGender = new List<Gender>() { Gender.None };
 
         ExtendedBreastSprites = false;
 
