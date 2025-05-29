@@ -562,7 +562,7 @@ public class ContentSettings : MonoBehaviour
                 tooltip.value = 327;
                 break;
             case Race.ViraeUltimae:
-                tooltip.value = 328;
+                tooltip.value = 332;
                 break;
         }
         return spawner;
