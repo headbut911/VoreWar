@@ -276,7 +276,7 @@ class Bears : DefaultRaceData
     {
         public Leathers()
         {
-            coversBreasts = true;
+            blocksBreasts = true;            
             blocksDick = false;
             Type = 80002;
             clothing1 = new SpriteExtraInfo(17, null, null); //Shirt
