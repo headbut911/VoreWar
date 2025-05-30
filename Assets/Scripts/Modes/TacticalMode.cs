@@ -2271,7 +2271,7 @@ Turns: {currentTurn}
             int offset;
             if (scatInfo.predRace == Race.Slimes)
             {offset = 2;}
-            else if (scatInfo.predRace == Race.Aabayx)
+            else if (scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {offset = 4;}
             else
             {offset = 0;}
@@ -2471,6 +2471,9 @@ Turns: {currentTurn}
                 break;
             case SpecialAction.AllInVore:
                 ShowBoostedVoreHitPercentages(actor, 50);
+                break;
+            case SpecialAction.DireInfection:
+                ShowMeleeHitPercentages(actor, .75f);
                 break;
         }
 
@@ -3658,6 +3661,11 @@ Turns: {currentTurn}
                                 UpdateTailStrikeGrid(mouseLocation);
                             }
                             break;
+                            if (specialType == SpecialAction.DireInfection)
+                            {
+                                UpdateOTargetGrid(mouseLocation);
+                            }
+                            break;
                     }
                 }
             }
@@ -4052,7 +4060,7 @@ Turns: {currentTurn}
                     int distance = SelectedUnit.Position.GetNumberOfMovesDistance(unit.Position);
                     if (3 >= distance)
                     {
-                        CurrentPotion.ActivatePotion(unit, SelectedUnit);
+                        CurrentPotion.ActivatePotion(SelectedUnit, unit);
                         RemoveHitPercentages();
                         ActionDone();
                         return;
@@ -4678,8 +4686,14 @@ Turns: {currentTurn}
                 actor.Unit.GiveExp(4);
                 if (actor.Unit.TraitBoosts.HealthRegen > 0 && actor.Unit.IsDead == false)
                     actor.Unit.HealPercentage(1);
+                if (actor.Unit.GetStatusEffect(StatusEffectType.Morphed) != null)
+                {
+                    actor.Unit.RevertMorph(actor.Unit.GetStatusEffect(StatusEffectType.Morphed).Applicator);
+                }
                 actor.Unit.StatusEffects.Clear();
 
+                actor.Unit.SetBarrier(0);
+                
                 EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, new object[] { actor, armies[actor.Unit.Side == attackerSide ? 0 : 1], null });
 
                 // Refill used potions

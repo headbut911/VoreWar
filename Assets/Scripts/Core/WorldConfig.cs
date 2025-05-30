@@ -279,7 +279,7 @@ public class WorldConfig
     [OdinSerialize]
     internal int TacticalMovementHardCap = -1;
     [OdinSerialize]
-    internal float SizeAccuracyMod = 0;
+    internal float SizeAccuracyMod = 0.01f;
     [OdinSerialize]
     internal float SizeAccuracyLowerBound = 10;
     [OdinSerialize]
@@ -287,7 +287,7 @@ public class WorldConfig
     [OdinSerialize]
     internal float SizeAccuracyCap = -1;
     [OdinSerialize]
-    internal float SizeDamageMod = 0f;
+    internal float SizeDamageMod = 0.01f;
     [OdinSerialize]
     internal float SizeDamageLowerBound = 10;
     [OdinSerialize]

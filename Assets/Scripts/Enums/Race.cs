@@ -36,6 +36,7 @@
     MatronsMinions = 31,
     Gnolls = 32,
     MainlandElves = 33,
+    Bears = 34,
 
     Succubi = 50,
     Tigers = 51,
@@ -101,6 +102,7 @@
     BoomBunnies = 144,
     Otachi = 145,
     FeralSlime = 146,
+    ViraeUltimae = 147,
 
     Selicia = 170,
     Vision = 171,

@@ -38,6 +38,7 @@ static class RaceParameters
     static readonly RaceTraits Mice;
     static readonly RaceTraits Gnolls;
     static readonly RaceTraits MainlandElves;
+    static readonly RaceTraits Bears;
     static readonly RaceTraits Centaur;
     static readonly RaceTraits Succubi;
     static readonly RaceTraits Tigers;
@@ -120,6 +121,7 @@ static class RaceParameters
     static readonly RaceTraits BoomBunnies;
     static readonly RaceTraits FeralSlime;
     static readonly RaceTraits Olivia;
+    static readonly RaceTraits ViraeUltimae;
 
     static Unit tempUnit;
 
@@ -377,6 +379,10 @@ static class RaceParameters
                 return Olivia;
             case Race.MainlandElves:
                 return MainlandElves;
+            case Race.Bears:
+                return Bears;
+            case Race.ViraeUltimae:
+                return ViraeUltimae;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -712,7 +718,7 @@ static class RaceParameters
 
         Equines = new RaceTraits()
         {
-            BodySize = 10,
+            BodySize = 16,
             StomachSize = 16,
             HasTail = true,
             FavoredStat = Stat.Strength,
@@ -942,9 +948,7 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.Anal },
             RacialTraits = new List<Traits>()
         {
-                Traits.ViralDigestion,
-                Traits.AwkwardShape,
-                Traits.SlowAbsorption,
+                Traits.ViralBiology,
                 Traits.SlowBreeder,
         },
             RaceDescription = "The Aabayx are a species of virosapiens who recently revealed themselves to the world and were quick to commit to the stage of war.  Strangely enough, they are not new arrivals to the realm, but rather have been in extreme isolation in an unknown location and were waiting for the exact right time to resurface and conquer the masses.  That time is now.",
@@ -1051,6 +1055,22 @@ static class RaceParameters
             RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
         };
 
+        Bears = new RaceTraits()
+        {
+            BodySize = 15,
+            StomachSize = 20,
+            HasTail = false,
+            FavoredStat = Stat.Endurance,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Intimidating,
+            Traits.HardSkin,
+        },
+            RaceDescription = "",
+        };
+
         Centaur = new RaceTraits()
         {
             BodySize = 20,
@@ -1063,7 +1083,7 @@ static class RaceParameters
                 Traits.Charge,
                 Traits.AwkwardShape,
             },
-            RaceDescription = "It's a Man-Horse thing!",
+            RaceDescription = "Half horse, half human!",
         };
 
         Succubi = new RaceTraits()
@@ -3518,6 +3538,38 @@ static class RaceParameters
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.CrossShock, SpellTypes.ArcBolt },
             RaceDescription = "A small fox with surprisingly strong lightning magic.",
+        };
+
+        ViraeUltimae = new RaceTraits()
+        {
+            BodySize = 6,
+            StomachSize = 15,
+            HasTail = false,
+            FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(18, 24),
+                Dexterity = new RaceStats.StatRange(4, 7),
+                Endurance = new RaceStats.StatRange(17, 20),
+                Mind = new RaceStats.StatRange(1, 2),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(4, 6),
+                Voracity = new RaceStats.StatRange(12, 15),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.ViralBiology,
+                Traits.Fearless,
+                Traits.Stinger,
+                Traits.InfectiousReproduction,
+                Traits.DireInfection,
+                Traits.Brainless,
+        },
+            RaceDescription = "How the Virae Ultimae are able to function at all with no brain is an enigma. Hearing and perpetual humming are their only ways of interacting with the world minus attacking and attempting to reproduce more of themselves by infecting hosts with their viral injectors. These things operate as brainless biological automata, and their sheer refusal to cease their attack under any conditions can be quite scary.",
         };
 
     }

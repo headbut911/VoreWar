@@ -2493,6 +2493,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             stats[(int)Stat.Voracity] = -1;
             stats[(int)Stat.Stomach] = -1;
         }
+
+        if (HasTrait(Traits.Brainless))
+        {
+            stats[(int)Stat.Mind] = -1;
+        }
         //stats[(int)Stat.Leadership] = -1; unneeded as the stats already cuts it
         if (TraitBoosts.OnLevelUpAllowAnyStat)
         {

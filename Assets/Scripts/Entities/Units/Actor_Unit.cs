@@ -1542,6 +1542,30 @@ public class Actor_Unit
         return true;
     }
 
+    public bool DireInfection(Actor_Unit target)
+    {
+        if (Movement < 1 || Unit.HasTrait(Traits.DireInfection) == false)
+            return false;
+        List<AbilityTargets> targetTypes = new List<AbilityTargets>();
+        targetTypes.Add(AbilityTargets.Enemy);
+        if (!TacticalUtilities.MeetsQualifier(targetTypes, this, target))
+            return false;
+        if (target.Position.GetNumberOfMovesDistance(Position) > 1)
+            return false;
+        int curr = target.Unit.Health;
+        Attack(target, false, damageMultiplier: .75f);
+        bool didAttackHit = curr != target.Unit.Health;
+        if (didAttackHit)
+        {
+            target.Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 5f, 6);
+            target.Unit.ApplyStatusEffect(StatusEffectType.Snared, 1f, 1);
+        }
+        TacticalGraphicalEffects.CreateGenericMagic(Position, target.Position, target, TacticalGraphicalEffects.SpellEffectIcon.Poison);
+        Movement = 0;
+
+        return true;
+    }
+
     public bool Attack(Actor_Unit target, bool ranged, bool forceBite = false, float damageMultiplier = 1, bool canKill = true)
     {
         Weapon weapon;
@@ -1854,6 +1878,11 @@ public class Actor_Unit
             Unit.GeneralStatIncrease(1);
         if (Unit.HasTrait(Traits.TasteForBlood))
             GiveRandomBoost();
+        if (Unit.HasTrait(Traits.InfectiousReproduction) && target.Unit.GetStatusEffect(StatusEffectType.Poisoned) != null)
+        {
+            Race spawnRace = Unit.DetermineSpawnRace();
+            target.PredatorComponent.CreateSpawn(spawnRace, Unit.Side, Unit.Experience / 2, true);
+        }
 
         Unit.GiveScaledExp(4 * target.Unit.ExpMultiplier, Unit.Level - target.Unit.Level);
         if (target.Unit.GetStatusEffect(StatusEffectType.Respawns) != null && (target.Unit.HasTrait(Traits.Respawner) || target.Unit.HasTrait(Traits.RespawnerIII)))
@@ -2041,7 +2070,14 @@ public class Actor_Unit
         if (DefendSpellCheck(spell, attacker, out float chance, sneakAttack ? -0.3f : 0f, stat))
         {
             State.GameManager.TacticalMode.Log.RegisterSpellHit(attacker.Unit, Unit, spell.SpellType, 0, chance);
-            Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this), attacker.Unit, spell.ExpireEffect(attacker, this));
+            if (spell.ExpireEffect != null)
+            {
+                Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this), attacker.Unit, spell.ExpireEffect(attacker, this));
+            }
+            else
+            {
+                Unit.ApplyStatusEffect(spell.Type, spell.Effect(attacker, this), spell.Duration(attacker, this), attacker.Unit);
+            }
             EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.WhenHitBySpellStatus, new object[] { this, attacker, spell });
             if (spell.Id == "charm")
             {
@@ -2718,7 +2754,7 @@ public class Actor_Unit
         if (Unit.Health > Unit.MaxHealth)
             Unit.Health = Unit.MaxHealth;
         TurnsSinceLastDamage = -1;
-        EquipmentFunctions.CheckEquipment(this.Unit, EquipmentActivator.OnDamage, new object[] { this.Unit, damage, null });
+        EquipmentFunctions.CheckEquipment(this.Unit, EquipmentActivator.OnDamage, new object[] { this, damage, null });
     }
 
     public int CalculateDamageWithResistance(int damage, DamageTypes damageType)

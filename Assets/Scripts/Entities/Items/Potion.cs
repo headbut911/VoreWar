@@ -24,8 +24,9 @@ public class Potion : Item
         TileFunction = tileFunc;
     }
 
-    public bool ActivatePotion(Actor_Unit target, Actor_Unit user)
+    public bool ActivatePotion(Actor_Unit user, Actor_Unit target)
     {
+        if (user.Unit.EquippedPotions.ContainsKey(this)) return false;
         if (user.Movement <= 0 || user.Unit.EquippedPotions[this][0] <= 0) return false;
         user.Unit.EquippedPotions[this][0] = user.Unit.EquippedPotions[this][0] - 1;
         Debug.Log(user.Unit.EquippedPotions[this][0]);

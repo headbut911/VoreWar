@@ -21,4 +21,5 @@
     GiantSweep,
     SweepingSwallow,
     AllInVore,
+    DireInfection,
 }
