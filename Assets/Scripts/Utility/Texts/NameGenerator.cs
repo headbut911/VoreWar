@@ -45,6 +45,7 @@ public class NameGenerator
     List<string> aabayxTownNames;
     List<string> miceTownNames;
     List<string> matronsminionsTownNames;
+    List<string> bearTownNames;
 
     List<string> compyNames;
     List<string> vagrantNames;
@@ -902,6 +903,13 @@ public class NameGenerator
             "Lair of the Lady",
             "Ancestor's Pit",
         };
+        bearTownNames = new List<string>
+        {
+            "Ursa-major",
+            "Honeycomb",
+            "Necessity",
+            "Bjornsburg",
+        };
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
 
@@ -1305,6 +1313,11 @@ public class NameGenerator
         {
             if (i >= 0 && i < matronsminionsTownNames.Count)
                 return matronsminionsTownNames[i];
+        }
+        else if (race == Race.Bears)
+        {
+            if (i >= 0 && i < bearTownNames.Count)
+                return bearTownNames[i];
         }
 
 
