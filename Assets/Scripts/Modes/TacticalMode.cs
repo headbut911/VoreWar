@@ -4060,7 +4060,7 @@ Turns: {currentTurn}
                     int distance = SelectedUnit.Position.GetNumberOfMovesDistance(unit.Position);
                     if (3 >= distance)
                     {
-                        CurrentPotion.ActivatePotion(unit, SelectedUnit);
+                        CurrentPotion.ActivatePotion(SelectedUnit, unit);
                         RemoveHitPercentages();
                         ActionDone();
                         return;
@@ -4686,8 +4686,14 @@ Turns: {currentTurn}
                 actor.Unit.GiveExp(4);
                 if (actor.Unit.TraitBoosts.HealthRegen > 0 && actor.Unit.IsDead == false)
                     actor.Unit.HealPercentage(1);
+                if (actor.Unit.GetStatusEffect(StatusEffectType.Morphed) != null)
+                {
+                    actor.Unit.RevertMorph(actor.Unit.GetStatusEffect(StatusEffectType.Morphed).Applicator);
+                }
                 actor.Unit.StatusEffects.Clear();
 
+                actor.Unit.SetBarrier(0);
+                
                 EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleEnd, new object[] { actor, armies[actor.Unit.Side == attackerSide ? 0 : 1], null });
 
                 // Refill used potions

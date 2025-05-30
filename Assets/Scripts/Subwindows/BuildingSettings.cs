@@ -476,11 +476,6 @@ public class BuildingSettings : MonoBehaviour
         rootObject.lumberSite.lodgeUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteLodgeUpgrade);
         rootObject.lumberSite.greenhouseUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteGreenHouseUpgrade);
         rootObject.lumberSite.carpenterUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteCarpenterUpgrade);
-        
-        rootObject.lumberSite = new LumberCampTempClass(Config.BuildConfig.LumberSite, Config.BuildConfig.LumberSiteWorkerCap);
-        rootObject.lumberSite.lodgeUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteLodgeUpgrade);
-        rootObject.lumberSite.greenhouseUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteGreenHouseUpgrade);
-        rootObject.lumberSite.carpenterUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.LumberSiteCarpenterUpgrade);
 
         rootObject.quarry = new QuarryTempClass(Config.BuildConfig.Quarry, Config.BuildConfig.QuarryStoneMin, Config.BuildConfig.QuarryStoneMax, Config.BuildConfig.QuarryOreMin, Config.BuildConfig.QuarryOreMax, Config.BuildConfig.QuarryMSMin, Config.BuildConfig.QuarryMSMax, Config.BuildConfig.QuarryGoldMin, Config.BuildConfig.QuarryGoldMax);
         rootObject.quarry.improveUpgrade = new BuildingUpgradeTempClass(Config.BuildConfig.QuarryImproveUpgrade);
@@ -581,7 +576,7 @@ public class BuildingSettings : MonoBehaviour
         LoadUpgrade("lumberSite", "greenhouseUpgrade", Config.BuildConfig.LumberSiteGreenHouseUpgrade);
         LoadUpgrade("lumberSite", "carpenterUpgrade", Config.BuildConfig.LumberSiteCarpenterUpgrade);
 
-        LoadBuilding("quarry", Config.BuildConfig.LumberSite);
+        LoadBuilding("quarry", Config.BuildConfig.Quarry);
         Config.BuildConfig.QuarryStoneMin = results["quarry"]["stoneMin"].ToObject<int>();
         Config.BuildConfig.QuarryStoneMax = results["quarry"]["stoneMax"].ToObject<int>();
         Config.BuildConfig.QuarryOreMin = results["quarry"]["oreMin"].ToObject<int>();
@@ -651,6 +646,7 @@ public class BuildingSettings : MonoBehaviour
         Config.BuildConfig.LaboratoryBulkMax = results["laboratory"]["bulkMax"].ToObject<int>();
         Config.BuildConfig.LaboratoryBaseRollCount = results["laboratory"]["baseRollCount"].ToObject<int>();
         Config.BuildConfig.LaboratoryBaseTraitChance = results["laboratory"]["baseTraitChance"].ToObject<float>();
+        Config.BuildConfig.LaboratoryBaseTraitChance = results["laboratory"]["AIPotionMult"].ToObject<float>();
         LoadUpgrade("laboratory", "improveUpgrade", Config.BuildConfig.LaboratoryImproveUpgrade);
         LoadUpgrade("laboratory", "ingredientUpgrade", Config.BuildConfig.LaboratoryIngredientUpgrade);
         LoadUpgrade("laboratory", "boostUpgrade", Config.BuildConfig.LaboratoryBoostUpgrade);
@@ -876,7 +872,7 @@ public class BuildingSettings : MonoBehaviour
             standardInfo = new BuildingStandardTempClass(configClass.BuildTime, configClass.Gold, configClass.BuildLimit, configClass.AICanBuild, configClass.Resources);
             expGold = expG;
             maxUpgrades = mUpgrade;
-            upgradeCost = upgradeCost;
+            upgradeCost = upgCost;
             costInc = costMult;
         }
     }

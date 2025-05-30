@@ -14,6 +14,7 @@ class MainlandElves : DefaultRaceData
 
     public MainlandElves()
     {
+        BodySizes = 3;
         EarTypes = 8;
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
@@ -23,6 +24,8 @@ class MainlandElves : DefaultRaceData
         BodyAccentTypes2 = 3;
         SpecialAccessoryCount = 0;
         AccessoryColors = 0;
+        HairStyles = 36;
+        MouthTypes = 12;
 
         ExtendedBreastSprites = true;
 
@@ -70,6 +73,7 @@ class MainlandElves : DefaultRaceData
             new MaleTop5(),
             new MaleTop6(),
             new Uniform1(),
+            new Uniform1WithHelmet(),
             new FemaleOnePiece1(),
             new FemaleOnePiece2(),
             new FemaleOnePiece3(),
@@ -85,7 +89,6 @@ class MainlandElves : DefaultRaceData
             new GenericBot4(),
             new GenericBot5(),
             new GenericBot6(),
-            new Uniform2(),
             new BigLoin(),
             new Pants1(),
             new Pants2(),
@@ -1353,89 +1356,115 @@ class MainlandElves : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.HumenUniform1[42];
             coversBreasts = false;
-            clothing1 = new SpriteExtraInfo(18, null, null);
-            clothing2 = new SpriteExtraInfo(15, null, null);
-            clothing3 = new SpriteExtraInfo(5, null, null);
-            Type = 60025;
+            clothing1 = new SpriteExtraInfo(18, null, null); // Chestplate
+            clothing2 = new SpriteExtraInfo(12, null, null); // Cloth
+            clothing3 = new SpriteExtraInfo(7, null, null); // Legs
+            clothing4 = new SpriteExtraInfo(5, null, null); // arms
+            Type = 60050;
             DiscardUsesPalettes = true;
+            coversBreasts = false;
+            OccupiesAllSlots = true;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            if (Races.MainlandElves.oversize)
+            if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[6];
-            }
-            else if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BreastSize > 5)
+                if (actor.Unit.BreastSize > 8)
                 {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[6];
+                    clothing1.GetSprite = (s) => null;
                 }
                 else
                 {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[0 + actor.Unit.BreastSize];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[8 + actor.Unit.BreastSize];
                 }
             }
             else
             {
                 breastSprite = null;
-                clothing1.GetSprite = null;
-            }
-
-            if (actor.HasBelly)
-            {
-                if (actor.GetStomachSize(31, 0.7f) > 4)
-                {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[13 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
-                }
-                else if (actor.GetStomachSize(31, 0.7f) > 3)
-                {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[12 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
-                }
-                else if (actor.GetStomachSize(31, 0.7f) > 2)
-                {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[11 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
-                }
-                else if (actor.GetStomachSize(31, 0.7f) > 1)
-                {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[10 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
-                }
-                else if (actor.GetStomachSize(31, 0.7f) > 0)
-                {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[9 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
-                }
-                else
-                {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[8 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
-                }
-            }
-            else
-            {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[7 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[17];
             }
 
             if (actor.Unit.HasWeapon == false)
             {
-                if (actor.IsAttacking) clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[3 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
-                else clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[0 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                if (actor.IsAttacking) clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[2 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+                else clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[0 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
             }
             else if (actor.GetWeaponSprite() == 0 || actor.GetWeaponSprite() == 4 || actor.GetWeaponSprite() == 6)
             {
-                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[2 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[0 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
             }
-            else if (actor.GetWeaponSprite() == 1 || actor.GetWeaponSprite() == 3)
+            else if (actor.GetWeaponSprite() == 2 || actor.GetWeaponSprite() == 7)
             {
-                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[3 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[1 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
             }
             else
             {
-                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[1 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[2 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            }
+            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[19];
+            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+
+            base.Configure(sprite, actor);
+        }
+    }
+    
+    class Uniform1WithHelmet : MainClothing
+    {
+        public Uniform1WithHelmet()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.HumenUniform1[42];
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(18, null, null); // Chestplate
+            clothing2 = new SpriteExtraInfo(12, null, null); // Cloth
+            clothing3 = new SpriteExtraInfo(7, null, null); // Legs
+            clothing4 = new SpriteExtraInfo(5, null, null); // arms
+            clothing5 = new SpriteExtraInfo(27, null, null); // arms
+            Type = 60050;
+            DiscardUsesPalettes = true;
+            coversBreasts = false;
+            OccupiesAllSlots = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.Unit.HasBreasts)
+            {
+                if (actor.Unit.BreastSize > 8)
+                {
+                    clothing1.GetSprite = (s) => null;
+                }
+                else
+                {
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[8 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[17];
             }
 
-            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
-            clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
-            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            if (actor.Unit.HasWeapon == false)
+            {
+                if (actor.IsAttacking) clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[2 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+                else clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[0 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            }
+            else if (actor.GetWeaponSprite() == 0 || actor.GetWeaponSprite() == 4 || actor.GetWeaponSprite() == 6)
+            {
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[0 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            }
+            else if (actor.GetWeaponSprite() == 2 || actor.GetWeaponSprite() == 7)
+            {
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[1 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            }
+            else
+            {
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[2 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            }
+            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[19];
+            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.MainlandElfClothes[18];
 
             base.Configure(sprite, actor);
         }
@@ -2331,33 +2360,6 @@ class MainlandElves : DefaultRaceData
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
-            base.Configure(sprite, actor);
-        }
-    }
-
-    class Uniform2 : MainClothing
-    {
-        public Uniform2()
-        {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUniform1[43];
-            coversBreasts = false;
-            clothing1 = new SpriteExtraInfo(12, null, null);
-            Type = 60024;
-            DiscardUsesPalettes = true;
-        }
-
-        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[24 + actor.Unit.BodySize];
-            }
-            else
-            {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[33 + actor.Unit.BodySize];
-            }
-
-            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);
         }
     }

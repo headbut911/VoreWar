@@ -36,6 +36,7 @@
     MatronsMinions = 31,
     Gnolls = 32,
     MainlandElves = 33,
+    Bears = 34,
 
     Succubi = 50,
     Tigers = 51,

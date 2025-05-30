@@ -38,6 +38,7 @@ static class RaceParameters
     static readonly RaceTraits Mice;
     static readonly RaceTraits Gnolls;
     static readonly RaceTraits MainlandElves;
+    static readonly RaceTraits Bears;
     static readonly RaceTraits Centaur;
     static readonly RaceTraits Succubi;
     static readonly RaceTraits Tigers;
@@ -378,6 +379,8 @@ static class RaceParameters
                 return Olivia;
             case Race.MainlandElves:
                 return MainlandElves;
+            case Race.Bears:
+                return Bears;
             case Race.ViraeUltimae:
                 return ViraeUltimae;
             case (Race)700: //Singled out so that it doesn't make the debug message
@@ -715,7 +718,7 @@ static class RaceParameters
 
         Equines = new RaceTraits()
         {
-            BodySize = 10,
+            BodySize = 16,
             StomachSize = 16,
             HasTail = true,
             FavoredStat = Stat.Strength,
@@ -1052,6 +1055,22 @@ static class RaceParameters
             RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
         };
 
+        Bears = new RaceTraits()
+        {
+            BodySize = 15,
+            StomachSize = 20,
+            HasTail = false,
+            FavoredStat = Stat.Endurance,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Intimidating,
+            Traits.HardSkin,
+        },
+            RaceDescription = "",
+        };
+
         Centaur = new RaceTraits()
         {
             BodySize = 20,
@@ -1064,7 +1083,7 @@ static class RaceParameters
                 Traits.Charge,
                 Traits.AwkwardShape,
             },
-            RaceDescription = "It's a Man-Horse thing!",
+            RaceDescription = "Half horse, half human!",
         };
 
         Succubi = new RaceTraits()

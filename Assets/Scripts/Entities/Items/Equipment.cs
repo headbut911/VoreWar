@@ -30,7 +30,7 @@ public enum EquipmentActivator
     WhenMissedBySpellStatus, // ActorUnit, attacker, spell
     WhenHitBySpellStatus, // ActorUnit, attacker, spell
     OnHeal, // Unit, amount, null
-    OnDamage, // Unit, amount, null
+    OnDamage, // ActorUnit, amount, null
 }
 public enum EquipmentType
 {

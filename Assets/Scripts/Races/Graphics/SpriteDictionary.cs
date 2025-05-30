@@ -178,6 +178,8 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Deer2;
     public Sprite[] Deer3;
     public Sprite[] Deer4;
+    public Sprite[] Bears;
+    public Sprite[] BearsClothes;
 
     public Sprite[] Succubi;
     public Sprite[] Alligators;
@@ -252,6 +254,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] TaurTorso;
 
     public Sprite[] MainlandElfParts;
+    public Sprite[] MainlandElfClothes;
 
     [Header("Unique Mercenaries")]
     public Sprite[] Selicia;
