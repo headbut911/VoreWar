@@ -38,9 +38,11 @@ Special thanks to <b>Sheights</b> for fixing the errors that the above caused
 Condoms for CV disposal implemented by <b>Ignis Flamescale</b>
 Clean Disposal (Diapers) implemented by <b>Wolfwar106</b>
 Clean Disposal (Diapers) log messages by <b>Mocha</b>
-Almost all of the digestion sounds are from <b>chemicalcrux</b>
+Original Vore sound effects are from <b>chemicalcrux</b>
 Additional Vore sound effects recorded by <b>Ignis Flamescale</b>
 Additional Sound effects obtained from <b>https://www.zapsplat.com</b>
+Goddess' Mercy implemented by <b>Wolfwar106</b>
+Scout Armies implemented by <b>Wolfwar106</b>
 NearbyEnemies variable functionality by <b>CaneSugarCat</b>
 Per Race upkeep and Deployment implemented by <b>CaneSugarCat</b>
 Tagged Trait system implemented by <b>CaneSugarCat</b>
@@ -67,7 +69,8 @@ A good percentage of the town names are by <b>Katar</b>
 A significant amount of log messages by <b>HarryS</b>
 Most of the scat tactical log text from <b>InfernoTheDragon</b> or <b>Cattitude</b>
 Additional scat log messages by <b>Ignis Flamescale</b>
-CV and Condom disposal messages by <b>Cartography</b>
+CV and Condom disposal messages by <b>Tatltuae</b>
+Pouch vore messages by <b>Tatltuae</b>
 Fart log messages by <b>Cattitude</b>
 Wide array of synonyms applied throughout the TacLog by <b>Ignis Flamescale</b>
 Deer Log messages by <b>@bane of Fun#6036</b>
@@ -86,9 +89,6 @@ Bella
 Mice
 Salix
 Volcanic Tileset
-
-<b><u>Cartography:</b></u>
-Aabayx
 
 <b><u>Cattitude:</b></u>
 Feral Lions
@@ -154,6 +154,7 @@ Wyvern
 Wyvern Matrons
 
 <u><b>Ignis Flamescale</b></u>
+Ignis
 Lizard outfits
 Lizard UB/AV pose
 Sergals
@@ -216,10 +217,14 @@ Feral Frogs
 <b><u>Sheights:</b></u>
 Goodra
 
+<b><u>Tatltuae:</b></u>
+Aabayx
+
 <b><u>Wolfwar106:</b></u>
 Diaper sprites
 Hamsters
 Plate Armor
+Boom Bunnies
 Xelhilde
 
 
@@ -263,6 +268,9 @@ Salix
 
 <b><u>Wolfwar106:</b></u>
 Xelhilde
+
+<b><u>Ignis Flamescale:</b></u>
+Ignis
 
 <b><u>GAME FREAK/Creatures Inc./Nintendo:</b></u>
 Goodra

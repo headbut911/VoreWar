@@ -973,7 +973,7 @@ static class RaceParameters
             BodySize = 200,
             StomachSize = 200,
             HasTail = true,
-            FavoredStat = Stat.Stomach,
+            FavoredStat = Stat.Endurance,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
             ExpMultiplier = 20f,
             PowerAdjustment = 100f,
@@ -2818,8 +2818,10 @@ static class RaceParameters
             },
             RacialTraits = new List<Traits>()
         {
-            Traits.Disgusting,
+            Traits.Intimidating,
             Traits.Resilient,
+            Traits.Berserk,
+            Traits.Feral,
             Traits.Pounce,
             Traits.FireVulnerable,
         },
@@ -2926,7 +2928,7 @@ static class RaceParameters
 
         Scorch = new RaceTraits()
         {
-            BodySize = 24,
+            BodySize = 32,
             StomachSize = 30,
             HasTail = true,
             FavoredStat = Stat.Voracity,
@@ -2934,26 +2936,28 @@ static class RaceParameters
             ExpMultiplier = 2.4f,
             PowerAdjustment = 4f,
             DeployCost = 1,
-            Upkeep = 24f,
+            Upkeep = 32f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 24),
                 Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(16, 24),
-                Mind = new RaceStats.StatRange(16, 20),
+                Endurance = new RaceStats.StatRange(24, 36),
+                Mind = new RaceStats.StatRange(40, 50),
                 Will = new RaceStats.StatRange(12, 18),
                 Agility = new RaceStats.StatRange(16, 28),
-                Voracity = new RaceStats.StatRange(16, 24),
-                Stomach = new RaceStats.StatRange(16, 24),
+                Voracity = new RaceStats.StatRange(36, 40),
+                Stomach = new RaceStats.StatRange(24, 40),
             },
             RacialTraits = new List<Traits>()
         {
                 Traits.Flight,
                 Traits.Biter,
-                Traits.FastAbsorption
+                Traits.StrongGullet,
+                Traits.Cruel,
+                Traits.FastAbsorption,
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.Pyre },
-            RaceDescription = "A cruel gluttonous red wyvern",
+            RaceDescription = "A cruel, gluttonous red wyvern",
         };
 
 
@@ -3003,16 +3007,17 @@ static class RaceParameters
             {
                 Strength = new RaceStats.StatRange(20, 24),
                 Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(16, 24),
+                Endurance = new RaceStats.StatRange(32, 40),
                 Mind = new RaceStats.StatRange(16, 20),
                 Will = new RaceStats.StatRange(12, 18),
-                Agility = new RaceStats.StatRange(16, 28),
+                Agility = new RaceStats.StatRange(28, 40),
                 Voracity = new RaceStats.StatRange(16, 24),
                 Stomach = new RaceStats.StatRange(18, 26),
             },
             RacialTraits = new List<Traits>()
         {
                 Traits.MetalBody,
+                Traits.Resilient,
                 Traits.KeenReflexes,
                 Traits.BornToMove,
                 Traits.Intimidating,
@@ -3067,7 +3072,7 @@ static class RaceParameters
             Upkeep = 30f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(24, 28),
+                Strength = new RaceStats.StatRange(32, 40),
                 Dexterity = new RaceStats.StatRange(18, 22),
                 Endurance = new RaceStats.StatRange(36, 42),
                 Mind = new RaceStats.StatRange(12, 16),
@@ -3099,12 +3104,12 @@ static class RaceParameters
             Upkeep = 16f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(20, 24),
+                Strength = new RaceStats.StatRange(24, 30),
                 Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(16, 24),
+                Endurance = new RaceStats.StatRange(24, 30),
                 Mind = new RaceStats.StatRange(16, 20),
                 Will = new RaceStats.StatRange(12, 18),
-                Agility = new RaceStats.StatRange(16, 28),
+                Agility = new RaceStats.StatRange(20, 32),
                 Voracity = new RaceStats.StatRange(16, 24),
                 Stomach = new RaceStats.StatRange(16, 24),
             },
@@ -3113,7 +3118,8 @@ static class RaceParameters
                 Traits.StrongGullet,
                 Traits.ArtfulDodge,
                 Traits.NimbleClimber,
-                Traits.BornToMove
+                Traits.BornToMove,
+                Traits.TailStrike,
         },
             RaceDescription = "A devious and voracious wyvern. Known for his agility and cunning, don't ever turn your back to him or you might find yourself in trouble.",
         };
@@ -3365,9 +3371,9 @@ static class RaceParameters
             PowerAdjustment = 15f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(35, 45),
+                Strength = new RaceStats.StatRange(18, 24),
                 Dexterity = new RaceStats.StatRange(20, 30),
-                Endurance = new RaceStats.StatRange(44, 62),
+                Endurance = new RaceStats.StatRange(30, 42),
                 Mind = new RaceStats.StatRange(20, 32),
                 Will = new RaceStats.StatRange(90, 110),
                 Agility = new RaceStats.StatRange(20, 30),

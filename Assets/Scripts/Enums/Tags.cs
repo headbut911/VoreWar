@@ -390,6 +390,8 @@ public enum Traits
     Friendosoma = 196,
     /// <summary>Unit deals bonus ranged and melee damage to members of the same race.</summary>
     Competitive = 197,
+    /// <summary></summary>
+    IceDragoness = 198,
 
     /// <summary>Melee damage is increased by 100%. Damage is divided by the amount of adjacent enemy units.</summary>
     Duelist = 500,

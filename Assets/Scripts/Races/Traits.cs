@@ -282,8 +282,8 @@ static class TraitList
         [Traits.HardSkin] = new Booster("Its skin is hard and ranged weapons have a harder time penetrating it.", (s) => { s.Incoming.RangedDamage *= .75f; s.VirtualDexMult *= 1.1f; }),
         [Traits.QuickShooter] = new Booster("Unit is quite adept with ranged weapons and is able to attack twice with them.", (s) => { s.RangedAttacks += 1; s.VirtualDexMult *= 2.2f; }),
         [Traits.FastCaster] = new Booster("Unit is quite adept with spells and is able to cast two spells per turn.", (s) => s.SpellAttacks += 1),
-        [Traits.RangedIneptitude] = new Booster("Unit's ranged weapons do less damage than normal", (s) => {s.Outgoing.RangedDamage *= 0.8f; s.VirtualStrMult *= 1.2f; }),
-        [Traits.KeenShot] = new Booster("Unit's ranged weapons do additional damage", (s) => { s.Outgoing.RangedDamage *= 1.2f; s.VirtualDexMult *= 1.2f;}),
+        [Traits.RangedIneptitude] = new Booster("Unit's ranged weapons do less damage than normal", (s) => { s.Outgoing.RangedDamage *= 0.8f; s.VirtualStrMult *= 1.2f; }),
+        [Traits.KeenShot] = new Booster("Unit's ranged weapons do additional damage", (s) => { s.Outgoing.RangedDamage *= 1.2f; s.VirtualDexMult *= 1.2f; }),
         [Traits.HotBlooded] = new Booster("Unit is used to the heat and takes significantly less damage from fire spells", (s) => s.FireDamageTaken *= .25f),
         [Traits.Grounded] = new Booster("Unit is resistant to electricity and takes significantly less damage from electric spells", (s) => s.ElecDamageTaken *= .25f),
         [Traits.ColdTolerance] = new Booster("Unit is used to the cold and takes significantly less damage from ice spells", (s) => s.IceDamageTaken *= .25f),
@@ -319,8 +319,8 @@ static class TraitList
         [Traits.SlowMetabolism] = new Booster("Unit digests and absorbs prey very slowly (50%)", (s) => { s.Outgoing.AbsorptionRate *= 0.5f; s.Outgoing.DigestionRate *= 0.5f; }),
         [Traits.LightFrame] = new Booster("Unit can melee attack twice in a turn, though it loses this ability while it contains any prey.  Unit also takes 25% more damage from all sources", (s) => { s.Incoming.MeleeDamage *= 1.25f; s.Incoming.RangedDamage *= 1.25f; s.Incoming.MagicDamage *= 1.25f; s.VirtualStrMult *= 1.7f; }),
         [Traits.Featherweight] = new Booster("Unit moves slightly faster (+1 AP) and gets a melee/vore dodge bonus, but takes extra damage from melee.", (s) => { s.SpeedBonus += 1; s.Incoming.MeleeShift += .75f; s.Incoming.VoreOddsMult *= 0.75f; s.Incoming.MeleeDamage *= 1.2f; }),
-        [Traits.Elite] = new Booster("Unit is skilled and trained in advanced tactics but requires more Exp to level ( All stats +120% but 2x Exp required)", (s) => {s.StatMult *= 2.2f; s.ExpRequired *= 2.0f; }),
-        [Traits.Juggernaut] = new Booster("Unit's stats are increased by 100%, but MP regeneration is delayed by one turn after it regenerates MP.", (s) => {s.StatMult *= 2f;}),
+        [Traits.Elite] = new Booster("Unit is skilled and trained in advanced tactics but requires more Exp to level ( All stats +120% but 2x Exp required)", (s) => { s.StatMult *= 2.2f; s.ExpRequired *= 2.0f; }),
+        [Traits.Juggernaut] = new Booster("Unit's stats are increased by 100%, but MP regeneration is delayed by one turn after it regenerates MP.", (s) => { s.StatMult *= 2f; }),
         [Traits.PeakCondition] = new Booster("Unit is at the height of their physical condition (All stats × 1.5)", (s) => s.StatMult *= 1.5f),
         [Traits.Fit] = new Booster("Unit is in better shape than the average unit (All stats × 1.2)", (s) => s.StatMult *= 1.2f),
         [Traits.Illness] = new Booster("Unit is sick and is in poor shape (All stats × 0.8)", (s) => s.StatMult *= 0.8f),
@@ -342,7 +342,7 @@ static class TraitList
         [Traits.EfficientGuts] = new Booster("Unit receives 50% more healing from absorbing prey", (s) => { s.Incoming.Nutrition *= 1.5f; }),
         [Traits.WastefulProcessing] = new Booster("Unit can't get as much healing out of prey, but they are done with it quicker. (Absorption rate × 1.5, Nutrition received × 0.5 )", (s) => { s.Incoming.Nutrition *= 0.5f; s.Outgoing.AbsorptionRate *= 1.5f; }),
         [Traits.TightNethers] = new Booster("This unit can only take much smaller units into their nethers, but their prey will not enlarge while inside their genitals.", (s) => { s.Incoming.RangedDamage *= 1.0f; }),
-		[Traits.NightEye] = new Booster("Increases night time vision range by +1 in Tactical battles and by +1 in stratigic if half of the units in an army have this trait.", (s) => { s.SightRangeBoost += 1;}),
+        [Traits.NightEye] = new Booster("Increases night time vision range by +1 in Tactical battles and by +1 in stratigic if half of the units in an army have this trait.", (s) => { s.SightRangeBoost += 1; }),
         [Traits.KeenEye] = new Booster("Unit has a 10% chance to deal increased damage when attacking.", (s) => { s.Outgoing.CritRateShift += 0.1f; }),
         [Traits.AccuteDodge] = new Booster("Unit has a 10% chance to minimise recieved damage when being attacked. (Excludes spells and vore damage).", (s) => { s.Outgoing.GrazeRateShift += 0.1f; }),
         [Traits.ViralDigestion] = new ViralDigestion(),
@@ -356,6 +356,7 @@ static class TraitList
         [Traits.FasterAbsorption] = new Booster("Unit absorbs dead prey even more quickly. (200%)", (s) => s.Outgoing.AbsorptionRate *= 2f),
         [Traits.SlowerAbsorption] = new Booster("Unit absorbs dead prey even more slowly. (25%)", (s) => s.Outgoing.AbsorptionRate *= 0.25f),
         [Traits.SlowerMetabolism] = new Booster("Unit digests and absorbs prey very slowly. (25%)", (s) => { s.Outgoing.AbsorptionRate *= 0.25f; s.Outgoing.DigestionRate *= 0.25f; }),
+        [Traits.IceDragoness] = new Booster("<b>This unit is a renowned dragon of ice, possessing abilities and traits reflecting that status.</b> \nOnly receives <b>50%</b> of all damage from Ice attacks. \nReceives <b>150%</b> of all damage from Fire attacks. \nMay attempt <b>2</b> Vore actions per turn.", (s) => { s.VoreAttacks += 1; s.SpeedLossFromWeightMultiplier = 0; s.DodgeLossFromWeightMultiplier = 0.2f; s.Outgoing.ChanceToEscape *= 0.5f; s.Incoming.RangedDamage *= .7f; s.FireDamageTaken *= 1.5f; s.IceDamageTaken *= .5f; }),
     };
 
 }
