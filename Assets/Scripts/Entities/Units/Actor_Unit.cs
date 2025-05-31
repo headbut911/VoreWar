@@ -1215,6 +1215,14 @@ public class Actor_Unit
                 {
                     damMod = Config.SizeDamageCap;
                 }
+                if (target.Unit.HasTrait(Traits.GiantSlayer))
+                {
+                    damMod *= 0.25f;
+                }
+                if (Unit.HasTrait(Traits.Crusher))
+                {
+                    damMod *= 1.5f;
+                }
                 // If we are larger than the attacker, increase damage of attack. Otherwise, reduce it
                 if (BodySize() > target.BodySize())
                 {
@@ -1222,12 +1230,22 @@ public class Actor_Unit
                 }
                 else
                 {
-                    if (Config.SizeDamageInverse)
+                    if (Config.SizeDamageInverse && !Unit.HasTrait(Traits.GiantSlayer))
                     {
                         damage = (int)Math.Round(damage / damMod);
                     }
                 }
             }
+        }
+        else if (Unit.HasTrait(Traits.GiantSlayer) && BodySize() < target.BodySize())
+        {
+            float sizeDiff = Math.Abs(BodySize() - target.BodySize());
+            damage = (int)Math.Round(damage * (1 + (.01f * Math.Min(sizeDiff, 25))));
+        }
+        else if (Unit.HasTrait(Traits.Crusher) && BodySize() > target.BodySize())
+        {
+            float sizeDiff = Math.Abs(BodySize() - target.BodySize());
+            damage = (int)Math.Round(damage * (1 + (.01f * Math.Min(sizeDiff, 25))));
         }
 
         if (damage < 1)

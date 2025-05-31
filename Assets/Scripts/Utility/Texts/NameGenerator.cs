@@ -46,6 +46,7 @@ public class NameGenerator
     List<string> miceTownNames;
     List<string> matronsminionsTownNames;
     List<string> bearTownNames;
+    List<string> mainlandElvenTownNames;
 
     List<string> compyNames;
     List<string> vagrantNames;
@@ -903,6 +904,14 @@ public class NameGenerator
             "Lair of the Lady",
             "Ancestor's Pit",
         };
+        mainlandElvenTownNames = new List<string>
+        {
+            "Glassleaf vale",
+            "Silveren",
+            "Gold Glade",
+            "Greenfalls",
+            "Vanaheim",
+        };
         bearTownNames = new List<string>
         {
             "Ursa-major",
@@ -1318,6 +1327,11 @@ public class NameGenerator
         {
             if (i >= 0 && i < bearTownNames.Count)
                 return bearTownNames[i];
+        }
+        else if (race == Race.MainlandElves)
+        {
+            if (i >= 0 && i < mainlandElvenTownNames.Count)
+                return mainlandElvenTownNames[i];
         }
 
 

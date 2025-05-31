@@ -445,6 +445,10 @@ public enum Traits
     CurseOfPreyportaion = 525,
     /// <summary>Prevents the AI from using weapons. AI will still buy weapons.</summary>
     VoreObsession = 526,
+    /// <summary>If using size based settings: Bonus damage from larger units is reduced by 75% and Unit's damage against larger units is not reduced; Not using size based settings: Unit's damage is increased by 1% for every 1 size larger its target is. (capped at 25)</summary>
+    GiantSlayer = 527,
+    /// <summary>If using size based settings: Extra damage against smaller targets is increased by 50%; Not using size based settings: Unit's damage is increased by 1% for every 1 size smaller its target is. (capped at 25)</summary>
+    Crusher = 528,
 
 
 
