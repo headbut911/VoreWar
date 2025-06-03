@@ -108,6 +108,7 @@ public static class ColorPaletteMap
         FeralOrcaSkin,
         OtachiSkin,
         GnollSkin,
+        PlantSkin,
     }
 
     static Dictionary<SwapType, List<ColorSwapPalette>> Swaps;
@@ -262,6 +263,7 @@ public static class ColorPaletteMap
         List<ColorSwapPalette> FeralOrcaSkinSwaps = WireUp(SwapType.FeralOrcaSkin);
         List<ColorSwapPalette> OtachiSkinSwaps = WireUp(SwapType.OtachiSkin);
         List<ColorSwapPalette> GnollSkinSwaps = WireUp(SwapType.GnollSkin);
+        List<ColorSwapPalette> PlantSkinSwaps = WireUp(SwapType.PlantSkin);
 
         int[] NormalIndexes = { 81, 153, 198, 229, 255 };
         Texture2D map = State.GameManager.PaletteDictionary.SimpleHair;
@@ -2108,6 +2110,31 @@ public static class ColorPaletteMap
             };
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
             GnollSkinSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.PlantSkin;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [3] = map.GetPixel(0, pixelY),
+                [34] = map.GetPixel(1, pixelY),
+                [50] = map.GetPixel(2, pixelY),
+                [85] = map.GetPixel(3, pixelY),
+                [6] = map.GetPixel(4, pixelY),
+                [71] = map.GetPixel(5, pixelY),
+                [101] = map.GetPixel(6, pixelY),
+                [25] = map.GetPixel(7, pixelY),
+                [55] = map.GetPixel(8, pixelY),
+                [111] = map.GetPixel(9, pixelY),
+                [75] = map.GetPixel(10, pixelY),
+                [42] = map.GetPixel(11, pixelY),
+                [255] = map.GetPixel(12, pixelY),
+                [153] = map.GetPixel(13, pixelY),
+                [9] = map.GetPixel(14, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            PlantSkinSwaps.Add(swap);
         }
     }
 
