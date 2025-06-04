@@ -180,6 +180,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Deer4;
     public Sprite[] Bears;
     public Sprite[] BearsClothes;
+    public Sprite[] Eevee;
     public Sprite[] Umbreon;
     public Sprite[] Umbreon2;
     public Sprite[] Umbreon3;

@@ -39,6 +39,7 @@
     static internal Gnolls Gnolls = new Gnolls();
     static internal MainlandElves MainlandElves = new MainlandElves();
     static internal Bears Bears = new Bears();
+    static internal Eevee Eevee = new Eevee();
     static internal Umbreon Umbreon = new Umbreon();
 
 
@@ -384,6 +385,8 @@
                 return ViraeUltimae;
             case Race.Bears:
                 return Bears;
+            case Race.Eevee:
+                return Eevee;
             case Race.Umbreon:
                 return Umbreon;
         }

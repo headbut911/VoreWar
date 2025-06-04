@@ -685,7 +685,7 @@ class Umbreon : DefaultRaceData
             Type = 86037;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
             clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
-            clothing4 = new SpriteExtraInfo(23, null, null); //'Uncolored part'
+            clothing4 = new SpriteExtraInfo(23, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(24, null, null); //Rust
             clothing6 = new SpriteExtraInfo(24, null, null); //LegRust
         }
@@ -716,7 +716,7 @@ class Umbreon : DefaultRaceData
             Type = 86037;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
             clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
-            clothing4 = new SpriteExtraInfo(23, null, null); //'Uncolored part'
+            clothing4 = new SpriteExtraInfo(23, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(24, null, null); //Rust
             clothing6 = new SpriteExtraInfo(24, null, null); //LegRust
         }
@@ -746,7 +746,7 @@ class Umbreon : DefaultRaceData
             Type = 86040;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
             clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
-            clothing4 = new SpriteExtraInfo(23, null, null); //'Uncolored part'
+            clothing4 = new SpriteExtraInfo(23, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(24, null, null); //Rust
             clothing6 = new SpriteExtraInfo(24, null, null); //LegRust
         }
@@ -778,7 +778,7 @@ class Umbreon : DefaultRaceData
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
             clothing2 = new SpriteExtraInfo(22, null, null); //Emblem
             clothing3 = new SpriteExtraInfo(23, null, null); //LegArmor
-            clothing4 = new SpriteExtraInfo(24, null, null); //'Uncolored part'
+            clothing4 = new SpriteExtraInfo(24, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(25, null, null); //Rust
             clothing6 = new SpriteExtraInfo(25, null, null); //LegRust
         }

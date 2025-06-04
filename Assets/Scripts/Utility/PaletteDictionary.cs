@@ -76,5 +76,7 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D UmbreonExt;
     public Texture2D UmbreonClothes;
     public Texture2D UmbreonArmor;
-
+    public Texture2D EeveeEqualeonSkin;
+    public Texture2D EeveeEqualeonExt;
+    public Texture2D EeveeEqualeonClothing;
 }
