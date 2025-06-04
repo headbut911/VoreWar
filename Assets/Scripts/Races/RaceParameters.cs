@@ -39,6 +39,7 @@ static class RaceParameters
     static readonly RaceTraits Gnolls;
     static readonly RaceTraits MainlandElves;
     static readonly RaceTraits Bears;
+    static readonly RaceTraits Umbreon;
     static readonly RaceTraits Centaur;
     static readonly RaceTraits Succubi;
     static readonly RaceTraits Tigers;
@@ -381,6 +382,8 @@ static class RaceParameters
                 return MainlandElves;
             case Race.Bears:
                 return Bears;
+            case Race.Umbreon:
+                return Umbreon;
             case Race.ViraeUltimae:
                 return ViraeUltimae;
             case (Race)700: //Singled out so that it doesn't make the debug message
@@ -1056,6 +1059,22 @@ static class RaceParameters
         };
 
         Bears = new RaceTraits()
+        {
+            BodySize = 15,
+            StomachSize = 20,
+            HasTail = false,
+            FavoredStat = Stat.Endurance,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Intimidating,
+            Traits.HardSkin,
+        },
+            RaceDescription = "",
+        };
+
+        Umbreon = new RaceTraits()
         {
             BodySize = 15,
             StomachSize = 20,

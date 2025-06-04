@@ -108,6 +108,10 @@ public static class ColorPaletteMap
         FeralOrcaSkin,
         OtachiSkin,
         GnollSkin,
+        UmbreonSkin,
+        UmbreonExt,
+        UmbreonClothes,
+        UmbreonArmor,
     }
 
     static Dictionary<SwapType, List<ColorSwapPalette>> Swaps;
@@ -262,6 +266,10 @@ public static class ColorPaletteMap
         List<ColorSwapPalette> FeralOrcaSkinSwaps = WireUp(SwapType.FeralOrcaSkin);
         List<ColorSwapPalette> OtachiSkinSwaps = WireUp(SwapType.OtachiSkin);
         List<ColorSwapPalette> GnollSkinSwaps = WireUp(SwapType.GnollSkin);
+        List<ColorSwapPalette> UmbreonSkinSwaps = WireUp(SwapType.UmbreonSkin);
+        List<ColorSwapPalette> UmbreonExtSwaps = WireUp(SwapType.UmbreonExt);
+        List<ColorSwapPalette> UmbreonClothesSwaps = WireUp(SwapType.UmbreonClothes);
+        List<ColorSwapPalette> UmbreonArmorSwaps = WireUp(SwapType.UmbreonArmor);
 
         int[] NormalIndexes = { 81, 153, 198, 229, 255 };
         Texture2D map = State.GameManager.PaletteDictionary.SimpleHair;
@@ -2108,6 +2116,77 @@ public static class ColorPaletteMap
             };
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
             GnollSkinSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.UmbreonSkin;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [5] = map.GetPixel(0, pixelY),
+                [63] = map.GetPixel(1, pixelY),
+                [126] = map.GetPixel(2, pixelY),
+                [189] = map.GetPixel(3, pixelY),
+                [200] = map.GetPixel(4, pixelY),
+                [225] = map.GetPixel(5, pixelY),
+                [255] = map.GetPixel(6, pixelY),
+                [120] = map.GetPixel(7, pixelY),
+                [175] = map.GetPixel(8, pixelY),
+                [75] = map.GetPixel(9, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonSkinSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.UmbreonExt;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [50] = map.GetPixel(0, pixelY),
+                [100] = map.GetPixel(1, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+                [250] = map.GetPixel(4, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonExtSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.UmbreonClothes;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [42] = map.GetPixel(0, pixelY),
+                [66] = map.GetPixel(1, pixelY),
+                [101] = map.GetPixel(2, pixelY),
+                [123] = map.GetPixel(3, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonClothesSwaps.Add(swap);
+        }
+        map = State.GameManager.PaletteDictionary.UmbreonArmor;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [66] = map.GetPixel(0, pixelY),
+                [224] = map.GetPixel(1, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [186] = map.GetPixel(3, pixelY),
+                [158] = map.GetPixel(4, pixelY),
+                [140] = map.GetPixel(5, pixelY),
+                [116] = map.GetPixel(6, pixelY),
+                [91] = map.GetPixel(7, pixelY),
+                [112] = map.GetPixel(8, pixelY),
+                [70] = map.GetPixel(9, pixelY),
+                [255] = map.GetPixel(10, pixelY),
+                [200] = map.GetPixel(11, pixelY),
+                [84] = map.GetPixel(12, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonArmorSwaps.Add(swap);
         }
     }
 

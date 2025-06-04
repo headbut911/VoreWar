@@ -39,6 +39,7 @@
     static internal Gnolls Gnolls = new Gnolls();
     static internal MainlandElves MainlandElves = new MainlandElves();
     static internal Bears Bears = new Bears();
+    static internal Umbreon Umbreon = new Umbreon();
 
 
     static internal Tigers Tigers = new Tigers();
@@ -383,6 +384,8 @@
                 return ViraeUltimae;
             case Race.Bears:
                 return Bears;
+            case Race.Umbreon:
+                return Umbreon;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;
