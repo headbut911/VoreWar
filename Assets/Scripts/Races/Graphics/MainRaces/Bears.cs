@@ -211,7 +211,7 @@ class Bears : DefaultRaceData
             }
             else
                 belly.transform.localScale = new Vector3(1, 1, 1);
-            return State.GameManager.SpriteDictionary.Bears[98 + actor.GetStomachSize(11, .95f)];
+            return State.GameManager.SpriteDictionary.Bears[43 + actor.GetStomachSize(11, .95f)];
         }
         else
         {
