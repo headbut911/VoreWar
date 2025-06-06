@@ -344,7 +344,7 @@ class Umbreon : DefaultRaceData
 
     protected override Sprite WeaponSprite(Actor_Unit actor)
     {
-        if (actor.GetWeaponSprite() <= 2)
+        if (actor.GetWeaponSprite() <= 1)
         {
             if (actor.Unit.Furry)
             {
@@ -355,7 +355,7 @@ class Umbreon : DefaultRaceData
                 return State.GameManager.SpriteDictionary.Umbreon[102 + (actor.IsAttacking ? 1 : 0)];
             }
         }
-        else if (actor.GetWeaponSprite() <= 4)
+        else if (actor.GetWeaponSprite() <= 3)
         {
             if (actor.Unit.Furry)
             {
