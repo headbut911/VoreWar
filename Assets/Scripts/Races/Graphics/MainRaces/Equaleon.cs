@@ -74,7 +74,7 @@ class Equaleon : DefaultRaceData
         base.RandomCustom(unit);
     }
 
-    internal override int BreastSizes => 8;
+    internal override int BreastSizes => 6;
     internal override int DickSizes => 7;
 
     protected override Sprite BodySprite(Actor_Unit actor)
