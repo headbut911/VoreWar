@@ -56,6 +56,7 @@
     Hamsters = 63,
     RwuMercenaries = 64,
     Centaur = 65,
+    Equaleon = 66,
 
     Vagrants = 100,
     Serpents = 101,

@@ -218,6 +218,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] RwuMercenaries7;
     public Sprite[] RwuMercenaries8a;
     public Sprite[] RwuMercenaries8b;
+    public Sprite[] Equaleon;
 
     public Sprite[] CowsSeliciaBelly;
 

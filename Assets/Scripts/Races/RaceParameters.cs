@@ -124,6 +124,7 @@ static class RaceParameters
     static readonly RaceTraits FeralSlime;
     static readonly RaceTraits Olivia;
     static readonly RaceTraits ViraeUltimae;
+    static readonly RaceTraits Equaleon;
 
     static Unit tempUnit;
 
@@ -233,6 +234,8 @@ static class RaceParameters
                 return Hamsters;
             case Race.RwuMercenaries:
                 return RwuMercenaries;
+            case Race.Equaleon:
+                return Equaleon;
             case Race.Vagrants:
                 return Vagrants;
             case Race.Serpents:
@@ -1246,6 +1249,22 @@ static class RaceParameters
         };
 
         Puca = new RaceTraits()
+        {
+            BodySize = 7,
+            StomachSize = 14,
+            HasTail = true,
+            FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            Upkeep = 2f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.ArtfulDodge,
+            Traits.Pounce,
+        },
+            RaceDescription = "A race of burrowers very true to their heritage, the Puca trust their shovels and feet above advanced technology. Many a foe has found themselves swallowed up by their deep dark tunnels.",
+        };
+
+        Equaleon = new RaceTraits()
         {
             BodySize = 7,
             StomachSize = 14,

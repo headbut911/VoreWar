@@ -79,4 +79,5 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D EeveeEqualeonSkin;
     public Texture2D EeveeEqualeonExt;
     public Texture2D EeveeEqualeonClothing;
+    public Texture2D EqualeonEyes;
 }

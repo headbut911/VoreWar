@@ -57,6 +57,7 @@
     static internal Hamsters Hamsters = new Hamsters();
     static internal RwuMercenaries RwuMercenaries = new RwuMercenaries();
     static internal Centaur Centaur = new Centaur();
+    static internal Equaleon Equaleon = new Equaleon();
 
     static internal Vagrants Vagrants = new Vagrants();
     static internal Serpents Serpents = new Serpents();
@@ -389,6 +390,8 @@
                 return Eevee;
             case Race.Umbreon:
                 return Umbreon;
+            case Race.Equaleon:
+                return Equaleon;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;
