@@ -45,6 +45,9 @@ public class NameGenerator
     List<string> aabayxTownNames;
     List<string> miceTownNames;
     List<string> matronsminionsTownNames;
+    List<string> bearTownNames;
+    List<string> mainlandElvenTownNames;
+    List<string> umbreonTownNames;
 
     List<string> compyNames;
     List<string> vagrantNames;
@@ -902,6 +905,35 @@ public class NameGenerator
             "Lair of the Lady",
             "Ancestor's Pit",
         };
+        mainlandElvenTownNames = new List<string>
+        {
+            "Glassleaf vale",
+            "Silveren",
+            "Gold Glade",
+            "Greenfalls",
+            "Vanaheim",
+        };
+        bearTownNames = new List<string>
+        {
+            "Ursa-major",
+            "Honeycomb",
+            "Necessity",
+            "Bjornsburg",
+        };
+        umbreonTownNames = new List<string>
+        {
+            "Revolution's Might",
+            "Freedom Restored",
+            "Fort Cresent",
+            "Liberty Regained",
+            "Democracy",
+            "Merciful Hammer",
+            "Justice For All",
+            "The Downtown",
+            "New New Eevia",
+            "Duskville",
+            "Shadowwall",
+        };
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
 
@@ -1305,6 +1337,21 @@ public class NameGenerator
         {
             if (i >= 0 && i < matronsminionsTownNames.Count)
                 return matronsminionsTownNames[i];
+        }
+        else if (race == Race.Bears)
+        {
+            if (i >= 0 && i < bearTownNames.Count)
+                return bearTownNames[i];
+        }
+        else if (race == Race.Umbreon)
+        {
+            if (i >= 0 && i < umbreonTownNames.Count)
+                return umbreonTownNames[i];
+        }
+        else if (race == Race.MainlandElves)
+        {
+            if (i >= 0 && i < mainlandElvenTownNames.Count)
+                return mainlandElvenTownNames[i];
         }
 
 

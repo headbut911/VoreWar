@@ -519,6 +519,18 @@ public class UnitCustomizer
             case Race.ViraeUltimae:
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Head Color";
                 break;
+            case Race.MainlandElves:
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Ear Accessory";
+                break;
+            case Race.Umbreon:
+                buttons[(int)ButtonTypes.Furry].Label.text = "Handedness";
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Ring Color";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Decal";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Armor Rust";
+                break;
+            case Race.Equaleon:
+                buttons[(int)ButtonTypes.BodyAccentTypes2].gameObject.SetActive(false);
+                break;
         }
     }
 

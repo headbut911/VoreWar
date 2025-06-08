@@ -400,8 +400,8 @@ public class ContentSettings : MonoBehaviour
             new ToggleObject(AbsorbRateDivision, "AbsorbRateDivision", false),
             new ToggleObject(AbsorbLoss, "AbsorbLoss", false),
             new ToggleObject(AbsorbBoostDeadOnly, "AbsorbBoostDeadOnly", false),
-            new ToggleObject(SizeAccuracyInverse, "SizeAccuracyInverse", false),
-            new ToggleObject(SizeDamageInverse, "SizeDamageInverse", false),
+            new ToggleObject(SizeAccuracyInverse, "SizeAccuracyInverse", true),
+            new ToggleObject(SizeDamageInverse, "SizeDamageInverse", true),
 
         };
         MercToggles = new List<ToggleObject>();
@@ -702,11 +702,11 @@ public class ContentSettings : MonoBehaviour
         Config.World.RevealTurn = PlayerPrefs.GetInt("RevealTurn", 50);
         Config.World.TacticalMovementSoftCap = PlayerPrefs.GetInt("TacticalMovementSoftCap", -1);
         Config.World.TacticalMovementHardCap = PlayerPrefs.GetInt("TacticalMovementHardCap", -1);
-        Config.World.SizeAccuracyMod = PlayerPrefs.GetFloat("SizeAccuracyMod", 0);
+        Config.World.SizeAccuracyMod = PlayerPrefs.GetFloat("SizeAccuracyMod", 0.01f);
         Config.World.SizeAccuracyLowerBound = PlayerPrefs.GetFloat("SizeAccuracyLowerBound", 10);
         Config.World.SizeAccuracyInterval = PlayerPrefs.GetInt("SizeAccuracyInterval", 5);
         Config.World.SizeAccuracyCap = PlayerPrefs.GetFloat("SizeAccuracyCap", -1);
-        Config.World.SizeDamageMod = PlayerPrefs.GetFloat("SizeDamageMod", 0);
+        Config.World.SizeDamageMod = PlayerPrefs.GetFloat("SizeDamageMod", 0.01f);
         Config.World.SizeDamageLowerBound = PlayerPrefs.GetFloat("SizeDamageLowerBound", 10);
         Config.World.SizeDamageInterval = PlayerPrefs.GetInt("SizeDamageInterval", 5);
         Config.World.SizeDamageCap = PlayerPrefs.GetFloat("SizeDamageCap", -1);
@@ -1171,7 +1171,7 @@ public class ContentSettings : MonoBehaviour
         if (float.TryParse(SizeAccuracyMod.text, out float sam))
             Config.World.SizeAccuracyMod = sam;
         else
-            Config.World.SizeAccuracyMod = 0;
+            Config.World.SizeAccuracyMod = 0.01f;
 
         if (float.TryParse(SizeAccuracyLowerBound.text, out float salb))
             Config.World.SizeAccuracyLowerBound = salb;
@@ -1191,7 +1191,7 @@ public class ContentSettings : MonoBehaviour
         if (float.TryParse(SizeDamageMod.text, out float sdm))
             Config.World.SizeDamageMod = sdm;
         else
-            Config.World.SizeDamageMod = 0;
+            Config.World.SizeDamageMod = 0.01f;
 
         if (float.TryParse(SizeDamageLowerBound.text, out float sdlb))
             Config.World.SizeDamageLowerBound = sdlb;

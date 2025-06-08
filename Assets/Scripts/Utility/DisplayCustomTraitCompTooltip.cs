@@ -16,6 +16,6 @@ public class DisplayCustomTraitCompTooltip : MonoBehaviour, IPointerEnterHandler
     public void OnPointerExit(PointerEventData eventData)
     {
         if (State.GameManager.Menu.CustomTraitEditor.CustomTrait.gameObject.activeSelf)
-            State.GameManager.Menu.CustomTraitEditor.CustomTrait.ChangeToolTip(CustomTraitComp.enumcounter);
+            State.GameManager.Menu.CustomTraitEditor.CustomTrait.ChangeToolTip(CustomTraitComp.nondirectionalcounter);
     }
 }

@@ -180,6 +180,10 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Deer4;
     public Sprite[] Bears;
     public Sprite[] BearsClothes;
+    public Sprite[] Eevee;
+    public Sprite[] Umbreon;
+    public Sprite[] Umbreon2;
+    public Sprite[] Umbreon3;
 
     public Sprite[] Succubi;
     public Sprite[] Alligators;
@@ -214,6 +218,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] RwuMercenaries7;
     public Sprite[] RwuMercenaries8a;
     public Sprite[] RwuMercenaries8b;
+    public Sprite[] Equaleon;
 
     public Sprite[] CowsSeliciaBelly;
 

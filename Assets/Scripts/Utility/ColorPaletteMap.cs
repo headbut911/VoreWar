@@ -108,6 +108,14 @@ public static class ColorPaletteMap
         FeralOrcaSkin,
         OtachiSkin,
         GnollSkin,
+        UmbreonSkin,
+        UmbreonExt,
+        UmbreonClothes,
+        UmbreonArmor,
+        EeveeEqualeonSkin,
+        EeveeEqualeonExt,
+        EeveeEqualeonClothing,
+        EqualeonEyes,
         PlantSkin,
     }
 
@@ -263,6 +271,14 @@ public static class ColorPaletteMap
         List<ColorSwapPalette> FeralOrcaSkinSwaps = WireUp(SwapType.FeralOrcaSkin);
         List<ColorSwapPalette> OtachiSkinSwaps = WireUp(SwapType.OtachiSkin);
         List<ColorSwapPalette> GnollSkinSwaps = WireUp(SwapType.GnollSkin);
+        List<ColorSwapPalette> UmbreonSkinSwaps = WireUp(SwapType.UmbreonSkin);
+        List<ColorSwapPalette> UmbreonExtSwaps = WireUp(SwapType.UmbreonExt);
+        List<ColorSwapPalette> UmbreonClothesSwaps = WireUp(SwapType.UmbreonClothes);
+        List<ColorSwapPalette> UmbreonArmorSwaps = WireUp(SwapType.UmbreonArmor);
+        List<ColorSwapPalette> EeveeEqualeonSkinSwaps = WireUp(SwapType.EeveeEqualeonSkin);
+        List<ColorSwapPalette> EeveeEqualeonExtSwaps = WireUp(SwapType.EeveeEqualeonExt);
+        List<ColorSwapPalette> EeveeEqualeonClothingSwaps = WireUp(SwapType.EeveeEqualeonClothing);
+        List<ColorSwapPalette> EqualeonEyesSwaps = WireUp(SwapType.EqualeonEyes);
         List<ColorSwapPalette> PlantSkinSwaps = WireUp(SwapType.PlantSkin);
 
         int[] NormalIndexes = { 81, 153, 198, 229, 255 };
@@ -2110,6 +2126,143 @@ public static class ColorPaletteMap
             };
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
             GnollSkinSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.UmbreonSkin;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [5] = map.GetPixel(0, pixelY),
+                [63] = map.GetPixel(1, pixelY),
+                [126] = map.GetPixel(2, pixelY),
+                [189] = map.GetPixel(3, pixelY),
+                [200] = map.GetPixel(4, pixelY),
+                [225] = map.GetPixel(5, pixelY),
+                [255] = map.GetPixel(6, pixelY),
+                [120] = map.GetPixel(7, pixelY),
+                [175] = map.GetPixel(8, pixelY),
+                [75] = map.GetPixel(9, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonSkinSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.UmbreonExt;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [50] = map.GetPixel(0, pixelY),
+                [100] = map.GetPixel(1, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+                [250] = map.GetPixel(4, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonExtSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.UmbreonClothes;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [42] = map.GetPixel(0, pixelY),
+                [66] = map.GetPixel(1, pixelY),
+                [101] = map.GetPixel(2, pixelY),
+                [123] = map.GetPixel(3, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonClothesSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.UmbreonArmor;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [66] = map.GetPixel(0, pixelY),
+                [224] = map.GetPixel(1, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [186] = map.GetPixel(3, pixelY),
+                [158] = map.GetPixel(4, pixelY),
+                [140] = map.GetPixel(5, pixelY),
+                [116] = map.GetPixel(6, pixelY),
+                [91] = map.GetPixel(7, pixelY),
+                [112] = map.GetPixel(8, pixelY),
+                [70] = map.GetPixel(9, pixelY),
+                [255] = map.GetPixel(10, pixelY),
+                [200] = map.GetPixel(11, pixelY),
+                [84] = map.GetPixel(12, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            UmbreonArmorSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.EeveeEqualeonSkin;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [5] = map.GetPixel(0, pixelY),
+                [50] = map.GetPixel(1, pixelY),
+                [85] = map.GetPixel(2, pixelY),
+                [130] = map.GetPixel(3, pixelY),
+                [175] = map.GetPixel(4, pixelY),
+                [200] = map.GetPixel(5, pixelY),
+                [255] = map.GetPixel(6, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            EeveeEqualeonSkinSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.EeveeEqualeonExt;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [152] = map.GetPixel(0, pixelY),
+                [225] = map.GetPixel(1, pixelY),
+                [236] = map.GetPixel(2, pixelY),
+                [244] = map.GetPixel(3, pixelY),
+                [100] = map.GetPixel(4, pixelY),
+                [190] = map.GetPixel(5, pixelY),
+                [15] = map.GetPixel(6, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            EeveeEqualeonExtSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.EeveeEqualeonClothing;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [50] = map.GetPixel(6, pixelY),
+                [100] = map.GetPixel(5, pixelY),
+                [150] = map.GetPixel(4, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+                [250] = map.GetPixel(2, pixelY),
+                [1] = map.GetPixel(1, pixelY),
+                [2] = map.GetPixel(0, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            EeveeEqualeonClothingSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.EqualeonEyes;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [75] = map.GetPixel(0, pixelY),
+                [137] = map.GetPixel(1, pixelY),
+                [258] = map.GetPixel(2, pixelY),
+
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            EqualeonEyesSwaps.Add(swap);
         }
 
         map = State.GameManager.PaletteDictionary.PlantSkin;

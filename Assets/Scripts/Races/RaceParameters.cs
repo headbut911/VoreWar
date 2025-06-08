@@ -1102,35 +1102,34 @@ static class RaceParameters
         },
             RaceDescription = "",
         };
-	
+
         Eevee = new RaceTraits()
         {
-            BodySize = 15,
-            StomachSize = 20,
-            HasTail = false,
-            FavoredStat = Stat.Endurance,
+            BodySize = 12,
+            StomachSize = 12,
+            FavoredStat = Stat.Will,
             DeployCost = 1,
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
-            Traits.Intimidating,
-            Traits.HardSkin,
+            Traits.AdeptLearner,
+            Traits.PackWill,
         },
             RaceDescription = "",
         };
 
         Umbreon = new RaceTraits()
         {
-            BodySize = 15,
-            StomachSize = 20,
-            HasTail = false,
-            FavoredStat = Stat.Endurance,
+            BodySize = 12,
+            StomachSize = 12,
+            FavoredStat = Stat.Strength,
             DeployCost = 1,
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.Intimidating,
-            Traits.HardSkin,
+            Traits.PackStrength,
+            Traits.EscapeArtist,
         },
             RaceDescription = "",
         };
@@ -1302,6 +1301,22 @@ static class RaceParameters
             Traits.Pounce,
         },
             RaceDescription = "",
+        };
+
+        Equaleon = new RaceTraits()
+        {
+            BodySize = 7,
+            StomachSize = 14,
+            HasTail = true,
+            FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            Upkeep = 2f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.ArtfulDodge,
+            Traits.Pounce,
+        },
+            RaceDescription = "A race of burrowers very true to their heritage, the Puca trust their shovels and feet above advanced technology. Many a foe has found themselves swallowed up by their deep dark tunnels.",
         };
 
         Kobolds = new RaceTraits()

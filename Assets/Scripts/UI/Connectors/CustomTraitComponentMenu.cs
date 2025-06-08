@@ -34,8 +34,22 @@ public class CustomTraitComponentMenu : MonoBehaviour
 
     private void Setup()
     {
-        int maxvalue = (int)CustomTraitComp.enumcounter;
+        int maxvalue = (int)CustomTraitComp.nondirectionalcounter;
         for (int j = 0; maxvalue - 1 >= j; j++)
+        {
+            SelectedComps.Add((CustomTraitComp)j, CreateSelectedButton(((CustomTraitComp)j).ToString(), (CustomTraitComp)j));
+            AvailibleComps.Add((CustomTraitComp)j, CreateAvaildButton(((CustomTraitComp)j).ToString(), (CustomTraitComp)j));
+        }
+
+        maxvalue = (int)CustomTraitComp.outgoingcounter;
+        for (int j = 1000; maxvalue - 1 >= j; j++)
+        {
+            SelectedComps.Add((CustomTraitComp)j, CreateSelectedButton(((CustomTraitComp)j).ToString(), (CustomTraitComp)j));
+            AvailibleComps.Add((CustomTraitComp)j, CreateAvaildButton(((CustomTraitComp)j).ToString(), (CustomTraitComp)j));
+        }
+
+        maxvalue = (int)CustomTraitComp.incomingcounter;
+        for (int j = 2000; maxvalue - 1 >= j; j++)
         {
             SelectedComps.Add((CustomTraitComp)j, CreateSelectedButton(((CustomTraitComp)j).ToString(), (CustomTraitComp)j));
             AvailibleComps.Add((CustomTraitComp)j, CreateAvaildButton(((CustomTraitComp)j).ToString(), (CustomTraitComp)j));

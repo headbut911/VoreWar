@@ -791,6 +791,10 @@ public class HoveringTooltip : MonoBehaviour
                 return "Upon landing a killing blow on a poisoned target the target will create 1 of this unit's spawn race.";
             case Traits.DireInfection:
                 return "A melee attack that debilitates the target for 1 turn reducing movement to 1 and badly poisons them for 6 turns.";
+            case Traits.GiantSlayer:
+                return Config.SizeDamageMod > 0 && Config.SizeDamageInterval > 0 ? "Bonus damage from larger units is reduced by 75% and Unit's damage against larger targets is not reduced" : "Units damage is increased by 1% for every 1 size larger the target is. (capped at 25)";
+            case Traits.Crusher:
+                return Config.SizeDamageMod > 0 && Config.SizeDamageInterval > 0 ? "Bonus damage against smaller targets is increased by 50%." : "Units damage is increased by 1% for every 1 size smaller the target is. (capped at 25)";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

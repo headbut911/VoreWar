@@ -39,6 +39,8 @@
     static internal Gnolls Gnolls = new Gnolls();
     static internal MainlandElves MainlandElves = new MainlandElves();
     static internal Bears Bears = new Bears();
+    static internal Eevee Eevee = new Eevee();
+    static internal Umbreon Umbreon = new Umbreon();
 
 
     static internal Tigers Tigers = new Tigers();
@@ -55,6 +57,7 @@
     static internal Hamsters Hamsters = new Hamsters();
     static internal RwuMercenaries RwuMercenaries = new RwuMercenaries();
     static internal Centaur Centaur = new Centaur();
+    static internal Equaleon Equaleon = new Equaleon();
 
     static internal Vagrants Vagrants = new Vagrants();
     static internal Serpents Serpents = new Serpents();
@@ -383,6 +386,12 @@
                 return ViraeUltimae;
             case Race.Bears:
                 return Bears;
+            case Race.Eevee:
+                return Eevee;
+            case Race.Umbreon:
+                return Umbreon;
+            case Race.Equaleon:
+                return Equaleon;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

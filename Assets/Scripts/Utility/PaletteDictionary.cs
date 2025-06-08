@@ -72,6 +72,14 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D FeralOrcaSkin;
     public Texture2D OtachiSkin;
     public Texture2D GnollSkin;
+    public Texture2D UmbreonSkin;
+    public Texture2D UmbreonExt;
+    public Texture2D UmbreonClothes;
+    public Texture2D UmbreonArmor;
+    public Texture2D EeveeEqualeonSkin;
+    public Texture2D EeveeEqualeonExt;
+    public Texture2D EeveeEqualeonClothing;
+    public Texture2D EqualeonEyes;
     public Texture2D PlantSkin;
 
 }

@@ -37,6 +37,7 @@
     Gnolls = 32,
     MainlandElves = 33,
     Bears = 34,
+    Umbreon = 35,
 
     Succubi = 50,
     Tigers = 51,
@@ -54,6 +55,8 @@
     Hamsters = 63,
     RwuMercenaries = 64,
     Centaur = 65,
+    Eevee = 66,
+    Equaleon = 67,
 
     Vagrants = 100,
     Serpents = 101,

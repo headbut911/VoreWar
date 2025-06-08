@@ -169,7 +169,10 @@ class StrategicBuildingContractor
         {
             foreach (var upgrade in building.Upgrades.Where(u => !u.built))
             {
-                upgradeDict.Add(upgrade, building);
+                if (!upgradeDict.ContainsKey(upgrade))
+                {
+                    upgradeDict.Add(upgrade, building);
+                }
             }
         }
         int index = State.Rand.Next(0, upgradeDict.Count);

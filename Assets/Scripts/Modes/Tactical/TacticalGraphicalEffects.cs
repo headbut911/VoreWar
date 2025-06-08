@@ -147,6 +147,13 @@ static class TacticalGraphicalEffects
             else if (weapon.Graphic == 6)
                 return State.GameManager.SpriteDictionary.Vipers1[20];
         }
+        else if (actor.Unit.Race == Race.Bears)
+        {
+            if (weapon.Graphic == 4)
+                return State.GameManager.SpriteDictionary.Bears[34];
+            else if (weapon.Graphic == 6)
+                return State.GameManager.SpriteDictionary.Bears[36];
+        }
         return null;
     }
 
