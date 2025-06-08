@@ -580,6 +580,8 @@ public enum Traits
     Brainless  = 309,
     /// <summary>ViralDigestion, AwkwardShape, and SlowAbsorption in one trait.</summary>
     ViralBiology  = 310,
+    /// <summary>If one of an army has this trait, all non-water tiles can be traversed by the army for 1 MP.</summary>
+    Cartography  = 311,
 
 
     // Growth-related section

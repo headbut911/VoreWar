@@ -273,6 +273,15 @@ public class Army
                 }
             }
         }
+
+        foreach (Unit unit in Units)
+        {
+            bool cartographyCheck = false;
+            if (unit.HasTrait(Traits.Cartography))
+                cartographyCheck = true;
+            if (cartographyCheck == true)
+            { movement += 1; }
+        }
         if (movement < 0)
             { movement = 0; }
 
@@ -282,6 +291,7 @@ public class Army
     public void RefreshMovementMode()
     {
         int flying = 0;
+        int cartography = 0;
         int noHill = 0;
         int yesLava = 0;
         int noSnow = 0;
@@ -298,6 +308,8 @@ public class Army
         {
             if (unit.HasTrait(Traits.Pathfinder))
                 flying++;
+            if (unit.HasTrait(Traits.Cartography))
+                cartography++;
             if (unit.HasTrait(Traits.HillImpedence))
                 noHill++;
             if (unit.HasTrait(Traits.LavaWalker)) 
@@ -467,6 +479,8 @@ public class Army
 
 
         if (flying > 0 && flying >= Units.Count / 2)
+            movementMode = MovementMode.Flight;
+        if (cartography > 0)
             movementMode = MovementMode.Flight;
         //else if (aquatic >= Units.Count / 2)
         //    movementMode = MovementMode.Aquatic;
