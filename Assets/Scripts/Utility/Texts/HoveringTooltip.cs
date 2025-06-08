@@ -791,6 +791,8 @@ public class HoveringTooltip : MonoBehaviour
                 return "Upon landing a killing blow on a poisoned target the target will create 1 of this unit's spawn race.";
             case Traits.DireInfection:
                 return "A melee attack that debilitates the target for 1 turn reducing movement to 1 and badly poisons them for 6 turns.";
+            case Traits.Cartography:
+                return "This unit provides the army it's in with +1 MP and allows transversal of all terrain at a movement cost of 1";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

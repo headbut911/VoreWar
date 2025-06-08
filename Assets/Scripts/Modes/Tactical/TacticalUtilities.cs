@@ -65,7 +65,7 @@ static class TacticalUtilities
                     int turns = 9999;
                     int flightTurns = 9999;
                     Vec2i destination = null;
-                    bool flyersExist = unit.HasTrait(Traits.Pathfinder);
+                    bool flyersExist = unit.HasTrait(Traits.Pathfinder) || unit.HasTrait(Traits.Cartography);
                     if (loc != null && loc.Count > 0)
                     {
                         destination = new Vec2i(loc.Last().X, loc.Last().Y);
@@ -89,7 +89,7 @@ static class TacticalUtilities
                 int turns = 9999;
                 int flightTurns = 9999;
                 Vec2i destination = null;
-                bool flyersExist = travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder)).Count() > 0;
+                bool flyersExist = travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) || s.HasTrait(Traits.Cartography)).Count() > 0;
                 if (loc != null && loc.Count > 0)
                 {
                     destination = new Vec2i(loc.Last().X, loc.Last().Y);
@@ -100,8 +100,8 @@ static class TacticalUtilities
                 if (turns < 999)
                 {
                     if (flyersExist)
-                        StrategicUtilities.CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder)).ToList(), StrategicUtilities.GetVillageAt(destination), flightTurns);
-                    StrategicUtilities.CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) == false).ToList(), StrategicUtilities.GetVillageAt(destination), turns);
+                        StrategicUtilities.CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) || s.HasTrait(Traits.Cartography)).ToList(), StrategicUtilities.GetVillageAt(destination), flightTurns);
+                    StrategicUtilities.CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) == false || s.HasTrait(Traits.Cartography) == false).ToList(), StrategicUtilities.GetVillageAt(destination), turns);
                 }
             }
 
