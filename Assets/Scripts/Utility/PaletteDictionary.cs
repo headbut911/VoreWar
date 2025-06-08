@@ -72,5 +72,6 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D FeralOrcaSkin;
     public Texture2D OtachiSkin;
     public Texture2D GnollSkin;
+    public Texture2D PlantSkin;
 
 }
