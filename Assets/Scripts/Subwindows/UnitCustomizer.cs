@@ -531,6 +531,9 @@ public class UnitCustomizer
             case Race.Equaleon:
                 buttons[(int)ButtonTypes.BodyAccentTypes2].gameObject.SetActive(false);
                 break;
+            case Race.Viisels:
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Faceplate Color";
+                break;
         }
     }
 
