@@ -695,8 +695,8 @@ class Eevee : DefaultRaceData
             OccupiesAllSlots = true;
             Type = 860037;
             clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
-            clothing2 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
-            clothing3 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
+            clothing2 = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
+            clothing3 = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)

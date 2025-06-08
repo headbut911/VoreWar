@@ -172,7 +172,7 @@ class Equaleon : DefaultRaceData
 
         return null;
     }
-    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => State.GameManager.SpriteDictionary.Equaleon[22 + actor.Unit.BodyAccentType2];
+    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => State.GameManager.SpriteDictionary.Equaleon[22 + actor.Unit.EarType];
     protected override Sprite BodyAccentSprite3(Actor_Unit actor) => State.GameManager.SpriteDictionary.Equaleon[actor.IsAttacking ? 34 : 33];
     protected override Sprite BodyAccentSprite4(Actor_Unit actor) => State.GameManager.SpriteDictionary.Equaleon[actor.IsAttacking ? 36 : 35];
     protected override Sprite BodyAccentSprite5(Actor_Unit actor)

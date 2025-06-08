@@ -47,6 +47,7 @@ public class NameGenerator
     List<string> matronsminionsTownNames;
     List<string> bearTownNames;
     List<string> mainlandElvenTownNames;
+    List<string> umbreonTownNames;
 
     List<string> compyNames;
     List<string> vagrantNames;
@@ -919,6 +920,20 @@ public class NameGenerator
             "Necessity",
             "Bjornsburg",
         };
+        umbreonTownNames = new List<string>
+        {
+            "Revolution's Might",
+            "Freedom Restored",
+            "Fort Cresent",
+            "Liberty Regained",
+            "Democracy",
+            "Merciful Hammer",
+            "Justice For All",
+            "The Downtown",
+            "New New Eevia",
+            "Duskville",
+            "Shadowwall",
+        };
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
 
@@ -1327,6 +1342,11 @@ public class NameGenerator
         {
             if (i >= 0 && i < bearTownNames.Count)
                 return bearTownNames[i];
+        }
+        else if (race == Race.Umbreon)
+        {
+            if (i >= 0 && i < umbreonTownNames.Count)
+                return umbreonTownNames[i];
         }
         else if (race == Race.MainlandElves)
         {

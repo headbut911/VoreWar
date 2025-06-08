@@ -1082,32 +1082,31 @@ static class RaceParameters
 
         Eevee = new RaceTraits()
         {
-            BodySize = 15,
-            StomachSize = 20,
-            HasTail = false,
-            FavoredStat = Stat.Endurance,
+            BodySize = 12,
+            StomachSize = 12,
+            FavoredStat = Stat.Will,
             DeployCost = 1,
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
-            Traits.Intimidating,
-            Traits.HardSkin,
+            Traits.AdeptLearner,
+            Traits.PackWill,
         },
             RaceDescription = "",
         };
 
         Umbreon = new RaceTraits()
         {
-            BodySize = 15,
-            StomachSize = 20,
-            HasTail = false,
-            FavoredStat = Stat.Endurance,
+            BodySize = 12,
+            StomachSize = 12,
+            FavoredStat = Stat.Strength,
             DeployCost = 1,
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.Intimidating,
-            Traits.HardSkin,
+            Traits.PackStrength,
+            Traits.EscapeArtist,
         },
             RaceDescription = "",
         };
