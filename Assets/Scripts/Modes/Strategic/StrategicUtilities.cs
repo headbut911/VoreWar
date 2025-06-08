@@ -936,7 +936,7 @@ static class StrategicUtilities
             travelingUnits = travelingUnits.Where(s => s.Type != UnitType.SpecialMercenary || s.HasTrait(Traits.Eternal)).ToList();
         if (travelingUnits.Count() == 0)
             return;
-        bool flyersExist = travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder)).Count() > 0;
+        bool flyersExist = travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) || s.HasTrait(Traits.Cartography)).Count() > 0;
         if (loc != null && loc.Count > 0)
         {
             destination = new Vec2i(loc.Last().X, loc.Last().Y);
@@ -950,8 +950,8 @@ static class StrategicUtilities
             if (village.Side != army.Side)
                 Debug.Log("Sent traveling units to someone else's village...");
             if (flyersExist)
-                CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder)).ToList(), village, flightTurns);
-            CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) == false).ToList(), village, turns);
+                CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) || s.HasTrait(Traits.Cartography)).ToList(), village, flightTurns);
+            CreateInvisibleTravelingArmy(travelingUnits.Where(s => s.HasTrait(Traits.Pathfinder) == false || s.HasTrait(Traits.Cartography) == false).ToList(), village, turns);
         }
 
 
@@ -980,7 +980,7 @@ static class StrategicUtilities
         if (loc != null && loc.Count > 0)
         {
             destination = new Vec2i(loc.Last().X, loc.Last().Y);
-            turns = StrategyPathfinder.TurnsToReach(null, army, destination, army.GetMaxMovement(), travelingUnit.HasTrait(Traits.Pathfinder));
+            turns = StrategyPathfinder.TurnsToReach(null, army, destination, army.GetMaxMovement(), travelingUnit.HasTrait(Traits.Pathfinder) || travelingUnit.HasTrait(Traits.Cartography));
         }
         if (turns < 999)
             CreateInvisibleTravelingArmy(travelingUnit, GetVillageAt(destination), turns);
