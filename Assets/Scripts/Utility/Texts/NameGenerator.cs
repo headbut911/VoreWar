@@ -850,26 +850,20 @@ public class NameGenerator
         };
         aabayxTownNames = new List<string>
         {
-            "Akaryocyte",  ///(this one is the capital, by the way)
-            "Infection Site Zero",
-            "Arenai",
-            "Temple of Twenty",
-            "Adnaviria",
-            "Ysynsr aaz Lextrnl's Domain",
-            "Duplodnaviria",
-            "Bacteriophage",
-            "Monodnaviria",
-            "Aychkaynienteeseven",
-            "Riboviria",
-            "Capsid",
-            "Ribozyviria",
-            "Lipid Envelope",
-            "Varidnaviria",
-            "Mimi",
-            "Tevenvirinae",
-            "Myoviridae",
-            "Podoviridae",
-            "Autographiviridae",
+            "Temple of Twenty",  ///(Capital)
+            "Chapchapksyr",  ///(Translates as "Book place." When possible, the Aabayx prefer to keep all written records here, at the temple to Pntyr aaz Chapchap, believing that Pntyr aaz Chapchap will keep said writings safe)
+            "Aptnaxksyr",  ///(Translates as "Apnax's place")
+            "Tmpl",  ///(Translates as "Origin." Built around a major holy site for the Aabayx)
+            "Ninksyr",  ///(Translates as "Meeting place." Was a frequent meeting spot for Aabayx before the 20th Sythkrast)
+            "Kanayt aaz Sgl",  ///(Translates as "Tree of Sgl" or "Sgl's Tree"(both are equally valid translations))
+            "P'pl Snsn",  ///(Translates as "Black Mud")
+            "Akaryocyte",  ///(Doesn't translate anymore, but once upon a time meant something like "haunted grass"(No longer the capital, but I liked this one too much to get rid of it entirely))
+            "Temple of Kyes",  ///(Seen as mysterious, even by other Aabayx villages. Best thing to do is to avoid it)
+            "Lkrtr Axax",  ///(Translates as "Fort Axax" or "Axax's Fort"(both are equally valid translations))
+            "Lkrtr Dfndr",  ///(Translates as "Fort Silver")
+            "Lkrtr Yef Sxltl",  ///(Translates as "Fort Yef Sxltl" or "Yef Sxltl's Fort"(both are equally valid translations))
+            "Lkrtr Bnsa",  ///(Translates as "Fort Bnsa" or "Bnsa's Fort"(both are equally valid translations))
+            "Lkrtr Kchk",  ///(Translates as "Fort Fire")
         };
         miceTownNames = new List<string>
         {
@@ -919,6 +913,8 @@ public class NameGenerator
             "Honeycomb",
             "Necessity",
             "Bjornsburg",
+            "Hyperborea",
+            "Glaesisvellir",
         };
         umbreonTownNames = new List<string>
         {
