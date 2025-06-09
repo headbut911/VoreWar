@@ -3719,7 +3719,7 @@ static class StoredLogTexts
             priority: 9, conditional: s => Scat(s) && Farts(s) && ActorHumanoid(s)),
             //New Fart disposal w/ dialogue by Flame
             new EventString((i) => $"<i><b>{PreyLocStrings.RandomFartSFX()}</b></i> comes the telltale sound from <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("ass","asshole","anus","butt","buttcheeks","booty","rear","rear-end","backside")}, indicating that {GPPHis(i.Unit)} {GetRandomStringFrom("greedy", "hungry", "mighty", "powerful")} {GetRandomStringFrom("guts","insides","innards","intestines","bowels")} have finished {PreyLocStrings.DigestingVerbSyn()} <b>{i.Target.Name}</b>. \n\"{GetRandomStringFrom("Whoops,", "Oops,", "Oh my,", "Goodness,", "Wow,", "Whoa,", "Oof,", "Woof,", "Hehe,", "Heh,", "Hah,", "Heehee,")} {GetRandomStringFrom("excuse me", "pardon me", "sorry", "apologies", "I'm sorry", "my bad")}{GetRandomStringFrom("!", "~", "...")}\" The flatulent {InfoPanel.RaceSingular(i.Unit)} {GetRandomStringFrom("said", "laughed", "giggled", "mused")}, waving a hand in front of {GPPHis(i.Unit)} {GetRandomStringFrom("face", "nose")}. \"Must've been {GetRandomStringFrom("somebody", "someone", "some bitch", "some fool", "that nerd")} I ate~\"",
-            priority: 9, conditional: s => Farts(s) && ActorHumanoid(s)),
+            priority: 9, conditional: s => Farts(s) && ActorHumanoid(s) && InStomach(s)),
             
             
             // Diaper Disposal

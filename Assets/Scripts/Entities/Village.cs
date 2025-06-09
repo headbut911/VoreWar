@@ -1218,19 +1218,21 @@ public class Village
                 }
                 if (Adventurers?.Count > 0)
                 {
+                    MercenaryContainer mercRaw = Adventurers.OrderByDescending(s => s.Unit.Experience).First();
                     MercenaryContainer merc = Adventurers.OrderByDescending(s => s.Unit.Experience).First();
                     if (empire.Gold > merc.Cost && StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
                     {
-                        HireSpecialUnit(empire, army, merc);
+                        HireSpecialUnit(empire, army, merc, mercRaw);
                         return merc.Unit;
                     }
                 }
                 if (Mercenaries?.Count > 0 && empire.Gold > 600)
                 {
+                    MercenaryContainer mercRaw = Mercenaries.OrderByDescending(s => s.Unit.Experience).First();
                     MercenaryContainer merc = Mercenaries.OrderByDescending(s => s.Unit.Experience).First();
                     if (empire.Gold > merc.Cost && StrategicUtilities.ArmyCanFitUnit(army, merc.Unit))
                     {
-                        HireSpecialUnit(empire, army, merc);
+                        HireSpecialUnit(empire, army, merc, mercRaw);
                         return merc.Unit;
                     }
                 }
@@ -1515,7 +1517,7 @@ public class Village
         return merc;
     }
 
-    internal bool HireSpecialUnit(Empire empire, Army army, MercenaryContainer merc)
+    internal bool HireSpecialUnit(Empire empire, Army army, MercenaryContainer merc, MercenaryContainer mercRaw)
     {
         int cost = merc.Cost - (int)Math.Round(merc.Cost * (0.1f * AcademyResearch.GetValueFromEmpire(empire, AcademyResearchType.MercRecruitCost)));
         if (empire.Gold >= cost)
@@ -1531,6 +1533,8 @@ public class Village
                 empire.SpendGold(cost);
                 Adventurers.Remove(merc);
                 Mercenaries.Remove(merc);
+                Adventurers.Remove(mercRaw);
+                Mercenaries.Remove(mercRaw);
                 army.RecalculateSizeValue();
                 return true;
             }
