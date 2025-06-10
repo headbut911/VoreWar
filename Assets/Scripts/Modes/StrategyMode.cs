@@ -1885,7 +1885,7 @@ public class StrategyMode : SceneBase
         StatusBarUI.EmpireStatus.interactable = OnlyAIPlayers;
         foreach (Village vil in State.World.Villages.Where(s => s.Side == ActingEmpire.Side))
         {
-            ClaimWithinXTilesOf(vil.Position, 2);
+            ClaimWithinXTilesOf(vil.Position, 3);
         }
         if (startingIndex + 1 >= State.World.EmpireOrder.Count)
         {
@@ -2644,7 +2644,7 @@ public class StrategyMode : SceneBase
                     TilemapLayers[14].ClearAllTiles();
                     TilemapLayers[14].SetTile(new Vector3Int(x, y, 0), BuildIndicator[2]);
                     Vec2i position = new Vec2i(x, y);
-                    if (Input.GetMouseButtonDown(0) && StrategicUtilities.IsSpaceOpenForBuild(position) && StrategicTileInfo.CanWalkInto(State.World.Tiles[position.x, position.y]) && TilemapLayers[13].GetTile(new Vector3Int(x, y, 0)) != BuildIndicator[1])
+                    if (Input.GetMouseButtonDown(0) && StrategicUtilities.IsSpaceOpenForBuild(position) && StrategicTileInfo.CanWalkInto(State.World.Tiles[position.x, position.y]) && TilemapLayers[13].GetTile(new Vector3Int(x, y, 0)) == BuildIndicator[0])
                     {
                         BuildMode = false;
                         TilemapLayers[14].ClearAllTiles();
@@ -3148,11 +3148,25 @@ public class StrategyMode : SceneBase
         }
     }
 
+    List<Vec2i> ShowWithinXTilesOf(Vec2i pos, int dist)
+    {
+        List<Vec2i> retList = new List<Vec2i>();
+        for (int x = pos.x - dist; x <= pos.x + dist; x++)
+        {
+            for (int y = pos.y - dist; y <= pos.y + dist; y++)
+            {
+                Vec2i claimPos = new Vec2i(x, y);
+                retList.Add(claimPos);
+            }
+        }
+        return retList;
+    }
+
     public void InitiateBuildMode(ConstructibleType selected)
     {
         SelectedArmy = null;
         BuildMode = true;
-        //List<Vec2i> validtiles = ActingEmpire.OwnedTiles;
+        List<Vec2i> validtiles = ActingEmpire.OwnedTiles;
         List<Vec2i> invalidtiles = new List<Vec2i>();
         SelectedConstruction = selected;
         foreach (var empire in State.World.MainEmpires)
@@ -3161,12 +3175,19 @@ public class StrategyMode : SceneBase
             {
                 invalidtiles.AddRange(empire.OwnedTiles);
             }
+            else
+            {
+                validtiles.AddRange(empire.OwnedTiles);
+            }
         }
-        /*
+        foreach (var army in ActingEmpire.Armies)
+        {
+            validtiles = validtiles.Union(ShowWithinXTilesOf(army.Position,1)).ToList();
+        }
         foreach (var tile in validtiles)
         {
             TilemapLayers[13].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[0]);
-        }*/
+        }
         foreach (var tile in invalidtiles)
         {
             TilemapLayers[13].SetTile(new Vector3Int(tile.x, tile.y, 0), BuildIndicator[1]);
