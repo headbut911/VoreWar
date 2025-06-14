@@ -130,6 +130,7 @@
     static internal Xelhilde Xelhilde = new Xelhilde();
     static internal Olivia Olivia = new Olivia();
     static internal Skapa Skapa = new Skapa();
+    static internal Tatltuae Tatltuae = new Tatltuae();
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -398,6 +399,8 @@
                 return Viisels;
             case Race.Skapa:
                 return Skapa;
+            case Race.Tatltuae:
+                return Tatltuae;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;
