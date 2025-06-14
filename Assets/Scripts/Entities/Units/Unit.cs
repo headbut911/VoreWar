@@ -928,12 +928,13 @@ public class Unit
         }
         else if (race == Race.Abakhanskya)
         {
-            try {
-            FixedGear = true;
-            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.AbaWeapon);
-            Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.AbaArmor);
+            try
+            {
+                FixedGear = true;
+                Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.AbaWeapon);
+                Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.AbaArmor);
             }
-            catch {}
+            catch { }
         }
         else if (race == Race.Bella)
         {
@@ -942,29 +943,32 @@ public class Unit
         }
         else if (race == Race.Singularity)
         {
-            try {
-            FixedGear = true;
-            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.SingularityWeapon);
-            Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.SingularityArmor);
+            try
+            {
+                FixedGear = true;
+                Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.SingularityWeapon);
+                Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.SingularityArmor);
             }
-            catch {}
+            catch { }
         }
         else if (race == Race.Feit)
         {
-            try {
-            FixedGear = true;
-            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FeitWeapon);
-            Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FeitArmor);
+            try
+            {
+                FixedGear = true;
+                Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FeitWeapon);
+                Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FeitArmor);
             }
-            catch {}
+            catch { }
         }
         else if (race == Race.Taraluxia)
         {
-            try {
-            FixedGear = true;
-            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.TaraWeapon);
+            try
+            {
+                FixedGear = true;
+                Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.TaraWeapon);
             }
-            catch {}
+            catch { }
         }
         else if (race == Race.Xelhilde)
         {
@@ -980,6 +984,7 @@ public class Unit
         {
             FixedGear = true;
             Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.SkapaWeapon);
+        }
         else if (race == Race.Tatltuae)
         {
             FixedGear = false;
