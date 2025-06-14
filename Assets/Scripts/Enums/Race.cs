@@ -107,6 +107,9 @@
     FeralSlime = 146,
     ViraeUltimae = 147,
     Viisels = 148,
+    FeralEevee = 149,
+    FeralUmbreon = 150,
+    FeralEqualeon = 151,
 
     Selicia = 170,
     Vision = 171,

@@ -31,7 +31,7 @@ class Centaur : TaurHumanHalf
         SecondaryBelly = new SpriteExtraInfo(7, SecondaryBellySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor)); // Second Stomach
         Dick = new SpriteExtraInfo(4, DickSprite, WhiteColored);
         Balls = new SpriteExtraInfo(3, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FeralHorseSkin, s.Unit.AccessoryColor));
-
+        
         AllowedMainClothingTypes = new List<MainClothing>()
         {
             new GenericTop1(),
@@ -53,6 +53,7 @@ class Centaur : TaurHumanHalf
     {
         base.RandomCustom(unit);
         unit.TailType = State.Rand.Next(TailTypes);
+        unit.EarType = State.Rand.Next(EarTypes);
     }
 
     internal override void SetBaseOffsets(Actor_Unit actor)

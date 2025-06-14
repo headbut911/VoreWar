@@ -230,6 +230,16 @@ class MonsterStrategicAI : IStrategicAI
                         army.Units.Add(new Unit(empire.Side, Race.FeralLions, RandXp(baseXp), true));
                     }
                 }
+                else if (empire.ReplacedRace == Race.FeralUmbreon)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        if (spawner.AddOnRace && State.Rand.Next(4) == 0)
+                            army.Units.Add(new Unit(empire.Side, Race.FeralEevee, RandXp(baseXp), true));
+                        else
+                            army.Units.Add(new Unit(empire.Side, Race.FeralUmbreon, RandXp(baseXp), true));
+                    }
+                }
                 else
                 {
                     for (int i = 0; i < count; i++)

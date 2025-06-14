@@ -126,6 +126,9 @@ static class RaceParameters
     static readonly RaceTraits ViraeUltimae;
     static readonly RaceTraits Equaleon;
     static readonly RaceTraits Viisels;
+    static readonly RaceTraits FeralEevee;
+    static readonly RaceTraits FeralUmbreon;
+    static readonly RaceTraits FeralEqualeon;
 
     static Unit tempUnit;
 
@@ -158,7 +161,7 @@ static class RaceParameters
             case Race.Foxes:
                 return Foxes;
             case Race.Youko:
-                return Youko;    
+                return Youko;
             case Race.Wolves:
                 return Wolves;
             case Race.Bunnies:
@@ -341,7 +344,7 @@ static class RaceParameters
                 return Auri;
             case Race.Erin:
                 return Erin;
-			case Race.Goodra:
+            case Race.Goodra:
                 return Goodra;
             case Race.Whisp:
                 return Whisp;
@@ -395,6 +398,12 @@ static class RaceParameters
                 return ViraeUltimae;
             case Race.Viisels:
                 return Viisels;
+            case Race.FeralEevee:
+                return FeralEevee;
+            case Race.FeralUmbreon:
+                return FeralUmbreon;
+            case Race.FeralEqualeon:
+                return FeralEqualeon;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -429,7 +438,7 @@ static class RaceParameters
             {
                 Traits.Pounce,
                 Traits.EscapeArtist,
-				Traits.Pathfinder,
+                Traits.Pathfinder,
             },
             RaceDescription = "Natives to the realm, the Cats are skilled at pouncing on their enemy with a sudden burst of speed. Many a wounded warrior has found themselves devoured by a feline jumping over a wall of their fellow warriors, while the Cat's allies defy their enemies by somehow squirming out of their stomach's.",
         };
@@ -446,7 +455,7 @@ static class RaceParameters
         {
             Traits.PackWill,
             Traits.PackDefense,
-			Traits.Intimidating,
+            Traits.Intimidating,
         },
             RaceDescription = "Natives to the realm, the Dogs embody the principle of standing together. Ranked up, they guard each other's backs, making it harder for any enemy to land a strike at them or succeed at eating them.",
         };
@@ -467,7 +476,7 @@ static class RaceParameters
             LeaderRace = Race.Youko,
             RaceDescription = "Natives of this realm, the Foxes seem incapable of taking danger seriously. They dodge attacks at the last second and only seem to grow ever bolder as death approaches them. Entire armies have fallen exhausted as a group of foxes dances among them, ready to be devoured once the time is right.",
         };
-       
+
         Youko = new RaceTraits()
         {
             BodySize = 12,
@@ -551,7 +560,7 @@ static class RaceParameters
         {
             Traits.Resilient,
             Traits.Intimidating,
-			Traits.GiantSlayer,
+            Traits.GiantSlayer,
         },
 
             RaceDescription = "Emerging from dense jungles, the Lizards are eager to expand their presence in the world. Their hard scales offered them great protection from the thorns and insects of their former home, and still offer natural resistance from harm.",
@@ -589,8 +598,8 @@ static class RaceParameters
         {
             //Traits.Aquatic,
             Traits.TentacleHarassment,
-			Traits.KeenReflexes,
-			Traits.AwkwardShape,
+            Traits.KeenReflexes,
+            Traits.AwkwardShape,
         },
             RaceDescription = "Trapped under the surface at their old world, the Scylla surged forth when the appearance of mystical portals gave them passage to lands above water. Their many tentacles seem to act as if having minds of their own, hindering and harassing their enemies.",
         };
@@ -712,7 +721,7 @@ static class RaceParameters
         {
                 Traits.StrongMelee,
                 Traits.ForcefulBlow,
-				Traits.StretchyInsides,
+                Traits.StretchyInsides,
         },
             RaceDescription = "Once mere cattle, a drop of minotaur blood slumbered in their veins. Rising and butchering their \"masters\", the Taurus took what they could from their old ranches and fled through mysterious portals that had heralded their rise. While intelligent, the Taurus trust in their physical might and great size, tossing their enemies aside as they trample on.",
         };
@@ -746,7 +755,7 @@ static class RaceParameters
         {
                 Traits.Charge,
                 Traits.StrongMelee,
-				Traits.RangedIneptitude,
+                Traits.RangedIneptitude,
         },
             RaceDescription = "",
         };
@@ -850,7 +859,7 @@ static class RaceParameters
         {
                 Traits.TasteForBlood,
                 Traits.Pounce,
-				Traits.Frenzy,
+                Traits.Frenzy,
         },
             RaceDescription = "Long before \"elder races\" walked among the stars, the Panthers thrived. Long before first words of power were uttered, they have carved their homes into the lightning-struck bark, feeding off its power. And long after the last bastion of so-called civilization will fall to onslaught of wings, claws and fangs, they will thrive in the darkness, pouncing on unsuspecting prey.",
         };
@@ -1062,14 +1071,14 @@ static class RaceParameters
             StomachSize = 20,
             HasTail = true,
             FavoredStat = Stat.Voracity,
-			DeployCost = 1,
+            DeployCost = 1,
             Upkeep = 4f,
             RacialTraits = new List<Traits>()
             {
                 Traits.PackVoracity,
                 Traits.SenseWeakness,
                 Traits.Biter,
-				Traits.TasteForBlood,
+                Traits.TasteForBlood,
             },
             RaceDescription = "A race of brutish and cunning beings hailing from the mountainous regions of the east.  Normally tribal, these hyena-like mammals are prone to in-fighting and cannibalism over petty disputes-- such as whose shadow is larger.  The Gnolls were most often seen around mercenary camps in small packs.  Much to the dismay of the other nations of this world, however, a powerful leader has appeared and managed to amass them into a warlike nation of their own.",
         };
@@ -1086,7 +1095,7 @@ static class RaceParameters
         {
             Traits.AdeptLearner,
             Traits.Clever,
-			Traits.GiantSlayer,
+            Traits.GiantSlayer,
         },
             RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
         };
@@ -1302,25 +1311,11 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.ArtfulDodge,
-            Traits.Pounce,
+            Traits.AdeptLearner,
+            Traits.PackWill,
+            Traits.FastDigestion,
         },
             RaceDescription = "",
-        };
-
-        Equaleon = new RaceTraits()
-        {
-            BodySize = 7,
-            StomachSize = 14,
-            HasTail = true,
-            FavoredStat = Stat.Agility,
-            DeployCost = 1,
-            Upkeep = 2f,
-            RacialTraits = new List<Traits>()
-        {
-            Traits.ArtfulDodge,
-            Traits.Pounce,
-        },
-            RaceDescription = "A race of burrowers very true to their heritage, the Puca trust their shovels and feet above advanced technology. Many a foe has found themselves swallowed up by their deep dark tunnels.",
         };
 
         Kobolds = new RaceTraits()
@@ -1383,7 +1378,7 @@ static class RaceParameters
             {
                 Traits.StrongMelee,
                 Traits.HardSkin,
-				Traits.Crusher,
+                Traits.Crusher,
             },
             RaceDescription = "",
         };
@@ -1448,7 +1443,7 @@ static class RaceParameters
                 Traits.VenomousBite,
                 Traits.Intimidating,
                 Traits.Resilient,
-				Traits.Crusher,
+                Traits.Crusher,
             },
             RaceDescription = "",
         };
@@ -1509,7 +1504,7 @@ static class RaceParameters
                 Traits.SenseWeakness,
                 Traits.StrongGullet,
                 Traits.Berserk,
-				Traits.Maul,
+                Traits.Maul,
             },
             RaceDescription = "An extremely tough race of mammals that have taken martial culture to their very core. They fight not just for gold, but merely for the fun of it.",
         };
@@ -1633,8 +1628,8 @@ static class RaceParameters
             {
                 Traits.SlowAbsorption,
                 Traits.Biter,
-				Traits.Ravenous,
-				Traits.StrongGullet,
+                Traits.Ravenous,
+                Traits.StrongGullet,
             },
             RaceDescription = "When the lizard folk emerged from their portal to this land, some young snakes from their old world managed to slip along. Growing fast under the effect of this new realm, the Serpents soon emerged as a ravenous horde.",
         };
@@ -1753,8 +1748,8 @@ static class RaceParameters
         {
                 Traits.Flight,
                 Traits.Biter,
-				Traits.Berserk,
-				Traits.TasteForBlood,	
+                Traits.Berserk,
+                Traits.TasteForBlood,
         },
             RaceDescription = "When the Scylla left their old realm the creatures that used to hunt them were left hungry. The Sharks, with their strong sense of smell, were able to track down the portals the Scylla used and followed close behind.",
 
@@ -1786,7 +1781,7 @@ static class RaceParameters
         {
                 Traits.Biter,
                 Traits.PackTactics,
-				Traits.Pounce,
+                Traits.Pounce,
         },
             RaceDescription = "Natives of this realm, the wolves were more than happy for a chance to welcome the newcomers to their bellies. While likely related to their bipedal cousins, the ferals only consider them as familiar smelling food.",
         };
@@ -1883,7 +1878,7 @@ static class RaceParameters
                 Traits.Intimidating,
                 Traits.BornToMove,
                 Traits.NimbleClimber,
-				Traits.Crusher,
+                Traits.Crusher,
         },
             RaceDescription = "A lifeform from far beyond the stars, the Harvesters saw the empty lands fill and felt rising hunger. How they made their way here is unknown, but their mission is readily understood. They are here to feed until the land is empty once more.",
 
@@ -2738,7 +2733,7 @@ static class RaceParameters
         {
                 Traits.Resilient,
                 Traits.Disgusting,
-				Traits.Ravenous,
+                Traits.Ravenous,
         },
             RaceDescription = "A tough, twisted creature. Hunts for pleasure rather than sustenance.",
         };
@@ -2804,7 +2799,7 @@ static class RaceParameters
         },
             RaceDescription = "With an appearance reminiscent of a reptilian bat, the Dratopyr are likely a hybrid race. Smaller than most monsters but just as fierce, the Dratopyr specialize in weakening their prey while avoiding attempts to fend them off. Dratopyr are very fast breeders and would thus be a major threat to everyone, were it not for their tendency toward cannibalism.",
         };
-        
+
         FeralHorses = new RaceTraits()
         {
             BodySize = 20,
@@ -2861,7 +2856,7 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Pounce,
-			Traits.Ravenous,
+            Traits.Ravenous,
         },
             RaceDescription = "Abnormally large foxes with a voracious appetite.",
         };
@@ -2937,7 +2932,7 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.3f,
-			DeployCost = 2,
+            DeployCost = 2,
             Upkeep = 20f,
             RaceStats = new RaceStats()
             {
@@ -3189,7 +3184,7 @@ static class RaceParameters
                 Traits.Greedy,
                 Traits.BornToMove,
                 Traits.TailStrike,
-				Traits.GiantSlayer,
+                Traits.GiantSlayer,
         },
             RaceDescription = "An anthropomorphic tiger shark from another world.  Zoey is typically a lazy girl who loves watching movies and being a general couch-potato.  However, upon realizing she'd been isekai'd into the realm, her gluttony left her interested in trying to stomach the local warriors and monsters with some basic martial arts, joining whichever side would pay her first.",
         };
@@ -3255,7 +3250,7 @@ static class RaceParameters
                 Traits.NimbleClimber,
                 Traits.BornToMove,
                 Traits.TailStrike,
-				Traits.GiantSlayer,
+                Traits.GiantSlayer,
         },
             RaceDescription = "A devious and voracious wyvern. Known for his agility and cunning, don't ever turn your back to him or you might find yourself in trouble.",
         };
@@ -3326,8 +3321,8 @@ static class RaceParameters
             { SpellTypes.DivinitysEmbrace },
             RaceDescription = "Erin belongs to a very rare species known as a Nyangel, the lovechild of an angel and a catgirl.  Thanks to this divine heritage they aremostly all incredible healers... But they're also incredibly tasty.  Every Nyangel has a unique trait to set them apart from eachother, and Erin is no exception to this rule.  Her quirk is total acid resistance, the perfect defense against the raveous predators of this realm.  That doesn't stop her from being devoured, however, and that is unfortunately an all-too-common outcome for the girl.  Regardless of how many times she ends up eaten, the loveable Nyangel still tries her best to heal those she can.",
         };
-		
-		Goodra = new RaceTraits()
+
+        Goodra = new RaceTraits()
         {
             BodySize = 32,
             StomachSize = 50,
@@ -3356,7 +3351,7 @@ static class RaceParameters
             Traits.Resilient,
             Traits.SoftBody,
             Traits.VerySlowMovement,
-			Traits.HardSkin
+            Traits.HardSkin
         },
             RaceDescription = "Goodra, the Slug Dragon Pokemon. Goodra are large soft dragon type pokemon coated in slime. They love to give hugs and often confuse friends from food.",
         };
@@ -3401,7 +3396,7 @@ static class RaceParameters
             BodySize = 20,
             StomachSize = 15,
             FavoredStat = Stat.Endurance,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.Anal},
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.Anal },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.2f,
             DeployCost = 1,
@@ -3422,7 +3417,7 @@ static class RaceParameters
                 Traits.Tenacious,
                 Traits.ManaBarrier,
                 Traits.EfficientGuts,
-                Traits.Unflinching,               
+                Traits.Unflinching,
                 Traits.ArcaneMagistrate,
                 Traits.ManaRich,
                 Traits.SpellBlade,
@@ -3505,7 +3500,7 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
             ExpMultiplier = 6f,
             PowerAdjustment = 15f,
-			DeployCost = 4,
+            DeployCost = 4,
             Upkeep = 40f,
             RaceStats = new RaceStats()
             {
@@ -3538,7 +3533,7 @@ static class RaceParameters
             StomachSize = 15,
             FavoredStat = Stat.Strength,
             HasTail = true,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth},
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
             ExpMultiplier = 1.4f,
             PowerAdjustment = 2f,
             DeployCost = 1,
@@ -3570,7 +3565,7 @@ static class RaceParameters
             StomachSize = 10,
             HasTail = true,
             FavoredStat = Stat.Agility,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth},
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
             ExpMultiplier = 1f,
             PowerAdjustment = .75f,
             DeployCost = 1,
@@ -3597,11 +3592,109 @@ static class RaceParameters
 
         };
 
+        FeralEevee = new RaceTraits()
+        {
+            BodySize = 5,
+            StomachSize = 10,
+            HasTail = true,
+            FavoredStat = Stat.Will,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
+            ExpMultiplier = 1f,
+            PowerAdjustment = .75f,
+            DeployCost = 1,
+            Upkeep = 2f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 10),
+                Dexterity = new RaceStats.StatRange(2, 4),
+                Endurance = new RaceStats.StatRange(5, 8),
+                Mind = new RaceStats.StatRange(6, 8),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(10, 18),
+                Voracity = new RaceStats.StatRange(10, 18),
+                Stomach = new RaceStats.StatRange(8, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.AdeptLearner,
+                Traits.ArtfulDodge,
+                Traits.PackWill,
+                Traits.Timid,
+        },
+            RaceDescription = "",
+
+        };
+
+        FeralUmbreon = new RaceTraits()
+        {
+            BodySize = 5,
+            StomachSize = 10,
+            HasTail = true,
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
+            ExpMultiplier = 1f,
+            PowerAdjustment = .75f,
+            DeployCost = 1,
+            Upkeep = 2f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 10),
+                Dexterity = new RaceStats.StatRange(2, 4),
+                Endurance = new RaceStats.StatRange(5, 8),
+                Mind = new RaceStats.StatRange(6, 8),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(10, 18),
+                Voracity = new RaceStats.StatRange(10, 18),
+                Stomach = new RaceStats.StatRange(8, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Intimidating,
+                Traits.NightEye,
+                Traits.Pounce,
+                Traits.PackStrength,
+        },
+            RaceDescription = "",
+
+        };
+
+        FeralEqualeon = new RaceTraits()
+        {
+            BodySize = 5,
+            StomachSize = 10,
+            HasTail = true,
+            FavoredStat = Stat.Will,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
+            ExpMultiplier = 1f,
+            PowerAdjustment = .75f,
+            DeployCost = 1,
+            Upkeep = 2f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 10),
+                Dexterity = new RaceStats.StatRange(2, 4),
+                Endurance = new RaceStats.StatRange(5, 8),
+                Mind = new RaceStats.StatRange(6, 8),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(10, 18),
+                Voracity = new RaceStats.StatRange(10, 18),
+                Stomach = new RaceStats.StatRange(8, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.AdeptLearner,
+                Traits.ArtfulDodge,
+                Traits.PackWill,
+        },
+            RaceDescription = "",
+
+        };
+
         FeralSlime = new RaceTraits()
         {
             BodySize = 7,
             StomachSize = 20,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral},
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             FavoredStat = Stat.Endurance,
             RaceStats = new RaceStats()
             {
@@ -3630,7 +3723,7 @@ static class RaceParameters
             StomachSize = 12,
             FavoredStat = Stat.Mind,
             HasTail = true,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore},
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore },
             ExpMultiplier = 1.4f,
             PowerAdjustment = 2f,
             DeployCost = 1,
@@ -3695,7 +3788,7 @@ static class RaceParameters
             StomachSize = 17,
             HasTail = true,
             FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore , VoreType.Unbirth},
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore, VoreType.Unbirth },
             ExpMultiplier = 1f,
             PowerAdjustment = 1f,
             DeployCost = 1,

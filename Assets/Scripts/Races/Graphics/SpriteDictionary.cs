@@ -358,6 +358,9 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] FeralSlime;
     public Sprite[] ViraeUltimae;
     public Sprite[] Viisels;
+    public Sprite[] FeralEevee;
+    public Sprite[] FeralUmbreon;
+    public Sprite[] FeralEqualeon;
 
 
 
