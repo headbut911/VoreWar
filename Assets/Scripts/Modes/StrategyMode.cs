@@ -569,7 +569,10 @@ public class StrategyMode : SceneBase
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.ViraeUltimae));
                                 break;
                             case StrategicDoodadType.SpawnerViisels:
-                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.ViraeUltimae));
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Viisels));
+                                break;
+                            case StrategicDoodadType.SpawnerFeralUmbreon:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.FeralUmbreon));
                                 break;
                         }
                     }

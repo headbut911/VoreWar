@@ -283,6 +283,9 @@ public class ItemRepository
             new Weapon(name:"Slime Tackle", description:"Slime attack.", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Viral Stinger", description:"A viral stinger laced with Virae Ultimae cells to infect prey.", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Viisel Claw", description:"Claw Attack", cost:4, graphic:0, damage:4, range:1),
+            new Weapon(name:"Eevee Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
+            new Weapon(name:"Umbreon Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
+            new Weapon(name:"Equaleon Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
         };
 
         specialItems = new List<Item>()

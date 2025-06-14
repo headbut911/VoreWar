@@ -2184,6 +2184,10 @@ public static class ColorPaletteMap
         {
             Dictionary<int, Color> swapDict = new Dictionary<int, Color>
             {
+                [70] = map.GetPixel(9, pixelY),
+                [255] = map.GetPixel(10, pixelY),
+                [200] = map.GetPixel(11, pixelY),
+                [84] = map.GetPixel(12, pixelY),
                 [66] = map.GetPixel(0, pixelY),
                 [224] = map.GetPixel(1, pixelY),
                 [150] = map.GetPixel(2, pixelY),
@@ -2193,10 +2197,6 @@ public static class ColorPaletteMap
                 [116] = map.GetPixel(6, pixelY),
                 [91] = map.GetPixel(7, pixelY),
                 [112] = map.GetPixel(8, pixelY),
-                [70] = map.GetPixel(9, pixelY),
-                [255] = map.GetPixel(10, pixelY),
-                [200] = map.GetPixel(11, pixelY),
-                [84] = map.GetPixel(12, pixelY),
             };
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
             UmbreonArmorSwaps.Add(swap);

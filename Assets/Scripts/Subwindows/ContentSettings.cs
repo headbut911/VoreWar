@@ -417,7 +417,7 @@ public class ContentSettings : MonoBehaviour
         foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
         { //Done separately to keep their initial order for now
             if (race >= Race.Vagrants && race < Race.Selicia && race != Race.WyvernMatron && race != Race.DarkSwallower && race != Race.Collectors && race != Race.CoralSlugs
-                && race != Race.SpitterSlugs && race != Race.SpringSlugs && race != Race.Raptor && race != Race.WarriorAnts)
+                && race != Race.SpitterSlugs && race != Race.SpringSlugs && race != Race.Raptor && race != Race.WarriorAnts && race != Race.FeralEevee && race != Race.FeralEqualeon)
             {
                 var spawner = CreateMonsterPanel(race);
                 MonsterSpawners.Add(spawner);
