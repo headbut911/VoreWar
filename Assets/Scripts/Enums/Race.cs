@@ -127,4 +127,5 @@
     Taraluxia = 186,
     Xelhilde = 187,
     Olivia = 188,
+    Skapa = 189,
 }
