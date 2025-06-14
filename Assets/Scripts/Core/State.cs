@@ -390,6 +390,40 @@ public static class State
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleFeralOrcas.txt", $"{StorageDirectory}maleFeralOrcas.txt");
             if (File.Exists($"{StorageDirectory}femaleFeralOrcas.txt") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralOrcas.txt", $"{StorageDirectory}femaleFeralOrcas.txt");
+            if (File.Exists($"{StorageDirectory}femaleBears.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleBears.txt", $"{StorageDirectory}femaleBears.txt");
+            if (File.Exists($"{StorageDirectory}maleBears.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleBears.txt", $"{StorageDirectory}maleBears.txt");
+            if (File.Exists($"{StorageDirectory}femaleCentaurs.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleCentaurs.txt", $"{StorageDirectory}femaleCentaurs.txt");
+            if (File.Exists($"{StorageDirectory}maleCentaurs.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleCentaurs.txt", $"{StorageDirectory}maleCentaurs.txt");
+            if (File.Exists($"{StorageDirectory}femaleGnolls.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleGnolls.txt", $"{StorageDirectory}femaleGnolls.txt");
+            if (File.Exists($"{StorageDirectory}maleGnolls.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleGnolls.txt", $"{StorageDirectory}maleGnolls.txt");
+            if (File.Exists($"{StorageDirectory}femaleMainlandElves.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleMainlandElves.txt", $"{StorageDirectory}femaleMainlandElves.txt");
+            if (File.Exists($"{StorageDirectory}maleMainlandElves.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleMainlandElves.txt", $"{StorageDirectory}maleMainlandElves.txt");
+            if (File.Exists($"{StorageDirectory}femaleViisel.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleViisel.txt", $"{StorageDirectory}femaleViisel.txt");
+            if (File.Exists($"{StorageDirectory}maleViisel.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleViisel.txt", $"{StorageDirectory}maleViisel.txt");
+            if (File.Exists($"{StorageDirectory}FeralSlimes.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}FeralSlimes.txt", $"{StorageDirectory}FeralSlimes.txt");
+            if (File.Exists($"{StorageDirectory}femaleEevee.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleEevee.txt", $"{StorageDirectory}femaleEevee.txt");
+            if (File.Exists($"{StorageDirectory}maleEevee.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleEevee.txt", $"{StorageDirectory}maleEevee.txt");
+            if (File.Exists($"{StorageDirectory}femaleEqualeon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleEqualeon.txt", $"{StorageDirectory}femaleEqualeon.txt");
+            if (File.Exists($"{StorageDirectory}maleEqualeon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleEqualeon.txt", $"{StorageDirectory}maleEqualeon.txt");
+            if (File.Exists($"{StorageDirectory}femaleUmbreon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleUmbreon.txt", $"{StorageDirectory}femaleUmbreon.txt");
+            if (File.Exists($"{StorageDirectory}maleUmbreon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleUmbreon.txt", $"{StorageDirectory}maleUmbreon.txt");
             if (File.Exists($"{StorageDirectory}taggedTraits.json") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}taggedTraits.json", $"{StorageDirectory}taggedTraits.json");
             if (File.Exists($"{StorageDirectory}buildingConfig.json") == false)

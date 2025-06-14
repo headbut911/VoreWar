@@ -1853,7 +1853,7 @@ public class Actor_Unit
                     State.GameManager.SoundManager.PlaySwing(this);
                     if (Unit.HasTrait(Traits.Tenacious))
                         Unit.AddTenacious();
-                    if (Unit.Race == Race.Xelhilde)
+                    if (Unit.Race == Race.Xelhilde) // Used to cycle between attack poses
                     {
                         if (Unit.BodyAccentType2 >= 2)
                             Unit.BodyAccentType2 = 0;
@@ -1875,7 +1875,7 @@ public class Actor_Unit
         State.GameManager.TacticalMode.CreateBloodHitEffect(target.Position);
         if (Unit.Race == Race.Asura)
             State.GameManager.TacticalMode.CreateSwipeHitEffect(target.Position);
-        if (Unit.Race == Race.Xelhilde)
+        if (Unit.Race == Race.Xelhilde) // Used to cycle between attack poses
         {
             if (Unit.BodyAccentType2 >= 2)
                 Unit.BodyAccentType2 = 0;
