@@ -129,6 +129,7 @@
     static internal Otachi Otachi = new Otachi();
     static internal Xelhilde Xelhilde = new Xelhilde();
     static internal Olivia Olivia = new Olivia();
+    static internal Skapa Skapa = new Skapa();
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -337,7 +338,7 @@
                 return Erin;
             case Race.FeralLions:
                 return FeralLions;
-	        case Race.Goodra:
+            case Race.Goodra:
                 return Goodra;
             case Race.Whisp:
                 return Whisp;
@@ -395,6 +396,8 @@
                 return Equaleon;
             case Race.Viisels:
                 return Viisels;
+            case Race.Skapa:
+                return Skapa;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;
