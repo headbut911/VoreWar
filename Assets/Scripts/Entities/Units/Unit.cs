@@ -976,6 +976,15 @@ public class Unit
             FixedGear = true;
             Items[0] = null;
         }
+        else if (race == Race.Skapa)
+        {
+            FixedGear = true;
+            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.SkapaWeapon);
+        else if (race == Race.Tatltuae)
+        {
+            FixedGear = false;
+            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.TatltuaeWeapon);
+        }
         else
         {
             FixedGear = false;

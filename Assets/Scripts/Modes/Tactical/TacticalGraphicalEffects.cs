@@ -167,6 +167,17 @@ static class TacticalGraphicalEffects
 
     }
 
+    internal static void EntropicChaosEffect(Vector2 location)
+    {
+        if (State.GameManager.TacticalMode.turboMode)
+            return;
+        var obj = Object.Instantiate(State.GameManager.SpriteRendererPrefab);
+        obj.transform.position = location;
+        obj.transform.localScale = new Vector3(2, 2, 1);
+        obj.AddComponent<Assets.Scripts.Entities.Animations.EntropicChaos>();
+
+    }
+
     internal static void CreateIceBlast(Vec2 location)
     {
         if (State.GameManager.TacticalMode.turboMode)

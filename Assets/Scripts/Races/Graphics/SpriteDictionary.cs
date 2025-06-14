@@ -298,6 +298,8 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Xelhilde;
     public Sprite[] Olivia;
     public Sprite[] OliviaVoreSprites;
+    public Sprite[] Skapa;
+    public Sprite[] Tatltuae;
     
     [Header("Bosses")]
     public Sprite[] Abakhanskya;

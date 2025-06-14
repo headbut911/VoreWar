@@ -230,16 +230,18 @@ public class Army
                 else
                     movement = 1;
             }
-            movement = (Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod);
+            else
+                movement = (Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod);
         }
         else
         {
             MPMod = Mathf.MoveTowards(MPMod, 0, MPCurve);
-           if (-1f > MPMod)
+            if (-1f > MPMod)
                 movement = 0;
-           if (SCooldown > (Config.ArmyMP + (int)(Config.ArmyMP * MPMod)))
+            else if (SCooldown > (Config.ArmyMP + (int)(Config.ArmyMP * MPMod)))
                 movement = 1;
-            movement = Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
+            else
+                movement = Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
         }
         var temporalTowers = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(Position, empire, Config.BuildConfig.BuildingPassiveRange).Where(b => b is TemporalTower);
         if (temporalTowers != null)
@@ -273,6 +275,15 @@ public class Army
                 }
             }
         }
+
+        foreach (Unit unit in Units)
+        {
+            bool cartographyCheck = false;
+            if (unit.HasTrait(Traits.Cartography))
+                cartographyCheck = true;
+            if (cartographyCheck == true)
+            { movement += 1; }
+        }
         if (movement < 0)
             { movement = 0; }
 
@@ -282,6 +293,7 @@ public class Army
     public void RefreshMovementMode()
     {
         int flying = 0;
+        int cartography = 0;
         int noHill = 0;
         int yesLava = 0;
         int noSnow = 0;
@@ -298,6 +310,8 @@ public class Army
         {
             if (unit.HasTrait(Traits.Pathfinder))
                 flying++;
+            if (unit.HasTrait(Traits.Cartography))
+                cartography++;
             if (unit.HasTrait(Traits.HillImpedence))
                 noHill++;
             if (unit.HasTrait(Traits.LavaWalker)) 
@@ -467,6 +481,8 @@ public class Army
 
 
         if (flying > 0 && flying >= Units.Count / 2)
+            movementMode = MovementMode.Flight;
+        if (cartography > 0)
             movementMode = MovementMode.Flight;
         //else if (aquatic >= Units.Count / 2)
         //    movementMode = MovementMode.Aquatic;

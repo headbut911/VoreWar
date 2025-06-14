@@ -1458,9 +1458,9 @@ public class Recruit_Mode : SceneBase
         }
     }
 
-    void HireVillageMercenary(MercenaryContainer merc, GameObject obj)
+    void HireVillageMercenary(MercenaryContainer merc, MercenaryContainer mercRaw, GameObject obj)
     {
-        if (village.HireSpecialUnit(empire, army, merc))
+        if (village.HireSpecialUnit(empire, army, merc, mercRaw))
         {
             Destroy(obj);
             UpdateActorList();
@@ -1564,7 +1564,7 @@ public class Recruit_Mode : SceneBase
                 button.interactable = true;
             else
                 button.interactable = false;
-            button.onClick.AddListener(() => HireVillageMercenary(merc, obj));
+            button.onClick.AddListener(() => HireVillageMercenary(merc, mercRaw, obj));
             button.onClick.AddListener(() => CheckButtonStatus());
             buttonList.Add(button, actor.Unit);
         }
