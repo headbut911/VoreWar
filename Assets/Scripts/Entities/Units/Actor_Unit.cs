@@ -1226,7 +1226,7 @@ public class Actor_Unit
                 {
                     damMod = Config.SizeDamageCap;
                 }
-                if (target.Unit.HasTrait(Traits.GiantSlayer))
+                if (Unit.HasTrait(Traits.GiantSlayer))
                 {
                     damMod *= 0.25f;
                 }

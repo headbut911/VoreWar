@@ -102,6 +102,9 @@
     static internal FeralSlime FeralSlime = new FeralSlime();
     static internal ViraeUltimae ViraeUltimae = new ViraeUltimae();
     static internal Viisels Viisels = new Viisels();
+    static internal FeralEevee FeralEevee = new FeralEevee();
+    static internal FeralUmbreon FeralUmbreon = new FeralUmbreon();
+    static internal FeralEqualeon FeralEqualeon = new FeralEqualeon();
 
     static internal Selicia Selicia = new Selicia();
     static internal Vision Vision = new Vision();
@@ -397,6 +400,12 @@
                 return Equaleon;
             case Race.Viisels:
                 return Viisels;
+            case Race.FeralEevee:
+                return FeralEevee;
+            case Race.FeralUmbreon:
+                return FeralUmbreon;
+            case Race.FeralEqualeon:
+                return FeralEqualeon;
             case Race.Skapa:
                 return Skapa;
             case Race.Tatltuae:
