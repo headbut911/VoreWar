@@ -463,7 +463,7 @@ static class LogUtilities
             case Race.Avians:
                 return GetRandomStringFrom("winged", "feathered", "swift", "taloned", "hawklike");
             case Race.MainlandElves:
-                return GetRandomStringFrom("humnle", "cunning", "resourceful");
+                return GetRandomStringFrom("humble", "cunning", "resourceful");
             case Race.Tatltuae:
                 return GetRandomStringFrom("black feathered", "chaotic", "purple eyed", "ominous", "unnerving", "omen-bringing");
             default:

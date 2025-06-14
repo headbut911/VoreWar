@@ -34,7 +34,7 @@ class Xelhilde : DefaultRaceData
         Head = new SpriteExtraInfo(5, HeadSprite, WhiteColored);
         BodyAccessory = null;
         BodyAccent =  new SpriteExtraInfo(6, BodyAccentSprite, WhiteColored);//Belly
-        BodyAccent2 = null;//used for attack pose
+        BodyAccent2 = null;//used for attack pose; refer to Actor_Unit.cs "void CreateHitEffects" and "bool Attack" for how each attack pose cycles
         BodyAccent3 = null;
         BodyAccent4 = null;
         BodyAccent5 = null;

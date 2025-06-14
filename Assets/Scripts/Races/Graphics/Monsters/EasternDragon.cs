@@ -47,7 +47,7 @@ class EasternDragon : BlankSlate
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // Tail
     {
-        if (!Config.HideCocks && actor.PredatorComponent?.BallsFullness > 0)
+        if (!Config.HideCocks && (actor.PredatorComponent?.BallsFullness > 0 || actor.IsErect()))
         {
             AddOffset(BodyAccent, 128 * .3125f, 0);
             return State.GameManager.SpriteDictionary.EasternDragon[38];
@@ -72,7 +72,7 @@ class EasternDragon : BlankSlate
         {
             if (actor.Unit.DickSize < 0) return null;
             if (Config.HideCocks) return null;
-            if (actor.PredatorComponent?.BallsFullness > 0 || actor.IsCockVoring)
+            if (actor.PredatorComponent?.BallsFullness > 0 || actor.IsCockVoring || actor.IsErect())
             {
                 return State.GameManager.SpriteDictionary.EasternDragon[39];
             }
