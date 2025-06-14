@@ -230,16 +230,18 @@ public class Army
                 else
                     movement = 1;
             }
-            movement = (Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod);
+            else
+                movement = (Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod);
         }
         else
         {
             MPMod = Mathf.MoveTowards(MPMod, 0, MPCurve);
-           if (-1f > MPMod)
+            if (-1f > MPMod)
                 movement = 0;
-           if (SCooldown > (Config.ArmyMP + (int)(Config.ArmyMP * MPMod)))
+            else if (SCooldown > (Config.ArmyMP + (int)(Config.ArmyMP * MPMod)))
                 movement = 1;
-            movement = Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
+            else
+                movement = Config.ArmyMP + (int)(Config.ArmyMP * MPMod) - (int)SCooldown;
         }
         var temporalTowers = StrategicUtilities.GetActiveEmpireBuildingsWithinXTiles(Position, empire, Config.BuildConfig.BuildingPassiveRange).Where(b => b is TemporalTower);
         if (temporalTowers != null)

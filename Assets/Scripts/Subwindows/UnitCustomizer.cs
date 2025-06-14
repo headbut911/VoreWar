@@ -534,6 +534,13 @@ public class UnitCustomizer
             case Race.Viisels:
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Faceplate Color";
                 break;
+            case Race.Tatltuae:
+                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Hat";
+                buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Glasses";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Outfit";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Shirt On/Off";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Pants On/Off";
+                break;
         }
     }
 
