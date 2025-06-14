@@ -127,6 +127,7 @@ static class RaceParameters
     static readonly RaceTraits Equaleon;
     static readonly RaceTraits Viisels;
     static readonly RaceTraits Skapa;
+    static readonly RaceTraits Tatltuae;
 
     static Unit tempUnit;
 
@@ -398,6 +399,8 @@ static class RaceParameters
                 return Viisels;
             case Race.Skapa:
                 return Skapa;
+            case Race.Tatltuae:
+                return Tatltuae;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3751,6 +3754,41 @@ static class RaceParameters
                 Traits.EasyToVore,
         },
             RaceDescription = "The Viisels, after first arriving in this world, used to live in burrows and only hunted those who got too close. But after one of their own, Ki, proved himself a capable battler, they've been forced onto the offensive as the people of the world are no longer willing to leave them be, though as the Viisels have gained a taste for other people, the small sapients grow increasingly bold... And hungry.",
+        };
+
+        Tatltuae = new RaceTraits()
+        {
+            BodySize = 11,
+            StomachSize = 27,
+            FavoredStat = Stat.Mind,
+            HasTail = true,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore },
+            ExpMultiplier = 1.4f,
+            PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 9f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(4, 12),
+                Dexterity = new RaceStats.StatRange(4, 10),
+                Endurance = new RaceStats.StatRange(8, 13),
+                Mind = new RaceStats.StatRange(15, 21),
+                Will = new RaceStats.StatRange(12, 16),
+                Agility = new RaceStats.StatRange(8, 11),
+                Voracity = new RaceStats.StatRange(12, 18),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Cartography,
+                Traits.BoundWeapon,
+                Traits.BookEater,
+                Traits.Featherweight,
+                Traits.Flight,
+                Traits.ManaDynamo,
+                Traits.PleasurableTouch,
+        },
+            RaceDescription = "Tatltuae is a curious raven. While he seemingly is one of the many who entered this world through a portal, he's taken quite well to his new home, becoming known as a mage, pred, cartographer, and selling his skills as a mercenary. While his hollow bones and spellcasting generally put him in the backlines, he is always eager to add people to his waistline, when given the chance. His main spell seems to be based on chaotic magic, and he definitely seems to enjoy causing chaos where he can. Tatltuae learned some time ago to create pockets of intense chaotic entropy. Interestingly, the spell began as a healing spell, but the raven learned it wrong to the point it harms instead of heals.",
         };
 
     }

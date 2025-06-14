@@ -27,6 +27,7 @@ public class Actor_Unit
         Suckled,
         Rubbed,
         Injured,
+        Hurt,
         IdleAnimation,
 
     }
@@ -578,6 +579,11 @@ public class Actor_Unit
         animationUpdateTime = 1.0f;
     }
 
+    public void SetPainMode()
+    {
+        Mode = DisplayMode.Hurt;
+        animationUpdateTime = 1.0f;
+    }
     public int CheckAnimationFrame()
     {
         if (Mode == DisplayMode.IdleAnimation)
@@ -804,6 +810,7 @@ public class Actor_Unit
     public bool IsBeingSuckled => Mode == DisplayMode.Suckled;
     public bool IsRubbing => Mode == DisplayMode.Rubbing;
     public bool IsBeingRubbed => Mode == DisplayMode.Rubbed;
+    public bool IsBeingHurt => Mode == DisplayMode.Hurt;
     [OdinSerialize]
     public List<int> sidesAttackedThisBattle { get; set; }
 
@@ -1086,6 +1093,8 @@ public class Actor_Unit
                 damageScalar *= 1.4f - (target.Unit.HealthPct * .4f) + (0.1f * target.Unit.GetNegativeStatusEffects());
             }
             int statBoost = Unit.GetStat(Stat.Dexterity) + (Unit.HasTrait(Traits.SpellBlade) ? Unit.GetStat(Stat.Mind) / 2 : 0);
+            if (Unit.HasTrait(Traits.BoundWeapon))
+            {statBoost = Unit.GetStat(Stat.Mind);}
             damage = (int)(damageScalar * (BestRanged?.Damage ?? 2) * (60 + statBoost) / 60);
             if (target.Unit.HasTrait(Traits.Resilient))
                 damage--;
@@ -1154,6 +1163,8 @@ public class Actor_Unit
                 if (Unit.HasTrait(Traits.Feral) && Unit.GetBestMelee() == State.World.ItemRepository.Claws)
                     damageScalar *= 3f;
                 int statBoost = Unit.GetStat(Stat.Strength) + (Unit.HasTrait(Traits.SpellBlade) ? Unit.GetStat(Stat.Mind) / 2 : 0);
+                if (Unit.HasTrait(Traits.BoundWeapon))
+                {statBoost = Unit.GetStat(Stat.Mind);}
                 damage = (int)(damageScalar * BestMelee.Damage * (60 + statBoost) / 60);
             }
 
@@ -1679,6 +1690,8 @@ public class Actor_Unit
             {
                 if (Unit.Race == Race.Succubi)
                     TacticalGraphicalEffects.SuccubusSwordEffect(target.Position);
+                if (Unit.Race == Race.Tatltuae)
+                    TacticalGraphicalEffects.EntropicChaosEffect(target.Position);
                 animationUpdateTime = 1.0F;
                 Mode = DisplayMode.Attacking;
 
@@ -2915,6 +2928,11 @@ public class Actor_Unit
         if (Config.DamageNumbers == false && !State.GameManager.TacticalMode.turboMode)
         {
             Mode = DisplayMode.Injured;
+            animationUpdateTime = 1.0F;
+        }
+        if (!State.GameManager.TacticalMode.turboMode)
+        {
+            Mode = DisplayMode.Hurt;
             animationUpdateTime = 1.0F;
         }
         if (Unit.IsDead)
