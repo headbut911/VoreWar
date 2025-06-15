@@ -1365,6 +1365,46 @@ class LizardStrapTop : MainClothing
     }
 }
 
+class AabayxTopHighPriest : MainClothing
+{
+    public AabayxTopHighPriest()
+    {
+        leaderOnly = true;
+        DiscardSprite = State.GameManager.SpriteDictionary.AabayxLeader[3];
+        coversBreasts = false;
+        blocksDick = false;
+        FixedColor = true;
+        clothing1 = new SpriteExtraInfo(15, null, null);
+        Type = 60714;
+    }
+
+    public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+    {
+        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.AabayxLeader[0 + (actor.IsAttacking ? 1 : 0)];
+        base.Configure(sprite, actor);
+    }
+}
+
+class AabayxPantsHighPriest : MainClothing
+{
+    public AabayxPantsHighPriest()
+    {
+        leaderOnly = true;
+        DiscardSprite = State.GameManager.SpriteDictionary.AabayxLeader[4];
+        coversBreasts = false;
+        blocksDick = true;
+        FixedColor = true;
+        clothing1 = new SpriteExtraInfo(13, null, null);
+        Type = 60715;
+    }
+
+    public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+    {
+        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.AabayxLeader[2];
+        base.Configure(sprite, actor);
+    }
+}
+
 static class RaceSpecificClothing
 {
 
@@ -1411,6 +1451,8 @@ static class RaceSpecificClothing
     internal static Toga Toga = new Toga();
     internal static SuccubusDress SuccubusDress = new SuccubusDress();
     internal static SuccubusLeotard SuccubusLeotard = new SuccubusLeotard();
+    internal static AabayxTopHighPriest AabayxTopHighPriest = new AabayxTopHighPriest();
+    internal static AabayxPantsHighPriest AabayxPantsHighPriest = new AabayxPantsHighPriest();
 
 
     internal static List<MainClothing> All = new List<MainClothing>()
@@ -1447,6 +1489,8 @@ static class RaceSpecificClothing
         Toga,
         SuccubusDress,
         SuccubusLeotard,
+        AabayxTopHighPriest,
+        AabayxPantsHighPriest,
     };
     internal static List<ClothingAccessory> Accessories = new List<ClothingAccessory>()
     {

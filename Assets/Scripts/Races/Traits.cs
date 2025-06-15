@@ -903,7 +903,7 @@ internal class ViralBiology : VoreTraitBooster
 {
     public ViralBiology()
     {
-        Description = "This unit's body is entirely comprised of viruses resulting in an overall unconventional biology \n<b>ViralDigestion:</b> Unit uses powerful viruses to digest prey; escaped prey will continue to take additional damage for a few turns. \n<b>AwkwardShape:</b> This unit has an unusual body type; unit is harder to swallow and provids less sustenance as prey. \n<b>SlowAbsorption:</b> Unit absorbs dead prey more slowly. (50%)";
+        Description = "This unit's body is entirely comprised of viruses resulting in an overall unconventional biology \n<b>ViralDigestion:</b> Unit uses powerful viruses to digest prey; escaped prey will continue to take additional damage for a few turns. \n<b>AwkwardShape:</b> This unit has an unusual body type; unit is harder to swallow and provids less sustenance as prey.";
         Boost = (s) =>{ s.Outgoing.Nutrition *= 0.25f; s.Incoming.VoreOddsMult *= 0.75f; };
     }
 

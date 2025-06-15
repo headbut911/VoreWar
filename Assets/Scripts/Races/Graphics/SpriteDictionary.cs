@@ -238,6 +238,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] YoukoTails;
     public Sprite[] Aabayx;
     public Sprite[] AabayxFacePaint;
+    public Sprite[] AabayxLeader;
 
     public Sprite[] Mice1;
     public Sprite[] Mice2;
