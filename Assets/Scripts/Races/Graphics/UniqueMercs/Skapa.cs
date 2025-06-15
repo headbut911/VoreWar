@@ -13,6 +13,7 @@ class Skapa : BlankSlate
 
     public Skapa()
     {
+        CanBeGender = new List<Gender>() { Gender.Hermaphrodite };
         GentleAnimation = true;
         WeightGainDisabled = true;
 
@@ -146,6 +147,7 @@ class Skapa : BlankSlate
     {
         int size = actor.GetStomachSize(45);
         int ballsSize = actor.GetBallSize(45);
+        int resize = actor.GetStomachSize(5);
 
         if (!actor.HasBelly) return null;
 
@@ -245,10 +247,9 @@ class Skapa : BlankSlate
                 }
             }
 
-            if (size >= 15) size = 15;
             if (size >= 15) AddOffset(Belly, 0, -5 * .5f);
             else AddOffset(Belly, 0, 0 * .5f);
-            return SkapaSprites[40 + size];
+            return SkapaSprites[40 + resize];
         }
         else // BackView
         {
