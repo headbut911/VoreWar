@@ -710,6 +710,10 @@ public class InfoPanel
                 sb.AppendLine($"Imprinted");
             if (actor?.Surrendered ?? false)
                 sb.AppendLine("Unit has surrendered!");
+            if (actor?.Unit.Side == State.GameManager.TacticalMode.GetDefenderSide())
+                sb.AppendLine("DEFENDER");
+            if (actor?.Unit.Side == State.GameManager.TacticalMode.GetAttackerSide())
+                sb.AppendLine("ATTACKER");
             string traits = unit.ListTraits(!(TacticalUtilities.IsUnitControlledByPlayer(unit) && TacticalUtilities.PlayerCanSeeTrueSide(unit)));
             if (traits != "")
                 sb.AppendLine("Traits:\n" + traits);
