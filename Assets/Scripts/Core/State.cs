@@ -424,6 +424,18 @@ public static class State
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleUmbreon.txt", $"{StorageDirectory}femaleUmbreon.txt");
             if (File.Exists($"{StorageDirectory}maleUmbreon.txt") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleUmbreon.txt", $"{StorageDirectory}maleUmbreon.txt");
+            if (File.Exists($"{StorageDirectory}femaleFeralEevee.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralEevee.txt", $"{StorageDirectory}femaleFeralEevee.txt");
+            if (File.Exists($"{StorageDirectory}maleFeralEevee.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleFeralEevee.txt", $"{StorageDirectory}maleFeralEevee.txt");
+            if (File.Exists($"{StorageDirectory}femaleFeralEqualeon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralEqualeon.txt", $"{StorageDirectory}femaleFeralEqualeon.txt");
+            if (File.Exists($"{StorageDirectory}maleFeralEqualeon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleFeralEqualeon.txt", $"{StorageDirectory}maleFeralEqualeon.txt");
+            if (File.Exists($"{StorageDirectory}femaleFeralUmbreon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}femaleFeralUmbreon.txt", $"{StorageDirectory}femaleFeralUmbreon.txt");
+            if (File.Exists($"{StorageDirectory}maleFeralUmbreon.txt") == false)
+                File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}maleFeralUmbreon.txt", $"{StorageDirectory}maleFeralUmbreon.txt");
             if (File.Exists($"{StorageDirectory}taggedTraits.json") == false)
                 File.Copy($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}taggedTraits.json", $"{StorageDirectory}taggedTraits.json");
             if (File.Exists($"{StorageDirectory}buildingConfig.json") == false)
