@@ -2265,6 +2265,11 @@ Turns: {currentTurn}
             lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
             miscDiscards.Add(new DiaperDiscard(location, sortOrder, scatInfo));
         }
+        else if (Config.BirdScat && (scatInfo.predRace == Race.Avians || scatInfo.predRace == Race.Terrorbird || scatInfo.predRace == Race.Gryphons))
+        {
+            lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
+            miscDiscards.Add(new BirdScat(location, sortOrder, scatInfo));
+        }
         else
         {
             int spriteNum;

@@ -172,6 +172,7 @@ public class ContentSettings : MonoBehaviour
     public Toggle CleanDisposal;
     public Toggle Scat;
     public Toggle ScatV2;
+    public Toggle BirdScat;
     public Toggle ScatBones;
     public Toggle ClothingDiscards;
 
@@ -343,6 +344,7 @@ public class ContentSettings : MonoBehaviour
             new ToggleObject(CleanDisposal, "CleanDisposal", false),
             new ToggleObject(Scat, "Scat", false),
             new ToggleObject(ScatV2, "ScatV2", false),
+            new ToggleObject(BirdScat, "BirdScat", false),
             new ToggleObject(ScatBones, "ScatBones", false),
             new ToggleObject(CondomsForCV, "CondomsForCV", false),
             new ToggleObject(ErectionsFromVore, "ErectionsFromVore", false),
