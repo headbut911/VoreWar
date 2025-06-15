@@ -52,7 +52,7 @@ class Aabayx : DefaultRaceData
         BreastShadow = null;
         Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AabayxSkin, s.Unit.SkinColor));
         Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AabayxSkin, s.Unit.SkinColor));
-        
+
         Rags = new AabayxRags();
         
         AllowedMainClothingTypes = new List<MainClothing>()
@@ -65,8 +65,9 @@ class Aabayx : DefaultRaceData
             new AabayxTop6(),
             new AabayxTop7(),
             Rags,
+            RaceSpecificClothing.AabayxTopHighPriest,
         };
-        AvoidedMainClothingTypes = 1;
+        AvoidedMainClothingTypes = 2;
         AllowedWaistTypes = new List<MainClothing>()
         {
             new AabayxPants1(),
@@ -74,6 +75,7 @@ class Aabayx : DefaultRaceData
             new AabayxPants3(),
             new AabayxPants4(),
             new AabayxPants5(),
+            RaceSpecificClothing.AabayxPantsHighPriest,
         };
         ExtraMainClothing1Types = new List<MainClothing>()
         {
@@ -94,6 +96,12 @@ class Aabayx : DefaultRaceData
     {
         base.RandomCustom(unit);
         unit.TailType = State.Rand.Next(TailTypes);
+
+        if (unit.Type == UnitType.Leader)
+        {
+            unit.ClothingType = 1 + AllowedMainClothingTypes.IndexOf(RaceSpecificClothing.AabayxTopHighPriest);
+            unit.ClothingType2 = 1 + AllowedWaistTypes.IndexOf(RaceSpecificClothing.AabayxPantsHighPriest);
+        }
 
         if (Config.RagsForSlaves && State.World?.MainEmpires != null && (State.World.GetEmpireOfRace(unit.Race)?.IsEnemy(State.World.GetEmpireOfSide(unit.Side)) ?? false) && unit.ImmuneToDefections == false)
         {
@@ -260,6 +268,8 @@ class Aabayx : DefaultRaceData
     {
         if (actor.Unit.HasWeapon && actor.Surrendered == false)
         {
+            if (actor.Unit.Type == UnitType.Leader)
+                return State.GameManager.SpriteDictionary.AabayxLeader[5 + actor.GetWeaponSprite()];
             return State.GameManager.SpriteDictionary.Aabayx[99 + actor.GetWeaponSprite()];
         }
         else
