@@ -434,6 +434,7 @@ public class WorldConfig
             ["CleanDisposal"] = false,
             ["Scat"] = false,
             ["ScatBones"] = false,
+            ["BirdScat"] = false,
             ["CondomsForCV"] = false,
             ["AutoSurrender"] = false,
             ["EatSurrenderedAllies"] = false,

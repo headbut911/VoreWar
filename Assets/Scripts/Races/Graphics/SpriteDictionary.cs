@@ -384,6 +384,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] ScatViralV2MFront;
     public Sprite[] ScatViralV2SBack;
     public Sprite[] ScatViralV2SFront;
+    public Sprite[] BirdScat;
     public Sprite[] Bones;
     public Sprite[] CleanDisposalL;
     public Sprite[] CleanDisposalM;
