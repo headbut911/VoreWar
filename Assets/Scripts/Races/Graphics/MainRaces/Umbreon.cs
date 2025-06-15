@@ -28,7 +28,7 @@ class Umbreon : DefaultRaceData
         BodyAccent2 = new SpriteExtraInfo(8, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Dick rings
         BodyAccent3 = new SpriteExtraInfo(18, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Left Breast Ring color
         BodyAccent4 = new SpriteExtraInfo(18, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Right Breast Ring color
-        BodyAccent5 = new SpriteExtraInfo(21, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Belly ring color
+        BodyAccent5 = new SpriteExtraInfo(31, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Belly ring color
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;

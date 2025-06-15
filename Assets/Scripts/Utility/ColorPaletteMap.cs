@@ -118,6 +118,8 @@ public static class ColorPaletteMap
         EqualeonEyes,
         PlantSkin,
         ViiselSkin,
+        LupineSkin,
+        LupineReversed,
     }
 
     static Dictionary<SwapType, List<ColorSwapPalette>> Swaps;
