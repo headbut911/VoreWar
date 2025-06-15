@@ -429,6 +429,7 @@ public class WorldConfig
             ["DigestionSkulls"] = true,
             ["BellyRubHands"] = true,
             ["SurrenderFlag"] = true,
+            ["ShowUnitSides"] = true,
             ["Bones"] = true,
             ["CleanDisposal"] = false,
             ["Scat"] = false,

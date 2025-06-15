@@ -806,6 +806,8 @@ Does not retroactively affect already created units.";
                 return "Enables wandering packs of Viisels.";
             case 334:
                 return "When enabled, a white flag will appear next to surrendered units.";
+            case 335:
+                return "When enabled, unit's side will be displayed in their info panel.";
             default:
                 return "";
         }
