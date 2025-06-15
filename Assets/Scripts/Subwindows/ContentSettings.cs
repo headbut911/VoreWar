@@ -160,6 +160,7 @@ public class ContentSettings : MonoBehaviour
     public Toggle AnimatedBellies;
     public Toggle DigestionSkulls;
     public Toggle BellyRubHands;
+    public Toggle SurrenderFlag;
     public Slider BurpFraction;
     public Toggle BurpOnDigest;
     public Slider FartFraction;
@@ -335,6 +336,7 @@ public class ContentSettings : MonoBehaviour
             new ToggleObject(AnimatedBellies, "AnimatedBellies", true),
             new ToggleObject(DigestionSkulls, "DigestionSkulls",  true),
             new ToggleObject(BellyRubHands, "BellyRubHands",  true),
+            new ToggleObject(SurrenderFlag, "SurrenderFlag",  true),
             new ToggleObject(Bones, "Bones", true),
             new ToggleObject(CleanDisposal, "CleanDisposal", false),
             new ToggleObject(Scat, "Scat", false),

@@ -428,6 +428,7 @@ public class WorldConfig
             ["AnimatedBellies"] = true,
             ["DigestionSkulls"] = true,
             ["BellyRubHands"] = true,
+            ["SurrenderFlag"] = true,
             ["Bones"] = true,
             ["CleanDisposal"] = false,
             ["Scat"] = false,
