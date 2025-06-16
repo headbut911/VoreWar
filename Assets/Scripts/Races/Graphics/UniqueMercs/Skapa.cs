@@ -42,6 +42,7 @@ class Skapa : BlankSlate
 
         SkapaFrontSide = false;
         SkapaFrontDirect = false;
+        actor.Unit.Pronouns = new List<string> { "she", "her", "her", "hers", "herself", "singular" };//ensures regurardless of gender Pronouns remain the same
 
         if (actor.Unit.TailType == 1)
         {
