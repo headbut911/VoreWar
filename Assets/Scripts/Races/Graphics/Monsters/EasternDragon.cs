@@ -45,6 +45,14 @@ class EasternDragon : BlankSlate
             new AnimationController.FrameList(0, 0, false)}; // Tongue controller. Index 1.
     }
 
+    internal override void RunFirst(Actor_Unit actor)
+    {
+        if (actor.Unit.GetScale() == 1)
+        actor.UnitSprite.GraphicsFolder.transform.localScale = new Vector3(1.6f, 1.6f, 1); // Largeness activated!
+        if (actor.Unit.GetScale() > 1 && actor.Unit.GetScale() <= 1.8)
+        actor.UnitSprite.GraphicsFolder.transform.localScale = new Vector3(1.8f, 1.8f, 1); // Largeness activated!
+    }
+
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // Tail
     {
         if (!Config.HideCocks && (actor.PredatorComponent?.BallsFullness > 0 || actor.IsErect()))
