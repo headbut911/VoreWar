@@ -348,10 +348,13 @@ static class Config
     public static bool AnimatedBellies => World.GetValue("AnimatedBellies");
     public static bool DigestionSkulls => World.GetValue("DigestionSkulls");
     public static bool BellyRubHands => World.GetValue("BellyRubHands");
+    public static bool SurrenderFlag => World.GetValue("SurrenderFlag");
+    public static bool ShowUnitSides => World.GetValue("ShowUnitSides");
     public static bool Bones => World.GetValue("Bones");
     public static bool CleanDisposal => World.GetValue("CleanDisposal");
     public static bool Scat => World.GetValue("Scat");
     public static bool ScatV2 => World.GetValue("ScatV2");
+    public static bool BirdScat => World.GetValue("BirdScat");
     public static bool ScatBones => World.GetValue("ScatBones");
     public static bool CondomsForCV => World.GetValue("CondomsForCV");
     public static bool ClothingDiscards => World.GetValue("ClothingDiscards");

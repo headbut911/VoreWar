@@ -13,6 +13,7 @@ class Skapa : BlankSlate
 
     public Skapa()
     {
+        CanBeGender = new List<Gender>() { Gender.Hermaphrodite };
         GentleAnimation = true;
         WeightGainDisabled = true;
 
@@ -41,6 +42,10 @@ class Skapa : BlankSlate
 
         SkapaFrontSide = false;
         SkapaFrontDirect = false;
+        actor.Unit.DickSize = 0;//Forces Hermaphrodite regurardless of herm spawn percentages
+        actor.Unit.SetDefaultBreastSize(0);//Forces Hermaphrodite regurardless of herm spawn percentages
+        actor.Unit.HasVagina = Config.HermsCanUB;//Forces Hermaphrodite regurardless of herm spawn percentages
+        actor.Unit.Pronouns = new List<string> { "she", "her", "her", "hers", "herself", "singular" };//ensures regurardless of gender Pronouns remain the same
 
         if (actor.Unit.TailType == 1)
         {
@@ -146,6 +151,7 @@ class Skapa : BlankSlate
     {
         int size = actor.GetStomachSize(45);
         int ballsSize = actor.GetBallSize(45);
+        int resize = actor.GetStomachSize(5);
 
         if (!actor.HasBelly) return null;
 
@@ -245,10 +251,10 @@ class Skapa : BlankSlate
                 }
             }
 
-            if (size >= 15) size = 15;
+            //if (size >= 15) size = 15;
             if (size >= 15) AddOffset(Belly, 0, -5 * .5f);
             else AddOffset(Belly, 0, 0 * .5f);
-            return SkapaSprites[40 + size];
+            return SkapaSprites[40 + resize];
         }
         else // BackView
         {
