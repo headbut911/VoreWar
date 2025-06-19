@@ -274,7 +274,7 @@ static class TraitList
         [Traits.MagicProwess] = new Booster("Unit's spells are more accurate", (s) => s.Outgoing.MagicShift -= 0.2f),
         [Traits.FastAbsorption] = new Booster("Unit absorbs dead prey more quickly. (150%)", (s) => s.Outgoing.AbsorptionRate *= 1.5f),
         [Traits.SlowAbsorption] = new Booster("Unit absorbs dead prey more slowly. (50%)", (s) => s.Outgoing.AbsorptionRate *= 0.5f),
-        [Traits.IronGut] = new Booster("This unit is hard to escape from", (s) => s.Outgoing.ChanceToEscape *= 0.5f),
+        [Traits.IronGut] = new Booster("This unit's insides are hard to escape from. (50%)", (s) => s.Outgoing.ChanceToEscape *= 0.5f),
         [Traits.SteadyStomach] = new Booster("Unit keeps prey down slightly better than average", (s) => s.Outgoing.ChanceToEscape *= 0.85f),
         [Traits.Bulky] = new Booster("Unit is bulkier than normal (increased size, making them harder to swallow, without actually giving other bonuses or making them bigger like the scale traits)", (s) => s.BulkMultiplier *= 1.75f),
         [Traits.SlowMovement] = new Booster("Unit is slower than normal, but suffers reduced prey penalties to speed.", (s) => { s.SpeedMultiplier *= 0.75f; s.MinSpeed = 2; s.SpeedLossFromWeightMultiplier = 0.5f; }),
@@ -358,7 +358,7 @@ static class TraitList
         [Traits.FasterAbsorption] = new Booster("Unit absorbs dead prey even more quickly. (200%)", (s) => s.Outgoing.AbsorptionRate *= 2f),
         [Traits.SlowerAbsorption] = new Booster("Unit absorbs dead prey even more slowly. (25%)", (s) => s.Outgoing.AbsorptionRate *= 0.25f),
         [Traits.SlowerMetabolism] = new Booster("Unit digests and absorbs prey very slowly. (25%)", (s) => { s.Outgoing.AbsorptionRate *= 0.25f; s.Outgoing.DigestionRate *= 0.25f; }),
-        [Traits.IceDragoness] = new Booster("<b>This unit is a renowned dragon of ice, possessing abilities and traits reflecting that status.</b> \nOnly receives <b>50%</b> of all damage from Ice attacks. \nReceives <b>150%</b> of all damage from Fire attacks. \nMay attempt <b>2</b> Vore actions per turn.", (s) => { s.VoreAttacks += 1; s.SpeedLossFromWeightMultiplier = 0; s.DodgeLossFromWeightMultiplier = 0.2f; s.Outgoing.ChanceToEscape *= 0.5f; s.Incoming.RangedDamage *= .7f; s.FireDamageTaken *= 1.5f; s.IceDamageTaken *= .5f; }),
+        [Traits.QueenOfFrost] = new Booster("<b>This unit is a fierce dragon of ice, possessing abilities and traits reflecting that status.</b> \n\n\nTakes <b>20%</b> less damage from Ice attacks. \nMay attempt <b>2</b> Vore actions per turn.  \nMay attempt <b>2</b> Normal attacks. \nCarries prey with no penalty to speed. \nPrey has a tough time escaping this predator's insides. (<b>50%</b> of normal odds)", (s) => { s.VoreAttacks += 1; s.MeleeAttacks += 1; s.Outgoing.ChanceToEscape *= 0.5f; s.SpeedLossFromWeightMultiplier = 0; s.DodgeLossFromWeightMultiplier = 0.2f; s.IceDamageTaken *= .8f; }),
     };
 
 }
