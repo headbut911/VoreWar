@@ -480,7 +480,7 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.AstralCall:
                 return "Unit has a chance at the beginning of battle to summon a weaker unit from its race\nThey return to their own dimension after the battle";
             case Traits.TentacleHarassment:
-                return "Shifting tentacles distract and harass opponents within 1 tile.\nLowers enemy stats by a small amount";
+                return "Shifting tentacles distract and harass opponents within 1 tile.\nLowers enemy stats by a small amount  (8%)";
             case Traits.BornToMove:
                 return "Experienced at carrying extra weight.\nUnit suffers no defense penalty and no movement penalty from units it is carrying.";
             case Traits.Resourceful:

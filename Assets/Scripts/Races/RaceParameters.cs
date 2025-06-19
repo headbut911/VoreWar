@@ -882,7 +882,8 @@ static class RaceParameters
         {
                 Traits.MagicResistance,
                 Traits.HealingBlood,
-                Traits.Slippery
+                Traits.Slippery,
+                Traits.WaterWalker,
         },
             RaceDescription = "",
         };
@@ -933,7 +934,7 @@ static class RaceParameters
                 Traits.Pounce,
                 Traits.HeavyPounce,
                 Traits.RangedVore,
-                Traits.Clumsy
+                Traits.Clumsy,
         },
             RaceDescription = "",
         };
@@ -951,6 +952,7 @@ static class RaceParameters
                 Traits.Biter,
                 Traits.SenseWeakness,
                 Traits.StrongGullet,
+                Traits.WaterWalker,
         },
             RaceDescription = "",
         };
@@ -2881,7 +2883,7 @@ static class RaceParameters
             {
                 Strength = new RaceStats.StatRange(11, 15),
                 Dexterity = new RaceStats.StatRange(9, 13),
-                Endurance = new RaceStats.StatRange(17, 23),
+                Endurance = new RaceStats.StatRange(18, 24),
                 Mind = new RaceStats.StatRange(7, 11),
                 Will = new RaceStats.StatRange(12, 18),
                 Agility = new RaceStats.StatRange(13, 19),
@@ -2891,7 +2893,6 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Disgusting,
-            Traits.Resilient,
             Traits.Pounce,
             Traits.FireVulnerable,
         },
@@ -2935,7 +2936,7 @@ static class RaceParameters
             BodySize = 100,
             StomachSize = 100,
             FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth },
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth, VoreType.TailVore },
             ExpMultiplier = 1.6f,
             PowerAdjustment = 1.3f,
             DeployCost = 2,
@@ -2944,7 +2945,7 @@ static class RaceParameters
             {
                 Strength = new RaceStats.StatRange(20, 28),
                 Dexterity = new RaceStats.StatRange(14, 20),
-                Endurance = new RaceStats.StatRange(30, 42),
+                Endurance = new RaceStats.StatRange(20, 30),
                 Mind = new RaceStats.StatRange(10, 20),
                 Will = new RaceStats.StatRange(10, 20),
                 Agility = new RaceStats.StatRange(20, 28),
@@ -2953,379 +2954,77 @@ static class RaceParameters
             },
             RacialTraits = new List<Traits>()
         {
-            Traits.Intimidating,
-            Traits.Resilient,
-            Traits.Berserk,
+            Traits.TailStrike,
             Traits.Flight,
-            Traits.Pounce,
-            Traits.FireVulnerable,
+            Traits.HealingBlood,
+            Traits.PoisonSpit,
         },
+            //InnateSpells = new List<SpellTypes>() { SpellTypes.Poison },
             RaceDescription = "Somehow a Kaiju!",
         };
 
-        Selicia = new RaceTraits()
+        ViraeUltimae = new RaceTraits()
         {
-            BodySize = 60,
-            StomachSize = 30,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth },
-            ExpMultiplier = 4f,
-            PowerAdjustment = 7f,
-            DeployCost = 4,
-            Upkeep = 30f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(22, 26),
-                Dexterity = new RaceStats.StatRange(10, 14),
-                Endurance = new RaceStats.StatRange(30, 36),
-                Mind = new RaceStats.StatRange(16, 20),
-                Will = new RaceStats.StatRange(6, 8),
-                Agility = new RaceStats.StatRange(20, 24),
-                Voracity = new RaceStats.StatRange(14, 18),
-                Stomach = new RaceStats.StatRange(12, 16),
-            },
-            RacialTraits = new List<Traits>()
-            {
-                Traits.KeenReflexes,
-                Traits.StrongGullet,
-                Traits.NimbleClimber,
-
-            },
-            InnateSpells = new List<SpellTypes>() { SpellTypes.IceBlast },
-            RaceDescription = "A hybrid between a dragon and salamander whom excels in climbing and swimming but lacks any wings for flight.",
-
-        };
-
-        Vision = new RaceTraits()
-        {
-            BodySize = 20,
-            StomachSize = 30,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
-            ExpMultiplier = 2f,
-            PowerAdjustment = 4f,
-            DeployCost = 1,
-            Upkeep = 14f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(20, 22),
-                Dexterity = new RaceStats.StatRange(16, 18),
-                Endurance = new RaceStats.StatRange(24, 26),
-                Mind = new RaceStats.StatRange(14, 18),
-                Will = new RaceStats.StatRange(12, 16),
-                Agility = new RaceStats.StatRange(18, 24),
-                Voracity = new RaceStats.StatRange(14, 20),
-                Stomach = new RaceStats.StatRange(12, 16),
-            },
-            RacialTraits = new List<Traits>()
-            {
-                Traits.Ravenous,
-                Traits.StrongGullet,
-                Traits.Intimidating,
-
-            },
-            RaceDescription = "A Xeno-Spinosaurid about the size of a small horse or large dog. They eat about half or even double their body weight at minimum a day, but have been known to eat things larger than themselves. Because of their huge appetite, their digestive tract is mostly stomach, what they can't digest they regurgitate as an owl-like pellet",
-
-        };
-
-        Ki = new RaceTraits()
-        {
-            BodySize = 10,
-            StomachSize = 22,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore },
-            ExpMultiplier = 1.2f,
-            PowerAdjustment = 1.5f,
+            BodySize = 6,
+            StomachSize = 15,
+            HasTail = false,
+            FavoredStat = Stat.Strength,
             DeployCost = 1,
             Upkeep = 3f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(5, 7),
-                Dexterity = new RaceStats.StatRange(5, 7),
-                Endurance = new RaceStats.StatRange(9, 11),
-                Mind = new RaceStats.StatRange(8, 12),
-                Will = new RaceStats.StatRange(18, 22),
-                Agility = new RaceStats.StatRange(20, 24),
-                Voracity = new RaceStats.StatRange(18, 22),
-                Stomach = new RaceStats.StatRange(18, 22),
+                Strength = new RaceStats.StatRange(18, 24),
+                Dexterity = new RaceStats.StatRange(4, 7),
+                Endurance = new RaceStats.StatRange(17, 20),
+                Mind = new RaceStats.StatRange(1, 2),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(4, 6),
+                Voracity = new RaceStats.StatRange(12, 15),
+                Stomach = new RaceStats.StatRange(12, 15),
             },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.ArtfulDodge,
-                Traits.KeenReflexes,
-                Traits.StrongGullet,
-        },
-            RaceDescription = "A member of a race that uses its small size and unthreathening appearance to lure in potential prey, Ki decided that becoming a mercenary suited him fine. After all, he'd be paid for getting free meals!",
-        };
-
-        Scorch = new RaceTraits()
-        {
-            BodySize = 32,
-            StomachSize = 30,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
-            ExpMultiplier = 2.4f,
-            PowerAdjustment = 4f,
-            DeployCost = 1,
-            Upkeep = 32f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(20, 24),
-                Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(24, 36),
-                Mind = new RaceStats.StatRange(40, 50),
-                Will = new RaceStats.StatRange(12, 18),
-                Agility = new RaceStats.StatRange(16, 28),
-                Voracity = new RaceStats.StatRange(36, 40),
-                Stomach = new RaceStats.StatRange(24, 40),
-            },
             RacialTraits = new List<Traits>()
         {
-                Traits.Flight,
-                Traits.Biter,
-                Traits.StrongGullet,
-                Traits.Cruel,
-                Traits.FastAbsorption,
+                Traits.ViralBiology,
+                Traits.Fearless,
+                Traits.Stinger,
+                Traits.InfectiousReproduction,
+                Traits.DireInfection,
+                Traits.Brainless,
         },
-            InnateSpells = new List<SpellTypes>() { SpellTypes.Pyre },
-            RaceDescription = "A cruel, gluttonous red wyvern",
+            RaceDescription = "How the Virae Ultimae are able to function at all with no brain is an enigma. Hearing and perpetual humming are their only ways of interacting with the world minus attacking and attempting to reproduce more of themselves by infecting hosts with their viral injectors. These things operate as brainless biological automata, and their sheer refusal to cease their attack under any conditions can be quite scary.",
         };
 
-
-        Asura = new RaceTraits()
+        Viisels = new RaceTraits()
         {
-            BodySize = 12,
-            StomachSize = 30,
+            BodySize = 10,
+            StomachSize = 17,
             HasTail = true,
-            FavoredStat = Stat.Strength,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
-            ExpMultiplier = 2.4f,
-            PowerAdjustment = 3f,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore, VoreType.Unbirth },
+            ExpMultiplier = 1f,
+            PowerAdjustment = 1f,
             DeployCost = 1,
-            Upkeep = 15f,
+            Upkeep = 3f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(20, 24),
-                Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(16, 20),
+                Strength = new RaceStats.StatRange(5, 8),
+                Dexterity = new RaceStats.StatRange(5, 8),
+                Endurance = new RaceStats.StatRange(7, 11),
                 Mind = new RaceStats.StatRange(8, 12),
-                Will = new RaceStats.StatRange(12, 16),
-                Agility = new RaceStats.StatRange(10, 16),
-                Voracity = new RaceStats.StatRange(18, 24),
-                Stomach = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(6, 13),
+                Agility = new RaceStats.StatRange(15, 18),
+                Voracity = new RaceStats.StatRange(12, 15),
+                Stomach = new RaceStats.StatRange(12, 15),
             },
             RacialTraits = new List<Traits>()
         {
-                Traits.Maul,
-                Traits.Frenzy,
-                Traits.ShunGokuSatsu
-        },
-            CanUseRangedWeapons = false,
-        };
-
-        DRACO = new RaceTraits()
-        {
-            BodySize = 80,
-            StomachSize = 60,
-            HasTail = true,
-            FavoredStat = Stat.Endurance,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
-            ExpMultiplier = 2.4f,
-            PowerAdjustment = 4f,
-            DeployCost = 1,
-            Upkeep = 14f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(20, 24),
-                Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(32, 40),
-                Mind = new RaceStats.StatRange(16, 20),
-                Will = new RaceStats.StatRange(12, 18),
-                Agility = new RaceStats.StatRange(28, 40),
-                Voracity = new RaceStats.StatRange(16, 24),
-                Stomach = new RaceStats.StatRange(18, 26),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.MetalBody,
-                Traits.Resilient,
-                Traits.KeenReflexes,
-                Traits.BornToMove,
-                Traits.Intimidating,
-        },
-            RaceDescription = "A corrupted D.r.a.c.o unit. Unlike other units from his line 008 has tampered with his coding and removed the safety on his stomach allowing him to digest his prisoners.",
-        };
-
-        Zoey = new RaceTraits()
-        {
-            BodySize = 12,
-            StomachSize = 40,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
-            ExpMultiplier = 1.6f,
-            PowerAdjustment = 3f,
-            DeployCost = 1,
-            Upkeep = 14f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(14, 20),
-                Dexterity = new RaceStats.StatRange(8, 10),
-                Endurance = new RaceStats.StatRange(18, 20),
-                Mind = new RaceStats.StatRange(6, 10),
-                Will = new RaceStats.StatRange(12, 18),
-                Agility = new RaceStats.StatRange(14, 18),
-                Voracity = new RaceStats.StatRange(14, 18),
-                Stomach = new RaceStats.StatRange(14, 18),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.Maul,
-                Traits.StrongGullet,
-                Traits.Biter,
-                Traits.Greedy,
-                Traits.BornToMove,
-                Traits.TailStrike,
-                Traits.GiantSlayer,
-        },
-            RaceDescription = "An anthropomorphic tiger shark from another world.  Zoey is typically a lazy girl who loves watching movies and being a general couch-potato.  However, upon realizing she'd been isekai'd into the realm, her gluttony left her interested in trying to stomach the local warriors and monsters with some basic martial arts, joining whichever side would pay her first.",
-        };
-
-        Cierihaka = new RaceTraits()
-        {
-            BodySize = 150,
-            StomachSize = 100,
-            HasTail = true,
-            FavoredStat = Stat.Strength,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth },
-            ExpMultiplier = 3.2f,
-            PowerAdjustment = 7f,
-            DeployCost = 4,
-            Upkeep = 30f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(32, 40),
-                Dexterity = new RaceStats.StatRange(18, 22),
-                Endurance = new RaceStats.StatRange(36, 42),
-                Mind = new RaceStats.StatRange(12, 16),
-                Will = new RaceStats.StatRange(16, 20),
-                Agility = new RaceStats.StatRange(20, 24),
-                Voracity = new RaceStats.StatRange(16, 20),
-                Stomach = new RaceStats.StatRange(24, 28),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.ForcefulBlow,
-                Traits.StrongGullet,
-                Traits.Pounce,
-                Traits.HeavyPounce,
-        },
-            RaceDescription = "This girthy dragoness hails from a far away arid land, and excels at pressing the attack, with a great pair of skewers in place of where most dragons would have wings. With considerable grace despite her size, she exercises vigilance on the battlefield. ",
-        };
-
-        Zera = new RaceTraits()
-        {
-            BodySize = 24,
-            StomachSize = 30,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore },
-            ExpMultiplier = 2.4f,
-            PowerAdjustment = 4f,
-            DeployCost = 1,
-            Upkeep = 16f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(24, 30),
-                Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(24, 30),
-                Mind = new RaceStats.StatRange(16, 20),
-                Will = new RaceStats.StatRange(12, 18),
-                Agility = new RaceStats.StatRange(20, 32),
-                Voracity = new RaceStats.StatRange(16, 24),
-                Stomach = new RaceStats.StatRange(16, 24),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.StrongGullet,
                 Traits.ArtfulDodge,
-                Traits.NimbleClimber,
-                Traits.BornToMove,
-                Traits.TailStrike,
-                Traits.GiantSlayer,
-        },
-            RaceDescription = "A devious and voracious wyvern. Known for his agility and cunning, don't ever turn your back to him or you might find yourself in trouble.",
-        };
-
-        Auri = new RaceTraits()
-        {
-            BodySize = 12,
-            StomachSize = 30,
-            HasTail = true,
-            FavoredStat = Stat.Agility,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
-            ExpMultiplier = 2.4f,
-            PowerAdjustment = 3.2f,
-            DeployCost = 1,
-            Upkeep = 20f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(16, 16),
-                Dexterity = new RaceStats.StatRange(20, 20),
-                Endurance = new RaceStats.StatRange(16, 20),
-                Mind = new RaceStats.StatRange(20, 20),
-                Will = new RaceStats.StatRange(14, 20),
-                Agility = new RaceStats.StatRange(24, 26),
-                Voracity = new RaceStats.StatRange(16, 20),
-                Stomach = new RaceStats.StatRange(12, 16),
-            },
-            RacialTraits = new List<Traits>()
-            {
-                Traits.ArtfulDodge,
-                Traits.ThrillSeeker,
-                Traits.FastCaster
-            },
-            InnateSpells = new List<SpellTypes>()
-            { SpellTypes.Mending, SpellTypes.Summon },
-            RaceDescription = "A fox-woman priestess and self-proclaimed avatar of a creator of the world.",
-        };
-
-        Erin = new RaceTraits()
-        {
-            BodySize = 12,
-            StomachSize = 10,
-            FavoredStat = Stat.Endurance,
-            AllowedVoreTypes = new List<VoreType> { },
-            ExpMultiplier = 2.4f,
-            PowerAdjustment = 2f,
-            DeployCost = 1,
-            Upkeep = 6f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(5, 10),
-                Dexterity = new RaceStats.StatRange(5, 10),
-                Endurance = new RaceStats.StatRange(20, 25),
-                Mind = new RaceStats.StatRange(20, 25),
-                Will = new RaceStats.StatRange(20, 25),
-                Agility = new RaceStats.StatRange(24, 26),
-                Voracity = new RaceStats.StatRange(10, 15),
-                Stomach = new RaceStats.StatRange(9, 10),
-            },
-            RacialTraits = new List<Traits>()
-            {
-                Traits.Tasty,
-                Traits.Prey,
+                Traits.StretchyInsides,
+                Traits.Ravenous,
                 Traits.EasyToVore,
-                Traits.Flight,
-                Traits.TheGreatEscape
-            },
-            InnateSpells = new List<SpellTypes>()
-            { SpellTypes.DivinitysEmbrace },
-            RaceDescription = "Erin belongs to a very rare species known as a Nyangel, the lovechild of an angel and a catgirl.  Thanks to this divine heritage they aremostly all incredible healers... But they're also incredibly tasty.  Every Nyangel has a unique trait to set them apart from eachother, and Erin is no exception to this rule.  Her quirk is total acid resistance, the perfect defense against the raveous predators of this realm.  That doesn't stop her from being devoured, however, and that is unfortunately an all-too-common outcome for the girl.  Regardless of how many times she ends up eaten, the loveable Nyangel still tries her best to heal those she can.",
+        },
+            RaceDescription = "The Viisels, after first arriving in this world, used to live in burrows and only hunted those who got too close. But after one of their own, Ki, proved himself a capable battler, they've been forced onto the offensive as the people of the world are no longer willing to leave them be, though as the Viisels have gained a taste for other people, the small sapients grow increasingly bold... And hungry.",
         };
 
         Goodra = new RaceTraits()
@@ -3360,271 +3059,6 @@ static class RaceParameters
             Traits.HardSkin
         },
             RaceDescription = "Goodra, the Slug Dragon Pokemon. Goodra are large soft dragon type pokemon coated in slime. They love to give hugs and often confuse friends from food.",
-        };
-
-        Salix = new RaceTraits()
-        {
-            BodySize = 10,
-            StomachSize = 15,
-            HasTail = true,
-            FavoredStat = Stat.Dexterity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal, VoreType.CockVore },
-            ExpMultiplier = 2.4f,
-            PowerAdjustment = 5f,
-            DeployCost = 1,
-            Upkeep = 20f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(6, 10),
-                Dexterity = new RaceStats.StatRange(10, 15),
-                Endurance = new RaceStats.StatRange(15, 20),
-                Mind = new RaceStats.StatRange(25, 30),
-                Will = new RaceStats.StatRange(20, 25),
-                Agility = new RaceStats.StatRange(24, 26),
-                Voracity = new RaceStats.StatRange(16, 20),
-                Stomach = new RaceStats.StatRange(11, 16),
-            },
-            RacialTraits = new List<Traits>()
-            {
-                Traits.ArcaneMagistrate,
-                Traits.SpellBlade,
-                Traits.ManaAttuned,
-                Traits.ManaRich
-            },
-            InnateSpells = new List<SpellTypes>()
-            { SpellTypes.AmplifyMagic, SpellTypes.Evocation, SpellTypes.ManaFlux, SpellTypes.UnstableMana},
-            RaceDescription = "A demi-mouse mage from a different, mana rich dimension. Has had trouble adapting to the absence of mana here, but makes do.",
-        };
-
-
-        Bella = new RaceTraits()
-        {
-            BodySize = 20,
-            StomachSize = 15,
-            FavoredStat = Stat.Endurance,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.Anal },
-            ExpMultiplier = 1.2f,
-            PowerAdjustment = 1.2f,
-            DeployCost = 1,
-            Upkeep = 20f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(6, 10),
-                Dexterity = new RaceStats.StatRange(10, 15),
-                Endurance = new RaceStats.StatRange(25, 30),
-                Mind = new RaceStats.StatRange(15, 20),
-                Will = new RaceStats.StatRange(20, 25),
-                Agility = new RaceStats.StatRange(10, 15),
-                Voracity = new RaceStats.StatRange(20, 25),
-                Stomach = new RaceStats.StatRange(15, 20),
-            },
-            RacialTraits = new List<Traits>()
-            {
-                Traits.Tenacious,
-                Traits.ManaBarrier,
-                Traits.EfficientGuts,
-                Traits.Unflinching,
-                Traits.ArcaneMagistrate,
-                Traits.ManaRich,
-                Traits.SpellBlade,
-                Traits.Clumsy
-            },
-            InnateSpells = new List<SpellTypes>()
-            { SpellTypes.Mending, SpellTypes.Fireball},
-            RaceDescription = "\"A shy cowgirl ^o^\" - Made by AgentAmbi",
-        };
-
-        Singularity = new RaceTraits()
-        {
-            BodySize = 20,
-            StomachSize = 30,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
-            ExpMultiplier = 2f,
-            PowerAdjustment = 4f,
-            DeployCost = 1,
-            Upkeep = 15f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(10, 15),
-                Dexterity = new RaceStats.StatRange(14, 21),
-                Endurance = new RaceStats.StatRange(12, 19),
-                Mind = new RaceStats.StatRange(10, 16),
-                Will = new RaceStats.StatRange(16, 21),
-                Agility = new RaceStats.StatRange(7, 11),
-                Voracity = new RaceStats.StatRange(12, 18),
-                Stomach = new RaceStats.StatRange(16, 21),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.DualStomach,
-                Traits.Ravenous,
-                Traits.AwkwardShape,
-                Traits.StrongGullet,
-        },
-            RaceDescription = "A ravenous species seemingly mirrored from the deer, this herbivore enjoys showing just how quickly she can gobble a warrior down.",
-        };
-
-        Feit = new RaceTraits()
-        {
-            BodySize = 20,
-            StomachSize = 25,
-            FavoredStat = Stat.Agility,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
-            ExpMultiplier = 2f,
-            PowerAdjustment = 4f,
-            DeployCost = 1,
-            Upkeep = 25f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(15, 22),
-                Dexterity = new RaceStats.StatRange(12, 18),
-                Endurance = new RaceStats.StatRange(18, 23),
-                Mind = new RaceStats.StatRange(8, 12),
-                Will = new RaceStats.StatRange(19, 24),
-                Agility = new RaceStats.StatRange(18, 24),
-                Voracity = new RaceStats.StatRange(18, 22),
-                Stomach = new RaceStats.StatRange(16, 21),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.StrongGullet,
-                Traits.Pounce,
-                Traits.KeenReflexes,
-                Traits.Growth,
-                Traits.Tasty,
-        },
-            RaceDescription = "A strange, almost draconic looking raptor. She seems to grow larger and stronger with each victim consumed. Despite having wings, they seem to only allow her to leap great distances instead of fly.",
-        };
-
-        Taraluxia = new RaceTraits()
-        {
-            BodySize = 100,
-            StomachSize = 100,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
-            ExpMultiplier = 6f,
-            PowerAdjustment = 15f,
-            DeployCost = 4,
-            Upkeep = 40f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(18, 24),
-                Dexterity = new RaceStats.StatRange(20, 30),
-                Endurance = new RaceStats.StatRange(30, 42),
-                Mind = new RaceStats.StatRange(20, 32),
-                Will = new RaceStats.StatRange(40, 55),
-                Agility = new RaceStats.StatRange(20, 30),
-                Voracity = new RaceStats.StatRange(32, 44),
-                Stomach = new RaceStats.StatRange(25, 35),
-            },
-            RacialTraits = new List<Traits>()
-            {
-                Traits.Maul,
-                Traits.Flight,
-                Traits.Intimidating,
-                Traits.ColdTolerance,
-                Traits.TailStrike,
-
-            },
-            InnateSpells = new List<SpellTypes>() { SpellTypes.IceBlast },
-            RaceDescription = "Hehe, Ice dragon goes brr",
-
-        };
-
-        Xelhilde = new RaceTraits()
-        {
-            BodySize = 12,
-            StomachSize = 15,
-            FavoredStat = Stat.Strength,
-            HasTail = true,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
-            ExpMultiplier = 1.4f,
-            PowerAdjustment = 2f,
-            DeployCost = 1,
-            Upkeep = 13f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(23, 28),
-                Dexterity = new RaceStats.StatRange(8, 16),
-                Endurance = new RaceStats.StatRange(21, 25),
-                Mind = new RaceStats.StatRange(8, 14),
-                Will = new RaceStats.StatRange(12, 16),
-                Agility = new RaceStats.StatRange(16, 21),
-                Voracity = new RaceStats.StatRange(8, 12),
-                Stomach = new RaceStats.StatRange(10, 13),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.DoubleAttack,
-                Traits.DefensiveStance,
-                Traits.KeenReflexes,
-                Traits.AdeptLearner,
-        },
-            RaceDescription = "A canine knight from the Kingdom of Mondfeld that wields a cobalt zweihänder. She roams the realm in search of battle to bring glory to Mondfeld!",
-        };
-
-        Skapa = new RaceTraits()
-        {
-            BodySize = 20,
-            StomachSize = 30,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore , VoreType.Unbirth },
-            ExpMultiplier = 2f,
-            PowerAdjustment = 4f,
-            DeployCost = 1,
-            Upkeep = 15f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(10, 15),
-                Dexterity = new RaceStats.StatRange(14, 21),
-                Endurance = new RaceStats.StatRange(12, 19),
-                Mind = new RaceStats.StatRange(10, 16),
-                Will = new RaceStats.StatRange(16, 21),
-                Agility = new RaceStats.StatRange(7, 11),
-                Voracity = new RaceStats.StatRange(12, 18),
-                Stomach = new RaceStats.StatRange(16, 21),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.Biter,
-                Traits.Pounce,
-        },
-            RaceDescription = "A seductive herm barioth",
-        };
-
-        BoomBunnies = new RaceTraits()
-        {
-            BodySize = 5,
-            StomachSize = 10,
-            HasTail = true,
-            FavoredStat = Stat.Agility,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
-            ExpMultiplier = 1f,
-            PowerAdjustment = .75f,
-            DeployCost = 1,
-            Upkeep = 2f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(6, 10),
-                Dexterity = new RaceStats.StatRange(2, 4),
-                Endurance = new RaceStats.StatRange(5, 8),
-                Mind = new RaceStats.StatRange(6, 8),
-                Will = new RaceStats.StatRange(4, 8),
-                Agility = new RaceStats.StatRange(10, 18),
-                Voracity = new RaceStats.StatRange(10, 18),
-                Stomach = new RaceStats.StatRange(8, 15),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.Replaceable,
-                Traits.ProlificBreeder,
-                Traits.Pounce,
-        },
-            InnateSpells = new List<SpellTypes>() { SpellTypes.ExplosiveHug },
-            RaceDescription = "Exploding rabbits of unknown origin. Many believe that Boom Bunnies are the result of some science experiment left unchecked. Despite their tendency of exploding they are exceedingly friendly and benign once tamed.",
-
         };
 
         FeralEevee = new RaceTraits()
@@ -3752,6 +3186,636 @@ static class RaceParameters
             RaceDescription = "One of the most basic monsters. The humble slime pursues anything that moves. They may or may not taste like assorted friuts.",
         };
 
+        BoomBunnies = new RaceTraits()
+        {
+            BodySize = 5,
+            StomachSize = 10,
+            HasTail = true,
+            FavoredStat = Stat.Agility,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
+            ExpMultiplier = 6f,
+            PowerAdjustment = .75f,
+            DeployCost = 1,
+            Upkeep = 2f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 10),
+                Dexterity = new RaceStats.StatRange(2, 4),
+                Endurance = new RaceStats.StatRange(5, 8),
+                Mind = new RaceStats.StatRange(6, 8),
+                Will = new RaceStats.StatRange(4, 8),
+                Agility = new RaceStats.StatRange(10, 18),
+                Voracity = new RaceStats.StatRange(10, 18),
+                Stomach = new RaceStats.StatRange(8, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Replaceable,
+                Traits.ProlificBreeder,
+                Traits.Pounce,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.ExplosiveHug },
+            RaceDescription = "Exploding rabbits of unknown origin. Many believe that Boom Bunnies are the result of some science experiment left unchecked. Despite their tendency of exploding they are exceedingly friendly and benign once tamed.",
+
+        };
+
+        Selicia = new RaceTraits()
+        {
+            BodySize = 60,
+            StomachSize = 30,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 7f,
+            DeployCost = 4,
+            Upkeep = 30f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(22, 26),
+                Dexterity = new RaceStats.StatRange(10, 14),
+                Endurance = new RaceStats.StatRange(30, 36),
+                Mind = new RaceStats.StatRange(16, 20),
+                Will = new RaceStats.StatRange(6, 8),
+                Agility = new RaceStats.StatRange(20, 24),
+                Voracity = new RaceStats.StatRange(14, 18),
+                Stomach = new RaceStats.StatRange(12, 16),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.KeenReflexes,
+                Traits.StrongGullet,
+                Traits.NimbleClimber,
+
+            },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.IceBlast },
+            RaceDescription = "A hybrid between a dragon and salamander whom excels in climbing and swimming but lacks any wings for flight.",
+
+        };
+
+        Vision = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 30,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 3f,
+            PowerAdjustment = 4f,
+            DeployCost = 1,
+            Upkeep = 14f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(20, 22),
+                Dexterity = new RaceStats.StatRange(16, 18),
+                Endurance = new RaceStats.StatRange(24, 26),
+                Mind = new RaceStats.StatRange(14, 18),
+                Will = new RaceStats.StatRange(12, 16),
+                Agility = new RaceStats.StatRange(18, 24),
+                Voracity = new RaceStats.StatRange(14, 20),
+                Stomach = new RaceStats.StatRange(12, 16),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.Ravenous,
+                Traits.StrongGullet,
+                Traits.Intimidating,
+
+            },
+            RaceDescription = "A Xeno-Spinosaurid about the size of a small horse or large dog. They eat about half or even double their body weight at minimum a day, but have been known to eat things larger than themselves. Because of their huge appetite, their digestive tract is mostly stomach, what they can't digest they regurgitate as an owl-like pellet",
+
+        };
+
+        Ki = new RaceTraits()
+        {
+            BodySize = 10,
+            StomachSize = 22,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore },
+            ExpMultiplier = 1.2f,
+            PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(5, 7),
+                Dexterity = new RaceStats.StatRange(5, 7),
+                Endurance = new RaceStats.StatRange(9, 11),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(18, 22),
+                Agility = new RaceStats.StatRange(20, 24),
+                Voracity = new RaceStats.StatRange(18, 22),
+                Stomach = new RaceStats.StatRange(18, 22),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.ArtfulDodge,
+                Traits.KeenReflexes,
+                Traits.StrongGullet,
+        },
+            RaceDescription = "A member of a race that uses its small size and unthreathening appearance to lure in potential prey, Ki decided that becoming a mercenary suited him fine. After all, he'd be paid for getting free meals!",
+        };
+
+        Scorch = new RaceTraits()
+        {
+            BodySize = 32,
+            StomachSize = 30,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 4f,
+            DeployCost = 1,
+            Upkeep = 32f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(20, 24),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(24, 36),
+                Mind = new RaceStats.StatRange(40, 50),
+                Will = new RaceStats.StatRange(12, 18),
+                Agility = new RaceStats.StatRange(16, 28),
+                Voracity = new RaceStats.StatRange(36, 40),
+                Stomach = new RaceStats.StatRange(24, 40),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Flight,
+                Traits.Biter,
+                Traits.StrongGullet,
+                Traits.Cruel,
+                Traits.FastAbsorption,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.Pyre },
+            RaceDescription = "A cruel, gluttonous red wyvern",
+        };
+
+
+        Asura = new RaceTraits()
+        {
+            BodySize = 15,
+            StomachSize = 30,
+            HasTail = true,
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
+            ExpMultiplier = 1.4f,
+            PowerAdjustment = 3f,
+            DeployCost = 1,
+            Upkeep = 15f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(20, 24),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(16, 20),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(12, 16),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(18, 24),
+                Stomach = new RaceStats.StatRange(8, 12),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Maul,
+                Traits.Frenzy,
+                Traits.ShunGokuSatsu
+        },
+            CanUseRangedWeapons = false,
+        };
+
+        DRACO = new RaceTraits()
+        {
+            BodySize = 80,
+            StomachSize = 60,
+            HasTail = true,
+            FavoredStat = Stat.Endurance,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 4f,
+            DeployCost = 1,
+            Upkeep = 14f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(20, 24),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(32, 40),
+                Mind = new RaceStats.StatRange(16, 20),
+                Will = new RaceStats.StatRange(12, 18),
+                Agility = new RaceStats.StatRange(28, 40),
+                Voracity = new RaceStats.StatRange(16, 24),
+                Stomach = new RaceStats.StatRange(18, 26),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.MetalBody,
+                Traits.Resilient,
+                Traits.KeenReflexes,
+                Traits.BornToMove,
+                Traits.Intimidating,
+        },
+            RaceDescription = "A corrupted D.r.a.c.o unit. Unlike other units from his line 008 has tampered with his coding and removed the safety on his stomach allowing him to digest his prisoners.",
+        };
+
+        Zoey = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 40,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
+            ExpMultiplier = 1.6f,
+            PowerAdjustment = 3f,
+            DeployCost = 1,
+            Upkeep = 14f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(14, 20),
+                Dexterity = new RaceStats.StatRange(8, 10),
+                Endurance = new RaceStats.StatRange(18, 20),
+                Mind = new RaceStats.StatRange(6, 10),
+                Will = new RaceStats.StatRange(12, 18),
+                Agility = new RaceStats.StatRange(14, 18),
+                Voracity = new RaceStats.StatRange(14, 18),
+                Stomach = new RaceStats.StatRange(14, 18),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Maul,
+                Traits.StrongGullet,
+                Traits.Biter,
+                Traits.Greedy,
+                Traits.BornToMove,
+                Traits.TailStrike,
+                Traits.GiantSlayer,
+        },
+            RaceDescription = "An anthropomorphic tiger shark from another world.  Zoey is typically a lazy girl who loves watching movies and being a general couch-potato.  However, upon realizing she'd been isekai'd into the realm, her gluttony left her interested in trying to stomach the local warriors and monsters with some basic martial arts, joining whichever side would pay her first.",
+        };
+
+        Cierihaka = new RaceTraits()
+        {
+            BodySize = 150,
+            StomachSize = 100,
+            HasTail = true,
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth },
+            ExpMultiplier = 7f,
+            PowerAdjustment = 7f,
+            DeployCost = 4,
+            Upkeep = 30f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(32, 40),
+                Dexterity = new RaceStats.StatRange(18, 22),
+                Endurance = new RaceStats.StatRange(36, 42),
+                Mind = new RaceStats.StatRange(12, 16),
+                Will = new RaceStats.StatRange(16, 20),
+                Agility = new RaceStats.StatRange(20, 24),
+                Voracity = new RaceStats.StatRange(16, 20),
+                Stomach = new RaceStats.StatRange(24, 28),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.ForcefulBlow,
+                Traits.StrongGullet,
+                Traits.Pounce,
+                Traits.HeavyPounce,
+        },
+            RaceDescription = "This girthy dragoness hails from a far away arid land, and excels at pressing the attack, with a great pair of skewers in place of where most dragons would have wings. With considerable grace despite her size, she exercises vigilance on the battlefield. ",
+        };
+
+        Zera = new RaceTraits()
+        {
+            BodySize = 24,
+            StomachSize = 30,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore },
+            ExpMultiplier = 2.4f,
+            PowerAdjustment = 4f,
+            DeployCost = 1,
+            Upkeep = 16f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(24, 30),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(24, 30),
+                Mind = new RaceStats.StatRange(16, 20),
+                Will = new RaceStats.StatRange(12, 18),
+                Agility = new RaceStats.StatRange(20, 32),
+                Voracity = new RaceStats.StatRange(16, 24),
+                Stomach = new RaceStats.StatRange(16, 24),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.StrongGullet,
+                Traits.ArtfulDodge,
+                Traits.NimbleClimber,
+                Traits.BornToMove,
+                Traits.TailStrike,
+                Traits.GiantSlayer,
+        },
+            RaceDescription = "A devious and voracious wyvern. Known for his agility and cunning, don't ever turn your back to him or you might find yourself in trouble.",
+        };
+
+        Auri = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 30,
+            HasTail = true,
+            FavoredStat = Stat.Agility,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
+            ExpMultiplier = 2.4f,
+            PowerAdjustment = 3.2f,
+            DeployCost = 1,
+            Upkeep = 20f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(16, 16),
+                Dexterity = new RaceStats.StatRange(20, 20),
+                Endurance = new RaceStats.StatRange(16, 20),
+                Mind = new RaceStats.StatRange(20, 20),
+                Will = new RaceStats.StatRange(14, 20),
+                Agility = new RaceStats.StatRange(24, 26),
+                Voracity = new RaceStats.StatRange(16, 20),
+                Stomach = new RaceStats.StatRange(12, 16),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.ArtfulDodge,
+                Traits.ThrillSeeker,
+                Traits.FastCaster
+            },
+            InnateSpells = new List<SpellTypes>()
+            { SpellTypes.Mending, SpellTypes.Summon },
+            RaceDescription = "A fox-woman priestess and self-proclaimed avatar of a creator of the world.",
+        };
+
+        Erin = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 10,
+            FavoredStat = Stat.Endurance,
+            AllowedVoreTypes = new List<VoreType> { },
+            ExpMultiplier = 2.4f,
+            PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 6f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(5, 10),
+                Dexterity = new RaceStats.StatRange(5, 10),
+                Endurance = new RaceStats.StatRange(20, 25),
+                Mind = new RaceStats.StatRange(20, 25),
+                Will = new RaceStats.StatRange(20, 25),
+                Agility = new RaceStats.StatRange(24, 26),
+                Voracity = new RaceStats.StatRange(10, 15),
+                Stomach = new RaceStats.StatRange(9, 10),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.Tasty,
+                Traits.Prey,
+                Traits.EasyToVore,
+                Traits.Flight,
+                Traits.TheGreatEscape
+            },
+            InnateSpells = new List<SpellTypes>()
+            { SpellTypes.DivinitysEmbrace },
+            RaceDescription = "Erin belongs to a very rare species known as a Nyangel, the lovechild of an angel and a catgirl.  Thanks to this divine heritage they aremostly all incredible healers... But they're also incredibly tasty.  Every Nyangel has a unique trait to set them apart from eachother, and Erin is no exception to this rule.  Her quirk is total acid resistance, the perfect defense against the raveous predators of this realm.  That doesn't stop her from being devoured, however, and that is unfortunately an all-too-common outcome for the girl.  Regardless of how many times she ends up eaten, the loveable Nyangel still tries her best to heal those she can.",
+        };
+
+        
+
+        Salix = new RaceTraits()
+        {
+            BodySize = 10,
+            StomachSize = 15,
+            HasTail = true,
+            FavoredStat = Stat.Dexterity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal, VoreType.CockVore },
+            ExpMultiplier = 2.4f,
+            PowerAdjustment = 5f,
+            DeployCost = 1,
+            Upkeep = 20f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 10),
+                Dexterity = new RaceStats.StatRange(10, 15),
+                Endurance = new RaceStats.StatRange(15, 20),
+                Mind = new RaceStats.StatRange(25, 30),
+                Will = new RaceStats.StatRange(20, 25),
+                Agility = new RaceStats.StatRange(24, 26),
+                Voracity = new RaceStats.StatRange(16, 20),
+                Stomach = new RaceStats.StatRange(11, 16),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.ArcaneMagistrate,
+                Traits.SpellBlade,
+                Traits.ManaAttuned,
+                Traits.ManaRich
+            },
+            InnateSpells = new List<SpellTypes>()
+            { SpellTypes.AmplifyMagic, SpellTypes.Evocation, SpellTypes.ManaFlux, SpellTypes.UnstableMana},
+            RaceDescription = "A demi-mouse mage from a different, mana rich dimension. Has had trouble adapting to the absence of mana here, but makes do.",
+        };
+
+
+        Bella = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 15,
+            FavoredStat = Stat.Endurance,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.Anal },
+            ExpMultiplier = 1.5f,
+            PowerAdjustment = 1.2f,
+            DeployCost = 1,
+            Upkeep = 20f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 10),
+                Dexterity = new RaceStats.StatRange(10, 15),
+                Endurance = new RaceStats.StatRange(25, 30),
+                Mind = new RaceStats.StatRange(15, 20),
+                Will = new RaceStats.StatRange(20, 25),
+                Agility = new RaceStats.StatRange(10, 15),
+                Voracity = new RaceStats.StatRange(20, 25),
+                Stomach = new RaceStats.StatRange(15, 20),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.Tenacious,
+                Traits.ManaBarrier,
+                Traits.EfficientGuts,
+                Traits.Unflinching,
+                Traits.ArcaneMagistrate,
+                Traits.ManaRich,
+                Traits.SpellBlade,
+                Traits.Clumsy
+            },
+            InnateSpells = new List<SpellTypes>()
+            { SpellTypes.Mending, SpellTypes.Fireball},
+            RaceDescription = "\"A shy cowgirl ^o^\" - Made by AgentAmbi",
+        };
+
+        Singularity = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 30,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
+            ExpMultiplier = 2f,
+            PowerAdjustment = 4f,
+            DeployCost = 1,
+            Upkeep = 15f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(10, 15),
+                Dexterity = new RaceStats.StatRange(14, 21),
+                Endurance = new RaceStats.StatRange(12, 19),
+                Mind = new RaceStats.StatRange(10, 16),
+                Will = new RaceStats.StatRange(16, 21),
+                Agility = new RaceStats.StatRange(7, 11),
+                Voracity = new RaceStats.StatRange(12, 18),
+                Stomach = new RaceStats.StatRange(16, 21),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.DualStomach,
+                Traits.Ravenous,
+                Traits.AwkwardShape,
+                Traits.StrongGullet,
+        },
+            RaceDescription = "A ravenous species seemingly mirrored from the deer, this herbivore enjoys showing just how quickly she can gobble a warrior down.",
+        };
+
+        Feit = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 25,
+            FavoredStat = Stat.Agility,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 4f,
+            DeployCost = 1,
+            Upkeep = 25f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(15, 22),
+                Dexterity = new RaceStats.StatRange(12, 18),
+                Endurance = new RaceStats.StatRange(18, 23),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(19, 24),
+                Agility = new RaceStats.StatRange(18, 24),
+                Voracity = new RaceStats.StatRange(18, 22),
+                Stomach = new RaceStats.StatRange(16, 21),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.StrongGullet,
+                Traits.Pounce,
+                Traits.KeenReflexes,
+                Traits.Growth,
+                Traits.MinorGrowth,
+                Traits.Tasty,
+        },
+            RaceDescription = "A strange, almost draconic looking raptor. She seems to grow larger and stronger with each victim consumed. Despite having wings, they seem to only allow her to leap great distances instead of fly.",
+        };
+
+        Taraluxia = new RaceTraits()
+        {
+            BodySize = 100,
+            StomachSize = 100,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal },
+            ExpMultiplier = 7f,
+            PowerAdjustment = 15f,
+            DeployCost = 4,
+            Upkeep = 40f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(18, 24),
+                Dexterity = new RaceStats.StatRange(20, 30),
+                Endurance = new RaceStats.StatRange(30, 42),
+                Mind = new RaceStats.StatRange(20, 32),
+                Will = new RaceStats.StatRange(40, 55),
+                Agility = new RaceStats.StatRange(20, 30),
+                Voracity = new RaceStats.StatRange(32, 44),
+                Stomach = new RaceStats.StatRange(25, 35),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.QueenOfFrost,
+                Traits.Intimidating,
+                Traits.TailStrike,
+            },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.IceBlast, SpellTypes.Icicle },
+            RaceDescription = "An ice dragoness claiming to hail from a distant city. She seems a bit nicer than the wild dragons, but even hungrier. Her deep experience with her element let's her frequently cast ice breath attacks, and chills the air around nearby foes.",
+
+        };
+
+        Xelhilde = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 15,
+            FavoredStat = Stat.Strength,
+            HasTail = true,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
+            ExpMultiplier = 1.4f,
+            PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 13f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(23, 28),
+                Dexterity = new RaceStats.StatRange(8, 16),
+                Endurance = new RaceStats.StatRange(21, 25),
+                Mind = new RaceStats.StatRange(8, 14),
+                Will = new RaceStats.StatRange(12, 16),
+                Agility = new RaceStats.StatRange(16, 21),
+                Voracity = new RaceStats.StatRange(8, 12),
+                Stomach = new RaceStats.StatRange(10, 13),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.DoubleAttack,
+                Traits.DefensiveStance,
+                Traits.KeenReflexes,
+                Traits.AdeptLearner,
+        },
+            RaceDescription = "A canine knight from the Kingdom of Mondfeld that wields a cobalt zweihänder. She roams the realm in search of battle to bring glory to Mondfeld!",
+        };
+
+        Skapa = new RaceTraits()
+        {
+            BodySize = 60,
+            StomachSize = 40,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore , VoreType.Unbirth },
+            ExpMultiplier = 2f,
+            PowerAdjustment = 4f,
+            DeployCost = 1,
+            Upkeep = 15f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(10, 15),
+                Dexterity = new RaceStats.StatRange(14, 21),
+                Endurance = new RaceStats.StatRange(12, 19),
+                Mind = new RaceStats.StatRange(10, 16),
+                Will = new RaceStats.StatRange(16, 21),
+                Agility = new RaceStats.StatRange(7, 11),
+                Voracity = new RaceStats.StatRange(12, 18),
+                Stomach = new RaceStats.StatRange(16, 21),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.Biter,
+                Traits.Pounce,
+        },
+            RaceDescription = "A seductive herm barioth",
+        };
+
         Olivia = new RaceTraits()
         {
             BodySize = 9,
@@ -3783,70 +3847,6 @@ static class RaceParameters
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.CrossShock, SpellTypes.ArcBolt },
             RaceDescription = "A small fox with surprisingly strong lightning magic.",
-        };
-
-        ViraeUltimae = new RaceTraits()
-        {
-            BodySize = 6,
-            StomachSize = 15,
-            HasTail = false,
-            FavoredStat = Stat.Strength,
-            DeployCost = 1,
-            Upkeep = 3f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(18, 24),
-                Dexterity = new RaceStats.StatRange(4, 7),
-                Endurance = new RaceStats.StatRange(17, 20),
-                Mind = new RaceStats.StatRange(1, 2),
-                Will = new RaceStats.StatRange(4, 8),
-                Agility = new RaceStats.StatRange(4, 6),
-                Voracity = new RaceStats.StatRange(12, 15),
-                Stomach = new RaceStats.StatRange(12, 15),
-            },
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.ViralBiology,
-                Traits.Fearless,
-                Traits.Stinger,
-                Traits.InfectiousReproduction,
-                Traits.DireInfection,
-                Traits.Brainless,
-        },
-            RaceDescription = "How the Virae Ultimae are able to function at all with no brain is an enigma. Hearing and perpetual humming are their only ways of interacting with the world minus attacking and attempting to reproduce more of themselves by infecting hosts with their viral injectors. These things operate as brainless biological automata, and their sheer refusal to cease their attack under any conditions can be quite scary.",
-        };
-
-        Viisels = new RaceTraits()
-        {
-            BodySize = 10,
-            StomachSize = 17,
-            HasTail = true,
-            FavoredStat = Stat.Voracity,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore, VoreType.Unbirth },
-            ExpMultiplier = 1f,
-            PowerAdjustment = 1f,
-            DeployCost = 1,
-            Upkeep = 3f,
-            RaceStats = new RaceStats()
-            {
-                Strength = new RaceStats.StatRange(5, 8),
-                Dexterity = new RaceStats.StatRange(5, 8),
-                Endurance = new RaceStats.StatRange(7, 11),
-                Mind = new RaceStats.StatRange(8, 12),
-                Will = new RaceStats.StatRange(6, 13),
-                Agility = new RaceStats.StatRange(15, 18),
-                Voracity = new RaceStats.StatRange(12, 15),
-                Stomach = new RaceStats.StatRange(12, 15),
-            },
-            RacialTraits = new List<Traits>()
-        {
-                Traits.ArtfulDodge,
-                Traits.StretchyInsides,
-                Traits.Ravenous,
-                Traits.EasyToVore,
-        },
-            RaceDescription = "The Viisels, after first arriving in this world, used to live in burrows and only hunted those who got too close. But after one of their own, Ki, proved himself a capable battler, they've been forced onto the offensive as the people of the world are no longer willing to leave them be, though as the Viisels have gained a taste for other people, the small sapients grow increasingly bold... And hungry.",
         };
 
         Tatltuae = new RaceTraits()
