@@ -397,6 +397,8 @@
                 return Eevee;
             case Race.Umbreon:
                 return Umbreon;
+            case Race.Lupine:
+                return Lupine;
             case Race.Equaleon:
                 return Equaleon;
             case Race.Viisels:

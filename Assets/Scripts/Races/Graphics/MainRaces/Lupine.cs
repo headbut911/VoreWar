@@ -4,429 +4,335 @@ using UnityEngine;
 
 class Lupine : DefaultRaceData
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.HumansBodySprites1;
-    readonly Sprite[] Sprites2 = State.GameManager.SpriteDictionary.HumansBodySprites2;
-    readonly Sprite[] Sprites3 = State.GameManager.SpriteDictionary.HumansBodySprites3;
-    readonly Sprite[] Sprites4 = State.GameManager.SpriteDictionary.HumansVoreSprites;
+    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.Lupine1;
+    readonly Sprite[] Sprites2 = State.GameManager.SpriteDictionary.Lupine2;
+    readonly Sprite[] Sprites3 = State.GameManager.SpriteDictionary.LupineVoreSprites;
 
     bool oversize = false;
+
+    readonly LupineLeader LeaderClothes;
+    readonly LupineRags Rags;
 
     public Lupine()
     {
         BodySizes = 3;
-        EarTypes = 8;
-        HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
-        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
-        EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor);
-        BeardStyles = 0;
-        BodyAccentTypes1 = 6; // eyebrows
-        BodyAccentTypes2 = 3;
-        SpecialAccessoryCount = 0;
-        AccessoryColors = 0;
-        HairStyles = 36;
-        MouthTypes = 12;
-
+        EyeTypes = 4; // split into 3 sprites: Eyes (pupils), SecondaryEyes (sclera), SecondaryAccessory (iris)
+        SpecialAccessoryCount = 16; // ears
+        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.LupineSkin);
+        EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.LupineSkin); // for Sclera
+        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.LupineSkin); // for Iris
+        HairColors = 0;
+        HairStyles = 16; // refers to cheek fluff rather than actual hair
+        MouthTypes = 0;
+        BodyAccentTypes1 = 6; // body patterns
+        BodyAccentTypes2 = 5; // arm patterns
+        BodyAccentTypes3 = 5; // leg patterns
+        BodyAccentTypes4 = 10; // head patterns
+        TailTypes = 12;
         ExtendedBreastSprites = true;
 
-
-        BodySizes = 4;
-        EyeTypes = 5;
-        SpecialAccessoryCount = 12; // ears     
-        HairStyles = 25;
-        MouthTypes = 6;
-        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DeerLeaf);
-        HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
-        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DeerSkin);
-        BodyAccentTypes1 = 12; // antlers
-        BodyAccentTypes2 = 7; // pattern types
-        BodyAccentTypes3 = 2; // leg types
-
-        ExtendedBreastSprites = true;
-        FurCapable = true;
-
-        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => LupineColor(s));
-        Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => LupineColor(s));
-        BodyAccessory = new SpriteExtraInfo(20, AccessorySprite, null, (s) => LupineColor(s)); // Ears
-        BodyAccent = new SpriteExtraInfo(4, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor)); // Right Arm
-        BodyAccent2 = new SpriteExtraInfo(2, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor)); // Right Hand
-        BodyAccent3 = new SpriteExtraInfo(5, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor)); // Body Pattern
-        BodyAccent4 = new SpriteExtraInfo(5, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor)); // Arm Pattern
-        BodyAccent5 = new SpriteExtraInfo(7, BodyAccentSprite5, WhiteColored); // Nose
-        BodyAccent6 = new SpriteExtraInfo(6, BodyAccentSprite6, WhiteColored); // Hoofs
-        BodyAccent7 = new SpriteExtraInfo(8, BodyAccentSprite7, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor)); // Mouth external
-        BodyAccent8 = new SpriteExtraInfo(7, BodyAccentSprite8, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor)); // alternative legs
-        Mouth = new SpriteExtraInfo(7, MouthSprite, WhiteColored);
-        Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor));
-        Hair2 = new SpriteExtraInfo(0, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor));
-        Hair3 = new SpriteExtraInfo(8, HairSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor)); // Eyebrows
+        Body = new SpriteExtraInfo(3, BodySprite, null, (s) => LupineColor(s));
+        Head = new SpriteExtraInfo(21, HeadSprite, null, (s) => LupineColor(s));
+        BodyAccessory = new SpriteExtraInfo(25, AccessorySprite, null, (s) => LupineColor(s)); // Ears
+        BodyAccent = new SpriteExtraInfo(5, BodyAccentSprite, null, (s) => LupineColor(s)); // Body Pattern
+        BodyAccent2 = new SpriteExtraInfo(5, BodyAccentSprite2, null, (s) => LupineColor(s)); // Arm Pattern
+        BodyAccent3 = new SpriteExtraInfo(5, BodyAccentSprite3, null, (s) => LupineColor(s)); // Leg Pattern
+        BodyAccent4 = new SpriteExtraInfo(22, BodyAccentSprite4, null, (s) => LupineColor(s)); // Head Pattern
+        BodyAccent5 = new SpriteExtraInfo(3, BodyAccentSprite5, null, (s) => LupineColor(s)); // Right Arm
+        BodyAccent6 = new SpriteExtraInfo(4, BodyAccentSprite6, WhiteColored); // claws
+        BodyAccent7 = new SpriteExtraInfo(1, BodyAccentSprite7, null, (s) => LupineColor(s)); // Tail
+        Mouth = new SpriteExtraInfo(21, MouthSprite, WhiteColored);
+        Hair = new SpriteExtraInfo(24, HairSprite, null, (s) => LupineColor(s));
+        Hair2 = null;
+        Hair3 = null;
         Beard = null;
-        Eyes = new SpriteExtraInfo(7, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
-        SecondaryEyes = null;
-        SecondaryAccessory = new SpriteExtraInfo(22, SecondaryAccessorySprite, WhiteColored); // Antlers
-        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor));
-        Weapon = new SpriteExtraInfo(3, WeaponSprite, WhiteColored);
+        Eyes = new SpriteExtraInfo(23, EyesSprite, WhiteColored); // pupils
+        SecondaryEyes = new SpriteExtraInfo(23, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineSkin, s.Unit.EyeColor)); // sclera
+        SecondaryAccessory = new SpriteExtraInfo(23, SecondaryAccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineSkin, s.Unit.AccessoryColor)); // Iris
+        Belly = new SpriteExtraInfo(14, null, null, (s) => LupineVoreColor(s));
+        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
         BackWeapon = null;
         BodySize = null;
-        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor));
-        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor));
+        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => LupineVoreColor(s));
+        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => LupineVoreColor(s));
         BreastShadow = null;
-        Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor));
-        Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DeerSkin, s.Unit.SkinColor));
+        Dick = new SpriteExtraInfo(11, DickSprite, WhiteColored);
+        Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => LupineVoreColor(s));
 
 
-        clothingColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.Clothing50Spaced);
+        LeaderClothes = new LupineLeader();
+        Rags = new LupineRags();
+
+        AllowedMainClothingTypes = new List<MainClothing>()
+        {
+            new GenericTop1(),
+            new GenericTop2(),
+            new GenericTop3(),
+            new GenericTop4(),
+            new GenericTop5(),
+            new GenericTop6(),
+            new GenericTop7(),
+            new GenericTop8(),
+            new MaleTop(),
+            new MaleTop2(),
+            new Natural(),
+            Rags,
+            LeaderClothes
+        };
+        AvoidedMainClothingTypes = 2;
+        AvoidedEyeTypes = 0;
+        AllowedWaistTypes = new List<MainClothing>()
+        {
+            new GenericBot1(),
+            new GenericBot2(),
+            new GenericBot3(),
+            new GenericBot4(),
+            new GenericBot5(),
+            new GenericBot6(),
+        };
+
+        clothingColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.AviansSkin);
     }
 
+
+    ColorSwapPalette LupineColor(Actor_Unit actor)
+    {
+        if (actor.Unit.BodyAccentType1 == 0)
+            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineReversed, actor.Unit.SkinColor);
+        return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineSkin, actor.Unit.SkinColor);
+    }
+    ColorSwapPalette LupineVoreColor(Actor_Unit actor)
+    {
+        if (actor.Unit.BodyAccentType1 == 1)
+            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineReversed, actor.Unit.SkinColor);
+        return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineSkin, actor.Unit.SkinColor);
+    }
 
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
 
-        if (actor.Unit.HasBreasts)
-        {
-            if (actor.Unit.BodySize > 1)
-            {
-                AddOffset(Balls, 0, 3 * .625f);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-            else
-            {
-                AddOffset(Balls, 0, 3 * .625f);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-        }
-        else
-        {
-            if (actor.Unit.BodySize > 1)
-            {
-                AddOffset(Balls, 0, 1 * .625f);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-            else
-            {
-                AddOffset(Balls, 0, 0);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-        }
-
-        if (actor.GetWeaponSprite() == 0 || actor.GetWeaponSprite() == 4 || actor.GetWeaponSprite() == 6)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, -1 * .625f, 0);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 1 * .625f, -1 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, -1 * .625f);
-                }
-            }
-        }
-        else if (actor.GetWeaponSprite() == 1 || actor.GetWeaponSprite() == 3)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 0, -1 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 3 * .625f, -3 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 3 * .625f, -4 * .625f);
-                }
-            }
-        }
-        else if (actor.GetWeaponSprite() == 2)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, -1 * .625f, 2 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, -2 * .625f, 3 * .625f);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-        }
-        else if (actor.GetWeaponSprite() == 5 || actor.GetWeaponSprite() == 7)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 1 * .625f, -1 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 2 * .625f, -3 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 2 * .625f, -3 * .625f);
-                }
-            }
-        }
     }
-
 
     internal override void RandomCustom(Unit unit)
     {
         base.RandomCustom(unit);
 
-        unit.EarType = State.Rand.Next(EarTypes);
         unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
+        unit.BodyAccentType3 = State.Rand.Next(BodyAccentTypes3);
+        unit.BodyAccentType4 = State.Rand.Next(BodyAccentTypes4);
+
+        if (Config.RagsForSlaves && State.World?.MainEmpires != null && (State.World.GetEmpireOfRace(unit.Race)?.IsEnemy(State.World.GetEmpireOfSide(unit.Side)) ?? false) && unit.ImmuneToDefections == false)
+        {
+            unit.ClothingType = 1 + AllowedMainClothingTypes.IndexOf(Rags);
+            if (unit.ClothingType == 0) //Covers rags not in the list
+                unit.ClothingType = AllowedMainClothingTypes.Count;
+        }
+        if (unit.Type == UnitType.Leader)
+            unit.ClothingType = 1 + AllowedMainClothingTypes.IndexOf(LeaderClothes);
+
+        if (Config.RagsForSlaves && State.World?.MainEmpires != null && (State.World.GetEmpireOfRace(unit.Race)?.IsEnemy(State.World.GetEmpireOfSide(unit.Side)) ?? false) && unit.ImmuneToDefections == false)
+        {
+            unit.ClothingType = 1 + AllowedMainClothingTypes.IndexOf(Rags);
+            if (unit.ClothingType == 0) //Covers rags not in the list
+                unit.ClothingType = AllowedMainClothingTypes.Count;
+        }
+        if (unit.Type == UnitType.Leader)
+            unit.ClothingType = 1 + AllowedMainClothingTypes.IndexOf(LeaderClothes);
     }
 
-    internal override int DickSizes => 6;
+    internal override int DickSizes => 8;
     internal override int BreastSizes => 8;
 
     protected override Sprite BodySprite(Actor_Unit actor)
     {
-        if (actor.Unit.HasWeapon == false)
+        if (actor.Unit.HasBreasts)
         {
-            if (actor.IsAttacking) return Sprites[3 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            return Sprites[0 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
+            return Sprites[3 + actor.Unit.BodySize];
         }
-
-        switch (actor.GetWeaponSprite())
+        else
         {
-            case 0:
-                return Sprites[2 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            case 1:
-                return Sprites[3 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            case 2:
-                return Sprites[1 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            case 3:
-                return Sprites[3 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            case 4:
-                return Sprites[2 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            case 5:
-                return Sprites[1 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            case 6:
-                return Sprites[2 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            case 7:
-                return Sprites[1 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
-            default:
-                return Sprites[0 + (actor.Unit.BodySize * 4) + (actor.Unit.HasBreasts ? 0 : 12)];
+            return Sprites[0 + actor.Unit.BodySize];
         }
     }
 
     protected override Sprite HeadSprite(Actor_Unit actor)
     {
-        if (actor.IsEating)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    return Sprites2[4];
-                }
-                else
-                {
-                    return Sprites2[1];
-                }
-            }
-            else
-            {
-                return Sprites2[7 + (actor.Unit.BodySize * 3)];
-            }
-        }
-        else if (actor.IsAttacking)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    return Sprites2[5];
-                }
-                else
-                {
-                    return Sprites2[2];
-                }
-            }
-            else
-            {
-                return Sprites2[8 + (actor.Unit.BodySize * 3)];
-            }
-        }
-        else
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    return Sprites2[3];
-                }
-                else
-                {
-                    return Sprites2[0];
-                }
-            }
-            else
-            {
-                return Sprites2[6 + (actor.Unit.BodySize * 3)];
-            }
-
-        }
+        int spr = actor.Unit.HasBreasts ? 25 : 22;
+        if (actor.IsAttacking) spr += 1;
+        if (actor.IsOralVoring) spr += 2;
+        return Sprites[spr];
     }
 
-    protected override Sprite AccessorySprite(Actor_Unit actor) => State.GameManager.SpriteDictionary.MainlandElfParts[0 + actor.Unit.EarType]; //ears
-
-    protected override Sprite BodyAccentSprite(Actor_Unit actor) // Extra weapon sprite
-    {
-        if (actor.Unit.HasWeapon == false)
-        {
-            return null;
-        }
-
-        switch (actor.GetWeaponSprite())
-        {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            case 3:
-                return null;
-            case 4:
-                return null;
-            case 5:
-                return null;
-            case 6:
-                return null;
-            case 7:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    protected override Sprite BodyAccentSprite3(Actor_Unit actor) // Ears
-    {
-        if (actor.Unit.BodyAccentType1 == 0)
-            return null;
-        return State.GameManager.SpriteDictionary.MainlandElfParts[actor.Unit.EarType + actor.Unit.BodyAccentType2 * 8];
-    }
-
-    protected override Sprite BodyAccentSprite5(Actor_Unit actor) // Extra weapon sprite
-    {
-        if (actor.Unit.HasWeapon == false)
-        {
-            return null;
-        }
-
-        switch (actor.GetWeaponSprite())
-        {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            case 2:
-                return null;
-            case 3:
-                return null;
-            case 4:
-                return State.GameManager.SpriteDictionary.MainlandElfParts[32];
-            case 5:
-                return null;
-            case 6:
-                return State.GameManager.SpriteDictionary.MainlandElfParts[33];
-            case 7:
-                return null;
-            default:
-                return null;
-        }
-    }
 
     protected override Sprite MouthSprite(Actor_Unit actor)
     {
-        if (actor.IsEating || actor.IsAttacking)
+        int spr = actor.Unit.HasBreasts ? 31 : 28;
+        if (actor.IsAttacking) spr += 1;
+        if (actor.IsOralVoring) spr += 2;
+        return Sprites[spr];
+    }
+
+    protected override Sprite AccessorySprite(Actor_Unit actor) => Sprites[98 + actor.Unit.EarType]; //ears
+
+    protected override Sprite BodyAccentSprite(Actor_Unit actor) // Body Pattern
+    {
+        if (actor.Unit.BodyAccentType1 <= 1)
             return null;
+        return Sprites2[(actor.Unit.HasBreasts ? 12 : 0) + actor.Unit.BodySize + ((actor.Unit.BodyAccentType1 - 2) * 3)];
+    }
+
+    protected override Sprite BodyAccentSprite2(Actor_Unit actor) // Arm Pattern
+    {
+        if (actor.Unit.BodyAccentType2 == 0)
+            return null;
+
+        if (actor.Unit.HasWeapon && actor.Surrendered == false)
+        {
+            switch (actor.GetWeaponSprite())
+            {
+                case 0:
+                    return Sprites2[(actor.Unit.HasBreasts ? 42 : 26) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                case 1:
+                    return Sprites2[(actor.Unit.HasBreasts ? 43 : 27) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                case 2:
+                    return Sprites2[(actor.Unit.HasBreasts ? 41 : 25) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                case 3:
+                    return Sprites2[(actor.Unit.HasBreasts ? 42 : 26) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                case 4:
+                    return Sprites2[(actor.Unit.HasBreasts ? 41 : 25) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                case 5:
+                    return Sprites2[(actor.Unit.HasBreasts ? 42 : 26) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                case 6:
+                    return Sprites2[(actor.Unit.HasBreasts ? 41 : 25) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                case 7:
+                    return Sprites2[(actor.Unit.HasBreasts ? 42 : 26) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+                default:
+                    return null;
+            }
+        }
         else
-            return Sprites3[108 + actor.Unit.MouthType];
+        {
+            return Sprites2[(actor.Unit.HasBreasts ? 40 : 0) + ((actor.Unit.BodyAccentType2 - 1) * 4)];
+        }
+    }
+
+    protected override Sprite BodyAccentSprite3(Actor_Unit actor) // Leg Pattern
+    {
+        if (actor.Unit.BodyAccentType3 <= 1)
+            return null;
+        return Sprites2[(actor.Unit.HasBreasts ? 64 : 56) + actor.Unit.BodySize + ((actor.Unit.BodyAccentType3 - 1) * 2)];
+    }
+
+    protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Head Pattern
+    {
+        if (actor.Unit.BodyAccentType4 == 0)
+            return null;
+        int spr = actor.Unit.HasBreasts ? 99 : 72;
+        if (actor.IsAttacking) spr += 1;
+        if (actor.IsOralVoring) spr += 2;
+        return Sprites2[spr + ((actor.Unit.BodyAccentType4 - 1) * 3)];
+    }
+
+    protected override Sprite BodyAccentSprite5(Actor_Unit actor) // Right arm
+    {
+        if (actor.Unit.HasWeapon && actor.Surrendered == false)
+        {
+            switch (actor.GetWeaponSprite())
+            {
+                case 0:
+                    return Sprites[(actor.Unit.HasBreasts ? 12 : 8)];
+                case 1:
+                    return Sprites[(actor.Unit.HasBreasts ? 13 : 9)];
+                case 2:
+                    return Sprites[(actor.Unit.HasBreasts ? 11 : 7)];
+                case 3:
+                    return Sprites[(actor.Unit.HasBreasts ? 12 : 8)];
+                case 4:
+                    return Sprites[(actor.Unit.HasBreasts ? 11 : 7)];
+                case 5:
+                    return Sprites[(actor.Unit.HasBreasts ? 12 : 8)];
+                case 6:
+                    return Sprites[(actor.Unit.HasBreasts ? 11 : 7)];
+                case 7:
+                    return Sprites[(actor.Unit.HasBreasts ? 12 : 8)];
+                default:
+                    return null;
+            }
+        }
+        else
+        {
+            return Sprites[(actor.Unit.HasBreasts ? 10 : 6)];
+        }
+
+    }
+
+    protected override Sprite BodyAccentSprite6(Actor_Unit actor) // claws
+    {
+        if (actor.Unit.HasWeapon && actor.Surrendered == false)
+        {
+            switch (actor.GetWeaponSprite())
+            {
+                case 0:
+                    return Sprites[(actor.Unit.HasBreasts ? 20 : 16)];
+                case 1:
+                    return Sprites[(actor.Unit.HasBreasts ? 21 : 17)];
+                case 2:
+                    return Sprites[(actor.Unit.HasBreasts ? 19 : 15)];
+                case 3:
+                    return Sprites[(actor.Unit.HasBreasts ? 20 : 16)];
+                case 4:
+                    return Sprites[(actor.Unit.HasBreasts ? 19 : 15)];
+                case 5:
+                    return Sprites[(actor.Unit.HasBreasts ? 20 : 16)];
+                case 6:
+                    return Sprites[(actor.Unit.HasBreasts ? 19 : 15)];
+                case 7:
+                    return Sprites[(actor.Unit.HasBreasts ? 20 : 16)];
+                default:
+                    return null;
+            }
+        }
+        else
+        {
+            return Sprites[(actor.Unit.HasBreasts ? 18 : 14)];
+        }
+
+    }
+
+    protected override Sprite BodyAccentSprite7(Actor_Unit actor) // tail
+    {
+        return Sprites[114 + actor.Unit.TailType];
     }
 
     protected override Sprite HairSprite(Actor_Unit actor)
     {
-        return Sprites2[71 + 2 * actor.Unit.HairStyle];
-    }
-
-    protected override Sprite HairSprite2(Actor_Unit actor)
-    {
-        return Sprites2[72 + 2 * actor.Unit.HairStyle];
-    }
-
-    protected override Sprite HairSprite3(Actor_Unit actor)
-    {
-        return Sprites3[120 + actor.Unit.BodyAccentType1];
+        return Sprites[83 + actor.Unit.HairStyle];
     }
 
     protected override Sprite EyesSprite(Actor_Unit actor)
     {
-        if (actor.Unit.IsDead && actor.Unit.Items != null)
-        {
-            return Sprites2[69];
-        }
-        else
-        {
-            return Sprites3[24 + 4 * actor.Unit.EyeType + ((actor.IsAttacking || actor.IsEating) ? 0 : 2)];
-        }
+        int spr = 50 + actor.Unit.EyeType * 3;
+        if (actor.IsAttacking) spr += 1;
+        if (actor.IsOralVoring) spr += 2;
+        return Sprites[spr];
     }
 
     protected override Sprite EyesSecondarySprite(Actor_Unit actor)
     {
-        if (actor.Unit.IsDead && actor.Unit.Items != null)
-        {
+        int spr = 62 + actor.Unit.EyeType * 3;
+        if (actor.IsAttacking) spr += 1;
+        if (actor.IsOralVoring) spr += 2;
+        return Sprites[spr];
+    }
+    protected override Sprite SecondaryAccessorySprite(Actor_Unit actor)
+    {
+        if (actor.Unit.EyeType == 2)
             return null;
-        }
-        else
-        {
-            return Sprites3[25 + 4 * actor.Unit.EyeType + ((actor.IsAttacking || actor.IsEating) ? 0 : 2)];
-        }
+        int spr = 74 + (actor.Unit.EyeType > 2 ? actor.Unit.EyeType  - 1: actor.Unit.EyeType) * 3;
+        if (actor.IsAttacking) spr += 1;
+        if (actor.IsOralVoring) spr += 2;
+        return Sprites[spr];
     }
 
     internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
@@ -438,47 +344,47 @@ class Lupine : DefaultRaceData
             int size = actor.GetStomachSize(31, 0.7f);
             if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 31)
             {
-                AddOffset(Belly, 0, -33 * .625f);
-                return Sprites4[105];
+                AddOffset(Belly, 0, -29 * .625f);
+                return Sprites3[99];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 31)
             {
-                AddOffset(Belly, 0, -33 * .625f);
-                return Sprites4[104];
+                AddOffset(Belly, 0, -29 * .625f);
+                return Sprites3[98];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 30)
             {
-                AddOffset(Belly, 0, -33 * .625f);
-                return Sprites4[103];
+                AddOffset(Belly, 0, -29 * .625f);
+                return Sprites3[97];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 29)
             {
-                AddOffset(Belly, 0, -33 * .625f);
-                return Sprites4[102];
+                AddOffset(Belly, 0, -29 * .625f);
+                return Sprites3[96];
             }
             switch (size)
             {
                 case 26:
-                    AddOffset(Belly, 0, -14 * .625f);
+                    AddOffset(Belly, 0, -3 * .625f);
                     break;
                 case 27:
-                    AddOffset(Belly, 0, -17 * .625f);
+                    AddOffset(Belly, 0, -8 * .625f);
                     break;
                 case 28:
-                    AddOffset(Belly, 0, -20 * .625f);
+                    AddOffset(Belly, 0, -13 * .625f);
                     break;
                 case 29:
-                    AddOffset(Belly, 0, -25 * .625f);
+                    AddOffset(Belly, 0, -16 * .625f);
                     break;
                 case 30:
-                    AddOffset(Belly, 0, -27 * .625f);
+                    AddOffset(Belly, 0, -22 * .625f);
                     break;
                 case 31:
-                    AddOffset(Belly, 0, -32 * .625f);
+                    AddOffset(Belly, 0, -28 * .625f);
                     break;
             }
 
-            return Sprites4[70 + size];
+            return Sprites3[64 + size];
         }
         else
         {
@@ -490,34 +396,13 @@ class Lupine : DefaultRaceData
     {
         if (actor.Unit.HasWeapon && actor.Surrendered == false)
         {
-            switch (actor.GetWeaponSprite())
-            {
-                case 0:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[24];
-                case 1:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[25];
-                case 2:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[28];
-                case 3:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[29];
-                case 4:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[26];
-                case 5:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[27];
-                case 6:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[30];
-                case 7:
-                    return State.GameManager.SpriteDictionary.MainlandElfParts[31];
-                default:
-                    return null;
-            }
+            return Sprites[(actor.Unit.HasBreasts ? 42 : 34) + actor.GetWeaponSprite()];
         }
         else
         {
             return null;
         }
     }
-
     protected override Sprite BreastsSprite(Actor_Unit actor)
     {
         if (actor.Unit.HasBreasts == false)
@@ -530,25 +415,25 @@ class Lupine : DefaultRaceData
                 oversize = true;
             if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.leftBreast) && leftSize >= 32)
             {
-                return Sprites4[31];
+                return Sprites3[31];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 30)
             {
-                return Sprites4[30];
+                return Sprites3[30];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 28)
             {
-                return Sprites4[29];
+                return Sprites3[29];
             }
 
             if (leftSize > 28)
                 leftSize = 28;
 
-            return Sprites4[0 + leftSize];
+            return Sprites3[0 + leftSize];
         }
         else
         {
-            return Sprites4[0 + actor.Unit.BreastSize];
+            return Sprites3[0 + actor.Unit.BreastSize];
         }
     }
 
@@ -563,25 +448,25 @@ class Lupine : DefaultRaceData
                 oversize = true;
             if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.rightBreast) && rightSize >= 32)
             {
-                return Sprites4[63];
+                return Sprites3[63];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 30)
             {
-                return Sprites4[62];
+                return Sprites3[62];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 28)
             {
-                return Sprites4[61];
+                return Sprites3[61];
             }
 
             if (rightSize > 28)
                 rightSize = 28;
 
-            return Sprites4[32 + rightSize];
+            return Sprites3[32 + rightSize];
         }
         else
         {
-            return Sprites4[32 + actor.Unit.BreastSize];
+            return Sprites3[32 + actor.Unit.BreastSize];
         }
     }
 
@@ -597,11 +482,11 @@ class Lupine : DefaultRaceData
                 Dick.layer = 20;
                 if (actor.IsCockVoring)
                 {
-                    return Sprites4[162 + actor.Unit.DickSize];
+                    return Sprites3[162 + actor.Unit.DickSize];
                 }
                 else
                 {
-                    return Sprites4[154 + actor.Unit.DickSize];
+                    return Sprites3[154 + actor.Unit.DickSize];
                 }
             }
             else
@@ -609,17 +494,17 @@ class Lupine : DefaultRaceData
                 Dick.layer = 13;
                 if (actor.IsCockVoring)
                 {
-                    return Sprites4[146 + actor.Unit.DickSize];
+                    return Sprites3[146 + actor.Unit.DickSize];
                 }
                 else
                 {
-                    return Sprites4[138 + actor.Unit.DickSize];
+                    return Sprites3[138 + actor.Unit.DickSize];
                 }
             }
         }
 
         Dick.layer = 11;
-        return Sprites3[108 + actor.Unit.DickSize];
+        return null;
     }
 
     protected override Sprite BallsSprite(Actor_Unit actor)
@@ -638,65 +523,903 @@ class Lupine : DefaultRaceData
         int offset = actor.GetBallSize(28, .8f);
         if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.balls) ?? false) && offset == 28)
         {
-            AddOffset(Balls, 0, -22 * .625f);
-            return Sprites4[141];
+            AddOffset(Balls, 0, -16 * .625f);
+            return Sprites3[139 - ((actor.Unit.Furry && Config.FurryGenitals) ? 102 : 0)];
         }
         else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.balls) ?? false) && offset == 28)
         {
-            AddOffset(Balls, 0, -22 * .625f);
-            return Sprites4[140];
+            AddOffset(Balls, 0, -16 * .625f);
+            return Sprites3[138 - ((actor.Unit.Furry && Config.FurryGenitals) ? 102 : 0)];
         }
         else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.balls) ?? false) && offset == 27)
         {
-            AddOffset(Balls, 0, -22 * .625f);
-            return Sprites4[139];
+            AddOffset(Balls, 0, -16 * .625f);
+            return Sprites3[137 - ((actor.Unit.Furry && Config.FurryGenitals) ? 102 : 0)];
         }
         else if (offset >= 26)
         {
-            AddOffset(Balls, 0, -22 * .625f);
+            AddOffset(Balls, 0, -16 * .625f);
         }
         else if (offset == 25)
         {
-            AddOffset(Balls, 0, -16 * .625f);
+            AddOffset(Balls, 0, -8 * .625f);
         }
         else if (offset == 24)
         {
-            AddOffset(Balls, 0, -13 * .625f);
+            AddOffset(Balls, 0, -6 * .625f);
         }
         else if (offset == 23)
         {
-            AddOffset(Balls, 0, -11 * .625f);
+            AddOffset(Balls, 0, -5 * .625f);
         }
         else if (offset == 22)
         {
-            AddOffset(Balls, 0, -10 * .625f);
+            AddOffset(Balls, 0, -3 * .625f);
         }
         else if (offset == 21)
-        {
-            AddOffset(Balls, 0, -7 * .625f);
-        }
-        else if (offset == 20)
-        {
-            AddOffset(Balls, 0, -6 * .625f);
-        }
-        else if (offset == 19)
-        {
-            AddOffset(Balls, 0, -4 * .625f);
-        }
-        else if (offset == 18)
         {
             AddOffset(Balls, 0, -1 * .625f);
         }
 
         if (offset > 0)
-            return Sprites4[Math.Min(112 + offset, 138)];
-        return Sprites4[106 + size];
+            return Sprites3[Math.Min(108 + offset, 134)];
+        return Sprites3[100 + size];
     }
 
-    ColorSwapPalette LupineColor(Actor_Unit actor)
+
+    class GenericTop1 : MainClothing
     {
-        if (actor.Unit.BodyAccentType1 == 0)
-            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineReversed, actor.Unit.SkinColor);
-        return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineSkin, actor.Unit.SkinColor);
+        public GenericTop1()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[24];
+            femaleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 1524;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[48];
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[40 + actor.Unit.BreastSize];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericTop2 : MainClothing
+    {
+        public GenericTop2()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[34];
+            femaleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 1534;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[57];
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[49 + actor.Unit.BreastSize];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericTop3 : MainClothing
+    {
+        public GenericTop3()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[44];
+            femaleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 1544;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[66];
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[58 + actor.Unit.BreastSize];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericTop4 : MainClothing
+    {
+        public GenericTop4()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[55];
+            femaleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(18, null, WhiteColored);
+            Type = 1555;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[75];
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[67 + actor.Unit.BreastSize];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+            }
+
+            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[76];
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericTop5 : MainClothing
+    {
+        public GenericTop5()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[74];
+            femaleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(18, null, WhiteColored);
+            Type = 1574;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[85];
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[94];
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[77 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[86 + actor.Unit.BreastSize];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericTop6 : MainClothing
+    {
+        public GenericTop6()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[88];
+            femaleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 1588;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[98 + actor.Unit.BreastSize];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericTop7 : MainClothing
+    {
+        public GenericTop7()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[44];
+            femaleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 1544;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[130];
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[122 + actor.Unit.BreastSize];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericTop8 : MainClothing
+    {
+        public GenericTop8()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.LupineClothes2[49];
+            coversBreasts = false;
+            blocksDick = false;
+            Type = 47558;
+            FixedColor = true;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(15, null, WhiteColored);
+            clothing3 = new SpriteExtraInfo(15, null, WhiteColored);
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[32];
+                clothing2.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[24 + actor.Unit.BreastSize];
+
+                if (actor.HasBelly)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[12 + actor.Unit.BodySize];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[6 + actor.Unit.BodySize];
+                }
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+
+                if (actor.HasBelly)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[15 + actor.Unit.BodySize];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[9 + actor.Unit.BodySize];
+                }
+            }
+
+            if (actor.Unit.HasWeapon == false)
+            {
+                if (actor.IsAttacking) clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[19 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                else clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[18 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+            }
+            else if (actor.GetWeaponSprite() == 1)
+            {
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[20 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+            }
+            else if (actor.GetWeaponSprite() == 2 || actor.GetWeaponSprite() == 4 || actor.GetWeaponSprite() == 6)
+            {
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[18 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+            }
+            else
+            {
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[19 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+            }
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop : MainClothing
+    {
+        public MaleTop()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[79];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 1579;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+
+            if (actor.HasBelly)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[109 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[106 + actor.Unit.BodySize];
+            }
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class MaleTop2 : MainClothing
+    {
+        public MaleTop2()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[79];
+            maleOnly = true;
+            coversBreasts = false;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            Type = 1579;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[95 + actor.Unit.BodySize];
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class Natural : MainClothing
+    {
+        public Natural()
+        {
+            coversBreasts = false;
+            OccupiesAllSlots = true;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(7, null, null);
+            FixedColor = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[2 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[1];
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[0];
+            }
+
+            if (actor.Unit.BodyAccentType1 == 1)
+            {
+                clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineReversed, actor.Unit.SkinColor);
+                clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineReversed, actor.Unit.SkinColor);
+            }
+            else
+            {
+                clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineSkin, actor.Unit.SkinColor);
+                clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.LupineSkin, actor.Unit.SkinColor);
+            }
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class LupineRags : MainClothing
+    {
+        public LupineRags()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
+            blocksDick = false;
+            inFrontOfDick = true;
+            coversBreasts = false;
+            Type = 207;
+            OccupiesAllSlots = true;
+            FixedColor = true;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.Unit.HasBreasts)
+            {
+                if (actor.Unit.BreastSize < 3)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[119];
+                else if (actor.Unit.BreastSize < 6)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[120];
+                else
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[121];
+
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[112 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[118];
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[115 + actor.Unit.BodySize];
+            }
+
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class LupineLeader : MainClothing
+    {
+        public LupineLeader()
+        {
+            leaderOnly = true;
+            DiscardSprite = State.GameManager.SpriteDictionary.LupineClothes2[50];
+            coversBreasts = false;
+            OccupiesAllSlots = true;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(15, null, WhiteColored);
+            clothing3 = new SpriteExtraInfo(15, null, WhiteColored);
+            clothing4 = new SpriteExtraInfo(13, null, WhiteColored);
+            clothing5 = new SpriteExtraInfo(12, null, WhiteColored);
+            clothing6 = new SpriteExtraInfo(19, null, WhiteColored);
+            clothing7 = new SpriteExtraInfo(2, null, WhiteColored);
+            Type = 47559;
+            FixedColor = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.Unit.DickSize > 0)
+            {
+                if (actor.Unit.DickSize < 3)
+                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[33];
+                else if (actor.Unit.DickSize > 5)
+                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[35];
+                else
+                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[34];
+            }
+            else clothing4.GetSprite = null;
+
+            if (Races.Lupine.oversize)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[32];
+                clothing2.GetSprite = null;
+                clothing4.YOffset = -1 * .625f;
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[0 + actor.Unit.BodySize];
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[24 + actor.Unit.BreastSize];
+                clothing4.YOffset = -1 * .625f;
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[0 + actor.Unit.BodySize];
+
+                if (actor.HasBelly)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[12 + actor.Unit.BodySize];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[6 + actor.Unit.BodySize];
+                }
+            }
+            else
+            {
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing4.YOffset = 0 * .625f;
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[3 + actor.Unit.BodySize];
+
+                if (actor.HasBelly)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[15 + actor.Unit.BodySize];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[9 + actor.Unit.BodySize];
+                }
+            }
+
+            if (actor.Unit.HasWeapon == false)
+            {
+                if (actor.IsAttacking)
+                {
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[19 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+
+                    if ((actor.GetStomachSize(31) > 17) || (Races.Lupine.oversize))
+                    {
+                        clothing6.GetSprite = null;
+                        clothing7.GetSprite = null;
+                    }
+                    else
+                    {
+                        clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[37 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                        clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[43 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    }
+                }
+                else
+                {
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[18 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+
+                    if ((actor.GetStomachSize(31) > 17) || (Races.Lupine.oversize))
+                    {
+                        clothing6.GetSprite = null;
+                        clothing7.GetSprite = null;
+                    }
+                    else
+                    {
+                        clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[36 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                        clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[42 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    }
+                }
+            }
+            else if (actor.GetWeaponSprite() == 1)
+            {
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[20 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+
+                if ((actor.GetStomachSize(31) > 17) || (Races.Lupine.oversize))
+                {
+                    clothing6.GetSprite = null;
+                    clothing7.GetSprite = null;
+                }
+                else
+                {
+                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[38 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[44 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                }
+            }
+            else if (actor.GetWeaponSprite() == 2 || actor.GetWeaponSprite() == 4 || actor.GetWeaponSprite() == 6)
+            {
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[18 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+
+                if ((actor.GetStomachSize(31) > 17) || (Races.Lupine.oversize))
+                {
+                    clothing6.GetSprite = null;
+                    clothing7.GetSprite = null;
+                }
+                else
+                {
+                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[36 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[42 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                }
+            }
+            else
+            {
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[19 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+
+                if ((actor.GetStomachSize(31) > 17) || (Races.Lupine.oversize))
+                {
+                    clothing6.GetSprite = null;
+                    clothing7.GetSprite = null;
+                }
+                else
+                {
+                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[37 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[43 + 3 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                }
+            }
+
+            base.Configure(sprite, actor);
+        }
+
+
+
+
+    }
+
+    class GenericBot1 : MainClothing
+    {
+        public GenericBot1()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[121];
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(13, null, null);
+            clothing2 = new SpriteExtraInfo(12, null, null);
+            Type = 1521;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.Unit.DickSize > 0)
+            {
+                if (actor.Unit.DickSize < 3)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[16];
+                else if (actor.Unit.DickSize > 5)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[18];
+                else
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[17];
+            }
+            else clothing1.GetSprite = null;
+
+            if (actor.Unit.HasBreasts)
+            {
+                clothing1.YOffset = -1 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[10 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.YOffset = 0 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[13 + actor.Unit.BodySize];
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericBot2 : MainClothing
+    {
+        public GenericBot2()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[137];
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(13, null, null);
+            clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
+            Type = 1537;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+
+            if (actor.Unit.DickSize > 0)
+            {
+                if (actor.Unit.DickSize < 3)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[26];
+                else if (actor.Unit.DickSize > 5)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[28];
+                else
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[27];
+            }
+            else clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[25];
+
+            if (actor.Unit.HasBreasts)
+            {
+                clothing1.YOffset = -1 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[19 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.YOffset = 0 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[22 + actor.Unit.BodySize];
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericBot3 : MainClothing
+    {
+        public GenericBot3()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[140];
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(13, null, null);
+            clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
+            Type = 1540;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.Unit.HasBreasts)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[29];
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[19 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[30];
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[22 + actor.Unit.BodySize];
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericBot4 : MainClothing
+    {
+        public GenericBot4()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[14];
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(13, null, null);
+            clothing2 = new SpriteExtraInfo(12, null, null);
+            Type = 1514;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+
+            if (actor.Unit.DickSize > 0)
+            {
+                if (actor.Unit.DickSize < 3)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[37];
+                else if (actor.Unit.DickSize > 5)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[39];
+                else
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[38];
+            }
+            else clothing1.GetSprite = null;
+
+            if (actor.Unit.HasBreasts)
+            {
+                clothing1.YOffset = -1 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[31 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.YOffset = 0 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[34 + actor.Unit.BodySize];
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericBot5 : MainClothing
+    {
+        public GenericBot5()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[14];
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(13, null, null);
+            clothing2 = new SpriteExtraInfo(12, null, null);
+            Type = 1514;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+
+            if (actor.Unit.DickSize > 0)
+            {
+                if (actor.Unit.DickSize < 3)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[37];
+                else if (actor.Unit.DickSize > 5)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[39];
+                else
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[38];
+            }
+            else clothing1.GetSprite = null;
+
+            if (actor.Unit.HasBreasts)
+            {
+                clothing1.YOffset = -1 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[131 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.YOffset = 0 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[134 + actor.Unit.BodySize];
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
+            base.Configure(sprite, actor);
+        }
+    }
+
+    class GenericBot6 : MainClothing
+    {
+        public GenericBot6()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.LupineClothes2[48];
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(13, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
+            Type = 47557;
+            FixedColor = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+
+            if (actor.Unit.DickSize > 0)
+            {
+                if (actor.Unit.DickSize < 3)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[33];
+                else if (actor.Unit.DickSize > 5)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[35];
+                else
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[34];
+            }
+            else clothing1.GetSprite = null;
+
+            if (actor.Unit.HasBreasts)
+            {
+                clothing1.YOffset = -1 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[0 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.YOffset = 0 * .625f;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes2[3 + actor.Unit.BodySize];
+            }
+
+            base.Configure(sprite, actor);
+        }
     }
 }
