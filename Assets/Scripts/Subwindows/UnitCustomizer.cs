@@ -551,6 +551,9 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Shirt On/Off";
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Pants On/Off";
                 break;
+            case Race.Skapa:
+                buttons[(int)ButtonTypes.TailTypes].Label.text = "Facing";
+                break;
         }
     }
 

@@ -706,6 +706,10 @@ public class InfoPanel
             if (!FifthLine.GetChild(0).gameObject.activeSelf && !FifthLine.GetChild(1).gameObject.activeSelf)
                 FifthLine.gameObject.SetActive(false);
 
+            if (Config.ShowUnitSides && actor?.Unit.Side == State.GameManager.TacticalMode.GetDefenderSide())
+                sb.AppendLine("DEFENDER");
+            if (Config.ShowUnitSides && actor?.Unit.Side == State.GameManager.TacticalMode.GetAttackerSide())
+                sb.AppendLine("ATTACKER");
             if (unit.SavedCopy != null && unit.SavedVillage != null)
                 sb.AppendLine($"Imprinted");
             if (actor?.Surrendered ?? false)

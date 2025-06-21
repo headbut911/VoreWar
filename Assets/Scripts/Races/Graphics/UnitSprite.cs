@@ -277,7 +277,7 @@ public class UnitSprite : MonoBehaviour
             if (actor.DamagedColors)
                 tint = .8f;
             CompleteSprite.RedifySprite(tint);
-            if (actor.Surrendered)
+            if (actor.Surrendered && Config.SurrenderFlag)
             {
             var obj = Object.Instantiate(State.GameManager.TacticalEffectPrefabList.FadeInFadeOut).GetComponent<FadeInFadeOut>();
             obj.transform.SetPositionAndRotation(new Vector3(actor.Position.x + .15f, actor.Position.y + .15f, 0), new Quaternion());

@@ -160,6 +160,8 @@ public class ContentSettings : MonoBehaviour
     public Toggle AnimatedBellies;
     public Toggle DigestionSkulls;
     public Toggle BellyRubHands;
+    public Toggle SurrenderFlag;
+    public Toggle ShowUnitSides;
     public Slider BurpFraction;
     public Toggle BurpOnDigest;
     public Slider FartFraction;
@@ -170,6 +172,7 @@ public class ContentSettings : MonoBehaviour
     public Toggle CleanDisposal;
     public Toggle Scat;
     public Toggle ScatV2;
+    public Toggle BirdScat;
     public Toggle ScatBones;
     public Toggle ClothingDiscards;
 
@@ -335,10 +338,13 @@ public class ContentSettings : MonoBehaviour
             new ToggleObject(AnimatedBellies, "AnimatedBellies", true),
             new ToggleObject(DigestionSkulls, "DigestionSkulls",  true),
             new ToggleObject(BellyRubHands, "BellyRubHands",  true),
+            new ToggleObject(SurrenderFlag, "SurrenderFlag",  true),
+            new ToggleObject(ShowUnitSides, "ShowUnitSides",  true),
             new ToggleObject(Bones, "Bones", true),
             new ToggleObject(CleanDisposal, "CleanDisposal", false),
             new ToggleObject(Scat, "Scat", false),
             new ToggleObject(ScatV2, "ScatV2", false),
+            new ToggleObject(BirdScat, "BirdScat", false),
             new ToggleObject(ScatBones, "ScatBones", false),
             new ToggleObject(CondomsForCV, "CondomsForCV", false),
             new ToggleObject(ErectionsFromVore, "ErectionsFromVore", false),
