@@ -1017,7 +1017,7 @@ public class Unit
             if (!skipTraitItems)
                 GiveTraitBooks();
         }
-    }
+    } 
 
     internal void GiveTraitBooks()
     {
