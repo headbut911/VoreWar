@@ -769,7 +769,7 @@ static class RaceParameters
                 Traits.StrongMelee,
                 Traits.RangedIneptitude,
         },
-            RaceDescription = "",
+            RaceDescription = "Mighty horsefolk from another world, the Equines are a proud people, and while from the outside they can seem to move and act with remarkable unity, within their ranks is a game of constant power struggles and jockeying for position and influence.",
         };
 
         Sergal = new RaceTraits()
@@ -805,7 +805,7 @@ static class RaceParameters
                 Traits.PackDefense,
                 Traits.Stinger
         },
-            RaceDescription = "",
+            RaceDescription = "The Bees exist in a sort of loose hive mind, and tend to care little for the loss of individual members of their kind. They tend to be ruthless when it comes to the defence of what they already own, though they tend to only strike outwards when they feel that there is something to be gained by doing so. Or when they're hungry. At their size, the typical diet of smaller bees, pollen, nectar, and honey, just doesn't quite cut it.",
         };
 
         Driders = new RaceTraits()
@@ -822,7 +822,7 @@ static class RaceParameters
                 Traits.NimbleClimber,
                 Traits.Webber,
         },
-            RaceDescription = "",
+            RaceDescription = "The Driders are a mysterious folk, with lots of conflicting information on what the are, where they came from, and what they want. This actually seems to be deliberate on their part, as Driders often spread misinformation on themselves to confuse their potential future prey and trick them into making mistakes. This has actually worked too well, as the Driders have actually forgotten their true history. Without a solid account on them, almost all stories and rumors of the Driders can be considered equally untrue, and therefore equally true.",
         };
 
         Alraune = new RaceTraits()
@@ -839,7 +839,7 @@ static class RaceParameters
                 Traits.SlowAbsorption,
                 Traits.PollenProjector
         },
-            RaceDescription = "",
+            RaceDescription = "The Alraunes are a deeply spiritual people, with a deep connection to nature, especially plants. Unfortunately, they tend to take an overprotective stance towards plants and will ruthlessly attack and devour any who dare harm plant life at all. That includes walking on grass, by the way. Tread lightly!",
         };
 
         Demibats = new RaceTraits()
@@ -856,7 +856,7 @@ static class RaceParameters
                 Traits.ArtfulDodge,
                 Traits.Vampirism
         },
-            RaceDescription = "",
+            RaceDescription = "Winged half-humans, the Bats generally prefer to live in caves, or, failing that, stick to being mostly active at night. Of the so called \"civilized\" races, the bats are one of the more aggressive towards outsiders, their habit of near constant flight while landing less than they should demanding lots of nutrients to support, resulting in them being far more eager to devour their foes than most.",
         };
 
         Panthers = new RaceTraits()
@@ -891,7 +891,7 @@ static class RaceParameters
                 Traits.Slippery,
                 Traits.WaterWalker,
         },
-            RaceDescription = "",
+            RaceDescription = "The Merfolk are a tricky people, as they combine magic and deception to lure and manipulate their foes, often directing them to monster threats. Whoever wins at that point, the Merfolk come in to eat up the remaining threats.",
         };
 
         Avians = new RaceTraits()
@@ -907,7 +907,7 @@ static class RaceParameters
                 Traits.KeenShot,
                 Traits.Featherweight
         },
-            RaceDescription = "",
+            RaceDescription = "A highly eclectic people, large amounts of \"Avian\" culture are actually derived from other peoples and races. This can largely be credited to their having started late. By the time the Avians properly entered the civilizational stage, most other races had already entered. Now, the Avians are eager to continue adding others to themselves. And if the Avians can't merge your culture into their own, they may instead opt to merge your body into their body fat.",
         };
 
         Demiants = new RaceTraits()
@@ -924,7 +924,7 @@ static class RaceParameters
                 Traits.RangedIneptitude,
                 Traits.AntPheromones
         },
-            RaceDescription = "",
+            RaceDescription = "The Ants exist in a sort of loose hive mind, and tend to care little for the loss of individual members of their swarms. Ants have an innate and insatiable drive to expand their territory and conquer all there is. Ants often control lesser ant species through complex pheromones, which are also generally used for ant-to-ant communication.",
         };
 
         Demifrogs = new RaceTraits()
@@ -942,7 +942,7 @@ static class RaceParameters
                 Traits.RangedVore,
                 Traits.Clumsy,
         },
-            RaceDescription = "",
+            RaceDescription = "Native to the marshlands of this world, Frogs are well known for their highly territorial behavior, with Frog chiefdoms going to war with each other over perceived slights just as often as they go to war with others. Their wide mouths and big bellies aren't just for show, and many an unfortunate soul have found themselves on the wrong side of a Frog's flesh. Namely, the inside.",
         };
 
         Demisharks = new RaceTraits()
@@ -960,7 +960,7 @@ static class RaceParameters
                 Traits.StrongGullet,
                 Traits.WaterWalker,
         },
-            RaceDescription = "",
+            RaceDescription = "The Sharks are not natives of this world. In their own world, they are the only sapient people, and had a wide variety of cultures and lifestyles. However, all Sharks in this world came through when a pirate ship in their realm accidently went through a portal to this one. Even today, most Sharks are pirates, and a majority of pirates are Sharks.",
         };
 
         Deer = new RaceTraits()
@@ -977,7 +977,7 @@ static class RaceParameters
                 Traits.ArtfulDodge,
                 Traits.PackDefense,
         },
-            RaceDescription = "",
+            RaceDescription = "The deer are one of the Realm's native peoples, and one with a long history of being labeled as \"prey.\" Whether historical Deer couldn't vore or simply didn't know how to vore is largely unknown, but in recent times anyone who calls a Deer prey in front of them often gets a personal tour of the cervid digestive system.",
         };
 
         Aabayx = new RaceTraits()
@@ -1142,7 +1142,7 @@ static class RaceParameters
             Traits.AdeptLearner,
             Traits.PackWill,
         },
-            RaceDescription = "",
+            RaceDescription = "Not too long ago, a portal opened up to a universe inhabited by various anthro pokémon species. Of the many inhabitants, the Eeveelutions were one of the only groups who came through. While very few Eevee's were brought through directly, all Eeveelutions are born as Eevees, building a local population. After their initial entry into the Realm, the Eeveelutions founded first the \"Eeveelution Empire,\" a police state which quickly collapsed into several smaller groups built around the different Eeveelutions, but Eevees, inherently, make up a significant portion of all Eeveelution nations.",
         };
 
         Umbreon = new RaceTraits()
@@ -1158,7 +1158,7 @@ static class RaceParameters
             Traits.PackStrength,
             Traits.EscapeArtist,
         },
-            RaceDescription = "",
+            RaceDescription = "After the fall of the \"Eeveelution Empire\", The Umbreons took the first opportunity they had to attack the Sylveons, Before eventually running off. Unlike most Eeveelutions, They got away with very little resources due to the fact they were too busy filling their bellies with Sylveons to gather anything. So they resorted to taking the weapons and armor from those they defeated and melted it down to form their weapons and armor. Also unlike most Eeveelutions, They deny any resemblance to their feral counter parts. They are also quite intelligent... When they aren't drunk having discovered various forms of alcohol.",
         };
 
         Lupine = new RaceTraits()
@@ -1363,7 +1363,7 @@ static class RaceParameters
             Traits.PackWill,
             Traits.FastDigestion,
         },
-            RaceDescription = "",
+            RaceDescription = "After the arrival of the anthro Eeveelutions into this Realm, they have begun to experience a number of new Eeveelutions, seemingly some odd effect this Realm has on how Eevees evolve. Equaleons are one of these new forms, essentially a larger, more powerful Eevee that seemingly is the result of evolving without meeting the criteria for the other Eeveelutions. Given their somewhat smaller population, rather than host a nation of their own, most Equaleons prefer to sell their strength as mercenaries.",
         };
 
         Kobolds = new RaceTraits()
@@ -1398,7 +1398,7 @@ static class RaceParameters
                 Traits.IronGut,
                 Traits.EnthrallingDepths
         },
-            RaceDescription = "",
+            RaceDescription = "Dew Sprites are extremely odd, with most believing them to be some form of corrupted Fairies made of dew, though no one has ever had a long enough conversation to verify this. Obviously, there's the issue of them trying to eat you, but even friendly Dew Sprites are rather unintelligent, and speaking with them can feel like speaking to someone with a concussion.",
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.BreastVore, VoreType.Anal },
         };
 
@@ -1428,7 +1428,7 @@ static class RaceParameters
                 Traits.HardSkin,
                 Traits.Crusher,
             },
-            RaceDescription = "",
+            RaceDescription = "The Hippos come from the same universe as the Feral Lions, and within that world, they either were or still are the dominant power of that world. Here, they act as mercenaries, believing fully that the portals will someday reopen, and that they'll go home rich.",
         };
 
         Vipers = new RaceTraits()
@@ -1493,7 +1493,7 @@ static class RaceParameters
                 Traits.Resilient,
                 Traits.Crusher,
             },
-            RaceDescription = "",
+            RaceDescription = "While the frequency with which Komodos and Monitors can be found together would lead you to think them related, in truth, they just happen to have very compatible cultures, and enjoy one another's company. Unlike the Monitors, the Komodos are natives of this world, and as such often act as the \"face\" whenever they are forced to do diplomacy with other groups.",
         };
 
         Cockatrice = new RaceTraits()
@@ -1522,7 +1522,7 @@ static class RaceParameters
                 Traits.Intimidating,
                 Traits.Petrifier,
             },
-            RaceDescription = "",
+            RaceDescription = "Strong and powerful, ever since the collapse of Tricia, the Cockatrice primarily live as mercenaries, selling their considerable might to the highest bidder. While the specifics of what lead to the Cockatrice aren't fully known, they appear to have begun as the hybrid offspring of Harpies and some sort of draconic race, though which one exactly is lost to time.",
         };
 
         Vargul = new RaceTraits()
@@ -2055,7 +2055,7 @@ static class RaceParameters
                 Traits.HeavyPounce,
                 Traits.Clumsy,
         },
-            RaceDescription = ""
+            RaceDescription = "You know those stories about kissing a frog to turn it into a prince? A long time ago, a witch grew frustrated that her frog-kissing had failed to produce a prince for her, so she brewed a special potion. After pouring most of it on an innocent little frog and then downing the rest herself, she kissed the frog. In an instant, they became the first Feral Frog, a mindless creature of infinite hunger and lust. If the universe were kind, this would've been the only Feral Frog ever, but Feral Frogs actually possess the ability to reproduce through parthenogenesis."
         };
 
         Dragons = new RaceTraits()
@@ -2089,7 +2089,7 @@ static class RaceParameters
                 Traits.AdeptLearner,
 
         },
-            RaceDescription = ""
+            RaceDescription = "Among the most feared things in this world, Dragons are creatures of immense power and cruelty, who often delight in tormenting their prey before devouring them. To summarize: Avoid."
         };
 
         Dragonfly = new RaceTraits()
@@ -2150,7 +2150,7 @@ static class RaceParameters
                 Traits.Tempered,
                 Traits.SlowDigestion
         },
-            RaceDescription = ""
+            RaceDescription = "Strange and enigmatic, the Twisted Vines are, unsurprisingly, not natives of this world, instead emerging during a particularly harsh period where innumerable portals connecting to realms of chaos opened and closed at random. The Twisted Vines are the native people of one of these chaotic planes. Despite what some think, they are sapient, the just generally prefer to live as nomadic bandits, swallowing any unlucky travelers they come across, and then coughing up or passing their valuables."
         };
 
         Fairies = new RaceTraits()
@@ -2183,7 +2183,7 @@ static class RaceParameters
                 Traits.KeenReflexes,
                 Traits.EasyToVore
         },
-            RaceDescription = ""
+            RaceDescription = "Fairies are small nature spirits. They spend most of their time \"correcting\" disruptions to the natural order(normally by eating them). Fairies typically spend their down time having sex. Lots of sex. It's part of how they burn off all the extra calories from eating so many people."
         };
 
         Whisp = new RaceTraits()
@@ -2205,7 +2205,7 @@ static class RaceParameters
                 Traits.GreaterChangeling,
             },
             SpawnRace = Race.Youko,
-            RaceDescription = ""
+            RaceDescription = "Little more than swirls of chaotic magic with a soul in the middle, Whisps are most often produced as a byproduct of the Youko, though they can also sometimes form on their own. Without a true \"form,\" Whisps instead copy the appearance of their prey in order to eat them. They will also often shove themselves into others in an attempt to take them over from the inside. Without someone to give them commands, they go insane and attack virtually anything they encounter, so it is important to keep them busy."
         };
 
         FeralAnts = new RaceTraits()
@@ -2269,7 +2269,7 @@ static class RaceParameters
                 Traits.Greedy,
                 Traits.Pathfinder,
         },
-            RaceDescription = ""
+            RaceDescription = "Originally the hybrid offspring of the Avians and Feral Lions, Gryphons are a proud and shockingly intelligent race, who could easily found an empire of their own if they were able to work together in larger groups. Instead, they prefer to spend most of their time hunting travelers, raiding small settlements, and stalking mountain passes. If you ever find yourself at a mountain pass with a Gryphon telling you to do something before they let you pass, don't bother. They just want something, and will most likely eat you after you're done to avoid the embarrassment of admitting they needed help."
         };
 
         FeralLions = new RaceTraits()
@@ -2336,7 +2336,7 @@ static class RaceParameters
             Traits.SlowMovement,
             Traits.GlueBomb
         },
-            RaceDescription = ""
+            RaceDescription = "One of the four species of giant slug that can be found in the Realm, the Spitter Slugs are named for their tendency to spew, or spit, a goopy glue-like mucus to trap their prey. While, like all giant slugs, they aren't especially quick, they are noticeably quicker than their cousins, and this should be kept in mind when facing them, since even if you think you're safe, one miscalculation will lead to them glueing you in place, and then swallowing you down."
         };
 
         SpringSlugs = new RaceTraits()
@@ -2370,7 +2370,7 @@ static class RaceParameters
             Traits.SoftBody,
             Traits.SlowMovement
         },
-            RaceDescription = ""
+            RaceDescription = "One of the four species of giant slug that can be found in the Realm, the Spring Slugs are rather weak compared to the other giant slugs, though they do have one noteworthy trick; by building up tension in a special organ inside their body and then releasing, the Spring Slugs can fling, or spring(hence the name), themselves across a battlefield. If you notice one arching its \"back,\" get ready to dodge."
         };
 
         RockSlugs = new RaceTraits()
@@ -2402,7 +2402,7 @@ static class RaceParameters
             Traits.VerySlowMovement,
             Traits.HardSkin
         },
-            RaceDescription = ""
+            RaceDescription = "One of the four species of giant slug that can be found in the Realm, the Rock Slugs are known for their high resilience, being able to withstand some of the strongest beasts in the Realm. They would be far more difficult to deal with were it not for their speed, which makes the other already slow species of giant slug look like speed demons in comparasine."
         };
 
         CoralSlugs = new RaceTraits()
@@ -2437,7 +2437,7 @@ static class RaceParameters
             Traits.Toxic
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.Poison },
-            RaceDescription = ""
+            RaceDescription = "One of the four species of giant slug that can be found in the Realm, the Coral Slugs are mostly known for their unique appearance compared to the other slugs and their highly toxic bodies and stingers. Like all giant slugs, they are rather slow, but that makes them no less dangerous."
         };
 
         Salamanders = new RaceTraits()
@@ -2468,7 +2468,7 @@ static class RaceParameters
             Traits.HotBlooded
         },
             InnateSpells = new List<SpellTypes>() { SpellTypes.Fireball },
-            RaceDescription = ""
+            RaceDescription = "The fire on the tail isn't for show. Despite being dumber than most plants, Salamanders are shockingly good at claiming prey. Avoid if you don't want to become fat on a creature that can't tell its own reflection from another Salamander."
         };
 
         Mantis = new RaceTraits()
@@ -2500,7 +2500,7 @@ static class RaceParameters
             Traits.BladeDance,
             Traits.LightFrame
         },
-            RaceDescription = ""
+            RaceDescription = "Despite being native to the warmer, wetter regions of this world, the Mantises can be seen virtually anywhere, and they are not a good sight. In battle, they tend to leap around unpredictably, and those scythe arms aren't just for show. While it's best to avoid them, if battle is inevitable, it's imperative that you maintain as much distance as possible."
         };
 
         EasternDragon = new RaceTraits()
@@ -2567,7 +2567,7 @@ static class RaceParameters
             Traits.Nauseous,
             Traits.SlowDigestion
         },
-            RaceDescription = ""
+            RaceDescription = "These large and incredibly stupid fish long ago figured out that much larger and tastier \"food\"(people) exists on land, and so they figured out how to haphazardly leap, slide, and slither on land, adapting their gills into pseudo-lungs capable of breathing air. With the much larger meals available on land, they've been able to get much larger, though this has only increased their appetite."
         };
 
         Raptor = new RaceTraits()
@@ -2630,7 +2630,7 @@ static class RaceParameters
                 Traits.PackStrength,
                 Traits.SlowDigestion
         },
-            RaceDescription = ""
+            RaceDescription = "The Warrior Ants are specialized members of the Feral Ant species, whose pheromones control and coordinate their lesser kin. When in the presence of the larger Ants, they are overwhelmed by the much stronger pheromones they exude, and join them without second thought."
         };
 
         Gazelle = new RaceTraits()
@@ -2660,7 +2660,7 @@ static class RaceParameters
             Traits.Charge,
             Traits.ForcefulBlow,
         },
-            RaceDescription = ""
+            RaceDescription = "Gazelles are native to the same universe as the Feral Lions. Despite first impressions, Gazelles are sapient, and actually have a rich storytelling tradition. They came through the portals, hoping to be free of the Feral Lions, only to get trapped in a world with things far worse than the Feral Lions and where the Gazelles' lack of hands is very important. Also, the Feral Lions followed them in, rendering it a moot point anyway."
         };
 
         Earthworms = new RaceTraits()
@@ -2691,7 +2691,7 @@ static class RaceParameters
             Traits.SteadyStomach,
             Traits.AllOutFirstStrike
         },
-            RaceDescription = ""
+            RaceDescription = "Long slimy invertebrates, the giant Earthworms of this world dig and burrow through the upper layers of soil, following the vibrations of those aboveground. Once they are close enough, they burst from the ground in an attempt to disable their prey before they can act. While this is no false strike, and can definitely wound or even kill, if it's survived, the Earthworm has few means to truly threaten people beyond this. When an Earthworm is sufficiently sated, they typically dig back down to rest until they need food once more."
         };
 
         FeralLizards = new RaceTraits()
@@ -2722,7 +2722,7 @@ static class RaceParameters
             Traits.Biter,
             Traits.Resilient
         },
-            RaceDescription = ""
+            RaceDescription = "Hailing from the wetter, warmer parts of this world, the Feral Lizards are common predators. It is widely understood that the Lizards evolved from the Feral Lizards. Despite no actual relation, their reptilian nature makes them vaguely resemble dragons, and as such many cultures view Feral Lizards as a bad omen."
         };
 
         Monitors = new RaceTraits()
@@ -2752,7 +2752,7 @@ static class RaceParameters
                 Traits.Resilient,
                 Traits.VenomShock,
             },
-            RaceDescription = "",
+            RaceDescription = "While the frequency with which Monitors and Komodos can be found together would lead you to think them related, in truth, they just happen to have very compatible cultures, and enjoy one another's company. Unlike the Komodos, the Monitors are not natives of this world, instead hailing from the Feral Lion home dimension.",
         };
 
         Schiwardez = new RaceTraits()
@@ -2814,7 +2814,7 @@ static class RaceParameters
                 Traits.ArtfulDodge,
                 Traits.Tenacious
         },
-            RaceDescription = ""
+            RaceDescription = "Terrorbirds are highly aggressive, and possess high strength. While they aren't particularly clever, they are able to use brute force to great effect."
         };
 
         Dratopyr = new RaceTraits()
@@ -3130,7 +3130,7 @@ static class RaceParameters
                 Traits.PackWill,
                 Traits.Timid,
         },
-            RaceDescription = "",
+            RaceDescription = "Eevee, the Evolution Pokémon. Small, generally friendly and eager to play, though they can often get over eager in their playing, especially if they're hungry. While their cute, fluffy appearance may suggest a slightly less resilient creature, they are quite adaptable, and under the right conditions can evolve into a number of more specialized forms.",
 
         };
 
@@ -3163,7 +3163,7 @@ static class RaceParameters
                 Traits.Pounce,
                 Traits.PackStrength,
         },
-            RaceDescription = "",
+            RaceDescription = "Umbreon, the Moonlight Pokémon. A medium sized canine, Feral Umbreons also seemed to come from the same place as Feral Eevees, Also gaining the same hunger Feral Eevees acquired. They will mostly live in packs with other Feral Umbreons and some Feral Eevees. Some claim they have even seen them adopting the Feral Eevees anthro counter part, mistaking it as one of their own. But this has yet to be proven true. Feral Umbreons, like their anthro counter part, share their hatred for Sylveons. Fights between Feral Umbreons and Feral Sylveons have been recorded several times.",
 
         };
 
@@ -3195,7 +3195,7 @@ static class RaceParameters
                 Traits.ArtfulDodge,
                 Traits.PackWill,
         },
-            RaceDescription = "",
+            RaceDescription = "Equaleon, the Equalized Pokémon. Evolving from Eevee under unique conditions, Equaleon represents a unique form of eeveelution that retains for more of the traits of Eevee than normal, simply scaled up to a larger size and power. They are often just as friendly as Eevees, but a lot better at not accidentally eating those they're playing with. Instead, they mostly consume anything they deem a threat to themselves or the ones they care about. But so long as you aren't either of those, they're actually quite playful and nice to be around. They're seemingly unique to this Realm.",
 
         };
 
