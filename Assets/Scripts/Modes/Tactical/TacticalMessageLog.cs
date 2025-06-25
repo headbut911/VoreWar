@@ -262,7 +262,7 @@ public class TacticalMessageLog
             case MessageLogEvent.TransferFail:
                 return $"<b>{action.Unit.Name}</b> is a bit too quick, and {GPPHis(action.Unit)} prey gets partially released.";
             case MessageLogEvent.VoreStealFail:
-            //Additional fail lines by Cartography
+            //Additional fail lines by Tatltuae
                 if (action.oldLocation == PreyLocation.breasts || action.oldLocation == PreyLocation.leftBreast || action.oldLocation == PreyLocation.rightBreast)
                 {
                     if (action.Target.Race == Race.Kangaroos)
@@ -699,16 +699,28 @@ public class TacticalMessageLog
                     $"<b>{action.Unit.Name}</b> watches with concern as {GPPHis(action.Unit)} belly suddenly lets out an angry roar. <b>{action.Target.Name}</b> had kept a number of inedible herbs for just this occasion and as they break down they force the belly to expel its contents.{odds}"
                     );
                 else  // Pred Feral
+                {
+                    if(State.Rand.Next(2) == 0 && action.Unit.Race == Race.FeralEevee)
+                        return GetRandomStringFrom(
+                        $"As <b>{action.Target.Name}</b> pulls {GPPHimself(action.Target)} up <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> throat, the Eevee looks around for a playmate. As <b>{action.Target.Name}</b> slides back out the Eevee's mouth, {GPPHe(action.Unit)} get{SIfSingular(action.Unit)} excited, as a new playmate has been found!{odds}",
+                        $"After forcefully prying {GPPHis(action.Target)} way out <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> mouth, <b>{action.Target.Name}</b> looks back at the Eevee, and actually feels kind of bad, and for a split moment considers going back in to make <b>{action.Unit.Name}</b> feel better.{odds}",
+                        $"<b>{action.Unit.Name}</b> feels a pressure at {GPPHis(action.Unit)} anus, and does what any animal would do. Squats and tries to poop. Only, instead of poop, out comes a tired <b>{action.Target.Name}</b>, exhausted from forcing {GPPHis(action.Target)} way through the Eevee's bowels.{odds}",
+                        $"<b>{action.Target.Name}</b> has lost track of time crawling up <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> throat. \"I swear the throat wasn't this long or bendy going down,\" {GPPHe(action.Target)} think{SIfSingular(action.Target)} to {GPPHimself(action.Target)}. As <b>{action.Unit.Name}</b> pulls {GPPHimself(action.Target)} out the small creature's behind, {GPPHe(action.Target)} realize{SIfSingular(action.Target)} {GPPHis(action.Target)} mistake, and blush.{odds}",
+                        $"As <b>{action.Target.Name}</b> tries to escape, <b>{action.Unit.Name}</b> believes these attempts a game, and keeps {GetRandomStringFrom($"<b>{action.Target.Name}</b>", $"the {GetRaceDescSingl(action.Unit)}")} down in {GPPHis(action.Unit)} {PreyLocStrings.ToSyn(PreyLocation.stomach)} quite well. After a few {GetRandomStringFrom("rounds", "rounds(escape attempts)")}, <b>{action.Unit.Name}</b>, being a good sport, lets <b>{action.Target.Name}</b> win{GetRandomStringFrom(".", ", and eagerly awaits the next game.}")}{odds}",
+                        $"As <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> {action.preyLocation.ToSyn()} begins to dissolve <b>{action.Target.Name}</b>, the {GetRaceDescSingl(action.Target)} lets out a wimper of pain. Feeling bad, <b>{action.Unit.Name}</b> lets {GPPHim(action.Target)} out.{odds}",
+                        $"Inside <b>{action.Unit.Name}</b>, <b>{action.Target.Name}</b> is crying. Hearing the sounds, the Eevee lets <b>{action.Target.Name}</b> out, and tries to snuggle against {GPPHis(action.Target)} {GetRandomStringFrom("leg", "foot", "base")}.{odds}"
+                        );
                     return GetRandomStringFrom(
-                                        $"From within <b>{action.Unit.Name}</b>’s gurgling gut, <b>{action.Target.Name}</b> remembers all the loved ones that would miss {GPPHim(action.Target)} and with this incentive forces {GPPHis(action.Target)} way out.{odds}",
-                                        $"<b>{action.Unit.Name}</b>’s stomach finds something particularly disagreeable with how <b>{action.Target.Name}</b> tastes. With a wretched gag, <b>{action.Target.Name}</b> is expelled from <b>{action.Unit.Name}</b>’s tummy.{odds}",
-                                        $"The rampant indigestion caused by <b>{action.Target.Name}</b>’s incessant struggles causes <b>{action.Unit.Name}</b> to reluctantly release {GPPHis(action.Unit)} stubborn prey.{odds}",
-                                        $"<b>{action.Target.Name}</b>’s determination proves greater than the strength of <b>{action.Unit.Name}</b>’s constitution as {GPPHe(action.Target)} free{SIfSingular(action.Target)} {GPPHimself(action.Unit)} from {GPPHis(action.Unit)} fleshy prison.{odds}",
-                                        $"<b>{action.Target.Name}</b> claws {GPPHis(action.Target)} way up <b>{action.Unit.Name}</b>’s throat and is able to pull {GPPHimself(action.Target)} free.{odds}",
-                                        $"<b>{action.Unit.Name}</b> can feel the tip of a weapon stabbing at {GPPHis(action.Unit)} insides. Panicking, the worried predator spits <b>{action.Target.Name}</b> up quickly.{odds}",
-                                        $"<b>{action.Target.Name}</b> becomes terrified as the acids begin to tear into {GPPHis(action.Target)} flesh and in a sudden bout of panic forces <b>{action.Unit.Name}</b> to throw {GPPHim(action.Target)} up.{odds}",
-                                        $"<b>{action.Unit.Name}</b> watches with concern as {GPPHis(action.Unit)} belly suddenly lets out an angry roar. <b>{action.Target.Name}</b> had kept a number of inedible herbs for just this occasion and as they break down they force the belly to expel its contents.{odds}"
-                                        );
+                    $"From within <b>{action.Unit.Name}</b>’s gurgling gut, <b>{action.Target.Name}</b> remembers all the loved ones that would miss {GPPHim(action.Target)} and with this incentive forces {GPPHis(action.Target)} way out.{odds}",
+                    $"<b>{action.Unit.Name}</b>’s stomach finds something particularly disagreeable with how <b>{action.Target.Name}</b> tastes. With a wretched gag, <b>{action.Target.Name}</b> is expelled from <b>{action.Unit.Name}</b>’s tummy.{odds}",
+                    $"The rampant indigestion caused by <b>{action.Target.Name}</b>’s incessant struggles causes <b>{action.Unit.Name}</b> to reluctantly release {GPPHis(action.Unit)} stubborn prey.{odds}",
+                    $"<b>{action.Target.Name}</b>’s determination proves greater than the strength of <b>{action.Unit.Name}</b>’s constitution as {GPPHe(action.Target)} free{SIfSingular(action.Target)} {GPPHimself(action.Unit)} from {GPPHis(action.Unit)} fleshy prison.{odds}",
+                    $"<b>{action.Target.Name}</b> claws {GPPHis(action.Target)} way up <b>{action.Unit.Name}</b>’s throat and is able to pull {GPPHimself(action.Target)} free.{odds}",
+                    $"<b>{action.Unit.Name}</b> can feel the tip of a weapon stabbing at {GPPHis(action.Unit)} insides. Panicking, the worried predator spits <b>{action.Target.Name}</b> up quickly.{odds}",
+                    $"<b>{action.Target.Name}</b> becomes terrified as the acids begin to tear into {GPPHis(action.Target)} flesh and in a sudden bout of panic forces <b>{action.Unit.Name}</b> to throw {GPPHim(action.Target)} up.{odds}",
+                    $"<b>{action.Unit.Name}</b> watches with concern as {GPPHis(action.Unit)} belly suddenly lets out an angry roar. <b>{action.Target.Name}</b> had kept a number of inedible herbs for just this occasion and as they break down they force the belly to expel its contents.{odds}"
+                    );
+                }
             }
             else // Prey Feral
             {
@@ -725,16 +737,14 @@ public class TacticalMessageLog
                     );
                 else  // Pred Feral
                     return GetRandomStringFrom(
-                                        $"<b>{action.Unit.Name}</b>’s stomach finds something particularly disagreeable with how <b>{action.Target.Name}</b> tastes. With a wretched gag, <b>{action.Target.Name}</b> is expelled from <b>{action.Unit.Name}</b>’s tummy.{odds}",
-                                        $"The rampant indigestion caused by <b>{action.Target.Name}</b>’s incessant struggles causes <b>{action.Unit.Name}</b> to reluctantly release {GPPHis(action.Unit)} stubborn prey.{odds}",
-                                        $"<b>{action.Target.Name}</b>’s determination proves greater than the strength of <b>{action.Unit.Name}</b>’s constitution as {GPPHe(action.Target)} free{SIfSingular(action.Target)} {GPPHimself(action.Unit)} from {GPPHis(action.Unit)} fleshy prison.{odds}",
-                                        $"<b>{action.Target.Name}</b> claws {GPPHis(action.Target)} way up <b>{action.Unit.Name}</b>’s throat and is able to pull {GPPHimself(action.Target)} free.{odds}",
-                                        $"<b>{action.Target.Name}</b> becomes terrified as the acids begin to tear into {GPPHis(action.Target)} flesh and in a sudden bout of panic forces <b>{action.Unit.Name}</b> to throw {GPPHim(action.Target)} up.{odds}",
+                    $"<b>{action.Unit.Name}</b>’s stomach finds something particularly disagreeable with how <b>{action.Target.Name}</b> tastes. With a wretched gag, <b>{action.Target.Name}</b> is expelled from <b>{action.Unit.Name}</b>’s tummy.{odds}",
+                    $"The rampant indigestion caused by <b>{action.Target.Name}</b>’s incessant struggles causes <b>{action.Unit.Name}</b> to reluctantly release {GPPHis(action.Unit)} stubborn prey.{odds}",
+                    $"<b>{action.Target.Name}</b>’s determination proves greater than the strength of <b>{action.Unit.Name}</b>’s constitution as {GPPHe(action.Target)} free{SIfSingular(action.Target)} {GPPHimself(action.Unit)} from {GPPHis(action.Unit)} fleshy prison.{odds}",
+                    $"<b>{action.Target.Name}</b> claws {GPPHis(action.Target)} way up <b>{action.Unit.Name}</b>’s throat and is able to pull {GPPHimself(action.Target)} free.{odds}",
+                    $"<b>{action.Target.Name}</b> becomes terrified as the acids begin to tear into {GPPHis(action.Target)} flesh and in a sudden bout of panic forces <b>{action.Unit.Name}</b> to throw {GPPHim(action.Target)} up.{odds}",
                     $"<b>{action.Target.Name}</b>'s survival instincts take over, letting {GPPHim(action.Target)} channel a burst of near supernatural strength and setting {GPPHim(action.Target)} free.{odds}",
                     $"<b>{action.Target.Name}</b>'s natural built-in weapons proove too much to leave {GPPHim(action.Target)} contained. The irritated gut soon sets {GPPHim(action.Target)} free.{odds}"
-
-
-                                        );
+                    );
             }
 
         }
@@ -743,29 +753,29 @@ public class TacticalMessageLog
             if (action.preyLocation == PreyLocation.breasts && action.Unit.Race == Race.Kangaroos)
             {
                 return GetRandomStringFrom(
-                    $"Just when all hope seemed lost, <b>{action.Target.Name}</b> manages to pry <b>{action.Unit.Name}</b>'s pouch entrance open, and clambers out, taking large breaths of fresh air. {odds}",
-                    $"In the chaos of battle, <b>{action.Unit.Name}</b> leans over, causing a crease to appear in {GPPHis(action.Unit)} pouch, forcing the pouch's entrance to unseal ever-so-slightly. <b>{action.Target.Name}</b> seizes the opportunity, clawing {GPPHis(action.Target)} way out, and taking several deep, victorious gulps of real air.",
-                    $"Rather suddenly, a blade pokes out of <b>{action.Unit.Name}</b>'s pouch's entrance, a knife or dagger of some kind. \"Let me out right now, or I'll carve your whole stupid pouch off,\" <b>{action.Target.Name}</b> angrily demands. <b>{action.Unit.Name}</b>, who would rather not be mutilated, caves and quickly pushes <b>{action.Target.Name}</b> out.",
-                    $"Rather suddenly, a blade pokes out of <b>{action.Unit.Name}</b>'s pouch's entrance, a knife or dagger of some kind. \"Let me out right now, or I'll carve your whole stupid pouch off,\" <b>{action.Target.Name}</b> angrily demands. Seeing no other option, <b>{action.Unit.Name}</b> opens {GPPHis(action.Unit)} pouch, and <b>{action.Target.Name}</b> quickly jumps out.",
-                    $"In the chaos of battle, <b>{action.Unit.Name}</b> leans over, allowing <b>{action.Target.Name}</b> an opportunity to escape, which {GPPHe(action.Target)} take{SIfSingular(action.Target)} quite happily.",
-                    $"As a blade pokes out of <b>{action.Unit.Name}</b>'s pouch's entrance, <b>{action.Target.Name}</b> demands to be let out. Within moments, <b>{action.Unit.Name}</b> complies."
+                $"Just when all hope seemed lost, <b>{action.Target.Name}</b> manages to pry <b>{action.Unit.Name}</b>'s pouch entrance open, and clambers out, taking large breaths of fresh air. {odds}",
+                $"In the chaos of battle, <b>{action.Unit.Name}</b> leans over, causing a crease to appear in {GPPHis(action.Unit)} pouch, forcing the pouch's entrance to unseal ever-so-slightly. <b>{action.Target.Name}</b> seizes the opportunity, clawing {GPPHis(action.Target)} way out, and taking several deep, victorious gulps of real air.",
+                $"Rather suddenly, a blade pokes out of <b>{action.Unit.Name}</b>'s pouch's entrance, a knife or dagger of some kind. \"Let me out right now, or I'll carve your whole stupid pouch off,\" <b>{action.Target.Name}</b> angrily demands. <b>{action.Unit.Name}</b>, who would rather not be mutilated, caves and quickly pushes <b>{action.Target.Name}</b> out.",
+                $"Rather suddenly, a blade pokes out of <b>{action.Unit.Name}</b>'s pouch's entrance, a knife or dagger of some kind. \"Let me out right now, or I'll carve your whole stupid pouch off,\" <b>{action.Target.Name}</b> angrily demands. Seeing no other option, <b>{action.Unit.Name}</b> opens {GPPHis(action.Unit)} pouch, and <b>{action.Target.Name}</b> quickly jumps out.",
+                $"In the chaos of battle, <b>{action.Unit.Name}</b> leans over, allowing <b>{action.Target.Name}</b> an opportunity to escape, which {GPPHe(action.Target)} take{SIfSingular(action.Target)} quite happily.",
+                $"As a blade pokes out of <b>{action.Unit.Name}</b>'s pouch's entrance, <b>{action.Target.Name}</b> demands to be let out. Within moments, <b>{action.Unit.Name}</b> complies."
                 );
             }
-            if (((action.preyLocation == PreyLocation.breasts) || ((action.preyLocation == PreyLocation.rightBreast || action.preyLocation == PreyLocation.leftBreast) && Config.FairyBVType == FairyBVType.Shared)) && State.Rand.Next(3) == 0) //Unique 'cleavage' vore messages by Cartography! Refer to StoredLogTexts.cs for explanation of the new cleavage vore messages
+            if (((action.preyLocation == PreyLocation.breasts) || ((action.preyLocation == PreyLocation.rightBreast || action.preyLocation == PreyLocation.leftBreast) && Config.FairyBVType == FairyBVType.Shared)) && State.Rand.Next(3) == 0) //Unique 'cleavage' vore messages by Tatltuae! Refer to StoredLogTexts.cs for explanation of the new cleavage vore messages
             {
                 return GetRandomStringFrom(
-                    $"As the jiggling of <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> {GetRandomStringFrom("tits", "boobs", "breasts")} hit a peak, a hand suddenly stretches out from between them. This hand is soon followed by the rest of <b>{action.Target.Name}</b>, pulling {GPPHimself(action.Target)} out.",
-                    $"<b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> {GetRandomStringFrom("tits", "boobs", "breasts")} begin to bounce up and down, up and down, faster and faster until <b>{action.Target.Name}</b> is launched out from between them.",
-                    $"As <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> {GetRandomStringFrom("tits", "boobs", "breasts")} begin bouncing up in attempts to hit {GPPHis(action.Unit)} face, <b>{action.Unit.Name}</b> releases <b>{action.Target.Name}</b> rather than suffer \"death by sentient boob fat.\""
+                $"As the jiggling of <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> {GetRandomStringFrom("tits", "boobs", "breasts")} hit a peak, a hand suddenly stretches out from between them. This hand is soon followed by the rest of <b>{action.Target.Name}</b>, pulling {GPPHimself(action.Target)} out.",
+                $"<b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> {GetRandomStringFrom("tits", "boobs", "breasts")} begin to bounce up and down, up and down, faster and faster until <b>{action.Target.Name}</b> is launched out from between them.",
+                $"As <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> {GetRandomStringFrom("tits", "boobs", "breasts")} begin bouncing up in attempts to hit {GPPHis(action.Unit)} face, <b>{action.Unit.Name}</b> releases <b>{action.Target.Name}</b> rather than suffer \"death by sentient boob fat.\""
                 );
             }
             return GetRandomStringFrom(
-                $"<b>{action.Target.Name}</b> escaped from <b>{action.Unit.Name}</b>'s {action.preyLocation.ToSyn()}.{odds}",
-                $"From within <b>{action.Unit.Name}</b>’s {action.preyLocation.ToSyn()}, <b>{action.Target.Name}</b> remembers all the loved ones that would miss {GPPHim(action.Target)}, and with this incentive forces {GPPHis(action.Target)} way out.{odds}",
-                $"<b>{action.Target.Name}</b>’s determination proves greater than the strength of <b>{action.Unit.Name}</b>’s constitution as {GPPHe(action.Target)} free{SIfSingular(action.Target)} {GPPHimself(action.Target)} from {GPPHis(action.Target)} fleshy prison.{odds}",
-                $"<b>{action.Unit.Name}</b> can feel the tip of a weapon stabbing at {GPPHis(action.Unit)} insides. Panicking, the worried predator spits <b>{action.Target.Name}</b> up quickly.{odds}",
-                $"<b>{action.Target.Name}</b> tricks {GPPHis(action.Target)} would-be predator with a heartfelt sob story. <b>{action.Unit.Name}</b> believes it and naïvely lets the clever prey climb back out.{odds}"
-                );
+            $"<b>{action.Target.Name}</b> escaped from <b>{action.Unit.Name}</b>'s {action.preyLocation.ToSyn()}.{odds}",
+            $"From within <b>{action.Unit.Name}</b>’s {action.preyLocation.ToSyn()}, <b>{action.Target.Name}</b> remembers all the loved ones that would miss {GPPHim(action.Target)}, and with this incentive forces {GPPHis(action.Target)} way out.{odds}",
+            $"<b>{action.Target.Name}</b>’s determination proves greater than the strength of <b>{action.Unit.Name}</b>’s constitution as {GPPHe(action.Target)} free{SIfSingular(action.Target)} {GPPHimself(action.Target)} from {GPPHis(action.Target)} fleshy prison.{odds}",
+            $"<b>{action.Unit.Name}</b> can feel the tip of a weapon stabbing at {GPPHis(action.Unit)} insides. Panicking, the worried predator spits <b>{action.Target.Name}</b> up quickly.{odds}",
+            $"<b>{action.Target.Name}</b> tricks {GPPHis(action.Target)} would-be predator with a heartfelt sob story. <b>{action.Unit.Name}</b> believes it and naïvely lets the clever prey climb back out.{odds}"
+            );
         }
 
     }
@@ -803,6 +813,19 @@ public class TacticalMessageLog
                     possibleLines.Add($"<b>{action.Unit.Name}</b> pushes up on the bulge <b>{action.Target.Name}</b> makes in {GPPHis(action.Unit)} belly. It isn't long before <b>{action.Target.Name}</b> is pushed back out {GetRandomStringFrom($"the way {GPPHe(action.Target)} came in", $"<b>{action.Unit.Name}</b>'s mouth")}.");
                     possibleLines.Add($"<b>{action.Unit.Name}</b> pushes down on the bulge <b>{action.Target.Name}</b> makes in {GPPHis(action.Unit)} belly. For a moment, this appears to do nothing aside from cause <b>{action.Target.Name}</b> some discomfort. Then, <b>{action.Target.Name}</b> emerges intact from {GetRandomStringFrom($"<b>{action.Unit.Name}</b>", $"the {GetRaceDescSingl(action.Unit)}")}'s ass!");
                     possibleLines.Add($"<b>{action.Unit.Name}</b> pushes down on the bulge <b>{action.Target.Name}</b> makes in {GPPHis(action.Unit)} belly. For a moment, this appears to do nothing aside from cause <b>{action.Target.Name}</b> some discomfort. Then, <b>{action.Target.Name}</b> emerges intact from {GetRandomStringFrom($"<b>{action.Unit.Name}</b>", $"the {GetRaceDescSingl(action.Unit)}")}'s ass! Having completed a full tour through <b>{action.Unit.Name}</b>'s body, <b>{action.Target.Name}</b> simply stands there, confused.");
+                    if(action.Unit.Race == Race.FeralEevee)
+                    {
+                        if(action.Unit.Side == action.Target.Side && ( action.Unit.HasTrait(Traits.FriendlyStomach) || action.Unit.HasTrait(Traits.Endosoma)))
+                        {
+                            possibleLines.Add($"<b>{action.Unit.Name}</b> spits <b>{action.Target.Name}</b> out, having thought of a game they could play! In the process of throwing {GPPHim(action.Target)} up, <b>{action.Unit.Name}</b> forgets this idea. Oops.");
+                            possibleLines.Add($"Being done in <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> gut, <b>{action.Target.Name}</b> starts to slowly squirm, and <b>{action.Unit.Name}</b> swiftly coughs {GPPHim(action.Target)} up.");
+                        }
+                        if(RandomAlliedWarrior(action.Unit) != null && RandomAlliedWarrior(action.Unit) != action.Target) possibleLines.Add($"<b>{action.Unit.Name}</b> decides {GPPHe(action.Unit)} want to play with <b>{RandomAlliedWarrior(action.Unit).Name}</b>, and so runs off, pushing <b>{action.Target.Name}</b> out {GPPHis(action.Unit)} anus in the process.");
+                        possibleLines.Add($"<b>{action.Unit.Name}</b> finally figures out where <b>{action.Target.Name}</b> is and {GetRandomStringFrom("hacks", "spits", "coughs")} {GPPHim(action.Target)} up, before giving {GPPHim(action.Target)} a quizical look as though to ask \"What were you doing in there?\"");
+                        possibleLines.Add($"<b>{action.Unit.Name}</b> decides that <b>{action.Target.Name}</b> has been punished enough, and {GetRandomStringFrom("hacks", "spits", "coughs")} {GPPHim(action.Target)} back out.");
+                        possibleLines.Add($"<b>{action.Unit.Name}</b> wants to play with someone, and, against all odds, actually remembers that they ate <b>{action.Target.Name}</b>, and lets them back out so that {GPPHe(action.Unit)} can play with the {GetRaceDescSingl(action.Target)}.");
+                        possibleLines.Add($"<b>{action.Unit.Name}</b> releases <b>{action.Target.Name}</b>, wanting to play some more with {GetRandomStringFrom($"{GPPHim(action.Target)}", $"the {GetRaceDescSingl(action.Target)}")}.");
+                    }
                     break;
                 case PreyLocation.anal:
                     possibleLines.Add($"<b>{action.Target.Name}</b> was released back out <b>{action.Unit.Name}</b>'s asshole.");
@@ -810,9 +833,14 @@ public class TacticalMessageLog
                     possibleLines.Add($"<b>{action.Unit.Name}</b> pushes up on the bulge <b>{action.Target.Name}</b> makes in {GPPHis(action.Unit)} gut. It isn't long before <b>{action.Target.Name}</b>'s face appears in the back of <b>{action.Unit.Name}</b>'s throat, before being promptly spat all the way out.");
                     possibleLines.Add($"<b>{action.Unit.Name}</b> pushes up on the bulge <b>{action.Target.Name}</b> makes in {GPPHis(action.Unit)} gut. It isn't long before <b>{action.Target.Name}</b>'s face appears in the back of <b>{action.Unit.Name}</b>'s throat, before being promptly spat all the way out. Having made it all the way through <b>{action.Unit.Name}</b> going the wrong way, {GetRandomStringFrom($"<b>{action.Target.Name}</b>", $"the {GetRaceDescSingl(action.Target)}")} shudders, usure what to do next.");
                     possibleLines.Add($"As <b>{action.Unit.Name}</b> clenches, <b>{action.Target.Name}</b> can feel {GPPHimself(action.Target)} being pulled back down into {GetRandomStringFrom($"<b>{action.Target.Name}</b>", $"the {GetRaceDescSingl(action.Target)}")}'s intestines. It isn't long before {GPPHeIs(action.Target)} pushed back out <b>{action.Unit.Name}</b>'s {GetRandomStringFrom("butt", "ass", "asshole", "anus", "rectum")}, smelly but alive.");
+                    if(action.Unit.Race == Race.FeralEevee && action.Unit.Side == action.Target.Side && ( action.Unit.HasTrait(Traits.FriendlyStomach) || action.Unit.HasTrait(Traits.Endosoma)))
+                    {
+                        possibleLines.Add($"<b>{action.Unit.Name}</b> notices that <b>{action.Target.Name}</b> fell asleep. Not wanting to wake {GPPHim(action.Target)} with the battle, <b>{action.Unit.Name}</b> slowly slides <b>{action.Target.Name}</b> out {GPPHis(action.Unit)} anus.");
+                        possibleLines.Add($"<b>{action.Unit.Name}</b> decides to empty {GPPHis(action.Unit)} \"friend storage(rectum),\" and slides <b>{action.Target.Name}</b> back out into the  battlefield.");
+                    }
                     break;
                 default:
-                    return $"What the hell happened? The prey was in the stomach somewhere and now they're not. Message Scarabyte on Discord, please.";
+                    return $"What the hell happened? The prey was in the stomach somewhere and now they're not. Message the devs on Discord, please.";
             }
         }
         else if (action.preyLocation == PreyLocation.balls)
@@ -830,6 +858,18 @@ public class TacticalMessageLog
             possibleLines.Add($"<b>{action.Unit.Name}</b> decides to \"rebirth\" <b>{action.Target.Name}</b> into this world, sliding {GPPHim(action.Target)} out of {GPPHis(action.Unit)} {PreyLocStrings.ToSyn(action.preyLocation)}.");
             possibleLines.Add($"<b>{action.Unit.Name}</b> decides to push <b>{action.Target.Name}</b> back out of {GPPHis(action.Unit)} {PreyLocStrings.ToSyn(action.preyLocation)}, silently {GetRandomStringFrom($"hop", $"pray")}ing that {GPPHe(action.Unit)}'ll get to stick {GetRandomStringFrom($"<b>{action.Target.Name}</b>", $"{GPPHim(action.Target)}")} right back in.");
             possibleLines.Add($"<b>{action.Target.Name}</b> was released from <b>{action.Unit.Name}</b>'s womb.");
+            if(action.Unit.Race == Race.FeralEevee)
+            {
+                if(action.Unit.Race == Race.FeralEevee && action.Unit.Side == action.Target.Side && ( action.Unit.HasTrait(Traits.FriendlyStomach) || action.Unit.HasTrait(Traits.Endosoma)))
+                {
+                    possibleLines.Add($"<b>{action.Target.Name}</b> slides out of <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> vagina. Game over.");
+                    possibleLines.Add($"<b>{action.Target.Name}</b> stops moving, and <b>{action.Unit.Name}</b> pushes {GPPHim(action.Target)} from {GPPHis(action.Unit)} vagina to check on them(<b>{ApostrophizeWithOrWithoutS(action.Target.Name)}</b> fine, {GPPHe(action.Target)} just fell asleep). Game over.");
+                    possibleLines.Add($"<b>{action.Target.Name}</b> accidently nicks part of <b>{ApostrophizeWithOrWithoutS(action.Unit.Name)}</b> reproductive tract with {GPPHis(action.Target)} {(ActorHumanoid(action.Unit) ? "weapon" : "claws")}, and is expelled out the vagina as punishment. Game over.");
+                }
+                if(RandomAlliedWarrior(action.Unit) != null && RandomAlliedWarrior(action.Unit) != action.Target) possibleLines.Add($"<b>{action.Unit.Name}</b> decides {GPPHe(action.Unit)} want to play with <b>{RandomAlliedWarrior(action.Unit).Name}</b>, but finds that {GPPHis(action.Unit)} massive middle is in the way of that, so {GPPHe(action.Unit)} bear{SIfSingular(action.Unit)} down and \"birth{SIfSingular(action.Unit)}\" <b>{action.Target.Name}</b> to free up room.");
+                possibleLines.Add($"<b>{action.Unit.Name}</b> looks at {GPPHimself(action.Unit)} and wonders when {GPPHe(action.Unit)} got so big. Feeling the weight in {GPPHis(action.Unit)} womb, <b>{action.Unit.Name}</b> thinks that {GPPHe(action.Unit)} must be pregnant, and \"birth{SIfSingular(action.Unit)}\" <b>{action.Target.Name}</b>.");
+                possibleLines.Add($"<b>{action.Unit.Name}</b> releases <b>{action.Target.Name}</b>, wanting to play some more with {GetRandomStringFrom($"{GPPHim(action.Target)}", $"the {GetRaceDescSingl(action.Target)}")}.");
+            }
         }
         else if (action.preyLocation == PreyLocation.breasts || action.preyLocation == PreyLocation.leftBreast || action.preyLocation == PreyLocation.rightBreast)
         {
@@ -934,7 +974,7 @@ public class TacticalMessageLog
                 $"<b>{action.Target.Name}</b>'s breathing has now replaced most of the O2 in <b>{action.Unit.Name}</b>'s pouch with CO2. With the air mixture so inhospitable, <b>{action.Target.Name}</b> falls into a coughing fit. As <b>{action.Unit.Name}</b>'s fellow soldiers look at {GPPHim(action.Unit)}, <b>{action.Unit.Name}</b> blushes, and smacks {GPPHis(action.Unit)} pouch a few times, hoping to {GetRandomStringFrom("rob", "drain")} <b>{action.Target.Name}</b> of the last of {GPPHis(action.Target)} strength."
             );
         }
-        //Unique 'cleavage' vore messages by Cartography! Refer to StoredLogTexts.cs for explanation of the new cleavage vore messages
+        //Unique 'cleavage' vore messages by Tatltuae! Refer to StoredLogTexts.cs for explanation of the new cleavage vore messages
         if (((action.preyLocation == PreyLocation.breasts) || ((action.preyLocation == PreyLocation.rightBreast || action.preyLocation == PreyLocation.leftBreast) && Config.FairyBVType == FairyBVType.Shared)) && action.Unit.Race != Race.Kangaroos && State.Rand.Next(3) != 0)
         {
             switch (State.Rand.Next(3))
