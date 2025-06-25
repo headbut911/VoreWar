@@ -1127,7 +1127,7 @@ static class RaceParameters
             Traits.Intimidating,
             Traits.HardSkin,
         },
-            RaceDescription = "",
+            RaceDescription = "When Fimbulwinter decended upon Bjornheim, the home realm of the Bears, many thought they were doomed. But then, a gateway formed in the snow coated landscape, and a band of raiders was able to escape the end times of one world by simply moving to another. Now in this realm, they raid and pillage, taking the valuables of other peoples for themselves, while devouring any who fail to fight well enough to ward these ursine vikings away.",
         };
 
         Eevee = new RaceTraits()

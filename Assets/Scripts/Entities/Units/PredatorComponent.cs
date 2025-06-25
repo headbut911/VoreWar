@@ -3686,7 +3686,7 @@ public class PredatorComponent
                 var friendlies = TacticalUtilities.Units.Where(s => s.Unit.Side == unit.Side && s.Unit != recipient.Unit && s.Unit != unit && s.Visible && s.Targetable && s.Unit.IsDead == false).ToArray();//Random unit picker, using modified unimplemented code from the LogUtilities
                 if (friendlies.Length == 0)
                 {friendlies = null;}
-                switch (State.Rand.Next(pool))//Great additional lines thanks to Cartography!
+                switch (State.Rand.Next(pool))//Great additional lines thanks to Tatltuae!
                 {
                     case 0:
                         State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> pumps what remains of <b>{preyUnit.Unit.Name}</b> into <b>{LogUtilities.ApostrophizeWithOrWithoutS(recipient.Unit.Name)}</b> womb, providing nutrients to strengthen <b>{alreadyChild.Unit.Name}</b>.");
@@ -4029,7 +4029,7 @@ public class PredatorComponent
         }
         forcePrey.Movement = 0;
         Prey preyref = new Prey(forcePrey, actor, forcePrey.PredatorComponent?.prey);
-        switch (preyLocation)//Credits to Cartography for the additional lines. Coder's note: I would add Config.LewdDialog checks to these but seeing as the originals weren't exactly "platonic" I decided not to
+        switch (preyLocation)//Credits to Tatltuae for the additional lines. Coder's note: I would add Config.LewdDialog checks to these but seeing as the originals weren't exactly "platonic" I decided not to
         {
             case PreyLocation.womb:
                 State.GameManager.SoundManager.PlaySwallow(PreyLocation.womb, actor);

@@ -1464,7 +1464,7 @@ static class TacticalUtilities
         }
         else
         {
-            switch (State.Rand.Next(6))//Credits to Cartography for additional logs
+            switch (State.Rand.Next(6))//Credits to Tatltuae for additional logs
             {
                 case 0:
                     State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> couldn't force feed {LogUtilities.GPPHimself(actor.Unit)} to <b>{targetPred.Unit.Name}</b>.");
