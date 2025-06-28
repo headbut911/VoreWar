@@ -2792,7 +2792,7 @@ static class RaceParameters
             StomachSize = 18,
             HasTail = true,
             FavoredStat = Stat.Agility,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.TailVore },
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.TailVore, VoreType.Unbirth },
             ExpMultiplier = 1.5f,
             PowerAdjustment = 1.75f,
             DeployCost = 1,

@@ -29,6 +29,7 @@ public class TacticalMode : SceneBase
         Imp,
         Slime,
         SlimeExtra,
+        Aabayx,
     }
 
     enum NextUnitType
@@ -1652,6 +1653,9 @@ Turns: {currentTurn}
                     break;
                 case Race.Gnolls:
                     wallType = WallType.WoodenPallisade;
+                    break;
+                case Race.Aabayx:
+                    wallType = WallType.Aabayx;
                     break;
                 default:
                     wallType = WallType.Stone;
