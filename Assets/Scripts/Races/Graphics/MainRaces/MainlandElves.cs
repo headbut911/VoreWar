@@ -371,7 +371,7 @@ class MainlandElves : DefaultRaceData
 
     protected override Sprite BodyAccentSprite3(Actor_Unit actor) // Ears
     {
-        if (actor.Unit.BodyAccentType1 == 0)
+        if (actor.Unit.BodyAccentType2 == 0)
             return null;
         return State.GameManager.SpriteDictionary.MainlandElfParts[actor.Unit.EarType + actor.Unit.BodyAccentType2 * 8];
     }

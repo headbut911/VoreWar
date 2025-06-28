@@ -267,6 +267,10 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] LupineClothes2;
     public Sprite[] LupineVoreSprites;
 
+    public Sprite[] JackalMain;
+    public Sprite[] JackalClothes;
+    public Sprite[] JackalJewel;
+
     [Header("Unique Mercenaries")]
     public Sprite[] Selicia;
     public Sprite[] Vision;
