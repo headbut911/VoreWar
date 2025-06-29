@@ -21,13 +21,13 @@ class Jackals : DefaultRaceData
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor);
-        AccessoryColors = 2;
+        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.JackalSkin);
+        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.JackalSkin);
         BeardStyles = 0;
         BodyAccentTypes1 = 6; // eyebrows
         BodyAccentTypes3 = 2; // earrings
         BodyAccentTypes4 = 3; // Navel Piercing
         SpecialAccessoryCount = 0;
-        AccessoryColors = 0;
         HairStyles = 36;
         MouthTypes = 12;
         FurCapable = true;
@@ -35,11 +35,11 @@ class Jackals : DefaultRaceData
 
         Body = new SpriteExtraInfo(4, BodySprite, null, (s) => FurryColor(s));
         Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => FurryColor(s));
-        BodyAccessory = new SpriteExtraInfo(22, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedFur, s.Unit.AccessoryColor)); // Ears
-        BodyAccent = null;
-        BodyAccent2 = new SpriteExtraInfo(3, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedFur, s.Unit.AccessoryColor)); // Tail
+        BodyAccessory = new SpriteExtraInfo(22, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.JackalSkin, s.Unit.AccessoryColor)); // Ears
+        BodyAccent = new SpriteExtraInfo(23, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.JackalSkin, s.Unit.ExtraColor1)); // Ear Color
+        BodyAccent2 = new SpriteExtraInfo(3, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.JackalSkin, s.Unit.AccessoryColor)); // Tail
         BodyAccent3 = new SpriteExtraInfo(23, BodyAccentSprite3, WhiteColored); // Ear Accessory
-        BodyAccent4 = new SpriteExtraInfo(0, BodyAccentSprite4, WhiteColored); // Stomach Accessory;
+        BodyAccent4 = null; // new SpriteExtraInfo(5, BodyAccentSprite4, WhiteColored); // Stomach Accessory;
         BodyAccent5 = new SpriteExtraInfo(0, BodyAccentSprite5, WhiteColored); // Back weapon sprite;
         BodyAccent6 = new SpriteExtraInfo(23, BodyAccentSprite6, WhiteColored); // Front weapon sprite;
         BodyAccent7 = null;
@@ -112,7 +112,7 @@ class Jackals : DefaultRaceData
     static ColorSwapPalette FurryColor(Actor_Unit actor)
     {
         if (actor.Unit.Furry)
-            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedFur, actor.Unit.AccessoryColor);
+            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.JackalSkin, actor.Unit.AccessoryColor);
         return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, actor.Unit.SkinColor);
     }
 
@@ -261,6 +261,9 @@ class Jackals : DefaultRaceData
         unit.BodyAccentType3 = State.Rand.Next(BodyAccentTypes3);
         unit.BodyAccentType4 = State.Rand.Next(BodyAccentTypes4);
         unit.TailType = State.Rand.Next(TailTypes);
+        unit.SkinColor = State.Rand.Next(SkinColors);
+        unit.AccessoryColor = State.Rand.Next(AccessoryColors);
+        unit.ExtraColor1 = State.Rand.Next(ExtraColors1);
     }
 
     internal override int DickSizes => 6;
@@ -442,9 +445,9 @@ class Jackals : DefaultRaceData
             case 1:
                 return null;
             case 2:
-                return State.GameManager.SpriteDictionary.JackalMain[4];
+                return State.GameManager.SpriteDictionary.JackalMain[35];
             case 3:
-                return State.GameManager.SpriteDictionary.JackalMain[5];
+                return null;
             case 4:
                 return null;
             case 5:
