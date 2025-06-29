@@ -70,8 +70,9 @@ class Jackals : DefaultRaceData
             new GenericTop5(),
             new TightGenericTop5(),
             new GenericTop6(),
-            new BronzeHolders(),
+            new BronzeBikini(),
             new WrapTop(),
+            new PlainClothTop(),
             new MaleTop1(),
             new MaleTop2(),
         };
@@ -83,7 +84,7 @@ class Jackals : DefaultRaceData
             new GildedLoin(),
             new GenericBot5(),
             new GenericBot6(),
-            new WrapSkirt(),
+            new PlainClothSkirt(),
             new ClothSkirt(),
         };
         ExtraMainClothing1Types = new List<MainClothing>() // Legs
@@ -100,8 +101,7 @@ class Jackals : DefaultRaceData
         ExtraMainClothing3Types = new List<MainClothing>() // Neck
         {
             new NeckRing(),
-            new NeckRingWithGold(),
-            new NeckRingWithColor(),
+            new GoldNecklaceWithColor(),
             new GoldNecklace(),
             new ColorNecklace(),
         };
@@ -1176,6 +1176,73 @@ class Jackals : DefaultRaceData
     }
 
 
+    class PlainClothTop : MainClothing
+    {
+        public PlainClothTop()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.JackalClothes[86];
+            blocksBreasts = true;
+            coversBreasts = false;
+            femaleOnly = true;
+            blocksDick = false;
+            clothing1 = new SpriteExtraInfo(18, null, null);
+            clothing2 = new SpriteExtraInfo(17, null, null);
+            clothing3 = new SpriteExtraInfo(17, null, null);
+            Type = 60003;
+            DiscardUsesPalettes = true;
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (Races.Jackals.oversize)
+            {
+                clothing1.GetSprite = null;
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+            else if (actor.Unit.HasBreasts)
+            {
+                blocksBreasts = true;
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[72 + actor.Unit.BreastSize];
+                if (actor.Unit.BreastSize == 3)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                }
+                else if (actor.Unit.BreastSize == 4)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                }
+                else if (actor.Unit.BreastSize == 5)
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                }
+                else
+                {
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                }
+            }
+            else
+            {
+                blocksBreasts = true;
+                breastSprite = null;
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
+            }
+
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            clothing2.GetPalette = (s) => FurryColor(s);
+            clothing3.GetPalette = (s) => FurryColor(s);
+
+            base.Configure(sprite, actor);
+        }
+    }
+
     class WrapTop : MainClothing
     {
         public WrapTop()
@@ -1242,19 +1309,21 @@ class Jackals : DefaultRaceData
         }
     }
 
-    class BronzeHolders : MainClothing
+    class BronzeBikini : MainClothing
     {
-        public BronzeHolders()
+        public BronzeBikini()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[64];
+            DiscardSprite = State.GameManager.SpriteDictionary.JackalClothes[69];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
             blocksDick = false;
+            OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(18, null, null);
             clothing4 = new SpriteExtraInfo(18, null, null);
             clothing2 = new SpriteExtraInfo(17, null, null);
             clothing3 = new SpriteExtraInfo(17, null, null);
+            clothing5 = new SpriteExtraInfo(10, null, null);
             Type = 60005;
             DiscardUsesPalettes = true;
         }
@@ -1263,16 +1332,27 @@ class Jackals : DefaultRaceData
         {
             if (Races.Jackals.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[63];
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[24 + Math.Min(5, actor.Unit.BreastSize)];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[30 + Math.Min(5, actor.Unit.BreastSize)];
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[94 + (actor.Unit.BodySize > 1 ? 1 : 0)];
+                if (actor.GetLeftBreastSize() > 1)
+                {
+                    clothing1.GetSprite = null;
+                    clothing3.GetSprite = null;
+                }
+                if (actor.GetRightBreastSize() > 1)
+                {
+                    clothing4.GetSprite = null;
+                    clothing2.GetSprite = null;
+                }
                 blocksBreasts = false;
-                clothing2.GetSprite = null;
-                clothing3.GetSprite = null;
             }
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
                 clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[24 + Math.Min(5, actor.Unit.BreastSize)];
                 clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[30 + Math.Min(5, actor.Unit.BreastSize)];
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[94 + (actor.Unit.BodySize > 1 ? 1 : 0)];
                 if (actor.Unit.BreastSize == 3)
                 {
                     clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalMain[24];
@@ -1313,7 +1393,8 @@ class Jackals : DefaultRaceData
                 clothing3.GetSprite = null;
             }
 
-            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            clothing1.GetPalette = null;
+            clothing4.GetPalette = null;
             clothing2.GetPalette = (s) => FurryColor(s);
             clothing3.GetPalette = (s) => FurryColor(s);
 
@@ -2308,6 +2389,8 @@ class Jackals : DefaultRaceData
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(13, null, WhiteColored); // main
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored); // bottom
+            clothing3 = new SpriteExtraInfo(14, null, null); // Colored Top
+            clothing4 = new SpriteExtraInfo(14, null, null); // Colored bottom
             Type = 60023;
             DiscardUsesPalettes = true;
         }
@@ -2327,30 +2410,37 @@ class Jackals : DefaultRaceData
                 if (actor.Unit.Furry)
                 {
                     clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[44 + ((actor.Unit.BodySize > 1) ? 1 : 0)];
+                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[90 + ((actor.Unit.BodySize > 1) ? 1 : 0)];
                 }
                 else
                 {
                     clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[46 + ((actor.Unit.BodySize > 1) ? 1 : 0)];
+                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[92 + ((actor.Unit.BodySize > 1) ? 1 : 0)];
                 }
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[88 + ((actor.Unit.BodySize > 1) ? 1 : 0)];
+
             }
             else
             {
                 int spr = 18 + ((actor.Unit.BodySize > 1) ? 2 : 0) + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0);
                 clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[spr];
                 clothing2.GetSprite = null;
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[spr - 4];
+                clothing4.GetSprite = null;
             }
+            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
+            clothing4.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
 
             base.Configure(sprite, actor);
         }
     }
-    class WrapSkirt : MainClothing
+    class PlainClothSkirt : MainClothing
     {
-        public WrapSkirt()
+        public PlainClothSkirt()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[59];
+            DiscardSprite = State.GameManager.SpriteDictionary.JackalClothes[87];
             coversBreasts = false;
             blocksDick = false;
-            maleOnly = true;
             clothing1 = new SpriteExtraInfo(13, null, WhiteColored);
             Type = 60023;
             DiscardUsesPalettes = true;
@@ -2358,7 +2448,15 @@ class Jackals : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            int spr = 22 + (((actor.Unit.Furry || actor.Unit.BodySize > 1)) ? 1 : 0);
+            int spr = 0;
+            if (actor.Unit.HasBreasts)
+            {
+                spr = 80 + actor.Unit.BodySize + (actor.Unit.Furry ? 3 : 0);
+            }
+            else
+            {
+                spr = 22 + (((actor.Unit.Furry || actor.Unit.BodySize > 1)) ? 1 : 0);
+            }
             clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[spr];
 
             base.Configure(sprite, actor);
@@ -2379,15 +2477,17 @@ class Jackals : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            int sprmod = (actor.Unit.BodySize > 1 ? 12 : 0) + (actor.IsAttacking ? 1 : 0);
-            if (actor.Unit.HasBreasts)
+            int sprmod = 0;
+            if (actor.GetWeaponSprite() == 2)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[0 + sprmod];
+                sprmod = (actor.Unit.BodySize > 1 ? 1 : 0) + (actor.Unit.HasBreasts ? 55 : 53);
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[6 + sprmod];
+                sprmod = (actor.Unit.BodySize > 1 ? 12 : 0) + (actor.IsAttacking ? 1 : 0) + (actor.Unit.HasBreasts ? 0 : 6);
             }
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[sprmod];
+
             base.Configure(sprite, actor);
         }
     }
@@ -2437,30 +2537,9 @@ class Jackals : DefaultRaceData
             base.Configure(sprite, actor);
         }
     }
-    class NeckRingWithGold : MainClothing
+    class GoldNecklaceWithColor : MainClothing
     {
-        public NeckRingWithGold()
-        {
-            DiscardSprite = State.GameManager.SpriteDictionary.JackalJewel[51];
-            coversBreasts = false;
-            blocksDick = false;
-            clothing1 = new SpriteExtraInfo(5, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(20, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
-        }
-
-        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
-        {
-            int sprmod = (actor.Unit.HasBreasts ? 12 : 0);
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[24 + sprmod];
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[8 + sprmod];
-            base.Configure(sprite, actor);
-        }
-    }
-    class NeckRingWithColor : MainClothing
-    {
-        public NeckRingWithColor()
+        public GoldNecklaceWithColor()
         {
             DiscardSprite = State.GameManager.SpriteDictionary.JackalJewel[52];
             coversBreasts = false;
@@ -2474,8 +2553,8 @@ class Jackals : DefaultRaceData
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
             int sprmod = (actor.Unit.HasBreasts ? 12 : 0);
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[24 + sprmod];
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[9 + sprmod];
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[9 + sprmod];
+            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[8 + sprmod];
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);
         }
@@ -2514,7 +2593,7 @@ class Jackals : DefaultRaceData
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
             int sprmod = (actor.Unit.HasBreasts ? 12 : 0);
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[10 + sprmod];
+            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalJewel[11 + sprmod];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);
         }

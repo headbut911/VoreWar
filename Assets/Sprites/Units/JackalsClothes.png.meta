@@ -82,6 +82,30 @@ TextureImporter:
     21300154: JackalsClothes_69
     21300156: JackalsClothes_70
     21300158: JackalsClothes_71
+    21300160: JackalsClothes_72
+    21300162: JackalsClothes_73
+    21300164: JackalsClothes_74
+    21300166: JackalsClothes_75
+    21300168: JackalsClothes_76
+    21300170: JackalsClothes_77
+    21300172: JackalsClothes_78
+    21300174: JackalsClothes_79
+    21300176: JackalsClothes_80
+    21300178: JackalsClothes_81
+    21300180: JackalsClothes_82
+    21300182: JackalsClothes_83
+    21300184: JackalsClothes_84
+    21300186: JackalsClothes_85
+    21300188: JackalsClothes_86
+    21300190: JackalsClothes_87
+    21300192: JackalsClothes_88
+    21300194: JackalsClothes_89
+    21300196: JackalsClothes_90
+    21300198: JackalsClothes_91
+    21300200: JackalsClothes_92
+    21300202: JackalsClothes_93
+    21300204: JackalsClothes_94
+    21300206: JackalsClothes_95
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -190,7 +214,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -200,7 +224,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93c8ffd87c2205b48b07caec9f7498a2
+      spriteID: 74b65bad9ffb5b84982cebbcc5960274
       vertices: []
       indices: 
       edges: []
@@ -210,7 +234,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -220,7 +244,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b5b80df547ef0140a3665aea00558d9
+      spriteID: 4808175d506f0ce45a7cf3fd8f622218
       vertices: []
       indices: 
       edges: []
@@ -230,7 +254,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -240,7 +264,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d65eed6695360b548a517604c2502491
+      spriteID: a6b06316fba2921468fd5eed9a547c1a
       vertices: []
       indices: 
       edges: []
@@ -250,7 +274,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -260,7 +284,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdd2789234cb7f541b273cce86b334f1
+      spriteID: c7b9c31e0274d3f428f4e481ff2ec3ce
       vertices: []
       indices: 
       edges: []
@@ -270,7 +294,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -280,7 +304,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a87b5feefd39a964795f9927bcdd9e51
+      spriteID: 893696804ced24247be4aa452d589853
       vertices: []
       indices: 
       edges: []
@@ -290,7 +314,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -300,7 +324,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32f88e978110de4439d0abff6041811d
+      spriteID: 40e69e7e9afc17e40aff3df87ed3a604
       vertices: []
       indices: 
       edges: []
@@ -310,7 +334,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 960
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -320,7 +344,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d68f3abbee349f4fb980c986247bed2
+      spriteID: 4623deae9b7d57e48a7979f155ce752d
       vertices: []
       indices: 
       edges: []
@@ -330,7 +354,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1120
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -340,7 +364,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ec11d2f2091d9d44a9c56acc195b530
+      spriteID: 60dd4c9184b43c3458804207e2a6e518
       vertices: []
       indices: 
       edges: []
@@ -350,7 +374,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1280
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -360,7 +384,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 407277d1c7c0b6c4baf8e9735f52c727
+      spriteID: a249d1b022e71264ba6c3d09efce99eb
       vertices: []
       indices: 
       edges: []
@@ -370,7 +394,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1440
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -380,7 +404,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81f1be879db0a214c880cc2f55c1875d
+      spriteID: 13713e7d6fd69c6418651f2f45fe2382
       vertices: []
       indices: 
       edges: []
@@ -390,7 +414,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1600
-        y: 800
+        y: 1120
         width: 160
         height: 160
       alignment: 0
@@ -400,7 +424,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49949c9c150474c4ab77da1b3334cc1d
+      spriteID: 02fac0cc0df6bde43b16bc725e7c69d8
       vertices: []
       indices: 
       edges: []
@@ -410,6 +434,266 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1760
+        y: 1120
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2e85a7c5ea4889488491764f87ca8ad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aedbd6f9127bb044a6621911352f50c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce70db4fb44035d42b3a60e3a33ce5bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_14
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eff974a7a24ff704bbe9e21d459ec112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428d04bb71f7e2344bb131765edccb16
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f0b1ecc9efacc41a72870ee966e9ea
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_17
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bf065462cb9ed84794d89388b884f74
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_18
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5fe52c09f742d044bb38b0fba7554ba
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_19
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8b1529478e666644883d263d01a0210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f21088cabc398e845969d7202dca7d80
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_21
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb587ef5c03f75b49bee824270e1291e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_22
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a04d05568411c974497d53b55c85afc8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_23
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 960
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e201f6466cd01a741afcdff6cad30dfc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_24
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 800
         width: 160
         height: 160
@@ -420,267 +704,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dea7a39cab52f7c4385fc4c9ad170bf3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_12
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3b2ca4715782ff4ab4f001a4ba795d4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_13
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b29941f5deff434da284ead75f6d9cd
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_14
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d7c4f74f074f177418803504b7354f7e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_15
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c0522c0d1c6b1e84d88dbf04221fa154
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_16
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b150bdc5da25cf4c806ecef6ebd2391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_17
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: db99e5e600babcc49aae80bb1d549b3b
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_18
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0452408b8cfafcb4095d95a31335fba3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_19
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37dba9090cfc69e46b2460f95a774153
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_20
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3fb44481af05ddd4d8acd2050ade678d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_21
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f88fb29f3f69dab43b8a867bfe869a41
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_22
-      rect:
-        serializedVersion: 2
-        x: 1600
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c590f9b64c5f684b941fac355812660
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_23
-      rect:
-        serializedVersion: 2
-        x: 1760
-        y: 640
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cf64709c45c17e744a4f09107c080b68
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_24
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 480
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bd92216a46ca4694e8674f0690703603
+      spriteID: 1c8bb31c722d11348afeef73ff414c5d
       vertices: []
       indices: 
       edges: []
@@ -690,7 +714,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -700,7 +724,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f23038a19d9e2854ab646035556cf057
+      spriteID: 57334b804c0d8a44aa062a00c5925239
       vertices: []
       indices: 
       edges: []
@@ -710,7 +734,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -720,7 +744,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c205ad19fb42ebd49b3733440c05810e
+      spriteID: d38c600242f663e4193d2b4d0bf14279
       vertices: []
       indices: 
       edges: []
@@ -730,7 +754,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -740,7 +764,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 648b764c62fdd4c4e939abe0ee6a9fe1
+      spriteID: a7d3a92671e98bf42b4ed6676ad89bd5
       vertices: []
       indices: 
       edges: []
@@ -750,7 +774,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -760,7 +784,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 789cfbaf77ecf8740ad6f646b9695336
+      spriteID: 4f2ed2c60bb823042bcbb3c22d6c4549
       vertices: []
       indices: 
       edges: []
@@ -770,7 +794,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -780,7 +804,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a1226313d31a414da454c9304ae7b94
+      spriteID: 0fbf33e00d202f743b0bd376e3ea93b2
       vertices: []
       indices: 
       edges: []
@@ -790,7 +814,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 960
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -800,7 +824,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f93a30133c457747a66e49a45c5d2b5
+      spriteID: 6c5a7cb1910a01943a8874121f819390
       vertices: []
       indices: 
       edges: []
@@ -810,7 +834,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1120
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -820,7 +844,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9513064a334b9e4ca20e222154699d0
+      spriteID: 55a47e3ae21bd4646a105e8daa4db14c
       vertices: []
       indices: 
       edges: []
@@ -830,7 +854,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1280
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -840,7 +864,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a43b3a683fa7354db53c4698ac4b419
+      spriteID: f59b759e2d7527a42b355e29f0d654dd
       vertices: []
       indices: 
       edges: []
@@ -850,7 +874,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1440
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -860,7 +884,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 476f4ee7a5e9c53468820eae9dd59ba2
+      spriteID: 86c7b5cabbb40804b9c523c53a03478a
       vertices: []
       indices: 
       edges: []
@@ -870,7 +894,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1600
-        y: 480
+        y: 800
         width: 160
         height: 160
       alignment: 0
@@ -880,7 +904,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64f38392159ebc941903d5375432ec96
+      spriteID: f60db593b08cd21448b1132d2672984c
       vertices: []
       indices: 
       edges: []
@@ -890,6 +914,266 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1760
+        y: 800
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec83f681b8d7334a9826f22b4523767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 624c9914506eb0f43bad899b0e1740f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_37
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971605a8b6008534b8d920524d18c0f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_38
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdf16aaef48a3a34a81f5871d7e44ca1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_39
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5d4ff2dedacd64abb306d3a793868d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_40
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae6aa92ec39fc9d4fa039ae1eef40c54
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_41
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a998efba057604488580dd1d1626451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_42
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10f20e744198bde4cb0077b7d5de00a9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_43
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6a5a0dec8b0a8545bb5dc1a91d1f8d8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_44
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8493bbe0dfb9cc4f8454b446707f9a0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_45
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e09603e34dbc4f24c8a9b074914e9494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_46
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fa59487ce2382643a7c1ac9c1db6519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_47
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 640
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c512b9a48965b024587eb7cef368c825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_48
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 480
         width: 160
         height: 160
@@ -900,267 +1184,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d9a8fd7e8709d94abc497ed6f55bec4
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_36
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 013b8a88403acd6479d9a49b7844e7b3
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_37
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bef8506d4982f3d44872ac456204c846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_38
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3c6e90c7a4d9c4c4ba8662f25e5ca106
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_39
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93fa63a6a7a9a1e4e9c9ae52d944d64c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_40
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4cbe67888e0bc0468eef9c7b13b1983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_41
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 298fd9458512ed947865057873734e4f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_42
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 12c882a29ac595a45a4347a96ebf68e7
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_43
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d75d37262332054db4edbb82669b72e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_44
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7f2d59005832d96428c63456fc6e8c3f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_45
-      rect:
-        serializedVersion: 2
-        x: 1440
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9660a830f79227c42919b0607a197937
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_46
-      rect:
-        serializedVersion: 2
-        x: 1600
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5486b4fc3401b7e4f987c49d48516b54
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_47
-      rect:
-        serializedVersion: 2
-        x: 1760
-        y: 320
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a2c68c5ac1a8e04bb4d79e23c33d3b8
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JackalsClothes_48
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 160
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e308bd556199d4640855d40528a8a14c
+      spriteID: f6acf6330dc719f4b80bc9f82fe1144c
       vertices: []
       indices: 
       edges: []
@@ -1170,6 +1194,466 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89c9ecff5fc90584884967766f6d70c7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_50
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89519e478942ab1429814d7e81212a18
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_51
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebe31500fbf6a6c40a682fceb3f28a00
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_52
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dd2abf24ddc8ad4786768865f76cbad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_53
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19ccb71de0ec97444ae2daba77b3c2b0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_54
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47fea079770b6d44ebcec9e2c9a782ac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_55
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1319213f8fad17a4bb1f6dc7148b4df9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_56
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 386c1cdfaf886bd41a7667112ff0016e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_57
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8e76e5805db2c4faae0e13a538c3c3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_58
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6a6847581a965243b9eba1a4928d09f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_59
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 480
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf896ed1f37e814296e53bcddfee4e9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b12a63ccc3950d9499c3e3e63a7c1237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_61
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8cbaeae825c4da489804dce3ce126f9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_62
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 569de43e45ccf34448e5182e1fcabca8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_63
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b035049baf214d439b4246cd372dc81
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_64
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0863152710a1e24f92a7fa3b3446e5e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_65
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e69d055d582148749ad886e1070921a7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_66
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3bd6a67eaeff7e48994a23d375b4dd7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_67
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 987032f239e499646aea41ff73b94431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_68
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 745199e718b90dc42990d6b4ddbaf942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_69
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f1b12d05e666834f8e985fbc21551c1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_70
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e52ac479339009749bc65bffb8bae35d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_71
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 320
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa79b746fe9df93408bb9b330a7813d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_72
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 160
         width: 160
         height: 160
@@ -1180,13 +1664,33 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 719bfa728ef14c143a29a5b655516fe6
+      spriteID: b9f73a114a2a466429af0a0a11f73932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_50
+      name: JackalsClothes_73
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 160
+        width: 160
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb2fd3b482a6dd340aee48c0be318123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: JackalsClothes_74
       rect:
         serializedVersion: 2
         x: 320
@@ -1200,13 +1704,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 92646878e6b54404fa25d22bb4a17912
+      spriteID: 281992d0850a4944bb1f37829ae131a7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_51
+      name: JackalsClothes_75
       rect:
         serializedVersion: 2
         x: 480
@@ -1220,13 +1724,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ae162b0f89196643b22a504ab473a47
+      spriteID: d5ef95ae51f35a242a9924acae132879
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_52
+      name: JackalsClothes_76
       rect:
         serializedVersion: 2
         x: 640
@@ -1240,13 +1744,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a983568b21810cb47b6f3c531895a6b9
+      spriteID: 6f9e7f2903f0c634891097f13a3b7835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_53
+      name: JackalsClothes_77
       rect:
         serializedVersion: 2
         x: 800
@@ -1260,13 +1764,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3cb3b4db0767e70468e7ef105dc9421c
+      spriteID: 3ab4f281bd3df574ebd8d8314d8b84a9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_54
+      name: JackalsClothes_78
       rect:
         serializedVersion: 2
         x: 960
@@ -1280,13 +1784,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eccea63dfae4a5a4780556d8f1d84bd0
+      spriteID: 23fc1ccbb669cc84184bc3f4a9e5f63d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_55
+      name: JackalsClothes_79
       rect:
         serializedVersion: 2
         x: 1120
@@ -1300,13 +1804,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f429acc9e4fd5b4195681312ef73f4f
+      spriteID: 758772dbd9cca294082aa5ed09e6dcc8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_56
+      name: JackalsClothes_80
       rect:
         serializedVersion: 2
         x: 1280
@@ -1320,13 +1824,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fe3810eafce187429cec77778eaaf85
+      spriteID: 653a8ca0df8bf364cb94ccd0247b2b37
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_57
+      name: JackalsClothes_81
       rect:
         serializedVersion: 2
         x: 1440
@@ -1340,13 +1844,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39a4881ae561d7441abbb88de04431a3
+      spriteID: 5c5b51a7b322b434d90498852ca8ba58
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_58
+      name: JackalsClothes_82
       rect:
         serializedVersion: 2
         x: 1600
@@ -1360,13 +1864,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9ca731f18c420a4ca1e1a5a34facfbe
+      spriteID: dd3473657872cf14cb6969b76bf22a7b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_59
+      name: JackalsClothes_83
       rect:
         serializedVersion: 2
         x: 1760
@@ -1380,13 +1884,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a32399cf867322a478c9339597fc691e
+      spriteID: 3c6e783d07dcd7247abeadca61ec8f75
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_60
+      name: JackalsClothes_84
       rect:
         serializedVersion: 2
         x: 0
@@ -1400,13 +1904,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8cc5b0a44e3aef4d8662ec395dad407
+      spriteID: 5f8a4c5939238274883f724c347f4bf1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_61
+      name: JackalsClothes_85
       rect:
         serializedVersion: 2
         x: 160
@@ -1420,13 +1924,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32074e7c2fc192d4fafa456967c47410
+      spriteID: b7728e94fbef19d4ea5e5a8add242dd0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_62
+      name: JackalsClothes_86
       rect:
         serializedVersion: 2
         x: 320
@@ -1440,13 +1944,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fe212a7eb87dfd4d8fc6b9b150ed27e
+      spriteID: a0f87e2bbd1c7a34aa40308ea556714b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_63
+      name: JackalsClothes_87
       rect:
         serializedVersion: 2
         x: 480
@@ -1460,13 +1964,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3187887e1cc519c418a4b489a7b5de50
+      spriteID: 78b21b7ff312a4349b65bd890fb41c4a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_64
+      name: JackalsClothes_88
       rect:
         serializedVersion: 2
         x: 640
@@ -1480,13 +1984,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c308be9a235221942ba0b5011ce41d15
+      spriteID: 82000e5d30efd4245afdf51a8aa08cac
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_65
+      name: JackalsClothes_89
       rect:
         serializedVersion: 2
         x: 800
@@ -1500,13 +2004,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d52d403c9e7a51e47ade5e7a5dcc927b
+      spriteID: ca4f57d84963414488aa8d06f77add4f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_66
+      name: JackalsClothes_90
       rect:
         serializedVersion: 2
         x: 960
@@ -1520,13 +2024,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d71cb5cf28c994428e3a84edadc0e70
+      spriteID: 55a9d741d37c5534f97ae5904d3368e0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_67
+      name: JackalsClothes_91
       rect:
         serializedVersion: 2
         x: 1120
@@ -1540,13 +2044,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf025995710994348a93b1e8f4c262c6
+      spriteID: 97bc825160803b54b8e529f79edf691f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_68
+      name: JackalsClothes_92
       rect:
         serializedVersion: 2
         x: 1280
@@ -1560,13 +2064,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7a64300da4cb5343baafb1106072eab
+      spriteID: 278704ec222cc9545bce18ac64e35665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_69
+      name: JackalsClothes_93
       rect:
         serializedVersion: 2
         x: 1440
@@ -1580,13 +2084,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2648a3d12c08341458fe84c1c4456e96
+      spriteID: 13c0256ce0ed97e4d80abc8107cdc447
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_70
+      name: JackalsClothes_94
       rect:
         serializedVersion: 2
         x: 1600
@@ -1600,13 +2104,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1071c010f3f2ae64eb9e531d4e724143
+      spriteID: 1e90ede3a98d72a47ab5abe4b5c77e4d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JackalsClothes_71
+      name: JackalsClothes_95
       rect:
         serializedVersion: 2
         x: 1760
@@ -1620,7 +2124,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bcd69ae278d1e64994145702e8d6c35
+      spriteID: ca30653d1ac6eee40a53689e945ee0c2
       vertices: []
       indices: 
       edges: []
