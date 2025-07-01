@@ -26,7 +26,7 @@ class Jackals : DefaultRaceData
         BeardStyles = 0;
         BodyAccentTypes1 = 6; // eyebrows
         BodyAccentTypes3 = 2; // earrings
-        BodyAccentTypes4 = 3; // Navel Piercing
+        //BodyAccentTypes4 = 3; // Navel Piercing
         SpecialAccessoryCount = 0;
         HairStyles = 36;
         MouthTypes = 12;

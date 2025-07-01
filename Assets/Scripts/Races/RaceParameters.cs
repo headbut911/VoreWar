@@ -1171,6 +1171,7 @@ static class RaceParameters
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
+            Traits.PackStrength,
             Traits.Pounce,
             Traits.Biter,
         },
@@ -1179,7 +1180,7 @@ static class RaceParameters
 
         Jackals = new RaceTraits()
         {
-            BodySize = 15,
+            BodySize = 12,
             StomachSize = 20,
             HasTail = false,
             FavoredStat = Stat.Endurance,
@@ -1187,10 +1188,11 @@ static class RaceParameters
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
-            Traits.Intimidating,
-            Traits.HardSkin,
+            Traits.PackMind,
+            Traits.DexterousDefense,
+            Traits.Finesse,
         },
-            RaceDescription = "",
+            RaceDescription = "A race of desert dwellers.",
         };
 
         Centaur = new RaceTraits()
