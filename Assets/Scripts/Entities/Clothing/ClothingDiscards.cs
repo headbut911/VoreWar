@@ -88,6 +88,11 @@ internal class ClothingDiscards
             AllClothes.AddRange(Races.Aabayx.AllowedWaistTypes);
             AllClothes.AddRange(Races.Lupine.AllowedMainClothingTypes);
             AllClothes.AddRange(Races.Lupine.AllowedWaistTypes);
+            AllClothes.AddRange(Races.Jackals.AllowedMainClothingTypes);
+            AllClothes.AddRange(Races.Jackals.AllowedWaistTypes);
+            AllClothes.AddRange(Races.Jackals.ExtraMainClothing1Types);
+            AllClothes.AddRange(Races.Jackals.ExtraMainClothing2Types);
+            AllClothes.AddRange(Races.Jackals.ExtraMainClothing3Types);
             AllClothes = AllClothes.Distinct().ToList();
         }
         var clothingType = AllClothes.Where(s => s.Type == type).FirstOrDefault();

@@ -1095,6 +1095,8 @@ public class Actor_Unit
             int statBoost = Unit.GetStat(Stat.Dexterity) + (Unit.HasTrait(Traits.SpellBlade) ? Unit.GetStat(Stat.Mind) / 2 : 0);
             if (Unit.HasTrait(Traits.BoundWeapon))
             {statBoost = Unit.GetStat(Stat.Mind);}
+            if (Unit.HasTrait(Traits.Finesse))
+            { statBoost = (int)(Unit.GetStat(Stat.Strength) * .8f + Unit.GetStat(Stat.Dexterity) * .3f) + (Unit.HasTrait(Traits.SpellBlade) ? Unit.GetStat(Stat.Mind) / 2 : 0); }
             damage = (int)(damageScalar * (BestRanged?.Damage ?? 2) * (60 + statBoost) / 60);
             if (target.Unit.HasTrait(Traits.Resilient))
                 damage--;
@@ -1165,6 +1167,8 @@ public class Actor_Unit
                 int statBoost = Unit.GetStat(Stat.Strength) + (Unit.HasTrait(Traits.SpellBlade) ? Unit.GetStat(Stat.Mind) / 2 : 0);
                 if (Unit.HasTrait(Traits.BoundWeapon))
                 {statBoost = Unit.GetStat(Stat.Mind);}
+                if (Unit.HasTrait(Traits.Finesse))
+                { statBoost = (int)(Unit.GetStat(Stat.Strength) * .8f + Unit.GetStat(Stat.Dexterity) * .3f) + (Unit.HasTrait(Traits.SpellBlade) ? Unit.GetStat(Stat.Mind) / 2 : 0); }
                 damage = (int)(damageScalar * BestMelee.Damage * (60 + statBoost) / 60);
             }
 
@@ -1259,7 +1263,7 @@ public class Actor_Unit
             float sizeDiff = Math.Abs(BodySize() - target.BodySize());
             damage = (int)Math.Round(damage * (1 + (.01f * Math.Min(sizeDiff, 25))));
         }
-        else if (Unit.HasTrait(Traits.Crusher) && BodySize() > target.BodySize()) // Setting off GiantSlayer Version
+        else if (Unit.HasTrait(Traits.Crusher) && BodySize() > target.BodySize()) // Setting off Crusher Version
         {
             float sizeDiff = Math.Abs(BodySize() - target.BodySize());
             damage = (int)Math.Round(damage * (1 + (.01f * Math.Min(sizeDiff, 25))));
@@ -1741,6 +1745,7 @@ public class Actor_Unit
                         target.Unit.RemoveFocus();
 
                     TacticalGraphicalEffects.CreateProjectile(this, target);
+
                     State.GameManager.TacticalMode.TacticalStats.RegisterHit(BestRanged, Mathf.Min(damage, remainingHealth), Unit.Side);
                     TacticalUtilities.Log.RegisterHit(Unit, target.Unit, weapon, damage, chance);
                     if (Unit.FixedSide == TacticalUtilities.GetMindControlSide(target.Unit))
@@ -1798,7 +1803,19 @@ public class Actor_Unit
                 int remainingHealth = target.Unit.Health;
                 int damage = WeaponDamageAgainstTarget(target, false, multiplier: damageMultiplier, forceBite);
 
+
                 EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeAttack, new object[] { this, target, damage });
+                bool blocked = false;
+                if (target.Unit.HasTrait(Traits.DexterousDefense) && !ranged)
+                {
+                    float blockchance = DexCheckOdds(this, target);
+                    if (State.Rand.NextDouble() < blockchance)
+                    {
+                        blocked = true;
+                        damage /= 2;
+                        Movement = 0;
+                    }
+                }
 
                 if (target.Defend(this, ref damage, false, out float chance, canKill))
                 {
@@ -1828,8 +1845,17 @@ public class Actor_Unit
                     if (Unit.HasTrait(Traits.ForcefulBlow))
                         TacticalUtilities.KnockBack(this, target);
                     State.GameManager.SoundManager.PlayMeleeHit(target);
+
                     State.GameManager.TacticalMode.TacticalStats.RegisterHit(BestMelee, Mathf.Min(damage, remainingHealth), Unit.Side);
-                    TacticalUtilities.Log.RegisterHit(Unit, target.Unit, weapon, damage, chance);
+                    if (blocked)
+                    {
+                        UnitSprite.DisplayBlock();
+                        TacticalUtilities.Log.RegisterBlock(Unit, target.Unit, weapon, damage, chance);
+                    }
+                    else
+                    {
+                        TacticalUtilities.Log.RegisterHit(Unit, target.Unit, weapon, damage, chance);
+                    }
                     if (Unit.FixedSide == TacticalUtilities.GetMindControlSide(target.Unit))
                     {
                         StatusEffect charm = target.Unit.GetStatusEffect(StatusEffectType.Charmed);
@@ -2790,6 +2816,8 @@ public class Actor_Unit
         Unit.Health -= damage;
         if (Unit.Health > Unit.MaxHealth)
             Unit.Health = Unit.MaxHealth;
+        if (damage <= 0)
+            return;
         TurnsSinceLastDamage = -1;
         EquipmentFunctions.CheckEquipment(this.Unit, EquipmentActivator.OnDamage, new object[] { this, damage, null });
     }
@@ -3045,6 +3073,18 @@ public class Actor_Unit
         if (ratio > 5)
             ratio = 5;
         return ratio / 25;
+    }
+    public float DexCheckOdds(Actor_Unit actor, Actor_Unit target)
+    {
+        if (target.Unit.IsDead)
+        {
+            return 0;
+        }
+        float ratio = (float)target.Unit.GetStat(Stat.Dexterity) / actor.Unit.GetStat(Stat.Dexterity);
+
+        if (ratio > 7)
+            ratio = 7;
+        return ratio / 10;
     }
     public float CritCheck(Actor_Unit actor, Actor_Unit target)
     {

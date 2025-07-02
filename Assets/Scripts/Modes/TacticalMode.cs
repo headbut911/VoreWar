@@ -4704,12 +4704,17 @@ Turns: {currentTurn}
                 // Refill used potions
                 foreach (var potion in actor.Unit.EquippedPotions)
                 {
-                    int WantedPots = potion.Value[1];
-                    while (WantedPots > actor.Unit.EquippedPotions[potion.Key][0] && armies[actor.Unit.Side == attackerSide ? 0 : 1].ItemStock.HasItem((ItemType)potion.Key))
-                    {
-                        armies[actor.Unit.Side == attackerSide ? 0 : 1].ItemStock.TakeItem((ItemType)potion.Key);
-                        actor.Unit.EquippedPotions[potion.Key][0] = actor.Unit.EquippedPotions[potion.Key][0] + 1;
+                    if (armies[actor.Unit.Side == attackerSide ? 0 : 1] != null)
+                    { 
+                        int WantedPots = potion.Value[1];
+
+                        while (WantedPots > actor.Unit.EquippedPotions[potion.Key][0] && armies[actor.Unit.Side == attackerSide ? 0 : 1].ItemStock.HasItem((ItemType)potion.Key))
+                        {
+                            armies[actor.Unit.Side == attackerSide ? 0 : 1].ItemStock.TakeItem((ItemType)potion.Key);
+                            actor.Unit.EquippedPotions[potion.Key][0] = actor.Unit.EquippedPotions[potion.Key][0] + 1;
+                        }
                     }
+
                 }
 
             }
