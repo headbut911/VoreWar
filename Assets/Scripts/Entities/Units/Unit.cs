@@ -3337,6 +3337,47 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         }
     }
 
+    internal void AddStackStatus(StatusEffectType type, int amnt)
+    {
+        var stat = GetStatusEffect(type);
+        if (stat != null)
+        {
+            stat.Duration += amnt;
+            stat.Strength += amnt;
+        }
+        else
+        {
+            ApplyStatusEffect(type, amnt, amnt);
+        }
+    }
+
+    internal void RemoveStackStatus(StatusEffectType type, int amnt)
+    {
+        var stat = GetStatusEffect(type);
+        if (stat != null)
+        {
+            stat.Duration -= amnt;
+            stat.Strength -= amnt;
+            if (stat.Duration == 0)
+                StatusEffects.Remove(stat);
+        }
+    }
+    internal void SetStackStatus(StatusEffectType type, int amnt)
+    {
+        var stat = GetStatusEffect(type);
+        if (stat != null)
+        {
+            stat.Duration = amnt;
+            stat.Strength = amnt;
+            if (stat.Duration == 0)
+                StatusEffects.Remove(stat);
+        }
+        else
+        {
+            ApplyStatusEffect(type, amnt, amnt);
+        }
+    }
+
     internal void TriggerMorph(int duration)
     {
         var wkns = GetStatusEffect(StatusEffectType.Morphed);

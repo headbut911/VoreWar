@@ -7,7 +7,6 @@ using UnityEngine;
 class Eevee : DefaultRaceData
 {
     bool BreastBlocked = false;
-    bool CockBlocked = false;
     readonly EeveeRags Rags;
 
     public Eevee()

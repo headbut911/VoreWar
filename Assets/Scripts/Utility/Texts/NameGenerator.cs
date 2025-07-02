@@ -49,6 +49,7 @@ public class NameGenerator
     List<string> mainlandElvenTownNames;
     List<string> umbreonTownNames;
     List<string> lupineTownNames;
+    List<string> jackalTownNames;
 
     List<string> compyNames;
     List<string> vagrantNames;
@@ -944,6 +945,24 @@ public class NameGenerator
             "The Pack", 
             "Moonlight"
         };
+        jackalTownNames = new List<string>
+        {
+            "The Shard",
+            "Heliopolis",
+            "First Oasis",
+            "Ancient's Tomb",
+            "Sandhaven",
+            "Sandstone",
+            "City of Gold",
+            "The Grand Pyramid",
+            "Judgement",
+            "Golden Sands",
+            "River's Edge",
+            "Whispering Oasis",
+            "Pillars of Gold",
+            "Sunken Citadel",
+
+        };
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
 
@@ -1357,6 +1376,16 @@ public class NameGenerator
         {
             if (i >= 0 && i < umbreonTownNames.Count)
                 return umbreonTownNames[i];
+        }
+        else if (race == Race.Lupine)
+        {
+            if (i >= 0 && i < lupineTownNames.Count)
+                return lupineTownNames[i];
+        }
+        else if (race == Race.Jackals)
+        {
+            if (i >= 0 && i < jackalTownNames.Count)
+                return jackalTownNames[i];
         }
         else if (race == Race.MainlandElves)
         {

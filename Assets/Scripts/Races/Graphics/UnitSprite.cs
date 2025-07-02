@@ -124,6 +124,12 @@ public class UnitSprite : MonoBehaviour
         DamageIndicator.text = "Dazzled!";
         FinishDisplayedTextSetup();
     }
+    public void DisplayBlock()
+    {
+        DamageIndicator.faceColor = Color.white;
+        DamageIndicator.text = "Blocked!";
+        FinishDisplayedTextSetup();
+    }
 
     public void DisplaySummoned()
     {

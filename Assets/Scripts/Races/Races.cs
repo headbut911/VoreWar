@@ -41,6 +41,7 @@
     static internal Bears Bears = new Bears();
     static internal Umbreon Umbreon = new Umbreon();
     static internal Lupine Lupine = new Lupine();
+    static internal Jackals Jackals = new Jackals();
 
 
     static internal Tigers Tigers = new Tigers();
@@ -413,6 +414,8 @@
                 return Skapa;
             case Race.Tatltuae:
                 return Tatltuae;
+            case Race.Jackals:
+                return Jackals;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

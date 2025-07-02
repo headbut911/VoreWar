@@ -554,6 +554,16 @@ public class UnitCustomizer
             case Race.Skapa:
                 buttons[(int)ButtonTypes.TailTypes].Label.text = "Facing";
                 break;
+            case Race.Jackals:
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Fur Color";
+                buttons[(int)ButtonTypes.ClothingExtraType1].Label.text = "Leg Ring";
+                buttons[(int)ButtonTypes.ClothingExtraType1].Label.text = "Arm Ring";
+                buttons[(int)ButtonTypes.ClothingExtraType1].Label.text = "Neck Accessory";
+                buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Inner Ear Color";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Eyebrows";
+                buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Ear Piercing";
+                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Navel Piercing";
+                break;
         }
     }
 

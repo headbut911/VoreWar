@@ -120,6 +120,7 @@ public static class ColorPaletteMap
         ViiselSkin,
         LupineSkin,
         LupineReversed,
+        JackalSkin,
     }
 
     static Dictionary<SwapType, List<ColorSwapPalette>> Swaps;
@@ -268,6 +269,7 @@ public static class ColorPaletteMap
         List<ColorSwapPalette> MiceHumanSkinSwaps = WireUp(SwapType.MiceHumanSkin);
         List<ColorSwapPalette> LupineSkinSwaps = WireUp(SwapType.LupineSkin);
         List<ColorSwapPalette> LupineReverseSwaps = WireUp(SwapType.LupineReversed);
+        List<ColorSwapPalette> JackalSkinSwaps = WireUp(SwapType.JackalSkin);
 
         List<ColorSwapPalette> FeralHorseSkinSwaps = WireUp(SwapType.FeralHorseSkin);
         List<ColorSwapPalette> WyvernMatronSwaps = WireUp(SwapType.WyvernMatron);
@@ -1976,6 +1978,23 @@ public static class ColorPaletteMap
             };
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
             LupineReverseSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.JackalSkin;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [50] = map.GetPixel(0, pixelY),
+                [74] = map.GetPixel(5, pixelY),
+                [100] = map.GetPixel(1, pixelY),
+                [140] = map.GetPixel(6, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+                [250] = map.GetPixel(4, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            JackalSkinSwaps.Add(swap);
         }
 
         map = State.GameManager.PaletteDictionary.FeralLionsFur;

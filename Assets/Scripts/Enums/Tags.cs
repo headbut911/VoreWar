@@ -451,6 +451,10 @@ public enum Traits
     GiantSlayer = 527,
     /// <summary>If using size based settings: Extra damage against smaller targets is increased by 50%; Not using size based settings: Unit's damage is increased by 1% for every 1 size smaller its target is. (capped at 25)</summary>
     Crusher = 528,
+    /// <summary>This unit's melee attacks scale with 80% Strength and 30% Dexterity, instead of with 100% Strength.</summary>
+    Finesse = 529,
+    /// <summary>If this unit is wielding a melee weapon, melee attacks against this unit may deal half damage based on attacker's and unit's dexterity score (max 70% block chance). A successful block sets the attacker's MP to 0.</summary>
+    DexterousDefense = 530,
 
 
 

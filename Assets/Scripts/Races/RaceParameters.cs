@@ -132,6 +132,7 @@ static class RaceParameters
     static readonly RaceTraits Skapa;
     static readonly RaceTraits Tatltuae;
     static readonly RaceTraits Lupine;
+    static readonly RaceTraits Jackals;
 
     static Unit tempUnit;
 
@@ -413,6 +414,8 @@ static class RaceParameters
                 return Tatltuae;
             case Race.Lupine:
                 return Lupine;
+            case Race.Jackals:
+                return Jackals;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -1160,7 +1163,24 @@ static class RaceParameters
 
         Lupine = new RaceTraits()
         {
-            BodySize = 15,
+            BodySize = 12,
+            StomachSize = 20,
+            HasTail = false,
+            FavoredStat = Stat.Strength,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.PackStrength,
+            Traits.Pounce,
+            Traits.Biter,
+        },
+            RaceDescription = "",
+        };
+
+        Jackals = new RaceTraits()
+        {
+            BodySize = 12,
             StomachSize = 20,
             HasTail = false,
             FavoredStat = Stat.Endurance,
@@ -1168,10 +1188,11 @@ static class RaceParameters
             Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
-            Traits.Intimidating,
-            Traits.HardSkin,
+            Traits.PackMind,
+            Traits.DexterousDefense,
+            Traits.Finesse,
         },
-            RaceDescription = "",
+            RaceDescription = "A race of desert dwellers.",
         };
 
         Centaur = new RaceTraits()

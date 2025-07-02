@@ -105,6 +105,7 @@ public class TacticalMessageLog
         TailVore,
         AnalVore,
         Dazzle,
+        Block,
         SpellHit,
         SpellMiss,
         SpellKill,
@@ -159,6 +160,7 @@ public class TacticalMessageLog
             case MessageLogEvent.Heal:
                 if (ShowHealing == false) return false; break;
             case MessageLogEvent.Miss:
+            case MessageLogEvent.Block:
                 if (ShowMisses == false || ShowWeaponCombat == false) return false; break;
             case MessageLogEvent.Resist:
             case MessageLogEvent.Dazzle:
@@ -469,6 +471,8 @@ public class TacticalMessageLog
                 return GenerateRandomDigestionMessage(action);
             case MessageLogEvent.Dazzle:
                 return $"<b>{action.Unit.Name}</b> was dazzled by <b>{action.Target.Name}</b>, the distraction wasting {GPPHis(action.Unit)} turn.{odds}";
+            case MessageLogEvent.Block:
+                return $"<b>{action.Target.Name}</b> blocked <b>{action.Unit.Name}'s</b> {GetWeaponTrueName(action.Weapon, action.Unit)}, only taking <color=red>{action.Damage}</color> points of damage.{odds}";
             case MessageLogEvent.SpellHit:
                 msg = GenerateSpellHitMessage((SpellLog)action);
                 msg = msg += odds;
@@ -1335,6 +1339,19 @@ public class TacticalMessageLog
             Type = MessageLogEvent.Dazzle,
             Unit = attacker,
             Target = target,
+            Odds = odds
+        });
+        UpdateListing();
+    }
+    public void RegisterBlock(Unit Attacker, Unit Defender, Weapon weapon, int damage, float odds)
+    {
+        events.Add(new EventLog
+        {
+            Type = MessageLogEvent.Block,
+            Unit = Attacker,
+            Damage = damage,
+            Target = Defender,
+            Weapon = weapon,
             Odds = odds
         });
         UpdateListing();
