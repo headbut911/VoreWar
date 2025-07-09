@@ -455,6 +455,12 @@ public enum Traits
     Finesse = 529,
     /// <summary>If this unit is wielding a melee weapon, melee attacks against this unit may deal half damage based on attacker's and unit's dexterity score (max 70% block chance). A successful block sets the attacker's MP to 0.</summary>
     DexterousDefense = 530,
+    /// <summary>Unit gains increased dodge. This bonus is disabled for 3 turns after taking damage.</summary>
+    FocusedDodge = 531,
+    /// <summary>Unit gains 20% of it's dexterity as Parry stacks each turn (up to a a maximum of 100% of it's dexterity), Reducing damage from melee attacks if it wields a melee weapon. This bonus is disabled for 3 turns after taking damage.</summary>
+    FocusedParry = 532,
+    /// <summary>Unit deals . This bonus is disabled for 3 turns after taking damage.</summary>
+    FocusedFerocity = 533,
 
 
 

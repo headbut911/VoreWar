@@ -1982,7 +1982,15 @@ Turns: {currentTurn}
                         }
                         break;
                     default:
-                        if (tiles[i, j] >= (TacticalTileType)2400)
+                        if (tiles[i, j] >= (TacticalTileType)2600)
+                        {
+                            Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.SwampOverBog[(int)tiles[i, j] - 2600]);
+                        }
+                        else if (tiles[i, j] >= (TacticalTileType)2500)
+                        {
+                            Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.BeachOverOcean[(int)tiles[i, j] - 2500]);
+                        }
+                        else if (tiles[i, j] >= (TacticalTileType)2400)
                         {
                             Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.VolcanicOverLava[(int)tiles[i, j] - 2400]);
                         }
@@ -2001,6 +2009,14 @@ Turns: {currentTurn}
                         else if (tiles[i, j] >= (TacticalTileType)2000)
                         {
                             Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.RocksOverSand[(int)tiles[i, j] - 2000]);
+                        }
+                        else if (tiles[i, j] >= (TacticalTileType)700)
+                        {
+                            Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.SwampEnviroment[(int)tiles[i, j] - 700]);
+                        }
+                        else if (tiles[i, j] >= (TacticalTileType)600)
+                        {
+                            Tilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.BeachEnviroment[(int)tiles[i, j] - 600]);
                         }
                         else if (tiles[i, j] >= (TacticalTileType)500)
                         {
@@ -2046,7 +2062,39 @@ Turns: {currentTurn}
                         if (i >= tiles.GetLength(0) || j >= tiles.GetLength(1))
                             continue;
                         int type = decoration.TacDec.Tile[x, y];
-                        if (type >= 500)
+                        if (type >= 700)
+                        {
+                            if (decoration.TacDec.Height == 0 && decoration.TacDec.Width == 0)
+                            {
+                                FrontTilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.SwampEnviroment[type - 700]);
+                            }
+                            else
+                            {
+                                var obj = Instantiate(State.GameManager.SpriteRendererPrefab, TerrainFolder).GetComponent<SpriteRenderer>();
+                                obj.sprite = TileDictionary.SwampEnviromentSprites[type - 700];
+                                obj.sortingOrder = 20000 - (30 * (i + (j * 3)));
+                                obj.transform.position = new Vector3(i, j, 0);
+                                if (y >= decoration.TacDec.Height)
+                                    obj.sortingOrder += 30;
+                            }
+                        }
+                        else if (type >= 600)
+                        {
+                            if (decoration.TacDec.Height == 0 && decoration.TacDec.Width == 0)
+                            {
+                                FrontTilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.BeachEnviroment[type - 600]);
+                            }
+                            else
+                            {
+                                var obj = Instantiate(State.GameManager.SpriteRendererPrefab, TerrainFolder).GetComponent<SpriteRenderer>();
+                                obj.sprite = TileDictionary.BeachEnviromentSprites[type - 600];
+                                obj.sortingOrder = 20000 - (30 * (i + (j * 3)));
+                                obj.transform.position = new Vector3(i, j, 0);
+                                if (y >= decoration.TacDec.Height)
+                                    obj.sortingOrder += 30;
+                            }
+                        }
+                        else if (type >= 500)
                         {
                             if (type < 507)
                                 FrontTilemap.SetTile(new Vector3Int(i, j, 0), TileDictionary.VolcanicTileTypes[type - 500]);

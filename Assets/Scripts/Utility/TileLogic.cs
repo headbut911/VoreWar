@@ -91,10 +91,21 @@ class TacticalTileLogic
                             newtiles[x, y] = (TacticalTileType)(2400 + type);
                             break;
                         }
+                    case TacticalTileType.BeachOverOcean:
+                        {
+                            int type = DetermineType(new Vec2(x, y), TacticalTileType.BeachOverOcean);
+                            newtiles[x, y] = (TacticalTileType)(2500 + type);
+                            break;
+                        }
+                    case TacticalTileType.SwampOverBog:
+                        {
+                            int type = DetermineType(new Vec2(x, y), TacticalTileType.SwampOverBog);
+                            newtiles[x, y] = (TacticalTileType)(2600 + type);
+                            break;
+                        }
                     default:
                         newtiles[x, y] = tiles[x, y];
                         continue;
-
                 }
             }
         }
