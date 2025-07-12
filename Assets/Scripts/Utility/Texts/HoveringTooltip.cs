@@ -799,6 +799,10 @@ public class HoveringTooltip : MonoBehaviour
                 return "This unit provides the army it's in with +1 MP and allows transversal of all terrain at a movement cost of 1";
             case Traits.BoundWeapon:
                 return "Unit's weapon damage scales purely with mind stat; ignoring the weapon's main stat in damage calculations";
+            case Traits.Finesse:
+                return "Unit's weapon damage scales purely with mind stat; ignoring the weapon's main stat in damage calculations";
+            case Traits.DexterousDefense:
+                return "Unit's weapon damage scales purely with mind stat; ignoring the weapon's main stat in damage calculations";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }
