@@ -2363,6 +2363,8 @@ Turns: {currentTurn}
         string description = $"Remains of {name}";
         if (type == BoneTypes.CumPuddle)
             miscDiscards.Add(new MiscDiscard(location, MiscDiscardType.Cum, spriteNum, sortOrder, color, description));
+        else if (type == BoneTypes.HoneyPuddle)
+            miscDiscards.Add(new MiscDiscard(location, MiscDiscardType.Honey, spriteNum, sortOrder, color, description));
         else if (type == BoneTypes.DisposedCondom)
             miscDiscards.Add(new MiscDiscard(location, MiscDiscardType.DisposedCondom, spriteNum, sortOrder, color, description));
         else

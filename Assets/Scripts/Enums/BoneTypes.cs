@@ -24,6 +24,7 @@
     Cake,
     WyvernBonesWithoutHead,
     VisionSkull,
+    HoneyPuddle,
 
 }
 
