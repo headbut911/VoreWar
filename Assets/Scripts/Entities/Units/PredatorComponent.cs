@@ -2139,6 +2139,7 @@ public class PredatorComponent
                 {
                     State.GameManager.TacticalMode.CreateMiscDiscard(GetCurrentLocation(), BoneTypes.SlimePile, preyUnit.Unit.Name, preyUnit.Unit.AccessoryColor);
                 }
+                else if (Config.CleanDisposal == true && actor.Unit.Race == Race.Tatltuae) {}
                 else
                     State.GameManager.TacticalMode.CreateScat(GetCurrentLocation(), new ScatInfo(unit, preyUnit));
             }
