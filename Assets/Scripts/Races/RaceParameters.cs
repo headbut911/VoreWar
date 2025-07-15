@@ -822,7 +822,7 @@ static class RaceParameters
                 Traits.NimbleClimber,
                 Traits.Webber,
         },
-            RaceDescription = "The Driders are a mysterious folk, with lots of conflicting information on what the are, where they came from, and what they want. This actually seems to be deliberate on their part, as Driders often spread misinformation on themselves to confuse their potential future prey and trick them into making mistakes. This has actually worked too well, as the Driders have actually forgotten their true history. Without a solid account on them, almost all stories and rumors of the Driders can be considered equally untrue, and therefore equally true.",
+            RaceDescription = "The Driders are a mysterious folk, with lots of conflicting information on what they are, where they came from, and what they want. This actually seems to be deliberate on their part, as Driders often spread misinformation on themselves to confuse their potential future prey and trick them into making mistakes. This has actually worked too well, as the Driders have actually forgotten their true history. Without a solid account on them, almost all stories and rumors of the Driders can be considered equally untrue, and therefore equally true.",
         };
 
         Alraune = new RaceTraits()

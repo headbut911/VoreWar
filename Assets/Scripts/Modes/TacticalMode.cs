@@ -2307,12 +2307,8 @@ Turns: {currentTurn}
         lastDiscard++;
         int sortOrder = lastDiscard;
 
-        if (Config.ScatV2 == true)
-        {
-            lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
-            miscDiscards.Add(new ScatV2Discard(location, sortOrder, scatInfo));
-        }
-        else if (Config.CleanDisposal == true)
+
+        if (Config.CleanDisposal == true)
         {
             lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
             miscDiscards.Add(new DiaperDiscard(location, sortOrder, scatInfo));
@@ -2321,6 +2317,11 @@ Turns: {currentTurn}
         {
             lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
             miscDiscards.Add(new BirdScat(location, sortOrder, scatInfo));
+        }
+        else if (Config.ScatV2 == true)
+        {
+            lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
+            miscDiscards.Add(new ScatV2Discard(location, sortOrder, scatInfo));
         }
         else
         {

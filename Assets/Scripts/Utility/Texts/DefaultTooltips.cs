@@ -809,7 +809,7 @@ Does not retroactively affect already created units.";
             case 335:
                 return "When enabled, unit's side will be displayed in their info panel.";
             case 336:
-                return "Enables, birds and bird-like races to have more accurate appearing scat sprites (Only works with V2 scat off)";
+                return "Enables, birds and bird-like races to have more accurate appearing scat sprites.";
             default:
                 return "";
         }
