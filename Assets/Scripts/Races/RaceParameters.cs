@@ -2150,7 +2150,7 @@ static class RaceParameters
                 Traits.Tempered,
                 Traits.SlowDigestion
         },
-            RaceDescription = "Strange and enigmatic, the Twisted Vines are, unsurprisingly, not natives of this world, instead emerging during a particularly harsh period where innumerable portals connecting to realms of chaos opened and closed at random. The Twisted Vines are the native people of one of these chaotic planes. Despite what some think, they are sapient, the just generally prefer to live as nomadic bandits, swallowing any unlucky travelers they come across, and then coughing up or passing their valuables."
+            RaceDescription = "Strange and enigmatic, the Twisted Vines are, unsurprisingly, not natives of this world, instead emerging during a particularly harsh period where innumerable portals connecting to realms of chaos opened and closed at random. The Twisted Vines are the native people of one of these chaotic planes. Despite what some think, they are sapient, they just generally prefer to live as nomadic bandits, swallowing any unlucky travelers they come across, and then coughing up or passing their valuables."
         };
 
         Fairies = new RaceTraits()
