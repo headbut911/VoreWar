@@ -414,6 +414,7 @@ public class Unit
     internal bool HasDick => DickSize > -1;
     internal bool HasBreasts => DefaultBreastSize > -1;
 
+
     public bool IsInfiltratingSide(int side)
     {
         return side == Side && Side != FixedSide && hiddenFixedSide;
@@ -513,6 +514,10 @@ public class Unit
             return false;
         }
     }
+
+
+    [OdinSerialize]
+    internal Race attunedEeveeRace = Race.none;
 
     public bool BestSuitedForRanged() => Stats[(int)Stat.Dexterity] * TraitBoosts.VirtualDexMult > Stats[(int)Stat.Strength] * TraitBoosts.VirtualStrMult;
 
@@ -2595,6 +2600,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 ModifyStat(bonusStat, TraitBoosts.OnLevelUpBonusToGiveToTwoRandomStats);
             }
         }
+
         if (Config.LeadersAutoGainLeadership)
         {
             ModifyStat((int)Stat.Leadership, 2);
@@ -3693,5 +3699,21 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             return ConversionRace;
         else
             return State.RaceSettings.GetConversionRace(Race);
+    }
+
+    public void TriggerEeveelution()
+    {
+        if (Race == attunedEeveeRace)
+        {
+            return;
+        }
+        Race = attunedEeveeRace;
+        RandomizeAppearance();
+        ClearAllTraits();
+        ReloadTraits();
+        if (HasTrait(Traits.Eeveeolutionist))
+        {
+            RemoveTrait(Traits.Eeveeolutionist);
+        }
     }
 }

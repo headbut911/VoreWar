@@ -800,9 +800,11 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.BoundWeapon:
                 return "Unit's weapon damage scales purely with mind stat; ignoring the weapon's main stat in damage calculations";
             case Traits.Finesse:
-                return "Unit's weapon damage scales purely with mind stat; ignoring the weapon's main stat in damage calculations";
+                return "This unit's melee attacks scale with 80% Strength and 30% Dexterity, instead of with 100% Strength.";
             case Traits.DexterousDefense:
-                return "Unit's weapon damage scales purely with mind stat; ignoring the weapon's main stat in damage calculations";
+                return "If this unit is wielding a melee weapon, melee attacks against this unit may deal half damage based on attacker's and unit's dexterity score (max 70% block chance). A successful block sets the attacker's MP to 0.";
+            case Traits.Eeveeolutionist:
+                return "This unit will evolve into a different race based on the current composition of its army at the start of turn if over level 5. This trait is then removed.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }
