@@ -46,6 +46,7 @@ public class NameGenerator
     List<string> miceTownNames;
     List<string> matronsminionsTownNames;
     List<string> bearTownNames;
+    List<string> gnollTownNames;
     List<string> mainlandElvenTownNames;
     List<string> umbreonTownNames;
     List<string> lupineTownNames;
@@ -963,6 +964,21 @@ public class NameGenerator
             "Sunken Citadel",
 
         };
+        gnollTownNames = new List<string>
+        {
+            "Meetin' Rock",
+            "Huntin' Grounds",
+            "Shalanzi",
+            "Balaizi's Claim",
+            "Corpsefeast",
+            "Hyeeni's Cut",
+            "Zefzi",
+            "Breakbone Village",
+            "The Boneyard",
+            "Good Pickin's",
+            "Oti' Koetzi",
+            "Dark Place",
+        };
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
 
@@ -1391,6 +1407,11 @@ public class NameGenerator
         {
             if (i >= 0 && i < mainlandElvenTownNames.Count)
                 return mainlandElvenTownNames[i];
+        }
+        else if (race == Race.Gnolls)
+        {
+            if (i >= 0 && i < gnollTownNames.Count)
+                return gnollTownNames[i];
         }
 
 
