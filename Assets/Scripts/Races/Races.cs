@@ -136,6 +136,7 @@
     static internal Olivia Olivia = new Olivia();
     static internal Skapa Skapa = new Skapa();
     static internal Tatltuae Tatltuae = new Tatltuae();
+    static internal Firefly Firefly = new Firefly();
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -416,6 +417,8 @@
                 return Tatltuae;
             case Race.Jackals:
                 return Jackals;
+            case Race.Firefly:
+                return Firefly;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

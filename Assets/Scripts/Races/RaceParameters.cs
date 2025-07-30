@@ -133,6 +133,7 @@ static class RaceParameters
     static readonly RaceTraits Tatltuae;
     static readonly RaceTraits Lupine;
     static readonly RaceTraits Jackals;
+    static readonly RaceTraits Firefly;
 
     static Unit tempUnit;
 
@@ -416,6 +417,8 @@ static class RaceParameters
                 return Lupine;
             case Race.Jackals:
                 return Jackals;
+            case Race.Firefly:
+                return Firefly;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3923,6 +3926,42 @@ static class RaceParameters
         },
             RaceDescription = "Tatltuae is a curious raven. While he seemingly is one of the many who entered this world through a portal, he's taken quite well to his new home, becoming known as a mage, pred, cartographer, and selling his skills as a mercenary. While his hollow bones and spellcasting generally put him in the backlines, he is always eager to add people to his waistline, when given the chance. His main spell seems to be based on chaotic magic, and he definitely seems to enjoy causing chaos where he can. Tatltuae learned some time ago to create pockets of intense chaotic entropy. Interestingly, the spell began as a healing spell, but the raven learned it wrong to the point it harms instead of heals.",
         };
+
+        Firefly = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 12,
+            FavoredStat = Stat.Dexterity,
+            HasTail = true,
+            AllowedVoreTypes = new List<VoreType> { },//Perma-prey until vore sprites added
+            DeployCost = 1,
+            Upkeep = 9f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(8, 15),
+                Dexterity = new RaceStats.StatRange(8, 15),
+                Endurance = new RaceStats.StatRange(8, 13),
+                Mind = new RaceStats.StatRange(6, 11),
+                Will = new RaceStats.StatRange(6, 13),
+                Agility = new RaceStats.StatRange(8, 12),
+                Voracity = new RaceStats.StatRange(5, 10),
+                Stomach = new RaceStats.StatRange(12, 15),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.PackStrength,
+            Traits.EscapeArtist,
+            Traits.ArtfulDodge,
+            Traits.Charge,
+            Traits.DefensiveStance,
+            Traits.Fit,
+            Traits.UnpleasantDigestion,
+            Traits.QuickShooter,
+            Traits.Prey,//Perma-prey until vore sprites added
+        },
+            RaceDescription = "An unnatural Umbreon from a different universe from the others. His body shape seems different than the Umbreons, Having a differently shaped head, digigrade legs, and a fox like appearance. He claims to come from a realm where the world was much more advanced, having been transported with what he calls a \"HND15\" some kind of \"handgun\" similar to the tarous' revolvers. Being from another realm these bullets are in short supply, forcing him to save the magazines and to forge new bullets to load into them. He also carries around a knife for backup, it seems extra sharp compared to the others of it's kind. Although he prefers to stick along side them, He claims to not be related to the Anthro Umbreons that roam around.",
+        };
+
 
     }
 

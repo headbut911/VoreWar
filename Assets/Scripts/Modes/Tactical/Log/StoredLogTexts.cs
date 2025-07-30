@@ -340,7 +340,7 @@ static class StoredLogTexts
             //Gator eats Slime
             new EventString((i) => $"<b>{i.Unit.Name}</b> charges at <b>{i.Target.Name}</b>, globs of {GetRaceDescSingl(i.Target)} flying everywhere as {GPPHe(i.Unit)} bite{SIfSingular(i.Unit)} down on the slime's core and {GetRandomStringFrom("gobbles", "swallows", "gulps", "slurps", "wolfs")} it down!",
             actorRace: Race.Alligators, targetRace: Race.Slimes, priority: 10),
-            new EventString((i) => $"<b>{i.Target.Name}</b> has no time to react as <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("jaws fall", "jaws descend", "maw falls", "maw descends", "mouth falls", "mouth descends", "muzzle falls", "muzzle descends", "gob falls", "god descends")} on {GPPHim(i.Target)}, sending the {GetRaceDescSingl(i.Target)} down into the {GPPHe(i.Unit)} gator's {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
+            new EventString((i) => $"<b>{i.Target.Name}</b> has no time to react as <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("jaws fall", "jaws descend", "maw falls", "maw descends", "mouth falls", "mouth descends", "muzzle falls", "muzzle descends", "gob falls", "gob descends")} on {GPPHim(i.Target)}, sending the {GetRaceDescSingl(i.Target)} down into the {GPPHe(i.Unit)} gator's {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
             actorRace: Race.Alligators, targetRace: Race.Slimes, priority: 10),
             
             //Wyvern

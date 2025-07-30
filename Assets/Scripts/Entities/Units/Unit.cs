@@ -990,6 +990,16 @@ public class Unit
             FixedGear = false;
             Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.TatltuaeWeapon);
         }
+        else if (race == Race.Firefly)
+        {
+            try
+            {
+                FixedGear = true;
+                Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FireflyMelee);
+                Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FireflyRange);
+            }
+            catch { }
+        }
         else
         {
             FixedGear = false;
