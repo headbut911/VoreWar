@@ -118,7 +118,8 @@ public static class State
             ,"maleSergal","femaleSharks","maleSharks","femaleSlimes","maleSlimes","femaleSuccubi","maleSuccubi","femaleTaurus","maleTaurus","femaleTerrorbird","maleTerrorbird","femaleTigers","maleTigers","femaleVargul","maleVargul","femaleVipers","maleVipers","femaleWolves","maleWolves"
             ,"femaleWyvern","maleWyvern","femaleYouko","maleYouko","FeralAnts","FeralFrogs","FeralSharks","FeralWolves","Harvesters","Raptor","RockSlugs","Salamanders","Schiwardez","Serpents","SpitterSlugs","SpringSlugs","Voilin","WarriorAnts","Whisp","femaleBoomBunnies"
             ,"maleBoomBunnies","WyvernMatron","maleFeralOrcas","femaleFeralOrcas","femaleBears","maleBears","femaleCentaurs","maleCentaurs","femaleGnolls","maleGnolls","femaleMainlandElves","maleMainlandElves","femaleViisel","maleViisel","FeralSlimes","femaleEevee","maleEevee","femaleEqualeon"
-            ,"maleEqualeon","femaleUmbreon","maleUmbreon", "maleLupine", "femaleLupine", "femaleMatronsMinions", "maleMatronsMinions","femaleJackals","maleJackals","femaleRwuMercenaries","maleRwuMercenaries","TwistedVines","femaleOtachi","maleOtachi","femaleRaiju","maleRaiju","femaleSmudgers","maleSmudgers"/*,"femaleUtahraptors","maleUtahraptors","femaleTrex","maleTrex","femaleSpaceroach","maleSpaceroach"*/};// Commented out until races are added to this version
+            ,"maleEqualeon","femaleUmbreon","maleUmbreon","maleLupine","femaleLupine","femaleMatronsMinions","maleMatronsMinions","femaleJackals","maleJackals","femaleRwuMercenaries","maleRwuMercenaries","TwistedVines","femaleOtachi","maleOtachi","femaleRaiju","maleRaiju","femaleSmudgers","maleSmudgers"
+            ,"WoodDryad","RiverDryad","EarthDryad","maleGhost","femaleGhost"/*,"femaleUtahraptors","maleUtahraptors","femaleTrex","maleTrex"*/};// Commented out until races are added to this version
 
         try
         {
