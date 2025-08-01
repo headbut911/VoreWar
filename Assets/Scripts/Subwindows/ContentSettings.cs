@@ -1436,7 +1436,7 @@ public class ContentSettings : MonoBehaviour
         if (float.TryParse(SizeAccuracyMod.text, out float sam))
             PlayerPrefs.SetFloat("SizeAccuracyMod", sam);
         else
-            PlayerPrefs.SetFloat("SizeAccuracyMod", 0);
+            PlayerPrefs.SetFloat("SizeAccuracyMod", 0.01f);
         if (float.TryParse(SizeAccuracyLowerBound.text, out float salb))
             PlayerPrefs.SetFloat("SizeAccuracyLowerBound", salb);
         else
@@ -1453,7 +1453,7 @@ public class ContentSettings : MonoBehaviour
         if (float.TryParse(SizeDamageMod.text, out float sbm))
             PlayerPrefs.SetFloat("SizeDamageMod", sbm);
         else
-            PlayerPrefs.SetFloat("SizeDamageMod", 0);
+            PlayerPrefs.SetFloat("SizeDamageMod", 0.01f);
         if (float.TryParse(SizeDamageLowerBound.text, out float sblb))
             PlayerPrefs.SetFloat("SizeDamageLowerBound", sblb);
         else
