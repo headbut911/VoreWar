@@ -133,6 +133,7 @@ static class RaceParameters
     static readonly RaceTraits Tatltuae;
     static readonly RaceTraits Lupine;
     static readonly RaceTraits Jackals;
+    static readonly RaceTraits WoodDryad;
 
     static Unit tempUnit;
 
@@ -416,6 +417,8 @@ static class RaceParameters
                 return Lupine;
             case Race.Jackals:
                 return Jackals;
+            case Race.WoodDryad:
+                return WoodDryad;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -1108,7 +1111,7 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.AdeptLearner,
-            Traits.Clever,
+            Traits.MagicProwess,
             Traits.GiantSlayer,
         },
             RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
@@ -3257,6 +3260,38 @@ static class RaceParameters
             InnateSpells = new List<SpellTypes>() { SpellTypes.ExplosiveHug },
             RaceDescription = "Exploding rabbits of unknown origin. Many believe that Boom Bunnies are the result of some science experiment left unchecked. Despite their tendency of exploding they are exceedingly friendly and benign once tamed.",
 
+        };
+
+        WoodDryad = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 16,
+            HasTail = true,
+            FavoredStat = Stat.Stomach,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 1.2f,
+            PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            Upkeep = 5f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(8, 12),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(16, 24),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(8, 12),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(20, 28),
+                Stomach = new RaceStats.StatRange(12, 20),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Slippery,
+            Traits.Ravenous,
+            Traits.Nauseous,
+            Traits.SlowDigestion
+        },
+            RaceDescription = ""
         };
 
         Selicia = new RaceTraits()

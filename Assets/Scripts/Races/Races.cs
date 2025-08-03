@@ -107,6 +107,7 @@
     static internal FeralEevee FeralEevee = new FeralEevee();
     static internal FeralUmbreon FeralUmbreon = new FeralUmbreon();
     static internal FeralEqualeon FeralEqualeon = new FeralEqualeon();
+    static internal WoodDryad WoodDryad = new WoodDryad();
 
     static internal Selicia Selicia = new Selicia();
     static internal Vision Vision = new Vision();
@@ -416,6 +417,8 @@
                 return Tatltuae;
             case Race.Jackals:
                 return Jackals;
+            case Race.WoodDryad:
+                return WoodDryad;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

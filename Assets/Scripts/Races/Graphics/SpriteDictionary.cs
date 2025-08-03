@@ -20,6 +20,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Breasts;
     public Sprite[] SquishedBreasts;
     public Sprite[] FeaturelessBreasts;
+    public Sprite[] NiplessVoreSprites;
     public Sprite[] Mouths;
 
     public Sprite[] Eyebrows;
@@ -375,7 +376,11 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] FeralUmbreon;
     public Sprite[] FeralEqualeon;
 
-
+    public Sprite[] DryadSprites1;
+    public Sprite[] DryadSprites2;
+    public Sprite[] DryadSprites3;
+    public Sprite[] DryadSprites4;
+    public Sprite[] DryadSprites5;
 
     public Sprite[] Cake;
 

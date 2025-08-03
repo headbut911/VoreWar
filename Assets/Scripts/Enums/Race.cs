@@ -112,6 +112,7 @@
     FeralEevee = 149,
     FeralUmbreon = 150,
     FeralEqualeon = 151,
+    WoodDryad = 152,
 
     Selicia = 170,
     Vision = 171,
