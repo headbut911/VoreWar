@@ -272,6 +272,11 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] JackalClothes;
     public Sprite[] JackalJewel;
 
+    public Sprite[] Ghosts1;
+    public Sprite[] Ghosts2;
+    public Sprite[] Ghosts3;
+    public Sprite[] GhostsVoreSprites;
+
     [Header("Unique Mercenaries")]
     public Sprite[] Selicia;
     public Sprite[] Vision;

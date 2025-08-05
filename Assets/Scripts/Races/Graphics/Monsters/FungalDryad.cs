@@ -19,7 +19,7 @@ class FungalDryad : DefaultRaceData
         BodySizes = 3;
         SpecialAccessoryCount = 3; //Mushroom Hats
         HairStyles = 6;
-        MouthTypes = 11;
+        MouthTypes = 9;
         ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor); // Leaves
         AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin); // Trunk
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
@@ -254,7 +254,7 @@ class FungalDryad : DefaultRaceData
         else if (actor.Unit.MouthType <= 4)
             return Sprites5[12 + actor.Unit.MouthType];
         else 
-            return Sprites5[24 + actor.Unit.MouthType - 4];
+            return Sprites5[24 + actor.Unit.MouthType - 5];
     }
 
     protected override Sprite HairSprite(Actor_Unit actor)
