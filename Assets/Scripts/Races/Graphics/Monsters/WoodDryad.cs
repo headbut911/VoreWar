@@ -15,31 +15,33 @@ class WoodDryad : DefaultRaceData
 
     public WoodDryad()
     {
+        CanBeGender = new List<Gender>() { Gender.Female};
         BodySizes = 3;
         EyeTypes = 6;
         SpecialAccessoryCount = 3; //Trunk
         HairStyles = 6;
         MouthTypes = 12;
-        AccessoryColors = 0;
+        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor); // Leaves
+        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin); // Trunk
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor);
         BodyAccentTypes1 = 6; // Horns
         BodyAccentTypes2 = 2; // Leaves On/Off
         BodyAccentTypes3 = 6; // eyebrows
-        BodyAccentTypes4 = 3; // trunk addon
+        BodyAccentTypes4 = 4; // trunk addon
         BeardStyles = 0;
 
         ExtendedBreastSprites = true;
 
         Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
         Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Trunk
-        BodyAccent = new SpriteExtraInfo(22, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Horns
-        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Horn Leaves
+        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Trunk
+        BodyAccent = new SpriteExtraInfo(22, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Horns
+        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // Horn Leaves
         BodyAccent3 = new SpriteExtraInfo(8, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Right Arm
-        BodyAccent4 = new SpriteExtraInfo(9, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Trunk Addon
-        BodyAccent5 = new SpriteExtraInfo(10, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Trunk Addon2
+        BodyAccent4 = new SpriteExtraInfo(9, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Trunk Addon
+        BodyAccent5 = new SpriteExtraInfo(10, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // Trunk Addon2
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
@@ -52,7 +54,7 @@ class WoodDryad : DefaultRaceData
         SecondaryEyes = new SpriteExtraInfo(7, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
         SecondaryAccessory = null;
         Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
+        Weapon = null;
         BackWeapon = null;
         BodySize = null;
         Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
@@ -61,12 +63,31 @@ class WoodDryad : DefaultRaceData
         Dick = null;
         Balls = null;
 
+
+        AllowedMainClothingTypes = new List<MainClothing>()
+        {
+        };
+        AvoidedEyeTypes = 0;
+        AllowedWaistTypes = new List<MainClothing>()
+        {
+        };
+        ExtraMainClothing1Types = new List<MainClothing>()
+        {
+        };
     }
 
 
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
-
+        int humanPartOffset = 23;
+        AddOffset(Head, 0, humanPartOffset * .625f);
+        AddOffset(Mouth, 0, humanPartOffset * .625f);
+        AddOffset(Hair3, 0, humanPartOffset * .625f);
+        AddOffset(Breasts, 0, humanPartOffset * .625f);
+        AddOffset(SecondaryBreasts, 0, humanPartOffset * .625f);
+        AddOffset(Eyes, 0, humanPartOffset * .625f);
+        AddOffset(SecondaryEyes, 0, humanPartOffset * .625f);
+        AddOffset(Belly, 0, humanPartOffset * .625f);
     }
 
 
@@ -74,38 +95,13 @@ class WoodDryad : DefaultRaceData
     {
         base.RandomCustom(unit);
 
+        unit.HairStyle = State.Rand.Next(HairStyles);
 
-        if (unit.HasDick && unit.HasBreasts)
-        {
-            if (Config.HermsOnlyUseFemaleHair)
-                unit.HairStyle = State.Rand.Next(18);
-            else
-                unit.HairStyle = State.Rand.Next(HairStyles);
-        }
-        else if (unit.HasDick && Config.FemaleHairForMales)
-            unit.HairStyle = State.Rand.Next(HairStyles);
-        else if (unit.HasDick == false && Config.MaleHairForFemales)
-            unit.HairStyle = State.Rand.Next(HairStyles);
-        else
-        {
-            if (unit.HasDick)
-            {
-                unit.HairStyle = 18 + State.Rand.Next(18);
-            }
-            else
-            {
-                unit.HairStyle = State.Rand.Next(18);
-            }
-        }
-
-        if (unit.HasBreasts)
-        {
-            unit.BeardStyle = 6;
-        }
-        else
-        {
-            unit.BeardStyle = State.Rand.Next(6);
-        }
+        unit.SpecialAccessoryType = State.Rand.Next(SpecialAccessoryCount);
+        unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
+        unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
+        unit.BodyAccentType3 = State.Rand.Next(BodyAccentTypes3);
+        unit.BodyAccentType4 = State.Rand.Next(BodyAccentTypes4);
     }
 
     internal override int DickSizes => 6;
@@ -122,49 +118,49 @@ class WoodDryad : DefaultRaceData
         {
             if (actor.Unit.BodySize > 1)
             {
-                return Sprites2[4];
+                return State.GameManager.SpriteDictionary.HumansBodySprites2[4];
             }
             else
             {
-                return Sprites2[1];
+                return State.GameManager.SpriteDictionary.HumansBodySprites2[1];
             }
         }
         else if (actor.IsAttacking)
         {
             if (actor.Unit.BodySize > 1)
             {
-                return Sprites2[5];
+                return State.GameManager.SpriteDictionary.HumansBodySprites2[5];
             }
             else
             {
-                return Sprites2[2];
+                return State.GameManager.SpriteDictionary.HumansBodySprites2[2];
             }
         }
         else
         {
             if (actor.Unit.BodySize > 1)
             {
-                return Sprites2[3];
+                return State.GameManager.SpriteDictionary.HumansBodySprites2[3];
             }
             else
             {
-                return Sprites2[0];
+                return State.GameManager.SpriteDictionary.HumansBodySprites2[0];
             }
         }
     }
 
-    protected override Sprite AccessorySprite(Actor_Unit actor) => Sprites[3 + actor.Unit.SpecialAccessoryType + (actor.Unit.BodySize > 2 ? 6 : 0)]; // Trunk
+    protected override Sprite AccessorySprite(Actor_Unit actor) => Sprites[3 + actor.Unit.SpecialAccessoryType + (actor.Unit.BodySize >= 1 ? 6 : 0)]; // Trunk
     protected override Sprite BodyAccentSprite(Actor_Unit actor) => Sprites2[0 + actor.Unit.BodyAccentType1]; // Horns
-    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => actor.Unit.BodyAccentType1 == 1 ? null : Sprites2[6 + actor.Unit.BodyAccentType1]; // Horn Leaves
+    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => actor.Unit.BodyAccentType2 == 1 ? null : Sprites2[6 + actor.Unit.BodyAccentType1]; // Horn Leaves
 
 
-    protected override Sprite BodyAccentSprite3(Actor_Unit actor) => Sprites[22 + (actor.IsAttacking ? 1 : 0) + (actor.Unit.BodySize > 2 ? 6 : 0)]; // Right Arm
+    protected override Sprite BodyAccentSprite3(Actor_Unit actor) => Sprites[22 + (actor.IsAttacking ? 1 : 0) + (actor.Unit.BodySize >= 1 ? 6 : 0)]; // Right Arm
 
-    protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Extra weapon sprite 2
+    protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Trunk Addon
     {
         if (actor.Unit.BodyAccentType4 == 2 || actor.Unit.BodyAccentType4 == 3)
         {
-            return Sprites4[0 + (actor.Unit.SpecialAccessoryType * 2) + (actor.Unit.BodySize > 2 ? 6 : 0)];
+            return Sprites4[0 + (actor.Unit.SpecialAccessoryType * 2) + (actor.Unit.BodySize >= 1 ? 6 : 0)];
         }
         if (actor.Unit.BodyAccentType4 == 1)
         {
@@ -174,11 +170,11 @@ class WoodDryad : DefaultRaceData
 
     }
 
-    protected override Sprite BodyAccentSprite5(Actor_Unit actor) // Extra weapon sprite 2
+    protected override Sprite BodyAccentSprite5(Actor_Unit actor) // Trunk Addon 2
     {
-        if (actor.Unit.BodyAccentType4 == 2 || actor.Unit.BodyAccentType4 == 3)
+        if (actor.Unit.BodyAccentType4 == 3)
         {
-            return Sprites4[1 + (actor.Unit.SpecialAccessoryType * 2) + (actor.Unit.BodySize > 2 ? 6 : 0)];
+            return Sprites4[1 + (actor.Unit.SpecialAccessoryType * 2) + (actor.Unit.BodySize >= 1 ? 6 : 0)];
         }
         return null;
 
@@ -206,11 +202,14 @@ class WoodDryad : DefaultRaceData
 
     protected override Sprite HairSprite2(Actor_Unit actor)
     {
-        if (actor.Unit.HairStyle >= 2)
+        if (actor.Unit.HairStyle <= 2)
         {
             return null;
         }
-        return Sprites2[31 + 2 * (actor.Unit.HairStyle - 3)];
+        else
+        {
+            return Sprites2[31 + 2 * (actor.Unit.HairStyle - 3)];
+        }
     }
 
     protected override Sprite HairSprite3(Actor_Unit actor)

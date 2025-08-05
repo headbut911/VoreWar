@@ -113,6 +113,9 @@
     FeralUmbreon = 150,
     FeralEqualeon = 151,
     WoodDryad = 152,
+    EarthDryad = 153,
+    RiverDryad = 154,
+    FungalDryad = 155,
 
     Selicia = 170,
     Vision = 171,
