@@ -97,7 +97,8 @@ class CompleteSprite
     /// </summary>
     public void AdjustSpriteScale()
     {
-        if (actor.Unit.Race == Race.Centaur)
+        if (actor.Unit.Race == Race.Centaur ||
+            actor.Unit.Race == Race.Ghosts)
         {
             foreach (var sprite in sprites)
             {

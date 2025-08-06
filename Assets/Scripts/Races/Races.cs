@@ -42,6 +42,7 @@
     static internal Umbreon Umbreon = new Umbreon();
     static internal Lupine Lupine = new Lupine();
     static internal Jackals Jackals = new Jackals();
+    static internal Ghosts Ghosts = new Ghosts();
 
 
     static internal Tigers Tigers = new Tigers();
@@ -420,6 +421,8 @@
                 return Tatltuae;
             case Race.Jackals:
                 return Jackals;
+            case Race.Ghosts:
+                return Ghosts;
             case Race.WoodDryad:
                 return WoodDryad;
             case Race.EarthDryad:

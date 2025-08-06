@@ -40,6 +40,7 @@
     Umbreon = 35,
     Lupine = 36,
     Jackals  = 37,
+    Ghosts = 38,
 
     Succubi = 50,
     Tigers = 51,

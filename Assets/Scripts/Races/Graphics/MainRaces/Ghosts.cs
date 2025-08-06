@@ -17,7 +17,7 @@ class Ghosts : DefaultRaceData
         BodySizes = 6;
         SpecialAccessoryCount = 0;
         HairStyles = 9;
-        MouthTypes = 12;
+        MouthTypes = 6;
         AccessoryColors = 0;
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
@@ -75,134 +75,6 @@ class Ghosts : DefaultRaceData
 
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
-
-        if (actor.Unit.HasBreasts)
-        {
-            if (actor.Unit.BodySize > 1)
-            {
-                AddOffset(Balls, 0, 3 * .625f);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-            else
-            {
-                AddOffset(Balls, 0, 3 * .625f);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-        }
-        else
-        {
-            if (actor.Unit.BodySize > 1)
-            {
-                AddOffset(Balls, 0, 1 * .625f);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-            else
-            {
-                AddOffset(Balls, 0, 0);
-                AddOffset(Belly, 0, 1 * .625f);
-            }
-        }
-
-        if (actor.GetWeaponSprite() == 0 || actor.GetWeaponSprite() == 4 || actor.GetWeaponSprite() == 6)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, -1 * .625f, 0);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 1 * .625f, -1 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, -1 * .625f);
-                }
-            }
-        }
-        else if (actor.GetWeaponSprite() == 1 || actor.GetWeaponSprite() == 3)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 0, -1 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 3 * .625f, -3 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 3 * .625f, -4 * .625f);
-                }
-            }
-        }
-        else if (actor.GetWeaponSprite() == 2)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, -1 * .625f, 2 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, -2 * .625f, 3 * .625f);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-        }
-        else if (actor.GetWeaponSprite() == 5 || actor.GetWeaponSprite() == 7)
-        {
-            if (actor.Unit.HasBreasts)
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 1 * .625f, -1 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 0, 0);
-                }
-            }
-            else
-            {
-                if (actor.Unit.BodySize > 1)
-                {
-                    AddOffset(Weapon, 2 * .625f, -3 * .625f);
-                }
-                else
-                {
-                    AddOffset(Weapon, 2 * .625f, -3 * .625f);
-                }
-            }
-        }
     }
 
 
@@ -210,38 +82,6 @@ class Ghosts : DefaultRaceData
     {
         base.RandomCustom(unit);
 
-
-        if (unit.HasDick && unit.HasBreasts)
-        {
-            if (Config.HermsOnlyUseFemaleHair)
-                unit.HairStyle = State.Rand.Next(18);
-            else
-                unit.HairStyle = State.Rand.Next(HairStyles);
-        }
-        else if (unit.HasDick && Config.FemaleHairForMales)
-            unit.HairStyle = State.Rand.Next(HairStyles);
-        else if (unit.HasDick == false && Config.MaleHairForFemales)
-            unit.HairStyle = State.Rand.Next(HairStyles);
-        else
-        {
-            if (unit.HasDick)
-            {
-                unit.HairStyle = 18 + State.Rand.Next(18);
-            }
-            else
-            {
-                unit.HairStyle = State.Rand.Next(18);
-            }
-        }
-
-        if (unit.HasBreasts)
-        {
-            unit.BeardStyle = 6;
-        }
-        else
-        {
-            unit.BeardStyle = State.Rand.Next(6);
-        }
     }
 
     internal override int DickSizes => 6;
@@ -249,9 +89,9 @@ class Ghosts : DefaultRaceData
 
     protected override Sprite BodySprite(Actor_Unit actor)
     {
-        if (actor.IsAttacking) return Sprites[2 + (actor.Unit.HasBreasts ? 4 : 0)];
-        if (actor.IsEating) return Sprites[1 + (actor.Unit.HasBreasts ? 4 : 0)];
-        return Sprites[0 + (actor.Unit.HasBreasts ? 4 : 0)];
+        if (actor.IsAttacking) return Sprites[2 + (actor.Unit.BodySize >= 3 ? 4 : 0)];
+        if (actor.IsEating) return Sprites[1 + (actor.Unit.BodySize >= 3 ? 4 : 0)];
+        return Sprites[0 + (actor.Unit.BodySize >= 3 ? 4 : 0)];
     }
 
     protected override Sprite HeadSprite(Actor_Unit actor)
@@ -385,10 +225,10 @@ class Ghosts : DefaultRaceData
 
     protected override Sprite MouthSprite(Actor_Unit actor)
     {
-        if (actor.IsEating || actor.IsAttacking)
-            return null;
+        if (actor.IsEating)
+            return Sprites3[1 + 2 * actor.Unit.MouthType];
         else
-            return Sprites3[0 + actor.Unit.MouthType];
+            return Sprites3[0 + 2 * actor.Unit.MouthType];
     }
 
     protected override Sprite HairSprite(Actor_Unit actor)
@@ -420,7 +260,7 @@ class Ghosts : DefaultRaceData
 
     protected override Sprite EyesSprite(Actor_Unit actor)
     {
-        return Sprites3[11 + actor.Unit.EyeType];
+        return Sprites2[11 + actor.Unit.EyeType];
     }
 
     protected override Sprite EyesSecondarySprite(Actor_Unit actor)
@@ -499,21 +339,21 @@ class Ghosts : DefaultRaceData
             switch (actor.GetWeaponSprite())
             {
                 case 0:
-                    return Sprites3[13];
+                    return Sprites[13];
                 case 1:
-                    return Sprites3[7];
+                    return Sprites[7];
                 case 2:
-                    return Sprites3[12];
+                    return Sprites[12];
                 case 3:
-                    return Sprites3[3];
+                    return Sprites[3];
                 case 4:
-                    return Sprites3[9];
+                    return Sprites[9];
                 case 5:
-                    return Sprites3[10];
+                    return Sprites[10];
                 case 6:
-                    return Sprites3[8];
+                    return Sprites[8];
                 case 7:
-                    return Sprites3[11];
+                    return Sprites[11];
                 default:
                     return null;
             }

@@ -133,6 +133,7 @@ static class RaceParameters
     static readonly RaceTraits Tatltuae;
     static readonly RaceTraits Lupine;
     static readonly RaceTraits Jackals;
+    static readonly RaceTraits Ghosts;
     static readonly RaceTraits WoodDryad;
     static readonly RaceTraits EarthDryad;
     static readonly RaceTraits RiverDryad;
@@ -420,6 +421,8 @@ static class RaceParameters
                 return Lupine;
             case Race.Jackals:
                 return Jackals;
+            case Race.Ghosts:
+                return Ghosts;
             case Race.WoodDryad:
                 return WoodDryad;
             case Race.EarthDryad:
@@ -1204,7 +1207,24 @@ static class RaceParameters
             Traits.DexterousDefense,
             Traits.Finesse,
         },
-            RaceDescription = "A race of desert dwellers.",
+            RaceDescription = "A race of desert dwellers, recent disturbances have brought them from their charge of guarding the ancient dangers luring within the pyramids they call home.",
+        };
+
+        Ghosts = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 20,
+            HasTail = false,
+            FavoredStat = Stat.Endurance,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.PackMind,
+            Traits.DexterousDefense,
+            Traits.Finesse,
+        },
+            RaceDescription = "",
         };
 
         Centaur = new RaceTraits()
