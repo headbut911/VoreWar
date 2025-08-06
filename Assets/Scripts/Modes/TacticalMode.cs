@@ -29,6 +29,7 @@ public class TacticalMode : SceneBase
         Imp,
         Slime,
         SlimeExtra,
+        Aabayx,
     }
 
     enum NextUnitType
@@ -1653,6 +1654,9 @@ Turns: {currentTurn}
                 case Race.Gnolls:
                     wallType = WallType.WoodenPallisade;
                     break;
+                case Race.Aabayx:
+                    wallType = WallType.Aabayx;
+                    break;
                 default:
                     wallType = WallType.Stone;
                     break;
@@ -2303,12 +2307,8 @@ Turns: {currentTurn}
         lastDiscard++;
         int sortOrder = lastDiscard;
 
-        if (Config.ScatV2 == true)
-        {
-            lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
-            miscDiscards.Add(new ScatV2Discard(location, sortOrder, scatInfo));
-        }
-        else if (Config.CleanDisposal == true)
+
+        if (Config.CleanDisposal == true)
         {
             lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
             miscDiscards.Add(new DiaperDiscard(location, sortOrder, scatInfo));
@@ -2317,6 +2317,11 @@ Turns: {currentTurn}
         {
             lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
             miscDiscards.Add(new BirdScat(location, sortOrder, scatInfo));
+        }
+        else if (Config.ScatV2 == true)
+        {
+            lastDiscard += (1 + scatInfo.bonesInfos.Count); //scatback + scatfront + bones
+            miscDiscards.Add(new ScatV2Discard(location, sortOrder, scatInfo));
         }
         else
         {
@@ -2359,6 +2364,8 @@ Turns: {currentTurn}
         string description = $"Remains of {name}";
         if (type == BoneTypes.CumPuddle)
             miscDiscards.Add(new MiscDiscard(location, MiscDiscardType.Cum, spriteNum, sortOrder, color, description));
+        else if (type == BoneTypes.HoneyPuddle)
+            miscDiscards.Add(new MiscDiscard(location, MiscDiscardType.Honey, spriteNum, sortOrder, color, description));
         else if (type == BoneTypes.DisposedCondom)
             miscDiscards.Add(new MiscDiscard(location, MiscDiscardType.DisposedCondom, spriteNum, sortOrder, color, description));
         else

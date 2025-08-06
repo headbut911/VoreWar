@@ -460,6 +460,8 @@ static class LogUtilities
                 return GetRandomStringFrom("apex predator", "hungry dragon", "voracious dragon");
             case Race.FeralLions:
                 return GetRandomStringFrom("indulgent", "greedily snarling", "voracious", "capacious", "insatiable", "dominant", "pleased"); ////new 
+            case Race.Aabayx:
+                return GetRandomStringFrom("zealous", "superior", "dice-like", "math-obsessed"); 
             case Race.Avians:
                 return GetRandomStringFrom("winged", "feathered", "swift", "taloned", "hawklike");
             case Race.MainlandElves:
@@ -595,7 +597,7 @@ static class LogUtilities
             case Race.FeralLions:
                 return GetRandomStringFrom("feline", GetGenderString(unit, "lioness", "lion", "lion"), "leonine", "kitty");
             case Race.Aabayx:
-                return GetRandomStringFrom("viroid", "virosapien", "dice-like", "math-obsessed"); ////new, and probably wrong
+                return GetRandomStringFrom("viroid", "virosapien"); ////new
             case Race.Mice:
                 return GetRandomStringFrom("mouse", GetGenderString(unit, "doe", "buck", "murid"), "rodent");
             case Race.FeralOrcas:
@@ -614,6 +616,8 @@ static class LogUtilities
                 return GetRandomStringFrom("elf", GetGenderString(unit, "woman", "man", "elf"), "humanoid");
             case Race.Tatltuae:
                 return GetRandomStringFrom("cartograher", "raven", "chaos mage", "corvid", State.Rand.Next(42) == 1 ? "bird" : "birb");
+            case Race.Terrorbird:
+                return GetRandomStringFrom("bird", "long-necked avian", "flightless bird", "anger bird");
             default:
                 return "creature";
         }

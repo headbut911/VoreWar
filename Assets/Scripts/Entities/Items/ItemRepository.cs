@@ -106,6 +106,8 @@ public enum SpecialItems
     XelhildeWeapon,
     SkapaWeapon,
     TatltuaeWeapon,
+    FireflyMelee,
+    FireflyRange,
 }
 
 
@@ -316,6 +318,8 @@ public class ItemRepository
             new Weapon(name:"Xelhilde's Zweihänder", description:"A cobalt zweihänder forged in Mondfeld. It's blade seems to shimer like the moon.", cost:4, graphic:0, damage:9, range:1, accuracyModifier: 1.4f, lockedItem:true),
             new Weapon(name:"Skapa's Wingtalons", description:"Skapa go pounce.", cost:4, graphic:0, damage:8, range:1, lockedItem:true),
             new Weapon(name:"Entropic Chaos", description:"Cantrip Tatltuae learned some time ago that creates pockets of intense chaotic entropy, ripping the very matter of his foes apart.", cost:4, graphic:0, damage:7, range:8, accuracyModifier: 1f, omniWeapon:true, magicWeapon: true, lockedItem:true),
+            new Weapon(name:"Pilot Knife", description:"Standard issue holdout weapon for Wanzer pilots; Firefly is rather skilled with this one.", cost:4, graphic:0, damage:8, range:1, accuracyModifier: 1.4f, lockedItem:true),
+            new Weapon(name:"HND15", description:"Firefly's faithful pistol.", cost:4, graphic:0, damage:5, range:7, accuracyModifier: 0.7f, lockedItem:true),
         };
 
 
