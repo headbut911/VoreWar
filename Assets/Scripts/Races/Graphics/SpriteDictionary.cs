@@ -375,6 +375,10 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] FeralEevee;
     public Sprite[] FeralUmbreon;
     public Sprite[] FeralEqualeon;
+    public Sprite[] Smudger;
+    public Sprite[] SpaceCroach;
+    public Sprite[] Raiju;
+    public Sprite[] Raiju240;
 
 
 

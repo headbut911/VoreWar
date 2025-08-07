@@ -1256,7 +1256,7 @@ public class Actor_Unit
                 {
                     if (Config.SizeDamageInverse && !Unit.HasTrait(Traits.GiantSlayer))
                     {
-                        damage = (int)Math.Round(damage / damMod);
+                        bonusDamage = (int)Math.Round(damage * damMod) * -1;
                     }
                 }
                 damage += bonusDamage;

@@ -274,7 +274,7 @@ public class ItemRepository
             new Weapon(name:"Terrorbird Beak", description:"Terrorbird Beak", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Dratopyr Jaws", description:"Dratopyr Jaws", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Lion Fangs", description:"Serrated and pointy (Feline) Canines", cost:4, graphic:0, damage:6, range:1),
-			new Weapon(name:"Goodra Slug Antenna", description:"Goodra's Power Whip", cost:4, graphic:0, damage:5, range:1),
+            new Weapon(name:"Goodra Slug Antenna", description:"Goodra's Power Whip", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Whisp fire", description:"Whisp's FoxFire", cost:4, graphic:0, damage:5, range:5, omniWeapon: true, magicWeapon: true),
             new Weapon(name:"Horse Hooves", description:"A terribly painful kick to the gut!", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Fox Claws", description:"While smaller than say a wolf,\n these claws are equally as painful.", cost:4, graphic:0, damage:4, range:1),
@@ -288,6 +288,9 @@ public class ItemRepository
             new Weapon(name:"Eevee Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Umbreon Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Equaleon Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
+            new Weapon(name:"Raiju Jaws", description:"The crushing jaws of the Raiju.", cost:4, graphic:0, damage:6, range:1),
+            new Weapon(name:"Smudger Claws", description:"Smudger Claws", cost:4, graphic:0, damage:5, range:1),
+            new Weapon(name:"Space Roach Mandibles", description:"Space Roach Mandibles", cost:4, graphic:0, damage:6, range:1),
         };
 
         specialItems = new List<Item>()

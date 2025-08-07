@@ -112,6 +112,9 @@
     FeralEevee = 149,
     FeralUmbreon = 150,
     FeralEqualeon = 151,
+    Raiju = 152,
+    Smudger = 153,
+    SpaceCroach = 154,
 
     Selicia = 170,
     Vision = 171,

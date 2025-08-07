@@ -564,6 +564,12 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Ear Piercing";
                 buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Navel Piercing";
                 break;
+            case Race.Smudger:
+                buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Internal Color";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Head Frills";
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Pattern Color";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Patterns";
+                break;
         }
     }
 

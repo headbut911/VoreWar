@@ -134,6 +134,10 @@ static class RaceParameters
     static readonly RaceTraits Lupine;
     static readonly RaceTraits Jackals;
     static readonly RaceTraits Firefly;
+    static readonly RaceTraits Raiju;
+    static readonly RaceTraits Smudger;
+    static readonly RaceTraits SpaceCroach;
+    
 
     static Unit tempUnit;
 
@@ -419,6 +423,12 @@ static class RaceParameters
                 return Jackals;
             case Race.Firefly:
                 return Firefly;
+            case Race.Raiju:
+                return Raiju;
+            case Race.Smudger:
+                return Smudger;
+            case Race.SpaceCroach:
+                return SpaceCroach;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -2976,11 +2986,11 @@ static class RaceParameters
 
         Otachi = new RaceTraits()
         {
-            BodySize = 100,
-            StomachSize = 100,
+            BodySize = 80,
+            StomachSize = 80,
             FavoredStat = Stat.Voracity,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth, VoreType.TailVore },
-            ExpMultiplier = 1.6f,
+            ExpMultiplier = 6f,
             PowerAdjustment = 1.3f,
             DeployCost = 2,
             Upkeep = 20f,
@@ -3003,7 +3013,7 @@ static class RaceParameters
             Traits.PoisonSpit,
         },
             //InnateSpells = new List<SpellTypes>() { SpellTypes.Poison },
-            RaceDescription = "Somehow a Kaiju!",
+            RaceDescription = "Somehow a Kaiju, with poison!",
         };
 
         ViraeUltimae = new RaceTraits()
@@ -3262,6 +3272,107 @@ static class RaceParameters
 
         };
 
+        Raiju = new RaceTraits()
+        {
+            BodySize = 60,
+            StomachSize = 50,
+            FavoredStat = Stat.Endurance,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.CockVore, VoreType.Unbirth, VoreType.TailVore },
+            ExpMultiplier = 6f,
+            PowerAdjustment = 1.3f,
+            DeployCost = 2,
+            Upkeep = 20f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(20, 28),
+                Dexterity = new RaceStats.StatRange(14, 20),
+                Endurance = new RaceStats.StatRange(20, 30),
+                Mind = new RaceStats.StatRange(10, 20),
+                Will = new RaceStats.StatRange(10, 20),
+                Agility = new RaceStats.StatRange(20, 28),
+                Voracity = new RaceStats.StatRange(40, 50),
+                Stomach = new RaceStats.StatRange(30, 40),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Intimidating,
+            Traits.Resilient,
+            Traits.Grounded,
+            Traits.MetabolicSurge,
+            Traits.Biter,
+        },
+            InnateSpells = new List<SpellTypes>() { SpellTypes.LightningBolt, SpellTypes.CrossShock },
+            RaceDescription = "Somehow another Kaiju, but lightning this time!",
+        };
+
+        Smudger = new RaceTraits()
+        {
+            BodySize = 25,
+            StomachSize = 20,
+            HasTail = true,
+            FavoredStat = Stat.Voracity,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore, },
+            ExpMultiplier = 1f,
+            PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 10f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(12, 20),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(20, 28),
+                Mind = new RaceStats.StatRange(6, 12),
+                Will = new RaceStats.StatRange(8, 16),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(16, 24),
+                Stomach = new RaceStats.StatRange(12, 18),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.SlowMovement,
+                Traits.EnthrallingDepths,
+                Traits.SteadyStomach,
+                Traits.Ravenous,
+                Traits.ExtraNutritious,
+                Traits.Tasty,
+            },
+            RaceDescription = "A race of slug-like beings from somewhere beyond the portals.  Their friendly and soft shape is but a ploy to lure in the more gullible prey of our world, and those that aren't fooled by it will discover that they are no pushovers in a struggle either.  Those who find themselves as prey to these creatures will find they don't wish to leave their insides, though if a predator can manage to devour one they will find a delectable meal as their bodies are incredibly nutritious.",
+        };
+
+        SpaceCroach = new RaceTraits()
+        {
+            BodySize = 40,
+            StomachSize = 30,
+            HasTail = false,
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 6f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(20, 28),
+                Dexterity = new RaceStats.StatRange(12, 20),
+                Endurance = new RaceStats.StatRange(15, 20),
+                Mind = new RaceStats.StatRange(6, 10),
+                Will = new RaceStats.StatRange(6, 10),
+                Agility = new RaceStats.StatRange(18, 26),
+                Voracity = new RaceStats.StatRange(6, 10),
+                Stomach = new RaceStats.StatRange(6, 10),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.SenseWeakness,
+            Traits.LightFrame,
+            Traits.BoggingSlime,
+            Traits.Ravenous,
+            Traits.Pounce,
+            Traits.NimbleClimber,
+        },
+            RaceDescription = "A mysterious race of roach-like beings from another universe."
+        };
+
         Selicia = new RaceTraits()
         {
             BodySize = 60,
@@ -3289,7 +3400,7 @@ static class RaceParameters
                 Traits.KeenReflexes,
                 Traits.StrongGullet,
                 Traits.NimbleClimber,
-
+                Traits.ColdTolerance,
             },
             InnateSpells = new List<SpellTypes>() { SpellTypes.IceBlast },
             RaceDescription = "A hybrid between a dragon and salamander whom excels in climbing and swimming but lacks any wings for flight.",
