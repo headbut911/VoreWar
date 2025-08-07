@@ -21,8 +21,8 @@ class WoodDryad : DefaultRaceData
         SpecialAccessoryCount = 3; //Trunk
         HairStyles = 6;
         MouthTypes = 12;
-        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor); // Leaves
-        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin); // Trunk
+        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadLeaves); // Leaves
+        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadTrunk); // Trunk
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor);
@@ -36,12 +36,12 @@ class WoodDryad : DefaultRaceData
 
         Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
         Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Trunk
-        BodyAccent = new SpriteExtraInfo(22, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Horns
-        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // Horn Leaves
+        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadTrunk, s.Unit.AccessoryColor)); // Trunk
+        BodyAccent = new SpriteExtraInfo(22, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadTrunk, s.Unit.AccessoryColor)); // Horns
+        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadLeaves, s.Unit.ExtraColor1)); // Horn Leaves
         BodyAccent3 = new SpriteExtraInfo(8, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Right Arm
-        BodyAccent4 = new SpriteExtraInfo(9, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Trunk Addon
-        BodyAccent5 = new SpriteExtraInfo(10, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // Trunk Addon2
+        BodyAccent4 = new SpriteExtraInfo(9, BodyAccentSprite4, null, (s) => AddonColors(s)); // Trunk Addon
+        BodyAccent5 = new SpriteExtraInfo(10, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadLeaves, s.Unit.ExtraColor1)); // Trunk Addon2
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
@@ -96,6 +96,7 @@ class WoodDryad : DefaultRaceData
         base.RandomCustom(unit);
 
         unit.HairStyle = State.Rand.Next(HairStyles);
+        unit.BodySize = State.Rand.Next(BodySizes);
 
         unit.SpecialAccessoryType = State.Rand.Next(SpecialAccessoryCount);
         unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
@@ -459,5 +460,10 @@ class WoodDryad : DefaultRaceData
         return Sprites6[106 + size];
     }
 
-
+    static ColorSwapPalette AddonColors(Actor_Unit actor)
+    {
+        if (actor.Unit.BodyAccentType4 == 1)
+            return null;
+        return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadTrunk, actor.Unit.AccessoryColor);
+    }
 }

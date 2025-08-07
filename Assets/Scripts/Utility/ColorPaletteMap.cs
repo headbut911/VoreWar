@@ -124,6 +124,7 @@ public static class ColorPaletteMap
         DryadTrunk,
         DryadLeaves,
         DryadMud,
+        DryadMudPattern,
         DryadRiver,
         DryadMushroom,
         GhostSkin,
@@ -279,6 +280,7 @@ public static class ColorPaletteMap
         List<ColorSwapPalette> DryadTrunkSwaps = WireUp(SwapType.DryadTrunk);
         List<ColorSwapPalette> DryadLeavesSwaps = WireUp(SwapType.DryadLeaves);
         List<ColorSwapPalette> DryadMudSwaps = WireUp(SwapType.DryadMud);
+        List<ColorSwapPalette> DryadMudPattenSwaps = WireUp(SwapType.DryadMudPattern);
         List<ColorSwapPalette> DryadRiverSwaps = WireUp(SwapType.DryadRiver);
         List<ColorSwapPalette> DryadMushroomSwaps = WireUp(SwapType.DryadMushroom);
         List<ColorSwapPalette> GhostSkinSwaps = WireUp(SwapType.GhostSkin);
@@ -2009,21 +2011,115 @@ public static class ColorPaletteMap
             JackalSkinSwaps.Add(swap);
         }
 
-        map = State.GameManager.PaletteDictionary.JackalSkin;
+        map = State.GameManager.PaletteDictionary.DryadTrunk;
         for (int pixelY = 0; pixelY < map.height; pixelY++)
         {
             Dictionary<int, Color> swapDict = new Dictionary<int, Color>
             {
-                [50] = map.GetPixel(0, pixelY),
-                [74] = map.GetPixel(5, pixelY),
+                [40] = map.GetPixel(0, pixelY),
                 [100] = map.GetPixel(1, pixelY),
-                [140] = map.GetPixel(6, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            DryadTrunkSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.DryadLeaves;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [40] = map.GetPixel(0, pixelY),
+                [100] = map.GetPixel(1, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            DryadLeavesSwaps.Add(swap);
+        }
+        map = State.GameManager.PaletteDictionary.DryadMud;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [30] = map.GetPixel(5, pixelY),
+                [40] = map.GetPixel(0, pixelY),
+                [100] = map.GetPixel(1, pixelY),
                 [150] = map.GetPixel(2, pixelY),
                 [200] = map.GetPixel(3, pixelY),
                 [250] = map.GetPixel(4, pixelY),
             };
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
-            JackalSkinSwaps.Add(swap);
+            DryadMudSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.DryadMudPattern;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [200] = map.GetPixel(0, pixelY),
+                [255] = map.GetPixel(1, pixelY),
+
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            DryadMudPattenSwaps.Add(swap);
+        }
+
+
+        map = State.GameManager.PaletteDictionary.DryadRiver;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+
+                [30] = map.GetPixel(5, pixelY),
+                [40] = map.GetPixel(0, pixelY),
+                [90] = map.GetPixel(6, pixelY),
+                [100] = map.GetPixel(1, pixelY),
+                [140] = map.GetPixel(7, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [190] = map.GetPixel(8, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+                [240] = map.GetPixel(9, pixelY),
+                [250] = map.GetPixel(4, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            DryadRiverSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.DryadMushroom;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [40] = map.GetPixel(0, pixelY),
+                [45] = map.GetPixel(5, pixelY),
+                [100] = map.GetPixel(1, pixelY),
+                [135] = map.GetPixel(6, pixelY),
+                [150] = map.GetPixel(2, pixelY),
+                [180] = map.GetPixel(7, pixelY),
+                [200] = map.GetPixel(3, pixelY),
+                [225] = map.GetPixel(8, pixelY),
+                [250] = map.GetPixel(4, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            DryadMushroomSwaps.Add(swap);
+        }
+
+        map = State.GameManager.PaletteDictionary.GhostSkin;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [81] = map.GetPixel(0, pixelY),
+                [153] = map.GetPixel(1, pixelY),
+                [198] = map.GetPixel(2, pixelY),
+                [229] = map.GetPixel(3, pixelY),
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            GhostSkinSwaps.Add(swap);
         }
 
         map = State.GameManager.PaletteDictionary.FeralLionsFur;

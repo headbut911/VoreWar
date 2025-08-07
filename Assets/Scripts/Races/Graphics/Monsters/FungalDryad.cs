@@ -20,10 +20,9 @@ class FungalDryad : DefaultRaceData
         SpecialAccessoryCount = 3; //Mushroom Hats
         HairStyles = 6;
         MouthTypes = 9;
-        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor); // Leaves
-        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin); // Trunk
-        HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
-        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
+        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadMushroom); // Trunk
+        HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadMushroom);
+        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadMushroom);
         BodyAccentTypes1 = 3; // Mushroom Damage
         BodyAccentTypes2 = 2; // Spots Y/N
         BodyAccentTypes3 = 3; // Spot Type
@@ -32,32 +31,32 @@ class FungalDryad : DefaultRaceData
 
         ExtendedBreastSprites = true;
 
-        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        BodyAccessory = new SpriteExtraInfo(22, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Mushroom Hat
-        BodyAccent = new SpriteExtraInfo(0, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Mushroom Hat Bottom
-        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // Mushroom Hat Spots
-        BodyAccent3 = new SpriteExtraInfo(5, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Right Arm
-        BodyAccent4 = new SpriteExtraInfo(5, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Left Arm
-        BodyAccent5 = new SpriteExtraInfo(10, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Under Mushroom
-        BodyAccent6 = new SpriteExtraInfo(10, BodyAccentSprite6, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Under Mushroom Color;
-        BodyAccent7 = new SpriteExtraInfo(10, BodyAccentSprite7, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // Under Mushroom Spots;
+        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.SkinColor));
+        Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.SkinColor));
+        BodyAccessory = new SpriteExtraInfo(22, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.AccessoryColor)); // Mushroom Hat
+        BodyAccent = new SpriteExtraInfo(0, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.AccessoryColor)); // Mushroom Hat Bottom
+        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.ExtraColor1)); // Mushroom Hat Spots
+        BodyAccent3 = new SpriteExtraInfo(5, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.SkinColor)); // Right Arm
+        BodyAccent4 = new SpriteExtraInfo(5, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.SkinColor)); // Left Arm
+        BodyAccent5 = new SpriteExtraInfo(10, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.AccessoryColor)); // Under Mushroom
+        BodyAccent6 = new SpriteExtraInfo(10, BodyAccentSprite6, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.AccessoryColor)); // Under Mushroom Color;
+        BodyAccent7 = new SpriteExtraInfo(10, BodyAccentSprite7, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.ExtraColor1)); // Under Mushroom Spots;
         BodyAccent8 = new SpriteExtraInfo(17, BodyAccentSprite8, WhiteColored); // Right Arm Swipe;
         BodyAccent9 = new SpriteExtraInfo(17, BodyAccentSprite9, WhiteColored); // Left Arm Swipe;
         Mouth = new SpriteExtraInfo(7, MouthSprite, WhiteColored);
-        Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor));
-        Hair2 = new SpriteExtraInfo(1, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor));
+        Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.SkinColor));
+        Hair2 = new SpriteExtraInfo(1, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.SkinColor));
         Hair3 = null; // Eyebrows
         Beard = null;
         Eyes = null;
         SecondaryEyes = new SpriteExtraInfo(7, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
         SecondaryAccessory = null;
-        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.SkinColor));
         Weapon = null;
         BackWeapon = null;
         BodySize = null;
-        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.SkinColor));
+        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMushroom, s.Unit.SkinColor));
         BreastShadow = null;
         Dick = null;
         Balls = null;
@@ -79,7 +78,6 @@ class FungalDryad : DefaultRaceData
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
         int humanPartOffset = 23;
-        AddOffset(Head, 0, humanPartOffset * .625f);
         AddOffset(Breasts, 0, humanPartOffset * .625f);
         AddOffset(SecondaryBreasts, 0, humanPartOffset * .625f);
         AddOffset(SecondaryEyes, 0, humanPartOffset * .625f);
@@ -92,6 +90,7 @@ class FungalDryad : DefaultRaceData
         base.RandomCustom(unit);
 
         unit.HairStyle = State.Rand.Next(HairStyles);
+        unit.BodySize = State.Rand.Next(BodySizes);
 
         unit.SpecialAccessoryType = State.Rand.Next(SpecialAccessoryCount);
         unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
@@ -112,37 +111,9 @@ class FungalDryad : DefaultRaceData
     {
         if (actor.IsEating)
         {
-            if (actor.Unit.BodySize > 1)
-            {
-                return State.GameManager.SpriteDictionary.HumansBodySprites2[4];
-            }
-            else
-            {
-                return State.GameManager.SpriteDictionary.HumansBodySprites2[1];
-            }
+            return Sprites5[5];
         }
-        else if (actor.IsAttacking)
-        {
-            if (actor.Unit.BodySize > 1)
-            {
-                return State.GameManager.SpriteDictionary.HumansBodySprites2[5];
-            }
-            else
-            {
-                return State.GameManager.SpriteDictionary.HumansBodySprites2[2];
-            }
-        }
-        else
-        {
-            if (actor.Unit.BodySize > 1)
-            {
-                return State.GameManager.SpriteDictionary.HumansBodySprites2[3];
-            }
-            else
-            {
-                return State.GameManager.SpriteDictionary.HumansBodySprites2[0];
-            }
-        }
+        return Sprites5[4];
     }
 
     protected override Sprite AccessorySprite(Actor_Unit actor) // Mushrooom Hat Front

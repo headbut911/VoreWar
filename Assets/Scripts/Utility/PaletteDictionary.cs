@@ -71,6 +71,7 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D DryadTrunk;
     public Texture2D DryadLeaves;
     public Texture2D DryadMud;
+    public Texture2D DryadMudPattern;
     public Texture2D DryadRiver;
     public Texture2D DryadMushroom;
     public Texture2D GhostSkin;

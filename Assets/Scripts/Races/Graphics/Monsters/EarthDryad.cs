@@ -21,10 +21,11 @@ class EarthDryad : DefaultRaceData
         SpecialAccessoryCount = 4; //Pattern
         HairStyles = 5;
         MouthTypes = 5;
-        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor); // Leaves
-        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin); // Pattern
+        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadTrunk); // Horns
+        ExtraColors2 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadLeaves); // Leaves
+        AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadMudPattern); // Pattern
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
-        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
+        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadMud);
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor);
         BodyAccentTypes1 = 6; // Horns
         BodyAccentTypes2 = 2; // Leaves On/Off
@@ -33,12 +34,12 @@ class EarthDryad : DefaultRaceData
 
         ExtendedBreastSprites = true;
 
-        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Pattern
-        BodyAccent = new SpriteExtraInfo(22, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Horns
-        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // Horn Leaves
-        BodyAccent3 = new SpriteExtraInfo(8, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Arms
+        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMud, s.Unit.SkinColor));
+        Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMud, s.Unit.SkinColor));
+        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMudPattern, s.Unit.AccessoryColor)); // Pattern
+        BodyAccent = new SpriteExtraInfo(22, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadTrunk, s.Unit.ExtraColor1)); // Horns
+        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadLeaves, s.Unit.ExtraColor2)); // Horn Leaves
+        BodyAccent3 = new SpriteExtraInfo(8, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMud, s.Unit.SkinColor)); // Arms
         BodyAccent4 = null;
         BodyAccent5 = null; 
         BodyAccent6 = null;
@@ -52,12 +53,12 @@ class EarthDryad : DefaultRaceData
         Eyes = new SpriteExtraInfo(8, EyesSprite, WhiteColored);
         SecondaryEyes = new SpriteExtraInfo(7, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
         SecondaryAccessory = null;
-        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMud, s.Unit.SkinColor));
         Weapon = null;
         BackWeapon = null;
         BodySize = null;
-        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMud, s.Unit.SkinColor));
+        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadMud, s.Unit.SkinColor));
         BreastShadow = null;
         Dick = null;
         Balls = null;
@@ -91,6 +92,7 @@ class EarthDryad : DefaultRaceData
         base.RandomCustom(unit);
 
         unit.HairStyle = State.Rand.Next(HairStyles);
+        unit.BodySize = State.Rand.Next(BodySizes);
 
         unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
@@ -192,7 +194,7 @@ class EarthDryad : DefaultRaceData
 
     protected override Sprite HairSprite3(Actor_Unit actor)
     {
-        return Sprites[18 + actor.Unit.BodyAccentType3];
+        return Sprites5[18 + actor.Unit.BodyAccentType3];
     }
 
     protected override Sprite EyesSprite(Actor_Unit actor)

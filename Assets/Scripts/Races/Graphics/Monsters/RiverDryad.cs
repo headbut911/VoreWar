@@ -17,14 +17,11 @@ class RiverDryad : DefaultRaceData
     {
         CanBeGender = new List<Gender>() { Gender.Female};
         BodySizes = 3;
-        EyeTypes = 4;
         SpecialAccessoryCount = 4; //Pattern
         HairStyles = 6;
         MouthTypes = 5;
-        ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor); // Leaves
-        HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
-        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
-        EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor);
+        HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadRiver);
+        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadRiver);
         EarTypes = 3; // Ears
         BodyAccentTypes2 = 2; // Leaves On/Off
         BodyAccentTypes3 = 4; // eyebrows
@@ -32,31 +29,31 @@ class RiverDryad : DefaultRaceData
 
         ExtendedBreastSprites = true;
 
-        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Pattern
-        BodyAccent = new SpriteExtraInfo(20, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.AccessoryColor)); // Ears
-        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.ExtraColor1)); // AttackBubbles
-        BodyAccent3 = new SpriteExtraInfo(8, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // Arms
+        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor));
+        Head = new SpriteExtraInfo(6, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor));
+        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor)); // Pattern
+        BodyAccent = new SpriteExtraInfo(20, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.AccessoryColor)); // Ears
+        BodyAccent2 = new SpriteExtraInfo(23, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.ExtraColor1)); // AttackBubbles
+        BodyAccent3 = new SpriteExtraInfo(8, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor)); // Arms
         BodyAccent4 = null;
         BodyAccent5 = null; 
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
         Mouth = new SpriteExtraInfo(7, MouthSprite, WhiteColored);
-        Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        Hair2 = new SpriteExtraInfo(1, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor));
+        Hair2 = new SpriteExtraInfo(1, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor));
         Hair3 = null;
         Beard = null;
         Eyes = null;
         SecondaryEyes = null;
         SecondaryAccessory = null;
-        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor));
         Weapon = null;
         BackWeapon = null;
         BodySize = null;
-        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor));
+        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DryadRiver, s.Unit.SkinColor));
         BreastShadow = null;
         Dick = null;
         Balls = null;
@@ -90,6 +87,7 @@ class RiverDryad : DefaultRaceData
         base.RandomCustom(unit);
 
         unit.HairStyle = State.Rand.Next(HairStyles);
+        unit.BodySize = State.Rand.Next(BodySizes);
 
         unit.EarType = State.Rand.Next(EarTypes);
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);

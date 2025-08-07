@@ -19,17 +19,15 @@ class Ghosts : DefaultRaceData
         HairStyles = 9;
         MouthTypes = 6;
         AccessoryColors = 0;
-        HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
-        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
-        EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EyeColor);
+        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.GhostSkin);
         BodyAccentTypes1 = 6; // eyebrows
         EyeTypes = 7;
 
         ExtendedBreastSprites = true;
 
-        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); //Upper Body
+        Body = new SpriteExtraInfo(4, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor)); //Upper Body
         Head = null; 
-        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor)); // LowerBody
+        BodyAccessory = new SpriteExtraInfo(7, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor)); // LowerBody
         BodyAccent = null;
         BodyAccent2 = null;
         BodyAccent3 = null;
@@ -39,22 +37,22 @@ class Ghosts : DefaultRaceData
         BodyAccent7 = null;
         BodyAccent8 = null;
         Mouth = new SpriteExtraInfo(7, MouthSprite, WhiteColored);
-        Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UniversalHair, s.Unit.HairColor));
+        Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
         Hair2 = null;
         Hair3 = null;
         Beard = null;
         Eyes = new SpriteExtraInfo(8, EyesSprite, WhiteColored);
         SecondaryEyes = null;
         SecondaryAccessory = null;
-        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
+        Belly = new SpriteExtraInfo(14, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
+        Weapon = new SpriteExtraInfo(6, WeaponSprite, null, (s) => WeaponColor(s));
         BackWeapon = null;
         BodySize = null;
-        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
+        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
         BreastShadow = null;
-        Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
-        Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, s.Unit.SkinColor));
+        Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
+        Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
 
 
         AllowedMainClothingTypes = new List<MainClothing>()
@@ -75,6 +73,7 @@ class Ghosts : DefaultRaceData
 
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
+        AddOffset(Dick, 0, 13 * .625f);
     }
 
 
@@ -523,5 +522,37 @@ class Ghosts : DefaultRaceData
         if (offset > 0)
             return Sprites4[Math.Min(112 + offset, 138)];
         return Sprites4[106 + size];
+    }
+
+    static ColorSwapPalette WeaponColor(Actor_Unit actor)
+    {
+        if (actor.Unit.HasWeapon && actor.Surrendered == false)
+        {
+            switch (actor.GetWeaponSprite())
+            {
+                case 0:
+                    return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, actor.Unit.SkinColor);
+                case 1:
+                    return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, actor.Unit.SkinColor);
+                case 2:
+                    return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, actor.Unit.SkinColor);
+                case 3:
+                    return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, actor.Unit.SkinColor);
+                case 4:
+                    return null;
+                case 5:
+                    return null;
+                case 6:
+                    return null;
+                case 7:
+                    return null;
+                default:
+                    return null;
+            }
+        }
+        else
+        {
+            return null;
+        }
     }
 }
