@@ -88,5 +88,7 @@
     Morphed = 44,
     /// <summary>Digestion damage reduced by strength per turn remaining</summary>
     Diluted = 45,
+    /// <summary>Weapon damage increased by strength as a percentage for the next attack.</summary>
+    Sharpness = 45,
 }
 

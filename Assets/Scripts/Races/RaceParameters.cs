@@ -1207,7 +1207,7 @@ static class RaceParameters
             Traits.DexterousDefense,
             Traits.Finesse,
         },
-            RaceDescription = "A race of desert dwellers, recent disturbances have brought them from their charge of guarding the ancient dangers luring within the pyramids they call home.",
+            RaceDescription = "A race of desert dwelling canine, recent disturbances have brought them from their charge of guarding tomb raiders and adventurers from releasing the ancient dangers luring within the pyramids they call home.",
         };
 
         Ghosts = new RaceTraits()
@@ -1215,16 +1215,16 @@ static class RaceParameters
             BodySize = 12,
             StomachSize = 20,
             HasTail = false,
-            FavoredStat = Stat.Endurance,
+            FavoredStat = Stat.Agility,
             DeployCost = 1,
-            Upkeep = 3f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
-            Traits.PackMind,
-            Traits.DexterousDefense,
-            Traits.Finesse,
+            Traits.FocusedDodge,
+            Traits.ArtfulDodge,
+            Traits.LightFrame,
         },
-            RaceDescription = "",
+            RaceDescription = "The spooky spirits of the dead, come back in new incorporeal forms to haunt and feast upon the living. Formed when a soul takes five or more years to cross to the other side, these poltergeists, being dead, have no need for nutrition, and hunt for the fun of it and to spite the living.",
         };
 
         Centaur = new RaceTraits()
@@ -3316,11 +3316,10 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Slippery,
-            Traits.Ravenous,
             Traits.Nauseous,
             Traits.SlowDigestion
         },
-            RaceDescription = ""
+            RaceDescription = "Devoted protectors of plants and trees, these Dryads are living incarnations of the plants all around them. They prefer to remain rooted in place, their natural magics healing and soothing the natural world around them, but they often move from place to place to find those who defile nature, and turn them to mulch.\r\n"
         };
 
         EarthDryad = new RaceTraits()
@@ -3348,11 +3347,10 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Slippery,
-            Traits.Ravenous,
             Traits.Nauseous,
             Traits.SlowDigestion
         },
-            RaceDescription = ""
+            RaceDescription = "Living incarnations of the land itself, Earth Dryads are both gentle and hardy, showing mercy to those who respect the soil, and adding those don't to the soil. They often employ stone spikes to attack those they deem a threat to the natural world. Touching one is generally not a good idea."
         };
 
         RiverDryad = new RaceTraits()
@@ -3380,11 +3378,10 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Slippery,
-            Traits.Ravenous,
             Traits.Nauseous,
             Traits.SlowDigestion
         },
-            RaceDescription = ""
+            RaceDescription = "Playful and curious, River Dryads are the living incarnations of clear water. They spend much of their time guiding rivers and streams, helping to keep nature watered. While they can seem friendly, be warned, they possess the same power of the rushing rapids."
         };
 
         FungalDryad = new RaceTraits()
@@ -3412,11 +3409,10 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Slippery,
-            Traits.Ravenous,
             Traits.Nauseous,
             Traits.SlowDigestion
         },
-            RaceDescription = ""
+            RaceDescription = "When a Wood Dryad dies, sometimes their spirit fails to leave, and they are reborn in a new, fungal form. Any mercy they may once have had is gone, their deceptively sharp claws cutting through any that dare try to stand up to the mushroom menace. These erratic Dryads are always eager to showing those they find their favorite part of the life cycle.\r\n"
         };
 
         Selicia = new RaceTraits()

@@ -457,10 +457,6 @@ public enum Traits
     DexterousDefense = 530,
     /// <summary>Unit gains increased dodge. This bonus is disabled for 3 turns after taking damage.</summary>
     FocusedDodge = 531,
-    /// <summary>Unit gains 20% of it's dexterity as Parry stacks each turn (up to a a maximum of 100% of it's dexterity), Reducing damage from melee attacks if it wields a melee weapon. This bonus is disabled for 3 turns after taking damage.</summary>
-    FocusedParry = 532,
-    /// <summary>Unit deals . This bonus is disabled for 3 turns after taking damage.</summary>
-    FocusedFerocity = 533,
 
 
 

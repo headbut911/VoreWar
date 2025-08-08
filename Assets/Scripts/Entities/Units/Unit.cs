@@ -1800,7 +1800,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             float effect = 0.25f * GetStatusEffect(StatusEffectType.Necrosis).Strength;
             modAmount -= (int)Math.Round(modAmount * effect);
-        }
+        }      
         Health += modAmount;
         if (Health > MaxHealth)
         {

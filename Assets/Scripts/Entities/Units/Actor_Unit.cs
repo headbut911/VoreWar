@@ -1726,6 +1726,8 @@ public class Actor_Unit
 
                 EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnRangedAttack, new object[] { this, target, damage });
 
+                if (Unit.GetStatusEffect(StatusEffectType.Sharpness) != null)
+                    damage += damage * (Unit.GetStatusEffect(StatusEffectType.Sharpness).Duration / 100);
                 State.GameManager.SoundManager.PlaySwing(this);
                 if (target.Defend(this, ref damage, true, out float chance, canKill))
                 {
@@ -1743,6 +1745,8 @@ public class Actor_Unit
                         target.Unit.AddTenacious();
                     if (target.Unit.GetStatusEffect(StatusEffectType.Focus) != null)                  
                         target.Unit.RemoveFocus();
+                    if (Unit.GetStatusEffect(StatusEffectType.Sharpness) != null)                  
+                        Unit.RemoveStackStatus(StatusEffectType.Sharpness, Unit.GetStatusEffect(StatusEffectType.Focus).Duration / 2);
 
                     TacticalGraphicalEffects.CreateProjectile(this, target);
 
@@ -1803,6 +1807,8 @@ public class Actor_Unit
                 int remainingHealth = target.Unit.Health;
                 int damage = WeaponDamageAgainstTarget(target, false, multiplier: damageMultiplier, forceBite);
 
+                if (Unit.GetStatusEffect(StatusEffectType.Sharpness) != null)
+                    damage += damage * (Unit.GetStatusEffect(StatusEffectType.Sharpness).Duration / 50);
 
                 EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeAttack, new object[] { this, target, damage });
                 bool blocked = false;
@@ -1844,6 +1850,8 @@ public class Actor_Unit
                         Unit.ApplyStatusEffect(StatusEffectType.Poisoned, 2 + target.Unit.GetStat(Stat.Endurance) / 20, 3);
                     if (Unit.HasTrait(Traits.ForcefulBlow))
                         TacticalUtilities.KnockBack(this, target);
+                    if (Unit.GetStatusEffect(StatusEffectType.Sharpness) != null)
+                        Unit.RemoveStackStatus(StatusEffectType.Sharpness, Unit.GetStatusEffect(StatusEffectType.Focus).Duration / 2);
                     State.GameManager.SoundManager.PlayMeleeHit(target);
 
                     State.GameManager.TacticalMode.TacticalStats.RegisterHit(BestMelee, Mathf.Min(damage, remainingHealth), Unit.Side);

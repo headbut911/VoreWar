@@ -347,6 +347,16 @@ public class InfoPanel
                 return "Virae Ultimae";
             case Race.Viisels:
                 return "Viisel";
+            case Race.Ghosts:
+                return "Ghost";
+            case Race.WoodDryad:
+                return "Wood Dryad";
+            case Race.EarthDryad:
+                return "Earth Dryad";
+            case Race.RiverDryad:
+                return "River Dryad";
+            case Race.FungalDryad:
+                return "Fungal Dryad";
             case Race.none:
                 return "None";
         }
@@ -553,6 +563,16 @@ public class InfoPanel
                 return "Virae Ultimae";
             case Race.Viisels:
                 return "Viisel";
+            case Race.Ghosts:
+                return "Ghost";
+            case Race.WoodDryad:
+                return "Wood Dryad";
+            case Race.EarthDryad:
+                return "Earth Dryad";
+            case Race.RiverDryad:
+                return "River Dryad";
+            case Race.FungalDryad:
+                return "Fungal Dryad";
         }
         return empire.ReplacedRace.ToString();
     }

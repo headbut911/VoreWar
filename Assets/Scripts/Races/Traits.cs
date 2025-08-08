@@ -222,6 +222,7 @@ static class TraitList
         [Traits.Vampirism] = new Vampirism(),
         [Traits.Stinger] = new Stinger(),
         [Traits.DefensiveStance] = new DefensiveStance(),
+        [Traits.FocusedDodge] = new FocusedDodge(),
         [Traits.Ravenous] = new Ravenous(),
         [Traits.EasilySatisfied] = new EasilySatisfied(),
         [Traits.Possession] = new Possession(),
@@ -492,6 +493,14 @@ internal class DefensiveStance : Trait, IVoreDefenseOdds, IPhysicalDefenseOdds
     public void VoreDefense(Actor_Unit defender, ref float voreMult) => voreMult *= defender.Movement > 0 ? 1.333f : 1;
 }
 
+internal class FocusedDodge : Trait, IVoreDefenseOdds, IPhysicalDefenseOdds
+{
+    public FocusedDodge() => Description = "Unit gets a 20% bonus to defense if it has at not taken damage in the last 3 turns";
+
+    public void PhysicalDefense(Actor_Unit defender, ref float defMult) => defMult += defender.TurnsSinceLastDamage >= 3 ? 0.8f : 0;
+
+    public void VoreDefense(Actor_Unit defender, ref float voreMult) => voreMult *= defender.TurnsSinceLastDamage >= 3 ? 1.333f : 1;
+}
 
 internal class Ravenous : Trait, IVoreAttackOdds
 {

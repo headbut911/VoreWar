@@ -118,6 +118,10 @@ static class TacticalGraphicalEffects
             return State.GameManager.SpriteDictionary.Slimes[17];
         else if (actor.Unit.Race == Race.SpitterSlugs)
             return State.GameManager.SpriteDictionary.SpitterSlug[10];
+        else if (actor.Unit.Race == Race.EarthDryad)
+            return State.GameManager.SpriteDictionary.DryadSprites3[17];
+        else if (actor.Unit.Race == Race.RiverDryad)
+            return State.GameManager.SpriteDictionary.DryadSprites5[17];
         else if (actor.Unit.Race == Race.Bats)
             return State.GameManager.SpriteDictionary.Demibats1[132];
         else if (actor.Unit.Race == Race.RwuMercenaries && (weapon.Graphic == 4 || weapon.Graphic == 6))

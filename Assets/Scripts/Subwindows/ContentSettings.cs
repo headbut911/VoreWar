@@ -423,7 +423,8 @@ public class ContentSettings : MonoBehaviour
         foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
         { //Done separately to keep their initial order for now
             if (race >= Race.Vagrants && race < Race.Selicia && race != Race.WyvernMatron && race != Race.DarkSwallower && race != Race.Collectors && race != Race.CoralSlugs
-                && race != Race.SpitterSlugs && race != Race.SpringSlugs && race != Race.Raptor && race != Race.WarriorAnts && race != Race.FeralEevee && race != Race.FeralEqualeon)
+                && race != Race.SpitterSlugs && race != Race.SpringSlugs && race != Race.Raptor && race != Race.WarriorAnts && race != Race.FeralEevee && race != Race.FeralEqualeon 
+                && race != Race.EarthDryad && race != Race.RiverDryad && race != Race.FungalDryad)
             {
                 var spawner = CreateMonsterPanel(race);
                 MonsterSpawners.Add(spawner);
@@ -571,6 +572,9 @@ public class ContentSettings : MonoBehaviour
                 tooltip.value = 332;
                 break;
             case Race.Viisels:
+                tooltip.value = 333;
+                break;
+            case Race.WoodDryad:
                 tooltip.value = 333;
                 break;
         }
