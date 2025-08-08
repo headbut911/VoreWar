@@ -2710,7 +2710,7 @@ public class Actor_Unit
 
         }
         else
-            RampStacks += (Config.DigestionRampLoss >= 0 ? 1 : -1) / Config.DigestionRampTurn;
+            RampStacks += (Config.DigestionRampLoss >= 0 ? 1 : -1) / (Config.DigestionRampTurn == 0 ? 1 : Config.DigestionRampTurn);
 
         NewTurnPostMPTraits();
         
