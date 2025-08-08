@@ -2092,6 +2092,8 @@ public class MapEditor : SceneBase
         doodads = newDoodads;
         Config.World.StrategicWorldSizeX = x;
         Config.World.StrategicWorldSizeY = y;
+        State.World.Tiles = tiles;
+        State.World.Doodads = doodads;
         RecreateObjects();
 
         ResizeUI.gameObject.SetActive(false);
