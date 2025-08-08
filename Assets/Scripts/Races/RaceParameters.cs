@@ -137,6 +137,8 @@ static class RaceParameters
     static readonly RaceTraits Raiju;
     static readonly RaceTraits Smudger;
     static readonly RaceTraits SpaceCroach;
+    static readonly RaceTraits Trex;
+    static readonly RaceTraits Utahraptor;
     static readonly RaceTraits Ghosts;
     static readonly RaceTraits WoodDryad;
     static readonly RaceTraits EarthDryad;
@@ -443,6 +445,10 @@ static class RaceParameters
                 return RiverDryad;
             case Race.FungalDryad:
                 return FungalDryad;
+            case Race.Trex:
+                return Trex;
+            case Race.Utahraptor:
+                return Utahraptor;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -3371,6 +3377,40 @@ static class RaceParameters
             RaceDescription = "A race of slug-like beings from somewhere beyond the portals.  Their friendly and soft shape is but a ploy to lure in the more gullible prey of our world, and those that aren't fooled by it will discover that they are no pushovers in a struggle either.  Those who find themselves as prey to these creatures will find they don't wish to leave their insides, though if a predator can manage to devour one they will find a delectable meal as their bodies are incredibly nutritious.",
         };
 
+        SpaceCroach = new RaceTraits()
+        {
+            BodySize = 40,
+            StomachSize = 30,
+            HasTail = false,
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 2f,
+            DeployCost = 1,
+            Upkeep = 6f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(20, 28),
+                Dexterity = new RaceStats.StatRange(12, 20),
+                Endurance = new RaceStats.StatRange(15, 20),
+                Mind = new RaceStats.StatRange(6, 10),
+                Will = new RaceStats.StatRange(6, 10),
+                Agility = new RaceStats.StatRange(18, 26),
+                Voracity = new RaceStats.StatRange(6, 10),
+                Stomach = new RaceStats.StatRange(6, 10),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.SenseWeakness,
+            Traits.LightFrame,
+            Traits.BoggingSlime,
+            Traits.Ravenous,
+            Traits.Pounce,
+            Traits.NimbleClimber,
+        },
+            RaceDescription = "A mysterious race of roach-like beings from another universe."
+        };
+
         WoodDryad = new RaceTraits()
         {
             BodySize = 20,
@@ -3496,39 +3536,70 @@ static class RaceParameters
             RaceDescription = "When a Wood Dryad dies, sometimes their spirit fails to leave, and they are reborn in a new, fungal form. Any mercy they may once have had is gone, their deceptively sharp claws cutting through any that dare try to stand up to the mushroom menace. These erratic Dryads are always eager to showing those they find their favorite part of the life cycle.\r\n"
         };
 
-        SpaceCroach = new RaceTraits()
+        Trex = new RaceTraits()
         {
-            BodySize = 40,
-            StomachSize = 30,
+            BodySize = 90,
+            StomachSize = 50,
             HasTail = false,
             FavoredStat = Stat.Strength,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
-            ExpMultiplier = 4f,
-            PowerAdjustment = 2f,
-            DeployCost = 1,
-            Upkeep = 6f,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore, VoreType.Unbirth },
+            ExpMultiplier = 12f,
+            PowerAdjustment = 12f,
+            DeployCost = 2,
+            Upkeep = 12f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(20, 28),
-                Dexterity = new RaceStats.StatRange(12, 20),
-                Endurance = new RaceStats.StatRange(15, 20),
-                Mind = new RaceStats.StatRange(6, 10),
-                Will = new RaceStats.StatRange(6, 10),
-                Agility = new RaceStats.StatRange(18, 26),
-                Voracity = new RaceStats.StatRange(6, 10),
-                Stomach = new RaceStats.StatRange(6, 10),
+                Strength = new RaceStats.StatRange(30, 42),
+                Dexterity = new RaceStats.StatRange(8, 12),
+                Endurance = new RaceStats.StatRange(24, 30),
+                Mind = new RaceStats.StatRange(10, 14),
+                Will = new RaceStats.StatRange(10, 14),
+                Agility = new RaceStats.StatRange(12, 18),
+                Voracity = new RaceStats.StatRange(24, 32),
+                Stomach = new RaceStats.StatRange(24, 32),
             },
             RacialTraits = new List<Traits>()
         {
-            Traits.SenseWeakness,
-            Traits.LightFrame,
-            Traits.BoggingSlime,
+            Traits.Berserk,
+            Traits.Biter,
             Traits.Ravenous,
-            Traits.Pounce,
-            Traits.NimbleClimber,
+            Traits.IronGut,
         },
-            RaceDescription = "A mysterious race of roach-like beings from another universe."
+            RaceDescription = "They're big, they're scaled, they're hungry, and they got little arms.  Woe betide those who find themselves trapped behind their powerful jaws, for this is the ultimate predator whose iconic roar is known far and wide and strikes fear in all those who hear it."
         };
+
+        Utahraptor = new RaceTraits()
+        {
+            BodySize = 30,
+            StomachSize = 30,
+            HasTail = false,
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore, VoreType.Unbirth },
+            ExpMultiplier = 4f,
+            PowerAdjustment = 2f,
+            DeployCost = 2,
+            Upkeep = 5f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(15, 20),
+                Dexterity = new RaceStats.StatRange(8, 12),
+                Endurance = new RaceStats.StatRange(15, 20),
+                Mind = new RaceStats.StatRange(10, 14),
+                Will = new RaceStats.StatRange(10, 14),
+                Agility = new RaceStats.StatRange(12, 18),
+                Voracity = new RaceStats.StatRange(14, 20),
+                Stomach = new RaceStats.StatRange(14, 20),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Charge,
+            Traits.Pounce,
+            Traits.Biter,
+            Traits.BornToMove,
+        },
+            RaceDescription = "Utahraptors are much faster and more powerful thatn the usual raptors you see here and there.  More hungry too."
+        };
+
 
         Selicia = new RaceTraits()
         {

@@ -575,7 +575,25 @@ public class ContentSettings : MonoBehaviour
                 tooltip.value = 333;
                 break;
             case Race.WoodDryad:
-                tooltip.value = 333;
+                tooltip.value = 337;
+                break;
+            case Race.Otachi:
+                tooltip.value = 338;
+                break;
+            case Race.Raiju:
+                tooltip.value = 339;
+                break;
+            case Race.Smudger:
+                tooltip.value = 340;
+                break;
+            case Race.SpaceCroach:
+                tooltip.value = 341;
+                break;
+            case Race.Trex:
+                tooltip.value = 342;
+                break;
+            case Race.Utahraptor:
+                tooltip.value = 343;
                 break;
         }
         return spawner;

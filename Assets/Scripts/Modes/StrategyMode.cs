@@ -574,6 +574,27 @@ public class StrategyMode : SceneBase
                             case StrategicDoodadType.SpawnerFeralUmbreon:
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.FeralUmbreon));
                                 break;
+                            case StrategicDoodadType.SpawnerDryad:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.WoodDryad));
+                                break;
+                            case StrategicDoodadType.SpawnerOtachi:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Otachi));
+                                break;
+                            case StrategicDoodadType.SpawnerRaiju:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Raiju));
+                                break;
+                            case StrategicDoodadType.SpawnerSmudger:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Smudger));
+                                break;
+                            case StrategicDoodadType.SpawnerSpaceCroach:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.SpaceCroach));
+                                break;
+                            case StrategicDoodadType.SpawnerTrex:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Trex));
+                                break;
+                            case StrategicDoodadType.SpawnerUtahraptor:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Utahraptor));
+                                break;
                         }
                     }
                 }

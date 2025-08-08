@@ -385,6 +385,10 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] SpaceCroach;
     public Sprite[] Raiju;
     public Sprite[] Raiju240;
+    public Sprite[] Utahraptor200;
+    public Sprite[] Utahraptor240A;
+    public Sprite[] Utahraptor240B;
+    public Sprite[] Trex;
 
     public Sprite[] DryadSprites1;
     public Sprite[] DryadSprites2;

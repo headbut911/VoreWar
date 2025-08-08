@@ -123,8 +123,8 @@ public static class ColorPaletteMap
         JackalSkin,
         FireflyColor,
         SmudgerSkin,
-		SpaceCroachSkin,
-		RaijuSkin,
+        SpaceCroachSkin,
+        RaijuSkin,
         DryadTrunk,
         DryadLeaves,
         DryadMud,
@@ -132,6 +132,7 @@ public static class ColorPaletteMap
         DryadRiver,
         DryadMushroom,
         GhostSkin,
+        TrexSkin,
     }
 
     static Dictionary<SwapType, List<ColorSwapPalette>> Swaps;
@@ -310,6 +311,7 @@ public static class ColorPaletteMap
         List<ColorSwapPalette> SmudgerSkinSwaps = WireUp(SwapType.SmudgerSkin);
         List<ColorSwapPalette> SpaceCroachSkinSwaps = WireUp(SwapType.SpaceCroachSkin);
         List<ColorSwapPalette> RaijuSkinSwaps = WireUp(SwapType.RaijuSkin);
+        List<ColorSwapPalette> TrexSkinSwaps = WireUp(SwapType.TrexSkin);
 
         int[] NormalIndexes = { 81, 153, 198, 229, 255 };
         Texture2D map = State.GameManager.PaletteDictionary.SimpleHair;
@@ -2528,7 +2530,7 @@ public static class ColorPaletteMap
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
             ViiselSkinSwaps.Add(swap);
         }
-        
+
         map = State.GameManager.PaletteDictionary.SmudgerSkin;
         for (int pixelY = 0; pixelY < map.height; pixelY++)
         {
@@ -2579,7 +2581,7 @@ public static class ColorPaletteMap
             SpaceCroachSkinSwaps.Add(swap);
         }
 
-		map = State.GameManager.PaletteDictionary.RaijuSkin;
+        map = State.GameManager.PaletteDictionary.RaijuSkin;
         for (int pixelY = 0; pixelY < map.height; pixelY++)
         {
             Dictionary<int, Color> swapDict = new Dictionary<int, Color>
@@ -2600,6 +2602,27 @@ public static class ColorPaletteMap
             };
             ColorSwapPalette swap = new ColorSwapPalette(swapDict);
             RaijuSkinSwaps.Add(swap);
+        }
+        map = State.GameManager.PaletteDictionary.TrexSkin;
+        for (int pixelY = 0; pixelY < map.height; pixelY++)
+        {
+            Dictionary<int, Color> swapDict = new Dictionary<int, Color>
+            {
+                [5] = map.GetPixel(11, pixelY),
+                [35] = map.GetPixel(10, pixelY),
+                [55] = map.GetPixel(9, pixelY),
+                [75] = map.GetPixel(8, pixelY),
+                [95] = map.GetPixel(7, pixelY),
+                [125] = map.GetPixel(6, pixelY),
+                [145] = map.GetPixel(5, pixelY),
+                [165] = map.GetPixel(4, pixelY),
+                [185] = map.GetPixel(3, pixelY),
+                [215] = map.GetPixel(2, pixelY),
+                [235] = map.GetPixel(1, pixelY),
+                [255] = map.GetPixel(0, pixelY)
+            };
+            ColorSwapPalette swap = new ColorSwapPalette(swapDict);
+            TrexSkinSwaps.Add(swap);
         }
     }
 

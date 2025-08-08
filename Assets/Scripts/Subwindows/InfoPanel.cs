@@ -153,7 +153,7 @@ public class InfoPanel
             case Race.Foxes:
                 return "Fox";
             case Race.Youko:
-                return "Youko";    
+                return "Youko";
             case Race.Wolves:
                 return "Wolf";
             case Race.Bunnies:
@@ -369,6 +369,10 @@ public class InfoPanel
                 return "River Dryad";
             case Race.FungalDryad:
                 return "Fungal Dryad";
+            case Race.SpaceCroach:
+                return "Space Roach";
+            case Race.Trex:
+                return "T-Rex";
             case Race.none:
                 return "None";
         }
@@ -597,6 +601,10 @@ public class InfoPanel
                 return "River Dryad";
             case Race.FungalDryad:
                 return "Fungal Dryad";
+            case Race.SpaceCroach:
+                return "Space Roach";
+            case Race.Trex:
+                return "T-Rex";
         }
         return empire.ReplacedRace.ToString();
     }

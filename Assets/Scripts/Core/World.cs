@@ -6,7 +6,7 @@ using System.Linq;
 
 public class World
 {
-    internal const int MonsterCount = 42;//Be sure to increase when adding new monsters
+    internal const int MonsterCount = 48;//Be sure to increase when adding new monsters
     [OdinSerialize]
     public int Turn = 1;
     [OdinSerialize]
@@ -267,6 +267,12 @@ public class World
         MonsterEmpires[39] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Viisels, UnityEngine.Color.white, UnityEngine.Color.white, 67, StrategyAIType.Monster, TacticalAIType.Full, 1033, 32, 0));
         MonsterEmpires[40] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.FeralUmbreon, UnityEngine.Color.white, UnityEngine.Color.white, 68, StrategyAIType.Monster, TacticalAIType.Full, 1034, 32, 0));
         MonsterEmpires[41] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.WoodDryad, UnityEngine.Color.white, UnityEngine.Color.white, 69, StrategyAIType.Monster, TacticalAIType.Full, 1035, 32, 0));
+        MonsterEmpires[42] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Otachi, UnityEngine.Color.white, UnityEngine.Color.white, 70, StrategyAIType.Monster, TacticalAIType.Full, 1036, 32, 0));
+        MonsterEmpires[43] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Raiju, UnityEngine.Color.white, UnityEngine.Color.white, 71, StrategyAIType.Monster, TacticalAIType.Full, 1037, 32, 0));
+        MonsterEmpires[44] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Smudger, UnityEngine.Color.white, UnityEngine.Color.white, 72, StrategyAIType.Monster, TacticalAIType.Full, 1038, 32, 0));
+        MonsterEmpires[45] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.SpaceCroach, UnityEngine.Color.white, UnityEngine.Color.white, 73, StrategyAIType.Monster, TacticalAIType.Full, 1039, 32, 0));
+        MonsterEmpires[46] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Trex, UnityEngine.Color.white, UnityEngine.Color.white, 74, StrategyAIType.Monster, TacticalAIType.Full, 1040, 32, 0));
+        MonsterEmpires[47] = new MonsterEmpire(new Empire.ConstructionArgs((int)Race.Utahraptor, UnityEngine.Color.white, UnityEngine.Color.white, 75, StrategyAIType.Monster, TacticalAIType.Full, 1041, 32, 0));
         foreach (var emp in MonsterEmpires)
         {
             SpawnerInfo spawner = Config.SpawnerInfo(emp.Race);

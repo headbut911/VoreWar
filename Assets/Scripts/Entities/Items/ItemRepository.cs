@@ -281,7 +281,7 @@ public class ItemRepository
             new Weapon(name:"Bladed Appendage", description:"The Terminids' armored exoskeleton is both sturdy and sharp enough to pierce through most contemporary armor.  And when four or five of them strike you at once.... ^v><^ ", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Orca Jaws", description:"The fearsome jaws of a killer whale", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Exploding Paw", description:"Normaly a bunny's punch would be a laughable attack, but this bunny's paws seem to explode on contact. So...", cost:4, graphic:0, damage:5, range:1),
-            new Weapon(name:"Otachi Claws", description:"The all-powerful kaiju claws of the Otachi.", cost:4, graphic:0, damage:6, range:1),
+            new Weapon(name:"Otachi Claws", description:"The all-powerful claws of the Otachi.", cost:4, graphic:0, damage:6, range:1),
             new Weapon(name:"Slime Tackle", description:"Slime attack.", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Viral Stinger", description:"A viral stinger laced with Virae Ultimae cells to infect prey.", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Viisel Claw", description:"Claw Attack", cost:4, graphic:0, damage:4, range:1),
@@ -293,8 +293,10 @@ public class ItemRepository
             new Weapon(name:"Space Roach Mandibles", description:"Space Roach Mandibles", cost:4, graphic:0, damage:6, range:1),
             new Weapon(name:"Dryad Punch", description:"Both Bark and Bite", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Earth Spike", description:"A heavy spike made of packed dirt", cost:4, graphic:0, damage:4, range:5, omniWeapon: true),
-            new Weapon(name:"Earth Spike", description:"A heavy spike made of packed dirt", cost:4, graphic:0, damage:4, range:5, omniWeapon: true, magicWeapon: true),
+            new Weapon(name:"Torrent", description:"Raw element of water right in your face", cost:4, graphic:0, damage:4, range:5, omniWeapon: true, magicWeapon: true),
             new Weapon(name:"Fungal Claw", description:"Sharp claws of a fungal dryad", cost:4, graphic:0, damage:4, range:1),
+            new Weapon(name:"Rex Jaws", description:"Chomp!", cost:4, graphic:0, damage:15, range:1),
+            new Weapon(name:"Utahraptor Claws", description:"Utahraptor Claws", cost:4, graphic:0, damage:6, range:1),
         };
 
         specialItems = new List<Item>()

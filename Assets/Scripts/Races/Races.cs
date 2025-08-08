@@ -112,6 +112,11 @@
     static internal EarthDryad EarthDryad = new EarthDryad();
     static internal RiverDryad RiverDryad = new RiverDryad();
     static internal FungalDryad FungalDryad = new FungalDryad();
+    static internal Raiju Raiju = new Raiju();
+    static internal Smudger Smudger = new Smudger();
+    static internal SpaceCroach SpaceCroach = new SpaceCroach();
+    static internal Trex Trex = new Trex();
+    static internal Utahraptor Utahraptor = new Utahraptor();
 
     static internal Selicia Selicia = new Selicia();
     static internal Vision Vision = new Vision();
@@ -142,9 +147,7 @@
     static internal Skapa Skapa = new Skapa();
     static internal Tatltuae Tatltuae = new Tatltuae();
     static internal Firefly Firefly = new Firefly();
-    static internal Raiju Raiju = new Raiju();
-    static internal Smudger Smudger = new Smudger();
-    static internal SpaceCroach SpaceCroach = new SpaceCroach();
+
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -443,6 +446,10 @@
                 return RiverDryad;
             case Race.FungalDryad:
                 return FungalDryad;
+            case Race.Trex:
+                return Trex;
+            case Race.Utahraptor:
+                return Utahraptor;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

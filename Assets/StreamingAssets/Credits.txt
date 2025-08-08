@@ -74,6 +74,7 @@ A good amount of the unique race names by <b>Tatltuae</b>
 Bella
 
 <b><u>CaneSugarCat:</b></u>
+Dryads
 Feral Slime
 Jackal
 Mainland Elves
@@ -202,6 +203,8 @@ SpaceRoach
 Taraluxia
 Terminids
 Terrorbirds
+T-Rex
+Utahraptors
 Vargul
 Vipers
 

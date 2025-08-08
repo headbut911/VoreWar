@@ -813,6 +813,18 @@ Does not retroactively affect already created units.";
                 return "Enables, birds and bird-like races to have more accurate appearing scat sprites (Only works with V2 scat off)";
             case 337:
                 return "Enables the Dryad monster packs - it's a pack of four different Dryad with complimentary abilities";
+            case 338:
+                return "Enables wandering packs of Otachi.";
+            case 339:
+                return "Enables wandering packs of Raiju.";
+            case 340:
+                return "Enables wandering packs of Smudgers.";
+            case 341:
+                return "Enables wandering packs of Space Roaches.";
+            case 342:
+                return "Enables wandering packs of T-Rex.";
+            case 343:
+                return "Enables wandering packs of Utahraptors.";
             default:
                 return "";
         }

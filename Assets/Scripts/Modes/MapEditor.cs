@@ -717,6 +717,27 @@ public class MapEditor : SceneBase
             case StrategicDoodadType.SpawnerFeralUmbreon:
                 Tooltip.text = $"Place a monster spawn location for Feral Umbreon, they have to spawn within 2 tiles of a spawner if at least one exists";
                 break;
+            case StrategicDoodadType.SpawnerDryad:
+                Tooltip.text = $"Place a monster spawn location for the Dryads, they have to spawn within 2 tiles of a spawner if at least one exists";
+                break;
+            case StrategicDoodadType.SpawnerOtachi:
+                Tooltip.text = $"Place a monster spawn location for the Otachi, they have to spawn within 2 tiles of a spawner if at least one exists";
+                break;
+            case StrategicDoodadType.SpawnerRaiju:
+                Tooltip.text = $"Place a monster spawn location for the Raiju, they have to spawn within 2 tiles of a spawner if at least one exists";
+                break;
+            case StrategicDoodadType.SpawnerSmudger:
+                Tooltip.text = $"Place a monster spawn location for the Smudgers, they have to spawn within 2 tiles of a spawner if at least one exists";
+                break;
+            case StrategicDoodadType.SpawnerSpaceCroach:
+                Tooltip.text = $"Place a monster spawn location for the space Roaches, they have to spawn within 2 tiles of a spawner if at least one exists";
+                break;
+            case StrategicDoodadType.SpawnerTrex:
+                Tooltip.text = $"Place a monster spawn location for the T-Rex, they have to spawn within 2 tiles of a spawner if at least one exists";
+                break;
+            case StrategicDoodadType.SpawnerUtahraptor:
+                Tooltip.text = $"Place a monster spawn location for the Utahraptors, they have to spawn within 2 tiles of a spawner if at least one exists";
+                break;
             default:
                 Tooltip.text = $"Place {type} tile\n";
                 break;

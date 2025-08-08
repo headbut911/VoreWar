@@ -120,6 +120,8 @@
     EarthDryad = 156,
     RiverDryad = 157,
     FungalDryad = 158,
+    Trex = 159,
+    Utahraptor = 160,
 
     Selicia = 170,
     Vision = 171,

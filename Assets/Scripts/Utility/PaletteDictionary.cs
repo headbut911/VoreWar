@@ -96,4 +96,5 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D SmudgerSkin;
     public Texture2D SpaceCroachSkin;
     public Texture2D RaijuSkin;
+    public Texture2D TrexSkin;
 }

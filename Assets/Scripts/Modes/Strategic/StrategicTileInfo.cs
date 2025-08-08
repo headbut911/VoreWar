@@ -78,7 +78,7 @@ public enum StrategicDoodadType
     SpawnerTerrorbird = 1028,
     SpawnerDratopyr = 1029,
     SpawnerFeralLions = 1030,
-	SpawnerGoodra = 1031,
+    SpawnerGoodra = 1031,
     SpawnerFeralHorses = 1032,
     SpawnerFeralFox = 1033,
     SpawnerTerminid = 1034,
@@ -89,6 +89,12 @@ public enum StrategicDoodadType
     SpawnerViisels = 1039,
     SpawnerFeralUmbreon = 1040,
     SpawnerDryad = 1041,
+    SpawnerOtachi = 1042,
+    SpawnerRaiju = 1043,
+    SpawnerSmudger = 1044,
+    SpawnerSpaceCroach = 1045,
+    SpawnerTrex = 1046,
+    SpawnerUtahraptor = 1047,
 }
 
 public enum MovementType
