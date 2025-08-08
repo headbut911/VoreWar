@@ -3403,7 +3403,7 @@ static class RaceParameters
             RaceDescription = "When a Wood Dryad dies, sometimes their spirit fails to leave, and they are reborn in a new, fungal form. Any mercy they may once have had is gone, their deceptively sharp claws cutting through any that dare try to stand up to the mushroom menace. These erratic Dryads are always eager to showing those they find their favorite part of the life cycle.\r\n"
         };
 
-        /*Otachi = new RaceTraits()
+        Otachi = new RaceTraits()
         {
             BodySize = 80,
             StomachSize = 80,
@@ -3536,7 +3536,7 @@ static class RaceParameters
             RaceDescription = "A mysterious race of roach-like beings from another universe."
         };
 
-        /*Trex = new RaceTraits()
+        Trex = new RaceTraits()
         {
             BodySize = 90,
             StomachSize = 50,
@@ -3598,7 +3598,7 @@ static class RaceParameters
             Traits.BornToMove,
         },
             RaceDescription = "Utahraptors are much faster and more powerful thatn the usual raptors you see here and there.  More hungry too."
-        };*/
+        };
 
 
         Selicia = new RaceTraits()
