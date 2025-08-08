@@ -339,30 +339,45 @@ class Gnolls : DefaultRaceData
                 AddOffset(Belly, 0, -33 * .625f);
                 return VoreSprites[96];
             }
-            if (size > 30)
+            if (size > 31)
             {
-                size = 30;
+                size = 31;
             }
 
             switch (size)
             {
+                case 21:
+                    AddOffset(Belly, 0, -2 * .625f);
+                    break;
+                case 22:
+                    AddOffset(Belly, 0, -4 * .625f);
+                    break;
+                case 23:
+                    AddOffset(Belly, 0, -5 * .625f);
+                    break;
+                case 24:
+                    AddOffset(Belly, 0, -6 * .625f);
+                    break;
+                case 25:
+                    AddOffset(Belly, 0, -7 * .625f);
+                    break;
                 case 26:
-                    AddOffset(Belly, 0, -14 * .625f);
+                    AddOffset(Belly, 0, -10 * .625f);
                     break;
                 case 27:
-                    AddOffset(Belly, 0, -17 * .625f);
+                    AddOffset(Belly, 0, -15 * .625f);
                     break;
                 case 28:
                     AddOffset(Belly, 0, -20 * .625f);
                     break;
                 case 29:
-                    AddOffset(Belly, 0, -25 * .625f);
+                    AddOffset(Belly, 0, -23 * .625f);
                     break;
                 case 30:
-                    AddOffset(Belly, 0, -27 * .625f);
+                    AddOffset(Belly, 0, -29 * .625f);
                     break;
                 case 31:
-                    AddOffset(Belly, 0, -32 * .625f);
+                    AddOffset(Belly, 0, -35 * .625f);
                     break;
             }
 
