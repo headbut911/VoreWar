@@ -728,18 +728,19 @@ public class ContentSettings : MonoBehaviour
             Config.World.ResetSpawnerDictionary();
         foreach (MonsterSpawnerPanel spawner in MonsterSpawners)
         {
+            SpawnerInfo info = Config.SpawnerInfo(spawner.race);
             Config.World.SpawnerInfo[spawner.race] = new SpawnerInfo(
                 PlayerPrefs.GetInt($"{spawner.race} Enabled", 0) == 1,
-                PlayerPrefs.GetInt($"{spawner.race} Max Armies", 4),
-                PlayerPrefs.GetFloat($"{spawner.race} Spawn Rate", .15f),
-                PlayerPrefs.GetInt($"{spawner.race} Scale Factor", 40),
+                PlayerPrefs.GetInt($"{spawner.race} Max Armies", info.MaxArmies),
+                PlayerPrefs.GetFloat($"{spawner.race} Spawn Rate", info.spawnRate),
+                PlayerPrefs.GetInt($"{spawner.race} Scale Factor", (int)(info.scalingFactor * 100)),
                 PlayerPrefs.GetInt($"{spawner.race} Team", 900 + (int)spawner.race),
-                PlayerPrefs.GetInt($"{spawner.race} Attempts", 1),
+                PlayerPrefs.GetInt($"{spawner.race} Attempts", info.SpawnAttempts),
                 PlayerPrefs.GetInt($"{spawner.race} Add-On", 1) == 1,
-                PlayerPrefs.GetFloat($"{spawner.race} Confidence", 6f),
-                PlayerPrefs.GetInt($"{spawner.race} Min Army Size", 8),
-                PlayerPrefs.GetInt($"{spawner.race} Max Army Size", 12),
-                PlayerPrefs.GetInt($"{spawner.race} Turn Order", 40),
+                PlayerPrefs.GetFloat($"{spawner.race} Confidence", info.Confidence),
+                PlayerPrefs.GetInt($"{spawner.race} Min Army Size", info.MinArmySize),
+                PlayerPrefs.GetInt($"{spawner.race} Max Army Size", info.MaxArmySize),
+                PlayerPrefs.GetInt($"{spawner.race} Turn Order", info.TurnOrder),
                 PlayerPrefs.GetInt($"{spawner.race} Monster Scout MP", 0) == 1
                 );
             var type = PlayerPrefs.GetInt($"{spawner.race} Conquest Type", 0);
