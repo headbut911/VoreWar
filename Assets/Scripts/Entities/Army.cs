@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 
 public class Army
@@ -276,6 +277,8 @@ public class Army
             }
         }
 
+        Dictionary<Race, int> ArmyRaces = new Dictionary<Race, int>();
+
         foreach (Unit unit in Units)
         {
             bool cartographyCheck = false;
@@ -283,7 +286,26 @@ public class Army
                 cartographyCheck = true;
             if (cartographyCheck == true)
             { movement += 1; }
+
+            // Get Army Race composition
+            ArmyRaces.TryGetValue(unit.Race, out var currentCount);
+            ArmyRaces[unit.Race] = currentCount + 1;
         }
+
+        foreach (Unit unit in Units)
+        {
+            // Change attune race based on composition
+            if (unit.HasTrait(Traits.Eeveeolutionist))
+            {
+                AttuneEeveelution(unit, ArmyRaces);
+                if (unit.Level >= 5)
+                {
+                    unit.TriggerEeveelution();
+                }
+
+            }
+        }
+
         if (movement < 0)
             { movement = 0; }
 
@@ -899,5 +921,63 @@ public class Army
         }
         avgDeploy /= Units.Count;
         return avgDeploy;
+    }
+
+    private enum eeveeConversion
+    {
+        Equaleon,
+        Umbreon,        
+    }
+    internal void AttuneEeveelution(Unit unit, Dictionary<Race,int> races)
+    {
+        // Get if current race is a monster race
+        bool monster = unit.Race >= Race.Vagrants && unit.Race < Race.Selicia;
+        Dictionary<eeveeConversion,int> convertedRaces = new Dictionary<eeveeConversion,int>();
+
+        // Convert race demographic to eevee version
+        foreach (var item in races)
+        {
+            eeveeConversion shiftedRace;
+            switch (item.Key)
+            {
+                case Race.Umbreon:
+                case Race.FeralUmbreon:
+                    shiftedRace = eeveeConversion.Umbreon;
+                    break;
+                default:
+                    shiftedRace = eeveeConversion.Equaleon;
+                    break;
+            }
+            convertedRaces.TryGetValue(shiftedRace, out var currentCount);
+            convertedRaces[shiftedRace] = currentCount + 1;
+        }
+
+        // Get highest demographic
+        var majorityType = convertedRaces.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+
+        // Set type to unit.
+        switch (majorityType)
+        {
+            case eeveeConversion.Umbreon:
+                if (monster)
+                {
+                    unit.attunedEeveeRace = Race.FeralUmbreon;
+                }
+                else
+                {
+                    unit.attunedEeveeRace = Race.Umbreon;
+                }
+                break;
+            default:
+                if (monster)
+                {
+                    unit.attunedEeveeRace = Race.FeralEqualeon;
+                }
+                else
+                {
+                    unit.attunedEeveeRace = Race.Equaleon;
+                }
+                break;
+        }
     }
 }

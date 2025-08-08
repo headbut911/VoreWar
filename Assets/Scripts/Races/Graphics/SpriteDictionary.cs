@@ -20,6 +20,7 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Breasts;
     public Sprite[] SquishedBreasts;
     public Sprite[] FeaturelessBreasts;
+    public Sprite[] NiplessVoreSprites;
     public Sprite[] Mouths;
 
     public Sprite[] Eyebrows;
@@ -271,6 +272,11 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] JackalClothes;
     public Sprite[] JackalJewel;
 
+    public Sprite[] Ghosts1;
+    public Sprite[] Ghosts2;
+    public Sprite[] Ghosts3;
+    public Sprite[] GhostsVoreSprites;
+
     [Header("Unique Mercenaries")]
     public Sprite[] Selicia;
     public Sprite[] Vision;
@@ -380,7 +386,11 @@ public class SpriteDictionary : MonoBehaviour
     public Sprite[] Raiju;
     public Sprite[] Raiju240;
 
-
+    public Sprite[] DryadSprites1;
+    public Sprite[] DryadSprites2;
+    public Sprite[] DryadSprites3;
+    public Sprite[] DryadSprites4;
+    public Sprite[] DryadSprites5;
 
     public Sprite[] Cake;
 

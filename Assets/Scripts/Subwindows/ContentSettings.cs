@@ -423,7 +423,8 @@ public class ContentSettings : MonoBehaviour
         foreach (Race race in (Race[])Enum.GetValues(typeof(Race)))
         { //Done separately to keep their initial order for now
             if (race >= Race.Vagrants && race < Race.Selicia && race != Race.WyvernMatron && race != Race.DarkSwallower && race != Race.Collectors && race != Race.CoralSlugs
-                && race != Race.SpitterSlugs && race != Race.SpringSlugs && race != Race.Raptor && race != Race.WarriorAnts && race != Race.FeralEevee && race != Race.FeralEqualeon)
+                && race != Race.SpitterSlugs && race != Race.SpringSlugs && race != Race.Raptor && race != Race.WarriorAnts && race != Race.FeralEevee && race != Race.FeralEqualeon 
+                && race != Race.EarthDryad && race != Race.RiverDryad && race != Race.FungalDryad)
             {
                 var spawner = CreateMonsterPanel(race);
                 MonsterSpawners.Add(spawner);
@@ -571,6 +572,9 @@ public class ContentSettings : MonoBehaviour
                 tooltip.value = 332;
                 break;
             case Race.Viisels:
+                tooltip.value = 333;
+                break;
+            case Race.WoodDryad:
                 tooltip.value = 333;
                 break;
         }
@@ -1436,7 +1440,7 @@ public class ContentSettings : MonoBehaviour
         if (float.TryParse(SizeAccuracyMod.text, out float sam))
             PlayerPrefs.SetFloat("SizeAccuracyMod", sam);
         else
-            PlayerPrefs.SetFloat("SizeAccuracyMod", 0);
+            PlayerPrefs.SetFloat("SizeAccuracyMod", 0.01f);
         if (float.TryParse(SizeAccuracyLowerBound.text, out float salb))
             PlayerPrefs.SetFloat("SizeAccuracyLowerBound", salb);
         else
@@ -1453,7 +1457,7 @@ public class ContentSettings : MonoBehaviour
         if (float.TryParse(SizeDamageMod.text, out float sbm))
             PlayerPrefs.SetFloat("SizeDamageMod", sbm);
         else
-            PlayerPrefs.SetFloat("SizeDamageMod", 0);
+            PlayerPrefs.SetFloat("SizeDamageMod", 0.01f);
         if (float.TryParse(SizeDamageLowerBound.text, out float sblb))
             PlayerPrefs.SetFloat("SizeDamageLowerBound", sblb);
         else

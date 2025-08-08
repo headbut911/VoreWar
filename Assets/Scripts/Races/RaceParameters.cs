@@ -137,7 +137,11 @@ static class RaceParameters
     static readonly RaceTraits Raiju;
     static readonly RaceTraits Smudger;
     static readonly RaceTraits SpaceCroach;
-    
+    static readonly RaceTraits Ghosts;
+    static readonly RaceTraits WoodDryad;
+    static readonly RaceTraits EarthDryad;
+    static readonly RaceTraits RiverDryad;
+    static readonly RaceTraits FungalDryad;
 
     static Unit tempUnit;
 
@@ -429,6 +433,16 @@ static class RaceParameters
                 return Smudger;
             case Race.SpaceCroach:
                 return SpaceCroach;
+            case Race.Ghosts:
+                return Ghosts;
+            case Race.WoodDryad:
+                return WoodDryad;
+            case Race.EarthDryad:
+                return EarthDryad;
+            case Race.RiverDryad:
+                return RiverDryad;
+            case Race.FungalDryad:
+                return FungalDryad;
             case (Race)700: //Singled out so that it doesn't make the debug message
                 return Default;
             case (Race)701:
@@ -1121,7 +1135,7 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.AdeptLearner,
-            Traits.Clever,
+            Traits.MagicProwess,
             Traits.GiantSlayer,
         },
             RaceDescription = "A mix of many races of elves from various regions. Due to their strong diversity, their ideologies are rather similar to the humans instead of any specific elven race.",
@@ -1205,7 +1219,24 @@ static class RaceParameters
             Traits.DexterousDefense,
             Traits.Finesse,
         },
-            RaceDescription = "A race of desert dwelling canine, in recent times, the constant warfare of the realm has brought them out of their isolation. Where they traditionally stood guard against any fools who sought to plunder their sacred pyramids, now they venture out to practice a doctrine of \"Defense by Offence.\"",
+            RaceDescription = "A race of desert dwelling canine, recent disturbances have brought them from their charge of guarding tomb raiders and adventurers from releasing the ancient dangers luring within the pyramids they call home.",
+        };
+
+        Ghosts = new RaceTraits()
+        {
+            BodySize = 12,
+            StomachSize = 20,
+            HasTail = false,
+            FavoredStat = Stat.Agility,
+            DeployCost = 1,
+            Upkeep = 4f,
+            RacialTraits = new List<Traits>()
+        {
+            Traits.FocusedDodge,
+            Traits.ArtfulDodge,
+            Traits.LightFrame,
+        },
+            RaceDescription = "The spooky spirits of the dead, come back in new incorporeal forms to haunt and feast upon the living. Formed when a soul takes five or more years to cross to the other side, these poltergeists, being dead, have no need for nutrition, and hunt for the fun of it and to spite the living.",
         };
 
         Centaur = new RaceTraits()
@@ -3338,6 +3369,130 @@ static class RaceParameters
                 Traits.Tasty,
             },
             RaceDescription = "A race of slug-like beings from somewhere beyond the portals.  Their friendly and soft shape is but a ploy to lure in the more gullible prey of our world, and those that aren't fooled by it will discover that they are no pushovers in a struggle either.  Those who find themselves as prey to these creatures will find they don't wish to leave their insides, though if a predator can manage to devour one they will find a delectable meal as their bodies are incredibly nutritious.",
+        };
+
+        WoodDryad = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 16,
+            HasTail = true,
+            FavoredStat = Stat.Stomach,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 1.2f,
+            PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            Upkeep = 5f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(8, 12),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(16, 24),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(8, 12),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(20, 28),
+                Stomach = new RaceStats.StatRange(12, 20),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Slippery,
+            Traits.Nauseous,
+            Traits.SlowDigestion
+        },
+            RaceDescription = "Devoted protectors of plants and trees, these Dryads are living incarnations of the plants all around them. They prefer to remain rooted in place, their natural magics healing and soothing the natural world around them, but they often move from place to place to find those who defile nature, and turn them to mulch.\r\n"
+        };
+
+        EarthDryad = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 16,
+            HasTail = true,
+            FavoredStat = Stat.Stomach,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 1.2f,
+            PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            Upkeep = 5f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(8, 12),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(16, 24),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(8, 12),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(20, 28),
+                Stomach = new RaceStats.StatRange(12, 20),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Slippery,
+            Traits.Nauseous,
+            Traits.SlowDigestion
+        },
+            RaceDescription = "Living incarnations of the land itself, Earth Dryads are both gentle and hardy, showing mercy to those who respect the soil, and adding those don't to the soil. They often employ stone spikes to attack those they deem a threat to the natural world. Touching one is generally not a good idea."
+        };
+
+        RiverDryad = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 16,
+            HasTail = true,
+            FavoredStat = Stat.Stomach,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 1.2f,
+            PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            Upkeep = 5f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(8, 12),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(16, 24),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(8, 12),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(20, 28),
+                Stomach = new RaceStats.StatRange(12, 20),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Slippery,
+            Traits.Nauseous,
+            Traits.SlowDigestion
+        },
+            RaceDescription = "Playful and curious, River Dryads are the living incarnations of clear water. They spend much of their time guiding rivers and streams, helping to keep nature watered. While they can seem friendly, be warned, they possess the same power of the rushing rapids."
+        };
+
+        FungalDryad = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 16,
+            HasTail = true,
+            FavoredStat = Stat.Stomach,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 1.2f,
+            PowerAdjustment = 1.5f,
+            DeployCost = 1,
+            Upkeep = 5f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(8, 12),
+                Dexterity = new RaceStats.StatRange(6, 10),
+                Endurance = new RaceStats.StatRange(16, 24),
+                Mind = new RaceStats.StatRange(8, 12),
+                Will = new RaceStats.StatRange(8, 12),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(20, 28),
+                Stomach = new RaceStats.StatRange(12, 20),
+            },
+            RacialTraits = new List<Traits>()
+        {
+            Traits.Slippery,
+            Traits.Nauseous,
+            Traits.SlowDigestion
+        },
+            RaceDescription = "When a Wood Dryad dies, sometimes their spirit fails to leave, and they are reborn in a new, fungal form. Any mercy they may once have had is gone, their deceptively sharp claws cutting through any that dare try to stand up to the mushroom menace. These erratic Dryads are always eager to showing those they find their favorite part of the life cycle.\r\n"
         };
 
         SpaceCroach = new RaceTraits()

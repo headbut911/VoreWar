@@ -482,11 +482,11 @@ class Lupine : DefaultRaceData
                 Dick.layer = 20;
                 if (actor.IsCockVoring)
                 {
-                    return Sprites3[162 + actor.Unit.DickSize];
+                    return Sprites3[154 + actor.Unit.DickSize];
                 }
                 else
                 {
-                    return Sprites3[154 + actor.Unit.DickSize];
+                    return Sprites3[138 + actor.Unit.DickSize];
                 }
             }
             else
@@ -494,11 +494,11 @@ class Lupine : DefaultRaceData
                 Dick.layer = 13;
                 if (actor.IsCockVoring)
                 {
-                    return Sprites3[146 + actor.Unit.DickSize];
+                    return Sprites3[162 + actor.Unit.DickSize];
                 }
                 else
                 {
-                    return Sprites3[138 + actor.Unit.DickSize];
+                    return Sprites3[146 + actor.Unit.DickSize];
                 }
             }
         }

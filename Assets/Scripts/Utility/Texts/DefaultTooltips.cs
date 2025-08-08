@@ -773,13 +773,13 @@ Does not retroactively affect already created units.";
             case 317:
                 return "Sets a hard cap on AP.  Unit AP will never go above this value.";
             case 318:
-                return "Modifies the accuracy of a weapon attack based on unit size.\nNote: Small values go a long way. Additionally, units also increase their size when full.\n Example: A value of 0.1 will increase an accuracy of 30% by 10%, resulting in an accuracy of 33%.";
+                return "Modifies the accuracy of a weapon attack based on unit size.\nNote: Small values go a long way, this value is applied many times. Additionally, units also increase their size when full. (Recommended: 0.1 - 0.001)\n Example: A value of 0.1 will increase an accuracy of 30% by 10%, resulting in an accuracy of 33%.";
             case 319:
                 return "Sets the bounds for the difference of body size. If the difference is within these bounds, the accuracy of an attack will not be modified.";
             case 320:
                 return "Sets the interval the above accuracy modifier will be applied. Only applies to targets outside of the bounds.\n Example: With an interval value of 5, bounds of 10, and modifier of 0.1, a unit of size 10 will have 10% increased accuracy against a unit of size 25, ~15% increased accuracy against a unit of size 27, and 20% increased accuracy against a unit of size 30";
             case 321:
-                return "Modifies the damage of a weapon attack based on unit size.\nNote: Small values go a long way. Additionally, units also increase their size when full.\n Example: A value of 0.1 will increase a damage of 10 by 10%, resulting in 11 damage.";
+                return "Modifies the damage of a weapon attack based on unit size.\nNote: Small values go a long way, this value is applied many times. Additionally, units also increase their size when full. (Recommended: 0.1 - 0.001) \n Example: A value of 0.1 will increase a damage of 10 by 10%, resulting in 11 damage.";
             case 322:
                 return "Sets the bounds for the difference of body size. If the difference is within these bounds, the damage of an attack will not be modified.";
             case 323:
@@ -810,6 +810,9 @@ Does not retroactively affect already created units.";
                 return "When enabled, unit's side will be displayed in their info panel.";
             case 336:
                 return "Enables, birds and bird-like races to have more accurate appearing scat sprites.";
+                return "Enables, birds and bird-like races to have more accurate appearing scat sprites (Only works with V2 scat off)";
+            case 337:
+                return "Enables the Dryad monster packs - it's a pack of four different Dryad with complimentary abilities";
             default:
                 return "";
         }

@@ -40,6 +40,7 @@
     Umbreon = 35,
     Lupine = 36,
     Jackals  = 37,
+    Ghosts = 38,
 
     Succubi = 50,
     Tigers = 51,
@@ -115,6 +116,10 @@
     Raiju = 152,
     Smudger = 153,
     SpaceCroach = 154,
+    WoodDryad = 155,
+    EarthDryad = 156,
+    RiverDryad = 157,
+    FungalDryad = 158,
 
     Selicia = 170,
     Vision = 171,

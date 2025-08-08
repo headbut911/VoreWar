@@ -68,6 +68,13 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D LupineSkin;
     public Texture2D LupineReverse;
     public Texture2D JackalSkin;
+    public Texture2D DryadTrunk;
+    public Texture2D DryadLeaves;
+    public Texture2D DryadMud;
+    public Texture2D DryadMudPattern;
+    public Texture2D DryadRiver;
+    public Texture2D DryadMushroom;
+    public Texture2D GhostSkin;
     public Texture2D FeralHorseSkin;
     public Texture2D WyvernMatron;
     public Texture2D FeralFoxSkin;

@@ -240,6 +240,24 @@ class MonsterStrategicAI : IStrategicAI
                             army.Units.Add(new Unit(empire.Side, Race.FeralUmbreon, RandXp(baseXp), true));
                     }
                 }
+                else if (empire.ReplacedRace == Race.WoodDryad)
+                {
+                    const float woodFraction = .25f;
+                    const float earthFraction = .25f;
+                    const float riverFraction = .25f;
+                    int woodCount = Math.Max((int)(woodFraction * count), 1);
+                    int earthCount = Math.Max((int)(earthFraction * count), 1);
+                    int riverCount = Math.Max((int)(riverFraction * count), 1);
+                    int fungalCount = count - woodCount - earthCount - riverCount;
+                    for (int i = 0; i < woodCount; i++)
+                        army.Units.Add(new Unit(empire.Side, Race.WoodDryad, RandXp(baseXp), true));
+                    for (int i = 0; i < earthCount; i++)
+                        army.Units.Add(new Unit(empire.Side, Race.EarthDryad, RandXp(baseXp), true));
+                    for (int i = 0; i < riverCount; i++)
+                        army.Units.Add(new Unit(empire.Side, Race.RiverDryad, RandXp(baseXp), true));
+                    for (int i = 0; i < fungalCount; i++)
+                        army.Units.Add(new Unit(empire.Side, Race.FungalDryad, RandXp(baseXp), true));
+                }
                 else
                 {
                     for (int i = 0; i < count; i++)

@@ -31,8 +31,8 @@ public class PotionShop
                 int slot = x + (int)ItemType.HealthPotion;
                 PotionUI.EquippedPotions[x].SellButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopSellItem(slot)); //These are done this way to avoid tying it to the first shop instance
                 PotionUI.EquippedPotions[x].MoveToInventoryButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopTransferToInventory(slot));
-                PotionUI.EquippedPotions[x].IncButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopIncreaseCount(unit, slot));
-                PotionUI.EquippedPotions[x].DecButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopDecCount(unit, slot));
+                PotionUI.EquippedPotions[x].IncButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopIncreaseCount(slot));
+                PotionUI.EquippedPotions[x].DecButton.onClick.AddListener(() => State.GameManager.Recruit_Mode.PotionShopDecCount(slot));
                 PotionUI.EquippedPotions[x].gameObject.SetActive(false);
             }
             RegenEquipClickable();
@@ -72,7 +72,7 @@ public class PotionShop
     {
         if (unit.EquippedPotions.ContainsKey(type))
         {
-            IncreaseCount(unit, type);
+            IncreaseCount(type);
         }
         else
         {
@@ -99,7 +99,7 @@ public class PotionShop
                 continue;
             if (soldier.EquippedPotions.ContainsKey(type))
             {
-                IncreaseCount(soldier, type);
+                IncreaseCount(type);
             }
             else
             {
@@ -211,7 +211,7 @@ public class PotionShop
         return cost * count;
     }
 
-    public bool IncreaseCount(Unit unit, int type)
+    public bool IncreaseCount(int type)
     {
         unit.EquippedPotions.TryGetValue(type, out var currentCount);
         unit.EquippedPotions[type][0] = currentCount[1] + 1;
@@ -224,7 +224,7 @@ public class PotionShop
         return true;
     }
 
-    public bool DecreaseCount(Unit unit, int type)
+    public bool DecreaseCount(int type)
     {
         unit.EquippedPotions.TryGetValue(type, out var currentCount);
         if (currentCount[0] > 0)

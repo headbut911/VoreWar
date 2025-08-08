@@ -42,6 +42,7 @@
     static internal Umbreon Umbreon = new Umbreon();
     static internal Lupine Lupine = new Lupine();
     static internal Jackals Jackals = new Jackals();
+    static internal Ghosts Ghosts = new Ghosts();
 
 
     static internal Tigers Tigers = new Tigers();
@@ -107,6 +108,10 @@
     static internal FeralEevee FeralEevee = new FeralEevee();
     static internal FeralUmbreon FeralUmbreon = new FeralUmbreon();
     static internal FeralEqualeon FeralEqualeon = new FeralEqualeon();
+    static internal WoodDryad WoodDryad = new WoodDryad();
+    static internal EarthDryad EarthDryad = new EarthDryad();
+    static internal RiverDryad RiverDryad = new RiverDryad();
+    static internal FungalDryad FungalDryad = new FungalDryad();
 
     static internal Selicia Selicia = new Selicia();
     static internal Vision Vision = new Vision();
@@ -428,6 +433,16 @@
                 return Smudger;
             case Race.SpaceCroach:
                 return SpaceCroach;
+            case Race.Ghosts:
+                return Ghosts;
+            case Race.WoodDryad:
+                return WoodDryad;
+            case Race.EarthDryad:
+                return EarthDryad;
+            case Race.RiverDryad:
+                return RiverDryad;
+            case Race.FungalDryad:
+                return FungalDryad;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

@@ -311,6 +311,64 @@ class Gnolls : DefaultRaceData
         }
     }
 
+
+    internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
+    {
+        if (actor.HasBelly)
+        {
+            belly.transform.localScale = new Vector3(1, 1, 1);
+            belly.SetActive(true);
+            int size = actor.GetStomachSize(31, 0.7f);
+            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 31)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return VoreSprites[105];
+            }
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 31)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return VoreSprites[104];
+            }
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 30)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return VoreSprites[103];
+            }
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 29)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return VoreSprites[102];
+            }
+            switch (size)
+            {
+                case 26:
+                    AddOffset(Belly, 0, -14 * .625f);
+                    break;
+                case 27:
+                    AddOffset(Belly, 0, -17 * .625f);
+                    break;
+                case 28:
+                    AddOffset(Belly, 0, -20 * .625f);
+                    break;
+                case 29:
+                    AddOffset(Belly, 0, -25 * .625f);
+                    break;
+                case 30:
+                    AddOffset(Belly, 0, -27 * .625f);
+                    break;
+                case 31:
+                    AddOffset(Belly, 0, -32 * .625f);
+                    break;
+            }
+
+            return VoreSprites[70 + size];
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     protected override Sprite AccessorySprite(Actor_Unit actor) // Body Fur Pattern
     {
         if (actor.Unit.BodyAccentType2 == 0) return null;
