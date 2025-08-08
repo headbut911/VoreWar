@@ -112,6 +112,7 @@
     static internal EarthDryad EarthDryad = new EarthDryad();
     static internal RiverDryad RiverDryad = new RiverDryad();
     static internal FungalDryad FungalDryad = new FungalDryad();
+    static internal Otachi Otachi = new Otachi();
     static internal Raiju Raiju = new Raiju();
     static internal Smudger Smudger = new Smudger();
     static internal SpaceCroach SpaceCroach = new SpaceCroach();
@@ -141,7 +142,6 @@
     static internal FeralOrcas FeralOrcas = new FeralOrcas();
     static internal BlankSlate BlankSlate = new BlankSlate();
     static internal Taraluxia Taraluxia = new Taraluxia();
-    static internal Otachi Otachi = new Otachi();
     static internal Xelhilde Xelhilde = new Xelhilde();
     static internal Olivia Olivia = new Olivia();
     static internal Skapa Skapa = new Skapa();
@@ -386,8 +386,6 @@
                 return FeralOrcas;
             case Race.Taraluxia:
                 return Taraluxia;
-            case Race.Otachi:
-                return Otachi;
             case Race.Xelhilde:
                 return Xelhilde;
             case Race.BoomBunnies:
@@ -430,12 +428,14 @@
                 return Jackals;
             case Race.Firefly:
                 return Firefly;
+            case Race.Otachi:
+                return Otachi;
             case Race.Raiju:
                 return Raiju;
             case Race.Smudger:
                 return Smudger;
             case Race.SpaceCroach:
-                return SpaceCroach;
+               return SpaceCroach;
             case Race.Ghosts:
                 return Ghosts;
             case Race.WoodDryad:

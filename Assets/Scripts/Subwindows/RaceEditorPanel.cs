@@ -499,7 +499,7 @@ public class RaceEditorPanel : MonoBehaviour
                 item.RaceTraits = CurrentTraits.ToList();
                 item.RaceTags = CurrentTags.ToList();
                 List<VoreType> newtypes = racePar.AllowedVoreTypes.ToList();
-                if (OralVoreDisabled.isOn) newtypes.Remove(VoreType.Oral);
+                //if (OralVoreDisabled.isOn) newtypes.Remove(VoreType.Oral);
                 if (UnbirthDisabled.isOn) newtypes.Remove(VoreType.Unbirth);
                 if (CockVoreDisabled.isOn) newtypes.Remove(VoreType.CockVore);
                 if (AnalVoreDisabled.isOn) newtypes.Remove(VoreType.Anal);
@@ -725,8 +725,8 @@ public class RaceEditorPanel : MonoBehaviour
             CurrentTags = item.RaceTags;
             if (CurrentTags == null)
                 CurrentTags = new List<int>();
-            OralVoreDisabled.isOn = !item.AllowedVoreTypes.Contains(VoreType.Oral);
-            OralVoreDisabled.interactable = racePar.AllowedVoreTypes.Contains(VoreType.Oral);
+            //OralVoreDisabled.isOn = !item.AllowedVoreTypes.Contains(VoreType.Oral);
+            //OralVoreDisabled.interactable = racePar.AllowedVoreTypes.Contains(VoreType.Oral);
             UnbirthDisabled.isOn = !item.AllowedVoreTypes.Contains(VoreType.Unbirth);
             UnbirthDisabled.interactable = racePar.AllowedVoreTypes.Contains(VoreType.Unbirth);
             CockVoreDisabled.isOn = !item.AllowedVoreTypes.Contains(VoreType.CockVore);

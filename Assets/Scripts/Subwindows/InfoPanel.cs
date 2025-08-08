@@ -369,10 +369,18 @@ public class InfoPanel
                 return "River Dryad";
             case Race.FungalDryad:
                 return "Fungal Dryad";
+            case Race.Otachi:
+                return "Otachi";
+            case Race.Raiju:
+                return "Raiju";
+            case Race.Smudger:
+                return "Smudger";    
             case Race.SpaceCroach:
                 return "Space Roach";
             case Race.Trex:
                 return "T-Rex";
+            case Race.Utahraptor:
+                return "Utahraptor";
             case Race.none:
                 return "None";
         }
@@ -601,10 +609,18 @@ public class InfoPanel
                 return "River Dryad";
             case Race.FungalDryad:
                 return "Fungal Dryad";
+            case Race.Otachi:
+                return "Otachi";
+            case Race.Raiju:
+                return "Raiju";
+            case Race.Smudger:
+                return "Smudger";    
             case Race.SpaceCroach:
                 return "Space Roach";
             case Race.Trex:
                 return "T-Rex";
+            case Race.Utahraptor:
+                return "Utahraptor";
         }
         return empire.ReplacedRace.ToString();
     }

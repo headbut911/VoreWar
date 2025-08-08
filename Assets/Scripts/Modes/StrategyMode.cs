@@ -590,7 +590,7 @@ public class StrategyMode : SceneBase
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.SpaceCroach));
                                 break;
                             case StrategicDoodadType.SpawnerTrex:
-                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Trex));
+                               Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Trex));
                                 break;
                             case StrategicDoodadType.SpawnerUtahraptor:
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Utahraptor));
