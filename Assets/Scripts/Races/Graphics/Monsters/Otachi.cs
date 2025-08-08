@@ -39,6 +39,8 @@ class Otachi : BlankSlate
         int ballsSize = actor.GetBallSize(38, 0.7f);
         if (size >= 13 || ballsSize >= 14) standing = true;
         else standing = false;
+        if (actor.Unit.GetScale() == 1)
+        actor.UnitSprite.GraphicsFolder.transform.localScale = new Vector3(1.2f, 1.2f, 1); // Embiggify!
         base.RunFirst(actor);
     }
 
@@ -50,7 +52,7 @@ class Otachi : BlankSlate
             if (actor.IsAttacking || actor.IsCockVoring || actor.IsUnbirthing) return OtachiSprites[22];
             return OtachiSprites[21];
         }
-        if (actor.IsOralVoring) return OtachiSprites[20]; 
+        if (actor.IsOralVoring) return OtachiSprites[20];
         if (actor.IsAttacking || actor.IsCockVoring || actor.IsUnbirthing) return OtachiSprites[19];
         return OtachiSprites[18];
     }

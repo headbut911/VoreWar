@@ -87,6 +87,7 @@ class Umbreon : DefaultRaceData
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
         unit.ClothingColor = State.Rand.Next(clothingColors);
         unit.ClothingColor2 = State.Rand.Next(ExtraColors1);
+        unit.ClothingColor2 = State.Rand.Next(ExtraColors2);
         if (unit.Type == UnitType.Leader)
         {
             unit.ClothingExtraType1 = State.Rand.Next(2) + 3;
@@ -763,7 +764,7 @@ class Umbreon : DefaultRaceData
             clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 149 : 148) : 147];
             clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
-            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
+            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor2);
             if (actor.Unit.BodyAccentType2 == 0)
             {
                 clothing5.GetSprite = null;
@@ -796,9 +797,8 @@ class Umbreon : DefaultRaceData
             clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 152 : 151) : 150];
             clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
-            clothing7.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor2);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, actor.Unit.AccessoryColor);
-            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
+            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor2);
             if (actor.Unit.BodyAccentType2 == 0)
             {
                 clothing5.GetSprite = null;

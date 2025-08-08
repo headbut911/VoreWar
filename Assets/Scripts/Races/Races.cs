@@ -141,6 +141,10 @@
     static internal Olivia Olivia = new Olivia();
     static internal Skapa Skapa = new Skapa();
     static internal Tatltuae Tatltuae = new Tatltuae();
+    static internal Firefly Firefly = new Firefly();
+    static internal Raiju Raiju = new Raiju();
+    static internal Smudger Smudger = new Smudger();
+    static internal SpaceCroach SpaceCroach = new SpaceCroach();
 
     static internal DefaultRaceData GetRace(Unit unit)
     {
@@ -421,6 +425,14 @@
                 return Tatltuae;
             case Race.Jackals:
                 return Jackals;
+            case Race.Firefly:
+                return Firefly;
+            case Race.Raiju:
+                return Raiju;
+            case Race.Smudger:
+                return Smudger;
+            case Race.SpaceCroach:
+                return SpaceCroach;
             case Race.Ghosts:
                 return Ghosts;
             case Race.WoodDryad:

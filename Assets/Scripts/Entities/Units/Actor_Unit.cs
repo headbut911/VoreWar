@@ -10,6 +10,8 @@ public class Actor_Unit
     {
         None,
         Attacking,
+        RangeAttacking,
+        MeleeAttacking,
         OralVore,
         CockVore,
         TailVore,
@@ -787,6 +789,8 @@ public class Actor_Unit
 
 
     public bool IsAttacking => Mode == DisplayMode.Attacking;
+    public bool IsRangeAttacking => Mode == DisplayMode.RangeAttacking;
+    public bool IsMeleeAttacking => Mode == DisplayMode.MeleeAttacking;
 
     /// <summary>
     /// This one Covers all forms of consuming
@@ -1252,7 +1256,7 @@ public class Actor_Unit
                 {
                     if (Config.SizeDamageInverse && !Unit.HasTrait(Traits.GiantSlayer))
                     {
-                        damage = (int)Math.Round(damage / damMod);
+                        bonusDamage = (int)Math.Round(damage * damMod) * -1;
                     }
                 }
                 damage += bonusDamage;
@@ -1703,7 +1707,10 @@ public class Actor_Unit
                 if (Unit.Race == Race.Tatltuae)
                     TacticalGraphicalEffects.EntropicChaosEffect(target.Position);
                 animationUpdateTime = 1.0F;
-                Mode = DisplayMode.Attacking;
+                if (Unit.Race == Race.Firefly)//Use to specify races that can use differint attacks with the same weapon depending on range
+                    Mode = DisplayMode.RangeAttacking;
+                else
+                    Mode = DisplayMode.Attacking;
 
                 if (Unit.HasTrait(Traits.AwfulAim))
                 {
@@ -1790,7 +1797,10 @@ public class Actor_Unit
             if (targetRange < 2)
             {
                 animationUpdateTime = 1.0F;
-                Mode = DisplayMode.Attacking;
+                if (Unit.Race == Race.Firefly)//Use to specify races that can use differint attacks with the same weapon depending on range
+                    Mode = DisplayMode.MeleeAttacking;
+                else
+                    Mode = DisplayMode.Attacking;
                 int meleeAttacks = Unit.TraitBoosts.MeleeAttacks;
                 if (Unit.HasTrait(Traits.LightFrame) && PredatorComponent?.PreyCount == 0)
                     meleeAttacks++;

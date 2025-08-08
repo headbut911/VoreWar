@@ -113,10 +113,13 @@
     FeralEevee = 149,
     FeralUmbreon = 150,
     FeralEqualeon = 151,
-    WoodDryad = 152,
-    EarthDryad = 153,
-    RiverDryad = 154,
-    FungalDryad = 155,
+    Raiju = 152,
+    Smudger = 153,
+    SpaceCroach = 154,
+    WoodDryad = 155,
+    EarthDryad = 156,
+    RiverDryad = 157,
+    FungalDryad = 158,
 
     Selicia = 170,
     Vision = 171,
@@ -139,4 +142,5 @@
     Olivia = 188,
     Skapa = 189,
     Tatltuae = 190,
+    Firefly = 191,
 }

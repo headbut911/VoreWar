@@ -429,7 +429,7 @@ public enum Traits
     EnviousPrey = 516,
     /// <summary>When an another nearby unit is eaten, it has the chance to eat a random adjacent unit.</summary>
     CompetetivePredator = 517,
-    /// <summary>When an another nearby unit is eaten, it has the chance to eat a random adjacent unit.</summary>
+    /// <summary>When this unit rubs a unit's belly, the effect is doubled and 1 stack of Weakness is applied to the target.</summary>
     RoughMassage = 518,
     /// <summary>For the first 5 turns of battle, unit's MP is reduced by 50%.</summary>
     SlowStart = 519,

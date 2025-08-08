@@ -995,6 +995,16 @@ public class Unit
             FixedGear = false;
             Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.TatltuaeWeapon);
         }
+        else if (race == Race.Firefly)
+        {
+            try
+            {
+                FixedGear = true;
+                Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FireflyMelee);
+                Items[1] = State.World.ItemRepository.GetSpecialItem(SpecialItems.FireflyRange);
+            }
+            catch { }
+        }
         else
         {
             FixedGear = false;
@@ -2977,13 +2987,10 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             foreach (SpellTypes type in InnateSpells)
             {
-                if (GetStatusEffect(StatusEffectType.Bloodrite) != null)
-                {
-                    UseableSpells.Remove(SpellList.Bloodrite);
-                }
-                else if (SpellList.SpellDict.TryGetValue(type, out Spell spell))
+                if (SpellList.SpellDict.TryGetValue(type, out Spell spell))
                 {
                     UseableSpells.Add(spell);
+                    if (GetStatusEffect(StatusEffectType.Bloodrite) != null) UseableSpells.Remove(SpellList.Bloodrite);
                 }
             }
         }
@@ -3047,13 +3054,10 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 {
                     continue;
                 }
-                else if (GetStatusEffect(StatusEffectType.Bloodrite) != null)
-                {
-                    UseableSpells.Remove(SpellList.Bloodrite);
-                }
                 else if (SpellList.SpellDict.TryGetValue(book.ContainedSpell, out Spell spell))
                 {
                     UseableSpells.Add(spell);
+                    if (GetStatusEffect(StatusEffectType.Bloodrite) != null) UseableSpells.Remove(SpellList.Bloodrite);
                 }
 
             }

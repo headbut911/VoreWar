@@ -273,7 +273,7 @@ By Pntyr aaz Znznzn
 Of Pntyr aaz Kchk
 Of Pntyr aaz Klkl
 Of Pntyr aaz Styn
-Pntyr aaz Yef Mps' Hunt
+Pntyr aaz Yef Mps’ Hunt
 By Pntyr aaz Lor
 Loyals of Pntyr aaz Festkex
 Loyals of Pstkrsysynsr
@@ -322,8 +322,8 @@ School of Fish
 
 Frogs
 Scouts
-Chief's Guard
-Priest's Guard
+Chief’s Guard
+Priest’s Guard
 The Fly-eaters
 
 Crux
@@ -337,4 +337,77 @@ Flock
 The Egg-guard
 The Nestwatch
 The Feathered
+
+Mice
+Scurry
+Tied-Tails
+Cheesestealers
+Untrapped
+Dish-ears
+Mazerunner
+Pandimensionals
+
+MainlandElves
+Superiors
+Gladed Glory
+Unbeaten Truth
+Blade of Order
+Unsheathed Honor
+Elven Beauty
+Thalmor Force
+Unmatched Humility
+
+Bears
+Raiders
+Vikings
+Bjornheim Reminents
+Thor’s Hammer
+Odin’s Spear
+Loki’s Cunning
+Baldr’s Talent
+Tyr’s Power
+Magni’s Thunder
+Modi’s Lightning
+Freyr’s Sword
+Freya’s Might
+Sif’s Hair
+Heimdall’s Sight
+
+Lupine
+Class
+Carnivorans
+Canidae Pack
+Predator Rights Party
+
+Umbreon
+Revolutionaries
+Rioters
+Looters
+Glowring March
+Freedom Fighters
+Drums of Independance
+
+Gnolls
+Tribe
+Spotted Hunters
+Laughers
+The Giggle
+
+Scylla
+Grasp
+Cephalopoda
+Eldritchers
+The Trident
+
+Alraune
+Wargarden
+Rose Thorns
+Thistle Bearers
+Fly Traps
+Thorny Bloom
+
+Jackals
+Sandguard
+Tombbuilders
+Nile Marchers
 

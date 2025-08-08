@@ -226,11 +226,11 @@ public class InfoPanel
             case Race.Compy:
                 return "Compy";
             case Race.FeralWolves:
-                return "Feral Wolf";
+                return "Wolf";
             case Race.FeralSharks:
-                return "Sky Shark";
+                return "Shark";
             case Race.DarkSwallower:
-                return "Dark Swallower";
+                return "Swallower";
             case Race.Cake:
                 return "Cake";
             case Race.Harvesters:
@@ -244,7 +244,7 @@ public class InfoPanel
             case Race.FeralBats:
                 return "Bat";
             case Race.FeralFrogs:
-                return "Feral Frog";
+                return "Frog";
             case Race.Dragon:
                 return "Dragon";
             case Race.Dragonfly:
@@ -260,15 +260,15 @@ public class InfoPanel
             case Race.Gryphons:
                 return "Gryphon";
             case Race.SpitterSlugs:
-                return "Spitter Slug";
+                return "SpitterSlug";
             case Race.SpringSlugs:
-                return "Spring Slug";
+                return "SpringSlug";
             case Race.RockSlugs:
-                return "Rock Slug";
+                return "RockSlug";
             case Race.CoralSlugs:
-                return "Coral Slug";
+                return "CoralSlug";
             case Race.DewSprites:
-                return "Dew Sprite";
+                return "Sprite";
             case Race.Panthers:
                 return "Panther";
             case Race.Salamanders:
@@ -288,7 +288,7 @@ public class InfoPanel
             case Race.Ants:
                 return "Ant";
             case Race.WarriorAnts:
-                return "Warrior Ant";
+                return "Warrior Ants";
             case Race.Frogs:
                 return "Frog";
             case Race.Gazelle:
@@ -298,7 +298,7 @@ public class InfoPanel
             case Race.Earthworms:
                 return "Earthworm";
             case Race.FeralLizards:
-                return "Feral Lizard";
+                return "Lizard";
             case Race.Cockatrice:
                 return "Cockatrice";
             case Race.Monitors:
@@ -332,21 +332,33 @@ public class InfoPanel
             case Race.Terminid:
                 return "Terminid";
             case Race.FeralOrcas:
-                return "Feral Orca";
+                return "Orca";
             case Race.BoomBunnies:
-                return "Boom Bunny";
+                return "Boom Bunnies";
             case Race.Gnolls:
                 return "Gnoll";
             case Race.Centaur:
                 return "Centaur";
             case Race.FeralSlime:
-                return "Feral Slime";
+                return "Slime";
             case Race.MainlandElves:
                 return "Elf";
             case Race.ViraeUltimae:
                 return "Virae Ultimae";
             case Race.Viisels:
                 return "Viisel";
+            case Race.Umbreon:
+                return "Umbreon";
+            case Race.Eevee:
+                return "Eevee";
+            case Race.Equaleon:
+                return "Equaleon";
+            case Race.FeralUmbreon:
+                return "Umbreon";
+            case Race.FeralEevee:
+                return "Eevee";
+            case Race.FeralEqualeon:
+                return "Equaleon";
             case Race.Ghosts:
                 return "Ghost";
             case Race.WoodDryad:
@@ -563,6 +575,18 @@ public class InfoPanel
                 return "Virae Ultimae";
             case Race.Viisels:
                 return "Viisel";
+            case Race.Umbreon:
+                return "Umbreon";
+            case Race.Eevee:
+                return "Eevee";
+            case Race.Equaleon:
+                return "Equaleon";
+            case Race.FeralUmbreon:
+                return "Umbreon";
+            case Race.FeralEevee:
+                return "Eevee";
+            case Race.FeralEqualeon:
+                return "Equaleon";
             case Race.Ghosts:
                 return "Ghost";
             case Race.WoodDryad:

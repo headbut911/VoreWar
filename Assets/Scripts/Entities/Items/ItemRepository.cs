@@ -106,6 +106,8 @@ public enum SpecialItems
     XelhildeWeapon,
     SkapaWeapon,
     TatltuaeWeapon,
+    FireflyMelee,
+    FireflyRange,
 }
 
 
@@ -272,7 +274,7 @@ public class ItemRepository
             new Weapon(name:"Terrorbird Beak", description:"Terrorbird Beak", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Dratopyr Jaws", description:"Dratopyr Jaws", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Lion Fangs", description:"Serrated and pointy (Feline) Canines", cost:4, graphic:0, damage:6, range:1),
-			new Weapon(name:"Goodra Slug Antenna", description:"Goodra's Power Whip", cost:4, graphic:0, damage:5, range:1),
+            new Weapon(name:"Goodra Slug Antenna", description:"Goodra's Power Whip", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Whisp fire", description:"Whisp's FoxFire", cost:4, graphic:0, damage:5, range:5, omniWeapon: true, magicWeapon: true),
             new Weapon(name:"Horse Hooves", description:"A terribly painful kick to the gut!", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Fox Claws", description:"While smaller than say a wolf,\n these claws are equally as painful.", cost:4, graphic:0, damage:4, range:1),
@@ -286,6 +288,9 @@ public class ItemRepository
             new Weapon(name:"Eevee Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Umbreon Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Equaleon Paw", description:"Paw Attack", cost:4, graphic:0, damage:4, range:1),
+            new Weapon(name:"Raiju Jaws", description:"The crushing jaws of the Raiju.", cost:4, graphic:0, damage:6, range:1),
+            new Weapon(name:"Smudger Claws", description:"Smudger Claws", cost:4, graphic:0, damage:5, range:1),
+            new Weapon(name:"Space Roach Mandibles", description:"Space Roach Mandibles", cost:4, graphic:0, damage:6, range:1),
             new Weapon(name:"Dryad Punch", description:"Both Bark and Bite", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Earth Spike", description:"A heavy spike made of packed dirt", cost:4, graphic:0, damage:4, range:5, omniWeapon: true),
             new Weapon(name:"Earth Spike", description:"A heavy spike made of packed dirt", cost:4, graphic:0, damage:4, range:5, omniWeapon: true, magicWeapon: true),
@@ -320,6 +325,8 @@ public class ItemRepository
             new Weapon(name:"Xelhilde's Zweihänder", description:"A cobalt zweihänder forged in Mondfeld. It's blade seems to shimer like the moon.", cost:4, graphic:0, damage:9, range:1, accuracyModifier: 1.4f, lockedItem:true),
             new Weapon(name:"Skapa's Wingtalons", description:"Skapa go pounce.", cost:4, graphic:0, damage:8, range:1, lockedItem:true),
             new Weapon(name:"Entropic Chaos", description:"Cantrip Tatltuae learned some time ago that creates pockets of intense chaotic entropy, ripping the very matter of his foes apart.", cost:4, graphic:0, damage:7, range:8, accuracyModifier: 1f, omniWeapon:true, magicWeapon: true, lockedItem:true),
+            new Weapon(name:"Pilot Knife", description:"Standard issue holdout weapon for Wanzer pilots; Firefly is rather skilled with this one.", cost:4, graphic:0, damage:8, range:1, accuracyModifier: 1.4f, lockedItem:true),
+            new Weapon(name:"HND15", description:"Firefly's faithful pistol.", cost:4, graphic:0, damage:5, range:7, accuracyModifier: 0.7f, lockedItem:true),
         };
 
 
