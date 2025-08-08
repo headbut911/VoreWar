@@ -318,27 +318,32 @@ class Gnolls : DefaultRaceData
         {
             belly.transform.localScale = new Vector3(1, 1, 1);
             belly.SetActive(true);
-            int size = actor.GetStomachSize(31, 0.7f);
-            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 31)
+            int size = actor.GetStomachSize(36, 0.7f);
+            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 36)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[105];
+                return VoreSprites[99];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 31)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 35)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[104];
+                return VoreSprites[98];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 30)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 34)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[103];
+                return VoreSprites[97];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 29)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 33)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[102];
+                return VoreSprites[96];
             }
+            if (size > 30)
+            {
+                size = 30;
+            }
+
             switch (size)
             {
                 case 26:
@@ -361,7 +366,7 @@ class Gnolls : DefaultRaceData
                     break;
             }
 
-            return VoreSprites[70 + size];
+            return VoreSprites[64 + size];
         }
         else
         {
