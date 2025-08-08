@@ -38,29 +38,21 @@ Special thanks to <b>Sheights</b> for fixing the errors that the above caused
 Condoms for CV disposal implemented by <b>Ignis Flamescale</b>
 Clean Disposal (Diapers) implemented by <b>Wolfwar106</b>
 Clean Disposal (Diapers) log messages by <b>Mocha</b>
-Original Vore sound effects are from <b>chemicalcrux</b>
+NearbyEnemies variable functionality by <b>CaneSugarCat</b>
+Unit Upkeep code by <b>CaneSugarCat</b>
+Unit Deploy Cost code by <b>CaneSugarCat</b>
+The incredibly expansice Construction System code by <b>CaneSugarCat</b>
+Ancient Teleporters by <b>CaneSugarCat</b>
+Custom/Conditional Trait system by <b>CaneSugarCat</b>
+Potions by <b>CaneSugarCat</b>
+Unit/Trait Tag system by <b>CaneSugarCat</b>
+Size-based damage system by <b>CaneSugarCat</b>
+
+
+<b>AUDIO:</b>
+Almost all of the digestion sounds are from <b>chemicalcrux</b>
 Additional Vore sound effects recorded by <b>Ignis Flamescale</b>
 Additional Sound effects obtained from <b>https://www.zapsplat.com</b>
-Goddess' Mercy implemented by <b>Wolfwar106</b>
-Scout Armies implemented by <b>Wolfwar106</b>
-NearbyEnemies variable functionality by <b>CaneSugarCat</b>
-Per Race upkeep and Deployment implemented by <b>CaneSugarCat</b>
-Tagged Trait system implemented by <b>CaneSugarCat</b>
-Custom Trait system implemented by <b>CaneSugarCat</b>
-Conditional Trait system implemented by <b>CaneSugarCat</b>
-Unit Tag system implemented by <b>CaneSugarCat</b>
-Building system implemented by <b>CaneSugarCat</b>
-
-[Old Graphics (now removed, but they helped guide the early stages, and were inspirations for their replacements):
-[Base character sprites (Base model / cat /dog) by <b>Rayen</b> (I modified them to a higher resolution, and added the foxes wolves and bunnies.)
-Imps / Lamia / Clothing sprites / Fox tail / The high quality village sprites by <b>GreenSlime</b>
-Lizard sprites, Crypters sprites, base model fur patches by <b>failbird105</b>
-Slime sprites and the very large breast/cock sizes by <b>Turbotowns</b>
-Scylla sprites by <b>LLEPAICG</b>
-Harpysprites by <b>Kligor</b>
-Alternate breast sizes by <b>KuroTenko</b>
-Equine sprites by <b>Anonymouse_Equine</b>]
-Some of the remaining sprites are still by <b>darkevilme</b>, but most of the tactical and strategic ground tiles are adapted from cc0 files.]
 
 
 <b>WRITERS:</b>
@@ -70,22 +62,21 @@ A significant amount of log messages by <b>HarryS</b>
 Most of the scat tactical log text from <b>InfernoTheDragon</b> or <b>Cattitude</b>
 Additional scat log messages by <b>Ignis Flamescale</b>
 CV and Condom disposal messages by <b>Tatltuae</b>
-Pouch vore messages by <b>Tatltuae</b>
 Fart log messages by <b>Cattitude</b>
 Wide array of synonyms applied throughout the TacLog by <b>Ignis Flamescale</b>
 Deer Log messages by <b>@bane of Fun#6036</b>
+A good amount of the unique race names by <b>Tatltuae</b>
 
 
 <b>ARTISTS:</b>
-
-<b><u>Novoyetelo:</b></u>
-Abakhanskya
-Cierihaka
 
 <b><u>AgentAmbi:</b></u>
 Bella
 
 <b><u>CaneSugarCat:</b></u>
+Feral Slime
+Jackal
+Mainland Elves
 Mice
 Salix
 Volcanic Tileset
@@ -107,12 +98,13 @@ and their update
 (w/ <b>Micadi</b>)
 Asura
 Auri
+Centaur
 Crypters 
 Dragons
 Equines
 Erin
 Fairies
-Feral Wolves(?)
+Feral Wolves
 Harpies
 Imps
 Kobolds
@@ -126,7 +118,7 @@ Slimes
 Succubus
 Taurus
 Tigers
-Vagrants(?)
+Vagrants
 Zera
 Zoey
 
@@ -154,7 +146,6 @@ Wyvern
 Wyvern Matrons
 
 <u><b>Ignis Flamescale</b></u>
-Ignis
 Lizard outfits
 Lizard UB/AV pose
 Sergals
@@ -169,46 +160,63 @@ Scat sprites
 Whisp
 Youko
 
+<b><u>Liongaming1:</b></u>
+Firefly
+
 <b><u>Magentasaur:</b></u>
 D.R.A.C.O.
 Scorch
 Vision
 
 <b><u>Micadi:</b></u>
-Bees
-Driders
 Alraune
-Gryphons
-Slugs
-Demi Bats
-Feral Foxes
-Hippos
-Merfolk
-Vipers
-Mantis
-Avians
 Ants
 Warrior Ants
+Avians
+Bees
+Cockatrice
+Deer
+Demi Bats
+Driders
+Earthworms
+Feral Foxes
+Feral Lizards
+Feit
 Frogs
 Gazelle
-Sharks
-Earthworms
+Gnolls
+Gryphons
+Hippos
 Komodos
-Feral Lizards
-Cockatrice
+Lupine
+Mantis
+Merfolk
 Monitors
-Deer
+Raiju
+Sharks
+Singularity
+Skapa
+Slugs
+Smudger
+SpaceRoach
+Taraluxia
+Terminids
 Terrorbirds
 Vargul
-Terminids
-Feit
-Singularity
-Taraluxia
-Gnolls
-Smudger
-Raiju
-SpaceRoach
-Skapa
+Vipers
+
+<b><u>Novoyetelo:</b></u>
+Abakhanskya
+Cierihaka
+
+<b><u>Operation Omneon:</b></u>
+<i>Lion/Tatltuae</i>
+Eevee
+Umbreon
+????
+Feral Eevee
+Feral Umbreon
+Feral ????
 
 <b><u>PotatoFarmer:</b></u>
 Dew Sprites
@@ -217,15 +225,39 @@ Feral Frogs
 <b><u>Sheights:</b></u>
 Goodra
 
+<b><u>Supra:</b></u>
+Olivia
+
 <b><u>Tatltuae:</b></u>
 Aabayx
+Banner updates (w/ Wolfwar)
+Tatltuae
+Twisted Vine Updates
+Virae Ultimae
 
 <b><u>Wolfwar106:</b></u>
+Boom Bunnies
 Diaper sprites
 Hamsters
 Plate Armor
-Boom Bunnies
+RWU Mercenary Corp
 Xelhilde
+
+<b><u>Yonell:</b></u>
+Bears
+Viisels
+
+
+[Old Graphics (now removed, but they helped guide the early stages, and were inspirations for their replacements):
+[Base character sprites (Base model / cat /dog) by <b>Rayen</b> (I modified them to a higher resolution, and added the foxes wolves and bunnies.)
+Imps / Lamia / Clothing sprites / Fox tail / The high quality village sprites by <b>GreenSlime</b>
+Lizard sprites, Crypters sprites, base model fur patches by <b>failbird105</b>
+Slime sprites and the very large breast/cock sizes by <b>Turbotowns</b>
+Scylla sprites by <b>LLEPAICG</b>
+Harpysprites by <b>Kligor</b>
+Alternate breast sizes by <b>KuroTenko</b>
+Equine sprites by <b>Anonymouse_Equine</b>]
+Some of the remaining sprites are still by <b>darkevilme</b>, but most of the tactical and strategic ground tiles are adapted from cc0 files.]
 
 
 <b>CHARACTER RIGHTS:</b>
@@ -266,11 +298,20 @@ Singularity
 <b><u>CaneSugarCat:</b></u>
 Salix
 
+<b><u>Tatltuae:</b></u>
+Tatltuae
+
 <b><u>Wolfwar106:</b></u>
 Xelhilde
 
-<b><u>Ignis Flamescale:</b></u>
-Ignis
+<b><u>Supra:</b></u>
+Olivia
+
+<b><u>Zezmeril:</b></u>
+Skapa
+
+<b><u>Liongaming1:</b></u>
+Firefly
 
 <b><u>GAME FREAK/Creatures Inc./Nintendo:</b></u>
 Goodra

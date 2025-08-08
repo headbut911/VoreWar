@@ -799,7 +799,7 @@ static class RaceParameters
                 Traits.StrongMelee,
                 Traits.EscapeArtist
         },
-            RaceDescription = "Mm. Cheese.",
+            RaceDescription = "When the portal appeared over Lake ColVilous in the year RC102, the city of Gold Ring quickly fell into a panic.  Nothing hostile came from the rift, however, and that initial panic changed into curiosity.  After the progressive minds determined that it was a gateway to another world, and a world full of green plants at that, the only thing to do was form a Scouting Regiment to secure a foothold and see what might be gained from this mysterious place.  But just as that first settlement was established, the portal blinked out of existence, cutting off passage between Tal and this new world.  The changes began a mere week into isolation: People became more violent and sexually aggressive, with physical changes to match the mental ones shortly afterward.  And then... Then the hunger set in.",
         };
 
         Bees = new RaceTraits()
@@ -1188,7 +1188,7 @@ static class RaceParameters
             Traits.Pounce,
             Traits.Biter,
         },
-            RaceDescription = "",
+            RaceDescription = "Canine people from another world, the Lupines are a curious people, with unique views on vore and the realm they find themselves trapped within. On the whole, they view vore as highly taboo, but they're also seemingly more prone to becoming addicted to it, resulting in a very strange society.",
         };
 
         Jackals = new RaceTraits()
@@ -1205,7 +1205,7 @@ static class RaceParameters
             Traits.DexterousDefense,
             Traits.Finesse,
         },
-            RaceDescription = "A race of desert dwellers.",
+            RaceDescription = "A race of desert dwelling canine, in recent times, the constant warfare of the realm has brought them out of their isolation. Where they traditionally stood guard against any fools who sought to plunder their sacred pyramids, now they venture out to practice a doctrine of \"Defense by Offence.\"",
         };
 
         Centaur = new RaceTraits()
@@ -1251,6 +1251,7 @@ static class RaceParameters
                 Voracity = new RaceStats.StatRange(8, 14),
                 Stomach = new RaceStats.StatRange(8, 14),
             },
+            RaceDescription = "You know what she is.  A demon from Hell who will suck the life force right out of you.  But, nobody ever said they got their fix exclusively through sex...  There are much more conventional ways to steal life force on this world and the succubi had no trouble adapting to those methods.  Be careful you don't mistake them for their less-hungry/more-lusty siblings from biblical lore lest you end up dissolving away within their bellies or tails...",
             RaceAI = RaceAI.Hedonist,
         };
 
@@ -2890,7 +2891,7 @@ static class RaceParameters
             Traits.BornToMove,
 
         },
-            RaceDescription = "It's a horse!  Go ahead, try to ride one.  I dare you!",
+            RaceDescription = "It's a horse!  Go ahead, try to ride one.  We dare you!",
         };
 
         FeralFox = new RaceTraits()
@@ -3534,6 +3535,7 @@ static class RaceParameters
                 Traits.Frenzy,
                 Traits.ShunGokuSatsu
         },
+            RaceDescription = "A wandering warrior who seeks to further her strength by engaging in mortal combat with the incredibly strong creatures of this realm.  Not even dragons are safe from the gluttonous embrace and the earth-shattering blows from her Musaboriken fighting style.",
             CanUseRangedWeapons = false,
         };
 
