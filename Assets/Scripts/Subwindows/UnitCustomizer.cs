@@ -530,6 +530,8 @@ public class UnitCustomizer
                 break;
             case Race.Equaleon:
                 buttons[(int)ButtonTypes.BodyAccentTypes2].gameObject.SetActive(false);
+                buttons[(int)ButtonTypes.EyeColor].Label.text = "Right Eye Color";
+                buttons[(int)ButtonTypes.EyeType].Label.text = "Right Eye Color";
                 break;
             case Race.Viisels:
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Faceplate Color";
@@ -569,6 +571,36 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Head Frills";
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Pattern Color";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Patterns";
+                break;
+            case Race.WoodDryad:
+                buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Leaf Color";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Trunk Type";
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Wood Color";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Horn Type";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Leaves On/Off";
+                buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Eyebrows";
+                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Trunk Addon";
+                break;
+            case Race.EarthDryad:
+                buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Leaf Color";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Pattern";
+                buttons[(int)ButtonTypes.Skintone].Label.text = "Body Color";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Horn Type";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Leaves On/Off";
+                buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Eyebrows";
+                break;
+            case Race.RiverDryad:
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Pattern";
+                buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Eyebrows";
+                break;
+            case Race.FungalDryad:
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Mushroom Color";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Hat Type";
+                buttons[(int)ButtonTypes.Skintone].Label.text = "Body Color";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Mushroom Damage";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Spots On/Off";
+                buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Spots Type";
+                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Lower Mushroom Type";
                 break;
         }
     }

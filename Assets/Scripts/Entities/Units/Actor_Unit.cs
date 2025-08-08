@@ -2809,6 +2809,85 @@ public class Actor_Unit
             }
         }
 
+        if (Unit.HasTrait(Traits.BlessingOfNature))
+        {
+            if (State.GameManager.TacticalMode.currentTurn % 4 == 0)
+            {
+                var targets = TacticalUtilities.UnitsWithinTiles(Position, 2).ToList();
+                var target = targets[State.Rand.Next(0, targets.Count())];
+                target.Unit.ApplyStatusEffect(StatusEffectType.Mending, 24, (int)Math.Ceiling((double)(Unit.Level/3)));
+            }
+            foreach (StatusEffect effect in Unit.StatusEffects)
+            {
+                if (effect.Applicator != null)
+                {
+                    if (effect.Applicator.Side == Unit.Side)
+                    {
+                        effect.Applicator.Heal(Unit.GetStat(Stat.Endurance)/20);
+                    }
+                }
+            }
+        }
+
+        if (Unit.HasTrait(Traits.BlessingOfEarth))
+        {
+            if (State.GameManager.TacticalMode.currentTurn % 2 == 0)
+            {
+                var targets = TacticalUtilities.UnitsWithinTiles(Position, 2).ToList();
+                var target = targets[State.Rand.Next(0, targets.Count())];
+                target.Unit.ApplyStatusEffect(StatusEffectType.Shielded, .25f, (int)Math.Ceiling((double)(Unit.Level/2)));
+            }
+            foreach (StatusEffect effect in Unit.StatusEffects)
+            {
+                if (effect.Applicator != null)
+                {
+                    if (effect.Applicator.Side == Unit.Side)
+                    {
+                        effect.Applicator.RestoreBarrier(Unit.GetStat(Stat.Will)/10);
+                    }
+                }
+            }
+        }
+
+        if (Unit.HasTrait(Traits.BlessingOfWater))
+        {
+            if (State.GameManager.TacticalMode.currentTurn % 2 == 0)
+            {
+                var targets = TacticalUtilities.UnitsWithinTiles(Position, 2).ToList();
+                var target = targets[State.Rand.Next(0, targets.Count())];
+                target.Unit.AddFocus(Unit.Level);
+            }
+            foreach (StatusEffect effect in Unit.StatusEffects)
+            {
+                if (effect.Applicator != null)
+                {
+                    if (effect.Applicator.Side == Unit.Side)
+                    {
+                        effect.Applicator.RestoreMana(Unit.GetStat(Stat.Mind)/10);
+                    }
+                }
+            }
+        }
+
+        if (Unit.HasTrait(Traits.BlessingOfWater))
+        {
+            if (State.GameManager.TacticalMode.currentTurn % 4 == 0)
+            {
+                var targets = TacticalUtilities.UnitsWithinTiles(Position, 2).ToList();
+                var target = targets[State.Rand.Next(0, targets.Count())];
+                target.Unit.ApplyStatusEffect(StatusEffectType.Valor, .25f, (int)Math.Ceiling((double)(Unit.Level / 2)));
+            }
+            foreach (StatusEffect effect in Unit.StatusEffects)
+            {
+                if (effect.Applicator != null)
+                {
+                    if (effect.Applicator.Side == Unit.Side)
+                    {
+                        effect.Applicator.AddStackStatus(StatusEffectType.Sharpness, Unit.GetStat(Stat.Strength) / 10);
+                    }
+                }
+            }
+        }
 
     }
 

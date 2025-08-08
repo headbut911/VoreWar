@@ -23,7 +23,6 @@ class RiverDryad : DefaultRaceData
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadRiver);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DryadRiver);
         EarTypes = 3; // Ears
-        BodyAccentTypes2 = 2; // Leaves On/Off
         BodyAccentTypes3 = 4; // eyebrows
         BeardStyles = 0;
 
@@ -90,7 +89,6 @@ class RiverDryad : DefaultRaceData
         unit.BodySize = State.Rand.Next(BodySizes);
 
         unit.EarType = State.Rand.Next(EarTypes);
-        unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
         unit.BodyAccentType3 = State.Rand.Next(BodyAccentTypes3);
         unit.BodyAccentType4 = State.Rand.Next(BodyAccentTypes4);
     }
