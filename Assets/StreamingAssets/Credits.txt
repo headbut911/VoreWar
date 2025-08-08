@@ -216,10 +216,10 @@ Cierihaka
 <i>Lion/Tatltuae</i>
 Eevee
 Umbreon
-????
+Equaleon
 Feral Eevee
 Feral Umbreon
-Feral ????
+Feral Equaleon 
 
 <b><u>PotatoFarmer:</b></u>
 Dew Sprites
@@ -318,6 +318,8 @@ Firefly
 
 <b><u>GAME FREAK/Creatures Inc./Nintendo:</b></u>
 Goodra
+Eevee, Anthro and Feral
+Umbreon, Anthro and Feral
 (Feels weird, I know.  But credit where its due.)
 
 

@@ -1,6 +1,7 @@
 Eon
 Vee
 Veevee
+Greatvee
 Veeum
 Veesp
 Veevap
@@ -19,7 +20,6 @@ Dumbeon
 Eeveeon
 Fateon
 Genuineon
-Greatvee
 Happeon
 Iffeon
 Jumpeon

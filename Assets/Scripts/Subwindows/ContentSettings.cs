@@ -751,7 +751,7 @@ public class ContentSettings : MonoBehaviour
                 PlayerPrefs.GetInt($"{spawner.race} Enabled", 0) == 1,
                 PlayerPrefs.GetInt($"{spawner.race} Max Armies", info.MaxArmies),
                 PlayerPrefs.GetFloat($"{spawner.race} Spawn Rate", info.spawnRate),
-                PlayerPrefs.GetInt($"{spawner.race} Scale Factor", (int)(info.scalingFactor * 100)),
+                PlayerPrefs.GetInt($"{spawner.race} Scale Factor", (int)(info.scalingFactor)),
                 PlayerPrefs.GetInt($"{spawner.race} Team", 900 + (int)spawner.race),
                 PlayerPrefs.GetInt($"{spawner.race} Attempts", info.SpawnAttempts),
                 PlayerPrefs.GetInt($"{spawner.race} Add-On", 1) == 1,

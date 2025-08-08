@@ -1174,6 +1174,7 @@ static class RaceParameters
         {
             Traits.AdeptLearner,
             Traits.PackWill,
+            Traits.Eeveeolutionist,
         },
             RaceDescription = "Not too long ago, a portal opened up to a universe inhabited by various anthro pokémon species. Of the many inhabitants, the Eeveelutions were one of the only groups who came through. While very few Eevee's were brought through directly, all Eeveelutions are born as Eevees, building a local population. After their initial entry into the Realm, the Eeveelutions founded first the \"Eeveelution Empire,\" a police state which quickly collapsed into several smaller groups built around the different Eeveelutions, but Eevees, inherently, make up a significant portion of all Eeveelution nations.",
         };
@@ -1225,7 +1226,7 @@ static class RaceParameters
             Traits.DexterousDefense,
             Traits.Finesse,
         },
-            RaceDescription = "A race of desert dwelling canine, recent disturbances have brought them from their charge of guarding tomb raiders and adventurers from releasing the ancient dangers luring within the pyramids they call home.",
+            RaceDescription = "A race of desert dwelling canine, in recent times, the constant warfare of the realm has brought them out of their isolation. Where they traditionally stood guard against any fools who sought to plunder their sacred pyramids, now they venture out to practice a doctrine of \"Defense by Offence.\".",
         };
 
         Ghosts = new RaceTraits()
@@ -1605,7 +1606,7 @@ static class RaceParameters
                 Traits.Berserk,
                 Traits.Maul,
             },
-            RaceDescription = "An extremely tough race of mammals that have taken martial culture to their very core. They fight not just for gold, but merely for the fun of it.",
+            RaceDescription = "A long time ago, a Dragon captured a Wolf village. He demanded the women as tribute, and before long, the first Vargul were born. Their draconic father ruled as a tyrant, and the Vargul rebelled and slew their father. Initially, the Varguls remained as protectors. But eventually, according to the Varguls, the Wolves came to fear them, and the Varguls were kicked out, becoming mercenaries. According to the Wolves, the Varguls grew lazy and didn't want to protect the village anymore, and left of their own accord. Most scholars believe the truth is some combination of the two versions of events.",
         };
 
         Hamsters = new RaceTraits()
@@ -3148,6 +3149,7 @@ static class RaceParameters
                 Traits.ArtfulDodge,
                 Traits.PackWill,
                 Traits.Timid,
+                Traits.Eeveeolutionist,
         },
             RaceDescription = "Eevee, the Evolution Pokémon. Small, generally friendly and eager to play, though they can often get over eager in their playing, especially if they're hungry. While their cute, fluffy appearance may suggest a slightly less resilient creature, they are quite adaptable, and under the right conditions can evolve into a number of more specialized forms.",
 
@@ -3305,7 +3307,7 @@ static class RaceParameters
             Traits.Resilient,
             Traits.VerySlowMovement,
             Traits.SlowDigestion,
-            Traits.HealingBlood,
+            Traits.BlessingOfNature,
         },
             RaceDescription = "Devoted protectors of plants and trees, these Dryads are living incarnations of the plants all around them. They prefer to remain rooted in place, their natural magics healing and soothing the natural world around them, but they often move from place to place to find those who defile nature, and turn them to mulch.\r\n"
         };
@@ -3336,6 +3338,7 @@ static class RaceParameters
         {
             Traits.BoggingSlime,
             Traits.WeaponChanneler,
+            Traits.BlessingOfEarth,
             Traits.SlowMovement
         },
             RaceDescription = "Living incarnations of the land itself, Earth Dryads are both gentle and hardy, showing mercy to those who respect the soil, and adding those don't to the soil. They often employ stone spikes to attack those they deem a threat to the natural world. Touching one is generally not a good idea."
@@ -3366,6 +3369,7 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Slippery,
+            Traits.BlessingOfWater,
             Traits.ManaRich,
             Traits.WeaponChanneler,
         },
@@ -3398,7 +3402,8 @@ static class RaceParameters
         {
             Traits.StrongMelee,
             Traits.Frenzy,
-            Traits.MetabolicSurge
+            Traits.MetabolicSurge,
+            Traits.BlessingOfFerocity
         },
             RaceDescription = "When a Wood Dryad dies, sometimes their spirit fails to leave, and they are reborn in a new, fungal form. Any mercy they may once have had is gone, their deceptively sharp claws cutting through any that dare try to stand up to the mushroom menace. These erratic Dryads are always eager to showing those they find their favorite part of the life cycle.\r\n"
         };

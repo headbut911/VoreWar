@@ -807,6 +807,14 @@ public class HoveringTooltip : MonoBehaviour
                 return "This unit will evolve into a different race based on the current composition of its army at the start of turn if over level 5. This trait is then removed.";
             case Traits.FocusedDodge:
                 return "Unit gains 20% increased dodge. This bonus is disabled for 3 turns after taking damage.";
+            case Traits.BlessingOfNature:
+                return "This unit heals any unit that buffs it, equal to 5% of Endurance every turn while the buff persists. This unit gives 'Mendinig' to an ally within 2 spaces every 4th turn, duration scaling with level.";
+            case Traits.BlessingOfEarth:
+                return "This unit grants barrier to any unit that buffs it, equal to 10% of Will every turn while the buff persists. This unit gives 'Shield' to an ally within 2 spaces every other turn, duration scaling with level.";
+            case Traits.BlessingOfWater:
+                return "This unit restores mana to any unit that buffs it, for 10% of Mind every turn while the buff persists. This unit gives 'Focus' to an ally within 2 spaces every other turn, stacks scaling with level.";
+            case Traits.BlessingOfFerocity:
+                return "This unit grants sharpness to any unit that buffs it, equal to 10% of Strength every turn while the buff persists. This unit gives 'Valor' to an ally within 2 spaces every other turn, duration scaling with level.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

@@ -284,7 +284,7 @@ class Equaleon : DefaultRaceData
         {
             return State.GameManager.SpriteDictionary.Equaleon[9];
         }
-        return State.GameManager.SpriteDictionary.Eevee[1];
+        return null;
     }
 
     protected override Sprite HairSprite(Actor_Unit actor)

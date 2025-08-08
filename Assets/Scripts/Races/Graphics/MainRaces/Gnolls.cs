@@ -318,50 +318,70 @@ class Gnolls : DefaultRaceData
         {
             belly.transform.localScale = new Vector3(1, 1, 1);
             belly.SetActive(true);
-            int size = actor.GetStomachSize(31, 0.7f);
-            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 31)
+            int size = actor.GetStomachSize(36, 0.7f);
+            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 36)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[105];
+                return VoreSprites[99];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 31)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 35)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[104];
+                return VoreSprites[98];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 30)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 34)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[103];
+                return VoreSprites[97];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 29)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 33)
             {
                 AddOffset(Belly, 0, -33 * .625f);
-                return VoreSprites[102];
+                return VoreSprites[96];
             }
+            if (size > 31)
+            {
+                size = 31;
+            }
+
             switch (size)
             {
+                case 21:
+                    AddOffset(Belly, 0, -2 * .625f);
+                    break;
+                case 22:
+                    AddOffset(Belly, 0, -4 * .625f);
+                    break;
+                case 23:
+                    AddOffset(Belly, 0, -5 * .625f);
+                    break;
+                case 24:
+                    AddOffset(Belly, 0, -6 * .625f);
+                    break;
+                case 25:
+                    AddOffset(Belly, 0, -7 * .625f);
+                    break;
                 case 26:
-                    AddOffset(Belly, 0, -14 * .625f);
+                    AddOffset(Belly, 0, -10 * .625f);
                     break;
                 case 27:
-                    AddOffset(Belly, 0, -17 * .625f);
+                    AddOffset(Belly, 0, -15 * .625f);
                     break;
                 case 28:
                     AddOffset(Belly, 0, -20 * .625f);
                     break;
                 case 29:
-                    AddOffset(Belly, 0, -25 * .625f);
+                    AddOffset(Belly, 0, -23 * .625f);
                     break;
                 case 30:
-                    AddOffset(Belly, 0, -27 * .625f);
+                    AddOffset(Belly, 0, -29 * .625f);
                     break;
                 case 31:
-                    AddOffset(Belly, 0, -32 * .625f);
+                    AddOffset(Belly, 0, -35 * .625f);
                     break;
             }
 
-            return VoreSprites[70 + size];
+            return VoreSprites[64 + size];
         }
         else
         {

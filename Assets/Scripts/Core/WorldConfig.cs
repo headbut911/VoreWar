@@ -361,23 +361,20 @@ public class WorldConfig
         SpawnerInfo ret_value;
         switch (race)
         {
-            case Race.Vagrants:
-                ret_value = new SpawnerInfo(true, 99, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
-                break;
             case Race.Compy:
-                ret_value = new SpawnerInfo(true, 99, .15f, 40, 900 + (int)race, 1, true, 6f, 12, 18, 40, false);
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 12, 18, 40, false);
                 break;
             case Race.Gryphons:
-                ret_value = new SpawnerInfo(true, 99, .15f, 40, 900 + (int)race, 1, true, 6f, 4, 8, 40, false);
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 4, 8, 40, false);
                 break;
             case Race.Otachi:
-                ret_value = new SpawnerInfo(false, 99, .15f, 40, 900 + (int)race, 1, true, 6f, 2, 5, 40, false);
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 2, 5, 40, false);
                 break;
             case Race.Raiju:
-                ret_value = new SpawnerInfo(true, 99, .15f, 40, 900 + (int)race, 1, true, 6f, 2, 5, 40, false);
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 2, 5, 40, false);
                 break;
             case Race.Trex:
-                ret_value = new SpawnerInfo(true, 99, .15f, 40, 900 + (int)race, 1, true, 6f, 1, 4, 40, false);
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 1, 4, 40, false);
                 break;
             default:
                 ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
