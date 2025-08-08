@@ -327,7 +327,7 @@ public class WorldConfig
             return value;
         }
 
-        var obj = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
+        var obj = SpecifySpawnerDefaults(race);
         SpawnerInfo[race] = obj;
         return obj;
     }
@@ -351,11 +351,25 @@ public class WorldConfig
         {
             if (race >= Race.Vagrants && race < Race.Selicia)
             {
-                SpawnerInfo[race] = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
+                SpawnerInfo[race] = SpecifySpawnerDefaults(race);
             }
         }
     }
 
+    internal SpawnerInfo SpecifySpawnerDefaults(Race race)
+    {
+        SpawnerInfo ret_value;
+        switch (race)
+        {
+            case Race.Vagrants:
+                ret_value = new SpawnerInfo(true, 99, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
+                break;
+            default:
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
+                break;
+        }
+        return ret_value;
+    }
 
     internal List<ConstructibleBuilding> GetBuildingInfo()
     {

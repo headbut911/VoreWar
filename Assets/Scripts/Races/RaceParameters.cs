@@ -3376,28 +3376,29 @@ static class RaceParameters
             BodySize = 20,
             StomachSize = 16,
             HasTail = true,
-            FavoredStat = Stat.Stomach,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            FavoredStat = Stat.Endurance,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            Upkeep = 5f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(8, 12),
+                Strength = new RaceStats.StatRange(10, 52),
                 Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(16, 24),
+                Endurance = new RaceStats.StatRange(24, 27),
                 Mind = new RaceStats.StatRange(8, 12),
                 Will = new RaceStats.StatRange(8, 12),
                 Agility = new RaceStats.StatRange(10, 16),
-                Voracity = new RaceStats.StatRange(20, 28),
+                Voracity = new RaceStats.StatRange(15, 20),
                 Stomach = new RaceStats.StatRange(12, 20),
             },
             RacialTraits = new List<Traits>()
         {
-            Traits.Slippery,
-            Traits.Nauseous,
-            Traits.SlowDigestion
+            Traits.Resilient,
+            Traits.VerySlowMovement,
+            Traits.SlowDigestion,
+            Traits.HealingBlood,
         },
             RaceDescription = "Devoted protectors of plants and trees, these Dryads are living incarnations of the plants all around them. They prefer to remain rooted in place, their natural magics healing and soothing the natural world around them, but they often move from place to place to find those who defile nature, and turn them to mulch.\r\n"
         };
@@ -3407,28 +3408,28 @@ static class RaceParameters
             BodySize = 20,
             StomachSize = 16,
             HasTail = true,
-            FavoredStat = Stat.Stomach,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            FavoredStat = Stat.Endurance,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            Upkeep = 5f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
                 Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(16, 24),
-                Mind = new RaceStats.StatRange(8, 12),
-                Will = new RaceStats.StatRange(8, 12),
+                Endurance = new RaceStats.StatRange(20, 24),
+                Mind = new RaceStats.StatRange(15, 20),
+                Will = new RaceStats.StatRange(17, 22),
                 Agility = new RaceStats.StatRange(10, 16),
-                Voracity = new RaceStats.StatRange(20, 28),
+                Voracity = new RaceStats.StatRange(10, 15),
                 Stomach = new RaceStats.StatRange(12, 20),
             },
             RacialTraits = new List<Traits>()
         {
-            Traits.Slippery,
-            Traits.Nauseous,
-            Traits.SlowDigestion
+            Traits.BoggingSlime,
+            Traits.WeaponChanneler,
+            Traits.SlowMovement
         },
             RaceDescription = "Living incarnations of the land itself, Earth Dryads are both gentle and hardy, showing mercy to those who respect the soil, and adding those don't to the soil. They often employ stone spikes to attack those they deem a threat to the natural world. Touching one is generally not a good idea."
         };
@@ -3438,12 +3439,12 @@ static class RaceParameters
             BodySize = 20,
             StomachSize = 16,
             HasTail = true,
-            FavoredStat = Stat.Stomach,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            FavoredStat = Stat.Mind,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
-            Upkeep = 5f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 12),
@@ -3458,8 +3459,8 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.Slippery,
-            Traits.Nauseous,
-            Traits.SlowDigestion
+            Traits.ManaRich,
+            Traits.WeaponChanneler,
         },
             RaceDescription = "Playful and curious, River Dryads are the living incarnations of clear water. They spend much of their time guiding rivers and streams, helping to keep nature watered. While they can seem friendly, be warned, they possess the same power of the rushing rapids."
         };
@@ -3469,17 +3470,17 @@ static class RaceParameters
             BodySize = 20,
             StomachSize = 16,
             HasTail = true,
-            FavoredStat = Stat.Stomach,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
             DeployCost = 1,
             Upkeep = 5f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(8, 12),
+                Strength = new RaceStats.StatRange(18, 24),
                 Dexterity = new RaceStats.StatRange(6, 10),
-                Endurance = new RaceStats.StatRange(16, 24),
+                Endurance = new RaceStats.StatRange(13, 18),
                 Mind = new RaceStats.StatRange(8, 12),
                 Will = new RaceStats.StatRange(8, 12),
                 Agility = new RaceStats.StatRange(10, 16),
@@ -3488,9 +3489,9 @@ static class RaceParameters
             },
             RacialTraits = new List<Traits>()
         {
-            Traits.Slippery,
-            Traits.Nauseous,
-            Traits.SlowDigestion
+            Traits.StrongMelee,
+            Traits.Frenzy,
+            Traits.MetabolicSurge
         },
             RaceDescription = "When a Wood Dryad dies, sometimes their spirit fails to leave, and they are reborn in a new, fungal form. Any mercy they may once have had is gone, their deceptively sharp claws cutting through any that dare try to stand up to the mushroom menace. These erratic Dryads are always eager to showing those they find their favorite part of the life cycle.\r\n"
         };
