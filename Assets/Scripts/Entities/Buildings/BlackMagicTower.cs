@@ -7,9 +7,7 @@ class BlackMagicTower : ConstructibleBuilding
     public BuildingUpgrade improveUpgrade;
     public BuildingUpgrade soulUpgrade;
     public BuildingUpgrade afflictUpgrade;
-    
-    [OdinSerialize]
-    internal Dictionary<Unit,int> storedUnits;
+
     [OdinSerialize]
     internal int PactLevel;
     [OdinSerialize]
@@ -31,9 +29,6 @@ class BlackMagicTower : ConstructibleBuilding
         soulUpgrade = AddUpgrade(soulUpgrade, Config.BuildConfig.DarkMagicTowerSoulUpgrade);
         afflictUpgrade = AddUpgrade(afflictUpgrade, Config.BuildConfig.DarkMagicTowerAfflictionUpgrade);
 
-        storedUnits = new Dictionary<Unit, int>();
-        Unit newUnit = new NPC_unit(10, false, 2, 0, Race.Fairies, 0, false);
-        storedUnits.Add(newUnit, 5);
         SoulPower = 0;
         PactLevel = 0;
         Affliction = StatusEffectType.Necrosis;
