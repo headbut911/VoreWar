@@ -110,7 +110,7 @@ class FeralEevee : BlankSlate
 
         if (size >= 33 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false))
         {
-            return State.GameManager.SpriteDictionary.FeralEevee[48];
+            return State.GameManager.SpriteDictionary.FeralEevee[46];
         }
 
         if (size >= 32 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))

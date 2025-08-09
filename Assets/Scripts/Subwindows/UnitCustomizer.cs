@@ -529,9 +529,11 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Armor Rust";
                 break;
             case Race.Equaleon:
+            case Race.FeralEqualeon:
                 buttons[(int)ButtonTypes.BodyAccentTypes2].gameObject.SetActive(false);
                 buttons[(int)ButtonTypes.EyeColor].Label.text = "Right Eye Color";
-                buttons[(int)ButtonTypes.EyeType].Label.text = "Right Eye Color";
+                buttons[(int)ButtonTypes.EyeType].Label.text = "Left Eye Color";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Heterochromia On/Off";
                 break;
             case Race.Viisels:
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Faceplate Color";

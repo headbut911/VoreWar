@@ -221,7 +221,7 @@ class Lupine : DefaultRaceData
     {
         if (actor.Unit.BodyAccentType3 <= 1)
             return null;
-        return Sprites2[(actor.Unit.HasBreasts ? 64 : 56) + actor.Unit.BodySize + ((actor.Unit.BodyAccentType3 - 1) * 2)];
+        return Sprites2[(actor.Unit.HasBreasts ? 64 : 56) + (actor.Unit.BodySize >= 2 ? 1 : 0) + ((actor.Unit.BodyAccentType3 - 1) * 2)];
     }
 
     protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Head Pattern

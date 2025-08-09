@@ -47,6 +47,7 @@ public class NameGenerator
     List<string> matronsminionsTownNames;
     List<string> bearTownNames;
     List<string> gnollTownNames;
+    List<string> ghostTownNames;
     List<string> mainlandElvenTownNames;
     List<string> umbreonTownNames;
     List<string> lupineTownNames;
@@ -979,6 +980,27 @@ public class NameGenerator
             "Oti' Koetzi",
             "Dark Place",
         };
+        ghostTownNames = new List<string>
+        {
+            "Terminalia",
+            "The Grave",
+            "Shalanzi",
+            "Endless Haunt",
+            "Endless Haunt",
+            "Mortuary",
+            "Maze of Souls",
+            "Graystone",
+            "Lake Lebarge",
+            "Endlings Rest",
+            "Elder Burial",
+            "Headstone",
+            "Sematary",
+            "Extinction",
+            "Arlington",
+            "Eternal Bed",
+            "The Tomb",
+            "Spectroplasm",
+        };
 
         Encoding encoding = Encoding.GetEncoding("iso-8859-1");
 
@@ -1412,6 +1434,11 @@ public class NameGenerator
         {
             if (i >= 0 && i < gnollTownNames.Count)
                 return gnollTownNames[i];
+        }
+        else if (race == Race.Ghosts)
+        {
+            if (i >= 0 && i < ghostTownNames.Count)
+                return ghostTownNames[i];
         }
 
 
