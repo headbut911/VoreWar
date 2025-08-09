@@ -292,7 +292,7 @@ public class ItemRepository
             new Weapon(name:"Smudger Claws", description:"Smudger Claws", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Space Roach Mandibles", description:"Space Roach Mandibles", cost:4, graphic:0, damage:6, range:1),
             new Weapon(name:"Dryad Punch", description:"Both Bark and Bite", cost:4, graphic:0, damage:4, range:1),
-            new Weapon(name:"Earth Spike", description:"A heavy spike made of packed dirt", cost:4, graphic:0, damage:4, range:5, omniWeapon: true),
+            new Weapon(name:"Earth Spike", description:"A heavy spike made of packed dirt", cost:4, graphic:0, damage:4, range:3, omniWeapon: true),
             new Weapon(name:"Torrent", description:"Raw element of water right in your face", cost:4, graphic:0, damage:4, range:5, omniWeapon: true, magicWeapon: true),
             new Weapon(name:"Fungal Claw", description:"Sharp claws of a fungal dryad", cost:4, graphic:0, damage:4, range:1),
             new Weapon(name:"Rex Jaws", description:"Chomp!", cost:4, graphic:0, damage:15, range:1),

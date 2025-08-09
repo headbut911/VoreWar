@@ -643,7 +643,6 @@ public static class VillageBuildingList
             {
                 EquipmentLevels = 1,
             },
-            RequiredBuildings = new List<VillageBuilding>() { VillageBuilding.Workshop },
         },
 
         [VillageBuilding.ArcaneForge] = new VillageBuildingDefinition(

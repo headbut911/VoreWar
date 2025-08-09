@@ -3293,7 +3293,7 @@ static class RaceParameters
             Upkeep = 4f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(10, 52),
+                Strength = new RaceStats.StatRange(10, 12),
                 Dexterity = new RaceStats.StatRange(6, 10),
                 Endurance = new RaceStats.StatRange(24, 27),
                 Mind = new RaceStats.StatRange(8, 12),
@@ -3317,7 +3317,7 @@ static class RaceParameters
             BodySize = 20,
             StomachSize = 16,
             HasTail = true,
-            FavoredStat = Stat.Endurance,
+            FavoredStat = Stat.Will,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
@@ -3325,11 +3325,11 @@ static class RaceParameters
             Upkeep = 4f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(8, 12),
+                Strength = new RaceStats.StatRange(6, 8),
                 Dexterity = new RaceStats.StatRange(6, 10),
                 Endurance = new RaceStats.StatRange(20, 24),
                 Mind = new RaceStats.StatRange(15, 20),
-                Will = new RaceStats.StatRange(17, 22),
+                Will = new RaceStats.StatRange(24, 27),
                 Agility = new RaceStats.StatRange(10, 16),
                 Voracity = new RaceStats.StatRange(10, 15),
                 Stomach = new RaceStats.StatRange(12, 20),
@@ -3363,7 +3363,7 @@ static class RaceParameters
                 Mind = new RaceStats.StatRange(8, 12),
                 Will = new RaceStats.StatRange(8, 12),
                 Agility = new RaceStats.StatRange(10, 16),
-                Voracity = new RaceStats.StatRange(20, 28),
+                Voracity = new RaceStats.StatRange(12, 17),
                 Stomach = new RaceStats.StatRange(12, 20),
             },
             RacialTraits = new List<Traits>()
