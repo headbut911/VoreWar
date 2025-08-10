@@ -2251,6 +2251,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 AllConditionalTraits.Remove(toAdd);
             }
             RecalculateStatBoosts();
+            PreyCheck();
         }
 
     }
@@ -2280,6 +2281,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 }
             }
             RecalculateStatBoosts();
+            PreyCheck();
         }
     }
 
@@ -2357,16 +2359,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
             }
         }
-
-        if (HasTrait(Traits.Prey))
-            Predator = false;
-        else if (fixedPredator == false)
-            Predator = State.World?.GetEmpireOfRace(HiddenUnit.Race)?.CanVore ?? true;
-        Tags.RemoveAll(s => s == Traits.Prey);
-        if (RaceParameters.GetTraitData(HiddenUnit).AllowedVoreTypes.Any() == false)
-            Predator = false;
-        if (HiddenUnit.Predator == false && !HasTrait(Traits.Prey))
-            Tags.Add(Traits.Prey);
+        PreyCheck();
         SetMaxItems();
         if (EquippedPotions == null)
             EquippedPotions = new Dictionary<int, int[]>();
@@ -2377,6 +2370,19 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         //    if (!ShifterShapes.Contains(this))
         //        AcquireShape(this, true);
         //}
+    }
+
+    public void PreyCheck()
+    {
+        if (HasTrait(Traits.Prey))
+            Predator = false;
+        else if (fixedPredator == false)
+            Predator = State.World?.GetEmpireOfRace(HiddenUnit.Race)?.CanVore ?? true;
+        Tags.RemoveAll(s => s == Traits.Prey);
+        if (RaceParameters.GetTraitData(HiddenUnit).AllowedVoreTypes.Any() == false)
+            Predator = false;
+        if (HiddenUnit.Predator == false && !HasTrait(Traits.Prey))
+            Tags.Add(Traits.Prey);
     }
 
     public void ChangeRace(Race race)

@@ -1,7 +1,8 @@
 using OdinSerializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using TMPro;
 using UnityEngine;
 
 public class Actor_Unit
@@ -1545,6 +1546,8 @@ public class Actor_Unit
         if (TacticalUtilities.AppropriateVoreTarget(this, target) == false)
             return false;
         if (PredatorComponent.FreeCap() < target.Bulk())
+            return false;
+        if (target.Position.GetNumberOfMovesDistance(Position) > 1)
             return false;
 
         bool succeded_attempt;
