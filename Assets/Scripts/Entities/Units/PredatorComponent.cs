@@ -1059,7 +1059,7 @@ public class PredatorComponent
                 preyDamage /= 2;
             if (preyUnit.TurnsDigested < preyUnit.Unit.TraitBoosts.DigestionImmunityTurns)
                 preyDamage = 0;
-            if (tail.Contains(preyUnit) && unit.Race == Race.Succubi || unit.Race == Race.Terrorbird)//Moves prey in tail to stomach after a turn
+            if (tail.Contains(preyUnit) && (unit.Race == Race.Succubi || unit.Race == Race.Terrorbird))//Moves prey in tail to stomach after a turn
             {
                 if (preyUnit.TurnsBeingSwallowed >= 1)
                 {
