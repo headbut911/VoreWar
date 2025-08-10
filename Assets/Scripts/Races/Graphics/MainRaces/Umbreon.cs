@@ -44,12 +44,13 @@ class Umbreon : DefaultRaceData
         SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonExt, s.Unit.SkinColor));
         BreastShadow = null;
         Dick = new SpriteExtraInfo(9, DickSprite, WhiteColored);
-        Balls = new SpriteExtraInfo(8, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor));
+        Balls = new SpriteExtraInfo(8, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.SkinColor));
         Hair = null;
         Hair2 = null;
         Hair3 = null;
 
         AvoidedMainClothingTypes = 0;
+
         //RestrictedClothingTypes = 0;
         clothingColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonClothes);
         ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonArmor);
@@ -468,34 +469,60 @@ class Umbreon : DefaultRaceData
         //}
 
         int baseSize = actor.Unit.DickSize;
-        int ballOffset = actor.GetBallSize(21, .8f);
-        if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 21)
+        int ballOffset = actor.GetBallSize(31, .8f);
+        if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 31)
         {
-            AddOffset(Balls, 0, -18 * .625f);
+            AddOffset(Balls, 0, -25 * .625f);
             return State.GameManager.SpriteDictionary.Umbreon2[30];
         }
-        else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 21)
+        else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 30)
         {
-            AddOffset(Balls, 0, -18 * .625f);
+            AddOffset(Balls, 0, -25 * .625f);
             return State.GameManager.SpriteDictionary.Umbreon2[29];
         }
-        else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 20)
+        else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 29)
         {
-            AddOffset(Balls, 0, -15 * .625f);
+            AddOffset(Balls, 0, -22 * .625f);
             return State.GameManager.SpriteDictionary.Umbreon2[28];
         }
-        else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 19)
+        else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, PreyLocation.balls) ?? false) && actor.GetBallSize(21, .8f) == 28)
         {
-            AddOffset(Balls, 0, -14 * .625f);
+            AddOffset(Balls, 0, -21 * .625f);
             return State.GameManager.SpriteDictionary.Umbreon2[27];
         }
         int combined = Math.Min(baseSize + ballOffset, 26);
-        if (combined == 27)
-            AddOffset(Balls, 0, -14 * .625f);
-        else if (combined == 26)
-            AddOffset(Balls, 0, -12 * .625f);
-        else if (combined >= 23 && combined <= 25)
-            AddOffset(Balls, 0, -8 * .625f);
+        switch (combined)
+        {
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+                AddOffset(Balls, 0, -1 * .625f);
+                break;
+            case 22:
+                AddOffset(Balls, 0, -3 * .625f);
+                break;
+            case 23:
+                AddOffset(Balls, 0, -7 * .625f);
+                break;
+            case 24:
+                AddOffset(Balls, 0, -10 * .625f);
+                break;
+            case 25:
+            case 26:
+                AddOffset(Balls, 0, -15 * .625f);
+                break;
+            case 27:
+                AddOffset(Balls, 0, -18 * .625f);
+                break;
+            default:
+                break;
+        }
         if (ballOffset > 0)
         {
             return State.GameManager.SpriteDictionary.Umbreon2[combined];

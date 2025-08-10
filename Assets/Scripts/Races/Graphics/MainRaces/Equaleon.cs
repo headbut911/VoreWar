@@ -15,6 +15,7 @@ class Equaleon : DefaultRaceData
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EqualeonEyes);
         EyeTypes = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EqualeonEyes);
         BodySizes = 0;
+        BodyAccentTypes1 = 2;
         BodyAccentTypes2 = 9;
         EarTypes = 8;
         HairStyles = 10;
@@ -33,7 +34,7 @@ class Equaleon : DefaultRaceData
         BodyAccent8 = null;
         Mouth = new SpriteExtraInfo(4, MouthSprite, WhiteColored);        
         Eyes = new SpriteExtraInfo(4, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EqualeonEyes, s.Unit.EyeColor));
-        SecondaryEyes = new SpriteExtraInfo(4, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EqualeonEyes, s.Unit.EyeType));
+        SecondaryEyes = new SpriteExtraInfo(4, EyesSecondarySprite, null, (s) => EyeColorADJ(s));
         Belly = new SpriteExtraInfo(15, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.SkinColor));
         Beard = null; 
         Weapon = new SpriteExtraInfo(12, WeaponSprite, WhiteColored);
@@ -399,6 +400,12 @@ class Equaleon : DefaultRaceData
         return State.GameManager.SpriteDictionary.Umbreon2[baseSize];
     }
 
+    static ColorSwapPalette EyeColorADJ(Actor_Unit actor)
+    {
+        if (actor.Unit.BodyAccentType1 == 1)
+            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EqualeonEyes, actor.Unit.EyeColor);
+        return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EqualeonEyes, actor.Unit.EyeType);
+    }
     class Glasses1 : MainClothing
     {
         public Glasses1()

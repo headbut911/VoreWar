@@ -26,7 +26,7 @@ class FeralEqualeon : BlankSlate
         Head = null;
         Hair = new SpriteExtraInfo(8, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.AccessoryColor));
         Eyes = new SpriteExtraInfo(8, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EqualeonEyes, s.Unit.EyeColor));
-        SecondaryEyes = new SpriteExtraInfo(8, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.SkinColor));
+        SecondaryEyes = new SpriteExtraInfo(8, EyesSecondarySprite, null, (s) => EyeColorADJ(s));
         Belly = new SpriteExtraInfo(2, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.SkinColor));
     }
 
@@ -212,6 +212,13 @@ class FeralEqualeon : BlankSlate
         if (!actor.HasBelly)
             return State.GameManager.SpriteDictionary.FeralEqualeon[1];
         return State.GameManager.SpriteDictionary.FeralEqualeon[23];
+    }
+
+    static ColorSwapPalette EyeColorADJ(Actor_Unit actor)
+    {
+        if (actor.Unit.BodyAccentType1 == 1)
+            return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EqualeonEyes, actor.Unit.EyeColor);
+        return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EqualeonEyes, actor.Unit.EyeType);
     }
 }
 

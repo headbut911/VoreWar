@@ -222,7 +222,7 @@ public class MapEditor : SceneBase
         TemporalTower,
 
         //Manupulation
-        Laborotory,
+        Laboratory,
         Teleporter,
         TownHall
     }
@@ -450,7 +450,7 @@ public class MapEditor : SceneBase
             case MapBuildingType.TemporalTower:
                 Tooltip.text = $"Place Temporal Tower";
                 break;
-            case MapBuildingType.Laborotory:
+            case MapBuildingType.Laboratory:
                 Tooltip.text = $"Place Laborotory";
                 break;
             case MapBuildingType.Teleporter:
@@ -900,7 +900,7 @@ public class MapEditor : SceneBase
         {
             for (int j = minY; j <= maxY; j++)
             {
-                for (int k = 0; k < 5; k++)
+                for (int k = 0; k < TilemapLayers.Count(); k++)
                 {
                     TilemapLayers[k].SetTile(new Vector3Int(i, j, 0), null);
                 }
@@ -1593,7 +1593,7 @@ public class MapEditor : SceneBase
                     State.World.Constructibles = contstruct.ToArray();
                     LastActionBuilder.Add(() => DestroyVillagesAtTile(new Vec2i(x, y)));
                     break;
-                case MapBuildingType.Laborotory:
+                case MapBuildingType.Laboratory:
                     Laboratory newLaborotory = new Laboratory(clickLocation);
                     contstruct = State.World.Constructibles.ToList();
                     contstruct.Add(newLaborotory);

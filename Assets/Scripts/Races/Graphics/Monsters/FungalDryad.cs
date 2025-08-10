@@ -174,7 +174,7 @@ class FungalDryad : DefaultRaceData
         {
             BodyAccent4.layer = 5;
         }
-        return Sprites[19 + (actor.IsAttacking ? 12 : 0) + (actor.Unit.BodySize >= 1 ? 6 : 0)];
+        return Sprites[19 + (actor.IsAttacking ? 6 : 0) + (actor.Unit.BodySize >= 1 ? 6 : 0)];
     }
 
     protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Right Arm
@@ -187,7 +187,7 @@ class FungalDryad : DefaultRaceData
         {
             BodyAccent4.layer = 5;
         }
-        return Sprites[18 + (actor.IsAttacking ? 12 : 0) + (actor.Unit.BodySize >= 1 ? 6 : 0)];
+        return Sprites[18 + (actor.IsAttacking ? 6 : 0) + (actor.Unit.BodySize >= 1 ? 6 : 0)];
     }
 
 
