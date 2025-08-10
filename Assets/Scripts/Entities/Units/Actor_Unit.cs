@@ -2324,6 +2324,7 @@ public class Actor_Unit
 
         float odds = attackerScore / (attackerScore + defenderScore) * 100;
 
+        if (!attacker.Unit.HasTrait(Traits.Irresistable))
         odds *= Unit.TraitBoosts.FlatHitReduction;
         odds *= TagConditionChecker.ApplyTagEffect(Unit, attacker.Unit, UnitTagModifierEffect.VoreOddsMult);
 
