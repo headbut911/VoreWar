@@ -65,13 +65,13 @@ class ScatV2Discard : MiscDiscard
             int rndNum = Random.Range(0, State.GameManager.SpriteDictionary.ScatV2LBack.Length);
             if(scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {
-                scatBack.sprite = State.GameManager.SpriteDictionary.ScatViralV2SBack[rndNum];
-                scatFront.sprite = State.GameManager.SpriteDictionary.ScatViralV2SFront[rndNum];
+                scatBack.sprite = State.GameManager.SpriteDictionary.ScatViralV2LBack[rndNum];
+                scatFront.sprite = State.GameManager.SpriteDictionary.ScatViralV2LFront[rndNum];
             }
             else
             {
-                scatBack.sprite = State.GameManager.SpriteDictionary.ScatV2SBack[rndNum];
-                scatFront.sprite = State.GameManager.SpriteDictionary.ScatV2SFront[rndNum];
+                scatBack.sprite = State.GameManager.SpriteDictionary.ScatV2LBack[rndNum];
+                scatFront.sprite = State.GameManager.SpriteDictionary.ScatV2LFront[rndNum];
             }
             int baseSize = scatInfo.preySize - 16; // min = 0
             float xy = 1f + baseSize / (100.0f + baseSize);
@@ -84,13 +84,13 @@ class ScatV2Discard : MiscDiscard
             int rndNum = Random.Range(0, State.GameManager.SpriteDictionary.ScatV2MBack.Length);
             if(scatInfo.predRace == Race.Aabayx || scatInfo.predRace == Race.ViraeUltimae)
             {
-                scatBack.sprite = State.GameManager.SpriteDictionary.ScatViralV2SBack[rndNum];
-                scatFront.sprite = State.GameManager.SpriteDictionary.ScatViralV2SFront[rndNum];
+                scatBack.sprite = State.GameManager.SpriteDictionary.ScatViralV2MBack[rndNum];
+                scatFront.sprite = State.GameManager.SpriteDictionary.ScatViralV2MFront[rndNum];
             }
             else
             {
-                scatBack.sprite = State.GameManager.SpriteDictionary.ScatV2SBack[rndNum];
-                scatFront.sprite = State.GameManager.SpriteDictionary.ScatV2SFront[rndNum];
+                scatBack.sprite = State.GameManager.SpriteDictionary.ScatV2MBack[rndNum];
+                scatFront.sprite = State.GameManager.SpriteDictionary.ScatV2MFront[rndNum];
             }
         }
 
