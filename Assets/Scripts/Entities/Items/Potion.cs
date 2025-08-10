@@ -29,7 +29,6 @@ public class Potion : Item
         int type = (int)State.World.ItemRepository.GetItemType(this);
         if (user.Movement <= 0 || user.Unit.EquippedPotions[type][0] <= 0) return false;
         user.Unit.EquippedPotions[type][0] = user.Unit.EquippedPotions[type][0] - 1;
-        Debug.Log(user.Unit.EquippedPotions[type][0]);
         if (TileFunction != null)
         {
             TileFunction.Invoke(target.Position, user);
