@@ -2634,13 +2634,13 @@ public class PredatorComponent
                 return false;
             boost = -3 * (dist - 1);
         }
-        if (actor.IsAllIn)
-        {
-            boost += 50;
-        }
         else if (target.Position.GetNumberOfMovesDistance(actor.Position) > 1)
         {
             return false;
+        }
+        if (actor.IsAllIn)
+        {
+            boost += 50;
         }
         if (actor.Movement == 0)
         {
