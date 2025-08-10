@@ -524,6 +524,17 @@ public class TacticalMode : SceneBase
             actor.allowedToDefect = !actor.DefectedThisTurn && TacticalUtilities.GetPreferredSide(actor.Unit, actor.Unit.Side, actor.Unit.Side == attackerSide ? defenderSide : attackerSide) != actor.Unit.Side;
             actor.DefectedThisTurn = false;
             actor.Unit.Heal(actor.Unit.GetLeaderBonus() * 3); // mainly for the new Stat boosts => maxHealth option, but eh why not have it for everyone anyway?
+            foreach (var item in actor.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnTacticalTurnStart || t.trigger == TraitConditionTrigger.All).ToList())
+            {
+                if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(actor, item))
+                {
+                    actor.Unit.ActivateConditionalTrait(item.id);
+                }
+                else
+                {
+                    actor.Unit.DeactivateConditionalTrait(item.id);
+                }
+            }
             EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor, armies[actor.Unit.Side == attackerSide ? 0 : 1], null });
             EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);  
         }
@@ -597,6 +608,7 @@ public class TacticalMode : SceneBase
 
 
         Log.RegisterNewTurn(AttackerName, 1);
+
 
         bool skip = (!Config.WatchAIBattles || (Config.IgnoreMonsterBattles && armies[0].Side >= 100 && defenderSide >= 100)) && AIAttacker && AIDefender;
 
