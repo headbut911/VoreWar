@@ -506,6 +506,7 @@ public class TacticalMode : SceneBase
             }
             foreach (Actor_Unit actor in garrison.ToList())
             {
+                Debug.Log(actor.Unit.Side);
                 defectors.GarrisonDefectCheck(actor, attackerRace);
                 if (actor.Unit.Side != defenderSide)
                     garrison.Remove(actor);
@@ -920,7 +921,7 @@ public class TacticalMode : SceneBase
                         Empire empire = armies[1].Empire;
                         float advancedChance = 0.2f * (defenseEncampment.improveUpgrade.built ? 4f : 1);
                         float unitScale = Config.BuildConfig.DefenseEncampmentUnitScale * (defenseEncampment.levelUpgrade.built ? 1.5f : 1);
-                        Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor(empire.Leader.Level * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, armies[1].Side, empire.Race, 0, empire.CanVore);
+                        Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor(empire.Leader.Level * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, defenders.Concat(garrison).FirstOrDefault().Unit.Side, empire.Race, 0, empire.CanVore);
                         newUnit.Type = UnitType.Reinforcement;
                         Actor_Unit unit = new Actor_Unit(mapGen.RandomActorPosition(tiles, BlockedTile, units, TacticalMapGenerator.SpawnLocation.lower, newUnit.GetBestRanged() == null), newUnit);
                         if (defenseEncampment.improveUpgrade.built)
@@ -1057,7 +1058,7 @@ public class TacticalMode : SceneBase
                 if (building is CasterTower)
                 {
                     CasterTower casterTower = (CasterTower)building;
-                    Unit newUnit = new NPC_unit(10, false, 2, armies[1].Side, Race.Fairies, 0, false);
+                    Unit newUnit = new NPC_unit(10, false, 2, defenders.Concat(garrison).FirstOrDefault().Unit.Side, Race.Fairies, 0, false);
                     newUnit.Type = UnitType.Summon;
                     newUnit.Name = $"{casterTower.Owner.Name} Tower Mage";
                     Actor_Unit unit = new Actor_Unit(new Vec2i(Config.TacticalSizeX / 2, 0), newUnit);
