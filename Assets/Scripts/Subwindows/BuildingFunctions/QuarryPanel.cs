@@ -171,7 +171,7 @@ public class QuarryPanel : MonoBehaviour
                     ActionPlanDescription.text = $"Workers search for new deposits while ignoring old ones, increases the max and reduces the min by 50%.";
                     StoneText.text = $"{(int)Math.Floor(Config.BuildConfig.QuarryStoneMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildConfig.QuarryStoneMax * 1.5f)}";
                     OresText.text = $"{(int)Math.Ceiling(Oresmin * 0.5f)} - {(int)Math.Ceiling(Oresmax * 1.5f)}";
-                    MSText.text = $"{(int)Math.Floor(Config.BuildConfig.QuarryGoldMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildConfig.QuarryGoldMax * 1.5f)}";
+                    MSText.text = $"{(int)Math.Floor(Config.BuildConfig.QuarryMSMin * 0.5f)} - {(int)Math.Ceiling(Config.BuildConfig.QuarryMSMax * 1.5f)}";
                     GoldText.text = $"0";
                     break;
                 case 2:
