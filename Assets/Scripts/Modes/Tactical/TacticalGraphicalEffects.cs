@@ -23,6 +23,8 @@ static class TacticalGraphicalEffects
         var sprite = ArrowType(actor, out Material material);
         if (actor.Unit.Race == Race.Panthers)
             PantherSetup(arrow, actor);
+        if (actor.Unit.Race == Race.Bears)
+            BearSetup(arrow, actor);
         if (sprite != null) arrow.GetComponentInChildren<SpriteRenderer>().sprite = sprite;
         if (material != null) arrow.GetComponentInChildren<SpriteRenderer>().material = material;
         arrow.Setup(actor.Position, target.Position, target);
@@ -62,6 +64,32 @@ static class TacticalGraphicalEffects
 
     }
 
+    private static void BearSetup(ArrowEffect obj, Actor_Unit actor)
+    {
+        Weapon weapon = actor.BestRanged;
+//        if (weapon.Graphic == 4)
+//        {
+//            Sprite[] sprites = State.GameManager.SpriteDictionary.Bears ;
+//            anim.Frame = new Sprite[]
+//            {
+//                sprites[34],
+//            };
+//            anim.FrameTime = new float[] { 1f };
+//        }
+        if (weapon.Graphic == 6)
+        {
+            var anim = obj.gameObject.AddComponent<AnimationEffectComponent>();
+            anim.Repeat = true;
+            Sprite[] sprites = State.GameManager.SpriteDictionary.Bears;
+            anim.Frame = new Sprite[]
+            {
+                sprites[36],
+                sprites[37],
+            };
+            anim.FrameTime = new float[] { .025f, .025f};
+        }
+
+    }
     static Sprite ArrowType(Actor_Unit actor, out Material material)
     {
         Weapon weapon = actor.BestRanged;
@@ -134,6 +162,13 @@ static class TacticalGraphicalEffects
             return State.GameManager.SpriteDictionary.Slimes[17];
         else if (actor.Unit.Race == Race.Lupine && (weapon.Graphic == 4 || weapon.Graphic == 6))
             return State.GameManager.SpriteDictionary.Slimes[17];
+        else if (actor.Unit.Race == Race.Bears)
+        {
+            if (weapon.Graphic == 4)
+                return State.GameManager.SpriteDictionary.Bears[34];
+            else if (weapon.Graphic == 6)
+                return State.GameManager.SpriteDictionary.Bears[36];
+        }
         else if (actor.Unit.Race == Race.Panthers)
         {
             if (weapon.Graphic == 4)
