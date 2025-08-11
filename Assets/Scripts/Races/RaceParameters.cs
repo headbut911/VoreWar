@@ -3100,18 +3100,18 @@ static class RaceParameters
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 6f,
             PowerAdjustment = 12f,
-            DeployCost = 1,
+            DeployCost = 4,
             Upkeep = 10f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(16, 24),
-                Dexterity = new RaceStats.StatRange(8, 14),
-                Endurance = new RaceStats.StatRange(32, 40),
-                Mind = new RaceStats.StatRange(12, 20),
-                Will = new RaceStats.StatRange(16, 24),
-                Agility = new RaceStats.StatRange(6, 10),
-                Voracity = new RaceStats.StatRange(16, 24),
-                Stomach = new RaceStats.StatRange(32, 40),
+                Strength = new RaceStats.StatRange(20, 28),
+                Dexterity = new RaceStats.StatRange(12, 18),
+                Endurance = new RaceStats.StatRange(36, 44),
+                Mind = new RaceStats.StatRange(18, 24),
+                Will = new RaceStats.StatRange(22, 28),
+                Agility = new RaceStats.StatRange(10, 16),
+                Voracity = new RaceStats.StatRange(22, 30),
+                Stomach = new RaceStats.StatRange(36, 46),
             },
             RacialTraits = new List<Traits>()
         {
