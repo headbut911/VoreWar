@@ -58,7 +58,7 @@ class Jackals : DefaultRaceData
         Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => FurryColor(s));
         SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => FurryColor(s));
         BreastShadow = null;
-        Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => FurryColor(s));
+        Dick = new SpriteExtraInfo(11, DickSprite, WhiteColored);
         Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => FurryColor(s));
 
 
