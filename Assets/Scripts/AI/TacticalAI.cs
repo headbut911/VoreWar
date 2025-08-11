@@ -1507,7 +1507,7 @@ public abstract class TacticalAI : ITacticalAI
 
         if (State.GameManager.TacticalMode.IsOnlyOneSideVisible())
             return -1;
-        if (spell == SpellList.Summon) 
+        if (spell == SpellList.Summon || spell == SpellList.SummonDoppelganger || spell == SpellList.SummonSpawn) 
         {
             
                         return 1;
@@ -1556,7 +1556,7 @@ public abstract class TacticalAI : ITacticalAI
 
         if (State.GameManager.TacticalMode.IsOnlyOneSideVisible())
             return;
-        if (spell == SpellList.Summon) //Replace with better logic later
+        if (spell == SpellList.Summon || spell == SpellList.SummonDoppelganger || spell == SpellList.SummonSpawn) //Replace with better logic later
         {
             for (int i = 0; i < 4; i++)
             {
