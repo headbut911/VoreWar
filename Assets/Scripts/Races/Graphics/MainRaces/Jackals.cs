@@ -433,7 +433,7 @@ class Jackals : DefaultRaceData
     }
     protected override Sprite BodyAccentSprite6(Actor_Unit actor) // Extra weapon sprite
     {
-        if (actor.Unit.HasWeapon == false)
+        if (actor.Unit.HasWeapon == false || actor.Surrendered)
         {
             return null;
         }
@@ -1191,8 +1191,8 @@ class Jackals : DefaultRaceData
             clothing1 = new SpriteExtraInfo(18, null, null);
             clothing2 = new SpriteExtraInfo(17, null, null);
             clothing3 = new SpriteExtraInfo(17, null, null);
-            Type = 60003;
-            DiscardUsesPalettes = true;
+            Type = 70108;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -1257,8 +1257,8 @@ class Jackals : DefaultRaceData
             clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(17, null, null);
             clothing3 = new SpriteExtraInfo(17, null, null);
-            Type = 60005;
-            DiscardUsesPalettes = true;
+            Type = 70106;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -1327,8 +1327,8 @@ class Jackals : DefaultRaceData
             clothing2 = new SpriteExtraInfo(17, null, null);
             clothing3 = new SpriteExtraInfo(17, null, null);
             clothing5 = new SpriteExtraInfo(10, null, null);
-            Type = 60005;
-            DiscardUsesPalettes = true;
+            Type = 70105;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -1414,7 +1414,7 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
-            Type = 60013;
+            Type = 70109;
             FixedColor = true;
         }
 
@@ -1436,7 +1436,7 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
-            Type = 60013;
+            Type = 70110;
             FixedColor = true;
         }
 
@@ -2276,7 +2276,7 @@ class Jackals : DefaultRaceData
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
             clothing3 = new SpriteExtraInfo(12, null, WhiteColored);
-            Type = 60021;
+            Type = 70111;
             DiscardUsesPalettes = true;
         }
 
@@ -2387,15 +2387,15 @@ class Jackals : DefaultRaceData
     {
         public ClothSkirt()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[59];
+            DiscardSprite = State.GameManager.SpriteDictionary.JackalClothes[87];
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(13, null, WhiteColored); // main
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored); // main
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored); // bottom
             clothing3 = new SpriteExtraInfo(14, null, null); // Colored Top
             clothing4 = new SpriteExtraInfo(14, null, null); // Colored bottom
-            Type = 60023;
-            DiscardUsesPalettes = true;
+            Type = 70113;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2404,7 +2404,7 @@ class Jackals : DefaultRaceData
             {
                 if (actor.HasBelly)
                 {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[57 + Math.Max(8, actor.GetStomachSize(31, 0.7f))];
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.JackalClothes[57 + Math.Min(8, actor.GetStomachSize(31, 0.7f))];
                 }
                 else
                 {
@@ -2445,8 +2445,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(13, null, WhiteColored);
-            Type = 60023;
-            DiscardUsesPalettes = true;
+            Type = 70112;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2474,8 +2474,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(13, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
+            Type = 70118;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2502,8 +2502,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(13, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
+            Type = 70117;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2529,8 +2529,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(5, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
+            Type = 70119;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2549,7 +2549,7 @@ class Jackals : DefaultRaceData
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(5, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(20, null, null);
-            Type = 60022;
+            Type = 70120;
             DiscardUsesPalettes = true;
         }
 
@@ -2570,8 +2570,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(20, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
+            Type = 70121;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2589,7 +2589,7 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(20, null, null);
-            Type = 60022;
+            Type = 70122;
             DiscardUsesPalettes = true;
         }
 
@@ -2610,8 +2610,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(5, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
+            Type = 70114;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2640,8 +2640,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(5, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
+            Type = 70115;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -2670,8 +2670,8 @@ class Jackals : DefaultRaceData
             coversBreasts = false;
             blocksDick = false;
             clothing1 = new SpriteExtraInfo(5, null, WhiteColored);
-            Type = 60022;
-            DiscardUsesPalettes = true;
+            Type = 70116;
+            DiscardUsesPalettes = false;
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
