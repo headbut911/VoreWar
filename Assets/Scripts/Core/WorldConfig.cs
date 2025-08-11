@@ -376,6 +376,9 @@ public class WorldConfig
             case Race.Trex:
                 ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 1, 4, 40, false);
                 break;
+            case Race.Goodra:
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 3, 6, 40, false);
+                break;
             default:
                 ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);
                 break;
