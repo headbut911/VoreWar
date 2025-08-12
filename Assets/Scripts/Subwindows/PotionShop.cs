@@ -298,7 +298,6 @@ public class PotionShop
                 continue;
             if (!unit.EquippedPotions.Keys.Any(p => p == type))
                 continue;
-            Debug.Log(item.Name);
             PotionUI.EquippedPotions[i].gameObject.SetActive(true);
 
             PotionUI.EquippedPotions[i].SellButton.interactable = inTown;

@@ -506,7 +506,6 @@ public class TacticalMode : SceneBase
             }
             foreach (Actor_Unit actor in garrison.ToList())
             {
-                Debug.Log(actor.Unit.Side);
                 defectors.GarrisonDefectCheck(actor, attackerRace);
                 if (actor.Unit.Side != defenderSide)
                     garrison.Remove(actor);
@@ -5304,7 +5303,7 @@ Turns: {currentTurn}
             }
             if (actors.Any())
             {
-                while (StrategicUtilities.ArmyCanFitUnit(army, actors[0].Unit))
+                while (StrategicUtilities.ArmyCanFitUnit(army, actors.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Unit.Race) * u.Unit.TraitBoosts.DeployCostMult).Last().Unit))
                 {
                     army.Units.Add(actors[0].Unit);
                     actors.RemoveAt(0);
@@ -5312,7 +5311,7 @@ Turns: {currentTurn}
                         break;
                 }
             }
-            while (StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last()))
+            while (!StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).First()))
             {
                 var last = army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last();
                 army.Units.Remove(last);
@@ -5324,7 +5323,6 @@ Turns: {currentTurn}
 
         if (village != null && actors.Any())
         {
-
             foreach (var unit in actors.Select(s => s.Unit))
             {
                 if (village.GetRecruitables().Contains(unit) == false)

@@ -318,7 +318,7 @@ public class ItemRepository
             new Accessory(name:"Grand Plating", description:"Abakhanskya is covered from head to toe in highly durable composite armor plating\n+10 Endurance", cost:6, changedStat:(int)Stat.Endurance, statBonus:10 ),
             new Weapon(name:"Bella's Staff", description:"A Shepherd's Staff", cost:4, graphic:0, damage:10, range:1, lockedItem:true, accuracyModifier:.75f),
             new Weapon(name:"Voidshift Antlers", description:"With power over dark energy, Singularity can shape the void matter of her antlers to any shape in order to attack.", cost:4, graphic:0, damage:8, range:2, lockedItem:true),
-            new Accessory(name:"Comfy Sweater", description:"Singularity's favorite sweater.", cost:6, changedStat:(int)Stat.Endurance, statBonus:10 ),
+            new Accessory(name:"Comfy Sweater", description:"Singularity's favorite sweater.", cost:0, changedStat:(int)Stat.Endurance, statBonus:10 ),
             new Weapon(name:"Feit's Claws", description:"The deadly claws upon Feit's forelimbs synergize well with the wing-like feathers, allowing her to effectively glide and pin down her enemies.", cost:4, graphic:0, damage:8, range:1),
             new Accessory(name:"Feit's Talons", description:"A Draco-Raptor's talons are quite powerful, enabling these predators to quickly pounce upon distant prey.", cost:6, changedStat:(int)Stat.Endurance, statBonus:10 ),
             new Weapon(name:"Omni Buster", description:"A melee weapon made from a semi-morphic material that takes on a form best suited to it's wielder. (Dissapates upon separation from it's wielder.)", cost:4, graphic:2, damage:9, range:1, accuracyModifier:1.35f),

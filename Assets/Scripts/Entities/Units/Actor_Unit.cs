@@ -2978,7 +2978,7 @@ public class Actor_Unit
             Targetable = false;
             Surrendered = true;
             PredatorComponent?.FreeAnyAlivePrey();
-            Debug.Log("Attack performed on target that was already dead");
+            //Debug.Log("Attack performed on target that was already dead");
             return false;
         }        
         int modifiedDamage = CalculateDamageWithResistance(damage, damageType);

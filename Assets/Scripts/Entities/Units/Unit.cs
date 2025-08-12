@@ -2355,8 +2355,15 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             if (t >= (Traits)6000)
             {
+                if (State.ConditionalTraitList.Count <= 0)
+                {
+                    continue;
+                }
                 var newTrait = State.ConditionalTraitList.Where(x => x.id == (int)t).First();
-                AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
+                if (!AllConditionalTraits.ContainsKey(newTrait))
+                {
+                    AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
+                }
             }
         }
         PreyCheck();
@@ -3074,6 +3081,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
     {
         if (type == StatusEffectType.Poisoned && HasTrait(Traits.PoisonSpit))
             return;
+        if (type == StatusEffectType.Morphed && strength != 123)
+        {
+            TriggerMorph(duration);
+            return;
+        }
         StatusEffects.Remove(GetStatusEffect(type));                    // if null, nothing happens, otherwise status is effectively overwritten
         StatusEffects.Add(new StatusEffect(type, strength, duration, applicator, expireEffect));
     }
@@ -3403,7 +3415,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             clone.Tags = new List<Traits>(Tags);
             clone.PermanentTraits = new List<Traits>(PermanentTraits);
             clone.RemovedTraits = new List<Traits>(RemovedTraits);
-            ApplyStatusEffect(StatusEffectType.Morphed, 1, duration, clone);
+            ApplyStatusEffect(StatusEffectType.Morphed, 123, duration, clone);
             if (MorphUnit == null)
             {
                 Race = State.RaceSettings.GetMorphRace(Race);

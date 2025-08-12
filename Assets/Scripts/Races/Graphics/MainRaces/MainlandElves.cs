@@ -239,6 +239,29 @@ class MainlandElves : DefaultRaceData
     {
         base.RandomCustom(unit);
 
+        if (unit.HasDick && unit.HasBreasts)
+        {
+            if (Config.HermsOnlyUseFemaleHair)
+                unit.HairStyle = State.Rand.Next(18);
+            else
+                unit.HairStyle = State.Rand.Next(HairStyles);
+        }
+        else if (unit.HasDick && Config.FemaleHairForMales)
+            unit.HairStyle = State.Rand.Next(HairStyles);
+        else if (unit.HasDick == false && Config.MaleHairForFemales)
+            unit.HairStyle = State.Rand.Next(HairStyles);
+        else
+        {
+            if (unit.HasDick)
+            {
+                unit.HairStyle = 18 + State.Rand.Next(18);
+            }
+            else
+            {
+                unit.HairStyle = State.Rand.Next(18);
+            }
+        }
+
         unit.EarType = State.Rand.Next(EarTypes);
         unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
