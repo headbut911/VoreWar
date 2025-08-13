@@ -489,7 +489,7 @@ class Utahraptor : BlankSlate
 
         if (SkapaFrontSide)  // FrontSide
         {
-            if (size > 0) return Utahraptor200Sprites[40 + size];
+            if (actor.HasBelly) return Utahraptor200Sprites[40 + size];
             return null;
         }
         if (SkapaFrontDirect)  // DirectFront
