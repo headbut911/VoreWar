@@ -1,7 +1,8 @@
 using OdinSerializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using TMPro;
 using UnityEngine;
 
 public class Actor_Unit
@@ -1546,6 +1547,8 @@ public class Actor_Unit
             return false;
         if (PredatorComponent.FreeCap() < target.Bulk())
             return false;
+        if (target.Position.GetNumberOfMovesDistance(Position) > 1)
+            return false;
 
         bool succeded_attempt;
         IsAllIn = true;
@@ -2976,7 +2979,7 @@ public class Actor_Unit
             Targetable = false;
             Surrendered = true;
             PredatorComponent?.FreeAnyAlivePrey();
-            Debug.Log("Attack performed on target that was already dead");
+            //Debug.Log("Attack performed on target that was already dead");
             return false;
         }        
         int modifiedDamage = CalculateDamageWithResistance(damage, damageType);

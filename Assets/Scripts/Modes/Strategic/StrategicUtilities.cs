@@ -813,11 +813,18 @@ static class StrategicUtilities
     internal static List<Army> GetOwnerArmyWithinXTiles(ConstructibleBuilding building, int tiles)
     {
         List<Army> armyList = new List<Army>();
-        foreach (Army allyArmy in building.Owner.Armies)
+        if (building != null)
         {
-            if (allyArmy.Position.GetNumberOfMovesDistance(building.Position) <= tiles)
-                armyList.Add(allyArmy);
+            if (building.Owner != null)
+            {
+                foreach (Army allyArmy in building.Owner.Armies)
+                {
+                    if (allyArmy.Position.GetNumberOfMovesDistance(building.Position) <= tiles)
+                        armyList.Add(allyArmy);
+                }
+            }
         }
+
         return armyList;
     }
     internal static List<Army> GetAllyArmyWithinXTiles(Vec2i pos, int tiles, Empire empire)

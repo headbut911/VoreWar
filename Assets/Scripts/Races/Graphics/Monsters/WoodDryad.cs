@@ -222,7 +222,7 @@ class WoodDryad : DefaultRaceData
     {
         if (actor.Unit.IsDead && actor.Unit.Items != null)
         {
-            return Sprites2[69];
+            return State.GameManager.SpriteDictionary.HumansBodySprites3[69];
         }
         else
         {

@@ -875,7 +875,7 @@ public class MapEditor : SceneBase
                             }
                             else
                             {
-                                TilemapLayers[3].SetTile(new Vector3Int(i, j, 0), DoodadTypes[-1 + (int)doodads[i, j]]);
+                                TilemapLayers[14].SetTile(new Vector3Int(i, j, 0), DoodadTypes[-1 + (int)doodads[i, j]]);
                             }
                         }
                         else

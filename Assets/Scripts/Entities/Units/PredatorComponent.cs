@@ -812,7 +812,15 @@ public class PredatorComponent
         var alives = preyUnits.Where(s => s.Unit.IsDead == false && TacticalUtilities.TreatAsHostile(actor, s.Actor)).ToArray();
         if (alives.Length == 0)
             alives = preyUnits.Where(s => s.Unit.IsDead == false).ToArray();
-        var target = alives[State.Rand.Next(alives.Length)];
+        Prey target = null;
+        if (alives.Any())
+        {
+            target = alives[State.Rand.Next(alives.Length)]; // Check is required, even though it shouldn't be.
+        }
+        else
+        {
+            return; // Prevent NullPointer
+        }
         State.GameManager.TacticalMode.TacticalStats.RegisterFreed(unit.Side);
         if (State.Rand.Next(2) == 0)
             State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> succumbs to the hex and releases <b>{target.Unit.Name}</b>.");
@@ -1109,7 +1117,7 @@ public class PredatorComponent
             }
             if (TacticalUtilities.IsPreyEndoTargetForUnit(preyUnit, unit))
             {
-                if (unit.HasTrait(Traits.Endosoma) && (preyUnit.Unit.Side != unit.Side))
+                if (unit.HasTrait(Traits.Endosoma))
                 {
                     preyUnit.Unit.Stamina -= preyDamage;
                 }

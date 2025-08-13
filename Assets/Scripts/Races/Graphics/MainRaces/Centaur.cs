@@ -132,8 +132,8 @@ class Centaur : TaurHumanHalf
 
     protected override Sprite SecondaryBellySprite(Actor_Unit actor) // Second Stomach
     {
-        int size = actor.GetStomach2Size(31);
-        if (size + actor.GetWombSize(3) < 1) return State.GameManager.SpriteDictionary.CentaurParts[8];
+        int size = actor.GetStomach2Size(31, 0.7f) + actor.GetWombSize(31, 0.7f);
+        if (size < 1) return State.GameManager.SpriteDictionary.CentaurParts[8];
 
         if (size > 4)
         {

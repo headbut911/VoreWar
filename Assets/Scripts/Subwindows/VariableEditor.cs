@@ -414,7 +414,7 @@ public class VariableEditor : MonoBehaviour
                         if (ct != null)
                             TempDictionary[(Traits)ct.id] = obj.GetComponentInChildren<Toggle>().isOn;
                         if (cdt != null)
-                            TempDictionary[(Traits)ct.id] = obj.GetComponentInChildren<Toggle>().isOn;
+                            TempDictionary[(Traits)cdt.id] = obj.GetComponentInChildren<Toggle>().isOn;
                     }
                     needSave = true;
                 }

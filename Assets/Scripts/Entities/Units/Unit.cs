@@ -2251,6 +2251,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 AllConditionalTraits.Remove(toAdd);
             }
             RecalculateStatBoosts();
+            PreyCheck();
         }
 
     }
@@ -2280,6 +2281,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
                 }
             }
             RecalculateStatBoosts();
+            PreyCheck();
         }
     }
 
@@ -2353,20 +2355,18 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         {
             if (t >= (Traits)6000)
             {
+                if (State.ConditionalTraitList.Count <= 0)
+                {
+                    continue;
+                }
                 var newTrait = State.ConditionalTraitList.Where(x => x.id == (int)t).First();
-                AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
+                if (!AllConditionalTraits.ContainsKey(newTrait))
+                {
+                    AllConditionalTraits.Add(newTrait, ConditionalTraitConditionChecker.StrategicTraitConditionActive(this, newTrait));
+                }
             }
         }
-
-        if (HasTrait(Traits.Prey))
-            Predator = false;
-        else if (fixedPredator == false)
-            Predator = State.World?.GetEmpireOfRace(HiddenUnit.Race)?.CanVore ?? true;
-        Tags.RemoveAll(s => s == Traits.Prey);
-        if (RaceParameters.GetTraitData(HiddenUnit).AllowedVoreTypes.Any() == false)
-            Predator = false;
-        if (HiddenUnit.Predator == false && !HasTrait(Traits.Prey))
-            Tags.Add(Traits.Prey);
+        PreyCheck();
         SetMaxItems();
         if (EquippedPotions == null)
             EquippedPotions = new Dictionary<int, int[]>();
@@ -2377,6 +2377,19 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         //    if (!ShifterShapes.Contains(this))
         //        AcquireShape(this, true);
         //}
+    }
+
+    public void PreyCheck()
+    {
+        if (HasTrait(Traits.Prey))
+            Predator = false;
+        else if (fixedPredator == false)
+            Predator = State.World?.GetEmpireOfRace(HiddenUnit.Race)?.CanVore ?? true;
+        Tags.RemoveAll(s => s == Traits.Prey);
+        if (RaceParameters.GetTraitData(HiddenUnit).AllowedVoreTypes.Any() == false)
+            Predator = false;
+        if (HiddenUnit.Predator == false && !HasTrait(Traits.Prey))
+            Tags.Add(Traits.Prey);
     }
 
     public void ChangeRace(Race race)
@@ -3068,6 +3081,11 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
     {
         if (type == StatusEffectType.Poisoned && HasTrait(Traits.PoisonSpit))
             return;
+        if (type == StatusEffectType.Morphed && strength != 123)
+        {
+            TriggerMorph(duration);
+            return;
+        }
         StatusEffects.Remove(GetStatusEffect(type));                    // if null, nothing happens, otherwise status is effectively overwritten
         StatusEffects.Add(new StatusEffect(type, strength, duration, applicator, expireEffect));
     }
@@ -3397,7 +3415,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
             clone.Tags = new List<Traits>(Tags);
             clone.PermanentTraits = new List<Traits>(PermanentTraits);
             clone.RemovedTraits = new List<Traits>(RemovedTraits);
-            ApplyStatusEffect(StatusEffectType.Morphed, 1, duration, clone);
+            ApplyStatusEffect(StatusEffectType.Morphed, 123, duration, clone);
             if (MorphUnit == null)
             {
                 Race = State.RaceSettings.GetMorphRace(Race);

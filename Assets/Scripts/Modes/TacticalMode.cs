@@ -524,6 +524,17 @@ public class TacticalMode : SceneBase
             actor.allowedToDefect = !actor.DefectedThisTurn && TacticalUtilities.GetPreferredSide(actor.Unit, actor.Unit.Side, actor.Unit.Side == attackerSide ? defenderSide : attackerSide) != actor.Unit.Side;
             actor.DefectedThisTurn = false;
             actor.Unit.Heal(actor.Unit.GetLeaderBonus() * 3); // mainly for the new Stat boosts => maxHealth option, but eh why not have it for everyone anyway?
+            foreach (var item in actor.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnTacticalTurnStart || t.trigger == TraitConditionTrigger.All).ToList())
+            {
+                if (ConditionalTraitConditionChecker.TacticalTraitConditionActive(actor, item))
+                {
+                    actor.Unit.ActivateConditionalTrait(item.id);
+                }
+                else
+                {
+                    actor.Unit.DeactivateConditionalTrait(item.id);
+                }
+            }
             EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor, armies[actor.Unit.Side == attackerSide ? 0 : 1], null });
             EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);  
         }
@@ -598,6 +609,7 @@ public class TacticalMode : SceneBase
 
         Log.RegisterNewTurn(AttackerName, 1);
 
+
         bool skip = (!Config.WatchAIBattles || (Config.IgnoreMonsterBattles && armies[0].Side >= 100 && defenderSide >= 100)) && AIAttacker && AIDefender;
 
         if (tacticalBattleOverride == TacticalBattleOverride.ForceWatch)
@@ -641,6 +653,10 @@ public class TacticalMode : SceneBase
         {
             foreach (ConstructibleBuilding building in attackerBuildingsInRange)
             {
+                if (building.Owner == null || building.ruined)
+                {
+                    continue;
+                }
                 if (building is BlackMagicTower)
                 {
                     BlackMagicTower darkMagicTower = building as BlackMagicTower;
@@ -899,6 +915,10 @@ public class TacticalMode : SceneBase
 
             foreach (ConstructibleBuilding building in defenderBuildingsInRange)
             {
+                if (building.Owner == null || building.ruined)
+                {
+                    continue;
+                }
                 if (building is DefenseEncampment)
                 {
                     DefenseEncampment defenseEncampment = (DefenseEncampment)building;
@@ -908,7 +928,7 @@ public class TacticalMode : SceneBase
                         Empire empire = armies[1].Empire;
                         float advancedChance = 0.2f * (defenseEncampment.improveUpgrade.built ? 4f : 1);
                         float unitScale = Config.BuildConfig.DefenseEncampmentUnitScale * (defenseEncampment.levelUpgrade.built ? 1.5f : 1);
-                        Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor(empire.Leader.Level * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, armies[1].Side, empire.Race, 0, empire.CanVore);
+                        Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor(empire.Leader.Level * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, defenders.Concat(garrison).FirstOrDefault().Unit.Side, empire.Race, 0, empire.CanVore);
                         newUnit.Type = UnitType.Reinforcement;
                         Actor_Unit unit = new Actor_Unit(mapGen.RandomActorPosition(tiles, BlockedTile, units, TacticalMapGenerator.SpawnLocation.lower, newUnit.GetBestRanged() == null), newUnit);
                         if (defenseEncampment.improveUpgrade.built)
@@ -1045,7 +1065,7 @@ public class TacticalMode : SceneBase
                 if (building is CasterTower)
                 {
                     CasterTower casterTower = (CasterTower)building;
-                    Unit newUnit = new NPC_unit(10, false, 2, armies[1].Side, Race.Fairies, 0, false);
+                    Unit newUnit = new NPC_unit(10, false, 2, defenders.Concat(garrison).FirstOrDefault().Unit.Side, Race.Fairies, 0, false);
                     newUnit.Type = UnitType.Summon;
                     newUnit.Name = $"{casterTower.Owner.Name} Tower Mage";
                     Actor_Unit unit = new Actor_Unit(new Vec2i(Config.TacticalSizeX / 2, 0), newUnit);
@@ -4655,6 +4675,14 @@ Turns: {currentTurn}
                         }
                         else
                         {
+                            if (remainingAttackers > 0 && !prey.Actor.Unit.IsEnemyOfSide(0))
+                            {
+                                continue;
+                            }
+                            if (remainingDefenders > 0 && prey.Actor.Unit.IsEnemyOfSide(0))
+                            {
+                                continue;
+                            }
                             prey.Actor.Unit.Health = 0;
                             prey.Actor.Unit.Kill();
                             foreach (var item in prey.Actor.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnDeath || t.trigger == TraitConditionTrigger.All).ToList())
@@ -5291,7 +5319,7 @@ Turns: {currentTurn}
             }
             if (actors.Any())
             {
-                while (StrategicUtilities.ArmyCanFitUnit(army, actors[0].Unit))
+                while (StrategicUtilities.ArmyCanFitUnit(army, actors.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Unit.Race) * u.Unit.TraitBoosts.DeployCostMult).Last().Unit))
                 {
                     army.Units.Add(actors[0].Unit);
                     actors.RemoveAt(0);
@@ -5299,7 +5327,7 @@ Turns: {currentTurn}
                         break;
                 }
             }
-            while (StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last()))
+            while (!StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).First()))
             {
                 var last = army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last();
                 army.Units.Remove(last);
@@ -5311,7 +5339,6 @@ Turns: {currentTurn}
 
         if (village != null && actors.Any())
         {
-
             foreach (var unit in actors.Select(s => s.Unit))
             {
                 if (village.GetRecruitables().Contains(unit) == false)

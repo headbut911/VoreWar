@@ -736,48 +736,60 @@ protected override Sprite EyesSprite(Actor_Unit actor)
         int offset = actor.GetBallSize(28, .8f);
         if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.balls) ?? false) && offset == 28)
         {
-            AddOffset(Balls, 0, -18 * .625f);
+            AddOffset(Balls, 0, -20 * .625f);
             if (actor.Unit.BodyAccentType2 == 1 && actor.Unit.Furry)
                 return Sprites7[176];
             return Sprites7[139 - ((actor.Unit.Furry && Config.FurryGenitals) ? 102 : 0)];
         }
         else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.balls) ?? false) && offset == 28)
         {
-            AddOffset(Balls, 0, -18 * .625f);
+            AddOffset(Balls, 0, -20 * .625f);
             if (actor.Unit.BodyAccentType2 == 1 && actor.Unit.Furry)
                 return Sprites7[175];
             return Sprites7[138 - ((actor.Unit.Furry && Config.FurryGenitals) ? 102 : 0)];
         }
         else if ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.balls) ?? false) && offset == 27)
         {
-            AddOffset(Balls, 0, -18 * .625f);
+            AddOffset(Balls, 0, -20 * .625f);
             if (actor.Unit.BodyAccentType2 == 1 && actor.Unit.Furry)
                 return Sprites7[174];
             return Sprites7[137 - ((actor.Unit.Furry && Config.FurryGenitals) ? 102 : 0)];
         }
         else if (offset >= 26)
         {
-            AddOffset(Balls, 0, -15 * .625f);
+            AddOffset(Balls, 0, -20 * .625f);
         }
         else if (offset == 25)
         {
-            AddOffset(Balls, 0, -9 * .625f);
+            AddOffset(Balls, 0, -12 * .625f);
         }
         else if (offset == 24)
         {
-            AddOffset(Balls, 0, -7 * .625f);
+            AddOffset(Balls, 0, -10 * .625f);
         }
         else if (offset == 23)
         {
-            AddOffset(Balls, 0, -6 * .625f);
+            AddOffset(Balls, 0, -9 * .625f);
         }
         else if (offset == 22)
         {
-            AddOffset(Balls, 0, -3 * .625f);
+            AddOffset(Balls, 0, -10 * .625f);
         }
         else if (offset == 21)
         {
-            AddOffset(Balls, 0, -2 * .625f);
+            AddOffset(Balls, 0, -7 * .625f);
+        }
+        else if (offset == 20)
+        {
+            AddOffset(Balls, 0, -6 * .625f);
+        }
+        else if (offset == 19)
+        {
+            AddOffset(Balls, 0, -4 * .625f);
+        }
+        else if (offset == 18)
+        {
+            AddOffset(Balls, 0, -1 * .625f);
         }
         if (actor.Unit.BodyAccentType2 == 1 && actor.Unit.Furry)
         {
