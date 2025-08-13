@@ -6,11 +6,12 @@ using UnityEngine;
 
 class Umbreon : DefaultRaceData
 {
-    bool BreastBlocked = false;
-    bool CockBlocked = false;
+//    bool BreastBlocked = false; // Handled in MainClothing.cs
+//    bool CockBlocked = false; // Handled in MainClothing.cs
 
     public Umbreon()
     {
+        GentleAnimation = true;
         AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonSkin);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonSkin);
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonSkin);
@@ -208,7 +209,7 @@ class Umbreon : DefaultRaceData
     }
     protected override Sprite BodyAccentSprite2(Actor_Unit actor)
     {
-        if (actor.Unit.HasDick == false || CockBlocked)
+        if (actor.Unit.HasDick == false /*|| CockBlocked*/)
             return null;
 
         if (actor.IsErect())
@@ -226,9 +227,9 @@ class Umbreon : DefaultRaceData
         }
         return null;
     }
-    protected override Sprite BodyAccentSprite3(Actor_Unit actor)
+    protected override Sprite BodyAccentSprite3(Actor_Unit actor) // Left Breast Ring color
     {
-        if (actor.Unit.HasBreasts == false || BreastBlocked)
+        if (actor.Unit.HasBreasts == false /*|| BreastBlocked*/)
             return null;
         if (actor.PredatorComponent?.LeftBreastFullness > 0)
         {
@@ -257,9 +258,9 @@ class Umbreon : DefaultRaceData
             return State.GameManager.SpriteDictionary.Umbreon3[0 + actor.Unit.BreastSize];
         }
     }
-    protected override Sprite BodyAccentSprite4(Actor_Unit actor)
+    protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Right Breast Ring color
     {
-        if (actor.Unit.HasBreasts == false || BreastBlocked)
+        if (actor.Unit.HasBreasts == false /*|| BreastBlocked*/)
             return null;
         if (actor.PredatorComponent?.RightBreastFullness > 0)
         {
@@ -287,50 +288,50 @@ class Umbreon : DefaultRaceData
             return State.GameManager.SpriteDictionary.Umbreon3[32 + actor.Unit.BreastSize];
         }
     }
-    protected override Sprite BodyAccentSprite5(Actor_Unit actor)
+    protected override Sprite BodyAccentSprite5(Actor_Unit actor) // Belly ring color
     {
         if (actor.HasBelly)
         {
             int size = actor.GetStomachSize(31, 0.7f);
             if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 31)
             {
-                AddOffset(Belly, 0, -33 * .625f);
+                AddOffset(BodyAccent5, 0, -33 * .625f);
                 return null;
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 31)
             {
-                AddOffset(Belly, 0, -33 * .625f);
+                AddOffset(BodyAccent5, 0, -33 * .625f);
                 return null;
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 30)
             {
-                AddOffset(Belly, 0, -33 * .625f);
+                AddOffset(BodyAccent5, 0, -33 * .625f);
                 return null;
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 29)
             {
-                AddOffset(Belly, 0, -33 * .625f);
+                AddOffset(BodyAccent5, 0, -33 * .625f);
                 return null;
             }
             switch (size)
             {
                 case 26:
-                    AddOffset(Belly, 0, -14 * .625f);
+                    AddOffset(BodyAccent5, 0, -14 * .625f);
                     break;
                 case 27:
-                    AddOffset(Belly, 0, -17 * .625f);
+                    AddOffset(BodyAccent5, 0, -17 * .625f);
                     break;
                 case 28:
-                    AddOffset(Belly, 0, -20 * .625f);
+                    AddOffset(BodyAccent5, 0, -20 * .625f);
                     break;
                 case 29:
-                    AddOffset(Belly, 0, -25 * .625f);
+                    AddOffset(BodyAccent5, 0, -25 * .625f);
                     break;
                 case 30:
-                    AddOffset(Belly, 0, -27 * .625f);
+                    AddOffset(BodyAccent5, 0, -27 * .625f);
                     break;
                 case 31:
-                    AddOffset(Belly, 0, -32 * .625f);
+                    AddOffset(BodyAccent5, 0, -32 * .625f);
                     break;
             }
 
@@ -350,32 +351,22 @@ class Umbreon : DefaultRaceData
 
     protected override Sprite WeaponSprite(Actor_Unit actor)
     {
-        if (actor.GetWeaponSprite() <= 1)
+        if (actor.Unit.HasWeapon && actor.Surrendered == false)
         {
+            if (actor.GetWeaponSprite() >=5)
+            {
+                return State.GameManager.SpriteDictionary.Umbreon[106 + actor.GetWeaponSprite()];
+            }
             if (actor.Unit.Furry)
             {
-                return State.GameManager.SpriteDictionary.Umbreon[104 + (actor.IsAttacking ? 1 : 0)];
+                return State.GameManager.SpriteDictionary.Umbreon[106 + actor.GetWeaponSprite()];
             }
             else
             {
-                return State.GameManager.SpriteDictionary.Umbreon[102 + (actor.IsAttacking ? 1 : 0)];
+                return State.GameManager.SpriteDictionary.Umbreon[102 + actor.GetWeaponSprite()];
             }
         }
-        else if (actor.GetWeaponSprite() <= 3)
-        {
-            if (actor.Unit.Furry)
-            {
-                return State.GameManager.SpriteDictionary.Umbreon[108 + (actor.IsAttacking ? 1 : 0)];
-            }
-            else
-            {
-                return State.GameManager.SpriteDictionary.Umbreon[106 + (actor.IsAttacking ? 1 : 0)];
-            }
-        }
-        else 
-        {
-            return State.GameManager.SpriteDictionary.Umbreon[106 + actor.GetWeaponSprite()];
-        }
+        else return null;
     }
 
     protected override Sprite EyesSprite(Actor_Unit actor)
@@ -713,7 +704,7 @@ class Umbreon : DefaultRaceData
     {
         public Armor1()
         {
-            blocksBreasts = true;
+            blocksBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
             clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
@@ -744,7 +735,7 @@ class Umbreon : DefaultRaceData
     {
         public Armor2()
         {
-            blocksBreasts = true;
+            blocksBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
             clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
