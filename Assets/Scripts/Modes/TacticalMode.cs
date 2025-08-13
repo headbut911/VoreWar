@@ -928,7 +928,7 @@ public class TacticalMode : SceneBase
                         Empire empire = armies[1].Empire;
                         float advancedChance = 0.2f * (defenseEncampment.improveUpgrade.built ? 4f : 1);
                         float unitScale = Config.BuildConfig.DefenseEncampmentUnitScale * (defenseEncampment.levelUpgrade.built ? 1.5f : 1);
-                        Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor(empire.Leader.Level * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, defenders.Concat(garrison).FirstOrDefault().Unit.Side, empire.Race, 0, empire.CanVore);
+                        Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor((empire.Leader != null ? empire.Leader.Level : 3) * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, defenders.Concat(garrison).FirstOrDefault().Unit.Side, empire.Race, 0, empire.CanVore);
                         newUnit.Type = UnitType.Reinforcement;
                         Actor_Unit unit = new Actor_Unit(mapGen.RandomActorPosition(tiles, BlockedTile, units, TacticalMapGenerator.SpawnLocation.lower, newUnit.GetBestRanged() == null), newUnit);
                         if (defenseEncampment.improveUpgrade.built)
