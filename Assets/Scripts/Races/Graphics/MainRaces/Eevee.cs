@@ -6,7 +6,7 @@ using UnityEngine;
 
 class Eevee : DefaultRaceData
 {
-    bool BreastBlocked = false;
+//    bool BreastBlocked = false; // Carry over from Umbreon code
     readonly EeveeRags Rags;
 
     public Eevee()
@@ -190,9 +190,9 @@ class Eevee : DefaultRaceData
         return null;
     }
     protected override Sprite BodyAccentSprite2(Actor_Unit actor) => State.GameManager.SpriteDictionary.Eevee[132];
-    protected override Sprite BodyAccentSprite3(Actor_Unit actor)
+    protected override Sprite BodyAccentSprite3(Actor_Unit actor)// Carry over from Umbreon code
     {
-        if (actor.Unit.HasBreasts == false || BreastBlocked)
+        if (actor.Unit.HasBreasts == false /*|| BreastBlocked*/)
             return null;
         if (actor.PredatorComponent?.LeftBreastFullness > 0)
         {
@@ -221,9 +221,9 @@ class Eevee : DefaultRaceData
             return State.GameManager.SpriteDictionary.Eevee[0 + actor.Unit.BreastSize];
         }
     }
-    protected override Sprite BodyAccentSprite4(Actor_Unit actor)
+    protected override Sprite BodyAccentSprite4(Actor_Unit actor)// Carry over from Umbreon code
     {
-        if (actor.Unit.HasBreasts == false || BreastBlocked)
+        if (actor.Unit.HasBreasts == false /*|| BreastBlocked*/)
             return null;
         if (actor.PredatorComponent?.RightBreastFullness > 0)
         {

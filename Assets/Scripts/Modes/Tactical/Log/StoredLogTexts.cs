@@ -2413,9 +2413,9 @@ static class StoredLogTexts
             priority: 9, conditional: s => s.Target.Race == Race.Dragon || s.Target.Race == Race.EasternDragon),
 
             new EventString((i) => $"<b>{i.Unit.Name}</b> moans and groans as {GPPHe(i.Unit)} rub{SIfSingular(i.Unit)} {GPPHis(i.Unit)} {PreyLocStrings.BellyStuffedAdjSyn()} {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
-            priority: 10, conditional: s => Lewd(s) && (s.Target == s.Unit)),
+            priority: 10, conditional: s => Lewd(s) && (s.Target == s.Unit) && ActorHumanoid(s)),
             new EventString((i) => $"\"Ohhhh...you were soooooo tasty!\" <b>{i.Unit.Name}</b> moans in pleasure as {GPPHe(i.Unit)} rub{SIfSingular(i.Unit)} {GPPHis(i.Unit)} {PreyLocStrings.BellyStuffedAdjSyn()} {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
-            priority: 10, conditional: s => s.Target == s.Unit),
+            priority: 10, conditional: s => s.Target == s.Unit && ActorHumanoid(s)),
 
             new EventString((i) => $"\"Mmmmmmmm...\" <b>{i.Target.Name}</b> moans as <b>{i.Unit.Name}</b> rubs and prods the {GetRaceDescSingl(i.Target)}'s {PreyLocStrings.BellyStuffedAdjSyn()} {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
             priority: 8),
