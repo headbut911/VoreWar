@@ -518,7 +518,6 @@ static class RaceParameters
             Traits.ArtfulDodge,
             Traits.ThrillSeeker
         },
-            LeaderRace = Race.Youko,
             RaceDescription = "Natives of this realm, the Foxes seem incapable of taking danger seriously. They dodge attacks at the last second and only seem to grow ever bolder as death approaches them. Entire armies have fallen exhausted as a group of foxes dances among them, ready to be devoured once the time is right.",
         };
 
@@ -567,7 +566,8 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.PackStrength,
-            Traits.PackVoracity
+            Traits.PackVoracity,
+			Traits.Tenacious,
         },
             RaceDescription = "Natives of this realm, the Wolves have a history of hunting in packs extending beyond the crafting of their first weapons. While a lone Wolf can still be a worthy adversary, their true strength comes from working with their kin.",
         };
@@ -615,12 +615,12 @@ static class RaceParameters
 
         Slimes = new RaceTraits()
         {
-            BodySize = 15,
+            BodySize = 10,
             StomachSize = 20,
             HasTail = false,
             FavoredStat = Stat.Stomach,
             DeployCost = 1,
-            Upkeep = 4f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.BoggingSlime,
@@ -679,8 +679,20 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
             Traits.PackStomach,
+            Traits.MagicResistance,
             Traits.AstralCall,
         },
+		RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 14),
+                Dexterity = new RaceStats.StatRange(6, 14),
+                Endurance = new RaceStats.StatRange(6, 14),
+                Mind = new RaceStats.StatRange(14, 22),
+                Will = new RaceStats.StatRange(8, 16),
+                Agility = new RaceStats.StatRange(8, 18),
+                Voracity = new RaceStats.StatRange(12, 18),
+                Stomach = new RaceStats.StatRange(20, 30),
+            },
             RaceDescription = "Following the scent of new lands to torment, these beings erupted forth from the underworld. So eager are they that at the promise of battle some of the Imps still in the infernal realm may manifest just for a chance at carnage.",
         };
 
@@ -705,7 +717,7 @@ static class RaceParameters
         Crypters = new RaceTraits()
         {
             BodySize = 15,
-            StomachSize = 18,
+            StomachSize = 15,
             HasTail = false,
             FavoredStat = Stat.Endurance,
             DeployCost = 1,
@@ -727,13 +739,14 @@ static class RaceParameters
             HasTail = true,
             FavoredStat = Stat.Stomach,
             DeployCost = 1,
-            Upkeep = 3f,
+            Upkeep = 7f,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.BreastVore, VoreType.Anal, VoreType.TailVore },
             RacialTraits = new List<Traits>()
         {
             Traits.Ravenous,
             Traits.Biter,
-            Traits.DualStomach
+            Traits.DualStomach,
+			Traits.StrongGullet
         },
             RaceDescription = "Natives to this realm, these legless beings were once the strongest and largest hunters of the land. The sudden emergence of many new species left the Lamia uncertain at first, but soon their dual stomachs won and they focused on testing the taste of the new arrivals.",
         };
@@ -756,7 +769,7 @@ static class RaceParameters
 
         Taurus = new RaceTraits()
         {
-            BodySize = 20,
+            BodySize = 15,
             StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Strength,
@@ -774,7 +787,7 @@ static class RaceParameters
         Crux = new RaceTraits()
         {
             BodySize = 12,
-            StomachSize = 14,
+            StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Will,
             DeployCost = 1,
@@ -790,7 +803,7 @@ static class RaceParameters
 
         Equines = new RaceTraits()
         {
-            BodySize = 20,
+            BodySize = 15,
             StomachSize = 20,
             HasTail = true,
             FavoredStat = Stat.Strength,
@@ -825,7 +838,7 @@ static class RaceParameters
         Bees = new RaceTraits()
         {
             BodySize = 12,
-            StomachSize = 14,
+            StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
@@ -844,14 +857,14 @@ static class RaceParameters
         Driders = new RaceTraits()
         {
             BodySize = 20,
-            StomachSize = 12,
+            StomachSize = 15,
             HasTail = false,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            Upkeep = 4f,
+            Upkeep = 7f,
             RacialTraits = new List<Traits>()
         {
-                //Traits.StrongMelee,
+                Traits.StrongMelee,
                 Traits.NimbleClimber,
                 Traits.Webber,
         },
@@ -878,7 +891,7 @@ static class RaceParameters
         Demibats = new RaceTraits()
         {
             BodySize = 8,
-            StomachSize = 13,
+            StomachSize = 15,
             HasTail = false,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
@@ -911,7 +924,7 @@ static class RaceParameters
 
         Mermen = new RaceTraits()
         {
-            BodySize = 20,
+            BodySize = 15,
             StomachSize = 20,
             HasTail = true,
             FavoredStat = Stat.Will,
@@ -946,7 +959,7 @@ static class RaceParameters
         Demiants = new RaceTraits()
         {
             BodySize = 9,
-            StomachSize = 12,
+            StomachSize = 15,
             HasTail = false,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
@@ -1045,7 +1058,7 @@ static class RaceParameters
         Mice = new RaceTraits()
         {
             BodySize = 8,
-            StomachSize = 12,
+            StomachSize = 15,
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
@@ -1105,7 +1118,6 @@ static class RaceParameters
             {
                 Traits.ProlificBreeder,
                 Traits.EasyToVore,
-                Traits.Replaceable,
             },
             LeaderRace = Race.Abakhanskya,
             RaceDescription = "A tribe of kobolds who are faithfully serving their goddess, Abakhanskya.",
@@ -1133,7 +1145,7 @@ static class RaceParameters
         MainlandElves = new RaceTraits()
         {
             BodySize = 12,
-            StomachSize = 12,
+            StomachSize = 15,
             HasTail = false,
             FavoredStat = Stat.Will,
             DeployCost = 1,
@@ -1154,11 +1166,12 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Endurance,
             DeployCost = 1,
-            Upkeep = 3f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
             Traits.Intimidating,
             Traits.HardSkin,
+            Traits.Berserk,
         },
             RaceDescription = "When Fimbulwinter decended upon Bjornheim, the home realm of the Bears, many thought they were doomed. But then, a gateway formed in the snow coated landscape, and a band of raiders was able to escape the end times of one world by simply moving to another. Now in this realm, they raid and pillage, taking the valuables of other peoples for themselves, while devouring any who fail to fight well enough to ward these ursine vikings away.",
         };
@@ -1192,7 +1205,6 @@ static class RaceParameters
             Traits.PackStrength,
             Traits.EscapeArtist,
         },
-            ConversionRace = Race.Eevee,
             RaceDescription = "After the fall of the \"Eeveelution Empire\", The Umbreons took the first opportunity they had to attack the Sylveons, Before eventually running off. Unlike most Eeveelutions, They got away with very little resources due to the fact they were too busy filling their bellies with Sylveons to gather anything. So they resorted to taking the weapons and armor from those they defeated and melted it down to form their weapons and armor. Also unlike most Eeveelutions, They deny any resemblance to their feral counter parts. They are also quite intelligent... When they aren't drunk having discovered various forms of alcohol.",
         };
 
@@ -1203,7 +1215,7 @@ static class RaceParameters
             HasTail = false,
             FavoredStat = Stat.Strength,
             DeployCost = 1,
-            Upkeep = 3f,
+            Upkeep = 4f,
             RacialTraits = new List<Traits>()
         {
             Traits.PackStrength,
@@ -1227,7 +1239,7 @@ static class RaceParameters
             Traits.DexterousDefense,
             Traits.Finesse,
         },
-            RaceDescription = "A race of desert dwelling canine, in recent times, the constant warfare of the realm has brought them out of their isolation. Where they traditionally stood guard against any fools who sought to plunder their sacred pyramids, now they venture out to practice a doctrine of \"Defense by Offence.\".",
+            RaceDescription = "A race of desert dwelling canine, in recent times, the constant warfare of the realm has brought them out of their isolation. Where they traditionally stood guard against any fools who sought to plunder their sacred pyramids, now they venture out to practice a doctrine of \"Defense by Offense.\".",
         };
 
         Ghosts = new RaceTraits()
@@ -1253,8 +1265,6 @@ static class RaceParameters
             StomachSize = 20,
             HasTail = true,
             FavoredStat = Stat.Endurance,
-            DeployCost = 1,
-            Upkeep = 4f,
             RacialTraits = new List<Traits>()
             {
                 Traits.DualStomach,
@@ -1418,7 +1428,6 @@ static class RaceParameters
             Traits.PackWill,
             Traits.FastDigestion,
         },
-            ConversionRace = Race.Eevee,
             RaceDescription = "After the arrival of the anthro Eeveelutions into this Realm, they have begun to experience a number of new Eeveelutions, seemingly some odd effect this Realm has on how Eevees evolve. Equaleons are one of these new forms, essentially a larger, more powerful Eevee that seemingly is the result of evolving without meeting the criteria for the other Eeveelutions. Given their somewhat smaller population, rather than host a nation of their own, most Equaleons prefer to sell their strength as mercenaries.",
         };
 
@@ -1748,7 +1757,7 @@ static class RaceParameters
             ExpMultiplier = 1.5f,
             PowerAdjustment = 2f,
             DeployCost = 1,
-            Upkeep = 3f,
+            Upkeep = 6f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(8, 20),
@@ -1770,8 +1779,8 @@ static class RaceParameters
 
         WyvernMatron = new RaceTraits()
         {
-            BodySize = 22,
-            StomachSize = 18,
+            BodySize = 40,
+            StomachSize = 40,
             FavoredStat = Stat.Agility,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Unbirth, VoreType.CockVore, VoreType.Anal },
             ExpMultiplier = 1.6f,
@@ -2907,17 +2916,17 @@ static class RaceParameters
         FeralHorses = new RaceTraits()
         {
             BodySize = 20,
-            StomachSize = 16,
+            StomachSize = 20,
             HasTail = true,
             FavoredStat = Stat.Agility,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth, VoreType.CockVore },
             ExpMultiplier = 1.1f,
             PowerAdjustment = 1.3f,
             DeployCost = 1,
-            Upkeep = 3f,
+            Upkeep = 4f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(14, 18),
+                Strength = new RaceStats.StatRange(20, 28),
                 Dexterity = new RaceStats.StatRange(10, 16),
                 Endurance = new RaceStats.StatRange(16, 20),
                 Mind = new RaceStats.StatRange(6, 10),
@@ -3024,7 +3033,7 @@ static class RaceParameters
                 Traits.StrongGullet,
                 Traits.BornToMove,
         },
-            RaceDescription = "Orcas that have mutated to fly and breathe air on their homewrold. They've also developed a ravenous appetite.  The Skysharks followed the Scylla to this world, and the Orcas followed the Skyharks.",
+            RaceDescription = "Orcas that have mutated to fly and breathe air on their homewrold. They've also developed a ravenous appetite.  The Skysharks followed the Scylla to this world, and the Orcas followed the Skysharks.",
         };
 
         ViraeUltimae = new RaceTraits()
@@ -3188,7 +3197,6 @@ static class RaceParameters
                 Traits.Pounce,
                 Traits.PackStrength,
         },
-            ConversionRace = Race.FeralEevee,
             RaceDescription = "Umbreon, the Moonlight Pokémon. A medium sized canine, Feral Umbreons also seemed to come from the same place as Feral Eevees, Also gaining the same hunger Feral Eevees acquired. They will mostly live in packs with other Feral Umbreons and some Feral Eevees. Some claim they have even seen them adopting the Feral Eevees anthro counter part, mistaking it as one of their own. But this has yet to be proven true. Feral Umbreons, like their anthro counter part, share their hatred for Sylveons. Fights between Feral Umbreons and Feral Sylveons have been recorded several times.",
 
         };
@@ -3221,7 +3229,6 @@ static class RaceParameters
                 Traits.ArtfulDodge,
                 Traits.PackWill,
         },
-            ConversionRace = Race.FeralEevee,
             RaceDescription = "Equaleon, the Equalized Pokémon. Evolving from Eevee under unique conditions, Equaleon represents a unique form of eeveelution that retains for more of the traits of Eevee than normal, simply scaled up to a larger size and power. They are often just as friendly as Eevees, but a lot better at not accidentally eating those they're playing with. Instead, they mostly consume anything they deem a threat to themselves or the ones they care about. But so long as you aren't either of those, they're actually quite playful and nice to be around. They're seemingly unique to this Realm.",
 
         };
@@ -3229,7 +3236,7 @@ static class RaceParameters
         FeralSlime = new RaceTraits()
         {
             BodySize = 7,
-            StomachSize = 20,
+            StomachSize = 15,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             FavoredStat = Stat.Endurance,
             RaceStats = new RaceStats()
@@ -3299,7 +3306,7 @@ static class RaceParameters
             Upkeep = 4f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(10, 12),
+                Strength = new RaceStats.StatRange(10, 14),
                 Dexterity = new RaceStats.StatRange(6, 10),
                 Endurance = new RaceStats.StatRange(24, 27),
                 Mind = new RaceStats.StatRange(8, 12),
@@ -3320,10 +3327,10 @@ static class RaceParameters
 
         EarthDryad = new RaceTraits()
         {
-            BodySize = 20,
+            BodySize = 10,
             StomachSize = 16,
             HasTail = true,
-            FavoredStat = Stat.Will,
+            FavoredStat = Stat.Endurance,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore },
             ExpMultiplier = 1.2f,
             PowerAdjustment = 1.5f,
@@ -3331,11 +3338,11 @@ static class RaceParameters
             Upkeep = 4f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(6, 8),
+                Strength = new RaceStats.StatRange(8, 12),
                 Dexterity = new RaceStats.StatRange(6, 10),
                 Endurance = new RaceStats.StatRange(20, 24),
                 Mind = new RaceStats.StatRange(15, 20),
-                Will = new RaceStats.StatRange(24, 27),
+                Will = new RaceStats.StatRange(17, 22),
                 Agility = new RaceStats.StatRange(10, 16),
                 Voracity = new RaceStats.StatRange(10, 15),
                 Stomach = new RaceStats.StatRange(12, 20),
@@ -3352,7 +3359,7 @@ static class RaceParameters
 
         RiverDryad = new RaceTraits()
         {
-            BodySize = 20,
+            BodySize = 10,
             StomachSize = 16,
             HasTail = true,
             FavoredStat = Stat.Mind,
@@ -3369,7 +3376,7 @@ static class RaceParameters
                 Mind = new RaceStats.StatRange(8, 12),
                 Will = new RaceStats.StatRange(8, 12),
                 Agility = new RaceStats.StatRange(10, 16),
-                Voracity = new RaceStats.StatRange(12, 17),
+                Voracity = new RaceStats.StatRange(20, 28),
                 Stomach = new RaceStats.StatRange(12, 20),
             },
             RacialTraits = new List<Traits>()
@@ -3384,7 +3391,7 @@ static class RaceParameters
 
         FungalDryad = new RaceTraits()
         {
-            BodySize = 20,
+            BodySize = 15,
             StomachSize = 16,
             HasTail = true,
             FavoredStat = Stat.Strength,
@@ -3523,7 +3530,7 @@ static class RaceParameters
             ExpMultiplier = 4f,
             PowerAdjustment = 2f,
             DeployCost = 1,
-            Upkeep = 6f,
+            Upkeep = 12f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(20, 28),
@@ -3533,7 +3540,7 @@ static class RaceParameters
                 Will = new RaceStats.StatRange(6, 10),
                 Agility = new RaceStats.StatRange(18, 26),
                 Voracity = new RaceStats.StatRange(6, 10),
-                Stomach = new RaceStats.StatRange(6, 10),
+                Stomach = new RaceStats.StatRange(12, 20),
             },
             RacialTraits = new List<Traits>()
         {
@@ -3840,7 +3847,6 @@ static class RaceParameters
                 Traits.Greedy,
                 Traits.BornToMove,
                 Traits.TailStrike,
-                Traits.GiantSlayer,
         },
             RaceDescription = "An anthropomorphic tiger shark from another world.  Zoey is typically a lazy girl who loves watching movies and being a general couch-potato.  However, upon realizing she'd been isekai'd into the realm, her gluttony left her interested in trying to stomach the local warriors and monsters with some basic martial arts, joining whichever side would pay her first.",
         };
@@ -4085,13 +4091,13 @@ static class RaceParameters
 
         Feit = new RaceTraits()
         {
-            BodySize = 20,
+            BodySize = 30,
             StomachSize = 25,
             FavoredStat = Stat.Agility,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
             ExpMultiplier = 4f,
             PowerAdjustment = 4f,
-            DeployCost = 1,
+            DeployCost = 3,
             Upkeep = 25f,
             RaceStats = new RaceStats()
             {
@@ -4234,7 +4240,7 @@ static class RaceParameters
             },
             RacialTraits = new List<Traits>()
         {
-                Traits.FriendlyStomach,
+                Traits.Endosoma,
                 Traits.Pounce,
                 Traits.Timid,
                 Traits.Submissive,

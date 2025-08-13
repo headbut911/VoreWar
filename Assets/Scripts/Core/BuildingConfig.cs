@@ -13,9 +13,9 @@ public class BuildingConfig
     [OdinSerialize]
     internal int BuildingPassiveRange = 3;
     [OdinSerialize]
-    internal int EmpireBuildingCapture = 0;
+    internal int EmpireBuildingCapture = 1;
     [OdinSerialize]
-    internal int MonsterBuildingCapture = 0;
+    internal int MonsterBuildingCapture = 2;
     [OdinSerialize]
     internal int BuildingCaptureTurns = 2;
 

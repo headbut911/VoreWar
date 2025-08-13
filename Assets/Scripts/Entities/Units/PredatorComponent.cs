@@ -1117,7 +1117,7 @@ public class PredatorComponent
             }
             if (TacticalUtilities.IsPreyEndoTargetForUnit(preyUnit, unit))
             {
-                if (unit.HasTrait(Traits.Endosoma) && (preyUnit.Unit.Side != unit.Side))
+                if (unit.HasTrait(Traits.Endosoma))
                 {
                     preyUnit.Unit.Stamina -= preyDamage;
                 }

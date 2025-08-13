@@ -368,16 +368,25 @@ public class WorldConfig
                 ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 4, 8, 40, false);
                 break;
             case Race.Otachi:
-                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 2, 5, 40, false);
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 1, 4, 40, false);
                 break;
             case Race.Raiju:
-                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 2, 5, 40, false);
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 1, 4, 40, false);
                 break;
             case Race.Trex:
                 ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 1, 4, 40, false);
                 break;
-            case Race.Goodra:
-                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 3, 6, 40, false);
+            case Race.Utahraptor:
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 4, 8, 40, false);
+                break;
+			case Race.EasternDragon:
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 1, 4, 40, false);
+                break;
+			case Race.Wyvern:
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 4, 8, 40, false);
+                break;
+			case Race.SpaceCroach:
+                ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 4, 8, 40, false);
                 break;
             default:
                 ret_value = new SpawnerInfo(false, 4, .15f, 40, 900 + (int)race, 1, true, 6f, 8, 12, 40, false);

@@ -653,6 +653,10 @@ public class TacticalMode : SceneBase
         {
             foreach (ConstructibleBuilding building in attackerBuildingsInRange)
             {
+                if (building.Owner == null || building.ruined)
+                {
+                    continue;
+                }
                 if (building is BlackMagicTower)
                 {
                     BlackMagicTower darkMagicTower = building as BlackMagicTower;
@@ -911,6 +915,10 @@ public class TacticalMode : SceneBase
 
             foreach (ConstructibleBuilding building in defenderBuildingsInRange)
             {
+                if (building.Owner == null || building.ruined)
+                {
+                    continue;
+                }
                 if (building is DefenseEncampment)
                 {
                     DefenseEncampment defenseEncampment = (DefenseEncampment)building;
@@ -4667,6 +4675,14 @@ Turns: {currentTurn}
                         }
                         else
                         {
+                            if (remainingAttackers > 0 && !prey.Actor.Unit.IsEnemyOfSide(0))
+                            {
+                                continue;
+                            }
+                            if (remainingDefenders > 0 && prey.Actor.Unit.IsEnemyOfSide(0))
+                            {
+                                continue;
+                            }
                             prey.Actor.Unit.Health = 0;
                             prey.Actor.Unit.Kill();
                             foreach (var item in prey.Actor.Unit.AllConditionalTraits.Keys.Where(t => t.trigger == TraitConditionTrigger.OnDeath || t.trigger == TraitConditionTrigger.All).ToList())
