@@ -473,6 +473,12 @@ public class WorldGenerator
                             tiles[j, k] = StrategicTileType.fieldSnow;
                         else if (type == StrategicTileType.desert || type == StrategicTileType.sandHills)
                             tiles[j, k] = StrategicTileType.fieldDesert;
+                        else if (type == StrategicTileType.ashen || type == StrategicTileType.ashenHills)
+                            tiles[j, k] = StrategicTileType.fieldAshen;
+                        else if (type == StrategicTileType.smallIslands || type == StrategicTileType.shallowWater)
+                            tiles[j, k] = StrategicTileType.fieldSmallIslands;
+                        else if (type == StrategicTileType.savannah)
+                            tiles[j, k] = StrategicTileType.fieldsavannah;
                         else
                             tiles[j, k] = StrategicTileType.field;
                     }

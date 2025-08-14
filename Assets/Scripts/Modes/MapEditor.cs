@@ -337,7 +337,12 @@ public class MapEditor : SceneBase
             {
                 if (x == 0 && y == 0)
                     continue;
-                if (tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.field || tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldDesert || tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldSnow)
+                if (tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.field || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldDesert || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldAshen || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldsavannah || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldSmallIslands || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldSnow)
                     farmSquares++;
             }
         }
