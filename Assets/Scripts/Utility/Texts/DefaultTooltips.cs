@@ -767,7 +767,7 @@ Does not retroactively affect already created units.";
             case 314:
                 return "Enables explosive fluffles of Boom Bunnies.";
             case 315:
-                return "Sets the amont of slots in an army this unit takes up.";
+                return "Sets the amont of slots in an army this unit takes up. (This value can be a decimal)";
             case 316:
                 return "Sets a soft cap on AP.  Every AP past this value will take double the regen than the last.\n Example: At a value of 4, A unit that would normally start with 10 AP will instead start with 6 AP. The first point of AP past 4 requires 2 AP and the second requires 4 AP, resulting in 6.";
             case 317:

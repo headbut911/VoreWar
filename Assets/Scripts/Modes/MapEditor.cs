@@ -1003,15 +1003,22 @@ public class MapEditor : SceneBase
                     foreach (KeyValuePair<int, StrategicTileType> tiletype in logic.GetSurroundingLiquid((int)overTiles[i, j] - 2000, State.World.Tiles[i, j], new Vec2(i, j)))
                     {
                         current_layer++;
+                        Debug.Log(current_layer + " / " + TilemapLayers.Length);
                         switch (tiletype.Value)
                         {
                             case StrategicTileType.water:
                                 if (StrategicTileType.water > State.World.Tiles[i, j])
-                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), State.GameManager.StrategyMode.TileDictionary.WaterLiquidFloat[tiletype.Key]);
+                                {
+                                    Tile tie = State.GameManager.StrategyMode.TileDictionary.WaterLiquidFloat[tiletype.Key];
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), tie);
+                                }
                                 break;
                             case StrategicTileType.ocean:
                                 if (StrategicTileType.ocean > State.World.Tiles[i, j])
-                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), State.GameManager.StrategyMode.TileDictionary.OceanLiquidFloat[tiletype.Key]);
+                                {
+                                    Tile tie = State.GameManager.StrategyMode.TileDictionary.OceanLiquidFloat[tiletype.Key];
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), tie);
+                                }
                                 break;
                             case StrategicTileType.lava:
                                 if (StrategicTileType.lava > State.World.Tiles[i, j])
