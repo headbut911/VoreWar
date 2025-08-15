@@ -36,8 +36,8 @@ class Trex : BlankSlate
 
     internal override void RunFirst(Actor_Unit actor)
     {
-        if (actor.Unit.GetScale() == 1)
-        actor.UnitSprite.GraphicsFolder.transform.localScale = new Vector3(1.3f, 1.3f, 1); // Embiggify!
+        float scaleMod = actor.Unit.GetScale()*1.3f;
+        actor.UnitSprite.GraphicsFolder.transform.localScale = new Vector3(scaleMod, scaleMod, 1); // Embiggify!
     }
 
     internal override void SetBaseOffsets(Actor_Unit actor) // Offsets

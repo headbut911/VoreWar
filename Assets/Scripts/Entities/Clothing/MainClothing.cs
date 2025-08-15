@@ -167,6 +167,11 @@ abstract class MainClothing
             {
                 sprite.HideSprite(SpriteType.BreastShadow); //Used for other things in newgraphics
             }
+            if (actor.Unit.Race == Race.Umbreon)
+            {
+                sprite.HideSprite(SpriteType.BodyAccent3); //Used for Breast Ring colors
+                sprite.HideSprite(SpriteType.BodyAccent4);
+            }
 
         }
         else if (coversBreasts)
@@ -183,6 +188,10 @@ abstract class MainClothing
         {
             sprite.HideSprite(SpriteType.Dick);
             sprite.HideSprite(SpriteType.Balls);
+            if (actor.Unit.Race == Race.Umbreon)
+            {
+                sprite.HideSprite(SpriteType.BodyAccent2); //Used for Dick Ring colors
+            }
         }
 
         if (colorsBelly)

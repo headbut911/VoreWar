@@ -26,8 +26,8 @@ class Bears : DefaultRaceData
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
-        Mouth = new SpriteExtraInfo(4, MouthSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));
-        Eyes = new SpriteExtraInfo(4, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
+        Mouth = new SpriteExtraInfo(5, MouthSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));
+        Eyes = new SpriteExtraInfo(5, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
         Belly = new SpriteExtraInfo(15, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Fur, s.Unit.AccessoryColor));
         Weapon = new SpriteExtraInfo(12, WeaponSprite, WhiteColored);
         BackWeapon = null;
@@ -83,7 +83,7 @@ class Bears : DefaultRaceData
             return null;
         }
         int sprite = actor.IsAttacking ? 7 : 6;
-        if (actor.GetWeaponSprite() == 2 || actor.GetWeaponSprite() == 2)
+        if (actor.GetWeaponSprite() == 0 || actor.GetWeaponSprite() == 2)
             sprite = 8;
 
         return State.GameManager.SpriteDictionary.Bears[sprite];

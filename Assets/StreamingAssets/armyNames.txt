@@ -3,7 +3,7 @@ The first entry after each race is the base army name.  Otherwise there will be 
 Humans
 Company
 The Queensguard
-The King’s Own
+The Kings Own
 Chevaliers Du Sol
 Golden Company
 The Woodsmen
@@ -38,7 +38,7 @@ Gullet Hoppers
 Softpad Militia
 Bouncers
 The Indigestables
-Prey’s Curse Militia
+Preys Curse Militia
 Carrotburg Veterans
 Soft Pelt Skirmishers
 Burrow Guard
@@ -178,7 +178,7 @@ Levies
 Vulpine Consumers
 Floof Fondlers
 Banzai Brigade
-The Shoguna’s Own
+The Shogunas Own
 Vulpiyo Ashigaru
 Foxish Expeditionary Force
 
@@ -273,7 +273,7 @@ By Pntyr aaz Znznzn
 Of Pntyr aaz Kchk
 Of Pntyr aaz Klkl
 Of Pntyr aaz Styn
-Pntyr aaz Yef Mps’ Hunt
+Pntyr aaz Yef Mps Hunt
 By Pntyr aaz Lor
 Loyals of Pntyr aaz Festkex
 Loyals of Pstkrsysynsr
@@ -322,8 +322,8 @@ School of Fish
 
 Frogs
 Scouts
-Chief’s Guard
-Priest’s Guard
+Chiefs Guard
+Priests Guard
 The Fly-eaters
 
 Crux
@@ -361,17 +361,17 @@ Bears
 Raiders
 Vikings
 Bjornheim Reminents
-Thor’s Hammer
-Odin’s Spear
-Loki’s Cunning
-Baldr’s Talent
-Tyr’s Power
-Magni’s Thunder
-Modi’s Lightning
-Freyr’s Sword
-Freya’s Might
-Sif’s Hair
-Heimdall’s Sight
+Thors Hammer
+Odins Spear
+Lokis Cunning
+Baldrs Talent
+Tyrs Power
+Magnis Thunder
+Modis Lightning
+Freyrs Sword
+Freyas Might
+Sifs Hair
+Heimdalls Sight
 
 Lupine
 Class
