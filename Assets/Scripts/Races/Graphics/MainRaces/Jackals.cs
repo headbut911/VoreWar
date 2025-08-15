@@ -58,7 +58,7 @@ class Jackals : DefaultRaceData
         Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => FurryColor(s));
         SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => FurryColor(s));
         BreastShadow = null;
-        Dick = new SpriteExtraInfo(11, DickSprite, WhiteColored);
+        Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => DickColor(s));
         Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => FurryColor(s));
 
 
@@ -114,6 +114,13 @@ class Jackals : DefaultRaceData
         if (actor.Unit.Furry)
             return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.JackalSkin, actor.Unit.AccessoryColor);
         return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, actor.Unit.SkinColor);
+    }
+
+    static ColorSwapPalette DickColor(Actor_Unit actor)
+    {
+        if (Config.FurryGenitals)
+            return null;
+        return FurryColor(actor);
     }
 
     internal override void SetBaseOffsets(Actor_Unit actor)
