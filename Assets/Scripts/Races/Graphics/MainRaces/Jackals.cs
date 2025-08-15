@@ -51,7 +51,7 @@ class Jackals : DefaultRaceData
         Eyes = new SpriteExtraInfo(8, EyesSprite, WhiteColored);
         SecondaryEyes = new SpriteExtraInfo(7, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
         SecondaryAccessory = null;
-        Belly = new SpriteExtraInfo(17, null, null, (s) => FurryColor(s));
+        Belly = new SpriteExtraInfo(14, null, null, (s) => FurryColor(s));
         Weapon = new SpriteExtraInfo(16, WeaponSprite, WhiteColored);
         BackWeapon = null;
         BodySize = null;
