@@ -975,7 +975,7 @@ public class TacticalMessageLog
         possibleLines.Add($"<b>{action.Unit.Name}</b> decides to {GetRandomStringFrom("release", "free", "regurgitate", "eject")} <b>{action.Target.Name}</b>.");//Generic unspecified line
         if (!(action.preyLocation == PreyLocation.tail && ((action.Unit.Race == Race.Youko) || (action.Unit.Race == Race.Terrorbird))) && !(action.preyLocation == PreyLocation.breasts && (action.Unit.Race == Race.Kangaroos)))//Exclude races that use repurposed vore locations from generic lines that specify the prey location
         {
-        possibleLines.Add($"<b>{action.Unit.Name}</b> {GetRandomStringFrom("regurgitated", "released", "freed", "pushed out")} <b>{action.Target.Name}</b>{GetRandomStringFrom(".", $"from {GPPHis(action.Unit)} {PreyLocStrings.ToSyn(action.preyLocation)}.")}");
+        possibleLines.Add($"<b>{action.Unit.Name}</b> {GetRandomStringFrom("regurgitated", "released", "freed", "pushed out")} <b>{action.Target.Name}</b>{GetRandomStringFrom(".", $" from {GPPHis(action.Unit)} {PreyLocStrings.ToSyn(action.preyLocation)}.")}");
         possibleLines.Add($"<b>{action.Unit.Name}</b> decides to eject <b>{action.Target.Name}</b> from {GPPHis(action.Unit)} {PreyLocStrings.ToSyn(action.preyLocation)}.");
         possibleLines.Add($"As <b>{action.Unit.Name}</b> hears a gurgle{GetRandomStringFrom("", $" eminate from {GPPHis(action.Unit)} {PreyLocStrings.ToSyn(action.preyLocation)}")}, {GPPHe(action.Unit)} force{SIfSingular(action.Unit)} <b>{action.Target.Name}</b> out, not wishing to digest {GPPHim(action.Target)}.");
         }

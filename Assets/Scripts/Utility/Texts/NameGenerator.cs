@@ -984,8 +984,6 @@ public class NameGenerator
         {
             "Terminalia",
             "The Grave",
-            "Shalanzi",
-            "Endless Haunt",
             "Endless Haunt",
             "Mortuary",
             "Maze of Souls",
