@@ -403,7 +403,7 @@ class StrategicArmyCommander
                     potentialTargets.Add(Villages[i].Position);
                     int value = Villages[i].Race == empire.ReplacedRace ? 45 : ((State.World.GetEmpireOfRace(Villages[i].Race)?.IsAlly(empire) ?? false) ? 40 : 35);
                     if (Villages[i].GetTotalPop() == 0)
-                        value = 30;
+                        value = 38;
                     value -= Villages[i].Position.GetNumberOfMovesDistance(capitalPosition) / 3;
                     potentialTargetValue.Add(value);
                 }
@@ -436,14 +436,14 @@ class StrategicArmyCommander
             }
         }
 
-        //Here for maps that are linked via teleporter or something, idk, just need AI to be able to use it, even it priority is low
+        //Here for maps that are linked via teleporter or something, idk, just need AI to be able to use it, even if priority is low
         foreach (AncientTeleporter tele in StrategicUtilities.GetUnoccupiedAncientTeleporter(army.Empire))
         {
             Army defender = StrategicUtilities.ArmyAt(tele.Position);
             if (defender != null && StrategicUtilities.ArmyPower(defender) > MaxDefenderStrength * StrategicUtilities.ArmyPower(army))
                 continue;
             potentialTargets.Add(tele.Position);
-            int value = 18;
+            int value = 9;
             value -= tele.Position.GetNumberOfMovesDistance(army.Position) / 3;
             potentialTargetValue.Add(value);
         }
@@ -484,7 +484,7 @@ class StrategicArmyCommander
                     if ((((Teleporter)construct).ancientUpgrade.built || State.World.AncientTeleporters.Count() == 0) && empire.Buildings.Where(b => b is Teleporter && ((Teleporter)b).CanTeleportArmy(army)).Count() >= 1)
                     {
                         potentialTargets.Add(construct.Position);
-                        int value = 25;
+                        int value = 10;
                         value += (army.LinkedTeleporter == null & ((Teleporter)construct).stoneUpgrade.built) ? 5 : 0;
                         value += (((Teleporter)construct).ancientUpgrade.built) ? 5 : 0;
                         value -= construct.Position.GetNumberOfMovesDistance(capitalPosition) / 3;
@@ -704,6 +704,11 @@ class StrategicArmyCommander
             empire.Leader.ReloadTraits();
             empire.Leader.InitializeTraits();
         }
+        if (Config.LeaderSpawnFreeze)
+        {
+            army.RemainingMP = 0;
+        }
+
 
         return empire.Leader;
     }
@@ -750,6 +755,10 @@ class StrategicArmyCommander
 
     private void StockPotions(Army army, Village village)
     {
+        if (!Config.PotionSystemEnabled)
+        {
+            return;
+        }
         int potionBudget = empire.Gold / (3 + empire.Armies.Count);
         //Reduce budget based on how many potinos we have in stock
         foreach (var item in army.ItemStock.GetAllPotions())

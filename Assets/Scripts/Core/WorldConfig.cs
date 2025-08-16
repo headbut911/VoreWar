@@ -505,6 +505,7 @@ public class WorldConfig
             ["AbsorbBoostDeadOnly"] = false,
             ["SizeAccuracyInverse"] = true,
             ["SizeDamageInverse"] = true,
+            ["PotionSystemEnabled"] = false,
         };
 
         foreach (Race race in ((Race[])Enum.GetValues(typeof(Race))).Where(s => (int)s >= 0))

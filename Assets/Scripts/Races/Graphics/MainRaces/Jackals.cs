@@ -271,6 +271,29 @@ class Jackals : DefaultRaceData
         unit.SkinColor = State.Rand.Next(SkinColors);
         unit.AccessoryColor = State.Rand.Next(AccessoryColors);
         unit.ExtraColor1 = State.Rand.Next(ExtraColors1);
+
+        if (unit.HasDick && unit.HasBreasts)
+        {
+            if (Config.HermsOnlyUseFemaleHair)
+                unit.HairStyle = State.Rand.Next(18);
+            else
+                unit.HairStyle = State.Rand.Next(HairStyles);
+        }
+        else if (unit.HasDick && Config.FemaleHairForMales)
+            unit.HairStyle = State.Rand.Next(HairStyles);
+        else if (unit.HasDick == false && Config.MaleHairForFemales)
+            unit.HairStyle = State.Rand.Next(HairStyles);
+        else
+        {
+            if (unit.HasDick)
+            {
+                unit.HairStyle = 18 + State.Rand.Next(18);
+            }
+            else
+            {
+                unit.HairStyle = State.Rand.Next(18);
+            }
+        }
     }
 
     internal override int DickSizes => 6;

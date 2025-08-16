@@ -574,6 +574,9 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Pattern Color";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Patterns";
                 break;
+            case Race.Utahraptor:
+                buttons[(int)ButtonTypes.TailTypes].Label.text = "Preferred Facing";
+                break;
             case Race.WoodDryad:
                 buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Leaf Color";
                 buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Trunk Type";

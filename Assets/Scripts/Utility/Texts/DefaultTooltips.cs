@@ -825,6 +825,10 @@ Does not retroactively affect already created units.";
                 return "Enables wandering packs of T-Rex.";
             case 343:
                 return "Enables wandering packs of Utahraptors.";
+            case 344:
+                return "Sets the leader's army to 0 MP upon respawning. (Helps the AI not run it down when an enemy army is nearby)";
+            case 345:
+                return "Disables the potion system. (Frees up a lot of AI income)";
             default:
                 return "";
         }

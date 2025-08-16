@@ -249,6 +249,8 @@ public class ContentSettings : MonoBehaviour
     public Toggle StatBoostsAffectMaxHP;
     public Toggle OverfeedingDamage;
 
+    public Toggle PotionSystemEnabled;
+
     public Slider DigestionSpeedMult;
     public Slider AbsorbSpeedMult;
     public Slider BellyRubEffMult;
@@ -408,6 +410,7 @@ public class ContentSettings : MonoBehaviour
             new ToggleObject(AbsorbBoostDeadOnly, "AbsorbBoostDeadOnly", false),
             new ToggleObject(SizeAccuracyInverse, "SizeAccuracyInverse", true),
             new ToggleObject(SizeDamageInverse, "SizeDamageInverse", true),
+            new ToggleObject(PotionSystemEnabled, "PotionSystemEnabled", false),
 
         };
         MercToggles = new List<ToggleObject>();
