@@ -2420,7 +2420,7 @@ class Jackals : DefaultRaceData
             DiscardSprite = State.GameManager.SpriteDictionary.JackalClothes[87];
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(18, null, WhiteColored); // main
+            clothing1 = new SpriteExtraInfo(15, null, WhiteColored); // main
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored); // bottom
             clothing3 = new SpriteExtraInfo(14, null, null); // Colored Top
             clothing4 = new SpriteExtraInfo(14, null, null); // Colored bottom

@@ -1008,7 +1008,6 @@ public class MapEditor : SceneBase
                     foreach (KeyValuePair<int, StrategicTileType> tiletype in logic.GetSurroundingLiquid((int)overTiles[i, j] - 2000, State.World.Tiles[i, j], new Vec2(i, j)))
                     {
                         current_layer++;
-                        Debug.Log(current_layer + " / " + TilemapLayers.Length);
                         switch (tiletype.Value)
                         {
                             case StrategicTileType.water:
