@@ -13,6 +13,8 @@ class Equaleon : DefaultRaceData
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EqualeonEyes);
         EyeTypes = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EqualeonEyes);
         BodySizes = 0;
+        MouthTypes = 0;
+        HairColors = 0;
         BodyAccentTypes1 = 2;
         BodyAccentTypes2 = 9;
         EarTypes = 8;

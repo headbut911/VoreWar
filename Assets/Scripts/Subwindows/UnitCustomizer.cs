@@ -525,6 +525,8 @@ public class UnitCustomizer
             case Race.Umbreon:
                 buttons[(int)ButtonTypes.Furry].Label.text = "Handedness";
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Ring Color";
+                buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Body Armor Metal";
+                buttons[(int)ButtonTypes.ClothingExtraType1].Label.text = "Body Armor(req. item)";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Decal";
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Armor Rust";
                 break;

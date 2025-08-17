@@ -13,6 +13,8 @@ class Eevee : DefaultRaceData
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.EeveeEqualeonSkin);
         EyeColors = 20;
         BodySizes = 0;
+        MouthTypes = 0;
+        HairColors = 0;
         EyeTypes = 0;
         HairStyles = 0;
         clothingColors = 3;
