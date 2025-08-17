@@ -1178,7 +1178,7 @@ static class RaceParameters
 
         Eevee = new RaceTraits()
         {
-            BodySize = 12,
+            BodySize = 11,
             StomachSize = 12,
             FavoredStat = Stat.Will,
             DeployCost = 1,
@@ -1418,12 +1418,12 @@ static class RaceParameters
 
         Equaleon = new RaceTraits()
         {
-            BodySize = 7,
+            BodySize = 12,
             StomachSize = 14,
             HasTail = true,
             FavoredStat = Stat.Agility,
             DeployCost = 1,
-            Upkeep = 2f,
+            Upkeep = 3f,
             RacialTraits = new List<Traits>()
         {
             Traits.ArtfulDodge,
@@ -3174,8 +3174,8 @@ static class RaceParameters
 
         FeralUmbreon = new RaceTraits()
         {
-            BodySize = 5,
-            StomachSize = 10,
+            BodySize = 6,
+            StomachSize = 12,
             HasTail = true,
             FavoredStat = Stat.Strength,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },
@@ -3208,8 +3208,8 @@ static class RaceParameters
 
         FeralEqualeon = new RaceTraits()
         {
-            BodySize = 5,
-            StomachSize = 10,
+            BodySize = 6,
+            StomachSize = 12,
             HasTail = true,
             FavoredStat = Stat.Will,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.Unbirth },

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using TacticalBuildings;
-using TaurusClothes;
 using UnityEngine;
 
 class Eevee : DefaultRaceData
@@ -19,11 +17,13 @@ class Eevee : DefaultRaceData
         HairStyles = 0;
         clothingColors = 3;
 
+        ExtendedBreastSprites = true;
+
         Body = new SpriteExtraInfo(2, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.SkinColor));
         Head = new SpriteExtraInfo(3, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.SkinColor));
-        BodyAccessory = new SpriteExtraInfo(25, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.AccessoryColor)); // fluff
-        BodyAccent = new SpriteExtraInfo(4, BodyAccentSprite, WhiteColored); // rub blush
-        BodyAccent2 = new SpriteExtraInfo(2, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.AccessoryColor)); // Tail 
+        BodyAccessory = new SpriteExtraInfo(20, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.AccessoryColor)); // fluff
+        BodyAccent = new SpriteExtraInfo(5, BodyAccentSprite, WhiteColored); // rub blush
+        BodyAccent2 = new SpriteExtraInfo(1, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.AccessoryColor)); // Tail 
         BodyAccent3 = null;
         BodyAccent4 = null; 
         BodyAccent5 = null; 
@@ -35,7 +35,7 @@ class Eevee : DefaultRaceData
         SecondaryEyes = null;
         Belly = new SpriteExtraInfo(15, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.SkinColor));
         Beard = null; 
-        Weapon = new SpriteExtraInfo(12, WeaponSprite, WhiteColored);
+        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
         BackWeapon = null;
         BodySize = null; //new SpriteExtraInfo(3, BodySizeSprite, null, FurryBellyColor);
         Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonSkin, s.Unit.SkinColor));
@@ -51,6 +51,7 @@ class Eevee : DefaultRaceData
         Rags = new EeveeRags();
         //RestrictedClothingTypes = 0;
         //clothingColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.Clothing);
+        AllowedClothingHatTypes = new List<ClothingAccessory>();
         AllowedMainClothingTypes = new List<MainClothing>()
         {
             new Belt(),
@@ -101,9 +102,151 @@ class Eevee : DefaultRaceData
         return State.GameManager.SpriteDictionary.Eevee[sprite];
     }
 
-    protected override Sprite BodyAccentSprite(Actor_Unit actor) => actor.BeingRubbed ? State.GameManager.SpriteDictionary.Eevee[26] : null;
+    protected override Sprite BodyAccentSprite(Actor_Unit actor) => actor.IsBeingRubbed ? State.GameManager.SpriteDictionary.Eevee[26] : null;
 
     protected override Sprite AccessorySprite(Actor_Unit actor) => State.GameManager.SpriteDictionary.Eevee[27];
+
+    protected override Sprite DickSprite(Actor_Unit actor)
+    {
+        if (actor.Unit.HasDick == false)
+            return null;
+
+        if (actor.IsErect())
+        {
+            if (actor.PredatorComponent?.VisibleFullness < .50f)
+            {
+                Dick.layer = 21;
+                return State.GameManager.SpriteDictionary.Umbreon2[35 + (actor.Unit.DickSize * 2)];
+            }
+            else
+            {
+                Dick.layer = 14;
+                return State.GameManager.SpriteDictionary.Umbreon2[36 + (actor.Unit.DickSize * 2)];
+            }
+        }
+
+        return null;
+    }
+    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => State.GameManager.SpriteDictionary.Eevee[132];
+    protected override Sprite BodyAccentSprite3(Actor_Unit actor) => null;
+    protected override Sprite BodyAccentSprite4(Actor_Unit actor) => null;
+    protected override Sprite BodyAccentSprite5(Actor_Unit actor) => null;
+    protected override Sprite HeadSprite(Actor_Unit actor)
+    {
+        int sprite = 0;
+        return State.GameManager.SpriteDictionary.Eevee[sprite];
+
+    }
+
+    protected override Sprite WeaponSprite(Actor_Unit actor)
+    {
+        if (actor.Unit.HasWeapon && actor.Surrendered == false)
+        {
+            switch (actor.GetWeaponSprite())
+            {
+                case 0:
+                    return State.GameManager.SpriteDictionary.Eevee[124];
+                case 1:
+                    return State.GameManager.SpriteDictionary.Eevee[125];
+                case 2:
+                    return State.GameManager.SpriteDictionary.Eevee[126];
+                case 3:
+                    return State.GameManager.SpriteDictionary.Eevee[127];
+                case 4:
+                    return State.GameManager.SpriteDictionary.Eevee[128];
+                case 5:
+                    return State.GameManager.SpriteDictionary.Eevee[129];
+                case 6:
+                    return State.GameManager.SpriteDictionary.Eevee[130];
+                case 7:
+                    return State.GameManager.SpriteDictionary.Eevee[131];
+                default:
+                    return null;
+            }
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    protected override Sprite EyesSprite(Actor_Unit actor)
+    {
+        if (actor.IsBeingRubbed)
+        {
+            return State.GameManager.SpriteDictionary.Eevee[25];
+        }
+        if (actor.Unit.IsDead)
+        {
+            return State.GameManager.SpriteDictionary.Eevee[24];
+        }
+        else
+            return State.GameManager.SpriteDictionary.Eevee[3 + actor.Unit.EyeColor];
+    }
+
+    protected override Sprite BeardSprite(Actor_Unit actor) => null;
+
+    protected override Sprite MouthSprite(Actor_Unit actor)
+    {
+        return State.GameManager.SpriteDictionary.Eevee[1 + (actor.IsEating ? 1 : 0)];
+    }
+
+    internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
+    {
+        if (actor.HasBelly)
+        {
+            belly.transform.localScale = new Vector3(1, 1, 1);
+            belly.SetActive(true);
+            int size = actor.GetStomachSize(28, 0.7f);
+            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 28)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return State.GameManager.SpriteDictionary.Eevee[67];
+            }
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 28)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return State.GameManager.SpriteDictionary.Eevee[66];
+            }
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 27)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return State.GameManager.SpriteDictionary.Eevee[65];
+            }
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 26)
+            {
+                AddOffset(Belly, 0, -33 * .625f);
+                return State.GameManager.SpriteDictionary.Eevee[64];
+            }
+            switch (size)
+            {
+                case 23:
+                    AddOffset(Belly, 0, -14 * .625f);
+                    break;
+                case 24:
+                    AddOffset(Belly, 0, -17 * .625f);
+                    break;
+                case 25:
+                    AddOffset(Belly, 0, -20 * .625f);
+                    break;
+                case 26:
+                    AddOffset(Belly, 0, -25 * .625f);
+                    break;
+                case 27:
+                    AddOffset(Belly, 0, -27 * .625f);
+                    break;
+                case 28:
+                    AddOffset(Belly, 0, -32 * .625f);
+                    break;
+            }
+
+            return State.GameManager.SpriteDictionary.Eevee[36 + size];
+        }
+        else
+        {
+            return null;
+        }
+    }
 
     protected override Sprite BreastsSprite(Actor_Unit actor)
     {
@@ -168,264 +311,6 @@ class Eevee : DefaultRaceData
         }
     }
 
-    protected override Sprite DickSprite(Actor_Unit actor)
-    {
-        if (actor.Unit.HasDick == false)
-            return null;
-
-        if (actor.IsErect())
-        {
-            if (actor.PredatorComponent?.VisibleFullness < .75f)
-            {
-                Dick.layer = 21;
-                return State.GameManager.SpriteDictionary.Umbreon2[35 + (actor.Unit.DickSize * 2)];
-            }
-            else
-            {
-                Dick.layer = 14;
-                return State.GameManager.SpriteDictionary.Umbreon2[36 + (actor.Unit.DickSize * 2)];
-            }
-        }
-
-        return null;
-    }
-    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => State.GameManager.SpriteDictionary.Eevee[132];
-    protected override Sprite BodyAccentSprite3(Actor_Unit actor)// Carry over from Umbreon code
-    {
-        if (actor.Unit.HasBreasts == false /*|| BreastBlocked*/)
-            return null;
-        if (actor.PredatorComponent?.LeftBreastFullness > 0)
-        {
-            int leftSize = (int)Math.Sqrt((actor.Unit.DefaultBreastSize * actor.Unit.DefaultBreastSize) + actor.GetLeftBreastSize(32 * 32, 1f));
-
-            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.leftBreast) && leftSize >= 32)
-            {
-                return State.GameManager.SpriteDictionary.Eevee[31];
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 30)
-            {
-                return State.GameManager.SpriteDictionary.Eevee[30];
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 28)
-            {
-                return State.GameManager.SpriteDictionary.Eevee[29];
-            }
-
-            if (leftSize > 28)
-                leftSize = 28;
-
-            return State.GameManager.SpriteDictionary.Eevee[0 + leftSize];
-        }
-        else
-        {
-            return State.GameManager.SpriteDictionary.Eevee[0 + actor.Unit.BreastSize];
-        }
-    }
-    protected override Sprite BodyAccentSprite4(Actor_Unit actor)// Carry over from Umbreon code
-    {
-        if (actor.Unit.HasBreasts == false /*|| BreastBlocked*/)
-            return null;
-        if (actor.PredatorComponent?.RightBreastFullness > 0)
-        {
-            int rightSize = (int)Math.Sqrt((actor.Unit.DefaultBreastSize * actor.Unit.DefaultBreastSize) + actor.GetRightBreastSize(32 * 32, 1f));
-            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.rightBreast) && rightSize >= 32)
-            {
-                return State.GameManager.SpriteDictionary.Eevee[63];
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 30)
-            {
-                return State.GameManager.SpriteDictionary.Eevee[62];
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 28)
-            {
-                return State.GameManager.SpriteDictionary.Eevee[61];
-            }
-
-            if (rightSize > 28)
-                rightSize = 28;
-
-            return State.GameManager.SpriteDictionary.Eevee[32 + rightSize];
-        }
-        else
-        {
-            return State.GameManager.SpriteDictionary.Eevee[32 + actor.Unit.BreastSize];
-        }
-    }
-    protected override Sprite BodyAccentSprite5(Actor_Unit actor)
-    {
-        if (actor.HasBelly)
-        {
-            int size = actor.GetStomachSize(31, 0.7f);
-            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 31)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return null;
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 31)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return null;
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 30)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return null;
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 29)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return null;
-            }
-            switch (size)
-            {
-                case 26:
-                    AddOffset(Belly, 0, -14 * .625f);
-                    break;
-                case 27:
-                    AddOffset(Belly, 0, -17 * .625f);
-                    break;
-                case 28:
-                    AddOffset(Belly, 0, -20 * .625f);
-                    break;
-                case 29:
-                    AddOffset(Belly, 0, -25 * .625f);
-                    break;
-                case 30:
-                    AddOffset(Belly, 0, -27 * .625f);
-                    break;
-                case 31:
-                    AddOffset(Belly, 0, -32 * .625f);
-                    break;
-            }
-
-            return State.GameManager.SpriteDictionary.Eevee[70 + size];
-        }
-        else
-        {
-            return null;
-        }
-    }
-    protected override Sprite HeadSprite(Actor_Unit actor)
-    {
-        int sprite = 0;
-        return State.GameManager.SpriteDictionary.Eevee[sprite];
-
-    }
-
-    protected override Sprite WeaponSprite(Actor_Unit actor)
-    {
-        if (actor.Unit.HasWeapon && actor.Surrendered == false)
-        {
-            switch (actor.GetWeaponSprite())
-            {
-                case 0:
-                    return State.GameManager.SpriteDictionary.Eevee[124];
-                case 1:
-                    return State.GameManager.SpriteDictionary.Eevee[125];
-                case 2:
-                    return State.GameManager.SpriteDictionary.Eevee[126];
-                case 3:
-                    return State.GameManager.SpriteDictionary.Eevee[127];
-                case 4:
-                    return State.GameManager.SpriteDictionary.Eevee[128];
-                case 5:
-                    return State.GameManager.SpriteDictionary.Eevee[129];
-                case 6:
-                    return State.GameManager.SpriteDictionary.Eevee[130];
-                case 7:
-                    return State.GameManager.SpriteDictionary.Eevee[131];
-                default:
-                    return null;
-            }
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    protected override Sprite EyesSprite(Actor_Unit actor)
-    {
-        int spr = 3 + actor.Unit.EyeColor;
-        if (actor.BeingRubbed)
-        {
-            spr = 25;
-        }
-        if (actor.Unit.IsDead)
-        {
-            spr = 24;
-        }
-        return State.GameManager.SpriteDictionary.Eevee[spr];
-    }
-
-    protected override Sprite BeardSprite(Actor_Unit actor) //nose
-    {
-        return State.GameManager.SpriteDictionary.Eevee[10];
-    }
-
-    protected override Sprite MouthSprite(Actor_Unit actor)
-    {
-
-        return State.GameManager.SpriteDictionary.Eevee[1 + (actor.IsEating ? 1 : 0)];
-    }
-
-    internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
-    {
-        if (actor.HasBelly)
-        {
-            belly.transform.localScale = new Vector3(1, 1, 1);
-            belly.SetActive(true);
-            int size = actor.GetStomachSize(31, 0.7f);
-            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 31)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return State.GameManager.SpriteDictionary.Eevee[67];
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 31)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return State.GameManager.SpriteDictionary.Eevee[66];
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 30)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return State.GameManager.SpriteDictionary.Eevee[65];
-            }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 29)
-            {
-                AddOffset(Belly, 0, -33 * .625f);
-                return State.GameManager.SpriteDictionary.Eevee[64];
-            }
-            switch (size)
-            {
-                case 26:
-                    AddOffset(Belly, 0, -14 * .625f);
-                    break;
-                case 27:
-                    AddOffset(Belly, 0, -17 * .625f);
-                    break;
-                case 28:
-                    AddOffset(Belly, 0, -20 * .625f);
-                    break;
-                case 29:
-                    AddOffset(Belly, 0, -25 * .625f);
-                    break;
-                case 30:
-                    AddOffset(Belly, 0, -27 * .625f);
-                    break;
-                case 31:
-                    AddOffset(Belly, 0, -32 * .625f);
-                    break;
-            }
-
-            return State.GameManager.SpriteDictionary.Eevee[36 + size];
-        }
-        else
-        {
-            return null;
-        }
-    }
-
     protected override Sprite BallsSprite(Actor_Unit actor)
     {
         if (actor.Unit.HasDick == false)
@@ -462,12 +347,14 @@ class Eevee : DefaultRaceData
             return State.GameManager.SpriteDictionary.Umbreon2[27];
         }
         int combined = Math.Min(baseSize + ballOffset, 26);
-        if (combined == 27)
-            AddOffset(Balls, 0, -14 * .625f);
-        else if (combined == 26)
+        if (combined == 26)
+            AddOffset(Balls, 0, -16 * .625f);
+        else if (combined == 24 || combined == 25)
             AddOffset(Balls, 0, -12 * .625f);
-        else if (combined >= 23 && combined <= 25)
+        else if (combined >= 23 && combined <= 24)
             AddOffset(Balls, 0, -8 * .625f);
+        else if (combined == 22)
+            AddOffset(Balls, 0, -6 * .625f);
         if (ballOffset > 0)
         {
             return State.GameManager.SpriteDictionary.Umbreon2[combined];
@@ -482,6 +369,7 @@ class Eevee : DefaultRaceData
         {
             Type = 860037;
             blocksDick = false;
+            coversBreasts = false;
             clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor2)); //Frame
             clothing2 = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor3)); //Lense
         }
@@ -499,6 +387,7 @@ class Eevee : DefaultRaceData
         {
             Type = 860037;
             blocksDick = false;
+            coversBreasts = false;
             clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor2)); //Frame
         }
 
@@ -514,6 +403,7 @@ class Eevee : DefaultRaceData
         {
             Type = 860037;
             blocksDick = false;
+            coversBreasts = false;
             clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor2)); //Frame
             clothing2 = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor3)); //Lense
         }
@@ -531,6 +421,7 @@ class Eevee : DefaultRaceData
         {
             Type = 860037;
             blocksDick = false;
+            coversBreasts = false;
             clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor2)); //Frame
         }
 
@@ -548,6 +439,7 @@ class Eevee : DefaultRaceData
         {
             Type = 860037;
             blocksDick = false;
+            coversBreasts = false;
             clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor2)); //Frame
         }
 
@@ -564,6 +456,7 @@ class Eevee : DefaultRaceData
         {
             Type = 860037;
             blocksDick = false;
+            coversBreasts = false;
             clothing1 = new SpriteExtraInfo(17, null, WhiteColored); //Frame
         }
 
@@ -581,8 +474,8 @@ class Eevee : DefaultRaceData
             blocksDick = true;
             OccupiesAllSlots = true;
             Type = 860037;
-            clothing1 = new SpriteExtraInfo(17, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor)); //Frame
+            clothing1 = new SpriteExtraInfo(10, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(10, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor)); //Frame
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -600,8 +493,8 @@ class Eevee : DefaultRaceData
             blocksDick = true;
             OccupiesAllSlots = true;
             Type = 860037;
-            clothing1 = new SpriteExtraInfo(17, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor)); //Frame
+            clothing1 = new SpriteExtraInfo(10, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(10, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor)); //Frame
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -616,6 +509,8 @@ class Eevee : DefaultRaceData
         public Loincloth()
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Eevee[79];
+            coversBreasts = false;
+            blocksDick = false;
             Type = 860037;
             clothing1 = new SpriteExtraInfo(10, null, null);
             DiscardUsesPalettes = true;
@@ -634,6 +529,7 @@ class Eevee : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Eevee[83];
             blocksDick = true;
+            coversBreasts = false;
             Type = 860040;
             clothing1 = new SpriteExtraInfo(10, null, null);
             clothing2 = new SpriteExtraInfo(11, null, null);
@@ -660,12 +556,16 @@ class Eevee : DefaultRaceData
             DiscardSprite = State.GameManager.SpriteDictionary.Eevee[93];
             Type = 860041;
             femaleOnly = true;
-            clothing1 = new SpriteExtraInfo(17, null, WhiteColored);
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Eevee[84 + actor.Unit.BreastSize];
+            if (actor.PredatorComponent?.LeftBreastFullness > 0 || actor.PredatorComponent?.RightBreastFullness > 0)
+                clothing1.GetSprite = (s) => null;
+            else
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Eevee[84 + actor.Unit.BreastSize];
             base.Configure(sprite, actor);
         }
     }
@@ -676,12 +576,16 @@ class Eevee : DefaultRaceData
             DiscardSprite = State.GameManager.SpriteDictionary.Eevee[103];
             Type = 860042;
             femaleOnly = true;
-            clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
+            coversBreasts = false;
+            clothing1 = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Eevee[94 + actor.Unit.BreastSize];
+            if (actor.PredatorComponent?.LeftBreastFullness > 0 || actor.PredatorComponent?.RightBreastFullness > 0)
+                clothing1.GetSprite = (s) => null;
+            else
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Eevee[94 + actor.Unit.BreastSize];
             base.Configure(sprite, actor);
         }
     }
@@ -693,9 +597,9 @@ class Eevee : DefaultRaceData
             blocksDick = true;
             OccupiesAllSlots = true;
             Type = 860037;
-            clothing1 = new SpriteExtraInfo(17, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
-            clothing2 = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
-            clothing3 = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
+            clothing1 = new SpriteExtraInfo(10, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
+            clothing2 = new SpriteExtraInfo(11, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
+            clothing3 = new SpriteExtraInfo(12, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EeveeEqualeonClothing, s.Unit.ClothingColor));
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -725,15 +629,22 @@ class Eevee : DefaultRaceData
         public EeveeRags()
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Eevee[123];
+            blocksDick = false;
+            inFrontOfDick = true;
             OccupiesAllSlots = true;
+            coversBreasts = false;
             Type = 860045;
-            clothing1 = new SpriteExtraInfo(17, null, WhiteColored);
-            clothing2 = new SpriteExtraInfo(17, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(10, null, WhiteColored);
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            if (actor.Unit.HasBreasts == false || actor.Unit.BreastSize <= 2)
+            if (actor.PredatorComponent?.LeftBreastFullness > 0 || actor.PredatorComponent?.RightBreastFullness > 0)
+            {
+                clothing1.GetSprite = (s) => null;
+            }
+            else if (actor.Unit.HasBreasts == false || actor.Unit.BreastSize <= 2)
             {
                 clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Eevee[117];
             }
