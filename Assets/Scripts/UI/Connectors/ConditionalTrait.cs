@@ -178,6 +178,7 @@ public class ConditionalTrait : MonoBehaviour
             Trigger.options.Add(new TMP_Dropdown.OptionData(trigger.ToString()));
         }
         Trigger.value = (int)trait.trigger;
+        Trigger.RefreshShownValue();
 
         Classification.options.Clear();
         foreach (TraitConditionalClassification classification in ((TraitConditionalClassification[])Enum.GetValues(typeof(TraitConditionalClassification))))
@@ -185,6 +186,7 @@ public class ConditionalTrait : MonoBehaviour
             Classification.options.Add(new TMP_Dropdown.OptionData(classification.ToString()));
         }
         Classification.value = (int)trait.classification;
+        Classification.RefreshShownValue();
 
         Dictionary<Traits, int> traitDict = new Dictionary<Traits, int>();
         int val2 = 0;
