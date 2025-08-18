@@ -513,6 +513,12 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Top";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Pants";
                 break;
+            case Race.Firefly:
+                buttons[(int)ButtonTypes.Skintone].Label.text = "Secondary Color";
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Primary Color";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Outfit";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Shoulder Pad";
+                break;
             case Race.Taraluxia:
                 Taraluxia();
                 break;

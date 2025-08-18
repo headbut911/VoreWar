@@ -399,7 +399,6 @@ class Umbreon : DefaultRaceData
 
     protected override Sprite HeadSprite(Actor_Unit actor)
     {
-		//State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{Races.Umbreon.slotBA1}{Races.Umbreon.slotBA2}{Races.Umbreon.slotBA3}");
         int sprite = 3;
         return State.GameManager.SpriteDictionary.Umbreon[sprite];
 

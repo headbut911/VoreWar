@@ -251,49 +251,48 @@ class Equaleon : DefaultRaceData
         {
             belly.transform.localScale = new Vector3(1, 1, 1);
             belly.SetActive(true);
-            int size = actor.GetStomachSize(28, 0.7f);
-            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 28)
+            int size = actor.GetStomachSize(27, 0.7f);
+            if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size == 27)
             {
                 AddOffset(Belly, 0, -33 * .625f);
                 return State.GameManager.SpriteDictionary.Eevee[67];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 28)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 27)
             {
                 AddOffset(Belly, 0, -33 * .625f);
                 return State.GameManager.SpriteDictionary.Eevee[66];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 27)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 26)
             {
                 AddOffset(Belly, 0, -33 * .625f);
                 return State.GameManager.SpriteDictionary.Eevee[65];
             }
-            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 26)
+            else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size == 25)
             {
                 AddOffset(Belly, 0, -33 * .625f);
                 return State.GameManager.SpriteDictionary.Eevee[64];
             }
             switch (size)
             {
+                case 22:
+                    AddOffset(Belly, 0, -12 * .625f);
+                    break;
                 case 23:
-                    AddOffset(Belly, 0, -14 * .625f);
+                    AddOffset(Belly, 0, -15 * .625f);
                     break;
                 case 24:
-                    AddOffset(Belly, 0, -17 * .625f);
+                    AddOffset(Belly, 0, -19 * .625f);
                     break;
                 case 25:
-                    AddOffset(Belly, 0, -20 * .625f);
+                    AddOffset(Belly, 0, -23 * .625f);
                     break;
                 case 26:
-                    AddOffset(Belly, 0, -25 * .625f);
+                    AddOffset(Belly, 0, -29 * .625f);
                     break;
                 case 27:
-                    AddOffset(Belly, 0, -27 * .625f);
-                    break;
-                case 28:
                     AddOffset(Belly, 0, -32 * .625f);
                     break;
             }
-
             return State.GameManager.SpriteDictionary.Eevee[36 + size];
         }
         else
