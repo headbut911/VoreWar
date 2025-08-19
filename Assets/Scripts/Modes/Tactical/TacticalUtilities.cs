@@ -1438,7 +1438,12 @@ static class TacticalUtilities
     internal static void ForceFeed(Actor_Unit actor, Actor_Unit targetPred, bool DisablecontrolBypass = true)
     {
         float r = (float)State.Rand.NextDouble();
-        if (targetPred.Unit.Predator)
+        if (targetPred.Unit == actor.Unit)
+        {
+            State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"<b>{actor.Unit.Name}</b> tries eating {LogUtilities.GPPHimself(actor.Unit)}... This did not work very well and {LogUtilities.GPPHe(actor.Unit)} just end{LogUtilities.SIfSingular(actor.Unit)} up licking {LogUtilities.GPPHimself(actor.Unit)} for an extended period of time; \"{LogUtilities.GetRandomStringFrom("Tasty~", "Mmmmmmm~", "Interesting flavor~", "Yummy~")}\"");
+            actor.Movement = 0;
+        }
+        else if (targetPred.Unit.Predator)
         {
             PreyLocation preyLocation = PreyLocation.stomach;
             var possibilities = new Dictionary<string, PreyLocation>();
