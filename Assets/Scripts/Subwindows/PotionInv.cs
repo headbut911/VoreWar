@@ -59,11 +59,11 @@ public class PotionInv : MonoBehaviour
     {
         foreach (Traits trait in potion.PositiveTraits)
         {
-            unit.AddTrait(trait);
+            unit.AddPermanentTrait(trait);
         }
         foreach (Traits trait in potion.NegativeTraits)
         {
-            unit.AddTrait(trait);
+            unit.AddPermanentTrait(trait);
         }
         foreach (var statShift in potion.StatModifiers)
         {
