@@ -230,6 +230,9 @@ class Prey
             case Race.Slimes:
                 rtn.Add(new BoneInfo(BoneTypes.SlimePile, Unit.Name, Unit.AccessoryColor));
                 break;
+            case Race.FeralSlime:
+                rtn.Add(new BoneInfo(BoneTypes.SlimePile, Unit.Name, Unit.SkinColor));
+                break;
             case Race.Crypters:
                 rtn.Add(new BoneInfo(BoneTypes.CrypterBonePile, Unit.Name, Unit.AccessoryColor));
                 rtn.Add(new BoneInfo(BoneTypes.CrypterSkull, Unit.Name));

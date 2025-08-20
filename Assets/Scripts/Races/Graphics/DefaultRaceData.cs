@@ -709,7 +709,7 @@ abstract class DefaultRaceData
 
             Dick.GetPalette = null;
             Dick.GetColor = WhiteColored;
-            if (actor.PredatorComponent?.VisibleFullness < .75f)
+            if (actor.PredatorComponent?.VisibleFullness < .50f)
             {
                 Dick.layer = 18;
                 return State.GameManager.SpriteDictionary.FurryDicks[24 + type];
@@ -731,7 +731,7 @@ abstract class DefaultRaceData
 
         //if (actor.IsErect() && !Config.LamiaUseTailAsSecondBelly && actor.Unit.HasTrait(Traits.DualStomach))
         //{
-        //    if (actor.PredatorComponent?.CombinedStomachFullness < .75f)
+        //    if (actor.PredatorComponent?.CombinedStomachFullness < .50f)
         //    {
         //        Dick.layer = 18;
         //        return State.GameManager.SpriteDictionary.ErectDicks[actor.Unit.DickSize];
@@ -745,7 +745,7 @@ abstract class DefaultRaceData
 
         if (actor.IsErect())
         {
-            if (actor.PredatorComponent?.VisibleFullness < .75f)
+            if (actor.PredatorComponent?.VisibleFullness < .50f)
             {
                 Dick.layer = 18;
                 return State.GameManager.SpriteDictionary.ErectDicks[actor.Unit.DickSize];
