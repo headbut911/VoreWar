@@ -84,6 +84,10 @@ public class TaggedTraitEditor : MonoBehaviour
     private void Setup()
     {
         CleanFolders();
+        foreach (TaggedTrait trait in State.TieredTraitsList.Values)
+        {
+            AllTaggedTraits.Add(trait);
+        }
         foreach (RandomizeList rl in State.RandomizeLists)
         {
             TaggedTrait traitfromrl = new TaggedTrait();
@@ -92,6 +96,10 @@ public class TaggedTraitEditor : MonoBehaviour
             TraitTier tier = TraitTier.Harmful;
             foreach (Traits t in rl.RandomTraits)
             {
+                if (State.RandomizeLists.Any(rt => rt.id == (int)t))
+                {
+                    continue;
+                }
                 TaggedTrait curr = State.TieredTraitsList[t];
                 if (curr.tierValue > tier)
                 {
@@ -127,15 +135,11 @@ public class TaggedTraitEditor : MonoBehaviour
             traitfromrcustom.traitEnum = (Traits)ct.id;
             AllTaggedTraits.Add(traitfromrcustom);
         }
-        foreach (TaggedTrait trait in State.TieredTraitsList.Values)
-        {
-            AllTaggedTraits.Add(trait);
-        }
         foreach (ConditionalTraitContainer ct in State.ConditionalTraitList)
         {
             TaggedTrait traitfromrcustom = new TaggedTrait();
             traitfromrcustom.name = ct.name;
-            traitfromrcustom.tierValue = AllTaggedTraits.Where(x=> x.traitEnum == ct.associatedTrait).First().tierValue;
+            traitfromrcustom.tierValue = AllTaggedTraits.Where(x => x.traitEnum == ct.associatedTrait).First().tierValue;
             traitfromrcustom.tier = AllTaggedTraits.Where(x => x.traitEnum == ct.associatedTrait).First().tier;
             traitfromrcustom.tags = new List<string>();
             foreach (string tag in AllTaggedTraits.Where(x => x.traitEnum == ct.associatedTrait).First().tags)

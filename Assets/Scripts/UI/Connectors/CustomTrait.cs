@@ -213,6 +213,7 @@ public class CustomTrait : MonoBehaviour
     }
     public void RefreshActive()
     {
+        ActiveCompsList = new List<CustomTraitCompMod>();
         foreach (var item in trait.comps.Keys)
         {
             var obj = Instantiate(CompPrefab, Folder);

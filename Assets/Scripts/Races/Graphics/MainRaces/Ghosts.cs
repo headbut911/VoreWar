@@ -36,7 +36,7 @@ class Ghosts : DefaultRaceData
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
-        Mouth = new SpriteExtraInfo(7, MouthSprite, WhiteColored);
+        Mouth = new SpriteExtraInfo(7, MouthSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
         Hair = new SpriteExtraInfo(21, HairSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GhostSkin, s.Unit.SkinColor));
         Hair2 = null;
         Hair3 = null;

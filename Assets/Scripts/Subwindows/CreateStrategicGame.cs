@@ -96,6 +96,7 @@ public class CreateStrategicGame : MonoBehaviour
     public Toggle SpawnTeamsTogether;
     public Toggle FirstTurnArmiesIdle;
     public Toggle CapitalGarrisonCapped;
+    public Toggle LeaderSpawnFreeze;
 
     public Button ClearPickedMap;
 
@@ -658,6 +659,7 @@ public class CreateStrategicGame : MonoBehaviour
             Config.World.ArmyUpkeep = Convert.ToInt32(ArmyUpkeep.text);
             Config.World.CapMaxGarrisonIncrease = CapitalGarrisonCapped.isOn;
             Config.World.Toggles["FirstTurnArmiesIdle"] = FirstTurnArmiesIdle.isOn;
+            Config.World.Toggles["LeaderSpawnFreeze"] = LeaderSpawnFreeze.isOn;
             Config.World.Toggles["LeadersAutoGainLeadership"] = LeadersAutoGainLeadership.isOn;
 
 

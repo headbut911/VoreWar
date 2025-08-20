@@ -51,14 +51,14 @@ class Jackals : DefaultRaceData
         Eyes = new SpriteExtraInfo(8, EyesSprite, WhiteColored);
         SecondaryEyes = new SpriteExtraInfo(7, EyesSecondarySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.EyeColor, s.Unit.EyeColor));
         SecondaryAccessory = null;
-        Belly = new SpriteExtraInfo(17, null, null, (s) => FurryColor(s));
+        Belly = new SpriteExtraInfo(14, null, null, (s) => FurryColor(s));
         Weapon = new SpriteExtraInfo(16, WeaponSprite, WhiteColored);
         BackWeapon = null;
         BodySize = null;
         Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => FurryColor(s));
         SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => FurryColor(s));
         BreastShadow = null;
-        Dick = new SpriteExtraInfo(11, DickSprite, WhiteColored);
+        Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => DickColor(s));
         Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => FurryColor(s));
 
 
@@ -114,6 +114,13 @@ class Jackals : DefaultRaceData
         if (actor.Unit.Furry)
             return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.JackalSkin, actor.Unit.AccessoryColor);
         return ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RedSkin, actor.Unit.SkinColor);
+    }
+
+    static ColorSwapPalette DickColor(Actor_Unit actor)
+    {
+        if (Config.FurryGenitals && actor.IsErect() && actor.Unit.Furry)
+            return null;
+        return FurryColor(actor);
     }
 
     internal override void SetBaseOffsets(Actor_Unit actor)
@@ -264,6 +271,29 @@ class Jackals : DefaultRaceData
         unit.SkinColor = State.Rand.Next(SkinColors);
         unit.AccessoryColor = State.Rand.Next(AccessoryColors);
         unit.ExtraColor1 = State.Rand.Next(ExtraColors1);
+
+        if (unit.HasDick && unit.HasBreasts)
+        {
+            if (Config.HermsOnlyUseFemaleHair)
+                unit.HairStyle = State.Rand.Next(18);
+            else
+                unit.HairStyle = State.Rand.Next(HairStyles);
+        }
+        else if (unit.HasDick && Config.FemaleHairForMales)
+            unit.HairStyle = State.Rand.Next(HairStyles);
+        else if (unit.HasDick == false && Config.MaleHairForFemales)
+            unit.HairStyle = State.Rand.Next(HairStyles);
+        else
+        {
+            if (unit.HasDick)
+            {
+                unit.HairStyle = 18 + State.Rand.Next(18);
+            }
+            else
+            {
+                unit.HairStyle = State.Rand.Next(18);
+            }
+        }
     }
 
     internal override int DickSizes => 6;
@@ -676,16 +706,17 @@ class Jackals : DefaultRaceData
                 Dick.layer = 20;
                 if (use_furry)
                 {
-                    return Sprites6[((!actor.Unit.HasBreasts) ? 38 : 2 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
+                    return Sprites6[((!actor.Unit.HasBreasts) ? 37 : 1 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
                 }
                 return Sprites5[1 + (actor.Unit.DickSize * 2) + ((actor.Unit.BodySize > 1) ? 12 : 0) + ((!actor.Unit.HasBreasts) ? 24 : 0)];
+
             }
             else
             {
                 Dick.layer = 13;
                 if (use_furry)
                 {
-                    return Sprites6[((!actor.Unit.HasBreasts) ? 37 : 1 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
+                    return Sprites6[((!actor.Unit.HasBreasts) ? 38 : 2 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
                 }
                 return Sprites5[0 + (actor.Unit.DickSize * 2) + ((actor.Unit.BodySize > 1) ? 12 : 0) + ((!actor.Unit.HasBreasts) ? 24 : 0)];
             }
@@ -2390,7 +2421,7 @@ class Jackals : DefaultRaceData
             DiscardSprite = State.GameManager.SpriteDictionary.JackalClothes[87];
             coversBreasts = false;
             blocksDick = false;
-            clothing1 = new SpriteExtraInfo(18, null, WhiteColored); // main
+            clothing1 = new SpriteExtraInfo(15, null, WhiteColored); // main
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored); // bottom
             clothing3 = new SpriteExtraInfo(14, null, null); // Colored Top
             clothing4 = new SpriteExtraInfo(14, null, null); // Colored bottom

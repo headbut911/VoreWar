@@ -337,7 +337,12 @@ public class MapEditor : SceneBase
             {
                 if (x == 0 && y == 0)
                     continue;
-                if (tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.field || tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldDesert || tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldSnow)
+                if (tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.field || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldDesert || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldAshen || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldsavannah || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldSmallIslands || 
+                    tiles[village.Position.x + x, village.Position.y + y] == StrategicTileType.fieldSnow)
                     farmSquares++;
             }
         }
@@ -1007,11 +1012,17 @@ public class MapEditor : SceneBase
                         {
                             case StrategicTileType.water:
                                 if (StrategicTileType.water > State.World.Tiles[i, j])
-                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), State.GameManager.StrategyMode.TileDictionary.WaterLiquidFloat[tiletype.Key]);
+                                {
+                                    Tile tie = State.GameManager.StrategyMode.TileDictionary.WaterLiquidFloat[tiletype.Key];
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), tie);
+                                }
                                 break;
                             case StrategicTileType.ocean:
                                 if (StrategicTileType.ocean > State.World.Tiles[i, j])
-                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), State.GameManager.StrategyMode.TileDictionary.OceanLiquidFloat[tiletype.Key]);
+                                {
+                                    Tile tie = State.GameManager.StrategyMode.TileDictionary.OceanLiquidFloat[tiletype.Key];
+                                    TilemapLayers[current_layer].SetTile(new Vector3Int(i, j, 0), tie);
+                                }
                                 break;
                             case StrategicTileType.lava:
                                 if (StrategicTileType.lava > State.World.Tiles[i, j])

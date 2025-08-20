@@ -153,7 +153,12 @@ class MapVillagePopulator
             {
                 if (!(i == pos.x && pos.y == j))
                 {
-                    if (tiles[i, j] == StrategicTileType.field || tiles[i, j] == StrategicTileType.fieldDesert || tiles[i, j] == StrategicTileType.fieldSnow)
+                    if (tiles[i, j] == StrategicTileType.field || 
+                        tiles[i, j] == StrategicTileType.fieldDesert || 
+                        tiles[i, j] == StrategicTileType.fieldSnow ||
+                        tiles[i, j] == StrategicTileType.fieldAshen ||
+                        tiles[i, j] == StrategicTileType.fieldsavannah ||
+                        tiles[i, j] == StrategicTileType.fieldSmallIslands)
                     {
                         t++;
                     }

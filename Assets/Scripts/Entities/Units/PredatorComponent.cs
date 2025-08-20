@@ -2793,7 +2793,7 @@ public class PredatorComponent
 
             if (checkedunit.Unit.HasTrait(Traits.CurseOfSacrifice))
             {
-                if (checkedunit.Targetable)
+                if (checkedunit.Targetable && checkedunit != actor)
                 {
                     if (State.Rand.Next(10) == 0)
                     {

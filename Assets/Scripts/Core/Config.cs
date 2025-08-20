@@ -189,6 +189,7 @@ static class Config
     internal static bool SpecialMercsCanConvert => World.GetValue("SpecialMercsCanConvert");
 
     internal static bool LeadersRerandomizeOnDeath => World.GetValue("LeadersRerandomizeOnDeath");
+    internal static bool LeaderSpawnFreeze => World.GetValue("LeaderSpawnFreeze");
 
     internal static float MaleFraction => World.MaleFraction;
     internal static float HermFraction => World.HermFraction;
@@ -404,6 +405,9 @@ static class Config
     public static int SizeDamageInterval => World.SizeDamageInterval;
     public static bool SizeDamageInverse => World.GetValue("SizeDamageInverse");
     public static float SizeDamageCap => World.SizeDamageCap;
+
+    public static bool PotionSystemEnabled => World.GetValue("PotionSystemEnabled");
+
 
     public static List<ConstructibleBuilding> Buildings=> World.GetBuildingInfo();
 

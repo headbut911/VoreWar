@@ -5327,13 +5327,17 @@ Turns: {currentTurn}
                         break;
                 }
             }
-            while (!StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).First()))
+            army.RecalculateSizeValue();
+            if (army.RemainnigSize  < 0)
             {
-                var last = army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).Last();
-                army.Units.Remove(last);
-                actors.Add(new Actor_Unit(last));
-                if (!army.Units.Any())
-                    break;
+                while (!StrategicUtilities.ArmyCanFitUnit(army, army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).First()))
+                {
+                    var last = army.Units.OrderByDescending(u => State.RaceSettings.GetDeployCost(u.Race) * u.TraitBoosts.DeployCostMult).First();
+                    army.Units.Remove(last);
+                    actors.Add(new Actor_Unit(last));
+                    if (!army.Units.Any())
+                        break;
+                }
             }
         }
 
