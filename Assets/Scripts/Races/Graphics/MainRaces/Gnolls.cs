@@ -40,7 +40,7 @@ class Gnolls : DefaultRaceData
         BodyAccessory = new SpriteExtraInfo(2, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Body Fur Pattern
         Balls = new SpriteExtraInfo(3, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Critical damage
         Dick = new SpriteExtraInfo(4, DickSprite, null, null); // Strange cylindrical object
-        Belly = new SpriteExtraInfo(8, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Snuggle into it
+        Belly = new SpriteExtraInfo(9, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Snuggle into it
         Breasts = new SpriteExtraInfo(13, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Left Booba
         SecondaryBreasts = new SpriteExtraInfo(13, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Right Booba
         Head = new SpriteExtraInfo(15, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Yes, please! (sorry...)
@@ -52,7 +52,7 @@ class Gnolls : DefaultRaceData
         BodyAccent2 = new SpriteExtraInfo(21, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.SkinColor)); // Outer Ear Fur
         BodyAccent3 = new SpriteExtraInfo(22, BodyAccentSprite3, null, null); // Inner Ear
         Hair2 = new SpriteExtraInfo(23, HairSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.GnollSkin, s.Unit.HairColor)); // Front Hair
-        Weapon = new SpriteExtraInfo(12, WeaponSprite, WhiteColored);
+        Weapon = new SpriteExtraInfo(8, WeaponSprite, WhiteColored);
 
         LeaderClothes = new GnollLeader();
         Rags = new GnollRags();

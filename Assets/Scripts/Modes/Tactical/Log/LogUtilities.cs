@@ -871,6 +871,22 @@ static class LogUtilities
             else if (weapon.Name == "Simple Bow") return "Hand Crossbow";
             else if (weapon.Name == "Compound Bow") return "Greatbow";
         }
+        else if (unit.Race == Race.Bears)
+        {
+            if (weapon.Name == "Mace") return "Hand Axe";
+            else if (weapon.Name == "Axe") return "Battle Axe";
+            else if (weapon.Name == "Simple Bow") return "Spear";
+            else if (weapon.Name == "Compound Bow") return "Throwing Axe";
+            else if (weapon.Name == "Claw") return "Claws";
+        }
+        else if (unit.Race == Race.Umbreon)
+        {
+            if (weapon.Name == "Mace") return "Claw Gauntlet";
+            else if (weapon.Name == "Axe") return "Scythe";
+            else if (weapon.Name == "Simple Bow") return "Slingbow";
+            else if (weapon.Name == "Compound Bow") return "Mechanical Slingbow";
+            else if (weapon.Name == "Claw") return "Claws";
+        }
         else if (weapon.Name == "Claw") return "Claws";
         return weapon.Name;
     }

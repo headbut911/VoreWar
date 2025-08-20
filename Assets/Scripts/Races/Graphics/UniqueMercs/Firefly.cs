@@ -8,13 +8,14 @@ class Firefly : DefaultRaceData
     {
         CanBeGender = new List<Gender>() { Gender.Male };
         SpecialAccessoryCount = 2;
+        BodyAccentTypes2 = 2;
         ClothingShift = new Vector3(0, 0, 0);
         AvoidedEyeTypes = 0;
         AvoidedMouthTypes = 0;
 
         HairColors = 1;
         HairStyles = 1;
-        SkinColors = 1;
+        SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.FireflyColor);
         AccessoryColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.FireflyColor);
         EyeTypes = 1;
         EyeColors = 1;
@@ -32,10 +33,10 @@ class Firefly : DefaultRaceData
         Head = new SpriteExtraInfo(7, HeadSprite, WhiteColored);
         BodyAccessory = null;
         BodyAccent = new SpriteExtraInfo(10, BodyAccentSprite, WhiteColored);//Pilot Knife
-        BodyAccent2 = new SpriteExtraInfo(4, BodyAccentSprite2, WhiteColored);
-        BodyAccent3 = new SpriteExtraInfo(5, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FireflyColor, s.Unit.AccessoryColor));
-        BodyAccent4 = new SpriteExtraInfo(6, BodyAccentSprite4, WhiteColored);
-        BodyAccent5 = null;
+        BodyAccent2 =null;
+        BodyAccent3 = new SpriteExtraInfo(5, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FireflyColor, s.Unit.AccessoryColor));// Shoulder Pauldron
+        BodyAccent4 = new SpriteExtraInfo(6, BodyAccentSprite4, WhiteColored);// Shoulder Pauldron
+        BodyAccent5 = new SpriteExtraInfo(5, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.FireflyColor, s.Unit.SkinColor));// Shoulder Pauldron
         BodyAccent6 = null;
         BodyAccent7 = null;
         BodyAccent8 = null;
@@ -64,6 +65,8 @@ class Firefly : DefaultRaceData
         unit.Name = "Firefly";
         unit.SpecialAccessoryType = 1;
         unit.AccessoryColor = 17;
+        unit.SkinColor = 17;
+        unit.BodyAccentType2 = 1;
     }
     internal override int BreastSizes => 1;
     internal override int DickSizes => 1;
@@ -86,11 +89,28 @@ class Firefly : DefaultRaceData
             return Sprites [0];
     }
 
-    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => Sprites [9];
+    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => null;
 
-    protected override Sprite BodyAccentSprite3(Actor_Unit actor) => Sprites [8];
+    protected override Sprite BodyAccentSprite3(Actor_Unit actor)
+    {
+    if (actor.Unit.BodyAccentType2 == 1 && !actor.IsMeleeAttacking)
+        return Sprites [8];
+    return null;
+    }
 
-    protected override Sprite BodyAccentSprite4(Actor_Unit actor) => Sprites [7];
+    protected override Sprite BodyAccentSprite4(Actor_Unit actor)
+    {
+    if (actor.Unit.BodyAccentType2 == 1)
+        return Sprites [actor.IsMeleeAttacking ? 9 : 7];
+    return null;
+    }
+
+    protected override Sprite BodyAccentSprite5(Actor_Unit actor)
+    {
+    if (actor.Unit.BodyAccentType2 == 1 && !actor.IsMeleeAttacking)
+        return Sprites [16];
+    return null;
+    }
 
     protected override Sprite WeaponSprite(Actor_Unit actor)//HND15 Pistol
     {

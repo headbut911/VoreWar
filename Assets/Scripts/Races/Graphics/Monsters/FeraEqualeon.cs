@@ -36,20 +36,7 @@ class FeralEqualeon : BlankSlate
         {
             int size = actor.GetStomachSize(27);
 
-            if (size >= 27 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach) ?? false))
-            {
-                AddOffset(Body, 0, 22 * .625f);
-                AddOffset(BodyAccessory, 0, 22 * .625f);
-                AddOffset(BodyAccent, 0, 22 * .625f);
-                AddOffset(BodyAccent2, 0, 22 * .625f);
-                AddOffset(BodyAccent3, 0, 22 * .625f);
-                AddOffset(BodyAccent4, 0, 22 * .625f);
-                AddOffset(Mouth, 0, 22 * .625f);
-                AddOffset(Eyes, 0, 22 * .625f);
-                AddOffset(SecondaryEyes, 0, 22 * .625f);
-                AddOffset(Hair, 0, 22 * .625f);
-            }
-            else if (size >= 24 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach) ?? false))
+            if (size >= 24 && ((actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach) ?? false) || (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach) ?? false)))
             {
                 AddOffset(Body, 0, 19 * .625f);
                 AddOffset(BodyAccessory, 0, 19 * .625f);
@@ -62,7 +49,7 @@ class FeralEqualeon : BlankSlate
                 AddOffset(SecondaryEyes, 0, 19 * .625f);
                 AddOffset(Hair, 0, 19 * .625f);
             }
-            else if (size >= 23)
+            else if (size >= 22)
             {
                 AddOffset(Body, 0, 9 * .625f);
                 AddOffset(BodyAccessory, 0, 9 * .625f);

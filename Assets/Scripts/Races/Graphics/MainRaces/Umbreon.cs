@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using TacticalBuildings;
-using TaurusClothes;
 using UnityEngine;
 
 class Umbreon : DefaultRaceData
 {
 //    bool BreastBlocked = false; // Handled in MainClothing.cs
 //    bool CockBlocked = false; // Handled in MainClothing.cs
+    bool slotBA1 = false;
+    bool slotBA2 = false;
+    bool slotBA3 = false;
 
     public Umbreon()
     {
@@ -20,29 +21,33 @@ class Umbreon : DefaultRaceData
         BodyAccentTypes2 = 2; // Rust
         EyeTypes = 9;
         HairStyles = 0;
+        MouthTypes = 0;
+        HairColors = 0;
         FurCapable = true; // Used to determine handedness
+
+        ExtendedBreastSprites = true;
 
         Body = new SpriteExtraInfo(2, BodySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.SkinColor));
         Head = new SpriteExtraInfo(3, HeadSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.SkinColor));
         BodyAccessory = new SpriteExtraInfo(4, AccessorySprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // rings
         BodyAccent = new SpriteExtraInfo(4, BodyAccentSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // head rings
         BodyAccent2 = new SpriteExtraInfo(8, BodyAccentSprite2, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Dick rings
-        BodyAccent3 = new SpriteExtraInfo(18, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Left Breast Ring color
-        BodyAccent4 = new SpriteExtraInfo(18, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Right Breast Ring color
-        BodyAccent5 = new SpriteExtraInfo(31, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Belly ring color
-        BodyAccent6 = null;
-        BodyAccent7 = null;
-        BodyAccent8 = null;
+        BodyAccent3 = new SpriteExtraInfo(21, BodyAccentSprite3, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Left Breast Ring color
+        BodyAccent4 = new SpriteExtraInfo(21, BodyAccentSprite4, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Right Breast Ring color
+        BodyAccent5 = new SpriteExtraInfo(19, BodyAccentSprite5, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.AccessoryColor)); // Belly ring color
+        BodyAccent6 = new SpriteExtraInfo(0, BodyAccentSprite6, WhiteColored); // Body Armor check 1
+        BodyAccent7 = new SpriteExtraInfo(0, BodyAccentSprite7, WhiteColored); // Body Armor check 2
+        BodyAccent8 = new SpriteExtraInfo(0, BodyAccentSprite8, WhiteColored); // Body Armor check 3
         Mouth = new SpriteExtraInfo(4, MouthSprite, WhiteColored);        
         Eyes = new SpriteExtraInfo(4, EyesSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.EyeColor));
         SecondaryEyes = new SpriteExtraInfo(4, EyesSecondarySprite, WhiteColored);
-        Belly = new SpriteExtraInfo(30, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonExt, s.Unit.SkinColor));
+        Belly = new SpriteExtraInfo(18, null, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonExt, s.Unit.SkinColor));
         Beard = new SpriteExtraInfo(4, BeardSprite, WhiteColored); //nose
-        Weapon = new SpriteExtraInfo(12, WeaponSprite, WhiteColored);
+        Weapon = new SpriteExtraInfo(6, WeaponSprite, WhiteColored);
         BackWeapon = null;
         BodySize = null; //new SpriteExtraInfo(3, BodySizeSprite, null, FurryBellyColor);
-        Breasts = new SpriteExtraInfo(17, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonExt, s.Unit.SkinColor));
-        SecondaryBreasts = new SpriteExtraInfo(17, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonExt, s.Unit.SkinColor));
+        Breasts = new SpriteExtraInfo(20, BreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonExt, s.Unit.SkinColor));
+        SecondaryBreasts = new SpriteExtraInfo(20, SecondaryBreastsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonExt, s.Unit.SkinColor));
         BreastShadow = null;
         Dick = new SpriteExtraInfo(9, DickSprite, WhiteColored);
         Balls = new SpriteExtraInfo(8, BallsSprite, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, s.Unit.SkinColor));
@@ -55,7 +60,11 @@ class Umbreon : DefaultRaceData
         //RestrictedClothingTypes = 0;
         clothingColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonClothes);
         ExtraColors1 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonArmor);
-        ExtraColors2 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonArmor);
+        //ExtraColors2 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UmbreonArmor);
+        AllowedClothingHatTypes = new List<ClothingAccessory>()
+        {
+            MainAccessories.SantaHat,
+        };
         AllowedMainClothingTypes = new List<MainClothing>()
         {
             new TShirt()
@@ -88,19 +97,15 @@ class Umbreon : DefaultRaceData
         unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
         unit.ClothingColor = State.Rand.Next(clothingColors);
-        unit.ClothingColor2 = State.Rand.Next(ExtraColors1);
-        unit.ClothingColor2 = State.Rand.Next(ExtraColors2);
+        unit.ExtraColor1 = State.Rand.Next(ExtraColors1);
+        //unit.ExtraColor2 = State.Rand.Next(ExtraColors2);
         if (unit.Type == UnitType.Leader)
         {
             unit.ClothingExtraType1 = State.Rand.Next(2) + 3;
         }
         else
         {
-            unit.ClothingExtraType1 = 0;
-            if (State.Rand.Next(3)==0)
-            {
-                unit.ClothingExtraType1 = State.Rand.Next(3);
-            }
+            unit.ClothingExtraType1 = State.Rand.Next(2) + 1;
         }
     }
 
@@ -193,7 +198,7 @@ class Umbreon : DefaultRaceData
 
         if (actor.IsErect())
         {
-            if (actor.PredatorComponent?.VisibleFullness < .75f)
+            if (actor.PredatorComponent?.VisibleFullness < .50f)
             {
                 Dick.layer = 21;
                 return State.GameManager.SpriteDictionary.Umbreon2[35 + (actor.Unit.DickSize * 2)];
@@ -214,7 +219,7 @@ class Umbreon : DefaultRaceData
 
         if (actor.IsErect())
         {
-            if (actor.PredatorComponent?.VisibleFullness < .75f)
+            if (actor.PredatorComponent?.VisibleFullness < .50f)
             {
                 BodyAccent2.layer = 22;
                 return State.GameManager.SpriteDictionary.Umbreon2[49 + (actor.Unit.DickSize * 2)];
@@ -342,6 +347,55 @@ class Umbreon : DefaultRaceData
             return null;
         }
     }
+
+//Check if the unit has BodyArmor for the armor sprites
+    protected override Sprite BodyAccentSprite6(Actor_Unit actor)
+    {
+        Accessory acc1 = null;
+        slotBA1 = false;
+        if (actor.Unit.Items == null || actor.Unit.Items.Length < 1)
+            return null;
+        if (actor.Unit.Items[0] is Accessory)
+        {
+            acc1 = (Accessory)actor.Unit.Items[0];
+            if (acc1 == State.World.ItemRepository.GetItem(ItemType.BodyArmor))
+                slotBA1 = true;
+        }
+        return null;
+    }
+
+    protected override Sprite BodyAccentSprite7(Actor_Unit actor)
+    {
+        Accessory acc2 = null;
+        slotBA2 = false;
+        if (actor.Unit.Items == null || actor.Unit.Items.Length < 2)
+            return null;
+        if (actor.Unit.Items[1] is Accessory)
+        {
+            acc2 = (Accessory)actor.Unit.Items[1];
+            if (acc2 == State.World.ItemRepository.GetItem(ItemType.BodyArmor))
+                slotBA2 = true;
+        }
+        return null;
+    }
+
+    protected override Sprite BodyAccentSprite8(Actor_Unit actor)
+    {
+        Accessory acc3 = null;
+        slotBA3 = false;
+        if (actor.Unit.Items == null || actor.Unit.Items.Length < 3)
+            return null;
+        if (actor.Unit.HasTrait(Traits.Resourceful))
+            if (actor.Unit.Items[2] is Accessory)
+        {
+            acc3 = (Accessory)actor.Unit.Items[2];
+            if (acc3 == State.World.ItemRepository.GetItem(ItemType.BodyArmor))
+                slotBA3 = true;
+        }
+        return null;
+    }
+//Check if the unit has BodyArmor for the armor sprites
+
     protected override Sprite HeadSprite(Actor_Unit actor)
     {
         int sprite = 3;
@@ -353,7 +407,7 @@ class Umbreon : DefaultRaceData
     {
         if (actor.Unit.HasWeapon && actor.Surrendered == false)
         {
-            if (actor.GetWeaponSprite() >=5)
+            if (actor.GetWeaponSprite() >=4)
             {
                 return State.GameManager.SpriteDictionary.Umbreon[106 + actor.GetWeaponSprite()];
             }
@@ -482,38 +536,14 @@ class Umbreon : DefaultRaceData
             return State.GameManager.SpriteDictionary.Umbreon2[27];
         }
         int combined = Math.Min(baseSize + ballOffset, 26);
-        switch (combined)
-        {
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-            case 17:
-            case 18:
-            case 19:
-            case 20:
-            case 21:
-                AddOffset(Balls, 0, -1 * .625f);
-                break;
-            case 22:
-                AddOffset(Balls, 0, -3 * .625f);
-                break;
-            case 23:
-                AddOffset(Balls, 0, -7 * .625f);
-                break;
-            case 24:
-                AddOffset(Balls, 0, -10 * .625f);
-                break;
-            case 25:
-            case 26:
-                AddOffset(Balls, 0, -15 * .625f);
-                break;
-            case 27:
-                AddOffset(Balls, 0, -18 * .625f);
-                break;
-            default:
-                break;
-        }
+        if (combined == 26)
+            AddOffset(Balls, 0, -16 * .625f);
+        else if (combined == 24 || combined == 25)
+            AddOffset(Balls, 0, -12 * .625f);
+        else if (combined >= 23 && combined <= 24)
+            AddOffset(Balls, 0, -8 * .625f);
+        else if (combined == 22)
+            AddOffset(Balls, 0, -6 * .625f);
         if (ballOffset > 0)
         {
             return State.GameManager.SpriteDictionary.Umbreon2[combined];
@@ -529,8 +559,8 @@ class Umbreon : DefaultRaceData
             blocksBreasts = true;
             blocksDick = false;
             Type = 86002;
-            clothing1 = new SpriteExtraInfo(19, null, null); //Shirt
-            clothing2 = new SpriteExtraInfo(20, null, null); //Decal
+            clothing1 = new SpriteExtraInfo(16, null, null); //Shirt
+            clothing2 = new SpriteExtraInfo(17, null, null); //Decal
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
@@ -555,6 +585,7 @@ class Umbreon : DefaultRaceData
         public Pants1()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -571,6 +602,7 @@ class Umbreon : DefaultRaceData
         public Pants2()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86038;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -587,6 +619,7 @@ class Umbreon : DefaultRaceData
         public Pants3()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86039;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -603,6 +636,7 @@ class Umbreon : DefaultRaceData
         public Pants4()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -620,6 +654,7 @@ class Umbreon : DefaultRaceData
         public Pants5()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -637,6 +672,7 @@ class Umbreon : DefaultRaceData
         public Pants6()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -654,6 +690,7 @@ class Umbreon : DefaultRaceData
         public Pants7()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -671,6 +708,7 @@ class Umbreon : DefaultRaceData
         public Pants8()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -688,6 +726,7 @@ class Umbreon : DefaultRaceData
         public Pants9()
         {
             blocksDick = true;
+            coversBreasts = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(17, null, null); //Pants
         }
@@ -705,21 +744,34 @@ class Umbreon : DefaultRaceData
         public Armor1()
         {
             blocksBreasts = false;
+            coversBreasts = false;
+            blocksDick = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
-            clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
+            clothing3 = new SpriteExtraInfo(6, null, null); //LegArmor
             clothing4 = new SpriteExtraInfo(23, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(24, null, null); //Rust
-            clothing6 = new SpriteExtraInfo(24, null, null); //LegRust
+            clothing6 = new SpriteExtraInfo(7, null, null); //LegRust
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 116 : 115) : 114];
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[127];
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 130 : 129) : 128];
-            clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 143 : 142) : 141];
-            clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
+            if (Races.Umbreon.slotBA1 == true || Races.Umbreon.slotBA2 == true || Races.Umbreon.slotBA3 == true)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 116 : 115) : 114];
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[127];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 130 : 129) : 128];
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 143 : 142) : 141];
+                clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => null;
+                clothing3.GetSprite = (s) => null;
+                clothing4.GetSprite = (s) => null;
+                clothing5.GetSprite = (s) => null;
+                clothing6.GetSprite = (s) => null;
+            }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
             clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
             if (actor.Unit.BodyAccentType2 == 0)
@@ -736,22 +788,35 @@ class Umbreon : DefaultRaceData
         public Armor2()
         {
             blocksBreasts = false;
+            coversBreasts = false;
+            blocksDick = false;
             Type = 86037;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
-            clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
+            clothing3 = new SpriteExtraInfo(6, null, null); //LegArmor
             clothing4 = new SpriteExtraInfo(23, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(24, null, null); //Rust
-            clothing6 = new SpriteExtraInfo(24, null, null); //LegRust
+            clothing6 = new SpriteExtraInfo(7, null, null); //LegRust
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 119 : 118) : 117];
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[127];
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 133 : 132) : 131];
-            clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 146 : 145) : 144];
-            clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
-            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ClothingColor2);
+            if (Races.Umbreon.slotBA1 == true || Races.Umbreon.slotBA2 == true || Races.Umbreon.slotBA3 == true)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 119 : 118) : 117];
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[127];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 133 : 132) : 131];
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 146 : 145) : 144];
+                clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => null;
+                clothing3.GetSprite = (s) => null;
+                clothing4.GetSprite = (s) => null;
+                clothing5.GetSprite = (s) => null;
+                clothing6.GetSprite = (s) => null;
+            }
+            clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
             clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
             if (actor.Unit.BodyAccentType2 == 0)
             {
@@ -767,22 +832,36 @@ class Umbreon : DefaultRaceData
         public LeaderArmor1()
         {
             Type = 86040;
+            coversBreasts = false;
+            blocksDick = false;
+            leaderOnly = true;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
-            clothing3 = new SpriteExtraInfo(22, null, null); //LegArmor
+            clothing3 = new SpriteExtraInfo(6, null, null); //LegArmor
             clothing4 = new SpriteExtraInfo(23, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(24, null, null); //Rust
-            clothing6 = new SpriteExtraInfo(24, null, null); //LegRust
+            clothing6 = new SpriteExtraInfo(7, null, null); //LegRust
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
+            if (Races.Umbreon.slotBA1 == true || Races.Umbreon.slotBA2 == true || Races.Umbreon.slotBA3 == true)
+            {
             clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 122 : 121) : 120];
             clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[127];
             clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 136 : 135) : 134];
             clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 149 : 148) : 147];
             clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
+            }
+            else
+            {
+            clothing1.GetSprite = (s) => null;
+            clothing3.GetSprite = (s) => null;
+            clothing4.GetSprite = (s) => null;
+            clothing5.GetSprite = (s) => null;
+            clothing6.GetSprite = (s) => null;
+            }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
-            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor2);
+            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
             if (actor.Unit.BodyAccentType2 == 0)
             {
                 clothing5.GetSprite = null;
@@ -797,30 +876,50 @@ class Umbreon : DefaultRaceData
         public LeaderArmor2()
         {
             blocksBreasts = true;
+            blocksDick = false;
+            leaderOnly = true;
             Type = 86040;
             clothing1 = new SpriteExtraInfo(21, null, null); //Armor
             clothing2 = new SpriteExtraInfo(22, null, null); //Emblem
-            clothing3 = new SpriteExtraInfo(23, null, null); //LegArmor
+            clothing3 = new SpriteExtraInfo(6, null, null); //LegArmor
             clothing4 = new SpriteExtraInfo(24, null, WhiteColored); //'Uncolored part'
             clothing5 = new SpriteExtraInfo(25, null, null); //Rust
-            clothing6 = new SpriteExtraInfo(25, null, null); //LegRust
+            clothing6 = new SpriteExtraInfo(7, null, null); //LegRust
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 125 : 124) : 123];
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[126];
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[127];
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 139 : 138) : 137];
-            clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 152 : 151) : 150];
-            clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
+            if (Races.Umbreon.slotBA1 == true || Races.Umbreon.slotBA2 == true || Races.Umbreon.slotBA3 == true)
+            {
+                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 125 : 124) : 123];
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[126];
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[127];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 139 : 138) : 137];
+                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[actor.IsAttacking ? (actor.Unit.Furry ? 152 : 151) : 150];
+                clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.Umbreon[153];
+            }
+            else
+            {
+                clothing1.GetSprite = (s) => null;
+                clothing2.GetSprite = (s) => null;
+                clothing3.GetSprite = (s) => null;
+                clothing4.GetSprite = (s) => null;
+                clothing5.GetSprite = (s) => null;
+                clothing6.GetSprite = (s) => null;
+            }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonSkin, actor.Unit.AccessoryColor);
-            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor2);
+            clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.UmbreonArmor, actor.Unit.ExtraColor1);
             if (actor.Unit.BodyAccentType2 == 0)
             {
                 clothing5.GetSprite = null;
                 clothing6.GetSprite = null;
+            }
+            if (actor.PredatorComponent?.LeftBreastFullness > 0 || actor.PredatorComponent?.RightBreastFullness > 0)
+            {
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = null;
+                clothing5.GetSprite = null;
             }
             base.Configure(sprite, actor);
         }

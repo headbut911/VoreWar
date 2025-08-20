@@ -513,6 +513,12 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Top";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Pants";
                 break;
+            case Race.Firefly:
+                buttons[(int)ButtonTypes.Skintone].Label.text = "Secondary Color";
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Primary Color";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Outfit";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Shoulder Pad";
+                break;
             case Race.Taraluxia:
                 Taraluxia();
                 break;
@@ -525,6 +531,8 @@ public class UnitCustomizer
             case Race.Umbreon:
                 buttons[(int)ButtonTypes.Furry].Label.text = "Handedness";
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Ring Color";
+                buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Body Armor Metal";
+                buttons[(int)ButtonTypes.ClothingExtraType1].Label.text = "Body Armor(req. item)";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Decal";
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Armor Rust";
                 break;
