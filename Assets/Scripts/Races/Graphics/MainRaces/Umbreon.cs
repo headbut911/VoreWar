@@ -9,7 +9,6 @@ class Umbreon : DefaultRaceData
     bool slotBA1 = false;
     bool slotBA2 = false;
     bool slotBA3 = false;
-    bool BACheck = false;
 
     public Umbreon()
     {
