@@ -395,6 +395,10 @@ public class HoveringTooltip : MonoBehaviour
             }
             foreach (var item in cond.OperationBlocks)
             {
+                if (item.Key.conditionVariable.Count <= 0)
+                {
+                    continue;
+                }
                 TraitCondition leadCondition = item.Key.conditionVariable.First();
                 constructed += item.Key.summary;
                 if (TraitCondition.Male > leadCondition)

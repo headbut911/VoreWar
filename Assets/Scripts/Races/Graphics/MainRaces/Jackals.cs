@@ -118,7 +118,7 @@ class Jackals : DefaultRaceData
 
     static ColorSwapPalette DickColor(Actor_Unit actor)
     {
-        if (Config.FurryGenitals)
+        if (Config.FurryGenitals && actor.IsErect() && actor.Unit.Furry)
             return null;
         return FurryColor(actor);
     }
@@ -706,16 +706,17 @@ class Jackals : DefaultRaceData
                 Dick.layer = 20;
                 if (use_furry)
                 {
-                    return Sprites6[((!actor.Unit.HasBreasts) ? 38 : 2 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
+                    return Sprites6[((!actor.Unit.HasBreasts) ? 37 : 1 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
                 }
                 return Sprites5[1 + (actor.Unit.DickSize * 2) + ((actor.Unit.BodySize > 1) ? 12 : 0) + ((!actor.Unit.HasBreasts) ? 24 : 0)];
+
             }
             else
             {
                 Dick.layer = 13;
                 if (use_furry)
                 {
-                    return Sprites6[((!actor.Unit.HasBreasts) ? 37 : 1 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
+                    return Sprites6[((!actor.Unit.HasBreasts) ? 38 : 2 + ((actor.Unit.BodySize > 1) ? 18 : 0)) + (actor.Unit.DickSize * 3)];
                 }
                 return Sprites5[0 + (actor.Unit.DickSize * 2) + ((actor.Unit.BodySize > 1) ? 12 : 0) + ((!actor.Unit.HasBreasts) ? 24 : 0)];
             }
