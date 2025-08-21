@@ -257,7 +257,7 @@ public class ArmyExchanger : MonoBehaviour
         if (leftSelected >= LeftArmy.Units.Count)
             return;
 
-        if (!StrategicUtilities.ArmyCanFitUnit(RightArmy, LeftArmy.Units[rightSelected]))
+        if (!StrategicUtilities.ArmyCanFitUnit(RightArmy, LeftArmy.Units[leftSelected]))
             return;
 
         if (LeftArmy.Units[leftSelected] == LeftArmy.Empire.Leader && LeftArmy.Side != RightArmy.Side)
