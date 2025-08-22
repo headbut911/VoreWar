@@ -41,9 +41,9 @@ Clean Disposal (Diapers) log messages by <b>Mocha</b>
 NearbyEnemies variable functionality by <b>CaneSugarCat</b>
 Unit Upkeep code by <b>CaneSugarCat</b>
 Unit Deploy Cost code by <b>CaneSugarCat</b>
-The incredibly expansice Construction System code by <b>CaneSugarCat</b>
+The incredibly expansive Construction System code by <b>CaneSugarCat</b>
 Ancient Teleporters by <b>CaneSugarCat</b>
-Custom/Conditional Trait system by <b>CaneSugarCat</b>
+Custom/Conditional/Tagged Trait system by <b>CaneSugarCat</b>
 Potions by <b>CaneSugarCat</b>
 Unit/Trait Tag system by <b>CaneSugarCat</b>
 Size-based damage system by <b>CaneSugarCat</b>
@@ -74,7 +74,7 @@ A good amount of the unique race names by <b>Tatltuae</b>
 Bella
 
 <b><u>CaneSugarCat:</b></u>
-Dryads
+Wood,Earth,River, and Fungal Dryad
 Feral Slime
 Jackal
 Mainland Elves
