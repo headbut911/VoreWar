@@ -2650,7 +2650,7 @@ public class PredatorComponent
         {
             boost += 50;
         }
-        if (actor.Movement == 0)
+        else if (actor.Movement == 0)
         {
             return false;
         }
