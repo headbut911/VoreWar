@@ -155,6 +155,9 @@ public class Army
             BannerStyle = empire.BannerType;
         if ((State.World.Turn == 1 && Config.FirstTurnArmiesIdle) || 0 > RemainingMP)
             RemainingMP = 0;
+        if (JustSpawnedLeader && Config.LeaderSpawnFreeze)
+            RemainingMP = 0;
+
     }
 
     internal void NameArmy(Empire empire)
