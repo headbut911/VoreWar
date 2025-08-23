@@ -706,7 +706,7 @@ class StrategicArmyCommander
         }
         if (Config.LeaderSpawnFreeze)
         {
-            army.RemainingMP = 0;
+            army.JustSpawnedLeader = true;
         }
 
 

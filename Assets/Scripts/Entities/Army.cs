@@ -43,6 +43,7 @@ public class Army
     public string Name;
 
     public bool JustCreated = false;
+    public bool JustSpawnedLeader = false;
 
     [OdinSerialize]
     public int RemainingMP { get; set; }
@@ -218,6 +219,11 @@ public class Army
     public int GetMaxMovement()
     {
         int movement = 0;
+        if (JustSpawnedLeader)
+        {
+            JustSpawnedLeader = false;
+            return movement;
+        }
         if (Units.Count <= Config.ScoutMax)
         {
             SCooldownOffset = ((Config.ArmyMP + Config.ScoutMP) + (int)(Config.ArmyMP * MPMod) - (int)SCooldown);
