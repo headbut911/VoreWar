@@ -444,6 +444,11 @@ public class Unit
         return Type != UnitType.Summon && Type != UnitType.Leader && Type != UnitType.SpecialMercenary && HasTrait(Traits.Eternal) == false && SavedCopy == null && Level > 0;
     }
 
+    internal bool AtypicalBiology()
+    {
+        return HasTrait(Traits.AcellularBody) || HasTrait(Traits.ViralBiology);
+    }
+
     internal bool CanUnbirth => Config.Unbirth && HasVagina;
     internal bool CanCockVore => Config.CockVore && HasDick;
     internal bool CanBreastVore => Config.BreastVore && HasBreasts;
