@@ -536,7 +536,7 @@ public class TacticalMode : SceneBase
                 }
             }
             EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);
-            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor, armies[actor.Unit.Side == attackerSide ? attackerSide : defenderSide], null });
+            EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor, armies[actor.Unit.Side == attackerSide ? 0 : 1], null });
         }
 
 

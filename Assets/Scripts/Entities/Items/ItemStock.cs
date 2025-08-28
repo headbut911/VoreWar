@@ -1,5 +1,6 @@
 ﻿using OdinSerializer;
 using System.Collections.Generic;
+using UnityEngine;
 using System.Linq;
 
 
@@ -64,7 +65,7 @@ class ItemStock
         List<ItemType> items = new List<ItemType>();
         foreach (var item in Items)
         {
-            if (item.Key >= ItemType.FireBall && item.Key <= ItemType.GateMaw)
+            if (item.Key >= ItemType.Meditate && item.Key <= ItemType.GateMaw)
             {
                 if (item.Value > 0)
                 {
@@ -105,8 +106,13 @@ class ItemStock
         List<ItemType> items = new List<ItemType>();
         foreach (var item in Items)
         {
-            if (item.Key < ItemType.FireBall)
+            if (item.Key < ItemType.Mace)
             {
+                continue;
+            }
+            if (item.Key < ItemType.HealthPotion)
+            {
+
                 if (item.Value > 0)
                 {
                     empire.AddGold(State.World.ItemRepository.GetItem(item.Key).Cost / 2 * item.Value);
