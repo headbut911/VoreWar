@@ -129,6 +129,10 @@ class ItemStock
         bool foundItem = false;
         foreach (var item in Items.ToList())
         {
+            if (item.Key < ItemType.Mace)
+            {
+                continue;
+            }
             if (item.Value > 0)
             {
                 foundItem = true;
@@ -149,6 +153,10 @@ class ItemStock
         bool foundItem = false;
         foreach (var item in Items.ToList())
         {
+            if (item.Key < ItemType.Mace)
+            {
+                continue;
+            }
             if (item.Value > 0)
             {
                 foundItem = true;
