@@ -106,6 +106,7 @@ class StrategicArmyCommander
                             List<AncientTeleporter> tp = State.World.AncientTeleporters.Where((t) => t != target_Tele.First()).ToList();
                             army.SetPosition(tp[State.Rand.Next(tp.Count())].Position);
                             army.Destination = null;
+                            army.teleportCoolDown = 3;
                         }
                     }
 
@@ -443,7 +444,7 @@ class StrategicArmyCommander
             if (defender != null && StrategicUtilities.ArmyPower(defender) > MaxDefenderStrength * StrategicUtilities.ArmyPower(army))
                 continue;
             potentialTargets.Add(tele.Position);
-            int value = 9;
+            int value = 9 - (army.teleportCoolDown*3);
             value -= tele.Position.GetNumberOfMovesDistance(army.Position) / 3;
             potentialTargetValue.Add(value);
         }
