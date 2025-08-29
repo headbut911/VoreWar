@@ -374,9 +374,9 @@ public class ItemRepository
         if (ignoreLimit == false)
             maxTier = UnityEngine.Mathf.Clamp(maxTier, 1, Config.MaxSpellLevelDrop);
         minTier = UnityEngine.Mathf.Clamp(minTier, 1, maxTier);
-        int min = (int)ItemType.FireBall;
+        int min = (int)ItemType.Meditate;
         int max = (int)ItemType.Resurrection;
-        if (minTier == 1) min = (int)ItemType.FireBall;
+        if (minTier == 1) min = (int)ItemType.Meditate;
         if (minTier == 2) min = (int)ItemType.IceBlast;
         if (minTier == 3) min = (int)ItemType.PreysCurse;
         if (minTier == 4) min = (int)ItemType.Diminishment;

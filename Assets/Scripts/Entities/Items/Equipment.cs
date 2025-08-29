@@ -113,6 +113,14 @@ public class Equipment : Item
             }
 
         }
+        else
+        {
+            if (useType != EquipmentType.Normal)
+                if (TriggersCooldown != null)
+                    if (TriggersCooldown.Count() == EquipmentFunction.Count())
+                        if (!TriggersCooldown[EquipmentFunction.Keys.ToList().IndexOf(activator)])
+                            EquipmentFunction[activator].Invoke(args[0], args[1], args[2]);
+        }
     }
 
     public string DetailedDescription()

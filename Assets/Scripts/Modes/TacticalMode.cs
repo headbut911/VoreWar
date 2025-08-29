@@ -535,8 +535,8 @@ public class TacticalMode : SceneBase
                     actor.Unit.DeactivateConditionalTrait(item.id);
                 }
             }
+            EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);
             EquipmentFunctions.CheckEquipment(actor.Unit, EquipmentActivator.OnTacticalBattleStart, new object[] { actor, armies[actor.Unit.Side == attackerSide ? 0 : 1], null });
-            EquipmentFunctions.TickCoolDown(actor.Unit, EquipmentType.RechargeTactical, true);  
         }
 
 
@@ -925,7 +925,7 @@ public class TacticalMode : SceneBase
                     int summonCount = (int)Math.Ceiling(attackers.Count() * (Config.BuildConfig.DefenseEncampmentArmyPercentage * (defenseEncampment.unitUpgrade.built ? 1.5f : 1)));
                     while (summonCount > 0 && defenseEncampment.AvailibleDefenders > 0)
                     {
-                        Empire empire = armies[1].Empire;
+                        Empire empire = defender?.Empire ?? village.Empire;
                         float advancedChance = 0.2f * (defenseEncampment.improveUpgrade.built ? 4f : 1);
                         float unitScale = Config.BuildConfig.DefenseEncampmentUnitScale * (defenseEncampment.levelUpgrade.built ? 1.5f : 1);
                         Unit newUnit = new NPC_unit((int)Math.Max(Mathf.Floor((empire.Leader != null ? empire.Leader.Level : 3) * unitScale),1), advancedChance >= State.Rand.NextDouble(), 2, defenders.Concat(garrison).FirstOrDefault().Unit.Side, empire.Race, 0, empire.CanVore);

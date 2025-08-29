@@ -1056,7 +1056,7 @@ public class PredatorComponent
         int totalHeal = 0;
         foreach (Prey preyUnit in prey.ToList())
         {
-            if ((preyUnit.Location != PreyLocation.breasts && feedType == "breastfeed") || (preyUnit.Location != PreyLocation.balls && feedType == "cumfeed"))
+            if (((preyUnit.Location != PreyLocation.breasts || preyUnit.Location != PreyLocation.leftBreast || preyUnit.Location != PreyLocation.rightBreast) && feedType == "breastfeed") || (preyUnit.Location != PreyLocation.balls && feedType == "cumfeed"))
                 break;
             if (unit.HasTrait(Traits.EnthrallingDepths) || preyUnit.Unit.GetStatusEffect(StatusEffectType.Hypnotized)?.Strength == unit.FixedSide)
             {
@@ -2657,7 +2657,7 @@ public class PredatorComponent
         {
             boost += 50;
         }
-        if (actor.Movement == 0)
+        else if (actor.Movement == 0)
         {
             return false;
         }
