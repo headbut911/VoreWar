@@ -4297,6 +4297,8 @@ static class RaceParameters
             FavoredStat = Stat.Dexterity,
             HasTail = true,
             AllowedVoreTypes = new List<VoreType> { },//Perma-prey until vore sprites added
+            ExpMultiplier = 1.4f,
+            PowerAdjustment = 2f,
             DeployCost = 1,
             Upkeep = 9f,
             RaceStats = new RaceStats()
