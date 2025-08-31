@@ -133,6 +133,7 @@ static class RaceParameters
     static readonly RaceTraits Lupine;
     static readonly RaceTraits Jackals;
     static readonly RaceTraits Firefly;
+    static readonly RaceTraits Nectar;
     static readonly RaceTraits Otachi;
     static readonly RaceTraits Raiju;
     static readonly RaceTraits Smudger;
@@ -427,6 +428,8 @@ static class RaceParameters
                 return Jackals;
             case Race.Firefly:
                 return Firefly;
+            case Race.Nectar:
+                return Nectar;
             case Race.Otachi:
                 return Otachi;
             case Race.Raiju:
@@ -4327,6 +4330,34 @@ static class RaceParameters
             RaceDescription = "An unnatural Umbreon from a different universe from the others. His body shape seems different than the Umbreons, Having a differently shaped head, digigrade legs, and a fox like appearance. He claims to come from a realm where the world was much more advanced, having been transported with what he calls a \"HND15\" some kind of \"handgun\" similar to the tarous' revolvers. Being from another realm these bullets are in short supply, forcing him to save the magazines and to forge new bullets to load into them. He also carries around a knife for backup, it seems extra sharp compared to the others of it's kind. Although he prefers to stick along side them, He claims to not be related to the Anthro Umbreons that roam around.",
         };
 
+        Nectar = new RaceTraits()
+        {
+            BodySize = 60,
+            StomachSize = 45,
+            FavoredStat = Stat.Strength,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore, VoreType.Unbirth },
+            ExpMultiplier = 1.6f,
+            PowerAdjustment = 2.2f,
+            DeployCost = 2,
+            Upkeep = 17f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(22, 30),
+                Dexterity = new RaceStats.StatRange(12, 20),
+                Endurance = new RaceStats.StatRange(17, 29),
+                Mind = new RaceStats.StatRange(14, 28),
+                Will = new RaceStats.StatRange(15, 21),
+                Agility = new RaceStats.StatRange(13, 23),
+                Voracity = new RaceStats.StatRange(16, 22),
+                Stomach = new RaceStats.StatRange(19, 27),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.StrongGullet,
+                Traits.Intimidating,
+        },
+            RaceDescription = "Nectar needs a description.",
+        };
 
     }
 

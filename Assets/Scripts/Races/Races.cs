@@ -147,6 +147,7 @@
     static internal Skapa Skapa = new Skapa();
     static internal Tatltuae Tatltuae = new Tatltuae();
     static internal Firefly Firefly = new Firefly();
+    static internal Nectar Nectar = new Nectar();
 
 
     static internal DefaultRaceData GetRace(Unit unit)
@@ -428,6 +429,8 @@
                 return Jackals;
             case Race.Firefly:
                 return Firefly;
+            case Race.Nectar:
+                return Nectar;
             case Race.Otachi:
                 return Otachi;
             case Race.Raiju:
