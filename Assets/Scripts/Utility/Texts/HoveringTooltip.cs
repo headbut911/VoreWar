@@ -674,11 +674,11 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.Whispers:
                 return "When eaten, Predator is afflicted by Prey's curse, and has a chance to be charmed each round";
             case Traits.TraitBorrower:
-                return "While digesting, , Predator is able to use prey's normal traits";
+                return "While digesting, the Predator is able to use prey's normal traits";
             case Traits.Changeling:
-                return "While Absorbing a prey, Becomes that prey's Race until absorption";
+                return "While absorbing a prey, Becomes that prey's Race until absorption is complete";
             case Traits.GreaterChangeling:
-                return "While digesing a prey, Becomes that prey's Race until absorption";
+                return "While digesting a prey, Becomes that prey's Race until absorption";
             case Traits.SpiritPossession:
                 return "Units soul continues to possess pred after death";
             case Traits.ForcedMetamorphosis:

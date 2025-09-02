@@ -3028,7 +3028,7 @@ public class Actor_Unit
                 {
                     SetPos(target_tile);
                     State.GameManager.TacticalMode.Translator.SetTranslator(UnitSprite.transform, Position, target_tile, 0, State.GameManager.TacticalMode.IsPlayerTurn);
-                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{Unit.Name} disappears, only to reappear somwhere else.");
+                    State.GameManager.TacticalMode.Log.RegisterMiscellaneous($"{Unit.Name} disappears, only to reappear somewhere else.");
                 }
                 else
                 {
