@@ -618,6 +618,8 @@ static class LogUtilities
                 return GetRandomStringFrom("cartograher", "raven", "chaos mage", "corvid", State.Rand.Next(42) == 1 ? "bird" : "birb");
             case Race.Terrorbird:
                 return GetRandomStringFrom("bird", "long-necked avian", "flightless bird", "anger bird");
+            case Race.Iliijiith:
+                return GetRandomStringFrom("being", "\"thing\"");
             default:
                 return "creature";
         }

@@ -118,6 +118,7 @@
     static internal SpaceCroach SpaceCroach = new SpaceCroach();
     static internal Trex Trex = new Trex();
     static internal Utahraptor Utahraptor = new Utahraptor();
+    static internal Iliijiith Iliijiith = new Iliijiith();
 
     static internal Selicia Selicia = new Selicia();
     static internal Vision Vision = new Vision();
@@ -453,6 +454,8 @@
                 return Trex;
             case Race.Utahraptor:
                 return Utahraptor;
+            case Race.Iliijiith:
+                return Iliijiith;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

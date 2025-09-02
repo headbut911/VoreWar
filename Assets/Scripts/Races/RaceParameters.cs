@@ -123,6 +123,7 @@ static class RaceParameters
     static readonly RaceTraits FeralSlime;
     static readonly RaceTraits Olivia;
     static readonly RaceTraits ViraeUltimae;
+    static readonly RaceTraits Iliijiith;
     static readonly RaceTraits Equaleon;
     static readonly RaceTraits Viisels;
     static readonly RaceTraits FeralEevee;
@@ -410,6 +411,8 @@ static class RaceParameters
                 return Umbreon;
             case Race.ViraeUltimae:
                 return ViraeUltimae;
+            case Race.Iliijiith:
+                return Iliijiith;
             case Race.Viisels:
                 return Viisels;
             case Race.FeralEevee:
@@ -3073,6 +3076,40 @@ static class RaceParameters
                 Traits.Brainless,
         },
             RaceDescription = "How the Virae Ultimae are able to function at all with no brain is an enigma. Hearing and perpetual humming are their only ways of interacting with the world minus attacking and attempting to reproduce more of themselves by infecting hosts with their viral injectors. These things operate as brainless biological automata, and their sheer refusal to cease their attack under any conditions can be quite scary.",
+        };
+
+        Iliijiith = new RaceTraits()
+        {
+            BodySize = 6,
+            StomachSize = 12,
+            HasTail = false,
+            FavoredStat = Stat.Voracity,
+            DeployCost = 1,
+            Upkeep = 3f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(8, 16),
+                Dexterity = new RaceStats.StatRange(8, 16),
+                Endurance = new RaceStats.StatRange(12, 16),
+                Mind = new RaceStats.StatRange(1, 16),
+                Will = new RaceStats.StatRange(8, 16),
+                Agility = new RaceStats.StatRange(4, 16),
+                Voracity = new RaceStats.StatRange(10, 16),
+                Stomach = new RaceStats.StatRange(10, 16),
+            },
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.AcellularBody,
+                Traits.Brainless,
+                Traits.Fearless,
+                Traits.Replaceable,
+                Traits.Crystaline,
+                Traits.DimensionalAntilock,
+                Traits.DyingStrike,
+                Traits.TotalAbsorption,
+        },
+            RaceDescription = "I NEED INFO!",
         };
 
         Viisels = new RaceTraits()
