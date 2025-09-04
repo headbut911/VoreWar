@@ -49,20 +49,13 @@ class Iliijiith : BlankSlate
         BodyAccent9 = null;
         BodyAccent10 = null;
         Mouth = null;
-        Hair = null;
-        Hair2 = null;
         Eyes = null;
         SecondaryEyes = null;
-        SecondaryAccessory = null;
         Belly = null;
         SecondaryBelly = null;
         Weapon = null;
         BackWeapon = null;
         BodySize = null;
-        Breasts = null;
-        BreastShadow = null;
-        Dick = null;
-        Balls = null;
     }
     internal override int BreastSizes => 1;
     internal override int DickSizes => 1;
@@ -115,31 +108,6 @@ protected override Sprite BodyAccentSprite(Actor_Unit actor)
         else
             return State.GameManager.SpriteDictionary.Iliijiith[4];
     }
-
-
-
-    protected override Sprite AccessorySprite(Actor_Unit actor) => null;
-    protected override Sprite BackWeaponSprite(Actor_Unit actor) => null;
-    internal override Sprite BellySprite(Actor_Unit actor, GameObject belly) => null;
-    protected override Sprite SecondaryBellySprite(Actor_Unit actor) => null;
-    protected override Sprite BodyAccentSprite2(Actor_Unit actor) => null;
-    protected override Color BodyAccessoryColor(Actor_Unit actor) => Color.white;
-    protected override Color BodyColor(Actor_Unit actor) => Color.white;
-    protected override Sprite BodySizeSprite(Actor_Unit actor) => null;
-    protected override Sprite BreastsShadowSprite(Actor_Unit actor) => null;
-    protected override Sprite BreastsSprite(Actor_Unit actor) => null;
-    internal override Color ClothingColor(Actor_Unit actor) => Color.white;
-    protected override Sprite DickSprite(Actor_Unit actor) => null;
-    protected override Color EyeColor(Actor_Unit actor) => Color.white;
-    protected override Sprite EyesSecondarySprite(Actor_Unit actor) => null;
-    protected override Sprite EyesSprite(Actor_Unit actor) => null;
-    protected override Color HairColor(Actor_Unit actor) => Color.white;
-    protected override Sprite HairSprite(Actor_Unit actor) => null;
-    protected override Sprite HairSprite2(Actor_Unit actor) => null;
-    protected override Sprite MouthSprite(Actor_Unit actor) => null;
-    protected override Color ScleraColor(Actor_Unit actor) => Color.white;
-    protected override Sprite WeaponSprite(Actor_Unit actor) => null;
-    protected override Sprite SecondaryAccessorySprite(Actor_Unit actor) => null;
 
 
 }
