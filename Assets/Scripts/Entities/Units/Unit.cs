@@ -1010,6 +1010,11 @@ public class Unit
             }
             catch { }
         }
+        else if (race == Race.Ryan)
+        {
+            FixedGear = true;
+            Items[0] = State.World.ItemRepository.GetSpecialItem(SpecialItems.RyanWeapon);
+        }
         else
         {
             FixedGear = false;

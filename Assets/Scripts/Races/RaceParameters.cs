@@ -135,6 +135,7 @@ static class RaceParameters
     static readonly RaceTraits Jackals;
     static readonly RaceTraits Firefly;
     static readonly RaceTraits Nectar;
+    static readonly RaceTraits Ryan;
     static readonly RaceTraits Otachi;
     static readonly RaceTraits Raiju;
     static readonly RaceTraits Smudger;
@@ -433,6 +434,8 @@ static class RaceParameters
                 return Firefly;
             case Race.Nectar:
                 return Nectar;
+            case Race.Ryan:
+                return Ryan;
             case Race.Otachi:
                 return Otachi;
             case Race.Raiju:
@@ -4394,6 +4397,39 @@ static class RaceParameters
                 Traits.Intimidating,
         },
             RaceDescription = "Nectar needs a description.",
+        };
+
+        Ryan = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 20,
+            FavoredStat = Stat.Endurance,
+            HasTail = true,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.CockVore },
+            ExpMultiplier = 2f,
+            PowerAdjustment = 5f,
+            DeployCost = 2,
+            Upkeep = 20f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(24, 32),
+                Dexterity = new RaceStats.StatRange(20, 24),
+                Endurance = new RaceStats.StatRange(24, 32),
+                Mind = new RaceStats.StatRange(20, 24),
+                Will = new RaceStats.StatRange(24, 32),
+                Agility = new RaceStats.StatRange(20, 24),
+                Voracity = new RaceStats.StatRange(24, 32),
+                Stomach = new RaceStats.StatRange(24, 32),
+            },
+            RacialTraits = new List<Traits>()
+        {
+                Traits.StrongMelee,
+                Traits.Pounce,
+                Traits.DoubleAttack,
+                Traits.Growth,
+                Traits.GiantSlayer,
+        },
+            RaceDescription = "A skilled warrior captain from the same world as the other Sergals. Strangely enough, not only does he look physically different from them, but he seems to hold some sort of resentment for them as well. He's an incredibly deadly frontline fighter, almost like he has been fighting in wars since birth. Many warriors, even whole companies have already fallen to either his polearm, or his voracious appetite. Needless to say: He seems to feel perfectly in his element here.",
         };
 
     }

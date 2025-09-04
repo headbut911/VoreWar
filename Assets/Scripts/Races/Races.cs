@@ -149,6 +149,7 @@
     static internal Tatltuae Tatltuae = new Tatltuae();
     static internal Firefly Firefly = new Firefly();
     static internal Nectar Nectar = new Nectar();
+    static internal Ryan Ryan = new Ryan();
 
 
     static internal DefaultRaceData GetRace(Unit unit)
@@ -432,6 +433,8 @@
                 return Firefly;
             case Race.Nectar:
                 return Nectar;
+            case Race.Ryan:
+                return Ryan;
             case Race.Otachi:
                 return Otachi;
             case Race.Raiju:

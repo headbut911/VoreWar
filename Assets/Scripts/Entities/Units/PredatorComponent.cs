@@ -2721,7 +2721,12 @@ public class PredatorComponent
                     }
                 }
                 if (!State.GameManager.TacticalMode.turboMode)
-                    actor.SetVoreSuccessMode();
+                {
+                    if (preyType == PreyLocation.stomach && actor.Unit.Race == Race.Ryan)
+                        actor.SetVoreSuccessMode();
+                    if (actor.Unit.Race != Race.Ryan)
+                        actor.SetVoreSuccessMode();
+                }
                 if (unit.HasTrait(Traits.Tenacious))
                     unit.RemoveTenacious();
                 if (unit.HasTrait(Traits.FearsomeAppetite))
@@ -4404,7 +4409,10 @@ public class PredatorComponent
         }
         AddPrey(preyref);
         actor.SetPredMode(preyLocation);
-        actor.SetVoreSuccessMode();
+        if (preyLocation == PreyLocation.stomach && actor.Unit.Race == Race.Ryan)
+            actor.SetVoreSuccessMode();
+        if (actor.Unit.Race != Race.Ryan)
+            actor.SetVoreSuccessMode();
         UpdateFullness();
     }
 
@@ -4794,7 +4802,10 @@ public class PredatorComponent
         }
         AddPrey(preyref);
         actor.SetPredMode(loc);
-        actor.SetVoreSuccessMode();
+        if (loc == PreyLocation.stomach && actor.Unit.Race == Race.Ryan)
+            actor.SetVoreSuccessMode();
+        if (actor.Unit.Race != Race.Ryan)
+            actor.SetVoreSuccessMode();
         UpdateFullness();
     }
 }
