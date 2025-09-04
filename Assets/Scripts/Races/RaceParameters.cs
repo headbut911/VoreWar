@@ -4372,31 +4372,35 @@ static class RaceParameters
 
         Nectar = new RaceTraits()
         {
-            BodySize = 60,
-            StomachSize = 45,
-            FavoredStat = Stat.Strength,
-            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.BreastVore, VoreType.Unbirth },
-            ExpMultiplier = 1.6f,
-            PowerAdjustment = 2.2f,
-            DeployCost = 2,
-            Upkeep = 17f,
+            BodySize = 100,
+            StomachSize = 100,
+            FavoredStat = Stat.Mind,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral, VoreType.Anal, VoreType.BreastVore, VoreType.Unbirth },
+            ExpMultiplier = 7f,
+            PowerAdjustment = 15f,
+            DeployCost = 4,
+            Upkeep = 36f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(22, 30),
-                Dexterity = new RaceStats.StatRange(12, 20),
-                Endurance = new RaceStats.StatRange(17, 29),
-                Mind = new RaceStats.StatRange(14, 28),
-                Will = new RaceStats.StatRange(15, 21),
-                Agility = new RaceStats.StatRange(13, 23),
-                Voracity = new RaceStats.StatRange(16, 22),
-                Stomach = new RaceStats.StatRange(19, 27),
+                Dexterity = new RaceStats.StatRange(30, 45),
+                Endurance = new RaceStats.StatRange(22, 30),
+                Mind = new RaceStats.StatRange(32, 46),
+                Will = new RaceStats.StatRange(32, 46),
+                Agility = new RaceStats.StatRange(28, 34),
+                Voracity = new RaceStats.StatRange(26, 34),
+                Stomach = new RaceStats.StatRange(30, 45),
             },
             RacialTraits = new List<Traits>()
         {
-                Traits.StrongGullet,
-                Traits.Intimidating,
+                Traits.Flight,
+                Traits.Tenacious,
+                Traits.FastCaster,
+                Traits.BookEater,
+                Traits.MagicProwess,
+                Traits.RangedVore,
         },
-            RaceDescription = "Nectar needs a description.",
+            RaceDescription = "Nectar, one of the eleven sphinxes who created her world, was exiled after consuming too many of the inhabitants. Now, she roams the multiverse, searching for the tastiest snacks and shiniest treasures. Whenever she dies to a stronger foe, you can bet that she'll be back for revenge, sometimes decades or even centuries later. After all, cats are spiteful creatures, and Nectar has far more than 9 lives....",
         };
 
         Ryan = new RaceTraits()

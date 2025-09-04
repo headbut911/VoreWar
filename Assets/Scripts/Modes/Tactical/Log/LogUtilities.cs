@@ -622,6 +622,8 @@ static class LogUtilities
                 return GetRandomStringFrom("bird", "long-necked avian", "flightless bird", "anger bird");
             case Race.Iliijiith:
                 return GetRandomStringFrom("being", "\"thing\"");
+            case Race.Nectar:
+                return GetRandomStringFrom("sphinx", "deity", "grand cat");
             case Race.Ryan:
                 return GetRandomStringFrom("sergal", "veteran", "captain");
             default:
@@ -650,6 +652,7 @@ static class LogUtilities
         else if (unit.Race == Race.Selicia) return "Claws";
         else if (unit.Race == Race.Xelhilde) return "Zweihänder";
         else if (unit.Race == Race.Olivia) return "Static Fist";
+        else if (unit.Race == Race.Nectar) return "Claws";
 
         else if (unit.Race == Race.Kangaroos)
         {
