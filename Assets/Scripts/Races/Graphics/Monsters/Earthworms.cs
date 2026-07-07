@@ -15,7 +15,7 @@ class Earthworms : BlankSlate
         Aboveground
     }
     Position position;
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.Earthworms;
+    readonly Sprite[] Sprites = SpriteDictionary.Earthworms;
 
     public Earthworms()
     {
@@ -273,47 +273,47 @@ class Earthworms : BlankSlate
 			
 			if ( size >= 50 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[55];
+				return SpriteDictionary.Earthworms[55];
 			}
 
 			if (size >= 50 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[54];
+				return SpriteDictionary.Earthworms[54];
 			}
 
 			if (size >= 47 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[53];
+				return SpriteDictionary.Earthworms[53];
 			}
 
 			if (size >= 44 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[52];
+				return SpriteDictionary.Earthworms[52];
 			}
 
 			if (size >= 41 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[51];
+				return SpriteDictionary.Earthworms[51];
 			}
 
 			if (size >= 38 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[50];
+				return SpriteDictionary.Earthworms[50];
 			}
 
 			if (size >= 35 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[49];
+				return SpriteDictionary.Earthworms[49];
 			}
 
 			if (size >= 32 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false) ?? false))
 			{
-				return State.GameManager.SpriteDictionary.Earthworms[48];
+				return SpriteDictionary.Earthworms[48];
 			}
 			
 			if (size > 29) size = 29;
             
-			return State.GameManager.SpriteDictionary.Earthworms[18 + size];
+			return SpriteDictionary.Earthworms[18 + size];
         }
         return null;
     }

@@ -6,10 +6,7 @@ using System.Linq;
 using TacticalDecorations;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Experimental.UIElements;
-using UnityEngine.Networking.Types;
 using UnityEngine.Tilemaps;
-using static UnityEngine.UI.CanvasScaler;
 
 public class TacticalMode : SceneBase
 {

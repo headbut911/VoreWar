@@ -149,6 +149,10 @@ public static class State
             Debug.Log("Initial setup failed!");
         }
 
+        string bundlePath = Path.Combine($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}AssetBundles", "abakhanskya");
+
+        AssetBundleLoader.LoadAssetBundles();
+
         FlagLoader.FlagLoader flagLoader = new FlagLoader.FlagLoader();
         flagLoader.LoadFlags();
         NameGen = new NameGenerator();

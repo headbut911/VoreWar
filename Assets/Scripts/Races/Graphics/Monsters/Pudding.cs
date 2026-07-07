@@ -127,16 +127,16 @@ class Pudding : BlankSlate
     internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
     {
         if (actor.HasBelly == false)
-            return State.GameManager.SpriteDictionary.Pudding[0];
+            return SpriteDictionary.Pudding[0];
 
-        return State.GameManager.SpriteDictionary.Pudding[0 + actor.GetStomachSize(24)];
+        return SpriteDictionary.Pudding[0 + actor.GetStomachSize(24)];
     }
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor)
     {
         if (actor.Unit.SpecialAccessoryType == 2)
         {
-            return State.GameManager.SpriteDictionary.Pudding[27];
+            return SpriteDictionary.Pudding[27];
         }
         return null;
     }
@@ -144,7 +144,7 @@ class Pudding : BlankSlate
     {
         if (actor.Unit.SpecialAccessoryType == 0)
         {
-            return State.GameManager.SpriteDictionary.Pudding[42 + actor.Unit.BodyAccentType2];
+            return SpriteDictionary.Pudding[42 + actor.Unit.BodyAccentType2];
         }
         return null;
     }
@@ -154,11 +154,11 @@ class Pudding : BlankSlate
         {
             if (actor.Unit.BodyAccentType3 == 7 && actor.Unit.BodyAccentType1 == 4)
             {
-                return State.GameManager.SpriteDictionary.Pudding[63];
+                return SpriteDictionary.Pudding[63];
             }
-            return State.GameManager.SpriteDictionary.Pudding[52 + actor.Unit.BodyAccentType3 - 4];
+            return SpriteDictionary.Pudding[52 + actor.Unit.BodyAccentType3 - 4];
         }
-        return State.GameManager.SpriteDictionary.Pudding[56 + actor.Unit.BodyAccentType3];
+        return SpriteDictionary.Pudding[56 + actor.Unit.BodyAccentType3];
     }
     protected override Sprite BodyAccentSprite3(Actor_Unit actor)
     {
@@ -166,14 +166,14 @@ class Pudding : BlankSlate
         {
             return null;
         }
-        return State.GameManager.SpriteDictionary.Pudding[48 + actor.Unit.BodyAccentType1];
+        return SpriteDictionary.Pudding[48 + actor.Unit.BodyAccentType1];
 
     }
     protected override Sprite BodyAccentSprite4(Actor_Unit actor)
     {
         if (actor.IsEating || actor.IsAttacking)
         {
-            return State.GameManager.SpriteDictionary.Pudding[25];
+            return SpriteDictionary.Pudding[25];
         }
         return null;
 
@@ -182,7 +182,7 @@ class Pudding : BlankSlate
     {
         if (actor.IsEating || actor.IsAttacking)
         {
-            return State.GameManager.SpriteDictionary.Pudding[26];
+            return SpriteDictionary.Pudding[26];
         }
         return null;
 
@@ -192,14 +192,14 @@ class Pudding : BlankSlate
         if (actor.IsEating || actor.IsAttacking)
             return null;
 
-        return State.GameManager.SpriteDictionary.Pudding[28 + actor.Unit.EyeType];
+        return SpriteDictionary.Pudding[28 + actor.Unit.EyeType];
     }
     protected override Sprite MouthSprite(Actor_Unit actor)
     {
         if (actor.IsEating || actor.IsAttacking)
             return null;
 
-        return State.GameManager.SpriteDictionary.Pudding[36 + actor.Unit.MouthType];
+        return SpriteDictionary.Pudding[36 + actor.Unit.MouthType];
     }
 }
 

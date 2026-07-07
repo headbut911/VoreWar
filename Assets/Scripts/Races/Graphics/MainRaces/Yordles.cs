@@ -5,11 +5,11 @@ using static UnityEngine.UI.CanvasScaler;
 
 class Yordles : DefaultRaceData
 {
-    readonly Sprite[] YordlesBodies = State.GameManager.SpriteDictionary.YordlesBodies;
-    readonly Sprite[] YordlesVoreSkin = State.GameManager.SpriteDictionary.YordlesVoreSkin;
-    readonly Sprite[] YordlesVoreFur = State.GameManager.SpriteDictionary.YordlesVoreFur;
-    readonly Sprite[] YordlesCustomization1 = State.GameManager.SpriteDictionary.YordlesCustomization1;
-    readonly Sprite[] YordlesCustomization2 = State.GameManager.SpriteDictionary.YordlesCustomization2;
+    readonly Sprite[] YordlesBodies = SpriteDictionary.YordlesBodies;
+    readonly Sprite[] YordlesVoreSkin = SpriteDictionary.YordlesVoreSkin;
+    readonly Sprite[] YordlesVoreFur = SpriteDictionary.YordlesVoreFur;
+    readonly Sprite[] YordlesCustomization1 = SpriteDictionary.YordlesCustomization1;
+    readonly Sprite[] YordlesCustomization2 = SpriteDictionary.YordlesCustomization2;
 
     readonly YordleLeader LeaderClothes;
     readonly YordleRags YorRags;
@@ -795,7 +795,7 @@ class Yordles : DefaultRaceData
     {
         public GenericTop1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[24];
+            DiscardSprite = SpriteDictionary.Avians4[24];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -808,11 +808,11 @@ class Yordles : DefaultRaceData
         {
             if (Races.Yordles.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[57];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[57];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[49 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[49 + actor.Unit.BreastSize];
             }
             else
             {
@@ -830,7 +830,7 @@ class Yordles : DefaultRaceData
     {
         public GenericTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[34];
+            DiscardSprite = SpriteDictionary.Avians4[34];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -843,11 +843,11 @@ class Yordles : DefaultRaceData
         {
             if (Races.Yordles.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[66];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[66];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[58 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[58 + actor.Unit.BreastSize];
             }
             else
             {
@@ -865,7 +865,7 @@ class Yordles : DefaultRaceData
     {
         public GenericTop3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[44];
+            DiscardSprite = SpriteDictionary.Avians4[44];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -878,11 +878,11 @@ class Yordles : DefaultRaceData
         {
             if (Races.Yordles.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[75];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[75];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[67 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[67 + actor.Unit.BreastSize];
             }
             else
             {
@@ -900,7 +900,7 @@ class Yordles : DefaultRaceData
     {
         public GenericTop4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[55];
+            DiscardSprite = SpriteDictionary.Avians4[55];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -914,11 +914,11 @@ class Yordles : DefaultRaceData
         {
             if (Races.Yordles.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[84];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[84];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[76 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[76 + actor.Unit.BreastSize];
             }
             else
             {
@@ -927,7 +927,7 @@ class Yordles : DefaultRaceData
                 clothing2.GetSprite = null;
             }
 
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[85];
+            clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[85];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
             base.Configure(sprite, actor);
@@ -938,7 +938,7 @@ class Yordles : DefaultRaceData
     {
         public GenericTop5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[74];
+            DiscardSprite = SpriteDictionary.Avians4[74];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -952,13 +952,13 @@ class Yordles : DefaultRaceData
         {
             if (Races.Yordles.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[94];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[103];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[94];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[103];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[86 + actor.Unit.BreastSize];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[95 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[86 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[95 + actor.Unit.BreastSize];
             }
             else
             {
@@ -977,7 +977,7 @@ class Yordles : DefaultRaceData
     {
         public GenericTop6()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[88];
+            DiscardSprite = SpriteDictionary.Avians4[88];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -994,7 +994,7 @@ class Yordles : DefaultRaceData
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[107 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[107 + actor.Unit.BreastSize];
             }
             else
             {
@@ -1012,7 +1012,7 @@ class Yordles : DefaultRaceData
     {
         public GenericTop7()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[44];
+            DiscardSprite = SpriteDictionary.Avians4[44];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1025,11 +1025,11 @@ class Yordles : DefaultRaceData
         {
             if (Races.Yordles.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[139];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[139];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[131 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[131 + actor.Unit.BreastSize];
             }
             else
             {
@@ -1047,7 +1047,7 @@ class Yordles : DefaultRaceData
     {
         public MaleTop()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[79];
+            DiscardSprite = SpriteDictionary.Avians4[79];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1061,11 +1061,11 @@ class Yordles : DefaultRaceData
 
             if (actor.HasBelly)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[118 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[118 + actor.Unit.BodySize];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[115 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[115 + actor.Unit.BodySize];
             }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
@@ -1077,7 +1077,7 @@ class Yordles : DefaultRaceData
     {
         public MaleTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[79];
+            DiscardSprite = SpriteDictionary.Avians4[79];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1088,7 +1088,7 @@ class Yordles : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[104 + actor.Unit.BodySize];
+            clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[104 + actor.Unit.BodySize];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
             base.Configure(sprite, actor);
@@ -1116,13 +1116,13 @@ class Yordles : DefaultRaceData
             {
                 if (actor.Unit.BodyAccentType4 == 0 || actor.Unit.BodyAccentType4 == 1)
                 {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[2 + actor.Unit.BreastSize];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[0];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[2 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[0];
                 }
                 else
                 {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[12 + actor.Unit.BreastSize];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[10];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[12 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[10];
                 }
             }
             else
@@ -1131,11 +1131,11 @@ class Yordles : DefaultRaceData
                 clothing1.GetSprite = null;
                 if (actor.Unit.BodyAccentType4 == 0 || actor.Unit.BodyAccentType4 == 1)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[1];
+                    clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[1];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[11];
+                    clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[11];
                 }
             }
 
@@ -1165,18 +1165,18 @@ class Yordles : DefaultRaceData
             if (actor.Unit.HasBreasts)
             {
                 if (actor.Unit.BreastSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[128];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[128];
                 else if (actor.Unit.BreastSize < 6)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[129];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[129];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[130];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[130];
 
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[121 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[121 + actor.Unit.BodySize];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[127];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[124 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[127];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[124 + actor.Unit.BodySize];
             }
 
             base.Configure(sprite, actor);
@@ -1189,7 +1189,7 @@ class Yordles : DefaultRaceData
         public YordleLeader()
         {
             leaderOnly = true;
-            DiscardSprite = State.GameManager.SpriteDictionary.YordleClothes2[37];
+            DiscardSprite = SpriteDictionary.YordleClothes2[37];
             coversBreasts = false;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(13, null, WhiteColored);
@@ -1213,27 +1213,27 @@ class Yordles : DefaultRaceData
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[16 + actor.Unit.BreastSize];
+                    clothing4.GetSprite = (s) => SpriteDictionary.YordleClothes2[16 + actor.Unit.BreastSize];
                 }
                 clothing1.YOffset = 0 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[0 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes2[0 + actor.Unit.BodySize];
             }
             else
             {
                 breastSprite = null;
                 clothing1.YOffset = -1 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[3 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes2[3 + actor.Unit.BodySize];
                 clothing4.GetSprite = null;
             }
 
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 2)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[38];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes2[38];
                 else if (actor.Unit.DickSize > 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[40];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes2[40];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[39];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes2[39];
             }
             else clothing1.GetSprite = null;
 
@@ -1243,50 +1243,50 @@ class Yordles : DefaultRaceData
             }
             else
             {
-                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[10 + actor.Unit.BodySize + (!actor.Unit.HasBreasts ? 3 : 0)];
+                clothing3.GetSprite = (s) => SpriteDictionary.YordleClothes2[10 + actor.Unit.BodySize + (!actor.Unit.HasBreasts ? 3 : 0)];
             }
 
             if (actor.GetWeaponSprite() == 0 || (actor.Unit.HasWeapon == false && !actor.IsAttacking))
             {
                 if (actor.Unit.BodySize == 2)
                 {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[8 + (!actor.Unit.HasBreasts ? 1 : 0)];
-                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[27 + (!actor.Unit.HasBreasts ? 6 : 0)];
+                    clothing5.GetSprite = (s) => SpriteDictionary.YordleClothes2[8 + (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing6.GetSprite = (s) => SpriteDictionary.YordleClothes2[27 + (!actor.Unit.HasBreasts ? 6 : 0)];
                 }
                 else
                 {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[6 + (!actor.Unit.HasBreasts ? 1 : 0)];
-                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[24];
+                    clothing5.GetSprite = (s) => SpriteDictionary.YordleClothes2[6 + (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing6.GetSprite = (s) => SpriteDictionary.YordleClothes2[24];
                 }
             }
             else if (actor.GetWeaponSprite() == 1 || actor.GetWeaponSprite() == 2 || actor.GetWeaponSprite() == 4 || actor.GetWeaponSprite() == 6 || (actor.Unit.HasWeapon == false && actor.IsAttacking))
             {
                 if (actor.Unit.BodySize == 2)
                 {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[8 + (!actor.Unit.HasBreasts ? 1 : 0)];
-                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[28 + (!actor.Unit.HasBreasts ? 6 : 0)];
+                    clothing5.GetSprite = (s) => SpriteDictionary.YordleClothes2[8 + (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing6.GetSprite = (s) => SpriteDictionary.YordleClothes2[28 + (!actor.Unit.HasBreasts ? 6 : 0)];
                 }
                 else
                 {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[6 + (!actor.Unit.HasBreasts ? 1 : 0)];
-                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[25 + (!actor.Unit.HasBreasts ? 6 : 0)];
+                    clothing5.GetSprite = (s) => SpriteDictionary.YordleClothes2[6 + (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing6.GetSprite = (s) => SpriteDictionary.YordleClothes2[25 + (!actor.Unit.HasBreasts ? 6 : 0)];
                 }
             }
             else
             {
                 if (actor.Unit.BodySize == 2)
                 {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[8 + (!actor.Unit.HasBreasts ? 1 : 0)];
-                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[29 + (!actor.Unit.HasBreasts ? 6 : 0)];
+                    clothing5.GetSprite = (s) => SpriteDictionary.YordleClothes2[8 + (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing6.GetSprite = (s) => SpriteDictionary.YordleClothes2[29 + (!actor.Unit.HasBreasts ? 6 : 0)];
                 }
                 else
                 {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[6 + (!actor.Unit.HasBreasts ? 1 : 0)];
-                    clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[26 + (!actor.Unit.HasBreasts ? 6 : 0)];
+                    clothing5.GetSprite = (s) => SpriteDictionary.YordleClothes2[6 + (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing6.GetSprite = (s) => SpriteDictionary.YordleClothes2[26 + (!actor.Unit.HasBreasts ? 6 : 0)];
                 }
             }
 
-            clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes2[36];
+            clothing7.GetSprite = (s) => SpriteDictionary.YordleClothes2[36];
 
             base.Configure(sprite, actor);
         }
@@ -1296,7 +1296,7 @@ class Yordles : DefaultRaceData
     {
         public GenericBot1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[121];
+            DiscardSprite = SpriteDictionary.Avians3[121];
             coversBreasts = false;
             blocksDick = true;
             clothing1 = new SpriteExtraInfo(13, null, null);
@@ -1310,22 +1310,22 @@ class Yordles : DefaultRaceData
             if (actor.Unit.HasBreasts)
             {
                 clothing1.YOffset = 0 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[20 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[20 + actor.Unit.BodySize];
             }
             else
             {
                 clothing1.YOffset = -1 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[23 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[23 + actor.Unit.BodySize];
             }
 
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 2)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[26];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[26];
                 else if (actor.Unit.DickSize > 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[28];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[28];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[27];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[27];
             }
             else clothing1.GetSprite = null;
 
@@ -1339,7 +1339,7 @@ class Yordles : DefaultRaceData
     {
         public GenericBot2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[137];
+            DiscardSprite = SpriteDictionary.Avians3[137];
             coversBreasts = false;
             blocksDick = true;
             clothing1 = new SpriteExtraInfo(13, null, null);
@@ -1354,23 +1354,23 @@ class Yordles : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 2)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[36];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[36];
                 else if (actor.Unit.DickSize > 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[38];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[38];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[37];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[37];
             }
-            else clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[35];
+            else clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[35];
 
             if (actor.Unit.HasBreasts)
             {
                 clothing1.YOffset = 0 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[29 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[29 + actor.Unit.BodySize];
             }
             else
             {
                 clothing1.YOffset = -1 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[32 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[32 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
@@ -1382,7 +1382,7 @@ class Yordles : DefaultRaceData
     {
         public GenericBot3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[140];
+            DiscardSprite = SpriteDictionary.Avians3[140];
             coversBreasts = false;
             blocksDick = true;
             clothing1 = new SpriteExtraInfo(13, null, null);
@@ -1396,15 +1396,15 @@ class Yordles : DefaultRaceData
             if (actor.Unit.HasBreasts)
             {
                 clothing1.YOffset = 0 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[29 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[29 + actor.Unit.BodySize];
             }
             else
             {
                 clothing1.YOffset = -1 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[32 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[32 + actor.Unit.BodySize];
             }
 
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[39];
+            clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[39];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);
         }
@@ -1414,7 +1414,7 @@ class Yordles : DefaultRaceData
     {
         public GenericBot4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[14];
+            DiscardSprite = SpriteDictionary.Avians4[14];
             coversBreasts = false;
             blocksDick = true;
             clothing1 = new SpriteExtraInfo(13, null, null);
@@ -1429,23 +1429,23 @@ class Yordles : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[46];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[46];
                 else if (actor.Unit.DickSize > 5)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[48];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[48];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[47];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[47];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
                 clothing1.YOffset = 0 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[40 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[40 + actor.Unit.BodySize];
             }
             else
             {
                 clothing1.YOffset = -1 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[43 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[43 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
@@ -1458,7 +1458,7 @@ class Yordles : DefaultRaceData
     {
         public GenericBot5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[14];
+            DiscardSprite = SpriteDictionary.Avians4[14];
             coversBreasts = false;
             blocksDick = true;
             clothing1 = new SpriteExtraInfo(13, null, null);
@@ -1473,23 +1473,23 @@ class Yordles : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[46];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[46];
                 else if (actor.Unit.DickSize > 5)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[48];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[48];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[47];
+                    clothing1.GetSprite = (s) => SpriteDictionary.YordleClothes1[47];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
                 clothing1.YOffset = 0 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[140 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[140 + actor.Unit.BodySize];
             }
             else
             {
                 clothing1.YOffset = -1 * .625f;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.YordleClothes1[143 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.YordleClothes1[143 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);

@@ -4,11 +4,11 @@ using UnityEngine;
 
 class Renamon : DefaultRaceData
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.RenamonBodies;
-    readonly Sprite[] Sprites2 = State.GameManager.SpriteDictionary.RenamonClothes1;
-    readonly Sprite[] Sprites3 = State.GameManager.SpriteDictionary.RenamonClothes2;
-    readonly Sprite[] Sprites4 = State.GameManager.SpriteDictionary.RenamonClothes3;
-    readonly Sprite[] Sprites5 = State.GameManager.SpriteDictionary.RenamonVore;
+    readonly Sprite[] Sprites = SpriteDictionary.RenamonBodies;
+    readonly Sprite[] Sprites2 = SpriteDictionary.RenamonClothes1;
+    readonly Sprite[] Sprites3 = SpriteDictionary.RenamonClothes2;
+    readonly Sprite[] Sprites4 = SpriteDictionary.RenamonClothes3;
+    readonly Sprite[] Sprites5 = SpriteDictionary.RenamonVore;
 
     bool oversize = false;
 
@@ -485,7 +485,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleTop1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes1[127];
+            DiscardSprite = SpriteDictionary.RenamonClothes1[127];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -500,13 +500,13 @@ class Renamon : DefaultRaceData
             AltPaletteColor = actor.Unit.SkinColor;
             if (Races.Renamon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[49];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[40];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[49];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[40];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[41 + actor.Unit.BreastSize];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[32 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[41 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[32 + actor.Unit.BreastSize];
             }
             else
             {
@@ -525,7 +525,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes2[119];
+            DiscardSprite = SpriteDictionary.RenamonClothes2[119];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -540,13 +540,13 @@ class Renamon : DefaultRaceData
             AltPaletteColor = actor.Unit.SkinColor;
             if (Races.Renamon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[35];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[44];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[35];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[44];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[27 + actor.Unit.BreastSize];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[36 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[27 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[36 + actor.Unit.BreastSize];
             }
             else
             {
@@ -565,7 +565,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleTop3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[120];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[120];
             femaleOnly = true;
             coversBreasts = false;
         HidesFluff = true; // Should hide chest fluff I think since I did assign it to bodyaccent3 but check just in case
@@ -580,11 +580,11 @@ class Renamon : DefaultRaceData
             AltPaletteColor = actor.Unit.SkinColor;
             if (Races.Renamon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[119];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[119];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[111 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[111 + actor.Unit.BreastSize];
             }
             else
             {
@@ -602,7 +602,7 @@ class Renamon : DefaultRaceData
     {
         public GenericTop1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[49];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[49];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -615,11 +615,11 @@ class Renamon : DefaultRaceData
         {
             if (Races.Renamon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[48];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[48];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[40 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[40 + actor.Unit.BreastSize];
             }
             else
             {
@@ -637,7 +637,7 @@ class Renamon : DefaultRaceData
     {
         public GenericTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[59];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[59];
             femaleOnly = true;
             coversBreasts = false;
         HidesFluff = true; // Should hide chest fluff I think since I did assign it to bodyaccent3 but check just in case
@@ -651,11 +651,11 @@ class Renamon : DefaultRaceData
         {
             if (Races.Renamon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[58];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[58];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[50 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[50 + actor.Unit.BreastSize];
             }
             else
             {
@@ -673,7 +673,7 @@ class Renamon : DefaultRaceData
     {
         public GenericTop3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[69];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[69];
             femaleOnly = true;
             coversBreasts = false;
         HidesFluff = true; // Should hide chest fluff I think since I did assign it to bodyaccent3 but check just in case
@@ -687,11 +687,11 @@ class Renamon : DefaultRaceData
         {
             if (Races.Renamon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[68];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[68];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[60 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[60 + actor.Unit.BreastSize];
             }
             else
             {
@@ -709,7 +709,7 @@ class Renamon : DefaultRaceData
     {
         public GenericTop4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[80];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[80];
             femaleOnly = true;
             coversBreasts = false;
         HidesFluff = true; // Should hide chest fluff I think since I did assign it to bodyaccent3 but check just in case
@@ -724,18 +724,18 @@ class Renamon : DefaultRaceData
         {
             if (Races.Renamon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[78];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[78];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[70 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[70 + actor.Unit.BreastSize];
             }
             else
             {
                 breastSprite = null;
                 clothing1.GetSprite = null;
             }
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[79];
+            clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[79];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
@@ -747,7 +747,7 @@ class Renamon : DefaultRaceData
     {
         public GenericTop5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[89];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[89];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -764,7 +764,7 @@ class Renamon : DefaultRaceData
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[81 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[81 + actor.Unit.BreastSize];
             }
             else
             {
@@ -782,7 +782,7 @@ class Renamon : DefaultRaceData
     {
         public MaleTop()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[129];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[129];
             maleOnly = true;
             coversBreasts = false;
         HidesFluff = true; // Should hide chest fluff I think since I did assign it to bodyaccent3 but check just in case
@@ -797,11 +797,11 @@ class Renamon : DefaultRaceData
 
             if (actor.HasBelly)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[125 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[125 + actor.Unit.BodySize];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[121 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[121 + actor.Unit.BodySize];
             }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
@@ -828,7 +828,7 @@ class Renamon : DefaultRaceData
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[2 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[2 + actor.Unit.BreastSize];
             }
             else
             {
@@ -838,11 +838,11 @@ class Renamon : DefaultRaceData
 
         if (actor.Unit.BodySize > 2)
         {
-        clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[1];
+        clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[1];
         }
         else
         {
-        clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[0];
+        clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[0];
         }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
@@ -857,7 +857,7 @@ class Renamon : DefaultRaceData
         public Commissioned()
         {
             // Disables gloves from showing since already uses gloves
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes1[128];
+            DiscardSprite = SpriteDictionary.RenamonClothes1[128];
             coversBreasts = false;
             HidesFluff = true; // Should hide chest fluff I think since I did assign it to bodyaccent3 but check just in case
             OccupiesAllSlots = true;
@@ -875,11 +875,11 @@ class Renamon : DefaultRaceData
             actor.Unit.ClothingExtraType1 = 0;
             if (Races.Renamon.oversize)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[80];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[80];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[72 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[72 + actor.Unit.BreastSize];
             }
             else
             {
@@ -889,11 +889,11 @@ class Renamon : DefaultRaceData
 
             if (actor.HasBelly)
             {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[58 + actor.Unit.BodySize];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[58 + actor.Unit.BodySize];
         }
         else
         {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[54 + actor.Unit.BodySize];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[54 + actor.Unit.BodySize];
         }
 
         if (actor.Unit.BodySize > 2)
@@ -901,11 +901,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[69];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[69];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[71];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[71];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[70];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[70];
         }
         else clothing4.GetSprite = null;
         }
@@ -914,11 +914,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[66];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[66];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[68];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[68];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[67];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[67];
         }
         else clothing4.GetSprite = null;
         }
@@ -927,25 +927,25 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[53];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[53];
         }
         else
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[52];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[52];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[51];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[51];
         }
         else
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[50];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[50];
         }
         }
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[62 + actor.Unit.BodySize];
+            clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes1[62 + actor.Unit.BodySize];
 
             base.Configure(sprite, actor);
 	}
@@ -956,7 +956,7 @@ class Renamon : DefaultRaceData
         public BunnySuit()
         {
             // Disables gloves from showing since already uses gloves
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes2[117];
+            DiscardSprite = SpriteDictionary.RenamonClothes2[117];
             coversBreasts = false;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(12, null, WhiteColored);
@@ -979,7 +979,7 @@ class Renamon : DefaultRaceData
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[118 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[118 + actor.Unit.BreastSize];
             }
             else
             {
@@ -989,11 +989,11 @@ class Renamon : DefaultRaceData
 
             if (actor.HasBelly)
             {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[110 + actor.Unit.BodySize];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[110 + actor.Unit.BodySize];
         }
         else
         {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[95 + actor.Unit.BodySize];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[95 + actor.Unit.BodySize];
         }
 
         if (actor.Unit.BodySize > 2)
@@ -1001,11 +1001,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[107];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[107];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[109];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[109];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[108];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[108];
         }
         else clothing4.GetSprite = null;
         }
@@ -1014,11 +1014,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[104];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[104];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[106];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[106];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[105];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes1[105];
         }
         else clothing4.GetSprite = null;
         }
@@ -1027,26 +1027,26 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[103];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[103];
         }
         else
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[102];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[102];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[101];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[101];
         }
         else
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[100];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes1[100];
         }
         }
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[114 + actor.Unit.BodySize];
-            clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[99];
+            clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes1[114 + actor.Unit.BodySize];
+            clothing6.GetSprite = (s) => SpriteDictionary.RenamonClothes1[99];
 
             base.Configure(sprite, actor);
 	}
@@ -1057,7 +1057,7 @@ class Renamon : DefaultRaceData
         public Leotard()
         {
             // Disables gloves from showing since already uses gloves
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes2[121];
+            DiscardSprite = SpriteDictionary.RenamonClothes2[121];
             coversBreasts = false;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(12, null, null);
@@ -1081,13 +1081,13 @@ class Renamon : DefaultRaceData
             AltPaletteColor = actor.Unit.SkinColor;
             if (Races.Renamon.oversize)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[99];
-                clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[108];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[99];
+                clothing7.GetSprite = (s) => SpriteDictionary.RenamonClothes2[108];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[91 + actor.Unit.BreastSize];
-                clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[100 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[91 + actor.Unit.BreastSize];
+                clothing7.GetSprite = (s) => SpriteDictionary.RenamonClothes2[100 + actor.Unit.BreastSize];
             }
             else
             {
@@ -1098,13 +1098,13 @@ class Renamon : DefaultRaceData
 
             if (actor.HasBelly)
             {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[77 + actor.Unit.BodySize];
-        clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[81 + actor.Unit.BodySize];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[77 + actor.Unit.BodySize];
+        clothing6.GetSprite = (s) => SpriteDictionary.RenamonClothes2[81 + actor.Unit.BodySize];
         }
         else
         {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[69 + actor.Unit.BodySize];
-        clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[73 + actor.Unit.BodySize];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[69 + actor.Unit.BodySize];
+        clothing6.GetSprite = (s) => SpriteDictionary.RenamonClothes2[73 + actor.Unit.BodySize];
         }
 
         if (actor.Unit.BodySize > 2)
@@ -1112,11 +1112,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[88];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[88];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[90];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[90];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[89];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[89];
         }
         else clothing4.GetSprite = null;
         }
@@ -1125,11 +1125,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[85];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[85];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[87];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[87];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[86];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[86];
         }
         else clothing4.GetSprite = null;
         }
@@ -1138,30 +1138,30 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[64];
-                    clothing9.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[68];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[64];
+                    clothing9.GetSprite = (s) => SpriteDictionary.RenamonClothes2[68];
         }
         else
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[63];
-                    clothing9.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[67];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[63];
+                    clothing9.GetSprite = (s) => SpriteDictionary.RenamonClothes2[67];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[62];
-                    clothing9.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[66];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[62];
+                    clothing9.GetSprite = (s) => SpriteDictionary.RenamonClothes2[66];
         }
         else
         {
-                    clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[61];
-                    clothing9.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[65];
+                    clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[61];
+                    clothing9.GetSprite = (s) => SpriteDictionary.RenamonClothes2[65];
         }
         }
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[109 + actor.Unit.BodySize];
-            clothing8.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[113 + actor.Unit.BodySize];
+            clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes2[109 + actor.Unit.BodySize];
+            clothing8.GetSprite = (s) => SpriteDictionary.RenamonClothes2[113 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
@@ -1178,7 +1178,7 @@ class Renamon : DefaultRaceData
         public Lingerie()
         {
             // Disables gloves from showing since already uses gloves
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[19];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[19];
             coversBreasts = false;
             femaleOnly = true;
             OccupiesAllSlots = true;
@@ -1196,11 +1196,11 @@ class Renamon : DefaultRaceData
             actor.Unit.ClothingExtraType1 = 0;
             if (Races.Renamon.oversize)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[18];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[18];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[10 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[10 + actor.Unit.BreastSize];
             }
             else
             {
@@ -1213,11 +1213,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[7];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[7];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[9];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[9];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[8];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[8];
         }
         else clothing4.GetSprite = null;
         }
@@ -1226,11 +1226,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[4];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[4];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[6];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[6];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[5];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[5];
         }
         else clothing4.GetSprite = null;
         }
@@ -1239,25 +1239,25 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[23];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[23];
         }
         else
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[22];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[22];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[21];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[21];
         }
         else
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[20];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[20];
         }
         }
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[0 + actor.Unit.BodySize];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[0 + actor.Unit.BodySize];
 
             base.Configure(sprite, actor);
 	}
@@ -1268,7 +1268,7 @@ class Renamon : DefaultRaceData
         public BlindfoldSFW()
         {
             // Disables gloves from showing since already uses gloves
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[110];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[110];
             coversBreasts = false;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(25, null, null);
@@ -1294,7 +1294,7 @@ class Renamon : DefaultRaceData
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[2 + actor.Unit.BreastSize];
+                clothing7.GetSprite = (s) => SpriteDictionary.RenamonClothes1[2 + actor.Unit.BreastSize];
             }
             else
             {
@@ -1304,52 +1304,52 @@ class Renamon : DefaultRaceData
 
         if (actor.Unit.BodySize > 2)
         {
-        clothing8.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[1];
+        clothing8.GetSprite = (s) => SpriteDictionary.RenamonClothes1[1];
         }
         else
         {
-        clothing8.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[0];
+        clothing8.GetSprite = (s) => SpriteDictionary.RenamonClothes1[0];
         }
 
         if (actor.IsAttacking)
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[93];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[103];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[93];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[103];
         }
         else
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[92];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[102];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[92];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[102];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[91];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[101];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[91];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[101];
         }
         else
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[90];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[100];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[90];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[100];
         }
         }
 
         if (actor.IsOralVoring)
         {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[99];
-        clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[109];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[99];
+        clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[109];
         }
         else
         {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[98];
-        clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[108];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[98];
+        clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[108];
         }
-            clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[94 + actor.Unit.BodySize];
-            clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[104 + actor.Unit.BodySize];
+            clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes3[94 + actor.Unit.BodySize];
+            clothing6.GetSprite = (s) => SpriteDictionary.RenamonClothes3[104 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
             clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
@@ -1368,7 +1368,7 @@ class Renamon : DefaultRaceData
             // Disables gloves from showing since already uses gloves
             // Programed to behave like the SFW version if "SFW mode" (HideBreasts and/or HideCocks) respectively are on
             
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[110];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[110];
             if (Config.HideCocks) blocksDick = true;
             else blocksDick = false;
             coversBreasts = false;
@@ -1398,13 +1398,13 @@ class Renamon : DefaultRaceData
         {
             if (actor.Unit.BodySize > 2)
             {
-            clothing8.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[1];
+            clothing8.GetSprite = (s) => SpriteDictionary.RenamonClothes1[1];
             }
             else
             {
-            clothing8.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[0];
+            clothing8.GetSprite = (s) => SpriteDictionary.RenamonClothes1[0];
             }
-            clothing7.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[2 + actor.Unit.BreastSize];
+            clothing7.GetSprite = (s) => SpriteDictionary.RenamonClothes1[2 + actor.Unit.BreastSize];
         }
         else
         {
@@ -1414,41 +1414,41 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[93];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[103];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[93];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[103];
         }
         else
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[92];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[102];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[92];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[102];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[91];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[101];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[91];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[101];
         }
         else
         {
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[90];
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[100];
+                    clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes3[90];
+                    clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes3[100];
         }
         }
 
         if (actor.IsOralVoring)
         {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[99];
-        clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[109];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[99];
+        clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[109];
         }
         else
         {
-        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[98];
-        clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[108];
+        clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[98];
+        clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[108];
         }
-            clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[94 + actor.Unit.BodySize];
-            clothing6.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[104 + actor.Unit.BodySize];
+            clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes3[94 + actor.Unit.BodySize];
+            clothing6.GetSprite = (s) => SpriteDictionary.RenamonClothes3[104 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
             clothing3.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
@@ -1465,7 +1465,7 @@ class Renamon : DefaultRaceData
         public Christmas()
         {
             // Disables gloves from showing since already uses gloves
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes2[118];
+            DiscardSprite = SpriteDictionary.RenamonClothes2[118];
             coversBreasts = false;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(12, null, WhiteColored);
@@ -1483,11 +1483,11 @@ class Renamon : DefaultRaceData
             actor.Unit.ClothingExtraType1 = 0;
             if (Races.Renamon.oversize)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[16];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[16];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[8 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[8 + actor.Unit.BreastSize];
             }
             else
             {
@@ -1500,11 +1500,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[24];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[24];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[26];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[26];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[25];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[25];
         }
         else clothing4.GetSprite = null;
         }
@@ -1513,11 +1513,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[21];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[21];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[23];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[23];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[22];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[22];
         }
         else clothing4.GetSprite = null;
         }
@@ -1526,11 +1526,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[18];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[18];
             else if (actor.Unit.DickSize > 5)
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[20];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[20];
             else
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[19];
+            clothing4.GetSprite = (s) => SpriteDictionary.RenamonClothes2[19];
         }
         else clothing4.GetSprite = null;
         }
@@ -1539,27 +1539,27 @@ class Renamon : DefaultRaceData
         {
             if (actor.Unit.BodySize > 1)
             {
-                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[3];
+                clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[3];
             }
             else
             {
-                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[2];
+                clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[2];
             }
         }
         else
         {
             if (actor.Unit.BodySize > 1)
             {
-                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[1];
+                clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[1];
             }
             else
             {
-                clothing5.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[0];
+                clothing5.GetSprite = (s) => SpriteDictionary.RenamonClothes2[0];
             }
         }
 
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[4 + actor.Unit.BodySize];
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[17];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[4 + actor.Unit.BodySize];
+            clothing3.GetSprite = (s) => SpriteDictionary.RenamonClothes2[17];
 
             base.Configure(sprite, actor);
 	}
@@ -1569,7 +1569,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleBot1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes1[126];
+            DiscardSprite = SpriteDictionary.RenamonClothes1[126];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -1586,11 +1586,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[28];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[28];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[30];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[30];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[29];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[29];
         }
         else clothing1.GetSprite = null;
         }
@@ -1599,11 +1599,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[25];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[25];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[27];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[27];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[26];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[26];
         }
         else clothing1.GetSprite = null;
         }
@@ -1612,15 +1612,15 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[22];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[22];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[24];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[24];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[23];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[23];
         }
         else clothing1.GetSprite = null;
         }
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[18 + actor.Unit.BodySize];
+            clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[18 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
@@ -1632,7 +1632,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleBot2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes1[129];
+            DiscardSprite = SpriteDictionary.RenamonClothes1[129];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -1649,11 +1649,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[88];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[88];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[90];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[90];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[89];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[89];
         }
         else clothing1.GetSprite = null;
         }
@@ -1662,15 +1662,15 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[85];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[85];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[87];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[87];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[86];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[86];
         }
         else clothing1.GetSprite = null;
         }
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[81 + actor.Unit.BodySize];
+            clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[81 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.RenamonSkin, actor.Unit.SkinColor);
@@ -1682,7 +1682,7 @@ class Renamon : DefaultRaceData
     {
         public GenericBot1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes2[120];
+            DiscardSprite = SpriteDictionary.RenamonClothes2[120];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -1697,11 +1697,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[58];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[58];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[60];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[60];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[59];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[59];
         }
         else clothing1.GetSprite = null;
         }
@@ -1710,11 +1710,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[55];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[55];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[57];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[57];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[56];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[56];
         }
         else clothing1.GetSprite = null;
         }
@@ -1723,11 +1723,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[52];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[52];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[54];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[54];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[53];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[53];
         }
         else clothing1.GetSprite = null;
         }
@@ -1736,15 +1736,15 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[49];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[49];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[51];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[51];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[50];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[50];
         }
         else clothing1.GetSprite = null;
         }
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[45 + actor.Unit.BodySize];
+            clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[45 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
@@ -1756,7 +1756,7 @@ class Renamon : DefaultRaceData
     {
         public GenericBot2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[34];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[34];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -1771,11 +1771,11 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[31];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[31];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[33];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[33];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[32];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[32];
         }
         else clothing1.GetSprite = null;
         }
@@ -1784,15 +1784,15 @@ class Renamon : DefaultRaceData
             if (actor.Unit.DickSize > 0)
         {
             if (actor.Unit.DickSize < 3)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[28];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[28];
             else if (actor.Unit.DickSize > 5)
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[30];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[30];
             else
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[29];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[29];
         }
         else clothing1.GetSprite = null;
         }
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[24 + actor.Unit.BodySize];
+            clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes3[24 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
@@ -1804,7 +1804,7 @@ class Renamon : DefaultRaceData
     {
         public GenericBot3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes3[39];
+            DiscardSprite = SpriteDictionary.RenamonClothes3[39];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(12, null, null);
             Type = 4645;
@@ -1813,7 +1813,7 @@ class Renamon : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes3[35 + actor.Unit.BodySize];
+            clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes3[35 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);
@@ -1824,7 +1824,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleGloves1()
         {
-        DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes1[31];
+        DiscardSprite = SpriteDictionary.RenamonClothes1[31];
         coversBreasts = false;
         blocksDick = false;
             clothing1 = new SpriteExtraInfo(4, null, null);
@@ -1840,26 +1840,26 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[17];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[13];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[17];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[13];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[16];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[12];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[16];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[12];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[15];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[11];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[15];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[11];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[14];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[10];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[14];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[10];
         }
         }
 
@@ -1873,7 +1873,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleGloves2()
         {
-        DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes1[31];
+        DiscardSprite = SpriteDictionary.RenamonClothes1[31];
         coversBreasts = false;
         blocksDick = false;
             clothing1 = new SpriteExtraInfo(4, null, null);
@@ -1888,22 +1888,22 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[94];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[94];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[93];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[93];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[92];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[92];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[91];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes1[91];
         }
         }
 
@@ -1917,7 +1917,7 @@ class Renamon : DefaultRaceData
     {
         public PurpleGloves3()
         {
-        DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes1[31];
+        DiscardSprite = SpriteDictionary.RenamonClothes1[31];
         coversBreasts = false;
         blocksDick = false;
             clothing1 = new SpriteExtraInfo(4, null, null);
@@ -1933,26 +1933,26 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[64];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[68];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[64];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[68];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[63];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[67];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[63];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[67];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[62];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[66];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[62];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[66];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[61];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[65];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[61];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes2[65];
         }
         }
 
@@ -1966,7 +1966,7 @@ class Renamon : DefaultRaceData
     {
         public GenericGloves1()
         {
-        DiscardSprite = State.GameManager.SpriteDictionary.RenamonClothes2[126];
+        DiscardSprite = SpriteDictionary.RenamonClothes2[126];
         coversBreasts = false;
         blocksDick = false;
             clothing1 = new SpriteExtraInfo(4, null, null);
@@ -1981,26 +1981,26 @@ class Renamon : DefaultRaceData
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[125];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[13];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[125];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[13];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[124];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[12];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[124];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[12];
         }
         }
         else
         {
         if (actor.Unit.BodySize > 1)
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[123];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[11];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[123];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[11];
         }
         else
         {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes2[122];
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.RenamonClothes1[10];
+                    clothing1.GetSprite = (s) => SpriteDictionary.RenamonClothes2[122];
+                    clothing2.GetSprite = (s) => SpriteDictionary.RenamonClothes1[10];
         }
         }
 

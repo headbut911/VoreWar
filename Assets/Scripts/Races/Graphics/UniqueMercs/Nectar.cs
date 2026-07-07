@@ -44,34 +44,34 @@ class Nectar : BlankSlate
 
     protected override Sprite BodySprite(Actor_Unit actor) // Body
     {
-        return State.GameManager.SpriteDictionary.Nectar[0];
+        return SpriteDictionary.Nectar[0];
     }
 
     protected override Sprite HeadSprite(Actor_Unit actor) // Head
     {
-        if (actor.IsOralVoring) return State.GameManager.SpriteDictionary.Nectar[2];
-		return State.GameManager.SpriteDictionary.Nectar[1];
+        if (actor.IsOralVoring) return SpriteDictionary.Nectar[2];
+		return SpriteDictionary.Nectar[1];
     }
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // Right Foreleg
     {
-        if (actor.IsAttacking) return State.GameManager.SpriteDictionary.Nectar[5];
-		return State.GameManager.SpriteDictionary.Nectar[4];
+        if (actor.IsAttacking) return SpriteDictionary.Nectar[5];
+		return SpriteDictionary.Nectar[4];
     }
 
     protected override Sprite BodyAccentSprite2(Actor_Unit actor) // Left Hindleg
     {
-		return State.GameManager.SpriteDictionary.Nectar[3];
+		return SpriteDictionary.Nectar[3];
     }
 
     protected override Sprite BodyAccentSprite3(Actor_Unit actor) // Underbelly
     {
-		return State.GameManager.SpriteDictionary.Nectar[6];
+		return SpriteDictionary.Nectar[6];
     }
 
     protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Right hindleg
     {
-		return State.GameManager.SpriteDictionary.Nectar[7];
+		return SpriteDictionary.Nectar[7];
     }
 
 
@@ -85,46 +85,46 @@ class Nectar : BlankSlate
 
         if (size >= 53 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[36];
+            return SpriteDictionary.Nectar[36];
         }
 
         else if (size >= 50 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[35];
+            return SpriteDictionary.Nectar[35];
         }
 
         else if (size >= 45 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[34];
+            return SpriteDictionary.Nectar[34];
         }
 
         else if (size >= 44 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[33];
+            return SpriteDictionary.Nectar[33];
         }
 
         else if (size >= 41 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[32];
+            return SpriteDictionary.Nectar[32];
         }
 
         else if (size >= 38 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[31];
+            return SpriteDictionary.Nectar[31];
         }
 
         else if (size >= 35 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[30];
+            return SpriteDictionary.Nectar[30];
         }
 
         else if (size >= 32 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Nectar[29];
+            return SpriteDictionary.Nectar[29];
         }
 
         if (size > 28) size = 28;
-        return State.GameManager.SpriteDictionary.Nectar[8 + size];
+        return SpriteDictionary.Nectar[8 + size];
     }
 
     protected override Sprite BreastsSprite(Actor_Unit actor)
@@ -137,44 +137,44 @@ class Nectar : BlankSlate
 
             if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.leftBreast) && leftSize >= 34)
             {
-                return State.GameManager.SpriteDictionary.Nectar[74];
+                return SpriteDictionary.Nectar[74];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 31)
             {
-                return State.GameManager.SpriteDictionary.Nectar[73];
+                return SpriteDictionary.Nectar[73];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 28)
             {
-                return State.GameManager.SpriteDictionary.Nectar[72];
+                return SpriteDictionary.Nectar[72];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 25)
             {
-                return State.GameManager.SpriteDictionary.Nectar[71];
+                return SpriteDictionary.Nectar[71];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 22)
             {
-                return State.GameManager.SpriteDictionary.Nectar[70];
+                return SpriteDictionary.Nectar[70];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 19)
             {
-                return State.GameManager.SpriteDictionary.Nectar[69];
+                return SpriteDictionary.Nectar[69];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 16)
             {
-                return State.GameManager.SpriteDictionary.Nectar[68];
+                return SpriteDictionary.Nectar[68];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.leftBreast) && leftSize >= 13)
             {
-                return State.GameManager.SpriteDictionary.Nectar[67];
+                return SpriteDictionary.Nectar[67];
             }
 
             if (leftSize > 9) leftSize = 9;
             
-            return State.GameManager.SpriteDictionary.Nectar[57 + leftSize];
+            return SpriteDictionary.Nectar[57 + leftSize];
         }
         else
         {
-            return State.GameManager.SpriteDictionary.Nectar[56];
+            return SpriteDictionary.Nectar[56];
         }
     }
 
@@ -188,44 +188,44 @@ class Nectar : BlankSlate
 
             if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.rightBreast) && rightSize >= 34)
             {
-                return State.GameManager.SpriteDictionary.Nectar[55];
+                return SpriteDictionary.Nectar[55];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 31)
             {
-                return State.GameManager.SpriteDictionary.Nectar[54];
+                return SpriteDictionary.Nectar[54];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 28)
             {
-                return State.GameManager.SpriteDictionary.Nectar[53];
+                return SpriteDictionary.Nectar[53];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 25)
             {
-                return State.GameManager.SpriteDictionary.Nectar[52];
+                return SpriteDictionary.Nectar[52];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 22)
             {
-                return State.GameManager.SpriteDictionary.Nectar[51];
+                return SpriteDictionary.Nectar[51];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 19)
             {
-                return State.GameManager.SpriteDictionary.Nectar[50];
+                return SpriteDictionary.Nectar[50];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 16)
             {
-                return State.GameManager.SpriteDictionary.Nectar[49];
+                return SpriteDictionary.Nectar[49];
             }
             else if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.rightBreast) && rightSize >= 13)
             {
-                return State.GameManager.SpriteDictionary.Nectar[48];
+                return SpriteDictionary.Nectar[48];
             }
 
             if (rightSize > 9) rightSize = 9;
 
-            return State.GameManager.SpriteDictionary.Nectar[38 + rightSize];
+            return SpriteDictionary.Nectar[38 + rightSize];
         }
         else
         {
-            return State.GameManager.SpriteDictionary.Nectar[37];
+            return SpriteDictionary.Nectar[37];
         }
     }
 

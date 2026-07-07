@@ -3,8 +3,8 @@ using UnityEngine;
 
 class Ryan : BlankSlate // Sprite by Micadi Character by Legoshi
 {
-    readonly Sprite[] Sprites1 = State.GameManager.SpriteDictionary.Ryan;
-    readonly Sprite[] Sprites2 = State.GameManager.SpriteDictionary.RyanVore;
+    readonly Sprite[] Sprites1 = SpriteDictionary.Ryan;
+    readonly Sprite[] Sprites2 = SpriteDictionary.RyanVore;
 
     internal Ryan()
     {

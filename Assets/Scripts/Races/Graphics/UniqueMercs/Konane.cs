@@ -6,7 +6,7 @@ using static Taraluxia;
 
 class Konane : BlankSlate
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.Konane;
+    readonly Sprite[] Sprites = SpriteDictionary.Konane;
 
     bool SpecialAttack = false;
     RaceFrameList KonaneSwallowHead = new RaceFrameList(new int[2] {14,15}, new float[2] { .25f, .25f});

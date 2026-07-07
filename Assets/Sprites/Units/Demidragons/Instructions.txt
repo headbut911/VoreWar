@@ -659,7 +659,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericTop1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[24];
+            DiscardSprite = SpriteDictionary.Avians4[24];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -672,11 +672,11 @@ CLOTHES CODE (for anthros):
         {
             if (Races.Demidragon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[54];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[54];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[46 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[46 + actor.Unit.BreastSize];
             }
             else
             {
@@ -694,7 +694,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[34];
+            DiscardSprite = SpriteDictionary.Avians4[34];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -707,11 +707,11 @@ CLOTHES CODE (for anthros):
         {
             if (Races.Demidragon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[63];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[63];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[55 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[55 + actor.Unit.BreastSize];
             }
             else
             {
@@ -729,7 +729,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericTop3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[44];
+            DiscardSprite = SpriteDictionary.Avians4[44];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -742,11 +742,11 @@ CLOTHES CODE (for anthros):
         {
             if (Races.Demidragon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[72];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[72];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[64 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[64 + actor.Unit.BreastSize];
             }
             else
             {
@@ -764,7 +764,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericTop4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[55];
+            DiscardSprite = SpriteDictionary.Avians4[55];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -778,11 +778,11 @@ CLOTHES CODE (for anthros):
         {
             if (Races.Demidragon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[81];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[81];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[73 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[73 + actor.Unit.BreastSize];
             }
             else
             {
@@ -791,7 +791,7 @@ CLOTHES CODE (for anthros):
                 clothing2.GetSprite = null;
             }
 
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[82];
+            clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[82];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
             base.Configure(sprite, actor);
@@ -802,7 +802,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericTop5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[74];
+            DiscardSprite = SpriteDictionary.Avians4[74];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -816,13 +816,13 @@ CLOTHES CODE (for anthros):
         {
             if (Races.Demidragon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[91];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[142];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[91];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[142];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[83 + actor.Unit.BreastSize];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[92 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[83 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[92 + actor.Unit.BreastSize];
             }
             else
             {
@@ -841,7 +841,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericTop6()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[88];
+            DiscardSprite = SpriteDictionary.Avians4[88];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -858,7 +858,7 @@ CLOTHES CODE (for anthros):
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[103 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[103 + actor.Unit.BreastSize];
             }
             else
             {
@@ -876,7 +876,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericTop7()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[44];
+            DiscardSprite = SpriteDictionary.Avians4[44];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -889,11 +889,11 @@ CLOTHES CODE (for anthros):
         {
             if (Races.Demidragon.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[135];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[135];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[127 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[127 + actor.Unit.BreastSize];
             }
             else
             {
@@ -911,7 +911,7 @@ CLOTHES CODE (for anthros):
     {
         public MaleTop()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[79];
+            DiscardSprite = SpriteDictionary.Avians4[79];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -925,11 +925,11 @@ CLOTHES CODE (for anthros):
 
             if (actor.HasBelly)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[114 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[114 + actor.Unit.BodySize];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[111 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[111 + actor.Unit.BodySize];
             }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
@@ -941,7 +941,7 @@ CLOTHES CODE (for anthros):
     {
         public MaleTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[79];
+            DiscardSprite = SpriteDictionary.Avians4[79];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -952,7 +952,7 @@ CLOTHES CODE (for anthros):
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[100 + actor.Unit.BodySize];
+            clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[100 + actor.Unit.BodySize];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
 
             base.Configure(sprite, actor);
@@ -978,7 +978,7 @@ CLOTHES CODE (for anthros):
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[2 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[2 + actor.Unit.BreastSize];
             }
             else
             {
@@ -988,11 +988,11 @@ CLOTHES CODE (for anthros):
 
 			if (actor.Unit.BodySize > 1)
 			{
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[1];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[1];
 			}
 			else
 			{
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[0];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[0];
 			}
 
             base.Configure(sprite, actor);
@@ -1003,7 +1003,7 @@ CLOTHES CODE (for anthros):
     {
         public DemidragonRags()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
+            DiscardSprite = SpriteDictionary.Rags[23];
             blocksDick = false;
             inFrontOfDick = true;
             coversBreasts = false;
@@ -1019,18 +1019,18 @@ CLOTHES CODE (for anthros):
             if (actor.Unit.HasBreasts)
             {
                 if (actor.Unit.BreastSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[124];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[124];
                 else if (actor.Unit.BreastSize < 6)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[125];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[125];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[126];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[126];
 
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[117 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[117 + actor.Unit.BodySize];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[123];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[120 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[123];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[120 + actor.Unit.BodySize];
             }
 
             base.Configure(sprite, actor);
@@ -1052,7 +1052,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericBot1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[121];
+            DiscardSprite = SpriteDictionary.Avians3[121];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -1064,21 +1064,21 @@ CLOTHES CODE (for anthros):
         {
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[10 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.LupineClothes[10 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.LupineClothes[13 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.LupineClothes[13 + actor.Unit.BodySize];
             }
 		
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[16 + ((actor.Unit.BodySize) * 3)];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[16 + ((actor.Unit.BodySize) * 3)];
                 else if (actor.Unit.DickSize > 5)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[18 + ((actor.Unit.BodySize) * 3)];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[18 + ((actor.Unit.BodySize) * 3)];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[17 + ((actor.Unit.BodySize) * 3)];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[17 + ((actor.Unit.BodySize) * 3)];
             }
             else clothing1.GetSprite = null;
 
@@ -1092,7 +1092,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericBot2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[137];
+            DiscardSprite = SpriteDictionary.Avians3[137];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
@@ -1109,21 +1109,21 @@ CLOTHES CODE (for anthros):
 				{
 					clothing1.YOffset = -1 * .625f;
 					if (actor.Unit.DickSize < 3)
-						clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[33];
+						clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[33];
 					else if (actor.Unit.DickSize > 5)
-						clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[35];
+						clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[35];
 					else
-						clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[34];
+						clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[34];
 				}
 				else
 				{
 					clothing1.YOffset = 0 * .625f;
 					if (actor.Unit.DickSize < 3)
-						clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[33];
+						clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[33];
 					else if (actor.Unit.DickSize > 5)
-						clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[35];
+						clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[35];
 					else
-						clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[34];
+						clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[34];
 				}
             }
             else 
@@ -1131,22 +1131,22 @@ CLOTHES CODE (for anthros):
 				if (actor.Unit.BodySize > 1)
 				{
 					clothing1.YOffset = 0 * .625f;
-					clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[32];
+					clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[32];
 				}
 				else
 				{
 					clothing1.YOffset = 0 * .625f;
-					clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[31];
+					clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[31];
 				}
 			}
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[25 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[25 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[28 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[28 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
@@ -1158,7 +1158,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericBot3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians3[140];
+            DiscardSprite = SpriteDictionary.Avians3[140];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
@@ -1170,22 +1170,22 @@ CLOTHES CODE (for anthros):
         {
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[25 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[25 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[28 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[28 + actor.Unit.BodySize];
             }
 
 			if (actor.Unit.BodySize > 1)
 			{
 				clothing1.YOffset = -1 * .625f;
-				clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[36];
+				clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[36];
 			}
 			else
 			{
 				clothing1.YOffset = 0 * .625f;
-				clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[36];
+				clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[36];
 			}
 			
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
@@ -1197,7 +1197,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericBot4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[14];
+            DiscardSprite = SpriteDictionary.Avians4[14];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -1220,21 +1220,21 @@ CLOTHES CODE (for anthros):
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[43];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[43];
                 else if (actor.Unit.DickSize > 5)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[45];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[45];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[44];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[44];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[37 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[37 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[40 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[40 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
@@ -1247,7 +1247,7 @@ CLOTHES CODE (for anthros):
     {
         public GenericBot5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Avians4[14];
+            DiscardSprite = SpriteDictionary.Avians4[14];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -1270,21 +1270,21 @@ CLOTHES CODE (for anthros):
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[43];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[43];
                 else if (actor.Unit.DickSize > 5)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[44];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[44];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[46];
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[46];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[136 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[136 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.DemidragonClothes[139 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[139 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
