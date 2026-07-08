@@ -2546,6 +2546,9 @@ Turns: {currentTurn}
             case SpecialAction.ShunGokuSatsu:
                 ShowMeleeHitPercentages(actor, 2);
                 break;
+            case SpecialAction.StunningStrike:
+                ShowMeleeHitPercentages(actor, 1);
+                break;
             case SpecialAction.TailStrike:
                 ShowMeleeHitPercentages(actor, .66f);
                 break;

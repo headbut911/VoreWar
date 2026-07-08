@@ -33,6 +33,7 @@ public class Actor_Unit
         Rubbed,
         Injured,
         Hurt,
+        SpecialAttack,
         IdleAnimation,
 
     }
@@ -140,6 +141,8 @@ public class Actor_Unit
     [OdinSerialize]
     internal int TurnUsedShun = -5;
     [OdinSerialize]
+    internal int TurnUsedStunStrike = -5;
+    [OdinSerialize]
     internal int MultifacetedCooldown = 0;
     [OdinSerialize]
     internal int TurnsSinceLastDamage = 9999;
@@ -218,7 +221,8 @@ public class Actor_Unit
             Paralyzed = false;
             Slimed = false;
         }
-        else if ((Unit.GetStatusEffect(StatusEffectType.Petrify) != null) || (Unit.GetStatusEffect(StatusEffectType.Frozen) != null))
+        else if ((Unit.GetStatusEffect(StatusEffectType.Petrify) != null) || (Unit.GetStatusEffect(StatusEffectType.Frozen) != null)
+            || Unit.GetStatusEffect(StatusEffectType.Sleeping) != null || Unit.GetStatusEffect(StatusEffectType.Stunned) != null)
         {
             Movement = 0;
             Slimed = false;
@@ -236,11 +240,6 @@ public class Actor_Unit
         else if (Unit.GetStatusEffect(StatusEffectType.Staggering) != null)
         {
             Movement = CurrentMaxMovement() / 2;
-            Slimed = false;
-        }
-        else if (Unit.GetStatusEffect(StatusEffectType.Sleeping) != null)
-        {
-            Movement = 0;
             Slimed = false;
         }
         else if (Slimed)
@@ -808,6 +807,7 @@ public class Actor_Unit
 
 
     public bool IsAttacking => Mode == DisplayMode.Attacking;
+    public bool IsSpecialAttacking => Mode == DisplayMode.SpecialAttack;
     public bool IsRangeAttacking => Mode == DisplayMode.RangeAttacking;
     public bool IsMeleeAttacking => Mode == DisplayMode.MeleeAttacking;
 
@@ -1493,6 +1493,44 @@ public class Actor_Unit
 
         PredatorComponent?.Devour(target, .3f);
         TurnUsedShun = State.GameManager.TacticalMode.currentTurn;
+        Movement = 0;
+
+        return true;
+    }
+
+    public bool StunningStrike(Actor_Unit target)
+    {
+        if (Movement < 1 || Unit.HasTrait(Traits.StunningStrike) == false)
+            return false;
+        List<AbilityTargets> targetTypes = new List<AbilityTargets>();
+        targetTypes.Add(AbilityTargets.Enemy);
+        if (!TacticalUtilities.MeetsQualifier(targetTypes, this, target))
+            return false;
+        if (target.Position.GetNumberOfMovesDistance(Position) > 1)
+            return false;
+        Mode = DisplayMode.SpecialAttack;
+        float movementBonus = Movement / MaxMovement();
+        int damage = WeaponDamageAgainstTarget(target, false) + (int)Math.Round(WeaponDamageAgainstTarget(target, false) * movementBonus);
+        if (damage >= target.Unit.Health)
+            damage = target.Unit.Health - 1;
+        if (target.Defend(this, ref damage, false, out float chance))
+        {
+            if (State.GameManager.TacticalMode.TacticalSoundBlocked() == false)
+            {
+                MiscUtilities.DelayedInvoke(() => State.GameManager.SoundManager.PlayMeleeHit(null), .12f);
+                State.GameManager.TacticalMode.CreateSwipeHitEffect(target.Position, 0);
+            };
+            int stunDur = (int)Math.Floor((double)(Unit.GetStat(Stat.Will) / 18));
+            if (movementBonus > State.Rand.NextDouble())
+                stunDur++;
+            target.Unit.ApplyStatusEffect(StatusEffectType.Stunned, 1, stunDur);
+            Unit.GiveScaledExp(2 * target.Unit.ExpMultiplier, Unit.Level - target.Unit.Level);
+        }
+        if (target.Unit.Health <= 1)
+        {
+            target.Surrendered = true;
+        }
+        TurnUsedStunStrike = State.GameManager.TacticalMode.currentTurn;
         Movement = 0;
 
         return true;
@@ -3258,7 +3296,6 @@ public class Actor_Unit
         if (Unit.HasTrait(Traits.MutualBiology) && damageType != DamageTypes.Mutual)
         {
             TacticalUtilities.MutuallyDamageUnits(this, damage);
-            Debug.Log(Unit.TempBoosts.HealthBoost);
         }
         if (Unit.HasTrait(Traits.Berserk) && GoneBerserk == false)
         {

@@ -96,5 +96,7 @@
     Marked = 48,
     /// <summary>Unit gains +10 effective stomach capacity. Unit will fall asleep for every turn they have this effect if this effect expires.</summary>
     Gorging = 49,
+    /// <summary>Prevents movement.</summary>
+    Stunned = 50,
 }
 

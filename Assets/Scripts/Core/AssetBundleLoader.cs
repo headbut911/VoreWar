@@ -263,9 +263,9 @@ public class AssetBundleLoader
         SpriteDictionary.ZoeyHoliday = specialmercBundle.LoadAssetWithSubAssets<Sprite>("ZoeyHoliday");
         SpriteDictionary.Cierihaka = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Cierihaka");
         SpriteDictionary.Zera240 = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Zera240");
-        SpriteDictionary.ZeraBelly = specialmercBundle.LoadAssetWithSubAssets<Sprite>("ZeraBelly");
-        SpriteDictionary.ZeraBalls = specialmercBundle.LoadAssetWithSubAssets<Sprite>("ZeraBalls");
-        SpriteDictionary.ZeraFrontBelly = specialmercBundle.LoadAssetWithSubAssets<Sprite>("ZeraFrontBelly");
+        SpriteDictionary.ZeraBelly = specialmercBundle.LoadAssetWithSubAssets<Sprite>("zerabel");
+        SpriteDictionary.ZeraBalls = specialmercBundle.LoadAssetWithSubAssets<Sprite>("1x1_bols").Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("1x2_bols")).Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("2x2_bols")).Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("2x3_bols")).ToArray();
+        SpriteDictionary.ZeraFrontBelly = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Front Belly 2x1").Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("Front Belly 3x2")).ToArray();
         SpriteDictionary.Auri = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Auri");
         SpriteDictionary.AuriHoliday = specialmercBundle.LoadAssetWithSubAssets<Sprite>("AuriHoliday");
         SpriteDictionary.AuriVore = specialmercBundle.LoadAssetWithSubAssets<Sprite>("AuriVore");

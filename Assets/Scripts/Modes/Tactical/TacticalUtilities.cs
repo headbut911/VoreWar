@@ -714,14 +714,18 @@ static class TacticalUtilities
 
     static public void MutuallyDamageUnits(Actor_Unit source, int damage)
     {
+        if (linkedUnits == null)
+            return;
         foreach (var unit in linkedUnits[Traits.MutualBiology].Where(u => u != source && !u.Unit.IsEnemyOfSide(source.Unit.Side)))
         {
             unit.Damage(damage, damageType: DamageTypes.Mutual);
         }
     }
 
-    static public void MutuallyHeaUnits(Unit source, int amt)
+    static public void MutuallyHealUnits(Unit source, int amt)
     {
+        if (linkedUnits == null)
+            return;
         foreach (var unit in linkedUnits[Traits.MutualBiology].Where(u => u.Unit != source && !u.Unit.IsEnemyOfSide(source.Side)))
         {
             unit.Unit.Heal(amt, true);

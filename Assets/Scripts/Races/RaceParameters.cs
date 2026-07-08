@@ -4730,6 +4730,10 @@ static class RaceParameters
         {
                 Traits.Flight,
                 Traits.BornToMove,
+                Traits.IronGut,
+                Traits.Greedy,
+                Traits.Alacrity,
+                Traits.StunningStrike,
                 ///Traits., Special move trait goes here. Add two actions to this trait
         },
             RaceDescription = "Some kind of black falcon/snow leopard mix. Oh no! He's hot!",

@@ -23,4 +23,5 @@
     AllInVore,
     DireInfection,
     BladderVore,
+    StunningStrike,
 }

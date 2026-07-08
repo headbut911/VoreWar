@@ -8,7 +8,6 @@ class Konane : BlankSlate
 {
     readonly Sprite[] Sprites = SpriteDictionary.Konane;
 
-    bool SpecialAttack = false;
     RaceFrameList KonaneSwallowHead = new RaceFrameList(new int[2] {14,15}, new float[2] { .25f, .25f});
     RaceFrameList KonaneSwallowChest = new RaceFrameList(new int[2] {16,17}, new float[2] { .5f, .25f});
 
@@ -68,7 +67,7 @@ class Konane : BlankSlate
 
     protected override Sprite HeadSprite(Actor_Unit actor)
     {
-        if (actor.IsAttacking || SpecialAttack)
+        if (actor.IsAttacking || actor.IsSpecialAttacking)
         {
             return Sprites[13];
         }
@@ -114,7 +113,7 @@ class Konane : BlankSlate
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // Right WIng
     {
-        if (SpecialAttack)
+        if (actor.IsSpecialAttacking)
         {
             return Sprites[3];
         }
@@ -123,7 +122,7 @@ class Konane : BlankSlate
 
     protected override Sprite BodyAccentSprite2(Actor_Unit actor) // Left Wing
     {
-        if (SpecialAttack)
+        if (actor.IsSpecialAttacking)
         {
             return Sprites[5];
         }
@@ -132,12 +131,12 @@ class Konane : BlankSlate
 
     protected override Sprite BodyAccentSprite3(Actor_Unit actor) // Right Arm
     {
+        if (actor.IsSpecialAttacking)
+        {
+            return Sprites[11];
+        }
         if (actor.IsAttacking) 
         {
-            if (SpecialAttack)
-            {
-                return Sprites[11];
-            }
             return Sprites[11];
         }
         return Sprites[10];
@@ -145,12 +144,12 @@ class Konane : BlankSlate
 
     protected override Sprite BodyAccentSprite4(Actor_Unit actor) // Left Arm
     {
+        if (actor.IsSpecialAttacking)
+        {
+            return Sprites[8];
+        }
         if (actor.IsAttacking)
         {
-            if (SpecialAttack)
-            {
-                return Sprites[8];
-            }
             return Sprites[7];
         }
         return Sprites[6];

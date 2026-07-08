@@ -1136,6 +1136,8 @@ public abstract class TacticalAI : ITacticalAI
                 {
                     if (actor.Unit.Race == Race.Asura && TacticalActionList.TargetedDictionary[SpecialAction.ShunGokuSatsu].AppearConditional(actor))
                         MoveToAndAction(actor, targets[0].actor.Position, 1, actor.Movement, () => actor.ShunGokuSatsu(targets[0].actor));
+                    if (actor.Unit.Race == Race.Konane && TacticalActionList.TargetedDictionary[SpecialAction.StunningStrike].AppearConditional(actor))
+                        MoveToAndAction(actor, targets[0].actor.Position, 1, actor.Movement, () => actor.StunningStrike(targets[0].actor));
                     if ((State.Rand.Next(2) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.DireInfection].AppearConditional(actor))
                         MoveToAndAction(actor, targets[0].actor.Position, 1, actor.Movement, () => actor.DireInfection(targets[0].actor));
                     if ((State.Rand.Next(5) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.GiantSweep].AppearConditional(actor))
