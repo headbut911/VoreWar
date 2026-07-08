@@ -1502,6 +1502,10 @@ public class Actor_Unit
     {
         if (Movement < 1 || Unit.HasTrait(Traits.StunningStrike) == false)
             return false;
+        if (!Unit.SpendMana(10))
+        {
+            return false;
+        }
         List<AbilityTargets> targetTypes = new List<AbilityTargets>();
         targetTypes.Add(AbilityTargets.Enemy);
         if (!TacticalUtilities.MeetsQualifier(targetTypes, this, target))
@@ -1509,6 +1513,7 @@ public class Actor_Unit
         if (target.Position.GetNumberOfMovesDistance(Position) > 1)
             return false;
         Mode = DisplayMode.SpecialAttack;
+        animationUpdateTime = 1;
         float movementBonus = Movement / MaxMovement();
         int damage = WeaponDamageAgainstTarget(target, false) + (int)Math.Round(WeaponDamageAgainstTarget(target, false) * movementBonus);
         if (damage >= target.Unit.Health)
