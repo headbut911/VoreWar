@@ -110,23 +110,23 @@ class Lamia : DefaultRaceData
     {
         if (actor.Unit.Furry)
         {
-            return State.GameManager.SpriteDictionary.LamiaScales[24 + (actor.IsAttacking ? 1 : 0) + (2 * actor.Unit.BodySize) + (actor.Unit.HasBreasts ? 0 : 8)];
+            return SpriteDictionary.LamiaScales[24 + (actor.IsAttacking ? 1 : 0) + (2 * actor.Unit.BodySize) + (actor.Unit.HasBreasts ? 0 : 8)];
         }
-        return State.GameManager.SpriteDictionary.Scylla[24 + (actor.IsAttacking ? 1 : 0) + (2 * actor.Unit.BodySize) + (actor.Unit.HasBreasts ? 0 : 8)];
+        return SpriteDictionary.Scylla[24 + (actor.IsAttacking ? 1 : 0) + (2 * actor.Unit.BodySize) + (actor.Unit.HasBreasts ? 0 : 8)];
     }
 
     protected override Sprite HeadSprite(Actor_Unit actor)
     {
         if (actor.Unit.Furry)
         {
-            return State.GameManager.SpriteDictionary.LamiaScales[0];
+            return SpriteDictionary.LamiaScales[0];
         }
         int eatingOffset = actor.IsEating ? 1 : 0;
         int genderOffset = actor.Unit.HasBreasts ? 0 : 2;
-        return State.GameManager.SpriteDictionary.Lamia[18 + eatingOffset + genderOffset];
+        return SpriteDictionary.Lamia[18 + eatingOffset + genderOffset];
     }
 
-    protected override Sprite AccessorySprite(Actor_Unit actor) => State.GameManager.SpriteDictionary.Lamia[0];
+    protected override Sprite AccessorySprite(Actor_Unit actor) => SpriteDictionary.Lamia[0];
 
     protected override Sprite MouthSprite(Actor_Unit actor)
     {
@@ -134,9 +134,9 @@ class Lamia : DefaultRaceData
         {
             if (actor.IsOralVoring)
             {
-                return State.GameManager.SpriteDictionary.LamiaScales[17];
+                return SpriteDictionary.LamiaScales[17];
             }
-            return State.GameManager.SpriteDictionary.LamiaScales[8 + actor.Unit.MouthType];
+            return SpriteDictionary.LamiaScales[8 + actor.Unit.MouthType];
         }
 
         if (BaseBody)
@@ -181,7 +181,7 @@ class Lamia : DefaultRaceData
         {
             return null;
         }
-        return State.GameManager.SpriteDictionary.LamiaScales[5 + actor.Unit.BodyAccentType1];
+        return SpriteDictionary.LamiaScales[5 + actor.Unit.BodyAccentType1];
 
     }
 
@@ -191,39 +191,39 @@ class Lamia : DefaultRaceData
         {
             if (actor.Unit.EyeType <= 1)
             {
-                return State.GameManager.SpriteDictionary.LamiaScales[22 + actor.Unit.EyeType];
+                return SpriteDictionary.LamiaScales[22 + actor.Unit.EyeType];
             }
             return null;
         }
-        return State.GameManager.SpriteDictionary.Lamia[5 + actor.Unit.EyeType % 3];
+        return SpriteDictionary.Lamia[5 + actor.Unit.EyeType % 3];
     }
 
     protected override Sprite EyesSecondarySprite(Actor_Unit actor)
     {
         if (actor.Unit.Furry)
         {
-            return State.GameManager.SpriteDictionary.LamiaScales[11 + actor.Unit.EyeType];
+            return SpriteDictionary.LamiaScales[11 + actor.Unit.EyeType];
         }
         return null;
     }
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor)
     {
-        if (Selicia) return State.GameManager.SpriteDictionary.Lamia[16];
-        return State.GameManager.SpriteDictionary.Lamia[1];
+        if (Selicia) return SpriteDictionary.Lamia[16];
+        return SpriteDictionary.Lamia[1];
     }
 
     protected override Sprite BodyAccentSprite2(Actor_Unit actor)
     {
-        if (Selicia) return State.GameManager.SpriteDictionary.Lamia[17];
+        if (Selicia) return SpriteDictionary.Lamia[17];
 
         int bonusCap = 0;
         if (actor.Unit.Predator && actor.PredatorComponent.TailFullness > 0)
             bonusCap = 1 + actor.GetTailSize(2);
         if (Config.LamiaUseTailAsSecondBelly && actor.Unit.Predator)
-            return State.GameManager.SpriteDictionary.Lamia[Math.Min(bonusCap + (actor.PredatorComponent?.Stomach2ndFullness > 0 ? (11 + actor.GetStomach2Size(2)) : 10), 13)];
+            return SpriteDictionary.Lamia[Math.Min(bonusCap + (actor.PredatorComponent?.Stomach2ndFullness > 0 ? (11 + actor.GetStomach2Size(2)) : 10), 13)];
 
-        return State.GameManager.SpriteDictionary.Lamia[Math.Min(10 + actor.Unit.BodySize + bonusCap, 13)];
+        return SpriteDictionary.Lamia[Math.Min(10 + actor.Unit.BodySize + bonusCap, 13)];
     }
 
     protected override Sprite BodyAccentSprite3(Actor_Unit actor)
@@ -238,7 +238,7 @@ class Lamia : DefaultRaceData
             case 0:
                 int eatingOffset = actor.IsEating ? 1 : 0;
                 int genderOffset = actor.Unit.HasBreasts ? 0 : 2;
-                return State.GameManager.SpriteDictionary.Lamia[22 + eatingOffset + genderOffset];
+                return SpriteDictionary.Lamia[22 + eatingOffset + genderOffset];
             case 1:
                 return null;
         }
@@ -252,7 +252,7 @@ class Lamia : DefaultRaceData
         }
         int eatingOffset = actor.IsEating ? 1 : 0;
         int genderOffset = actor.Unit.HasBreasts ? 0 : 2;
-        return State.GameManager.SpriteDictionary.Lamia[26 + eatingOffset + genderOffset];
+        return SpriteDictionary.Lamia[26 + eatingOffset + genderOffset];
     }
 
     protected override Sprite BodyAccentSprite6(Actor_Unit actor)
@@ -261,7 +261,7 @@ class Lamia : DefaultRaceData
         {
             return null;
         }
-        return State.GameManager.SpriteDictionary.LamiaScales[1];
+        return SpriteDictionary.LamiaScales[1];
     }
 
     protected override Sprite BodyAccentSprite7(Actor_Unit actor)
@@ -270,7 +270,7 @@ class Lamia : DefaultRaceData
         {
             return null;
         }
-        return State.GameManager.SpriteDictionary.LamiaScales[2 + actor.Unit.BodyAccentType2];
+        return SpriteDictionary.LamiaScales[2 + actor.Unit.BodyAccentType2];
     }
 
     protected override Sprite BodyAccentSprite8(Actor_Unit actor)
@@ -279,14 +279,14 @@ class Lamia : DefaultRaceData
         {
             return null;
         }
-        return State.GameManager.SpriteDictionary.LamiaScales[16];
+        return SpriteDictionary.LamiaScales[16];
     }
 
     protected override Sprite BodyAccentSprite9(Actor_Unit actor)
     {
         if (actor.Unit.Furry)
         {
-            return State.GameManager.SpriteDictionary.LamiaScales[40 + (actor.IsAttacking ? 1 : 0) + (2 * actor.Unit.BodySize) + (actor.Unit.HasBreasts ? 0 : 8)];
+            return SpriteDictionary.LamiaScales[40 + (actor.IsAttacking ? 1 : 0) + (2 * actor.Unit.BodySize) + (actor.Unit.HasBreasts ? 0 : 8)];
         }
         return null;
     }
@@ -297,12 +297,12 @@ class Lamia : DefaultRaceData
         {
             return null;
         }
-        return State.GameManager.SpriteDictionary.LamiaScales[19 + actor.Unit.BodyAccentType2];
+        return SpriteDictionary.LamiaScales[19 + actor.Unit.BodyAccentType2];
     }
 
     internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
     {
-        if (Selicia) return State.GameManager.SpriteDictionary.Lamia[15];
+        if (Selicia) return SpriteDictionary.Lamia[15];
         if (!Config.LamiaUseTailAsSecondBelly)
         {
             if (actor.HasBelly)
@@ -363,17 +363,17 @@ class Lamia : DefaultRaceData
                 if (actor.HasBelly == false)
                 {
                     Dick.layer = 18;
-                    return State.GameManager.SpriteDictionary.LamiaScalesBits[size];
+                    return SpriteDictionary.LamiaScalesBits[size];
                 }
                 else
                 {
                     Dick.layer = 12;
-                    return State.GameManager.SpriteDictionary.LamiaScalesBits[size];
+                    return SpriteDictionary.LamiaScalesBits[size];
                 }
             }
 
             Dick.layer = 9;
-            return State.GameManager.SpriteDictionary.LamiaScalesBits[size];
+            return SpriteDictionary.LamiaScalesBits[size];
         }
         if (actor.Unit.HasDick == false)
             return null;
@@ -400,7 +400,7 @@ class Lamia : DefaultRaceData
     {
         if (Selicia)
         {
-            return State.GameManager.SpriteDictionary.Lamia[14];
+            return SpriteDictionary.Lamia[14];
         }
         int bonusCap = 0;
         if (actor.Unit.Predator && actor.PredatorComponent.TailFullness > 0)
@@ -409,8 +409,8 @@ class Lamia : DefaultRaceData
         if (Config.LamiaUseTailAsSecondBelly && actor.Unit.Predator)
         {
             if (actor.PredatorComponent.Stomach2ndFullness > 0 || actor.PredatorComponent.TailFullness > 0)
-                return State.GameManager.SpriteDictionary.Lamia[Math.Min(2 + actor.GetStomach2Size(2) + bonusCap, 4)];
-            return State.GameManager.SpriteDictionary.Lamia[1];
+                return SpriteDictionary.Lamia[Math.Min(2 + actor.GetStomach2Size(2) + bonusCap, 4)];
+            return SpriteDictionary.Lamia[1];
         }
         else
         {
@@ -418,7 +418,7 @@ class Lamia : DefaultRaceData
             if (effectiveSize == 0)
                 return null;
             else
-                return State.GameManager.SpriteDictionary.Lamia[1 + effectiveSize];
+                return SpriteDictionary.Lamia[1 + effectiveSize];
         }
 
     }
@@ -427,7 +427,7 @@ class Lamia : DefaultRaceData
     {
         if (actor.Unit.Furry)
         {
-            return State.GameManager.SpriteDictionary.LamiaScalesBits[0];
+            return SpriteDictionary.LamiaScalesBits[0];
         }
         var sprite = base.BallsSprite(actor);
         return sprite;

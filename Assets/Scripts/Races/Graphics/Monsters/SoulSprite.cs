@@ -3,7 +3,7 @@ using UnityEngine;
 
 class SoulSprite : BlankSlate
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.SoulSprite;
+    readonly Sprite[] Sprites = SpriteDictionary.SoulSprite;
     internal SoulSprite()
     {
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.SoulSpriteSkin);
@@ -120,7 +120,7 @@ class SoulSprite : BlankSlate
         if (actor.HasBelly == false)
             return null;
             
-        return actor.HasBelly ? State.GameManager.SpriteDictionary.SoulSprite[34 + actor.GetStomachSize(14)] : null;
+        return actor.HasBelly ? SpriteDictionary.SoulSprite[34 + actor.GetStomachSize(14)] : null;
     }
 }
 

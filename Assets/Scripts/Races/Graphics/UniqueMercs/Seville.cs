@@ -44,7 +44,7 @@ class Seville : BlankSlate
     protected override Sprite HeadSprite(Actor_Unit actor)
     {
         if (actor.IsOralVoring)
-            return State.GameManager.SpriteDictionary.Seville[13];
+            return SpriteDictionary.Seville[13];
         if (actor.IsUnbirthing || actor.IsAttacking)
         {
             actor.AnimationController.frameLists[0].currentlyActive = true;
@@ -59,7 +59,7 @@ class Seville : BlankSlate
                     actor.AnimationController.frameLists[0].currentTime = 0f;
                 }
             }
-            return State.GameManager.SpriteDictionary.Seville[23 + SevilleUBandAttack.frames[actor.AnimationController.frameLists[0].currentFrame]];
+            return SpriteDictionary.Seville[23 + SevilleUBandAttack.frames[actor.AnimationController.frameLists[0].currentFrame]];
         } 
         if (actor.HasJustVored) // Handled uniquely for this unit to only work with oral vore successes. Check "actor.SetVoreSuccessMode();" in PredatorComponent.cs
         {
@@ -75,23 +75,23 @@ class Seville : BlankSlate
                     actor.AnimationController.frameLists[0].currentTime = 0f;
                 }
             }
-            return State.GameManager.SpriteDictionary.Seville[13 + SevilleHeadOV.frames[actor.AnimationController.frameLists[0].currentFrame]];
+            return SpriteDictionary.Seville[13 + SevilleHeadOV.frames[actor.AnimationController.frameLists[0].currentFrame]];
         } 
         if (actor.PredatorComponent?.VisibleFullness > 2)
-            return State.GameManager.SpriteDictionary.Seville[27];
-        return State.GameManager.SpriteDictionary.Seville[1];
+            return SpriteDictionary.Seville[27];
+        return SpriteDictionary.Seville[1];
     }
 
     protected override Sprite BodySprite(Actor_Unit actor)
     {
         if (actor.HasBelly == false)
-            return State.GameManager.SpriteDictionary.Seville[3];
+            return SpriteDictionary.Seville[3];
         if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? true)
         {
             if (actor.PredatorComponent.VisibleFullness > 2)
-                return State.GameManager.SpriteDictionary.Seville[7];
+                return SpriteDictionary.Seville[7];
         }
-        return actor.HasBelly ? State.GameManager.SpriteDictionary.Seville[4 + actor.GetStomachSize(3)] : State.GameManager.SpriteDictionary.Seville[3];
+        return actor.HasBelly ? SpriteDictionary.Seville[4 + actor.GetStomachSize(3)] : SpriteDictionary.Seville[3];
     }
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) //tail/vagina
@@ -110,9 +110,9 @@ class Seville : BlankSlate
                     actor.AnimationController.frameLists[1].currentTime = 0f;
                 }
             }
-            return State.GameManager.SpriteDictionary.Seville[18 + SevilleTailUB.frames[actor.AnimationController.frameLists[0].currentFrame]];
+            return SpriteDictionary.Seville[18 + SevilleTailUB.frames[actor.AnimationController.frameLists[0].currentFrame]];
         } 
-        return State.GameManager.SpriteDictionary.Seville[2];
+        return SpriteDictionary.Seville[2];
     }
 
 
@@ -134,10 +134,10 @@ class Seville : BlankSlate
                         actor.AnimationController.frameLists[0].currentTime = 0f;
                     }
                 }
-                return State.GameManager.SpriteDictionary.Seville[33 + SevilleHeadOV.frames[actor.AnimationController.frameLists[0].currentFrame]];
+                return SpriteDictionary.Seville[33 + SevilleHeadOV.frames[actor.AnimationController.frameLists[0].currentFrame]];
             }
             else
-                return State.GameManager.SpriteDictionary.Seville[33];
+                return SpriteDictionary.Seville[33];
         }
         else
             return null;
@@ -148,13 +148,13 @@ class Seville : BlankSlate
         if (actor.Unit.SpecialAccessoryType == 1)
         {
             if (actor.HasBelly == false)
-                return State.GameManager.SpriteDictionary.Seville[28];
+                return SpriteDictionary.Seville[28];
             if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? true)
             {
                 if (actor.PredatorComponent.VisibleFullness > 2)
-                    return State.GameManager.SpriteDictionary.Seville[32];
+                    return SpriteDictionary.Seville[32];
             }
-            return actor.HasBelly ? State.GameManager.SpriteDictionary.Seville[29 + actor.GetStomachSize(3)] : State.GameManager.SpriteDictionary.Seville[28];
+            return actor.HasBelly ? SpriteDictionary.Seville[29 + actor.GetStomachSize(3)] : SpriteDictionary.Seville[28];
         }
         else
             return null;
@@ -167,10 +167,10 @@ class Seville : BlankSlate
         if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? true)
         {
             if (actor.PredatorComponent.VisibleFullness > 2)
-                return State.GameManager.SpriteDictionary.Seville[12];
+                return SpriteDictionary.Seville[12];
         }
 
-        return actor.HasBelly ? State.GameManager.SpriteDictionary.Seville[8 + actor.GetStomachSize(3)] : null;
+        return actor.HasBelly ? SpriteDictionary.Seville[8 + actor.GetStomachSize(3)] : null;
     }
 }
 

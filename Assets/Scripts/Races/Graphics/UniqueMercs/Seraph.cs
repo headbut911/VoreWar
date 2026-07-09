@@ -3,7 +3,7 @@ using UnityEngine;
 
 class Seraph : BlankSlate
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.Seraph;
+    readonly Sprite[] Sprites = SpriteDictionary.Seraph;
     internal Seraph()
     {
         CanBeGender = new List<Gender>() { Gender.None };
@@ -169,10 +169,10 @@ class Seraph : BlankSlate
         ///if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false)
         ///{
         ///    if (actor.PredatorComponent.VisibleFullness > 3)
-        ///        return State.GameManager.SpriteDictionary.Seraph[10];
+        ///        return SpriteDictionary.Seraph[10];
         ///}
 
-        return actor.HasBelly ? State.GameManager.SpriteDictionary.Seraph[18 + actor.GetStomachSize(13)] : null;
+        return actor.HasBelly ? SpriteDictionary.Seraph[18 + actor.GetStomachSize(13)] : null;
     }
 }
 

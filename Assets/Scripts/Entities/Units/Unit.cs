@@ -1959,7 +1959,7 @@ internal void SetGenderRandomizeName(Race race, Gender gender)
         State.GameManager.TacticalMode?.TacticalStats?.RegisterHealing(actualHeal, Side);
         if (State.GameManager.TacticalMode != null && HasTrait(Traits.MutualBiology) && !mutual)
         {
-            TacticalUtilities.MutuallyHeaUnits(this, amount);
+            TacticalUtilities.MutuallyHealUnits(this, amount);
         }
         return actualHeal;
     }

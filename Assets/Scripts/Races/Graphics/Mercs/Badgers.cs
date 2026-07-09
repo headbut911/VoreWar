@@ -4,8 +4,8 @@ using UnityEngine;
 
 class Badgers : DefaultRaceData
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.BadgersBodies;
-    readonly Sprite[] Sprites4 = State.GameManager.SpriteDictionary.BadgersClothes;
+    readonly Sprite[] Sprites = SpriteDictionary.BadgersBodies;
+    readonly Sprite[] Sprites4 = SpriteDictionary.BadgersClothes;
 
     bool oversize = false;
 
@@ -200,13 +200,13 @@ class Badgers : DefaultRaceData
 
     internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
     {
-        UnityEngine.Sprite[] bellyPat = State.GameManager.SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
+        UnityEngine.Sprite[] bellyPat = SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
         if (actor.Unit.SpecialAccessoryType == 0 || actor.Unit.SpecialAccessoryType == 2 || actor.Unit.SpecialAccessoryType == 4)
-            bellyPat = State.GameManager.SpriteDictionary.BadgersVoreBlack;
+            bellyPat = SpriteDictionary.BadgersVoreBlack;
         else if (actor.Unit.SpecialAccessoryType == 3)
-            bellyPat = State.GameManager.SpriteDictionary.BadgersVoreWhite;
+            bellyPat = SpriteDictionary.BadgersVoreWhite;
         else
-            bellyPat = State.GameManager.SpriteDictionary.BadgersVoreWhite;
+            bellyPat = SpriteDictionary.BadgersVoreWhite;
         if (actor.HasBelly)
         {
             belly.transform.localScale = new Vector3(1, 1, 1);
@@ -279,13 +279,13 @@ class Badgers : DefaultRaceData
 
     protected override Sprite BreastsSprite(Actor_Unit actor)
     {
-        UnityEngine.Sprite[] breastPat = State.GameManager.SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
+        UnityEngine.Sprite[] breastPat = SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
         if (actor.Unit.SpecialAccessoryType == 0 || actor.Unit.SpecialAccessoryType == 2 || actor.Unit.SpecialAccessoryType == 4)
-            breastPat = State.GameManager.SpriteDictionary.BadgersVoreBlack;
+            breastPat = SpriteDictionary.BadgersVoreBlack;
         else if (actor.Unit.SpecialAccessoryType == 3)
-            breastPat = State.GameManager.SpriteDictionary.BadgersVoreBlack;
+            breastPat = SpriteDictionary.BadgersVoreBlack;
         else
-            breastPat = State.GameManager.SpriteDictionary.BadgersVoreWhite;
+            breastPat = SpriteDictionary.BadgersVoreWhite;
         if (actor.Unit.HasBreasts == false)
             return null;
         oversize = false;
@@ -320,13 +320,13 @@ class Badgers : DefaultRaceData
 
     protected override Sprite SecondaryBreastsSprite(Actor_Unit actor)
     {
-        UnityEngine.Sprite[] breastPat = State.GameManager.SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
+        UnityEngine.Sprite[] breastPat = SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
         if (actor.Unit.SpecialAccessoryType == 0 || actor.Unit.SpecialAccessoryType == 2 || actor.Unit.SpecialAccessoryType == 4)
-            breastPat = State.GameManager.SpriteDictionary.BadgersVoreBlack;
+            breastPat = SpriteDictionary.BadgersVoreBlack;
         else if (actor.Unit.SpecialAccessoryType == 3)
-            breastPat = State.GameManager.SpriteDictionary.BadgersVoreBlack;
+            breastPat = SpriteDictionary.BadgersVoreBlack;
         else
-            breastPat = State.GameManager.SpriteDictionary.BadgersVoreWhite;
+            breastPat = SpriteDictionary.BadgersVoreWhite;
         if (actor.Unit.HasBreasts == false)
             return null;
         if (actor.PredatorComponent?.RightBreastFullness > 0)
@@ -397,13 +397,13 @@ class Badgers : DefaultRaceData
 
     protected override Sprite BallsSprite(Actor_Unit actor)
     {
-        UnityEngine.Sprite[] ballPat = State.GameManager.SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
+        UnityEngine.Sprite[] ballPat = SpriteDictionary.BadgersVoreBlack; // Switch from black to white pattern for vore parts accordingly
         if (actor.Unit.SpecialAccessoryType == 0 || actor.Unit.SpecialAccessoryType == 2 || actor.Unit.SpecialAccessoryType == 4)
-            ballPat = State.GameManager.SpriteDictionary.BadgersVoreBlack;
+            ballPat = SpriteDictionary.BadgersVoreBlack;
         else if (actor.Unit.SpecialAccessoryType == 3)
-            ballPat = State.GameManager.SpriteDictionary.BadgersVoreWhite;
+            ballPat = SpriteDictionary.BadgersVoreWhite;
         else
-            ballPat = State.GameManager.SpriteDictionary.BadgersVoreWhite;
+            ballPat = SpriteDictionary.BadgersVoreWhite;
         if (actor.Unit.HasDick == false)
             return null;
         if (actor.IsErect() && (actor.PredatorComponent?.VisibleFullness < .75f) && ((int)Math.Sqrt((actor.Unit.DefaultBreastSize * actor.Unit.DefaultBreastSize) + actor.GetRightBreastSize(30 * 30, 1f)) < 16) && ((int)Math.Sqrt((actor.Unit.DefaultBreastSize * actor.Unit.DefaultBreastSize) + actor.GetLeftBreastSize(30 * 30, 1f)) < 16))
@@ -454,7 +454,7 @@ class Badgers : DefaultRaceData
     {
         public GenericTop1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[48];
+            DiscardSprite = SpriteDictionary.Komodos4[48];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -467,11 +467,11 @@ class Badgers : DefaultRaceData
         {
             if (Races.Badgers.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[52];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[52];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[44 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[44 + actor.Unit.BreastSize];
             }
             else
             {
@@ -489,7 +489,7 @@ class Badgers : DefaultRaceData
     {
         public GenericTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[58];
+            DiscardSprite = SpriteDictionary.Komodos4[58];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -502,11 +502,11 @@ class Badgers : DefaultRaceData
         {
             if (Races.Badgers.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[61];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[61];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[53 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[53 + actor.Unit.BreastSize];
             }
             else
             {
@@ -524,7 +524,7 @@ class Badgers : DefaultRaceData
     {
         public GenericTop3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[68];
+            DiscardSprite = SpriteDictionary.Komodos4[68];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -538,13 +538,13 @@ class Badgers : DefaultRaceData
         {
             if (Races.Badgers.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[70];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[79];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[70];
+                clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[79];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[62 + actor.Unit.BreastSize];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[71 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[62 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[71 + actor.Unit.BreastSize];
             }
             else
             {
@@ -563,7 +563,7 @@ class Badgers : DefaultRaceData
     {
         public GenericTop4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[79];
+            DiscardSprite = SpriteDictionary.Komodos4[79];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -577,12 +577,12 @@ class Badgers : DefaultRaceData
             if (Races.Badgers.oversize)
             {
                 clothing1.GetSprite = null;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[88];
+                clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[88];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[89 + actor.Unit.BreastSize];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[80 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[89 + actor.Unit.BreastSize];
+                clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[80 + actor.Unit.BreastSize];
             }
             else
             {
@@ -601,7 +601,7 @@ class Badgers : DefaultRaceData
     {
         public GenericTop5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[97];
+            DiscardSprite = SpriteDictionary.Komodos4[97];
             femaleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -614,11 +614,11 @@ class Badgers : DefaultRaceData
         {
             if (Races.Badgers.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[105];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[105];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[97 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[97 + actor.Unit.BreastSize];
             }
             else
             {
@@ -653,11 +653,11 @@ class Badgers : DefaultRaceData
             {
 		if (actor.Unit.SpecialAccessoryType == 1)
 		{
-                	clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[10 + actor.Unit.BreastSize];
+                	clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[10 + actor.Unit.BreastSize];
 		}
 		else
 		{
-                	clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[2 + actor.Unit.BreastSize];
+                	clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[2 + actor.Unit.BreastSize];
 		}
             }
             else
@@ -668,11 +668,11 @@ class Badgers : DefaultRaceData
 
 	    if (actor.Unit.SpecialAccessoryType == 1 || actor.Unit.SpecialAccessoryType == 3)
 	    {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[1];
+                clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[1];
 	    }
 	    else
 	    {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[0];
+                clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[0];
 	    }
 
         base.Configure(sprite, actor);
@@ -683,7 +683,7 @@ class Badgers : DefaultRaceData
     {
         public Tribal()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[38];
+            DiscardSprite = SpriteDictionary.Komodos4[38];
             coversBreasts = false;
             Type = 61406;
             OccupiesAllSlots = true;
@@ -696,11 +696,11 @@ class Badgers : DefaultRaceData
         {
             if (Races.Badgers.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[43];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[43];
             }
             else if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[35 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[35 + actor.Unit.BreastSize];
             }
             else
             {
@@ -708,7 +708,7 @@ class Badgers : DefaultRaceData
                 clothing1.GetSprite = null;
             }
 
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[31 + actor.Unit.BodySize];
+            clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[31 + actor.Unit.BodySize];
 
             base.Configure(sprite, actor);
         }
@@ -718,7 +718,7 @@ class Badgers : DefaultRaceData
     {
         public GenericBot1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[9];
+            DiscardSprite = SpriteDictionary.Komodos4[9];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
@@ -731,15 +731,15 @@ class Badgers : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[23];
+                    clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[23];
                 else if (actor.Unit.DickSize > 5)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[25];
+                    clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[25];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[24];
+                    clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[24];
             }
-            else clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[22];
+            else clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[22];
 
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[18 + actor.Unit.BodySize];
+            clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[18 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);
@@ -750,7 +750,7 @@ class Badgers : DefaultRaceData
     {
         public GenericBot2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[19];
+            DiscardSprite = SpriteDictionary.Komodos4[19];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
@@ -760,8 +760,8 @@ class Badgers : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[26];
-            clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[18 + actor.Unit.BodySize];
+            clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[26];
+            clothing2.GetSprite = (s) => SpriteDictionary.BadgersClothes[18 + actor.Unit.BodySize];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.AviansSkin, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);
@@ -772,7 +772,7 @@ class Badgers : DefaultRaceData
     {
         public GenericBot3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.Komodos4[24];
+            DiscardSprite = SpriteDictionary.Komodos4[24];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(12, null, WhiteColored);
             Type = 61409;
@@ -782,7 +782,7 @@ class Badgers : DefaultRaceData
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
 
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.BadgersClothes[27 + actor.Unit.BodySize];
+            clothing1.GetSprite = (s) => SpriteDictionary.BadgersClothes[27 + actor.Unit.BodySize];
 
             base.Configure(sprite, actor);
         }

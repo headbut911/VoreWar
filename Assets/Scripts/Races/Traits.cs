@@ -302,6 +302,7 @@ static class TraitList
         [Traits.ManaDynamo] = new Booster("Unit generates 3 mana per turn but units absorbing this unit will recover most of their mana", (s) => { s.ManaRegen += 3; s.Outgoing.ManaAbsorbHundreths += 70; }),
 
 
+        [Traits.LightningSpeed] = new Booster("Unit moves very fast, and can perform actions many times per turn. \n(Cheat Trait)", (s) => {s.MeleeAttacks += 3; s.VoreAttacks += 3; }),
         [Traits.LightningSpeed] = new Booster("Unit moves very fast, and can perform actions many times per turn. \n(Cheat Trait)", (s) => { s.SpeedBonus += 10; s.MeleeAttacks += 5; s.RangedAttacks += 5; s.VoreAttacks += 5; s.SpellAttacks += 5; }),
         [Traits.DivineBloodline] = new Booster("Descendent from supernatural beings, this individual is a force of nature. \n(Cheat Trait) - gives damage reduction, extra attacks, stat bonuses on level up)", (s) =>
         {

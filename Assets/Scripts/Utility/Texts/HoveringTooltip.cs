@@ -275,6 +275,8 @@ public class HoveringTooltip : MonoBehaviour
                         return $"Unit has {(effect.Strength)}% added to weapon accuracy against them.";
                     case StatusEffectType.Gorging:
                         return $"Unit gains +{(int)(effect.Strength * 10)} effective stomach capacity. Unit will fall asleep for {(int)(effect.Strength)} turn(s) if this effect expires and they are overcapacity.";
+                    case StatusEffectType.Stunned:
+                        return $"Unit is unable to move for {(effect.Duration)} turn(s).";
                 }
             }
         }
@@ -875,6 +877,10 @@ public class HoveringTooltip : MonoBehaviour
                 return "Unarmed but not harmless! Unit can melee attack twice if they have no weapon equipped.";
             case Traits.CloseCall:
                 return "Unit will flee combat upon fatal strikes from weapons or spells with 1 HP rather than dying. (unit will rejoin if the army wins, otherwise sets off for the closest town) ";
+            case Traits.Alacrity:
+                return "Unit gains +3 actions on melee attacks or vore attempts.";
+            case Traits.StunningStrike:
+                return "A special attack that deals normal damage and stuns its target based on mind. Damage and stun duration increases based on remaining MP percentage. Can be used once every 3 turns.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

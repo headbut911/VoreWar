@@ -640,6 +640,10 @@ public enum Traits
     WildFury  = 318,
     /// <summary>Unit will be counted as fled with 1 HP if killed, and will not leave a corpse upon dying </summary>
     CloseCall  = 319,
+    /// <summary>Unit gains +3 melee or vore attacks.</summary>
+    Alacrity = 320,
+    /// <summary>Allows usage of a strong attack that can stun an enemy. </summary>
+    StunningStrike = 321,
 
 
     // Growth-related section

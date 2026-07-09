@@ -39,26 +39,26 @@ class Harvester : BlankSlate
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // Tail
     {
-        return State.GameManager.SpriteDictionary.Harvester[1];
+        return SpriteDictionary.Harvester[1];
     }
 
     protected override Sprite BodySprite(Actor_Unit actor) // Body
     {
         if (actor.AnimationController.frameLists == null) SetUpAnimations(actor);
 
-        return State.GameManager.SpriteDictionary.Harvester[0];
+        return SpriteDictionary.Harvester[0];
     }
 
     protected override Sprite HeadSprite(Actor_Unit actor) // Head
     {
-        if (!actor.Targetable) return State.GameManager.SpriteDictionary.Harvester[2];
+        if (!actor.Targetable) return SpriteDictionary.Harvester[2];
 
         if (actor.IsOralVoring)
         {
             actor.AnimationController.frameLists[0].currentlyActive = false;
             actor.AnimationController.frameLists[0].currentFrame = 0;
             actor.AnimationController.frameLists[0].currentTime = 0f;
-            return State.GameManager.SpriteDictionary.Harvester[5];
+            return SpriteDictionary.Harvester[5];
         }
 
         if (actor.AnimationController.frameLists[0].currentlyActive)
@@ -76,7 +76,7 @@ class Harvester : BlankSlate
                 }
             }
 
-            return State.GameManager.SpriteDictionary.Harvester[2 + frameListEyes.frames[actor.AnimationController.frameLists[0].currentFrame]];
+            return SpriteDictionary.Harvester[2 + frameListEyes.frames[actor.AnimationController.frameLists[0].currentFrame]];
         }
 
         if (State.Rand.Next(400) == 0)
@@ -84,19 +84,19 @@ class Harvester : BlankSlate
             actor.AnimationController.frameLists[0].currentlyActive = true;
         }
 
-        return State.GameManager.SpriteDictionary.Harvester[2];
+        return SpriteDictionary.Harvester[2];
     }
 
     protected override Sprite BodyAccentSprite2(Actor_Unit actor) // Arms
     {
-        if (!actor.Targetable) return State.GameManager.SpriteDictionary.Harvester[6];
+        if (!actor.Targetable) return SpriteDictionary.Harvester[6];
 
         if (actor.IsAttacking)
         {
             actor.AnimationController.frameLists[1].currentlyActive = false;
             actor.AnimationController.frameLists[1].currentFrame = 0;
             actor.AnimationController.frameLists[1].currentTime = 0f;
-            return State.GameManager.SpriteDictionary.Harvester[9];
+            return SpriteDictionary.Harvester[9];
         }
 
         if (actor.AnimationController.frameLists[1].currentlyActive)
@@ -114,7 +114,7 @@ class Harvester : BlankSlate
                 }
             }
 
-            return State.GameManager.SpriteDictionary.Harvester[6 + frameListArms.frames[actor.AnimationController.frameLists[1].currentFrame]];
+            return SpriteDictionary.Harvester[6 + frameListArms.frames[actor.AnimationController.frameLists[1].currentFrame]];
         }
 
         if (State.Rand.Next(600) == 0)
@@ -122,7 +122,7 @@ class Harvester : BlankSlate
             actor.AnimationController.frameLists[1].currentlyActive = true;
         }
 
-        return State.GameManager.SpriteDictionary.Harvester[6];
+        return SpriteDictionary.Harvester[6];
     }
 
     protected override Sprite DickSprite(Actor_Unit actor) // Dick
@@ -149,7 +149,7 @@ class Harvester : BlankSlate
                 }
             }
 
-            return State.GameManager.SpriteDictionary.Harvester[10 + frameListDick.frames[actor.AnimationController.frameLists[2].currentFrame]];
+            return SpriteDictionary.Harvester[10 + frameListDick.frames[actor.AnimationController.frameLists[2].currentFrame]];
         }
 
         if (State.Rand.Next(300) == 0)
@@ -159,7 +159,7 @@ class Harvester : BlankSlate
             actor.AnimationController.frameLists[2].currentTime = 0f;
         }
 
-        if (actor.IsErect()) return State.GameManager.SpriteDictionary.Harvester[10];
+        if (actor.IsErect()) return SpriteDictionary.Harvester[10];
 
         return null;
     }
@@ -185,67 +185,67 @@ class Harvester : BlankSlate
 
         if (size >= 52 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[49];
+            return SpriteDictionary.Harvester[49];
         }
 
         else if (size >= 49 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[48];
+            return SpriteDictionary.Harvester[48];
         }
 
         else if (size >= 46 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[47];
+            return SpriteDictionary.Harvester[47];
         }
 
         else if (size >= 43 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[46];
+            return SpriteDictionary.Harvester[46];
         }
 
         else if (size >= 40 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[45];
+            return SpriteDictionary.Harvester[45];
         }
 
         else if (size >= 37 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[44];
+            return SpriteDictionary.Harvester[44];
         }
 
         else if (size >= 34 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[43];
+            return SpriteDictionary.Harvester[43];
         }
 
         else if (size >= 30 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[42];
+            return SpriteDictionary.Harvester[42];
         }
 
         else if (size >= 28 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[41];
+            return SpriteDictionary.Harvester[41];
         }
 
         else if (size >= 26 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[40];
+            return SpriteDictionary.Harvester[40];
         }
 
         else if (size >= 24 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[39];
+            return SpriteDictionary.Harvester[39];
         }
 
         else if (size >= 22 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return State.GameManager.SpriteDictionary.Harvester[38];
+            return SpriteDictionary.Harvester[38];
         }
 
         if (size > 17) size = 17;
 
-        return State.GameManager.SpriteDictionary.Harvester[17 + size];
+        return SpriteDictionary.Harvester[17 + size];
     }
 
     protected override Sprite BodyAccentSprite3(Actor_Unit actor) // Tongue
@@ -275,7 +275,7 @@ class Harvester : BlankSlate
                 }
             }
 
-            return State.GameManager.SpriteDictionary.Harvester[12 + frameListTongue.frames[actor.AnimationController.frameLists[3].currentFrame]];
+            return SpriteDictionary.Harvester[12 + frameListTongue.frames[actor.AnimationController.frameLists[3].currentFrame]];
         }
 
         if (State.Rand.Next(500) == 0 && actor.HasBelly)

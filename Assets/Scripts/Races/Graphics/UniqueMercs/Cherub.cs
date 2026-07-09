@@ -3,7 +3,7 @@ using UnityEngine;
 
 class Cherub : BlankSlate
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.Cherub;
+    readonly Sprite[] Sprites = SpriteDictionary.Cherub;
     internal Cherub()
     {
         CanBeGender = new List<Gender>() { Gender.None };
@@ -110,10 +110,10 @@ class Cherub : BlankSlate
         /// if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false)
         ///{
         ///    if (actor.PredatorComponent.VisibleFullness > 3)
-        ///        return State.GameManager.SpriteDictionary.Cherub[10];
+        ///        return SpriteDictionary.Cherub[10];
         ///}
 
-        return actor.HasBelly ? State.GameManager.SpriteDictionary.Cherub[18 + actor.GetStomachSize(7)] : null;
+        return actor.HasBelly ? SpriteDictionary.Cherub[18 + actor.GetStomachSize(7)] : null;
     }
 }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 class Tatltuae : DefaultRaceData
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.Tatltuae;
-    readonly Sprite[] Sprites2 = State.GameManager.SpriteDictionary.TatltuaeHackleVore;
+    readonly Sprite[] Sprites = SpriteDictionary.Tatltuae;
+    readonly Sprite[] Sprites2 = SpriteDictionary.TatltuaeHackleVore;
     bool facingFront = true;
     internal Tatltuae()
     {

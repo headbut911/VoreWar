@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 096c4db64a368a240a53612803f22078
+guid: 2fb0b0bf12d81fb4581771536f84eba7
 TextureImporter:
   fileIDToRecycleName:
     21300000: Hero Armor_0
@@ -10,14 +10,14 @@ TextureImporter:
     21300010: Hero Armor_5
     21300012: Hero Armor_6
     21300014: Hero Armor_7
-    21300016: lizard_aligned_bikini_top_0
-    21300018: lizard_aligned_bikini_top_1
-    21300020: lizard_aligned_bikini_top_2
-    21300022: lizard_aligned_bikini_top_3
-    21300024: lizard_aligned_bikini_top_4
-    21300026: lizard_aligned_bikini_top_5
-    21300028: lizard_aligned_bikini_top_6
-    21300030: lizard_aligned_bikini_top_7
+    21300016: lizard_aligned_crosstop_0
+    21300018: lizard_aligned_crosstop_1
+    21300020: lizard_aligned_crosstop_2
+    21300022: lizard_aligned_crosstop_3
+    21300024: lizard_aligned_crosstop_4
+    21300026: lizard_aligned_crosstop_5
+    21300028: lizard_aligned_crosstop_6
+    21300030: lizard_aligned_crosstop_7
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_0
+      name: lizard_aligned_crosstop_0
       rect:
         serializedVersion: 2
         x: 0
@@ -114,13 +114,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6223c469a6d61d641a668e9f3a198a6d
+      spriteID: 165950ca2ee062b4abc3a2f2cc986ae9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_1
+      name: lizard_aligned_crosstop_1
       rect:
         serializedVersion: 2
         x: 160
@@ -134,13 +134,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dd5d8b492e81ad4692a5107e23c9b00
+      spriteID: 4e58f0dc5712c004084495fd0c67f3c3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_2
+      name: lizard_aligned_crosstop_2
       rect:
         serializedVersion: 2
         x: 320
@@ -154,13 +154,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f414e500813298346b2dc64800175354
+      spriteID: a92e2092355893145b32643a4e254d42
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_3
+      name: lizard_aligned_crosstop_3
       rect:
         serializedVersion: 2
         x: 0
@@ -174,13 +174,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5535c79852001834ba6e6f515c81e638
+      spriteID: 19567465b1209a243b502a4fe6d86632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_4
+      name: lizard_aligned_crosstop_4
       rect:
         serializedVersion: 2
         x: 160
@@ -194,13 +194,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95a1de0305c958a4b8140a67bb8e43a4
+      spriteID: 34bf18925e1577c498db45056a533597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_5
+      name: lizard_aligned_crosstop_5
       rect:
         serializedVersion: 2
         x: 320
@@ -214,13 +214,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4558a493a9394a849b31743f073cf6fa
+      spriteID: 7cd3aee20df5ae84bb749755acf9fd19
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_6
+      name: lizard_aligned_crosstop_6
       rect:
         serializedVersion: 2
         x: 0
@@ -234,13 +234,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9cd6dd495d72c549ad0984d235ecc62
+      spriteID: 3817a4ddaf5b27d44a0e57b9cc78ae5d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: lizard_aligned_bikini_top_7
+      name: lizard_aligned_crosstop_7
       rect:
         serializedVersion: 2
         x: 160
@@ -254,7 +254,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02377d29c00d986469438fe823496d79
+      spriteID: 7d3c9d0d60059d94ebd6c6331b08fc90
       vertices: []
       indices: 
       edges: []
@@ -271,5 +271,5 @@ TextureImporter:
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
-  assetBundleName: 
+  assetBundleName: empire
   assetBundleVariant: 

@@ -4,15 +4,15 @@ using UnityEngine;
 
 class OoviKat : DefaultRaceData
 {
-    readonly Sprite[] Sprites = State.GameManager.SpriteDictionary.HumansBodySprites1;
-    readonly Sprite[] Sprites2 = State.GameManager.SpriteDictionary.HumansBodySprites2;
-    readonly Sprite[] Sprites3 = State.GameManager.SpriteDictionary.HumansBodySprites3;
-    readonly Sprite[] Sprites4 = State.GameManager.SpriteDictionary.HumansVoreSprites;
-    readonly Sprite[] Sprites5 = State.GameManager.SpriteDictionary.HumansBodySprites4;
+    readonly Sprite[] Sprites = SpriteDictionary.HumansBodySprites1;
+    readonly Sprite[] Sprites2 = SpriteDictionary.HumansBodySprites2;
+    readonly Sprite[] Sprites3 = SpriteDictionary.HumansBodySprites3;
+    readonly Sprite[] Sprites4 = SpriteDictionary.HumansVoreSprites;
+    readonly Sprite[] Sprites5 = SpriteDictionary.HumansBodySprites4;
 
-    readonly Sprite[] OoviKatFemale = State.GameManager.SpriteDictionary.OoviKatFemale;
-    readonly Sprite[] OoviKatMale = State.GameManager.SpriteDictionary.OoviKatMale;
-    readonly Sprite[] OoviKatCustom = State.GameManager.SpriteDictionary.OoviKatCustomisation;
+    readonly Sprite[] OoviKatFemale = SpriteDictionary.OoviKatFemale;
+    readonly Sprite[] OoviKatMale = SpriteDictionary.OoviKatMale;
+    readonly Sprite[] OoviKatCustom = SpriteDictionary.OoviKatCustomisation;
 
     bool oversize = false;
 
@@ -918,7 +918,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericTop1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[57];
+            DiscardSprite = SpriteDictionary.HumenFundertops[57];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -934,7 +934,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[56];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[56];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -942,26 +942,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[0 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[0 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -984,7 +984,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[58];
+            DiscardSprite = SpriteDictionary.HumenFundertops[58];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1007,26 +1007,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[8 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[8 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1048,7 +1048,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericTop3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[60];
+            DiscardSprite = SpriteDictionary.HumenFundertops[60];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1064,7 +1064,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[59];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[59];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -1072,26 +1072,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[16 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[16 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1114,7 +1114,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericTop4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[62];
+            DiscardSprite = SpriteDictionary.HumenFundertops[62];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1129,7 +1129,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[61];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[61];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -1137,26 +1137,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[24 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[24 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1178,7 +1178,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericTop5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[64];
+            DiscardSprite = SpriteDictionary.HumenFundertops[64];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1194,7 +1194,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[63];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[63];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -1202,26 +1202,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[32 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[32 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1244,7 +1244,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericTop6()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[66];
+            DiscardSprite = SpriteDictionary.HumenFundertops[66];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1260,7 +1260,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[65];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[65];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -1268,26 +1268,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[40 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[40 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1310,7 +1310,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericTop7()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFundertops[68];
+            DiscardSprite = SpriteDictionary.HumenFundertops[68];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1325,7 +1325,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[67];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[67];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -1333,26 +1333,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFundertops[48 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFundertops[48 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1375,7 +1375,7 @@ class OoviKat : DefaultRaceData
     {
         public MaleTop()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[5];
+            DiscardSprite = SpriteDictionary.HumenMundertops[5];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1386,7 +1386,7 @@ class OoviKat : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[0];
+            clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[0];
 
             base.Configure(sprite, actor);
         }
@@ -1396,7 +1396,7 @@ class OoviKat : DefaultRaceData
     {
         public MaleTop2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[5];
+            DiscardSprite = SpriteDictionary.HumenMundertops[5];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1410,11 +1410,11 @@ class OoviKat : DefaultRaceData
 
             if (actor.HasBelly)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[4];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[4];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[1 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[1 + actor.Unit.BodySize];
             }
 
             base.Configure(sprite, actor);
@@ -1425,7 +1425,7 @@ class OoviKat : DefaultRaceData
     {
         public MaleTop3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[11];
+            DiscardSprite = SpriteDictionary.HumenMundertops[11];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1436,7 +1436,7 @@ class OoviKat : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[6];
+            clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[6];
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
 
             base.Configure(sprite, actor);
@@ -1447,7 +1447,7 @@ class OoviKat : DefaultRaceData
     {
         public MaleTop4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[11];
+            DiscardSprite = SpriteDictionary.HumenMundertops[11];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1461,11 +1461,11 @@ class OoviKat : DefaultRaceData
 
             if (actor.HasBelly)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[10];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[10];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[7 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[7 + actor.Unit.BodySize];
             }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
 
@@ -1477,7 +1477,7 @@ class OoviKat : DefaultRaceData
     {
         public MaleTop5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[14];
+            DiscardSprite = SpriteDictionary.HumenMundertops[14];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1491,11 +1491,11 @@ class OoviKat : DefaultRaceData
 
             if (actor.Unit.BodySize == 2)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[13];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[13];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[12];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[12];
             }
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
 
@@ -1507,7 +1507,7 @@ class OoviKat : DefaultRaceData
     {
         public MaleTop6()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenMundertops[16];
+            DiscardSprite = SpriteDictionary.HumenMundertops[16];
             maleOnly = true;
             coversBreasts = false;
             blocksDick = false;
@@ -1519,7 +1519,7 @@ class OoviKat : DefaultRaceData
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
 
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenMundertops[15];
+            clothing1.GetSprite = (s) => SpriteDictionary.HumenMundertops[15];
 
             base.Configure(sprite, actor);
         }
@@ -1529,7 +1529,7 @@ class OoviKat : DefaultRaceData
     {
         public Uniform1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUniform1[42];
+            DiscardSprite = SpriteDictionary.HumenUniform1[42];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(18, null, null);
             clothing2 = new SpriteExtraInfo(15, null, null);
@@ -1542,17 +1542,17 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[6];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenUniform2[6];
             }
             else if (actor.Unit.HasBreasts)
             {
                 if (actor.Unit.BreastSize > 5)
                 {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[6];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUniform2[6];
                 }
                 else
                 {
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[0 + actor.Unit.BreastSize];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUniform2[0 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1565,36 +1565,36 @@ class OoviKat : DefaultRaceData
             {
                 if (actor.GetStomachSize(31, 0.7f) > 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[13 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenUniform2[13 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
                 }
                 else if (actor.GetStomachSize(31, 0.7f) > 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[12 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenUniform2[12 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
                 }
                 else if (actor.GetStomachSize(31, 0.7f) > 2)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[11 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenUniform2[11 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
                 }
                 else if (actor.GetStomachSize(31, 0.7f) > 1)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[10 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenUniform2[10 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
                 }
                 else if (actor.GetStomachSize(31, 0.7f) > 0)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[9 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenUniform2[9 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[8 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenUniform2[8 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
                 }
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform2[7 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUniform2[7 + 7 * actor.Unit.BodySize + 21 * (!actor.Unit.HasBreasts ? 1 : 0)];
             }
 
-            if (actor.IsAttacking) clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[3 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
-            else clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[0 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
+            if (actor.IsAttacking) clothing3.GetSprite = (s) => SpriteDictionary.HumenUniform1[3 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
+            else clothing3.GetSprite = (s) => SpriteDictionary.HumenUniform1[0 + 4 * actor.Unit.BodySize + 12 * (!actor.Unit.HasBreasts ? 1 : 0)];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
             clothing2.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -1608,7 +1608,7 @@ class OoviKat : DefaultRaceData
     {
         public FemaleOnePiece1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFOnePieces[81];
+            DiscardSprite = SpriteDictionary.HumenFOnePieces[81];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1625,7 +1625,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[51];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[51];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -1633,26 +1633,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[43 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[43 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1669,28 +1669,28 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[42];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[42];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[41];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[41];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[40];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[40];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[39];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[39];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[38];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[38];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[37];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[37];
                 }
             }
             else
@@ -1699,32 +1699,32 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 4)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[21];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[21];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[20];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[20];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[19];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[19];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[18];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[18];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[17];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[17];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[16];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[16];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[15];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[15];
                 }
             }
 
@@ -1741,7 +1741,7 @@ class OoviKat : DefaultRaceData
     {
         public FemaleOnePiece2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFOnePieces[80];
+            DiscardSprite = SpriteDictionary.HumenFOnePieces[80];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1766,26 +1766,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[52 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[52 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -1802,64 +1802,64 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 12)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[36];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[36];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 11)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[35];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[35];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 10)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[34];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[34];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 9)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[33];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[33];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 8)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[32];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[32];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 7)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[31];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[31];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 6)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[30];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[30];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 5)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[29];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[29];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 4)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[28];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[28];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[27];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[27];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[26];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[26];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[25];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[25];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[24];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[24];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[23];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[23];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[22];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[22];
                 }
             }
             else
@@ -1868,64 +1868,64 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 12)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[14];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[14];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 11)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[13];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[13];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 10)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[12];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[12];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 9)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[11];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[11];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 8)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[10];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[10];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 7)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[9];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[9];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 6)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[8];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[8];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 5)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[7];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[7];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 4)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[6];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[6];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[5];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[5];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[4];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[4];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[3];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[3];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[2];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[2];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[1];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[1];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[0];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[0];
                 }
             }
 
@@ -1942,7 +1942,7 @@ class OoviKat : DefaultRaceData
     {
         public FemaleOnePiece3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFOnePieces[79];
+            DiscardSprite = SpriteDictionary.HumenFOnePieces[79];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -1959,7 +1959,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[69];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[69];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -1967,26 +1967,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[61 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[61 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -2003,64 +2003,64 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 12)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[36];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[36];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 11)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[35];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[35];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 10)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[34];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[34];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 9)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[33];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[33];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 8)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[32];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[32];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 7)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[31];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[31];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 6)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[30];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[30];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 5)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[29];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[29];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 4)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[28];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[28];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[27];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[27];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[26];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[26];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[25];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[25];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[24];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[24];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[23];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[23];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[22];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[22];
                 }
             }
             else
@@ -2069,64 +2069,64 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 12)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[14];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[14];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 11)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[13];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[13];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 10)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[12];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[12];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 9)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[11];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[11];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 8)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[10];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[10];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 7)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[9];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[9];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 6)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[8];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[8];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 5)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[7];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[7];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 4)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[6];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[6];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[5];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[5];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[4];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[4];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[3];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[3];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[2];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[2];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[1];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[1];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[0];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[0];
                 }
             }
 
@@ -2143,7 +2143,7 @@ class OoviKat : DefaultRaceData
     {
         public FemaleOnePiece4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenFOnePieces[82];
+            DiscardSprite = SpriteDictionary.HumenFOnePieces[82];
             blocksBreasts = true;
             coversBreasts = false;
             femaleOnly = true;
@@ -2160,7 +2160,7 @@ class OoviKat : DefaultRaceData
         {
             if (Races.OoviKat.oversize)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[78];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[78];
                 blocksBreasts = false;
                 clothing2.GetSprite = null;
                 clothing3.GetSprite = null;
@@ -2168,26 +2168,26 @@ class OoviKat : DefaultRaceData
             else if (actor.Unit.HasBreasts)
             {
                 blocksBreasts = true;
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[70 + actor.Unit.BreastSize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[70 + actor.Unit.BreastSize];
                 if (actor.Unit.BreastSize == 3)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[64];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[67];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[64];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[67];
                 }
                 else if (actor.Unit.BreastSize == 4)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[65];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[68];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[65];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[68];
                 }
                 else if (actor.Unit.BreastSize == 5)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[66];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[69];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[66];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[69];
                 }
                 else
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
-                    clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[0 + actor.Unit.BreastSize];
+                    clothing3.GetSprite = (s) => SpriteDictionary.HumansVoreSprites[32 + actor.Unit.BreastSize];
                 }
             }
             else
@@ -2204,28 +2204,28 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[42];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[42];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[41];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[41];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[40];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[40];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[39];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[39];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[38];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[38];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[37];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[37];
                 }
             }
             else
@@ -2234,32 +2234,32 @@ class OoviKat : DefaultRaceData
                 {
                     if (actor.GetStomachSize(31, 0.7f) > 4)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[21];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[21];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 3)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[20];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[20];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 2)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[19];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[19];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 1)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[18];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[18];
                     }
                     else if (actor.GetStomachSize(31, 0.7f) > 0)
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[17];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[17];
                     }
                     else
                     {
-                        clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[16];
+                        clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[16];
                     }
                 }
                 else
                 {
-                    clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenFOnePieces[15];
+                    clothing4.GetSprite = (s) => SpriteDictionary.HumenFOnePieces[15];
                 }
             }
 
@@ -2276,7 +2276,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericBot1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[6];
+            DiscardSprite = SpriteDictionary.HumenUnderbottoms[6];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -2289,19 +2289,19 @@ class OoviKat : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 4)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[60];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[60];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[61];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[61];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[0 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[0 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[3 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[3 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2314,7 +2314,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericBot2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[13];
+            DiscardSprite = SpriteDictionary.HumenUnderbottoms[13];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -2327,19 +2327,19 @@ class OoviKat : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 4)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[60];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[60];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[61];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[61];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[7 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[7 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[10 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[10 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2352,7 +2352,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericBot3()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[26];
+            DiscardSprite = SpriteDictionary.HumenUnderbottoms[26];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
@@ -2365,19 +2365,19 @@ class OoviKat : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 4)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[62];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[62];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[63];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[63];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[20 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[20 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[23 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[23 + actor.Unit.BodySize];
             }
 
             base.Configure(sprite, actor);
@@ -2388,7 +2388,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericBot4()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[39];
+            DiscardSprite = SpriteDictionary.HumenUnderbottoms[39];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -2401,19 +2401,19 @@ class OoviKat : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 4)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[60];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[60];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[61];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[61];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[33 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[33 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[36 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[36 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2426,7 +2426,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericBot5()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[52];
+            DiscardSprite = SpriteDictionary.HumenUnderbottoms[52];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -2439,19 +2439,19 @@ class OoviKat : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 4)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[60];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[60];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[61];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[61];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[46 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[46 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[49 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[49 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2464,7 +2464,7 @@ class OoviKat : DefaultRaceData
     {
         public GenericBot6()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUnderbottoms[59];
+            DiscardSprite = SpriteDictionary.HumenUnderbottoms[59];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(13, null, null);
             clothing2 = new SpriteExtraInfo(12, null, null);
@@ -2477,19 +2477,19 @@ class OoviKat : DefaultRaceData
             if (actor.Unit.DickSize > 0)
             {
                 if (actor.Unit.DickSize < 4)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[60];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[60];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[61];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[61];
             }
             else clothing1.GetSprite = null;
 
             if (actor.Unit.HasBreasts)
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[53 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[53 + actor.Unit.BodySize];
             }
             else
             {
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUnderbottoms[56 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenUnderbottoms[56 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2502,7 +2502,7 @@ class OoviKat : DefaultRaceData
     {
         public Uniform2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenUniform1[43];
+            DiscardSprite = SpriteDictionary.HumenUniform1[43];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(12, null, null);
             Type = 60024;
@@ -2513,11 +2513,11 @@ class OoviKat : DefaultRaceData
         {
             if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[24 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenUniform1[24 + actor.Unit.BodySize];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenUniform1[33 + actor.Unit.BodySize];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenUniform1[33 + actor.Unit.BodySize];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2529,7 +2529,7 @@ class OoviKat : DefaultRaceData
     {
         public BigLoin()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenBigLoin[12];
+            DiscardSprite = SpriteDictionary.HumenBigLoin[12];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(12, null, null);
             Type = 60026;
@@ -2540,11 +2540,11 @@ class OoviKat : DefaultRaceData
         {
             if (actor.Unit.HasBreasts)
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenBigLoin[0 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenBigLoin[0 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenBigLoin[6 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenBigLoin[6 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2556,7 +2556,7 @@ class OoviKat : DefaultRaceData
     {
         public Pants1()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenPants[28];
+            DiscardSprite = SpriteDictionary.HumenPants[28];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(12, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(13, null, WhiteColored);
@@ -2570,16 +2570,16 @@ class OoviKat : DefaultRaceData
             {
                 if (actor.Unit.DickSize > 0)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[24 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenPants[24 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
                 }
                 else clothing2.GetSprite = null;
 
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[0 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenPants[0 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[6 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[25 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenPants[6 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenPants[25 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
             }
 
             base.Configure(sprite, actor);
@@ -2590,7 +2590,7 @@ class OoviKat : DefaultRaceData
     {
         public Pants2()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenPants[33];
+            DiscardSprite = SpriteDictionary.HumenPants[33];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(12, null, null);
             clothing2 = new SpriteExtraInfo(13, null, null);
@@ -2604,16 +2604,16 @@ class OoviKat : DefaultRaceData
             {
                 if (actor.Unit.DickSize > 0)
                 {
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[29 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumenPants[29 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
                 }
                 else clothing2.GetSprite = null;
 
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[12 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenPants[12 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
             }
             else
             {
-                clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[18 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenPants[30 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
+                clothing1.GetSprite = (s) => SpriteDictionary.HumenPants[18 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumenPants[30 + (actor.GetStomachSize(31, 0.7f) > 3 ? 2 : 0)];
             }
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
@@ -2626,7 +2626,7 @@ class OoviKat : DefaultRaceData
     {
         public Skirt()
         {
-            DiscardSprite = State.GameManager.SpriteDictionary.HumenSkirt[6];
+            DiscardSprite = SpriteDictionary.HumenSkirt[6];
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(12, null, null);
             Type = 60029;
@@ -2636,7 +2636,7 @@ class OoviKat : DefaultRaceData
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumenSkirt[0 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
+            clothing1.GetSprite = (s) => SpriteDictionary.HumenSkirt[0 + 2 * actor.Unit.BodySize + (actor.GetStomachSize(31, 0.7f) > 3 ? 1 : 0)];
 
             clothing1.GetPalette = (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.Clothing50Spaced, actor.Unit.ClothingColor);
             base.Configure(sprite, actor);

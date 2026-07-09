@@ -221,6 +221,16 @@ static class TacticalActionList
         TargetedDictionary[SpecialAction.ShunGokuSatsu] = TargetedActions.Last();
 
         TargetedActions.Add(new TargetedTacticalAction(
+           name: "Stunning Strike",
+           requiresPred: false,
+           conditional: (a) => a.Unit.HasTrait(Traits.StunningStrike) && a.TurnUsedStunStrike + 2 <= State.GameManager.TacticalMode.currentTurn,
+           onClicked: () => State.GameManager.TacticalMode.TrySetSpecialMode(SpecialAction.StunningStrike),
+           manaCost: 10,
+           onExecute: (a, t) => a.StunningStrike(t),
+           minimumMp: 1));
+        TargetedDictionary[SpecialAction.StunningStrike] = TargetedActions.Last();
+
+        TargetedActions.Add(new TargetedTacticalAction(
             name: "Regurgitate",
             requiresPred: true,
             conditional: (a) => a.PredatorComponent?.AlivePrey > 0 && a.Unit.HasTrait(Traits.Greedy) == false,
