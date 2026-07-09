@@ -2839,7 +2839,7 @@ static class StoredLogTexts
             priority: 25, conditional: s => InStomach(s) && s.Prey.IsDead && s.Target == s.Unit && s.Unit.Race == Race.Iliijiith && s.Target.Race == Race.Iliijiith),
             //Bladder Rubs
             new EventString((i) => $"As <b>{i.Prey.Name}</b> marinates in <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> bladder, {(ActorHumanoid(i) ? $"<b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> hands press" : $"<b>{i.Unit.Name}</b> presses")} down from the outside, shrinking the space within the bladder down.",
-            priority: 13, conditional: s => s.preyLocation == PreyLocation.stomach && !s.Prey.IsDead && s.Target != s.Unit),
+            priority: 13, conditional: s => InBladder(s) && !s.Prey.IsDead && s.Target != s.Unit),
             new EventString((i) => $"<b>{i.Unit.Name}</b> gives <b>{i.Target.Name}</b> a hug, raising the temperature within {GPPHis(i.Target)} bladder by several degrees.",
             priority: 13, conditional: s => InBladder(s) && !s.Prey.IsDead && s.Target != s.Unit),
             new EventString((i) => $"As <b>{i.Prey.Name}</b> marinates in <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> bladder, {(ActorHumanoid(i) ? $"the {ApostrophizeWithOrWithoutS(GetRaceDescSingl(i.Target))} hands press" : $"<b>{i.Target.Name}</b> presses")} down from the outside, shrinking the space within the bladder down.",
