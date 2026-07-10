@@ -123,7 +123,7 @@ class Nectar : BlankSlate
             return SpriteDictionary.Nectar[29];
         }
 
-        if (size > 28) size = 28;
+        if (size > 28) size = 20;
         return SpriteDictionary.Nectar[8 + size];
     }
 
