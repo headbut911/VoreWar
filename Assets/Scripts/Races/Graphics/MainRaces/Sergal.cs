@@ -333,7 +333,7 @@ class Sergal : DefaultRaceData
             DiscardSprite = State.GameManager.SpriteDictionary.Loincloths[10];
             Type = 200;
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 1;
             DiscardUsesPalettes = true;
             clothing1 = new SpriteExtraInfo(10, null, null);
             coversBreasts = false;
@@ -353,7 +353,7 @@ class Sergal : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             coversBreasts = false;
             Type = 207;
             OccupiesAllSlots = true;

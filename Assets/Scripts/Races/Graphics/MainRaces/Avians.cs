@@ -826,7 +826,7 @@ class Avians : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             coversBreasts = false;
             Type = 207;
             OccupiesAllSlots = true;
@@ -1010,7 +1010,7 @@ class Avians : DefaultRaceData
             DiscardSprite = SpriteDictionary.Avians3[140];
             coversBreasts = false;
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 1;
             clothing1 = new SpriteExtraInfo(10, null, null);
             clothing2 = new SpriteExtraInfo(9, null, WhiteColored);
             Type = 1540;

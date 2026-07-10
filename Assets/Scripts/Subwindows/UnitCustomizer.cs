@@ -649,8 +649,8 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Eyebrow Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Moustaches Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Head Fluff Type";
-                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Body Pattern";
-                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Face Pattern";
+                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Fur Type";
+                buttons[(int)ButtonTypes.BodyAccentTypes5].Label.text = "Face Pattern";
                 buttons[(int)ButtonTypes.Furry].gameObject.SetActive(false);
                 buttons[(int)ButtonTypes.HatType].gameObject.SetActive(false);
                 buttons[(int)ButtonTypes.BodyAccessoryColor].gameObject.SetActive(false);

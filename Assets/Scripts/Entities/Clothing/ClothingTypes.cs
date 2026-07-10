@@ -230,7 +230,7 @@ class Loincloth : MainClothing
         DiscardSprite = State.GameManager.SpriteDictionary.Loincloths[10];
         Type = 200;
         blocksDick = false;
-        inFrontOfDick = true;
+        inFrontOfDick = 1;
         DiscardUsesPalettes = true;
         clothing1 = new SpriteExtraInfo(10, null, null);
         coversBreasts = false;
@@ -345,7 +345,7 @@ class Rags : MainClothing
     {
         DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
         blocksDick = false;
-        inFrontOfDick = true;
+        inFrontOfDick = 1;
         coversBreasts = false;
         Type = 207;
         OccupiesAllSlots = true;
@@ -376,7 +376,7 @@ class Rags : MainClothing
                 spr = 7;
         }
 
-        if ((blocksDick || inFrontOfDick) && Config.CockVoreHidesClothes && actor.PredatorComponent?.BallsFullness > 0)       
+        if ((blocksDick || inFrontOfDick > 0) && Config.CockVoreHidesClothes && actor.PredatorComponent?.BallsFullness > 0)       
             clothing1.GetSprite = null;        
         else
             clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.Rags[spr];

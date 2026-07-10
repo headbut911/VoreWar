@@ -631,7 +631,7 @@ class Eevee : DefaultRaceData
         {
             DiscardSprite = SpriteDictionary.Eevee[123];
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             OccupiesAllSlots = true;
             coversBreasts = false;
             Type = 860045;

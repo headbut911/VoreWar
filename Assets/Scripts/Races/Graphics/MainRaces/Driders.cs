@@ -219,7 +219,7 @@ namespace DriderClothing
             leaderOnly = true;
             FixedColor = true;
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 1;
             coversBreasts = false;
             clothing1 = new SpriteExtraInfo(10, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(17, null, WhiteColored);

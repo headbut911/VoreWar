@@ -910,7 +910,7 @@ class Bees : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 3;
             coversBreasts = false;
             Type = 207;
             OccupiesAllSlots = true;

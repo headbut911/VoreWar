@@ -2671,12 +2671,12 @@ class DemiDragons : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             coversBreasts = false;
             Type = 207;
             OccupiesAllSlots = true;
             FixedColor = true;
-            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing1 = new SpriteExtraInfo(19, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
         }
 
@@ -2707,7 +2707,7 @@ class DemiDragons : DefaultRaceData
     {
         public DemidragonLeader()
         {
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             coversBreasts = false;
             Type = 200700;
             OccupiesAllSlots = true;
