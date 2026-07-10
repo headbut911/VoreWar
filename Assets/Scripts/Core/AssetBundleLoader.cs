@@ -26,7 +26,7 @@ public class AssetBundleLoader
         SpriteDictionary.LizardLeather = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardLeather");
         SpriteDictionary.LizardCloth = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardCloth");
         SpriteDictionary.LizardsBootyArmor = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardsBootyArmor");
-        SpriteDictionary.EquineClothes = empireBundle.LoadAssetWithSubAssets<Sprite>("EquineClothes");
+        SpriteDictionary.EquineClothes = empireBundle.LoadAssetWithSubAssets<Sprite>("horse_clothes");
         SpriteDictionary.CowClothing = empireBundle.LoadAssetWithSubAssets<Sprite>("cowclothes");
         SpriteDictionary.CowHoliday = empireBundle.LoadAssetWithSubAssets<Sprite>("CowHoliday");
         SpriteDictionary.RainCoats = empireBundle.LoadAssetWithSubAssets<Sprite>("RainCoats");

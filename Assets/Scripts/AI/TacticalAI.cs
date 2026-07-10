@@ -679,6 +679,8 @@ public abstract class TacticalAI : ITacticalAI
         {
             if (targets[0].distance < 2)
             {
+                if ((State.Rand.Next(3) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.SweepingSwallow].AppearConditional(actor))
+                        actor.AiSweepAttack(targets[0].actor, actor, false);
                 if (actor.PredatorComponent.UsePreferredVore(targets[0].actor))
                     targetsEaten++;
                 didAction = true;
@@ -1113,10 +1115,8 @@ public abstract class TacticalAI : ITacticalAI
         {
             if (targets[0].distance < 2 && (targets[0].actor.InSight || !State.World.IsNight))
             {
-                    if ((State.Rand.Next(5) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.GiantSweep].AppearConditional(actor))
+                    if ((State.Rand.Next(3) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.GiantSweep].AppearConditional(actor))
                         actor.AiSweepAttack(targets[0].actor, actor, true);
-                    if ((State.Rand.Next(5) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.SweepingSwallow].AppearConditional(actor))
-                        actor.AiSweepAttack(targets[0].actor, actor, false);
                     if ((State.Rand.Next(2) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.TailStrike].AppearConditional(actor))
                         actor.TailStrike(targets[0].actor);
                     if ((State.Rand.Next(4) == 0) && TacticalActionList.TargetedDictionary[SpecialAction.AllInVore].AppearConditional(actor))

@@ -1601,7 +1601,7 @@ public class Actor_Unit
 
     public bool AiSweepAttack(Actor_Unit mainTarget, Actor_Unit self, bool attack_ver)
     {
-        if (Movement < 1 || Unit.HasTrait(Traits.Legendary) == false)
+        if (Movement < 1 || Unit.HasTrait(Traits.TheMatron) == false)
             return false;
         if (Unit.Mana >= 40)
         {
@@ -1648,7 +1648,7 @@ public class Actor_Unit
 
     public bool SweepAttack(bool attack_ver)
     {
-        if (Movement < 1 || Unit.HasTrait(Traits.Legendary) == false)
+        if (Movement < 1 || Unit.HasTrait(Traits.TheMatron) == false)
             return false;
         if (!Unit.SpendMana(40))
         {

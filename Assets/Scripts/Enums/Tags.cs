@@ -369,7 +369,7 @@ public enum Traits
     /// <summary>Unit's BladeDance, Tenacity, and Focus stack loss is reduced by if stacks are below 10% current HP.</summary>
     Unflinching = 186,
     /// <summary></summary>
-    Legendary = 187,
+    TheMatron = 187,
     /// <summary>Unit takes extra damage from all sources of fire. (150%)</summary>
     FireVulnerable = 188,
     /// <summary>Unit's stats are boosted by 220% But needs twice as much EXP to level</summary>

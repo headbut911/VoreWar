@@ -228,7 +228,7 @@ Soul Sprites
 Seraph
 
 <b><u>Operation Omneon:</b></u>
-<i>Lion/Tatltuae</i>
+<i>Tatltuae</i>
 Eevee
 Umbreon
 Equaleon
@@ -297,6 +297,7 @@ Zera
 Zoey
 Feit
 Taraluxia
+Konane
 
 <b><u>Magentasaur:</b></u>
 Scorch
@@ -331,7 +332,7 @@ Xelhilde
 <b><u>Supra:</b></u>
 Olivia
 
-<b><u>Legoshi:</b></u>
+<b><u>Legoshi/RyanTheSergal:</b></u>
 Ryan
 
 <b><u>Zezmeril:</b></u>

@@ -1157,7 +1157,7 @@ static class RaceParameters
             },
             RacialTraits = new List<Traits>()
         {
-                Traits.Legendary,
+                Traits.TheMatron,
                 Traits.ForcefulBlow,
                 Traits.Cruel,
                 Traits.SlowAbsorption,
@@ -4801,7 +4801,6 @@ static class RaceParameters
             RacialTraits = new List<Traits>()
         {
                 Traits.DestroyingAngel,
-                Traits.Legendary,
                 Traits.ManaAttuned,
                 Traits.ManaBarrier,
                 Traits.Flight,
