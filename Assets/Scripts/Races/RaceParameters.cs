@@ -1340,7 +1340,7 @@ static class RaceParameters
                 Traits.StrongGullet,
                 Traits.Hoarder,
         },
-            RaceDescription = "",
+            RaceDescription = "Naturally prideful and greedy, the DemiDragons historically struggled somewhat with maintaining cohesive societies, however, in recent times they managed to turn the very traits that historically kept them scattered and divided into a force to keep together, directing their greed to build their own kingdoms ever greater at the cost of any others unlucky enough to be nearby. While they respect the more feral dragons of the realm, they generally deny any relation to them, as well as relation to anyone else. Whether this is because they're actually unrelated or just too proud to admit it is, however, unknown.",
         };
 
         Yordles = new RaceTraits()
