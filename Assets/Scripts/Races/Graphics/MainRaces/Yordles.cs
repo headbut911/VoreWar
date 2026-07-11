@@ -238,7 +238,7 @@ class Yordles : DefaultRaceData
     internal override int DickSizes => 6;
     internal override int BreastSizes => 8;
 
-    protected override Sprite BodySprite(Actor_Unit actor) => YordlesBodies[0 + actor.Unit.BodySize + (actor.Unit.BodyAccentType4 * 14) + (actor.Unit.HasBreasts ? 0 : 6)];
+    protected override Sprite BodySprite(Actor_Unit actor) => YordlesBodies[0 + actor.Unit.BodySize + (actor.Unit.BodyAccentType4 * 14) + (actor.Unit.HasBreasts ? 0 : 7)];
 
 
     protected override Sprite HeadSprite(Actor_Unit actor) => YordlesCustomization1[(actor.Unit.BodyAccentType5 * 3) + (actor.IsAttacking ? 1 : (actor.IsOralVoring ? 2 : 0))];
@@ -1151,7 +1151,7 @@ class Yordles : DefaultRaceData
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             coversBreasts = false;
             Type = 207;
             OccupiesAllSlots = true;

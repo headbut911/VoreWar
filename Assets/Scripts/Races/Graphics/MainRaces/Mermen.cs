@@ -397,7 +397,7 @@ namespace MermenClothing
             coversBreasts = false;
             OccupiesAllSlots = true;
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(11, null, WhiteColored);
             Type = 683;
@@ -429,7 +429,7 @@ namespace MermenClothing
             coversBreasts = false;
             OccupiesAllSlots = true;
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(11, null, WhiteColored);
             Type = 685;
@@ -467,7 +467,7 @@ namespace MermenClothing
             coversBreasts = false;
             OccupiesAllSlots = true;
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(11, null, WhiteColored);
             clothing3 = new SpriteExtraInfo(10, null, WhiteColored);
@@ -574,7 +574,7 @@ namespace MermenClothing
             DiscardSprite = SpriteDictionary.Mermen2[136];
             coversBreasts = false;
             blocksDick = false;
-            inFrontOfDick = true;
+            inFrontOfDick = 1;
             clothing1 = new SpriteExtraInfo(11, null, WhiteColored);
             Type = 687;
             FixedColor = true;

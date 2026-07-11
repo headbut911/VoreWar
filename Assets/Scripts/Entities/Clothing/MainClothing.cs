@@ -42,8 +42,8 @@ abstract class MainClothing
     protected bool blocksBreasts;
     /// <summary>Turns off the dick sprites entirely</summary>
     protected bool blocksDick = true;
-    /// <summary>Doesn't turn off the dick, but is in front of it</summary>
-    protected bool inFrontOfDick = false;
+    /// <summary>Doesn't turn off the dick, but is in front of it. Set equal to the clothing with the lowest layer that blocks the dick</summary>
+    protected int inFrontOfDick = 0;
     /// <summary>Whether clothing applies a color to the belly</summary>
     protected bool colorsBelly = false;
     protected bool HidesFluff = false;
@@ -102,7 +102,7 @@ abstract class MainClothing
     /// </summary>
     public virtual void Configure(CompleteSprite sprite, Actor_Unit actor)
     {
-        if ((blocksDick || inFrontOfDick) && Config.CockVoreHidesClothes && actor.PredatorComponent?.BallsFullness > 0)
+        if ((blocksDick || inFrontOfDick > 0) && Config.CockVoreHidesClothes && actor.PredatorComponent?.BallsFullness > 0)
             return;
         Apply(sprite, actor);
     }
@@ -197,10 +197,49 @@ abstract class MainClothing
                 sprite.HideSprite(SpriteType.BodyAccent2); //Used for Dick Ring colors
             }
         }
-        if (inFrontOfDick)
+        if (inFrontOfDick > 0)
         {
-            sprite.ChangeLayer(SpriteType.Dick, (clothing1.layer - 1));
-            sprite.ChangeLayer(SpriteType.Balls, (clothing1.layer - 1));
+            switch (inFrontOfDick)
+            {
+                case 1:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing1.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing1.layer - 1));
+                    break;
+                case 2:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing2.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing2.layer - 1));
+                    break;
+                case 3:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing3.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing3.layer - 1));
+                    break;
+                case 4:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing4.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing4.layer - 1));
+                    break;
+                case 5:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing5.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing5.layer - 1));
+                    break;
+                case 6:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing6.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing6.layer - 1));
+                    break;
+                case 7:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing7.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing7.layer - 1));
+                    break;
+                case 8:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing8.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing8.layer - 1));
+                    break;
+                case 9:
+                    sprite.ChangeLayer(SpriteType.Dick, (clothing9.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing9.layer - 1));
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (colorsBelly)

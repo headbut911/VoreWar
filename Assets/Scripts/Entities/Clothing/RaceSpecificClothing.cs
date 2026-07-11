@@ -406,7 +406,7 @@ class LizardBoneLoins : MainClothing
         Type = 6001;
         coversBreasts = false;
         blocksDick = false;
-        inFrontOfDick = true;
+        inFrontOfDick = 1;
         leaderOnly = false;
         FixedColor = true;
         DiscardSprite = SpriteDictionary.LizardBone[10];
@@ -623,7 +623,7 @@ class LizardLeatherLoins : MainClothing
         Type = 6001;
         coversBreasts = false;
         blocksDick = false;
-        inFrontOfDick = true;
+        inFrontOfDick = 1;
         leaderOnly = false;
         FixedColor = false;
         DiscardSprite = SpriteDictionary.LizardLeather[17];
@@ -830,7 +830,7 @@ class LizardClothLoins : MainClothing
         Type = 6001;
         coversBreasts = false;
         blocksDick = false;
-        inFrontOfDick = true;
+        inFrontOfDick = 1;
         leaderOnly = false;
         FixedColor = true;
         DiscardSprite = SpriteDictionary.LizardCloth[11];

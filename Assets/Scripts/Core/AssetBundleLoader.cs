@@ -17,7 +17,7 @@ public class AssetBundleLoader
         SpriteDictionary.MaleVillager = empireBundle.LoadAssetWithSubAssets<Sprite>("MaleVillager");
         SpriteDictionary.MalePlate = empireBundle.LoadAssetWithSubAssets<Sprite>("manplatearmor");
         SpriteDictionary.FemalePlate = empireBundle.LoadAssetWithSubAssets<Sprite>("femaleplatearmor");
-        SpriteDictionary.LizardPeasant = empireBundle.LoadAssetWithSubAssets<Sprite>("Lizardspeasants");
+        SpriteDictionary.LizardPeasant = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardPeasant");
         SpriteDictionary.LizardBlackTop = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardBlackTop");
         SpriteDictionary.LizardBikiniTop = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardBikiniTop");
         SpriteDictionary.LizardCrossTop = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardCrossTop");
@@ -204,7 +204,7 @@ public class AssetBundleLoader
         SpriteDictionary.Aabayx = empireBundle.LoadAssetWithSubAssets<Sprite>("Aabayx");
         SpriteDictionary.AabayxFacePaint = empireBundle.LoadAssetWithSubAssets<Sprite>("AabayxFacePaint");
         SpriteDictionary.AabayxLeader = empireBundle.LoadAssetWithSubAssets<Sprite>("AabayxHighPriest");
-        SpriteDictionary.Mice1 = empireBundle.LoadAssetWithSubAssets<Sprite>("Mice1");
+        SpriteDictionary.Mice1 = empireBundle.LoadAssetWithSubAssets<Sprite>("Mice1").Concat(empireBundle.LoadAssetWithSubAssets<Sprite>("MiceRags")).ToArray();
         SpriteDictionary.Mice2 = empireBundle.LoadAssetWithSubAssets<Sprite>("Mice2");
         SpriteDictionary.MiceFBottoms = empireBundle.LoadAssetWithSubAssets<Sprite>("MiceFBottoms");
         SpriteDictionary.MiceFTops = empireBundle.LoadAssetWithSubAssets<Sprite>("MiceFTops");

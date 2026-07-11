@@ -858,7 +858,7 @@ class Demiants : DefaultRaceData
         public DemiantRags()
         {
             DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
-            inFrontOfDick = true;
+            inFrontOfDick = 2;
             coversBreasts = false;
             Type = 207;
             OccupiesAllSlots = true;

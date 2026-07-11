@@ -644,13 +644,29 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Ear Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Topping Type";
                 break;
+            case Race.DemiDragons:
+                buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Outer Scale Color";
+                buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Body Pattern Type";
+                buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Inner Scale Color";
+                buttons[(int)ButtonTypes.ExtraColor2].Label.text = "Horn/Claw Color";
+                buttons[(int)ButtonTypes.ExtraColor3].Label.text = "Internal Color";
+                buttons[(int)ButtonTypes.ExtraColor4].Label.text = "Body Pattern Color";
+                buttons[(int)ButtonTypes.FurTypes].Label.text = "Inner Scale Type";
+                buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Wing Type";
+                buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Horn Type";
+                buttons[(int)ButtonTypes.MouthType].gameObject.SetActive(false);
+                buttons[(int)ButtonTypes.HatType].gameObject.SetActive(false);
+                buttons[(int)ButtonTypes.BodyAccentTypes3].gameObject.SetActive(false);
+                buttons[(int)ButtonTypes.BodyAccentTypes4].gameObject.SetActive(false);
+                buttons[(int)ButtonTypes.BodyAccentTypes5].gameObject.SetActive(false);
+                break;
             case Race.Yordles:
                 buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Ear Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Eyebrow Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Moustaches Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Head Fluff Type";
-                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Body Pattern";
-                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Face Pattern";
+                buttons[(int)ButtonTypes.BodyAccentTypes4].Label.text = "Fur Type";
+                buttons[(int)ButtonTypes.BodyAccentTypes5].Label.text = "Face Pattern";
                 buttons[(int)ButtonTypes.Furry].gameObject.SetActive(false);
                 buttons[(int)ButtonTypes.HatType].gameObject.SetActive(false);
                 buttons[(int)ButtonTypes.BodyAccessoryColor].gameObject.SetActive(false);
