@@ -247,7 +247,7 @@ class Yordles : DefaultRaceData
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // moustache
     {
-        if (actor.Unit.BodyAccentType2 == 0 || actor.Unit.HasBreasts)
+        if (actor.Unit.BodyAccentType2 == 9 || actor.Unit.HasBreasts)
         {
             return null;
         }

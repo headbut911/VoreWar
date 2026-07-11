@@ -92812,7 +92812,7 @@ MonoBehaviour:
   BreastVoreDisabled: {fileID: 1050732496}
   TailVoreDisabled: {fileID: 1009816974}
   AnalVoreDisabled: {fileID: 969490158}
-  BladderVoreDisabled: {fileID: 0}
+  BladderVoreDisabled: {fileID: 1332203688}
   MinStrength: {fileID: 715688905408273026}
   MaxStrength: {fileID: 343524228}
   MinDexterity: {fileID: 698187790}
@@ -151546,6 +151546,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 754038435}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &754038438 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114879801960761558, guid: 85fd49726cb8b6b4e84b5a705fe74ce2,
+    type: 3}
+  m_PrefabInstance: {fileID: 754038435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754038437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &754038439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320065,7 +320077,7 @@ MonoBehaviour:
   BreastVore: {fileID: 656888968}
   AnalVore: {fileID: 1183252556}
   TailVore: {fileID: 577005153}
-  BladderVore: {fileID: 1332203688}
+  BladderVore: {fileID: 754038438}
   AltVoreOralGain: {fileID: 2145308027}
   MultiRaceFlip: {fileID: 1242634386}
   AdventurersDisabled: {fileID: 2114724213}
