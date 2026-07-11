@@ -4681,7 +4681,7 @@ static class RaceParameters
             ExpMultiplier = 2f,
             PowerAdjustment = 5f,
             DeployCost = 2,
-            Upkeep = 20f,
+            Upkeep = 40f,
             RaceStats = new RaceStats()
             {
                 Strength = new RaceStats.StatRange(24, 32),
@@ -4707,7 +4707,7 @@ static class RaceParameters
         Konane = new RaceTraits()
         {
             BodySize = 15,
-            StomachSize = 40,
+            StomachSize = 50,
             FavoredStat = Stat.Stomach,
             HasTail = true,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
