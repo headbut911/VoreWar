@@ -196,7 +196,7 @@ public class CustomTraitBoost
                             s.DigestionImmunityTurns *= (int)value;
                             break;
                         case CustomTraitComp.HealthRegen:
-                            s.HealthRegen *= (int)value;
+                            s.HealthRegen += (int)value;
                             break;
                         case CustomTraitComp.ManaRegen:
                             s.ManaRegen *= (int)value;

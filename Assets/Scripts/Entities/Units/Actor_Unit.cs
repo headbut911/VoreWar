@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using static UnityEngine.UI.CanvasScaler;
 
 public class Actor_Unit
@@ -2009,7 +2010,17 @@ public class Actor_Unit
                         Movement = 0;
                     }
                 }
-
+                if (Unit.HasTrait(Traits.SweepingStrikes) && canRecurse)
+                {
+                    int movementholder = Movement; //Store current AP
+                    var inrange = TacticalUtilities.UnitsWithinTiles(target.Position, 1).Where(u => u != target && u != this).ToList();
+                    foreach (var sweepTarget in inrange)
+                    {
+                        Movement = 1; //Grant movement for each target
+                        Attack(sweepTarget, false, false, 0.33f, true, false);
+                    }
+                    Movement = movementholder; //Reset AP
+                }
                 if (target.Defend(this, ref damage, false, out float chance, canKill))
                 {
 
@@ -2101,14 +2112,6 @@ public class Actor_Unit
 
                     EquipmentFunctions.CheckEquipment(Unit, EquipmentActivator.OnMeleeMiss, new object[] { this, target, damage });
                    
-                }
-
-                if (Unit.HasTrait(Traits.SweepingStrikes) && canRecurse == true)
-                {
-                    foreach (var sweepTarget in TacticalUtilities.UnitsWithinTiles(target.Position, 1).Where(u => u != target && u != this))
-                    {
-                        Attack(sweepTarget, false, false, 0.33f, true, false);
-                    }
                 }
             }
 

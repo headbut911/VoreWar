@@ -870,7 +870,7 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.SerialSwallower:
                 return "Unit gains a stacking effect each time they swallow a unit. This effect increases their stomach capacity, but puts the unit to sleep if it expires and they are overcapacity.";
             case Traits.SweepingStrikes:
-                return "Unit's melee attacks also make an attack on units adjacent to the target at 33% damage.";
+                return "Unit's melee attacks also make an attack on units adjacent to both this unit and its target at 33% damage.";
             case Traits.InvigoratingEscape:
                 return "Unit does not suffer AP reduction when escaping.";
             case Traits.WildFury:
