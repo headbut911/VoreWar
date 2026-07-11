@@ -459,7 +459,7 @@
                return SpaceCroach;
             case Race.Ghosts:
                 return Ghosts;
-            case Race.DemiDragons:
+            case Race.Draconians:
                 return DemiDragons;
             case Race.Yordles:
                 return Yordles;

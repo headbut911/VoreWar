@@ -1468,7 +1468,7 @@ public class NameGenerator
             if (i >= 0 && i < ghostTownNames.Count)
                 return ghostTownNames[i];
         }
-        else if (race == Race.DemiDragons)
+        else if (race == Race.Draconians)
         {
             if (i >= 0 && i < demiDragonTownNames.Count)
                 return demiDragonTownNames[i];

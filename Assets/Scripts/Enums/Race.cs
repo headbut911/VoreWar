@@ -41,7 +41,7 @@
     Lupine = 36,
     Jackals = 37,
     Ghosts = 38,
-    DemiDragons = 39,
+    Draconians = 39,
     Yordles = 40,
 
     Succubi = 50,

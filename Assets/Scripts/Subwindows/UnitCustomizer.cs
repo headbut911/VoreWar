@@ -644,7 +644,7 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Ear Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Topping Type";
                 break;
-            case Race.DemiDragons:
+            case Race.Draconians:
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Outer Scale Color";
                 buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Body Pattern Type";
                 buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Inner Scale Color";
