@@ -42,6 +42,7 @@ public class SpriteDictionary : MonoBehaviour
     public static Sprite[] FemaleVillager;
     public static Sprite[] MaleVillager;
     public static Sprite[] MalePlate;
+    public Sprite[] HumanRags;
     public static Sprite[] FemalePlate;
 
 

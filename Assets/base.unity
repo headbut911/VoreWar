@@ -154640,6 +154640,19 @@ MonoBehaviour:
   - {fileID: 21300062, guid: 52ea80a120c8c4f4b832c9cbd46d5b67, type: 3}
   - {fileID: 21300064, guid: 52ea80a120c8c4f4b832c9cbd46d5b67, type: 3}
   - {fileID: 21300066, guid: 52ea80a120c8c4f4b832c9cbd46d5b67, type: 3}
+  HumanRags:
+  - {fileID: 21300016, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300018, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300020, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300022, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300024, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300026, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300028, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300030, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300032, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300034, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300036, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
+  - {fileID: 21300038, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
   Scat:
   - {fileID: 21300016, guid: 62d106882424040429ca44f178a01355, type: 3}
   - {fileID: 21300018, guid: 62d106882424040429ca44f178a01355, type: 3}

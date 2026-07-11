@@ -2389,6 +2389,9 @@ class DemiDragons : DefaultRaceData
         {
             if (actor.Unit.Furry)
             {
+                blocksBreasts = false;
+                clothing2.GetSprite = null;
+                clothing3.GetSprite = null;
                 if (Races.DemiDragons.oversize)
                 {
                     clothing1.GetSprite = null;
@@ -2681,26 +2684,54 @@ class DemiDragons : DefaultRaceData
             FixedColor = true;
             clothing1 = new SpriteExtraInfo(19, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
+            clothing3 = new SpriteExtraInfo(11, null, WhiteColored);
+            clothing4 = new SpriteExtraInfo(11, null, WhiteColored);
         }
 
         public override void Configure(CompleteSprite sprite, Actor_Unit actor)
         {
-            if (actor.Unit.HasBreasts)
+            if (actor.Unit.Furry)
             {
-                if (actor.Unit.BreastSize < 3)
-                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[124];
-                else if (actor.Unit.BreastSize < 6)
-                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[125];
-                else
-                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[126];
+                if (actor.Unit.HasBreasts)
+                {
+                    if (actor.Unit.BreastSize < 3)
+                        clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[124];
+                    else if (actor.Unit.BreastSize < 6)
+                        clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[125];
+                    else
+                        clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[126];
 
-                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[117 + actor.Unit.BodySize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[117 + actor.Unit.BodySize];
+                }
+                else
+                {
+                    clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[123];
+                    clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[120 + actor.Unit.BodySize];
+                }
+                clothing3.GetSprite = null;
+                clothing4.GetSprite = null;
             }
             else
             {
-                clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[123];
-                clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[120 + actor.Unit.BodySize];
-            }
+                if (actor.Unit.HasBreasts)
+                {
+                    if (actor.Unit.BreastSize < 3)
+                        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[9];
+                    else if (actor.Unit.BreastSize < 6)
+                        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[10];
+                    else
+                        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[11];
+
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[0 + actor.Unit.BodySize];
+                }
+                else
+                {
+                    clothing1.GetSprite = null;
+                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[4 + actor.Unit.BodySize];
+                }
+                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[8];
+            }           
 
             base.Configure(sprite, actor);
         }

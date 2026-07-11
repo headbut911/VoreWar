@@ -12,6 +12,8 @@ class Humans : DefaultRaceData
 
     bool oversize = false;
 
+    HumanRags Rags;
+
     public Humans()
     {
         BodySizes = 3;
@@ -78,8 +80,9 @@ class Humans : DefaultRaceData
             new FemaleOnePiece2(),
             new FemaleOnePiece3(),
             new FemaleOnePiece4(),
+            Rags,
         };
-        AvoidedMainClothingTypes = 3;
+        AvoidedMainClothingTypes = 4;
         AvoidedEyeTypes = 0;
         AllowedWaistTypes = new List<MainClothing>()
         {
@@ -271,6 +274,13 @@ class Humans : DefaultRaceData
         else
         {
             unit.BeardStyle = State.Rand.Next(6);
+        }
+
+        if (Config.RagsForSlaves && State.World?.MainEmpires != null && (State.World.GetEmpireOfRace(unit.Race)?.IsEnemy(State.World.GetEmpireOfSide(unit.Side)) ?? false) && unit.ImmuneToDefections == false)
+        {
+            unit.ClothingType = 1 + AllowedMainClothingTypes.IndexOf(Rags);
+            if (unit.ClothingType == 0) //Covers rags not in the list
+                unit.ClothingType = AllowedMainClothingTypes.Count;
         }
     }
 
@@ -2491,6 +2501,47 @@ class Humans : DefaultRaceData
         }
     }
 
+    class HumanRags : MainClothing
+    {
+        public HumanRags()
+        {
+            DiscardSprite = State.GameManager.SpriteDictionary.Rags[23];
+            blocksDick = false;
+            inFrontOfDick = 2;
+            coversBreasts = false;
+            Type = 207;
+            OccupiesAllSlots = true;
+            FixedColor = true;
+            clothing1 = new SpriteExtraInfo(18, null, WhiteColored);
+            clothing2 = new SpriteExtraInfo(12, null, WhiteColored);
+            clothing3 = new SpriteExtraInfo(11, null, WhiteColored);
+            clothing4 = new SpriteExtraInfo(11, null, WhiteColored);
+        }
+
+        public override void Configure(CompleteSprite sprite, Actor_Unit actor)
+        {
+            if (actor.Unit.HasBreasts)
+            {
+                if (actor.Unit.BreastSize < 3)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[9];
+                else if (actor.Unit.BreastSize < 6)
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[10];
+                else
+                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[11];
+
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[0 + actor.Unit.BodySize];
+            }
+            else
+            {
+                clothing1.GetSprite = null;
+                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[4 + actor.Unit.BodySize];
+            }
+            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[8];
+
+            base.Configure(sprite, actor);
+        }
+    }
     static ColorSwapPalette FurryColor(Actor_Unit actor)
     {
         if (actor.Unit.Furry)
