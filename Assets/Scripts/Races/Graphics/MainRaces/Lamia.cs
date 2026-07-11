@@ -102,6 +102,7 @@ class Lamia : DefaultRaceData
         AddOffset(Dick, xOffset, yOffset + 2.5f);
         AddOffset(Balls, xOffset, yOffset + 2.5f);
         AddOffset(Eyes, 0, -1 * .625f);
+        AddOffset(SecondaryEyes, 0, -1 * .625f);
         if (actor.Unit.GetGender() != Gender.Male)
             AddOffset(SecondaryAccessory, 0, -1 * .625f);
     }
@@ -350,6 +351,8 @@ class Lamia : DefaultRaceData
     {
         if (actor.Unit.Furry)
         {
+            Dick.GetPalette = null;
+            Dick.GetColor = WhiteColored;
             if (actor.Unit.HasDick == false)
                 return null;
 
@@ -371,13 +374,16 @@ class Lamia : DefaultRaceData
                     return SpriteDictionary.LamiaScalesBits[size];
                 }
             }
-
             Dick.layer = 9;
-            return SpriteDictionary.LamiaScalesBits[size];
+            if (actor.IsErect())
+                return SpriteDictionary.LamiaScalesBits[size];
+            return null;
+
         }
         if (actor.Unit.HasDick == false)
             return null;
 
+        Dick.GetPalette = (s) => FurryColor(s);
         if (actor.IsErect())
         {
             if (actor.HasBelly == false)
