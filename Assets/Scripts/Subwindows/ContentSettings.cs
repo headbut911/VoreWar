@@ -445,7 +445,7 @@ public class ContentSettings : MonoBehaviour
                 else if (race == Race.Monitors)
                     spawner.AddonRace.GetComponent<DisplayTooltip>().value = 232;
                 else if (race == Race.SoulSprite)
-                    spawner.AddonRace.GetComponent<DisplayTooltip>().value = 347;
+                    spawner.AddonRace.GetComponent<DisplayTooltip>().value = 351;
                 else
                     spawner.AddonRace.gameObject.SetActive(false);
             }
