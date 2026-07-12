@@ -13,7 +13,7 @@ public class AssetBundleLoader
         AssetBundle specialmercBundle = AssetBundle.LoadFromFile(Path.Combine($"{Application.streamingAssetsPath}{Path.DirectorySeparatorChar}AssetBundles", "specialmerc"));
 
         //Extract the prefab by its asset name  
-        SpriteDictionary.FemaleVillager = empireBundle.LoadAssetWithSubAssets<Sprite>("FemaleVillager");
+        SpriteDictionary.FemaleVillager = empireBundle.LoadAssetWithSubAssets<Sprite>("female_villager");
         SpriteDictionary.MaleVillager = empireBundle.LoadAssetWithSubAssets<Sprite>("MaleVillager");
         SpriteDictionary.MalePlate = empireBundle.LoadAssetWithSubAssets<Sprite>("manplatearmor");
         SpriteDictionary.FemalePlate = empireBundle.LoadAssetWithSubAssets<Sprite>("femaleplatearmor");
