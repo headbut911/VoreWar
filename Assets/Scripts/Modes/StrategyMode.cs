@@ -210,7 +210,6 @@ public class StrategyMode : SceneBase
         }
         foreach (Empire emp in State.World.MainEmpires)
         {
-
             if (State.World.Villages.Where(s => s.Side == emp.Side).Any() == false)
             {
                 emp.KnockedOut = true;
@@ -235,7 +234,6 @@ public class StrategyMode : SceneBase
         }
         GenericSetup();
         StatusBarUI.RecreateWorld.gameObject.SetActive(true);
-
     }
 
     /// <summary>
@@ -259,7 +257,6 @@ public class StrategyMode : SceneBase
         RebuildSpawners();
         ResetButtons();
     }
-
 
     public void ClearData()
     {
@@ -312,7 +309,6 @@ public class StrategyMode : SceneBase
         ExchangeBlockerPanels.SetActive(true);
         pickingExchangeLocation = true;
     }
-
 
     void OpenExchangerPanel(Army left, Vec2i location)
     {
@@ -371,7 +367,6 @@ public class StrategyMode : SceneBase
         ExchangerUI.Initialize(left, right);
     }
 
-
     void ResetButtons()
     {
         StatusBarUI.EndTurn.interactable = ActingEmpire?.StrategicAI == null;
@@ -406,11 +401,9 @@ public class StrategyMode : SceneBase
                         army.Banner = Instantiate(SpriteCategories[3], new Vector3(army.Position.x, army.Position.y), new Quaternion(), ArmyFolder).GetComponent<MultiStageBanner>();
                         army.Banner.Refresh(army, army == SelectedArmy);
                     }
-
                 }
                 else
                 {
-
                     int tileType = empire.BannerType;
                     if (army.Units.Contains(empire.Leader)) tileType += 4;
                     if (SelectedArmy == army) tileType += 1;
@@ -418,7 +411,6 @@ public class StrategyMode : SceneBase
                     army.Sprite.sprite = Sprites[tileType];
                     army.Sprite.color = empire.UnityColor;
                 }
-
             }
         }
         foreach (Army army in armiesToReassign)
@@ -447,9 +439,7 @@ public class StrategyMode : SceneBase
             {
                 for (int j = 0; j <= doodads.GetUpperBound(1); j++)
                 {
-
                     if (doodads[i, j] >= StrategicDoodadType.SpawnerVagrant)
-
                     {
                         StrategicDoodadType doodad = doodads[i, j];
                         switch (doodad)
@@ -599,7 +589,7 @@ public class StrategyMode : SceneBase
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Iliijiith));
                                 break;
                             case StrategicDoodadType.SpawnerPudding:
-                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Iliijiith));
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Pudding));
                                 break;
                             case StrategicDoodadType.SpawnerSoulSprite:
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.SoulSprite));
@@ -610,7 +600,6 @@ public class StrategyMode : SceneBase
             }
         }
     }
-
 
     public void UpdateArmyLocationsAndSprites()
     {
@@ -672,7 +661,6 @@ public class StrategyMode : SceneBase
 
                     if (StrategicUtilities.IsTileClear(loc))
                         break;
-
                 }
                 Debug.Log("Could not place army");
                 return;
@@ -811,13 +799,11 @@ public class StrategyMode : SceneBase
                             default:
                                 TilemapLayers[0].SetTile(new Vector3Int(i, j, 0), TileTypes[StrategicTileInfo.GetTileType(State.World.Tiles[i, j], i, j)]);
                                 break;
-
                         }
-
                     }
 
                     //TilemapLayers[1].SetTile(new Vector3Int(i, j, 0), TileDictionary.IceOverSnow[(int)tiles[i, j] - 2100]);
-                }                
+                }
                 //else if (tiles[i, j] >= (StrategicTileType)2000)
                 //{
                 //    TilemapLayers[2].SetTile(new Vector3Int(i, j, 0), TileDictionary.WaterFloat[(int)tiles[i, j] - 2000]);
@@ -890,7 +876,6 @@ public class StrategyMode : SceneBase
                                 break;
                         }
                     }
-
                 }
                 else if (overTiles[i, j] != 0)
                 {
@@ -901,14 +886,12 @@ public class StrategyMode : SceneBase
                     var type = StrategicTileInfo.GetObjectTileType(State.World.Tiles[i, j], i, j);
                     if (type != -1)
                         TilemapLayers[9].SetTile(new Vector3Int(i, j, 0), TileDictionary.Objects[type]);
-
                 }
             }
         }
         StrategicDoodadType[,] doodads = State.World.Doodads;
         if (doodads != null)
         {
-
             for (int i = 0; i <= doodads.GetUpperBound(0); i++)
             {
                 for (int j = 0; j <= doodads.GetUpperBound(1); j++)
@@ -977,55 +960,55 @@ public class StrategyMode : SceneBase
                 counter++;
                 switch (tiletype.Value)
                 {
-                    case (StrategicTileType.grass):
+                    case StrategicTileType.grass:
                         if (type <= StrategicTileType.grass || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.GrassFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.desert):
+                    case StrategicTileType.desert:
                         if (type <= StrategicTileType.desert || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.DesertFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.snow):
+                    case StrategicTileType.snow:
                         if (type <= StrategicTileType.snow || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SnowFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.ashen):
+                    case StrategicTileType.ashen:
                         if (type <= StrategicTileType.ashen || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.AshenFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.volcanic):
+                    case StrategicTileType.volcanic:
                         if (type <= StrategicTileType.volcanic || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.VolcanicFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.swamp):
+                    case StrategicTileType.swamp:
                         if (type <= StrategicTileType.swamp || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SwampFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.drySwamp):
+                    case StrategicTileType.drySwamp:
                         if (type <= StrategicTileType.drySwamp || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.DrySwampFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.purpleSwamp):
+                    case StrategicTileType.purpleSwamp:
                         if (type <= StrategicTileType.purpleSwamp || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.PurpleBogFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.savannah):
+                    case StrategicTileType.savannah:
                         if (type <= StrategicTileType.savannah || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SavannahFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.smallIslands):
+                    case StrategicTileType.smallIslands:
                         if (type <= StrategicTileType.smallIslands || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.SmallIslandsFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.rainforest):
+                    case StrategicTileType.rainforest:
                         if (type <= StrategicTileType.rainforest || liquid_tile)
                             TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.RainforestFloat[tiletype.Key]);
                         break;
-                    case (StrategicTileType.water):
+                    case StrategicTileType.water:
                         break;
-                    case (StrategicTileType.ocean):
+                    case StrategicTileType.ocean:
                         break;
-                    case (StrategicTileType.shallowWater):
+                    case StrategicTileType.shallowWater:
                         /*
                         if (liquid_tile && overTiles[x, y] == (StrategicTileType)2009)
                         {
@@ -1033,9 +1016,9 @@ public class StrategyMode : SceneBase
                         }
                         */
                         break;
-                    case (StrategicTileType.ice):
+                    case StrategicTileType.ice:
                         break;
-                    case (StrategicTileType.lava):
+                    case StrategicTileType.lava:
                         break;
                     default:
                         TilemapLayers[counter].SetTile(new Vector3Int(x, y, 0), TileDictionary.GrassFloat[tiletype.Key]);
@@ -1119,10 +1102,10 @@ public class StrategyMode : SceneBase
             currentClaimableTiles.Add(villShield);
             currentClaimableTiles.Add(villShieldInner);
         }
-        foreach(var constructable in State.World.Constructibles)
+        foreach (var constructable in State.World.Constructibles)
         {
             int spr = constructable.spriteID;
-            spr = Math.Min(constructable.upgradeStage, 3) * 2 + spr;           
+            spr = Math.Min(constructable.upgradeStage, 3) * 2 + spr;
             GameObject vill = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
             vill.GetComponent<SpriteRenderer>().sprite = Buildings[spr];
             vill.GetComponent<SpriteRenderer>().sortingOrder = 1;
@@ -1136,7 +1119,7 @@ public class StrategyMode : SceneBase
                 GameObject disabled = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
                 disabled.GetComponent<SpriteRenderer>().sprite = Buildings[98];
                 disabled.GetComponent<SpriteRenderer>().sortingOrder = 2;
-            } 
+            }
             else if (!constructable.active)
             {
                 GameObject hammer = Instantiate(SpriteCategories[2], new Vector3(constructable.Position.x, constructable.Position.y), new Quaternion(), VillageFolder);
@@ -1145,12 +1128,10 @@ public class StrategyMode : SceneBase
             }
         }
 
-
         if (Config.FogOfWar || State.World.IsNight)
             UpdateFog();
         else
             FogOfWar.ClearAllTiles();
-
     }
 
     private void ClearVillages()
@@ -1305,7 +1286,6 @@ public class StrategyMode : SceneBase
             {
                 Move(SelectedArmy, 6);
             }
-
         }
         RegenArmyBar(SelectedArmy);
     }
@@ -1345,11 +1325,8 @@ public class StrategyMode : SceneBase
         }
     }
 
-
-
     public void ButtonCallback(int ID)
     {
-
         if (ActingEmpire.StrategicAI == null && State.GameManager.StrategicControlsLocked == false)
         {
             if (!subWindowUp)
@@ -1394,7 +1371,7 @@ public class StrategyMode : SceneBase
                         Devour(SelectedArmy, numToEat);
                         subWindowUp = false;
                         DevourUI.gameObject.SetActive(false);
-                        break; 
+                        break;
                     case 14:
                         DevourUI.gameObject.SetActive(false);
                         subWindowUp = false;
@@ -1445,7 +1422,6 @@ public class StrategyMode : SceneBase
                             Village village = StrategicUtilities.GetVillageAt(ExchangerUI.RightArmy.Position);
                             var infilitrators = new List<Unit>();
 
-
                             ExchangerUI.RightArmy.Units.ForEach(unit =>
                             {
                                 infilitrators.Add(unit);
@@ -1476,12 +1452,10 @@ public class StrategyMode : SceneBase
                         Regenerate();
                         subWindowUp = false;
                         break;
-
                 }
             }
         }
     }
-
 
     void SetupDevour()
     {
@@ -1506,7 +1480,6 @@ public class StrategyMode : SceneBase
             }
             DevourUI.FullText.text = sb.ToString();
         }
-
     }
 
     public void BuildDevourSelectDisplay()
@@ -1540,7 +1513,6 @@ public class StrategyMode : SceneBase
                 button2.onClick.AddListener(() => DevourAll(SelectedArmy, tempRace));
                 button2.onClick.AddListener(() => BuildDevourSelectDisplay());
             }
-
         }
 
         RaceUI.gameObject.SetActive(true);
@@ -1564,13 +1536,11 @@ public class StrategyMode : SceneBase
 
         if (village != null && predArmy.RemainingMP > 0 && village.GetTotalPop() > 0)
         {
-
             if (village.GetTotalPop() < numToEat)
                 numToEat = village.GetTotalPop();
 
             village.DevouredPercentage(numToEat / village.GetTotalPop());
             village.SubtractPopulation(numToEat);
-
 
             predArmy.DevourHeal(numToEat);
 
@@ -1593,7 +1563,6 @@ public class StrategyMode : SceneBase
 
         if (village != null && (predArmy.RemainingMP > 0 || predArmy.DevourThisTurn == true) && village.GetTotalPop() > 0)
         {
-
             village.DevouredPercentage(1 / village.GetTotalPop());
             village.SubtractPopulation(1, race);
 
@@ -1617,15 +1586,12 @@ public class StrategyMode : SceneBase
 
     public void DevourAll(Army predArmy, Race race)
     {
-
-
         Village village = StrategicUtilities.GetVillageAt(predArmy.Position);
 
         int numToEat = village.VillagePopulation.GetRacePop(race);
 
         if (village != null && (predArmy.RemainingMP > 0 || predArmy.DevourThisTurn == true) && village.GetTotalPop() > 0)
         {
-
             village.DevouredPercentage(numToEat / village.GetTotalPop());
             village.SubtractPopulation(numToEat, race);
 
@@ -1646,37 +1612,6 @@ public class StrategyMode : SceneBase
 
         RegenArmyBar(SelectedArmy);
     }
-
-    //public void Devour(Army predArmy, int numToEat, Race race)
-    //{
-    //    if (numToEat <= 0)
-    //        return;
-    //    Village village = StrategicUtilities.GetVillageAt(predArmy.Position);
-
-    //    if (village != null && (predArmy.RemainingMP > 0 || predArmy.DevourThisTurn == true) && village.GetTotalPop() > 0)
-    //    {
-
-    //        if (village.GetTotalPop() < numToEat)
-    //            numToEat = village.GetTotalPop();
-
-    //        village.DevouredPercentage(numToEat / village.GetTotalPop());
-    //        village.SubtractPopulation(numToEat, race);
-
-
-    //        predArmy.DevourHeal(numToEat);
-
-    //        if (village.GetTotalPop() < 1)
-    //        {
-    //            RedrawVillages();
-    //            if (village.Empire.Race != predArmy.Empire.Race)
-    //            {
-    //                RelationsManager.Genocide(predArmy.Empire, village.Empire);
-    //            }
-    //        }
-    //    }
-
-    //    RegenArmyBar(SelectedArmy);
-    //}
 
     private void CheckPath(Vec2i mouseLocation)
     {
@@ -1713,7 +1648,6 @@ public class StrategyMode : SceneBase
                     break;
                 }
                 remainingMP -= 1;
-
             }
 
             if (remainingMP >= 0)
@@ -1723,9 +1657,7 @@ public class StrategyMode : SceneBase
                 ContinuePath(SelectedArmy, path, i);
                 break;
             }
-
         }
-
     }
 
     void ShowPathOfArmy(Army army)
@@ -1753,7 +1685,6 @@ public class StrategyMode : SceneBase
                     break;
                 }
                 remainingMP -= 1;
-
             }
 
             if (remainingMP >= 0)
@@ -1763,7 +1694,6 @@ public class StrategyMode : SceneBase
                 ContinuePath(army, path, i);
                 break;
             }
-
         }
     }
 
@@ -1783,9 +1713,7 @@ public class StrategyMode : SceneBase
             else if (action == Army.TileAction.Attack)
             {
                 remainingBatchMp = 0;
-
             }
-
 
             if (remainingBatchMp == 1)
             {
@@ -1795,8 +1723,6 @@ public class StrategyMode : SceneBase
                     if (nextAction == Army.TileAction.TwoMP)
                         remainingBatchMp = 0;
                 }
-
-
             }
 
             if (remainingBatchMp == 0)
@@ -1807,12 +1733,8 @@ public class StrategyMode : SceneBase
             }
             else
                 arrowManager.PlaceNode(Color.gray, nextNode);
-
-
         }
     }
-
-
 
     void SetupTrain()
     {
@@ -1868,7 +1790,6 @@ public class StrategyMode : SceneBase
             TrainUI.Train.interactable = false;
             TrainUI.Train.GetComponentInChildren<Text>().text = "Not enough gold";
         }
-
     }
 
     public void TrainSelectedArmy()
@@ -1902,8 +1823,6 @@ public class StrategyMode : SceneBase
         }
     }
 
-
-
     void EndTurn()
     {
         UndoMoves.Clear();
@@ -1922,7 +1841,6 @@ public class StrategyMode : SceneBase
         }
         if (startingIndex + 1 >= State.World.EmpireOrder.Count)
         {
-
             ScaledExp = StrategicUtilities.Get80thExperiencePercentile();
             StatusBarUI.RecreateWorld.gameObject.SetActive(false);
             State.World.Turn++;
@@ -2016,8 +1934,6 @@ public class StrategyMode : SceneBase
             }
         }
 
-
-
         VictoryCheck();
 
         if (ActingEmpire.KnockedOut && (ActingEmpire.Side < 700 || (ActingEmpire.Armies.Count == 0 && ActingEmpire.VillageCount == 0)))
@@ -2028,7 +1944,6 @@ public class StrategyMode : SceneBase
 
         CheckIfLastHumanPlayerEliminated();
         BeginTurn();
-
     }
 
     internal void BeginTurn()
@@ -2127,11 +2042,8 @@ public class StrategyMode : SceneBase
         }
     }
 
-
-
     void VictoryCheck()
     {
-
         Dictionary<Empire, bool> survivors = new Dictionary<Empire, bool>();
 
         switch (Config.VictoryCondition)
@@ -2181,13 +2093,10 @@ public class StrategyMode : SceneBase
         }
 
         State.GameManager.ActivateEndSceneWin(side);
-
     }
-
 
     void ProcessIncome(Empire empire)
     {
-
         empire.CalcIncome(State.World.Villages, true);
         empire.AddGold(empire.Income);
         if (empire.Side >= 50)
@@ -2224,7 +2133,6 @@ public class StrategyMode : SceneBase
 
             Regenerate();
         }
-
     }
     
     void HandleBuildings(Empire empire)
@@ -2253,10 +2161,7 @@ public class StrategyMode : SceneBase
             State.World.MercenaryHouses[i].UpdateStock();
         }
         MercenaryHouse.UpdateStaticStock();
-
     }
-
-
 
     void ProcessClick(int x, int y)
     {
@@ -2336,8 +2241,6 @@ public class StrategyMode : SceneBase
                 }
             }
 
-
-
             foreach (Army army in StrategicUtilities.GetAllArmies().Where(s => s.Side != ActingEmpire.Side && s.Empire.IsAlly(ActingEmpire)))
             {
                 if (army.Position.GetDistance(clickLocation) < 1)
@@ -2369,7 +2272,6 @@ public class StrategyMode : SceneBase
                             State.GameManager.ActivateRecruitMode(ActingEmpire, army, Recruit_Mode.ActivatingEmpire.Ally);
                     }
                     return;
-
                 }
             }
 
@@ -2404,7 +2306,6 @@ public class StrategyMode : SceneBase
                             State.GameManager.ActivateRecruitMode(ActingEmpire, army, Recruit_Mode.ActivatingEmpire.Infiltrator);
                     }
                     return;
-
                 }
             }
 
@@ -2532,7 +2433,6 @@ public class StrategyMode : SceneBase
             }
             if (village != null && village.Empire.IsNeutral(SelectedArmy.Empire))
             {
-
                 var box = Instantiate(State.GameManager.DialogBoxPrefab).GetComponent<DialogBox>();
                 box.SetData(() => RelationsManager.SetWar(village.Empire, SelectedArmy.Empire), "Declare War!", "Maintain Peace", $"Declare War against the {village.Empire.Name}?");
             }
@@ -2565,7 +2465,6 @@ public class StrategyMode : SceneBase
             return "1 match";
         return $"{count} matches";
     }
-
 
     public override void ReceiveInput()
     {
@@ -2636,9 +2535,7 @@ public class StrategyMode : SceneBase
             {
                 Destroy(obj);
             }
-
         }
-
 
         if (remainingNotificationTime > 0)
             remainingNotificationTime -= Time.deltaTime;
@@ -2653,7 +2550,6 @@ public class StrategyMode : SceneBase
             PlayerPrefs.SetFloat("BannerScale", (Config.BannerScale - .5f) * 10);
         }
 
-
         if (State.GameManager.CameraTransitioning || State.GameManager.StrategicControlsLocked)
             return;
 
@@ -2665,7 +2561,6 @@ public class StrategyMode : SceneBase
 
         if (EventSystem.current.IsPointerOverGameObject() == false) //Makes sure mouse isn't over a UI element
         {
-
             Vector2 currentMousePos = State.GameManager.Camera.ScreenToWorldPoint(Input.mousePosition);
 
             int x = (int)(currentMousePos.x + 0.5f);
@@ -2768,14 +2663,12 @@ public class StrategyMode : SceneBase
                     if (mouseMovementMode)
                         CheckPath(new Vec2i(x, y));
                 }
-
             }
             else
             {
                 arrowManager.ClearNodes();
                 currentPathDestination = null;
             }
-
         }
         if (Input.GetButtonDown("Menu"))
         {
@@ -2794,7 +2687,7 @@ public class StrategyMode : SceneBase
 
         if (ActingEmpire.StrategicAI != null)
         {
-                AI(Time.deltaTime);
+            AI(Time.deltaTime);
         }
         else
         {
@@ -2823,7 +2716,6 @@ public class StrategyMode : SceneBase
                     SelectedArmy.Destination = null;
             }
 
-
             if (Input.GetButtonDown("Quicksave"))
             {
                 State.Save($"{State.SaveDirectory}Quicksave.sav");
@@ -2836,9 +2728,7 @@ public class StrategyMode : SceneBase
                 UpdateArmyLocationsAndSprites();
             if (Input.GetButtonDown("Submit"))
                 ButtonCallback(10);
-
         }
-
     }
 
     private void RunQueuedMovement()
@@ -2850,13 +2740,11 @@ public class StrategyMode : SceneBase
 
         if (runningQueued && QueuedPath == null)
         {
-
             bool foundWaiting = false;
             foreach (Army army in ActingEmpire.Armies)
             {
                 if (army.RemainingMP > 1 && army.Destination != null)
                 {
-
                     SelectedArmy = army;
                     foundWaiting = true;
                     QueuedPath = StrategyPathfinder.GetArmyPath(ActingEmpire, SelectedArmy, SelectedArmy.Destination, SelectedArmy.RemainingMP, SelectedArmy.movementMode == Army.MovementMode.Flight);
@@ -2868,7 +2756,6 @@ public class StrategyMode : SceneBase
             if (foundWaiting == false)
                 runningQueued = false;
         }
-
     }
 
     void MoveQueued()
@@ -2950,8 +2837,6 @@ public class StrategyMode : SceneBase
                     QueuedPath = null;
             }
         }
-
-
     }
 
     public void OpenRenameEmpire()
@@ -2959,7 +2844,6 @@ public class StrategyMode : SceneBase
         var box = Instantiate(State.GameManager.InputBoxPrefab).GetComponentInChildren<InputBox>();
         RenamingEmpire = ActingEmpire;
         box.SetData(RenameEmpire, "Rename", "Cancel", $"Rename this empire ({ActingEmpire.Name})?", 75);
-
     }
 
     internal void RenameEmpire(string name)
@@ -2971,7 +2855,6 @@ public class StrategyMode : SceneBase
 
     void UpdateTooltips(int ClickX, int ClickY)
     {
-
         Village villageAtCursor = StrategicUtilities.GetVillageAt(new Vec2i(ClickX, ClickY));
         if (villageAtCursor == null)
         {
@@ -2996,7 +2879,6 @@ public class StrategyMode : SceneBase
                 {
                     VillageTooltip.Text.text = $"Gold Mine\nOwner: {claimable.Owner?.Name}\nGold Per Turn: {Config.GoldMineIncome}";
                 }
-
             }
             ConstructibleBuilding constructible = StrategicUtilities.GetConstructibleAt(new Vec2i(ClickX, ClickY));
             if (constructible != null)
@@ -3041,7 +2923,6 @@ public class StrategyMode : SceneBase
                         break;
                 }
             }
-
         }
         else
         {
@@ -3078,7 +2959,6 @@ public class StrategyMode : SceneBase
                 sb.AppendLine($"Garrison: {SizeToName.ForTroops(villageAtCursor.Garrison)}");
             }
             VillageTooltip.Text.text = sb.ToString();
-
         }
         Army armyAtCursor = StrategicUtilities.ArmyAt(new Vec2i(ClickX, ClickY));
         if (armyAtCursor == null)
@@ -3137,7 +3017,6 @@ public class StrategyMode : SceneBase
         if (Config.CheatExtraStrategicInfo)
         {
             sb.AppendLine($"Est. Power: {Math.Round(StrategicUtilities.ArmyPower(armyAtCursor), 1)}");
-
         }
 
         return sb;
@@ -3154,7 +3033,7 @@ public class StrategyMode : SceneBase
 
     public void CleanUpLingeringWindows()
     {
-        //Done seperately because I want to make sure it triggers only when desired.  
+        //Done separately because I want to make sure it triggers only when desired.
         subWindowUp = false;
         DevourUI.gameObject.SetActive(false);
         TrainUI.gameObject.SetActive(false);
@@ -3164,8 +3043,6 @@ public class StrategyMode : SceneBase
 
     public override void CleanUp()
     {
-
-
     }
 
     void ClaimWithinXTilesOf(Vec2i pos, int dist)
@@ -3227,4 +3104,3 @@ public class StrategyMode : SceneBase
         }
     }
 }
-
