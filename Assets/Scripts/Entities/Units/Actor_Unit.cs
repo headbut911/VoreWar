@@ -1971,7 +1971,10 @@ public class Actor_Unit
             {
                 animationUpdateTime = 1.0F;
                 if (Unit.Race == Race.Seville)
+                {
                     TacticalGraphicalEffects.VenomBiteEffect(target.Position);
+                    Mode = DisplayMode.Attacking;
+                }
                 //if (Unit.Race == Race.Tigers)//Use to specify races that can use differint attacks with the same weapon depending on range (Currently unused)
                 //    Mode = DisplayMode.MeleeAttacking;
                 else
