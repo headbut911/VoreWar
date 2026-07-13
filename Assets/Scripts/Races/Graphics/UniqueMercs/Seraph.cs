@@ -27,17 +27,40 @@ class Seraph : BlankSlate
 
     internal override void SetBaseOffsets(Actor_Unit actor) // Offset to give the floaty view
     {
-        int offset = 85;
-        AddOffset(Body, 0, offset * .625f);
-        AddOffset(BodyAccent, 0, offset * .625f);
-        AddOffset(BodyAccent2, 0, offset * .625f);
-        AddOffset(BodyAccent3, 0, offset * .625f);
-        AddOffset(Head, 0, offset * .625f);
-        AddOffset(Belly, 0, offset * .625f);
-        AddOffset(BodyAccessory, 0, offset * .625f);
-        AddOffset(Weapon, 0, offset * .625f);
-        AddOffset(SecondaryAccessory, 0, offset * .625f);
-        AddOffset(BodyAccent4, 0, offset * .625f);
+        int size = actor.GetStomachSize(49);
+		
+		if (size == 15)
+		{
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+		}
+		else if (size == 16)
+		{
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+		}
+		else if (size == 17)
+		{
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+		}
+		else if (size == 18)
+		{
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+		}
+		else if (size == 19)
+		{
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+		}
+		else if (size == 20)
+		{
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+		}
+		else if (size == 21)
+		{
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+		}
+		else
+        {
+            AddOffset(Belly, 0, 0);
+        }
 
     }
 
@@ -94,23 +117,23 @@ class Seraph : BlankSlate
         {
             if (actor.IsAttacking)
             {
-                return Sprites[34];
+                return Sprites[49];
             }
-            return Sprites[33];
+            return Sprites[48];
         }
     
     protected override Sprite SecondaryAccessorySprite(Actor_Unit actor)
         {
-            return Sprites[32];
+            return Sprites[47];
         }
 
     protected override Sprite BodyAccentSprite4(Actor_Unit actor)
         {
             if (actor.IsAbsorbing)
             {
-                return Sprites[36];
+                return Sprites[51];
             }
-            return Sprites[35];
+            return Sprites[50];
         }
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // Halo Toggle
@@ -120,10 +143,10 @@ class Seraph : BlankSlate
             {
                 case 1: if (actor.IsAttacking)
                             {
-                                return Sprites[40];
+                                return Sprites[55];
                             }
                         else
-                            return Sprites[39];
+                            return Sprites[54];
                 case 2: return null;
                 default:
                     return null;
@@ -137,7 +160,7 @@ class Seraph : BlankSlate
         if (actor.Unit.BodyAccentType2 == 1)
             switch (actor.Unit.BodyAccentType2)
             {
-                case 1: return Sprites[37];
+                case 1: return Sprites[52];
                 case 2: return null;
                 default:
                     return null;
@@ -153,7 +176,7 @@ class Seraph : BlankSlate
         if (actor.Unit.BodyAccentType3 == 1)
             switch (actor.Unit.BodyAccentType3)
             {
-                case 1: return Sprites[38];
+                case 1: return Sprites[53];
                 case 2: return null;
                 default:
                     return null;
@@ -164,15 +187,74 @@ class Seraph : BlankSlate
 
     internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
     {
-        if (actor.HasBelly == false)
+        if (!actor.HasBelly)
             return null;
-        ///if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false)
-        ///{
-        ///    if (actor.PredatorComponent.VisibleFullness > 3)
-        ///        return SpriteDictionary.Seraph[10];
-        ///}
 
-        return actor.HasBelly ? SpriteDictionary.Seraph[18 + actor.GetStomachSize(13)] : null;
+        int size = actor.GetStomachSize(49);
+
+        if (size >= 49 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[46];
+        }
+
+        else if (size >= 46 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[45];
+        }
+
+        else if (size >= 43 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[44];
+        }
+
+        else if (size >= 40 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[43];
+        }
+
+        else if (size >= 37 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[42];
+        }
+
+        else if (size >= 34 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[41];
+        }
+
+        else if (size >= 31 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[40];
+        }
+
+        else if (size >= 28 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[39];
+        }
+
+        else if (size >= 25 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[38];
+        }
+
+        else if (size >= 22 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+			AddOffset(Belly, 50 * 0.625f, -50 * 0.625f);
+            return Sprites[37];
+        }
+
+        if (size > 19) size = 19;
+
+        return Sprites[17 + size];
     }
 }
 

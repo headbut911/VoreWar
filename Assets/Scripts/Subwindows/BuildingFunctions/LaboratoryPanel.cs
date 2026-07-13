@@ -432,7 +432,7 @@ public class LaboratoryPanel : MonoBehaviour
                 }
                 if (State.Rand.NextDouble() > TraitChanceValue)
                 {
-                    int value = State.Rand.Next(5, 10);                   
+                    int value = State.Rand.Next(5, 10);
                     if (ingQuality <= 1)
                     {
                         newPotion.StatModifiers[(Stat)State.Rand.Next(8)] += ingQuality == 0 ? value * -2 : -value;
@@ -442,7 +442,7 @@ public class LaboratoryPanel : MonoBehaviour
                         newPotion.StatModifiers[(Stat)State.Rand.Next(8)] += value;
                         newPotion.StatModifiers[(Stat)State.Rand.Next(8)] -= value;
                     }
-                    else 
+                    else
                     {
                         newPotion.StatModifiers[(Stat)State.Rand.Next(8)] += value * ingQuality;
                     }
@@ -450,7 +450,7 @@ public class LaboratoryPanel : MonoBehaviour
                 else
                 {
                     Traits incTrait = TaggedTraitUtilities.GetRandomTraitInTier((TraitTier)ingQuality);
-                    if (incTrait <= 0)
+                    if (incTrait <= 0 || newPotion.NegativeTraits.Contains(incTrait) || newPotion.PositiveTraits.Contains(incTrait))
                     {
                         int value = State.Rand.Next(5, 10);
                         if (ingQuality <= 1)
@@ -475,13 +475,86 @@ public class LaboratoryPanel : MonoBehaviour
                     {
                         newPotion.PositiveTraits.Add(incTrait);
                     }
-                }                
+                }
             }
         }
-
+        newPotion.potionname = GenerateName();
         Laboratory.Owner.SpendGold(TotalCostValue);
         GoldCount.text = Laboratory.Owner.Gold.ToString();
         Laboratory.Owner.EmpirePotions.Add(newPotion, BrewCountValue);
+    }
+
+    string GenerateName()
+    {
+        string name = "";
+        List<string> prenames = new List<string> 
+        {
+            "Super", "Powerful", "Grand",
+            "Glowing", "Dark",
+            "Calm", "Rage", "Happy", "Sad",
+            "Shadow", "Evil", "Blessed", "Cursed",
+            "Charged", "Shocking", "Quick", "Fast", "Rapid",
+            "Golden", "Glinting",
+            "Red", "Yellow", "Green", "Blue", "Purple", "Violet", "Black", "White",
+            "Sharp", "Dull", "Fluffy", "Rough", "Rubber", "Hard", "Soft",
+            "Natural", "Unnatural","Twisted", "Doomed",
+            "Logical", "Silly", "Devious", "Nefarious",
+            "Vibrating", "Thick", "Shaking", "Drunken",
+            "Dry", "Warm", "Wet", "Cold", "Freezing", "Burning",
+
+        };
+        List<string> mainnames = new List<string>
+        {
+            "Demon", "Angel",
+            "Metal", "Iron", "Steel", "Gold", "Ruby", "Emerald", "Silver",
+            "Sulfur", "Brimstone",
+            "Plant", "Wood", "Wooden", "Flower", "Rose", "Tulip", "Sunflower",                           
+            "Fire", "Water", "Air", "Earth", "Lightning", "Ice", "Rock", "Dirt", "Stone", "Glass",
+            "Dragon", "Kobold", "Ghost",
+            "Human", "Troll", "Orc", "Elf", "Gnome", "Dwarf", "Ogre",
+            "Snake","Serpent", "Lizard","Dog", "Cat", "Bunny", "Rabbit", "Wolf", "Fox", "Cow", "Bull", 
+            "Alrune", "Lamia", "Slime", "Crux", "Vargul", 
+            "Ant", "Bee", "Spider",
+        };
+        List<string> postnames = new List<string>
+        {
+            "Body", "Skin", "Eye", "Blood", "Toe", "Finger", "Ear",         
+            "Foam", "Oil", "Sludge", "Ichor", "Goo", "Water",
+
+        };
+
+        double roll = State.Rand.NextDouble();
+
+        if (roll > 0.9f)
+        {
+            name = prenames[State.Rand.Next(prenames.Count)] + " " + mainnames[State.Rand.Next(mainnames.Count)]+ " " + mainnames[State.Rand.Next(mainnames.Count)] + " " + postnames[State.Rand.Next(postnames.Count)];
+        }
+        else if (roll > 0.7f)
+        {
+            name = prenames[State.Rand.Next(prenames.Count)] + " " + mainnames[State.Rand.Next(mainnames.Count)] + " " + postnames[State.Rand.Next(postnames.Count)];
+        }
+        else if (roll > 0.6f)
+        {
+            name = prenames[State.Rand.Next(prenames.Count)] + " " + postnames[State.Rand.Next(postnames.Count)];
+        }
+        else if (roll > 0.5f)
+        {
+            name = postnames[State.Rand.Next(postnames.Count)];
+        }
+        else if (roll > 0.4f)
+        {
+            name = mainnames[State.Rand.Next(mainnames.Count)];
+        }
+        else if (roll > 0.3f)
+        {
+            name = prenames[State.Rand.Next(prenames.Count)];
+        }
+        else
+        {
+            name = mainnames[State.Rand.Next(mainnames.Count)] + " " + postnames[State.Rand.Next(postnames.Count)];
+        }
+
+        return name + " Elixir";
     }
 
     float GetDiscount()

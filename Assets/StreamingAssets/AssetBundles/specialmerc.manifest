@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 172662198
+CRC: 2616680409
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: df39f50aec84edc34ea158d011eff651
+    Hash: 0be7704b4a427af75a3b3a235c7539af
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -30,7 +30,6 @@ Assets:
 - Assets/Sprites/Units/zera/2x3_bols.png
 - Assets/Sprites/Units/Salix.png
 - Assets/Sprites/Units/Ryan.png
-- Assets/Sprites/Units/Seraph/Seraph.png
 - Assets/Sprites/Units/Singularity1.png
 - Assets/Sprites/Units/Taraluxia.png
 - Assets/Sprites/Units/Tatltuae.png
@@ -59,7 +58,6 @@ Assets:
 - Assets/Sprites/Units/Bella/BellaBody2.png
 - Assets/Sprites/Units/Cierihaka.png
 - Assets/Sprites/Units/SalixVore.png
-- Assets/Sprites/Units/Cherub/Cherub.png
 - Assets/Sprites/Units/Bella/BellaHead1.png
 - Assets/Sprites/Units/Asura.png
 - Assets/Sprites/Units/Bella/BellaHead2.png

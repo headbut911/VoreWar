@@ -42,7 +42,7 @@ public class SpriteDictionary : MonoBehaviour
     public static Sprite[] FemaleVillager;
     public static Sprite[] MaleVillager;
     public static Sprite[] MalePlate;
-    public Sprite[] HumanRags;
+    public static Sprite[] HumanRags;
     public static Sprite[] FemalePlate;
 
 
@@ -435,6 +435,7 @@ public class SpriteDictionary : MonoBehaviour
     public static Sprite[] Trex;
     public static Sprite[] Iliijiith;
     public static Sprite[] Pudding;
+    public static Sprite[] BlackWidow;
 
     public static Sprite[] DryadSprites1;
     public static Sprite[] DryadSprites2;

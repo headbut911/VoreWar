@@ -612,6 +612,9 @@ public class ContentSettings : MonoBehaviour
             case Race.SoulSprite:
                 tooltip.value = 350;
                 break;
+            case Race.BlackWidow:
+                tooltip.value = 350;
+                break;
         }
         return spawner;
     }

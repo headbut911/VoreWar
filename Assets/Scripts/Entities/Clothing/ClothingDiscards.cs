@@ -93,7 +93,6 @@ internal class ClothingDiscards
             AllClothes.AddRange(Races.Jackals.ExtraMainClothing1Types);
             AllClothes.AddRange(Races.Jackals.ExtraMainClothing2Types);
             AllClothes.AddRange(Races.Jackals.ExtraMainClothing3Types);
-            AllClothes.AddRange(Races.Jackals.ExtraMainClothing3Types);
             AllClothes.AddRange(Races.Yordles.AllowedMainClothingTypes);
             AllClothes.AddRange(Races.Yordles.AllowedWaistTypes);
             AllClothes.AddRange(Races.Renamon.AllowedMainClothingTypes);
@@ -101,6 +100,7 @@ internal class ClothingDiscards
             AllClothes.AddRange(Races.Renamon.ExtraMainClothing1Types);
             AllClothes = AllClothes.Distinct().ToList();
         }
+
         var clothingType = AllClothes.Where(s => s.Type == type).FirstOrDefault();
         if (clothingType == null)
             return;

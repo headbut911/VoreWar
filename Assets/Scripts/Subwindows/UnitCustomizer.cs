@@ -644,7 +644,7 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Ear Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Topping Type";
                 break;
-            case Race.DemiDragons:
+            case Race.Draconians:
                 buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Outer Scale Color";
                 buttons[(int)ButtonTypes.BodyAccessoryType].Label.text = "Body Pattern Type";
                 buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Inner Scale Color";
@@ -654,6 +654,7 @@ public class UnitCustomizer
                 buttons[(int)ButtonTypes.FurTypes].Label.text = "Inner Scale Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Wing Type";
                 buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Horn Type";
+                buttons[(int)ButtonTypes.BeardStyle].Label.text = "Inner Wing Color";
                 buttons[(int)ButtonTypes.MouthType].gameObject.SetActive(false);
                 buttons[(int)ButtonTypes.HatType].gameObject.SetActive(false);
                 buttons[(int)ButtonTypes.BodyAccentTypes3].gameObject.SetActive(false);

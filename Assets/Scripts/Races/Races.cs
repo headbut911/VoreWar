@@ -160,6 +160,7 @@
     static internal Konane Konane = new Konane();
     static internal Cherub Cherub = new Cherub();
     static internal Seraph Seraph = new Seraph();
+    static internal BlackWidow BlackWidow = new BlackWidow();
 
 
     static internal DefaultRaceData GetRace(Unit unit)
@@ -459,7 +460,7 @@
                return SpaceCroach;
             case Race.Ghosts:
                 return Ghosts;
-            case Race.DemiDragons:
+            case Race.Draconians:
                 return DemiDragons;
             case Race.Yordles:
                 return Yordles;
@@ -489,6 +490,8 @@
                 return Badgers;
             case Race.Renamon:
                 return Renamon;
+            case Race.BlackWidow:
+                return BlackWidow;
         }
         UnityEngine.Debug.LogWarning("Couldn't find race, substituting the Blank Slate");
         return BlankSlate;

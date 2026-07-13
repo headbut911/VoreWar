@@ -36,6 +36,14 @@ TextureImporter:
     21300062: Cherub_23
     21300064: Cherub_24
     21300066: Cherub_25
+    21300068: Cherub_26
+    21300070: Cherub_27
+    21300072: Cherub_28
+    21300074: Cherub_29
+    21300076: Cherub_30
+    21300078: Cherub_31
+    21300080: Cherub_32
+    21300082: Cherub_33
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -105,14 +113,14 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
-    overridden: 0
+    overridden: 1
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
@@ -144,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -154,7 +162,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2df0d0d58dc8a24429e77ed4ab8b64ef
+      spriteID: bd5a0daebd82f2341afda48c00cfc7e3
       vertices: []
       indices: 
       edges: []
@@ -164,7 +172,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -174,7 +182,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a1036c6b5f2b5049862dcc37f3a9c5d
+      spriteID: ddb6f95fd6b5cd84e8f2db83e2d58096
       vertices: []
       indices: 
       edges: []
@@ -184,7 +192,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 320
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -194,7 +202,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc5c5ceffd296994e8c09f4252ea01b8
+      spriteID: 7c4f4e7a4d4dd6e48a15c71458e2f212
       vertices: []
       indices: 
       edges: []
@@ -204,7 +212,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 480
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -214,7 +222,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f380fc5610848e4080b4d6ae42f00e8
+      spriteID: f4ce6afe13c974d4a8532f43ef15e819
       vertices: []
       indices: 
       edges: []
@@ -224,7 +232,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 640
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -234,7 +242,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c37e865f5869ce42a1170ea3c300e54
+      spriteID: b71c4839910d8d745967c94215d01249
       vertices: []
       indices: 
       edges: []
@@ -244,7 +252,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -254,7 +262,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01c20c011b5b24b4b9299302913eaf52
+      spriteID: 4221e53d859892346b2ec4375ca5a786
       vertices: []
       indices: 
       edges: []
@@ -264,7 +272,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 960
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -274,7 +282,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 604d1fbb40f2ee34786b51b5aa33d0d7
+      spriteID: 698911f968b58f843a9a8e1fdfa38c1a
       vertices: []
       indices: 
       edges: []
@@ -284,7 +292,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1120
-        y: 460
+        y: 690
         width: 160
         height: 230
       alignment: 0
@@ -294,7 +302,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24b7ec367f830254f85af6c422b8249b
+      spriteID: 0e3f7a91978b17f4fb09f0f8ad3f3243
       vertices: []
       indices: 
       edges: []
@@ -304,6 +312,26 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1280
+        y: 690
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5e81363803867b4a948213438ae559f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_9
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 460
         width: 160
         height: 230
@@ -314,13 +342,173 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4be985bd782ad514dade19d7d0628528
+      spriteID: 407b4e5030f8eec4fb8677f1db13ef30
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_9
+      name: Cherub_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347869a422254ec4fa98e22ee1981792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_11
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16512c913dcb4864ca67bdd8e4de5bb4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed57b87685b4964478e4de4f0193cc3b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_13
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c431a8254855f3a4d8f5ba8543cc83b2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_14
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d3229f477b278945ae270a8090b0703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a2fae00f9094a646994d482feaf8081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_16
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 794e7453740d6094d890855fb6735b8c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_17
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 460
+        width: 160
+        height: 230
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf59cb11445ca84f86d86444be6d467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cherub_18
       rect:
         serializedVersion: 2
         x: 0
@@ -334,13 +522,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f963d454c46d9d34d98b0facca58c734
+      spriteID: 81d35a43710608145b0b149478317909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_10
+      name: Cherub_19
       rect:
         serializedVersion: 2
         x: 160
@@ -354,13 +542,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8c4bb557a5ba704bb60ed864038440b
+      spriteID: cd1ea861dd54bd1488256cb92e41591e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_11
+      name: Cherub_20
       rect:
         serializedVersion: 2
         x: 320
@@ -374,13 +562,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a999658d3c14d884b914dc6f40a92a07
+      spriteID: 904d7e3bdf80dff44afca0ac7a7c3ee4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_12
+      name: Cherub_21
       rect:
         serializedVersion: 2
         x: 480
@@ -394,13 +582,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79cd759968134c34c8576c86f9d09380
+      spriteID: 34aef24131a4336489da04a7735a7835
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_13
+      name: Cherub_22
       rect:
         serializedVersion: 2
         x: 640
@@ -414,13 +602,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da00b5c119eda9e41b7a269099964335
+      spriteID: 631e8755d6075014881f70f205785b39
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_14
+      name: Cherub_23
       rect:
         serializedVersion: 2
         x: 800
@@ -434,13 +622,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f654289d1c9f2f40a2ef3a4e3364ca7
+      spriteID: 749e2c1d18e61104bba54c23141869a9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_15
+      name: Cherub_24
       rect:
         serializedVersion: 2
         x: 960
@@ -454,13 +642,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 765a55a4511b3424e86e5cae2065c1f6
+      spriteID: e038e46c5f646d54bb45e52082b1048f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_16
+      name: Cherub_25
       rect:
         serializedVersion: 2
         x: 1120
@@ -474,13 +662,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd33c402c58e3d84bb02747b7ad023e4
+      spriteID: 68564f468f6d333469bcc2b09988077e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_17
+      name: Cherub_26
       rect:
         serializedVersion: 2
         x: 1280
@@ -494,13 +682,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afc7fc20ecfeee34cab490fcead4515b
+      spriteID: 93557d24f102c4b4b9f7664a671a1e6e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_18
+      name: Cherub_27
       rect:
         serializedVersion: 2
         x: 0
@@ -514,13 +702,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 028887abb22c97f4a9beb0fa6afb18b0
+      spriteID: 963f63df7d74eb64cb4f3d6058d44ece
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_19
+      name: Cherub_28
       rect:
         serializedVersion: 2
         x: 160
@@ -534,13 +722,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b489cffe4ca34b4aa765e9ec4c6db1d
+      spriteID: 03143b7f7acb8b94d9e960374a1cc5fc
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_20
+      name: Cherub_29
       rect:
         serializedVersion: 2
         x: 320
@@ -554,13 +742,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0da2f6be370b74344bf8ad8f895e94d6
+      spriteID: 11cf90d059e27de4ab6b1531ed0d3f76
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_21
+      name: Cherub_30
       rect:
         serializedVersion: 2
         x: 480
@@ -574,13 +762,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c81393851da8ef34e96bca3d8530ca82
+      spriteID: 16f268c06df946145afe0a2d41669ab5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_22
+      name: Cherub_31
       rect:
         serializedVersion: 2
         x: 640
@@ -594,13 +782,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9d7bd88ff982734483f0abf6c1d3a14
+      spriteID: ff63e24a87c9db74ca07cdd2a577cad0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_23
+      name: Cherub_32
       rect:
         serializedVersion: 2
         x: 800
@@ -614,13 +802,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4573df4e103856143a16ad1f6c9048d8
+      spriteID: 943c4f06c9d1cc24b999b93df0671f03
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cherub_24
+      name: Cherub_33
       rect:
         serializedVersion: 2
         x: 960
@@ -634,27 +822,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9af1dbbb4eaa764ab17bfef9ba1a7e9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cherub_25
-      rect:
-        serializedVersion: 2
-        x: 1120
-        y: 0
-        width: 160
-        height: 230
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7a0f5c1900036ac429f869afdf9964a0
+      spriteID: 3bc37612d26fac844aa9e220f4062696
       vertices: []
       indices: 
       edges: []
@@ -671,5 +839,5 @@ TextureImporter:
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
-  assetBundleName: specialmerc
+  assetBundleName: 
   assetBundleVariant: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 929c1f6349ad0894692f86aa2c21cdce
+guid: ee6acf7d848f0f5468b2bf8fa324ce5e
 TextureImporter:
   fileIDToRecycleName:
     21300000: Hero Armor_0
@@ -10,62 +10,61 @@ TextureImporter:
     21300010: Hero Armor_5
     21300012: Hero Armor_6
     21300014: Hero Armor_7
-    21300016: Seraph_0
-    21300018: Seraph_1
-    21300020: Seraph_2
-    21300022: Seraph_3
-    21300024: Seraph_4
-    21300026: Seraph_5
-    21300028: Seraph_6
-    21300030: Seraph_7
-    21300032: Seraph_8
-    21300034: Seraph_9
-    21300036: Seraph_10
-    21300038: Seraph_11
-    21300040: Seraph_12
-    21300042: Seraph_13
-    21300044: Seraph_14
-    21300046: Seraph_15
-    21300048: Seraph_16
-    21300050: Seraph_17
-    21300052: Seraph_18
-    21300054: Seraph_19
-    21300056: Seraph_20
-    21300058: Seraph_21
-    21300060: Seraph_22
-    21300062: Seraph_23
-    21300064: Seraph_24
-    21300066: Seraph_25
-    21300068: Seraph_26
-    21300070: Seraph_27
-    21300072: Seraph_28
-    21300074: Seraph_29
-    21300076: Seraph_30
-    21300078: Seraph_31
-    21300080: Seraph_32
-    21300082: Seraph_33
-    21300084: Seraph_34
-    21300086: Seraph_35
-    21300088: Seraph_36
-    21300090: Seraph_37
-    21300092: Seraph_38
-    21300094: Seraph_39
-    21300096: Seraph_40
-    21300098: Seraph_41
-    21300100: Seraph_42
-    21300102: Seraph_43
-    21300104: Seraph_44
-    21300106: Seraph_45
-    21300108: Seraph_46
-    21300110: Seraph_47
-    21300112: Seraph_48
-    21300114: Seraph_49
-    21300116: Seraph_50
-    21300118: Seraph_51
-    21300120: Seraph_52
-    21300122: Seraph_53
-    21300124: Seraph_54
-    21300126: Seraph_55
+    21300016: BlackWidow_0
+    21300018: BlackWidow_1
+    21300020: BlackWidow_2
+    21300022: BlackWidow_3
+    21300024: BlackWidow_4
+    21300026: BlackWidow_5
+    21300028: BlackWidow_6
+    21300030: BlackWidow_7
+    21300032: BlackWidow_8
+    21300034: BlackWidow_9
+    21300036: BlackWidow_10
+    21300038: BlackWidow_11
+    21300040: BlackWidow_12
+    21300042: BlackWidow_13
+    21300044: BlackWidow_14
+    21300046: BlackWidow_15
+    21300048: BlackWidow_16
+    21300050: BlackWidow_17
+    21300052: BlackWidow_18
+    21300054: BlackWidow_19
+    21300056: BlackWidow_20
+    21300058: BlackWidow_21
+    21300060: BlackWidow_22
+    21300062: BlackWidow_23
+    21300064: BlackWidow_24
+    21300066: BlackWidow_25
+    21300068: BlackWidow_26
+    21300070: BlackWidow_27
+    21300072: BlackWidow_28
+    21300074: BlackWidow_29
+    21300076: BlackWidow_30
+    21300078: BlackWidow_31
+    21300080: BlackWidow_32
+    21300082: BlackWidow_33
+    21300084: BlackWidow_34
+    21300086: BlackWidow_35
+    21300088: BlackWidow_36
+    21300090: BlackWidow_37
+    21300092: BlackWidow_38
+    21300094: BlackWidow_39
+    21300096: BlackWidow_40
+    21300098: BlackWidow_41
+    21300100: BlackWidow_42
+    21300102: BlackWidow_43
+    21300104: BlackWidow_44
+    21300106: BlackWidow_45
+    21300108: BlackWidow_46
+    21300110: BlackWidow_47
+    21300112: BlackWidow_48
+    21300114: BlackWidow_49
+    21300116: BlackWidow_50
+    21300118: BlackWidow_51
+    21300120: BlackWidow_52
+    21300122: BlackWidow_53
+    21300124: BlackWidow_54
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -135,7 +134,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 4096
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: 4
     textureCompression: 0
@@ -170,152 +169,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Seraph_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2240
-        width: 460
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b308ee68be9760499832b639691d591
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seraph_1
-      rect:
-        serializedVersion: 2
-        x: 460
-        y: 2240
-        width: 460
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ce8f9d8d7878694c81f4ed5535c865d
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seraph_2
-      rect:
-        serializedVersion: 2
-        x: 920
-        y: 2240
-        width: 460
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 450ff170a33cb954b90bc40d3153a830
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seraph_3
-      rect:
-        serializedVersion: 2
-        x: 1380
-        y: 2240
-        width: 460
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0eb6ea0943dc10488e4df48209af89c
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seraph_4
-      rect:
-        serializedVersion: 2
-        x: 1840
-        y: 2240
-        width: 460
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d8885b29d46ad9d48a610243bfc57e06
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seraph_5
-      rect:
-        serializedVersion: 2
-        x: 2300
-        y: 2240
-        width: 460
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2a0a88166e6f8441be007ffed1e2d00
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seraph_6
-      rect:
-        serializedVersion: 2
-        x: 2760
-        y: 2240
-        width: 460
-        height: 320
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a4adc5b2176bf374386a26a79098d4c6
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Seraph_7
+      name: BlackWidow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 1920
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -324,18 +183,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0a6b6f761da1af4e8ee915d3fbfb7c1
+      spriteID: 4cd7c92d642b95c45a267ebab51ce07f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_8
+      name: BlackWidow_1
       rect:
         serializedVersion: 2
-        x: 460
+        x: 320
         y: 1920
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -344,18 +203,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a2c9acb01e81d14fb0331e5890344d0
+      spriteID: 824223025e2da6045802cfd67f875e06
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_9
+      name: BlackWidow_2
       rect:
         serializedVersion: 2
-        x: 920
+        x: 640
         y: 1920
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -364,18 +223,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eaa296a95d655df40b67b535fa1be716
+      spriteID: 7567d216f63f39b4e8d5ac7b2f84464a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_10
+      name: BlackWidow_3
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 960
         y: 1920
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -384,18 +243,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dbbbc38886e06a499d8b4045071c75e
+      spriteID: cfe3d31bb90053441a66bff6bf1838c1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_11
+      name: BlackWidow_4
       rect:
         serializedVersion: 2
-        x: 1840
+        x: 1280
         y: 1920
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -404,18 +263,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fe2226ed10aed84792ac07e406bb6a4
+      spriteID: da6cc6203981c0b4e8c904ac5e062ea5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_12
+      name: BlackWidow_5
       rect:
         serializedVersion: 2
-        x: 2300
+        x: 1600
         y: 1920
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -424,18 +283,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b8c6bb28efc37e40be7543c1822801e
+      spriteID: ef58abeafddec0946a9cbb7a8412d46f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_13
+      name: BlackWidow_6
       rect:
         serializedVersion: 2
-        x: 2760
+        x: 1920
         y: 1920
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -444,18 +303,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86bc2cf2cd68f23458229daef3f751b2
+      spriteID: 7c2e94f05dc4ae9419f2ddc2ded5a026
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_14
+      name: BlackWidow_7
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1920
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab10a506eb7f50c469f0c473c5ba4a04
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlackWidow_8
       rect:
         serializedVersion: 2
         x: 0
         y: 1600
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -464,18 +343,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9c2cb83ab126294995554af2ae776df
+      spriteID: 95561063c988013488e8040f10dd6d64
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_15
+      name: BlackWidow_9
       rect:
         serializedVersion: 2
-        x: 460
+        x: 320
         y: 1600
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -484,18 +363,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f99a0c95d4044a842a7e03668d4bac71
+      spriteID: fb5f713923f5f8549bf8510f3c5f1430
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_16
+      name: BlackWidow_10
       rect:
         serializedVersion: 2
-        x: 920
+        x: 640
         y: 1600
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -504,18 +383,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 473870b37c925a244b5330d6749361df
+      spriteID: 87622738092faa049a45c7aeda7e4465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_17
+      name: BlackWidow_11
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 960
         y: 1600
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -524,18 +403,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e6deb5ec8a3e40b4fb922a335690e41d
+      spriteID: 3a2389a7a4baaa644a043bfb9cda0b64
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_18
+      name: BlackWidow_12
       rect:
         serializedVersion: 2
-        x: 1840
+        x: 1280
         y: 1600
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -544,18 +423,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4314da8b1a5a5604787c5b07bacf4996
+      spriteID: 49e6fd6e491b68d42baa2b88d75539bb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_19
+      name: BlackWidow_13
       rect:
         serializedVersion: 2
-        x: 2300
+        x: 1600
         y: 1600
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -564,18 +443,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93d9811942c5e154b96c63243d9abf3b
+      spriteID: 89262193238563a4bb97f938131f11ef
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_20
+      name: BlackWidow_14
       rect:
         serializedVersion: 2
-        x: 2760
+        x: 1920
         y: 1600
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -584,18 +463,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a175b123fe247304ab941529e8d3c5f5
+      spriteID: 02c9a82af0daac04fb0434b0531ff0f4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_21
+      name: BlackWidow_15
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1600
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4e78f26de9b27244b259e7938be3bad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlackWidow_16
       rect:
         serializedVersion: 2
         x: 0
         y: 1280
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -604,18 +503,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcf347e7d76fa6d47a5c5464c0b009ab
+      spriteID: 255ac1176745ce840a690d82c46ea547
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_22
+      name: BlackWidow_17
       rect:
         serializedVersion: 2
-        x: 460
+        x: 320
         y: 1280
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -624,18 +523,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7ee0e21366eb5d4f84e010707ab77c6
+      spriteID: 95d544bc15c19b84280cb13fe9437597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_23
+      name: BlackWidow_18
       rect:
         serializedVersion: 2
-        x: 920
+        x: 640
         y: 1280
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -644,18 +543,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99538ba9d2a2e1b4d9c7ff6d4b56c7db
+      spriteID: 35fdedc7720c6b542b95e812e5982fba
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_24
+      name: BlackWidow_19
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 960
         y: 1280
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -664,18 +563,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abdf2d9babaad1047978648b7d975fee
+      spriteID: f88db24e66e49a7479aa983ea405e0ab
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_25
+      name: BlackWidow_20
       rect:
         serializedVersion: 2
-        x: 1840
+        x: 1280
         y: 1280
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -684,18 +583,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc10332506d37224d930422bfc1dac8d
+      spriteID: 45e6147a79fb7b7489ccbd8383d93dbb
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_26
+      name: BlackWidow_21
       rect:
         serializedVersion: 2
-        x: 2300
+        x: 1600
         y: 1280
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -704,18 +603,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64c3c3be1b1a97244b2b422376b4acd6
+      spriteID: c37868ae417673d4ab0a676400141365
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_27
+      name: BlackWidow_22
       rect:
         serializedVersion: 2
-        x: 2760
+        x: 1920
         y: 1280
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -724,18 +623,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d8673ce4a6555a4cb36a1f0cc79d8e1
+      spriteID: 77cbfeced7c870b47846aa3521831d0a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_28
+      name: BlackWidow_23
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 1280
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e012d3ce2806644b8081a29c519dec
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlackWidow_24
       rect:
         serializedVersion: 2
         x: 0
         y: 960
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -744,18 +663,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d67fe319317e2149a3ba4c3079db7dd
+      spriteID: 814caabed050efd47bc5d185b3ea2d3d
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_29
+      name: BlackWidow_25
       rect:
         serializedVersion: 2
-        x: 460
+        x: 320
         y: 960
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -764,18 +683,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4c7cae8acd49e14a88f2864f3716a6c
+      spriteID: 250f06dcb6163c842a1f5f4d90f05ddd
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_30
+      name: BlackWidow_26
       rect:
         serializedVersion: 2
-        x: 920
+        x: 640
         y: 960
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -784,18 +703,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 061693076042ea6479535a6102315a0d
+      spriteID: 7b97e45cd6fe9b8429ac066751cbea94
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_31
+      name: BlackWidow_27
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 960
         y: 960
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -804,18 +723,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8a4f5191722a1f48979d765f1970105
+      spriteID: d1620667db6ef2c4cb307b506faf99b0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_32
+      name: BlackWidow_28
       rect:
         serializedVersion: 2
-        x: 1840
+        x: 1280
         y: 960
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -824,18 +743,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bb90d3bcff56014fb1944164e02bacc
+      spriteID: 24a5f6837f24e104588b6f7a67068695
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_33
+      name: BlackWidow_29
       rect:
         serializedVersion: 2
-        x: 2300
+        x: 1600
         y: 960
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -844,18 +763,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64bd5d737f18daa428b230c17f8d7924
+      spriteID: 426aaa9b394d08c4eaaa38dcfe0a0d45
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_34
+      name: BlackWidow_30
       rect:
         serializedVersion: 2
-        x: 2760
+        x: 1920
         y: 960
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -864,18 +783,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0629ab9513d4da409bf196c43ce46d1
+      spriteID: 1d2f343e60e8c9d439b25a39f462dd95
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_35
+      name: BlackWidow_31
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 960
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22f0e86d18bd7db41ae452d7d5ba4ff0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlackWidow_32
       rect:
         serializedVersion: 2
         x: 0
         y: 640
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -884,18 +823,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c4f5fd435b2e814081337e4df5c8cc2
+      spriteID: d3d7def30aca37c4894c2200eebc4632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_36
+      name: BlackWidow_33
       rect:
         serializedVersion: 2
-        x: 460
+        x: 320
         y: 640
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -904,18 +843,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efd6e564869fd4242900d391723a5f3a
+      spriteID: b25950d4dd8ded246906f48660511263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_37
+      name: BlackWidow_34
       rect:
         serializedVersion: 2
-        x: 920
+        x: 640
         y: 640
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -924,18 +863,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c07c7f2b15907743827c9ad105d0ce0
+      spriteID: 5c025b9b3260e3a418a2e39ccc569fc9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_38
+      name: BlackWidow_35
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 960
         y: 640
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -944,18 +883,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61dfdbda12b56d84f916002b4f352362
+      spriteID: 09c05a393ccb7f34b911bdf0750c1ff8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_39
+      name: BlackWidow_36
       rect:
         serializedVersion: 2
-        x: 1840
+        x: 1280
         y: 640
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -964,18 +903,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d89f18174a3f664cb34d00197d0ad71
+      spriteID: 60a118e1d6f70214e93e01dc09209611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_40
+      name: BlackWidow_37
       rect:
         serializedVersion: 2
-        x: 2300
+        x: 1600
         y: 640
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -984,18 +923,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df8524fd287aa93498a3938254735466
+      spriteID: a34af182bc5107540a3ec8c79350edf0
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_41
+      name: BlackWidow_38
       rect:
         serializedVersion: 2
-        x: 2760
+        x: 1920
         y: 640
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1004,18 +943,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 307c04a0c243996478fdaf17d319a3c4
+      spriteID: e73594c417b4efb4aa68e75162447e28
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_42
+      name: BlackWidow_39
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 640
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dad50f8e19b08554ba3f73ee843566c6
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlackWidow_40
       rect:
         serializedVersion: 2
         x: 0
         y: 320
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1024,18 +983,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d3abc33d0953064d948be1fd0c45f1d
+      spriteID: 579cc1ab83888b54880021ad8bac3cc2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_43
+      name: BlackWidow_41
       rect:
         serializedVersion: 2
-        x: 460
+        x: 320
         y: 320
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1044,18 +1003,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c274a4939b3da6f46a5e53764e98f68d
+      spriteID: 987110091c3805346962ca9d933976a1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_44
+      name: BlackWidow_42
       rect:
         serializedVersion: 2
-        x: 920
+        x: 640
         y: 320
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1064,18 +1023,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f16614b5ff2eb4d49b6f75ad226e137d
+      spriteID: d8d79070e7449d04fb07837a29c0081b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_45
+      name: BlackWidow_43
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 960
         y: 320
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1084,18 +1043,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06e834ce01e77204d9f51cdc1b829a0f
+      spriteID: c19bfdd36eb0eeb49a02299f37730c77
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_46
+      name: BlackWidow_44
       rect:
         serializedVersion: 2
-        x: 1840
+        x: 1280
         y: 320
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1104,18 +1063,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98ecd84235ad6974f93f4d7cc5ac516f
+      spriteID: a90cb0552b2cf334cb2851bc34d420f1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_47
+      name: BlackWidow_45
       rect:
         serializedVersion: 2
-        x: 2300
+        x: 1600
         y: 320
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1124,18 +1083,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb6f1df5abc10e34c9784194ee3b206e
+      spriteID: 46a1559519400f44986eff6c247c7b59
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_48
+      name: BlackWidow_46
       rect:
         serializedVersion: 2
-        x: 2760
+        x: 1920
         y: 320
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1144,18 +1103,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: edc15d8540bfd5c40bfdf43e1ab7456f
+      spriteID: 036257b55168e1d4fb87a0156bf6ad8a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_49
+      name: BlackWidow_47
+      rect:
+        serializedVersion: 2
+        x: 2240
+        y: 320
+        width: 320
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1513d91b8eb9e4a42898dd30b62a30eb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BlackWidow_48
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1164,18 +1143,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4df497ceaa3149b4aa48de518add748d
+      spriteID: fbad64abb5700784bb19f843e9163d86
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_50
+      name: BlackWidow_49
       rect:
         serializedVersion: 2
-        x: 460
+        x: 320
         y: 0
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1184,18 +1163,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18bc99abd26e59945b0e6cc84605bc07
+      spriteID: 5b67290d71c434841b404ae1e00482b3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_51
+      name: BlackWidow_50
       rect:
         serializedVersion: 2
-        x: 920
+        x: 640
         y: 0
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1204,18 +1183,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ca5e23026b866049ae890e70c5bda9f
+      spriteID: d88bb10080fda0d4a907ccbdcdbed5d7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_52
+      name: BlackWidow_51
       rect:
         serializedVersion: 2
-        x: 1380
+        x: 960
         y: 0
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1224,18 +1203,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c96c735ed3d9f246a124db2ac526d11
+      spriteID: d2e2fdceae4a1434db77110e39d5a59f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_53
+      name: BlackWidow_52
       rect:
         serializedVersion: 2
-        x: 1840
+        x: 1280
         y: 0
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1244,18 +1223,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56dc8644eadbcef419656b434e6a410e
+      spriteID: a2b5fcd595584274a8ed85d5a25ca3a4
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_54
+      name: BlackWidow_53
       rect:
         serializedVersion: 2
-        x: 2300
+        x: 1600
         y: 0
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1264,18 +1243,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 358fc9be02ef4964488ae1f1b6a66831
+      spriteID: ffe57d65284660040803cda9e81462f1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Seraph_55
+      name: BlackWidow_54
       rect:
         serializedVersion: 2
-        x: 2760
+        x: 1920
         y: 0
-        width: 460
+        width: 320
         height: 320
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -1284,7 +1263,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ee2c464ede0bdc4687cf288242f4d98
+      spriteID: 6ff08f8a4f165ac449d6f0fc26f34971
       vertices: []
       indices: 
       edges: []
@@ -1301,5 +1280,5 @@ TextureImporter:
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
-  assetBundleName: 
+  assetBundleName: monster
   assetBundleVariant: 

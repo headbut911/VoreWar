@@ -880,7 +880,7 @@ public class HoveringTooltip : MonoBehaviour
             case Traits.Alacrity:
                 return "Unit gains +3 actions on melee attacks or vore attempts.";
             case Traits.StunningStrike:
-                return "A special attack that deals normal damage and stuns its target based on mind. Damage and stun duration increases based on remaining MP percentage. Can be used once every 3 turns.";
+                return "A special attack that deals normal damage and stuns its target based on will. Damage and stun duration increases based on remaining MP percentage. Can be used once every 3 turns.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

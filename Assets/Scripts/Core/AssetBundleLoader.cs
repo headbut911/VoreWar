@@ -14,9 +14,10 @@ public class AssetBundleLoader
 
         //Extract the prefab by its asset name  
         SpriteDictionary.FemaleVillager = empireBundle.LoadAssetWithSubAssets<Sprite>("female_villager");
-        SpriteDictionary.MaleVillager = empireBundle.LoadAssetWithSubAssets<Sprite>("MaleVillager");
+        SpriteDictionary.MaleVillager = empireBundle.LoadAssetWithSubAssets<Sprite>("manpeasant");
         SpriteDictionary.MalePlate = empireBundle.LoadAssetWithSubAssets<Sprite>("manplatearmor");
         SpriteDictionary.FemalePlate = empireBundle.LoadAssetWithSubAssets<Sprite>("femaleplatearmor");
+        SpriteDictionary.HumanRags = empireBundle.LoadAssetWithSubAssets<Sprite>("HumanRags");
         SpriteDictionary.LizardPeasant = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardPeasant");
         SpriteDictionary.LizardBlackTop = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardBlackTop");
         SpriteDictionary.LizardBikiniTop = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardBikiniTop");
@@ -28,10 +29,10 @@ public class AssetBundleLoader
         SpriteDictionary.LizardsBootyArmor = empireBundle.LoadAssetWithSubAssets<Sprite>("LizardsBootyArmor");
         SpriteDictionary.EquineClothes = empireBundle.LoadAssetWithSubAssets<Sprite>("horse_clothes");
         SpriteDictionary.CowClothing = empireBundle.LoadAssetWithSubAssets<Sprite>("cowclothes");
-        SpriteDictionary.CowHoliday = empireBundle.LoadAssetWithSubAssets<Sprite>("CowHoliday");
-        SpriteDictionary.RainCoats = empireBundle.LoadAssetWithSubAssets<Sprite>("RainCoats");
+        SpriteDictionary.CowHoliday = empireBundle.LoadAssetWithSubAssets<Sprite>("cowhristmas");
+        SpriteDictionary.RainCoats = empireBundle.LoadAssetWithSubAssets<Sprite>("raincoats");
         SpriteDictionary.TigerSpecial = mercBundle.LoadAssetWithSubAssets<Sprite>("tigeroutfit");
-        SpriteDictionary.CatLeader = empireBundle.LoadAssetWithSubAssets<Sprite>("CatLeader");
+        SpriteDictionary.CatLeader = empireBundle.LoadAssetWithSubAssets<Sprite>("catLeader");
         SpriteDictionary.Togas = empireBundle.LoadAssetWithSubAssets<Sprite>("toga");
         SpriteDictionary.SuccubusDress = mercBundle.LoadAssetWithSubAssets<Sprite>("succubus_dress");
         SpriteDictionary.SuccubusLeotard = mercBundle.LoadAssetWithSubAssets<Sprite>("succubusLeotard");
@@ -78,7 +79,7 @@ public class AssetBundleLoader
         SpriteDictionary.HumenBigLoin = empireBundle.LoadAssetWithSubAssets<Sprite>("hu_men_bigloin");
         SpriteDictionary.HumenPants = empireBundle.LoadAssetWithSubAssets<Sprite>("hu_men_pants");
         SpriteDictionary.HumenSkirt = empireBundle.LoadAssetWithSubAssets<Sprite>("hu_men_skirt");
-        SpriteDictionary.AlrauneChristmas = empireBundle.LoadAssetWithSubAssets<Sprite>("AlrauneChristmas");
+        SpriteDictionary.AlrauneChristmas = empireBundle.LoadAssetWithSubAssets<Sprite>("alraunechristmas");
         SpriteDictionary.ImpGobHat = empireBundle.LoadAssetWithSubAssets<Sprite>("ImpGobHat");
         SpriteDictionary.DeerLeaderClothes = empireBundle.LoadAssetWithSubAssets<Sprite>("DeerLeaderClothes");
         SpriteDictionary.Lizards = empireBundle.LoadAssetWithSubAssets<Sprite>("Lizards");
@@ -260,14 +261,14 @@ public class AssetBundleLoader
         SpriteDictionary.AsuraHoliday = specialmercBundle.LoadAssetWithSubAssets<Sprite>("AsuraHoliday");
         SpriteDictionary.DRACO = specialmercBundle.LoadAssetWithSubAssets<Sprite>("DRACO");
         SpriteDictionary.Zoey = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Zoey");
-        SpriteDictionary.ZoeyHoliday = specialmercBundle.LoadAssetWithSubAssets<Sprite>("ZoeyHoliday");
+        SpriteDictionary.ZoeyHoliday = specialmercBundle.LoadAssetWithSubAssets<Sprite>("zoey_addsheet");
         SpriteDictionary.Cierihaka = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Cierihaka");
         SpriteDictionary.Zera240 = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Zera240");
         SpriteDictionary.ZeraBelly = specialmercBundle.LoadAssetWithSubAssets<Sprite>("zerabel");
         SpriteDictionary.ZeraBalls = specialmercBundle.LoadAssetWithSubAssets<Sprite>("1x1_bols").Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("1x2_bols")).Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("2x2_bols")).Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("2x3_bols")).ToArray();
         SpriteDictionary.ZeraFrontBelly = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Front Belly 2x1").Concat(specialmercBundle.LoadAssetWithSubAssets<Sprite>("Front Belly 3x2")).ToArray();
         SpriteDictionary.Auri = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Auri");
-        SpriteDictionary.AuriHoliday = specialmercBundle.LoadAssetWithSubAssets<Sprite>("AuriHoliday");
+        SpriteDictionary.AuriHoliday = specialmercBundle.LoadAssetWithSubAssets<Sprite>("AuriXmasAddSheet");
         SpriteDictionary.AuriVore = specialmercBundle.LoadAssetWithSubAssets<Sprite>("AuriVore");
         SpriteDictionary.Erin = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Erin");
         SpriteDictionary.Salix = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Salix");
@@ -293,7 +294,7 @@ public class AssetBundleLoader
         SpriteDictionary.Tatltuae = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Tatltuae");
         SpriteDictionary.TatltuaeHackleVore = specialmercBundle.LoadAssetWithSubAssets<Sprite>("TatltuaeHackleVore");
         SpriteDictionary.Seville = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Seville");
-        SpriteDictionary.SevilleBite = specialmercBundle.LoadAssetWithSubAssets<Sprite>("SevilleBite");
+        SpriteDictionary.SevilleBite = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Seville_VenomBite");
         SpriteDictionary.Nectar = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Nectar");
         SpriteDictionary.Ryan = specialmercBundle.LoadAssetWithSubAssets<Sprite>("Ryan");
         SpriteDictionary.RyanVore = specialmercBundle.LoadAssetWithSubAssets<Sprite>("RyanVore");
@@ -369,6 +370,7 @@ public class AssetBundleLoader
         SpriteDictionary.Trex = monsterBundle.LoadAssetWithSubAssets<Sprite>("Trex");
         SpriteDictionary.Iliijiith = monsterBundle.LoadAssetWithSubAssets<Sprite>("Iliijiith");
         SpriteDictionary.Pudding = monsterBundle.LoadAssetWithSubAssets<Sprite>("Pudding");
+        SpriteDictionary.BlackWidow = monsterBundle.LoadAssetWithSubAssets<Sprite>("BlackWidow");
         SpriteDictionary.DryadSprites1 = monsterBundle.LoadAssetWithSubAssets<Sprite>("Dryad1");
         SpriteDictionary.DryadSprites2 = monsterBundle.LoadAssetWithSubAssets<Sprite>("Dryad2");
         SpriteDictionary.DryadSprites3 = monsterBundle.LoadAssetWithSubAssets<Sprite>("Dryad3");

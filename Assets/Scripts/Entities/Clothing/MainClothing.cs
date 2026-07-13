@@ -203,39 +203,39 @@ abstract class MainClothing
             {
                 case 1:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing1.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing1.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing1.layer - 2));
                     break;
                 case 2:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing2.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing2.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing2.layer - 2));
                     break;
                 case 3:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing3.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing3.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing3.layer - 2));
                     break;
                 case 4:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing4.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing4.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing4.layer - 2));
                     break;
                 case 5:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing5.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing5.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing5.layer - 2));
                     break;
                 case 6:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing6.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing6.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing6.layer - 2));
                     break;
                 case 7:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing7.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing7.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing7.layer - 2));
                     break;
                 case 8:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing8.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing8.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing8.layer - 2));
                     break;
                 case 9:
                     sprite.ChangeLayer(SpriteType.Dick, (clothing9.layer - 1));
-                    sprite.ChangeLayer(SpriteType.Balls, (clothing9.layer - 1));
+                    sprite.ChangeLayer(SpriteType.Balls, (clothing9.layer - 2));
                     break;
                 default:
                     break;

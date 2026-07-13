@@ -41,7 +41,7 @@
     Lupine = 36,
     Jackals = 37,
     Ghosts = 38,
-    DemiDragons = 39,
+    Draconians = 39,
     Yordles = 40,
 
     Succubi = 50,
@@ -130,6 +130,7 @@
     Iliijiith = 161,
     Pudding = 162,
     SoulSprite = 163,
+    BlackWidow = 164,
 
     Selicia = 170,
     Vision = 171,

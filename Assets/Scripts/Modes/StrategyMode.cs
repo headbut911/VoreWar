@@ -599,10 +599,13 @@ public class StrategyMode : SceneBase
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Iliijiith));
                                 break;
                             case StrategicDoodadType.SpawnerPudding:
-                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Iliijiith));
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.Pudding));
                                 break;
                             case StrategicDoodadType.SpawnerSoulSprite:
                                 Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.SoulSprite));
+                                break;
+                            case StrategicDoodadType.SpawnerBlackWidow:
+                                Spawners.Add(new MonsterSpawnerLocation(new Vec2i(i, j), Race.BlackWidow));
                                 break;
                         }
                     }
@@ -954,7 +957,7 @@ public class StrategyMode : SceneBase
                             else if (west)
                                 spr = 3;
 
-                            GameObject wall = Instantiate(SpriteCategories[14], new Vector3(i, j, 0), new Quaternion(), WallRoadFolder);
+                            GameObject wall = Instantiate(SpriteCategories[4], new Vector3(i, j, 0), new Quaternion(), WallRoadFolder);
                             wall.GetComponent<SpriteRenderer>().sprite = WallMultiSprites[spr];
                             wall.GetComponent<SpriteRenderer>().sortingOrder = 1;
                         }
