@@ -2961,16 +2961,17 @@ public class Actor_Unit
         NewTurnPreMPTraits();
 
         Unit.RestoreMana(Unit.TraitBoosts.ManaRegen);
-        if (SelfPrey == null)
+        if (SelfPrey == null) // Restore stamina and proc regen if the unit isn't vored
         {
             Unit.RestoreStamPct(0.1f);
+            Unit.Heal(Unit.TraitBoosts.HealthRegen);
         }
         UnitSprite.UpdateHealthBar(this);
         TurnsSinceLastParalysis++;
         if (Targetable && Visible && Surrendered == false && Fled == false)
             RestoreMP();
         Unit.TickStatusEffects();
-        if (SelfPrey != null)
+        if (SelfPrey != null) // Stall prevention if a unit has been eaten for 100 turns
         {
             if (SelfPrey.TurnsDigested <= 100)
                 Unit.Heal(Unit.TraitBoosts.HealthRegen);
