@@ -299,7 +299,7 @@ namespace AlrauneClothing
             DiscardSprite = null;
             coversBreasts = false;
             blocksDick = false;
-            inFrontOfDick = 1;
+            inFrontOfDick = 2;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(17, null, null);
             clothing2 = new SpriteExtraInfo(10, null, null);
@@ -343,7 +343,7 @@ namespace AlrauneClothing
             DiscardSprite = null;
             coversBreasts = false;
             blocksDick = false;
-            inFrontOfDick = 1;
+            inFrontOfDick = 2;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(17, null, null);
             clothing2 = new SpriteExtraInfo(10, null, null);
