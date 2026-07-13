@@ -651,6 +651,8 @@ static class LogUtilities
                 return GetRandomStringFrom("lesser-angel", "glowing soul", "angelic being", "sprite", "soul sprite");
             case Race.Badgers:
                 return GetRandomStringFrom("badger", GetGenderString(unit, "sow", "boar", "badger"), "mustelid");
+            case Race.Draconians:
+                return GetRandomStringFrom("draconian", GetGenderString(unit, "dragoness", "dragon", "draconian"), "draconic", "demi-dragon");
             default:
                 return "creature";
         }

@@ -385,6 +385,8 @@ public class InfoPanel
                 return "Badger";
             case Race.Renamon:
                 return "Renamon";
+            case Race.Draconians:
+                return "Draconian";
             case Race.none:
                 return "None";
         }
@@ -629,6 +631,8 @@ public class InfoPanel
                 return "Badger";
             case Race.Renamon:
                 return "Renamon";
+            case Race.Draconians:
+                return "Draconian";
         }
         return empire.ReplacedRace.ToString();
     }

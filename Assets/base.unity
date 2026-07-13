@@ -69428,7 +69428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30.000244}
+  m_AnchoredPosition: {x: 0, y: -30.000275}
   m_SizeDelta: {x: 0, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343006846
@@ -92887,7 +92887,7 @@ MonoBehaviour:
   BreastVoreDisabled: {fileID: 1050732496}
   TailVoreDisabled: {fileID: 1009816974}
   AnalVoreDisabled: {fileID: 969490158}
-  BladderVoreDisabled: {fileID: 0}
+  BladderVoreDisabled: {fileID: 1332203688}
   MinStrength: {fileID: 715688905408273026}
   MaxStrength: {fileID: 343524228}
   MinDexterity: {fileID: 698187790}
@@ -151621,6 +151621,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 754038435}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &754038438 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114879801960761558, guid: 85fd49726cb8b6b4e84b5a705fe74ce2,
+    type: 3}
+  m_PrefabInstance: {fileID: 754038435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754038437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &754038439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154834,6 +154846,10 @@ MonoBehaviour:
   - {fileID: 21300056, guid: f031d205aaa8acc4baf318238d15005b, type: 3}
   - {fileID: 21300058, guid: f031d205aaa8acc4baf318238d15005b, type: 3}
   - {fileID: 21300060, guid: f031d205aaa8acc4baf318238d15005b, type: 3}
+  - {fileID: 21300008, guid: 6282058c8fc97b94b91d9f038a9e620e, type: 3}
+  - {fileID: 21300010, guid: 6282058c8fc97b94b91d9f038a9e620e, type: 3}
+  - {fileID: 21300012, guid: 6282058c8fc97b94b91d9f038a9e620e, type: 3}
+  - {fileID: 21300014, guid: 6282058c8fc97b94b91d9f038a9e620e, type: 3}
   CleanDisposalL:
   - {fileID: 21300004, guid: eb1ea8eea73b71c4a8627e1a80a61a94, type: 3}
   - {fileID: 21300006, guid: eb1ea8eea73b71c4a8627e1a80a61a94, type: 3}
@@ -165350,6 +165366,7 @@ MonoBehaviour:
   - {fileID: 21300148, guid: 1f0fc73ddeacd2b4ca7d8ddcb1265b68, type: 3}
   - {fileID: 21300150, guid: 1f0fc73ddeacd2b4ca7d8ddcb1265b68, type: 3}
   - {fileID: 21300152, guid: 1f0fc73ddeacd2b4ca7d8ddcb1265b68, type: 3}
+  - {fileID: 21300154, guid: 1f0fc73ddeacd2b4ca7d8ddcb1265b68, type: 3}
   - {fileID: 21300156, guid: 1f0fc73ddeacd2b4ca7d8ddcb1265b68, type: 3}
   Buildings:
   - {fileID: 21300004, guid: 6d87858f95d3cfd4cbd74ca5230c4475, type: 3}
@@ -200680,8 +200697,10 @@ MonoBehaviour:
   CrossShock: {fileID: 5311956398332747120, guid: cfb637d4a910e9448a60c74e8ff5cc58,
     type: 3}
   Potion: {fileID: 5311956398332747120, guid: eccc4eba0e84892499d4fd37d20b336a, type: 3}
-  DivineNovaBlast: {fileID: 0}
-  DiamondStorm: {fileID: 0}
+  DivineNovaBlast: {fileID: 5311956398332747120, guid: 8edbf0a77acab2b408a228fe2a23f2e6,
+    type: 3}
+  DiamondStorm: {fileID: 1587365558784220, guid: a43dbbe8323df85478489ca3fa1e3279,
+    type: 3}
 --- !u!4 &1012778675
 Transform:
   m_ObjectHideFlags: 0
@@ -320237,7 +320256,7 @@ MonoBehaviour:
   BreastVore: {fileID: 656888968}
   AnalVore: {fileID: 1183252556}
   TailVore: {fileID: 577005153}
-  BladderVore: {fileID: 1332203688}
+  BladderVore: {fileID: 754038438}
   AltVoreOralGain: {fileID: 2145308027}
   MultiRaceFlip: {fileID: 1242634386}
   AdventurersDisabled: {fileID: 2114724213}

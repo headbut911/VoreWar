@@ -1468,6 +1468,7 @@ class Renamon : DefaultRaceData
             DiscardSprite = SpriteDictionary.RenamonClothes2[118];
             coversBreasts = false;
             OccupiesAllSlots = true;
+            ReqWinterHoliday = true;
             clothing1 = new SpriteExtraInfo(12, null, WhiteColored);
             clothing2 = new SpriteExtraInfo(18, null, WhiteColored);
             clothing3 = new SpriteExtraInfo(25, null, WhiteColored);
