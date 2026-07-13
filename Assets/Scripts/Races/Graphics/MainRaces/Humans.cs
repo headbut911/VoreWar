@@ -59,6 +59,7 @@ class Humans : DefaultRaceData
         Dick = new SpriteExtraInfo(11, DickSprite, null, (s) => FurryColor(s));
         Balls = new SpriteExtraInfo(10, BallsSprite, null, (s) => FurryColor(s));
 
+        Rags = new HumanRags();
 
         AllowedMainClothingTypes = new List<MainClothing>()
         {
@@ -2523,21 +2524,21 @@ class Humans : DefaultRaceData
             if (actor.Unit.HasBreasts)
             {
                 if (actor.Unit.BreastSize < 3)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[9];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumanRags[9];
                 else if (actor.Unit.BreastSize < 6)
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[10];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumanRags[10];
                 else
-                    clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[11];
+                    clothing1.GetSprite = (s) => SpriteDictionary.HumanRags[11];
 
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[0 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumanRags[0 + actor.Unit.BodySize];
             }
             else
             {
                 clothing1.GetSprite = null;
-                clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[4 + actor.Unit.BodySize];
+                clothing2.GetSprite = (s) => SpriteDictionary.HumanRags[4 + actor.Unit.BodySize];
             }
-            clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
-            clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[8];
+            clothing3.GetSprite = (s) => SpriteDictionary.HumanRags[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+            clothing4.GetSprite = (s) => SpriteDictionary.HumanRags[8];
 
             base.Configure(sprite, actor);
         }

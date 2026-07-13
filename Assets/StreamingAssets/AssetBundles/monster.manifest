@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1177492806
+CRC: 444437677
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: af4a5ff0857676b04f17bed5dfd80d8c
+    Hash: 58017d0fabbea300054be55ea0995c7b
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -90,6 +90,7 @@ Assets:
 - Assets/Sprites/Units/goblins/gobbovertops.png
 - Assets/Sprites/Units/goblins/gobbovore.png
 - Assets/Sprites/Units/Trex.png
+- Assets/Sprites/Units/BlackWidow.png
 - Assets/Sprites/Units/Salamanders.png
 - Assets/Sprites/Units/FeralLizards.png
 - Assets/Sprites/Units/FeralSlime.png

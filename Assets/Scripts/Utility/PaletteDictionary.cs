@@ -107,4 +107,5 @@ public class PaletteDictionary : MonoBehaviour
     public Texture2D SoulSpriteSkin;
     public Texture2D BadgersSkin;
     public Texture2D RenamonSkin;
+    public Texture2D BlackWidowSkin;
 }

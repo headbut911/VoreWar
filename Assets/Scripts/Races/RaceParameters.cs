@@ -145,6 +145,7 @@ static class RaceParameters
     static readonly RaceTraits Trex;
     static readonly RaceTraits Utahraptor;
     static readonly RaceTraits Pudding;
+    static readonly RaceTraits BlackWidow;
     static readonly RaceTraits Badgers;
     static readonly RaceTraits Renamon;
     static readonly RaceTraits Ghosts;
@@ -484,6 +485,8 @@ static class RaceParameters
                 return SoulSprite;
             case Race.Pudding: 
                 return Pudding;
+            case Race.BlackWidow: 
+                return BlackWidow;
             case Race.Badgers:
                 return Badgers;
             case Race.Renamon:
@@ -3897,6 +3900,40 @@ static class RaceParameters
 
             },
             RaceDescription = "After reciving news about a massacre involving oversized bake goods, a wizard decided to create a way to inform the populace of the dangers of voracious food monsters. What better way than to better prepare than to make more voracious, albeit weaker, food monsters?"
+        };
+
+        BlackWidow = new RaceTraits()
+        {
+            BodySize = 20,
+            StomachSize = 20,
+            HasTail = false,
+            FavoredStat = Stat.Stomach,
+            AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
+            ExpMultiplier = 1.75f,
+            PowerAdjustment = 1.25f,
+            DeployCost = 1,
+            Upkeep = 6f,
+            RaceStats = new RaceStats()
+            {
+                Strength = new RaceStats.StatRange(6, 12),
+                Dexterity = new RaceStats.StatRange(4, 8),
+                Endurance = new RaceStats.StatRange(20, 30),
+                Mind = new RaceStats.StatRange(4, 10),
+                Will = new RaceStats.StatRange(6, 12),
+                Agility = new RaceStats.StatRange(6, 10),
+                Voracity = new RaceStats.StatRange(10, 18),
+                Stomach = new RaceStats.StatRange(8, 16),
+            },
+            RacialTraits = new List<Traits>()
+            {
+                Traits.MetabolicSurge,
+                Traits.ExtraNutritious,
+                Traits.SoftBody,
+                Traits.GelatinousBody,
+        
+
+            },
+            RaceDescription = "Giant Spiders. Of course they had to be widows..."
         };
 
 

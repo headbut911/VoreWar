@@ -846,6 +846,9 @@ Places them in a simple manner, unconcerned with things like fairness";
 
 The weights affect how often the AI will choose one in comparison to the others.  
 (I.e. if unbirth is high, and everything else is low, unbirth will be a high % of what they choose, provided that the race is capable of it.)";
+            case 353:
+                return "Enables wandering clutter of Black Widow.";
+
             default:
                 return "";
         }

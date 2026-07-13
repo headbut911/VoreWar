@@ -107,13 +107,51 @@ class Cherub : BlankSlate
     {
         if (actor.HasBelly == false)
             return null;
-        /// if (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true) ?? false)
-        ///{
-        ///    if (actor.PredatorComponent.VisibleFullness > 3)
-        ///        return SpriteDictionary.Cherub[10];
-        ///}
+         int size = actor.GetStomachSize(31);
 
-        return actor.HasBelly ? SpriteDictionary.Cherub[18 + actor.GetStomachSize(7)] : null;
+        if (size >= 31 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[33];
+        }
+
+        else if (size >= 28 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[32];
+        }
+
+        else if (size >= 25 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[31];
+        }
+
+        else if (size >= 22 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[30];
+        }
+
+        else if (size >= 19 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[29];
+        }
+
+        else if (size >= 16 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[28];
+        }
+
+        else if (size >= 13 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[27];
+        }
+
+        else if (size >= 10 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        {
+            return Sprites[26];
+        }
+
+        if (size > 7) size = 7;
+
+        return Sprites[18 + size];
     }
 }
 

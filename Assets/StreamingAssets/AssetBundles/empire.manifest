@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1255645232
+CRC: 3959484480
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 3c043a25cd42c795fd69b67d4b85d099
+    Hash: 9719527085d8107af216142714da59b7
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -170,6 +170,7 @@ Assets:
 - Assets/Sprites/Units/Eeveelution/AnthroUmbreon3.png
 - Assets/Sprites/Units/Eeveelution/AnthroUmbreon2.png
 - Assets/Sprites/Units/raincoats.png
+- Assets/Sprites/Units/humanrework/HumanRags.png
 - Assets/Sprites/Units/LizardsBootyArmor.png
 - Assets/Sprites/Units/humanrework/hu_men_uniform_2.png
 - Assets/Sprites/Units/Mice/Mice2.png

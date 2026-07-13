@@ -130,6 +130,7 @@
     Iliijiith = 161,
     Pudding = 162,
     SoulSprite = 163,
+    BlackWidow = 164,
 
     Selicia = 170,
     Vision = 171,

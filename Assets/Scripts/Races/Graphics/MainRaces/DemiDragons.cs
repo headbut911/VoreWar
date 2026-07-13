@@ -43,6 +43,7 @@ class DemiDragons : DefaultRaceData
         ExtraColors2 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DemidragonSkin); // Claw/Horn Color
         ExtraColors3 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DemidragonSkin); // Internal Color
         ExtraColors4 = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DemidragonSkin); // Pattern Color
+        BeardStyles = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.DemidragonSkin); // Inner Wing Color
         HairColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.UniversalHair);
         SkinColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RedSkin);
         EyeColors = ColorPaletteMap.GetPaletteCount(ColorPaletteMap.SwapType.RaijuSkin);
@@ -64,7 +65,7 @@ class DemiDragons : DefaultRaceData
         BodyAccent8 = new SpriteExtraInfo(27, BodyAccentSprite8, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.ExtraColor2)); // Upper Horns
         BodyAccent9 = new SpriteExtraInfo(21, BodyAccentSprite9, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.ExtraColor1)); // Inner Head
         BodyAccent10 = new SpriteExtraInfo(2, BodyAccentSprite10, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.AccessoryColor)); // Outer wings
-        BodyAccent11 = new SpriteExtraInfo(2, BodyAccentSprite11, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.ExtraColor1)); // Inner wings
+        BodyAccent11 = new SpriteExtraInfo(2, BodyAccentSprite11, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.BeardStyle)); // Inner wings
         BodyAccent12 = new SpriteExtraInfo(2, BodyAccentSprite12, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.ExtraColor2)); // Claw wings
         BodyAccent13 = new SpriteExtraInfo(1, BodyAccentSprite13, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.AccessoryColor)); // Outer Tail
         BodyAccent14 = new SpriteExtraInfo(1, BodyAccentSprite14, null, (s) => ColorPaletteMap.GetPalette(ColorPaletteMap.SwapType.DemidragonSkin, s.Unit.ExtraColor1)); // Inner Tail
@@ -356,6 +357,7 @@ class DemiDragons : DefaultRaceData
         unit.ExtraColor2 = unit.AccessoryColor;
         unit.ExtraColor3 = unit.AccessoryColor;
         unit.ExtraColor4 = unit.AccessoryColor;
+        unit.BeardStyle = unit.AccessoryColor; //Ran out of colors
 
         unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
         unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
@@ -419,15 +421,6 @@ class DemiDragons : DefaultRaceData
                 {
                     unit.HairStyle = State.Rand.Next(18);
                 }
-            }
-
-            if (unit.HasBreasts)
-            {
-                unit.BeardStyle = 6;
-            }
-            else
-            {
-                unit.BeardStyle = State.Rand.Next(6);
             }
         }
 
@@ -2716,21 +2709,21 @@ class DemiDragons : DefaultRaceData
                 if (actor.Unit.HasBreasts)
                 {
                     if (actor.Unit.BreastSize < 3)
-                        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[9];
+                        clothing1.GetSprite = (s) => SpriteDictionary.HumanRags[9];
                     else if (actor.Unit.BreastSize < 6)
-                        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[10];
+                        clothing1.GetSprite = (s) => SpriteDictionary.HumanRags[10];
                     else
-                        clothing1.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[11];
+                        clothing1.GetSprite = (s) => SpriteDictionary.HumanRags[11];
 
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[0 + actor.Unit.BodySize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumanRags[0 + actor.Unit.BodySize];
                 }
                 else
                 {
                     clothing1.GetSprite = null;
-                    clothing2.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[4 + actor.Unit.BodySize];
+                    clothing2.GetSprite = (s) => SpriteDictionary.HumanRags[4 + actor.Unit.BodySize];
                 }
-                clothing3.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
-                clothing4.GetSprite = (s) => State.GameManager.SpriteDictionary.HumanRags[8];
+                clothing3.GetSprite = (s) => SpriteDictionary.HumanRags[3 + (actor.Unit.BodySize >= 2 ? 4 : 0)];
+                clothing4.GetSprite = (s) => SpriteDictionary.HumanRags[8];
             }           
 
             base.Configure(sprite, actor);
@@ -2746,10 +2739,10 @@ class DemiDragons : DefaultRaceData
             Type = 200700;
             OccupiesAllSlots = true;
             clothing1 = new SpriteExtraInfo(5, null, WhiteColored); // Shoes
-            clothing2 = new SpriteExtraInfo(18, null, WhiteColored); // Robe low
+            clothing2 = new SpriteExtraInfo(12, null, WhiteColored); // Robe low
             clothing3 = new SpriteExtraInfo(19, null, WhiteColored); // Robe high
             clothing4 = new SpriteExtraInfo(21, null, WhiteColored); // Robe Breast
-            clothing5 = new SpriteExtraInfo(20, null, WhiteColored); // Robe Waist
+            clothing5 = new SpriteExtraInfo(13, null, WhiteColored); // Robe Waist
             clothing6 = new SpriteExtraInfo(12, null, WhiteColored); // Robe Arm
             clothing7 = new SpriteExtraInfo(20, null, WhiteColored); // Mantle
             clothing8 = new SpriteExtraInfo(30, null, WhiteColored); // Headwear
@@ -3276,9 +3269,9 @@ class DemiDragons : DefaultRaceData
                     if (actor.Unit.DickSize < 3)
                         clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[43];
                     else if (actor.Unit.DickSize > 5)
-                        clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[44];
+                        clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[45];
                     else
-                        clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[46];
+                        clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[44];
                 }
                 else clothing1.GetSprite = null;
 

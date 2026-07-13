@@ -308,6 +308,7 @@ public class ItemRepository
             new Weapon(name:"Exomatter Pulse", description:"A destructive pulse of theoretical particles that sit on the border between being real and not. Harmless if you aren't the target... Very harmful if you are.", cost:4, graphic:0, damage:5, range:1),
             new Weapon(name:"Pudding Jaws", description:"Slimy and Sweet", cost:4, graphic:0, damage:3, range:1),
             new Weapon(name:"Soul Spark", description:"Magical energy drawn from the soul, capable of being fired at range in relatively weak bursts.", cost:4, graphic:0, damage:5, range:5, omniWeapon:true, magicWeapon: true, lockedItem:true),
+            new Weapon(name:"Venomous Fangs", description:"Carry a deadly venom", cost:4, graphic:0, damage:6, range:1),
         };
 
         specialItems = new List<Item>()
