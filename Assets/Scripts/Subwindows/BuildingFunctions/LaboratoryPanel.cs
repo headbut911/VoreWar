@@ -487,10 +487,10 @@ public class LaboratoryPanel : MonoBehaviour
     string GenerateName()
     {
         string name = "";
-        List<string> prenames = new List<string> 
+        List<string> prenames = new List<string>
         {
-            "Super", "Powerful", "Grand",
-            "Glowing", "Dark",
+            "Super", "Powerful", "Grand", "Underpowered", "Overpowered",
+            "Glowing", "Dark", "Ugly",
             "Calm", "Rage", "Happy", "Sad",
             "Shadow", "Evil", "Blessed", "Cursed",
             "Charged", "Shocking", "Quick", "Fast", "Rapid",
@@ -498,36 +498,41 @@ public class LaboratoryPanel : MonoBehaviour
             "Red", "Yellow", "Green", "Blue", "Purple", "Violet", "Black", "White",
             "Sharp", "Dull", "Fluffy", "Rough", "Rubber", "Hard", "Soft",
             "Natural", "Unnatural","Twisted", "Doomed",
-            "Logical", "Silly", "Devious", "Nefarious",
+            "Logical", "Silly", "Devious", "Nefarious", "Toxic", "Painted",
             "Vibrating", "Thick", "Shaking", "Drunken",
-            "Dry", "Warm", "Wet", "Cold", "Freezing", "Burning",
+            "Dry", "Warm", "Wet", "Cold", "Freezing", "Burning", 
+            "Distilled", "Double-Distilled", "Triple-Distilled", "Carbonated", "Flat",
+            "Lewd", "Aroused", "Distracting", "Sexy",
+            "Voracious", "Hungry",
 
         };
         List<string> mainnames = new List<string>
         {
-            "Demon", "Angel",
             "Metal", "Iron", "Steel", "Gold", "Ruby", "Emerald", "Silver",
-            "Sulfur", "Brimstone",
-            "Plant", "Wood", "Wooden", "Flower", "Rose", "Tulip", "Sunflower",                           
+            "Demon", "Angel",
+            "Sulfur", "Brimstone", "Acid",
+            "Plant", "Wood", "Wooden", "Flower", "Rose", "Tulip", "Sunflower", "Daisy",
             "Fire", "Water", "Air", "Earth", "Lightning", "Ice", "Rock", "Dirt", "Stone", "Glass",
             "Dragon", "Kobold", "Ghost",
             "Human", "Troll", "Orc", "Elf", "Gnome", "Dwarf", "Ogre",
-            "Snake","Serpent", "Lizard","Dog", "Cat", "Bunny", "Rabbit", "Wolf", "Fox", "Cow", "Bull", 
-            "Alrune", "Lamia", "Slime", "Crux", "Vargul", 
+            "Snake","Serpent", "Lizard","Dog", "Cat", "Bunny", "Rabbit", "Wolf", "Fox", "Cow", "Bull",
+            "Alrune", "Lamia", "Slime", "Crux", "Vargul",
             "Ant", "Bee", "Spider",
         };
         List<string> postnames = new List<string>
         {
-            "Body", "Skin", "Eye", "Blood", "Toe", "Finger", "Ear",         
-            "Foam", "Oil", "Sludge", "Ichor", "Goo", "Water",
-
+            "Body", "Skin", "Eye", "Blood", "Toe", "Finger", "Ear", "Stinger", "Tooth", "Claw", "Belly",
+            "Foam", "Oil", "Sludge", "Ichor", "Goo", "Water", "Cream",
+            "Shaving", "Extract", 
+            "Bark", "Root", "Petal",
+            "Swirl", 
         };
 
         double roll = State.Rand.NextDouble();
 
         if (roll > 0.9f)
         {
-            name = prenames[State.Rand.Next(prenames.Count)] + " " + mainnames[State.Rand.Next(mainnames.Count)]+ " " + mainnames[State.Rand.Next(mainnames.Count)] + " " + postnames[State.Rand.Next(postnames.Count)];
+            name = prenames[State.Rand.Next(prenames.Count)] + " " + mainnames[State.Rand.Next(mainnames.Count)] + " " + mainnames[State.Rand.Next(mainnames.Count)] + " " + postnames[State.Rand.Next(postnames.Count)];
         }
         else if (roll > 0.7f)
         {

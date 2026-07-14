@@ -43293,7 +43293,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1203441227673672, guid: 85fd49726cb8b6b4e84b5a705fe74ce2, type: 3}
       propertyPath: m_Name
-      value: Potions Disabled
+      value: Potions Enabled
       objectReference: {fileID: 0}
     - target: {fileID: 224123467637586332, guid: 85fd49726cb8b6b4e84b5a705fe74ce2,
         type: 3}
@@ -43413,7 +43413,7 @@ PrefabInstance:
     - target: {fileID: 114909816921867556, guid: 85fd49726cb8b6b4e84b5a705fe74ce2,
         type: 3}
       propertyPath: m_Text
-      value: Disable Potions
+      value: Enable Potions
       objectReference: {fileID: 0}
     - target: {fileID: 114909816921867556, guid: 85fd49726cb8b6b4e84b5a705fe74ce2,
         type: 3}
@@ -69428,7 +69428,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -30.000275}
+  m_AnchoredPosition: {x: 0, y: -30.000244}
   m_SizeDelta: {x: 0, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &343006846
@@ -154727,19 +154727,6 @@ MonoBehaviour:
   - {fileID: 21300062, guid: 52ea80a120c8c4f4b832c9cbd46d5b67, type: 3}
   - {fileID: 21300064, guid: 52ea80a120c8c4f4b832c9cbd46d5b67, type: 3}
   - {fileID: 21300066, guid: 52ea80a120c8c4f4b832c9cbd46d5b67, type: 3}
-  HumanRags:
-  - {fileID: 21300016, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300018, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300020, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300022, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300024, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300026, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300028, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300030, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300032, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300034, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300036, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
-  - {fileID: 21300038, guid: 7cb3558d62ff7c3438837bd750a3ebeb, type: 3}
   Scat:
   - {fileID: 21300016, guid: 62d106882424040429ca44f178a01355, type: 3}
   - {fileID: 21300018, guid: 62d106882424040429ca44f178a01355, type: 3}

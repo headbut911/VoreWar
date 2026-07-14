@@ -742,7 +742,7 @@ public class StrategyMode : SceneBase
             Config.World.Toggles["FogOfWar"] = false;
             return;
         }
-        FogSystem.UpdateFog(LastHumanEmpire, State.World.Villages, StrategicUtilities.GetAllArmies(), currentVillageTiles, currentClaimableTiles);
+        FogSystem.UpdateFog(LastHumanEmpire, State.World.Villages, StrategicUtilities.GetAllArmies(), currentVillageTiles, currentClaimableTiles, currentBuildingTiles);
     }
 
     void UpdateVisibility()
