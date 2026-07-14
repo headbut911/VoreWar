@@ -81,49 +81,24 @@ class Nectar : BlankSlate
         if (actor.HasBelly == false)
             return null;
 
-        int size = actor.GetStomachSize(53);
+        int size = actor.GetStomachSize(53); //overly high for better belly progression due to high base stomach size stat
 
-        if (size >= 53 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        if (size >= 18 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
             return SpriteDictionary.Nectar[36];
         }
 
-        else if (size >= 50 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
+        if (size >= 12 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
         {
-            return SpriteDictionary.Nectar[35];
+            if (size >= 18) return SpriteDictionary.Nectar[35];
+            if (size >= 17) return SpriteDictionary.Nectar[34];
+            if (size >= 16) return SpriteDictionary.Nectar[33];
+            if (size >= 15) return SpriteDictionary.Nectar[32];
+            if (size >= 14) return SpriteDictionary.Nectar[31];
+            if (size >= 13) return SpriteDictionary.Nectar[30];
+            if (size >= 12) return SpriteDictionary.Nectar[29];
         }
-
-        else if (size >= 45 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
-        {
-            return SpriteDictionary.Nectar[34];
-        }
-
-        else if (size >= 44 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
-        {
-            return SpriteDictionary.Nectar[33];
-        }
-
-        else if (size >= 41 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
-        {
-            return SpriteDictionary.Nectar[32];
-        }
-
-        else if (size >= 38 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
-        {
-            return SpriteDictionary.Nectar[31];
-        }
-
-        else if (size >= 35 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
-        {
-            return SpriteDictionary.Nectar[30];
-        }
-
-        else if (size >= 32 && (actor.PredatorComponent?.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) ?? false))
-        {
-            return SpriteDictionary.Nectar[29];
-        }
-
-        if (size > 28) size = 20;
+        if (size > 20) size = 20;
         return SpriteDictionary.Nectar[8 + size];
     }
 
