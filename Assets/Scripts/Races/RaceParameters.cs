@@ -3865,7 +3865,7 @@ static class RaceParameters
             Traits.Biter,
             Traits.BornToMove,
         },
-            RaceDescription = "Utahraptors are much faster and more powerful thatn the usual raptors you see here and there.  More hungry too."
+            RaceDescription = "Utahraptors are much faster and more powerful than the usual raptors you see here and there.  More hungry too."
         };
 
         Pudding = new RaceTraits()
@@ -3905,32 +3905,31 @@ static class RaceParameters
         BlackWidow = new RaceTraits()
         {
             BodySize = 20,
-            StomachSize = 20,
+            StomachSize = 25,
             HasTail = false,
-            FavoredStat = Stat.Stomach,
+            FavoredStat = Stat.Voracity,
             AllowedVoreTypes = new List<VoreType> { VoreType.Oral },
-            ExpMultiplier = 1.75f,
-            PowerAdjustment = 1.25f,
+            ExpMultiplier = 2f,
+            PowerAdjustment = 2f,
             DeployCost = 1,
-            Upkeep = 6f,
+            Upkeep = 8f,
             RaceStats = new RaceStats()
             {
-                Strength = new RaceStats.StatRange(6, 12),
-                Dexterity = new RaceStats.StatRange(4, 8),
-                Endurance = new RaceStats.StatRange(20, 30),
-                Mind = new RaceStats.StatRange(4, 10),
-                Will = new RaceStats.StatRange(6, 12),
-                Agility = new RaceStats.StatRange(6, 10),
-                Voracity = new RaceStats.StatRange(10, 18),
-                Stomach = new RaceStats.StatRange(8, 16),
+                Strength = new RaceStats.StatRange(20, 25),
+                Dexterity = new RaceStats.StatRange(12, 20),
+                Endurance = new RaceStats.StatRange(13, 27),
+                Mind = new RaceStats.StatRange(15, 18),
+                Will = new RaceStats.StatRange(6, 10),
+                Agility = new RaceStats.StatRange(13, 22),
+                Voracity = new RaceStats.StatRange(15, 18),
+                Stomach = new RaceStats.StatRange(12, 20),
             },
             RacialTraits = new List<Traits>()
             {
-                Traits.MetabolicSurge,
-                Traits.ExtraNutritious,
-                Traits.SoftBody,
-                Traits.GelatinousBody,
-        
+                Traits.Biter,
+                Traits.VenomousBite,
+                Traits.VenomShock,
+                Traits.Webber,    
 
             },
             RaceDescription = "Giant Spiders. Of course they had to be widows..."
