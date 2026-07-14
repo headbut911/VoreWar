@@ -759,6 +759,15 @@ public class TacticalMode : SceneBase
                     Actor_Unit unit = new Actor_Unit(new Vec2i(Config.TacticalSizeX / 2, Config.TacticalSizeY - 1), newUnit);
                     unit.Visible = false;
                     unit.Targetable = false;
+                    List<Actor_Unit> defenderunits = new List<Actor_Unit>();
+                    if (defenders != null)
+                    {
+                        defenderunits.AddRange(defenders);
+                    }
+                    if (garrison != null)
+                    {
+                        defenderunits.AddRange(garrison);
+                    }
                     foreach (var spellCasts in casterTower.spellCasts)
                     {
                         if (casterTower.ManaCharges <= 0)
@@ -771,8 +780,8 @@ public class TacticalMode : SceneBase
                             case SpellTypes.Fireball:
                                 counter = casterTower.spellCasts[spellCasts.Key];
                                 while (counter > 0)
-                                {
-                                    SpellList.Fireball.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                {                                  
+                                    SpellList.Fireball.TryCast(unit, defenderunits[State.Rand.Next(defenderunits.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
                                     casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
@@ -782,7 +791,7 @@ public class TacticalMode : SceneBase
                                 counter = casterTower.spellCasts[spellCasts.Key];
                                 while (counter > 0)
                                 {
-                                    SpellList.PowerBolt.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    SpellList.PowerBolt.TryCast(unit, defenderunits[State.Rand.Next(defenderunits.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
                                     casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
@@ -792,7 +801,7 @@ public class TacticalMode : SceneBase
                                 counter = casterTower.spellCasts[spellCasts.Key];
                                 while (counter > 0)
                                 {
-                                    SpellList.LightningBolt.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                    SpellList.LightningBolt.TryCast(unit, defenderunits[State.Rand.Next(defenderunits.Count())]);
                                     newUnit.RestoreMana(100); unit.Movement = 1;
                                     casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBaseChargeCost;
                                     counter--;
@@ -856,7 +865,7 @@ public class TacticalMode : SceneBase
                                     counter = casterTower.spellCasts[spellCasts.Key];
                                     while (counter > 0)
                                     {
-                                        SpellList.IceBlast.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                        SpellList.IceBlast.TryCast(unit, defenderunits[State.Rand.Next(defenderunits.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
                                         casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
@@ -869,7 +878,7 @@ public class TacticalMode : SceneBase
                                     counter = casterTower.spellCasts[spellCasts.Key];
                                     while (counter > 0)
                                     {
-                                        SpellList.Pyre.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                        SpellList.Pyre.TryCast(unit, defenderunits[State.Rand.Next(defenderunits.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
                                         casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
@@ -882,7 +891,7 @@ public class TacticalMode : SceneBase
                                     counter = casterTower.spellCasts[spellCasts.Key];
                                     while (counter > 0)
                                     {
-                                        SpellList.Flamberge.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                        SpellList.Flamberge.TryCast(unit, defenderunits[State.Rand.Next(defenderunits.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
                                         casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;
@@ -895,7 +904,7 @@ public class TacticalMode : SceneBase
                                     counter = casterTower.spellCasts[spellCasts.Key];
                                     while (counter > 0)
                                     {
-                                        SpellList.ForkLightning.TryCast(unit, defenders[State.Rand.Next(defenders.Count())]);
+                                        SpellList.ForkLightning.TryCast(unit, defenderunits[State.Rand.Next(defenderunits.Count())]);
                                         newUnit.RestoreMana(100); unit.Movement = 1;
                                         casterTower.ManaCharges -= Config.BuildConfig.CasterTowerBetterTierChargeCost;
                                         counter--;

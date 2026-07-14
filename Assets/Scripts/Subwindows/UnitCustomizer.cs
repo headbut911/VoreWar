@@ -1103,6 +1103,8 @@ public class UnitCustomizer
             }
             changedGender = true;
             Unit.DickSize = State.Rand.Next(RaceData.DickSizes);
+            Unit.HasVagina = true;
+            Unit.SetDefaultBreastSize(-1);
         }
         else if (CustomizerUI.Gender.value == 5 && Unit.GetGender() != Gender.Andromorph)
         {

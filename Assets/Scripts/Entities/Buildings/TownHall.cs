@@ -81,6 +81,7 @@ class TownHall : ConstructibleBuilding
             created.SetPopulation(Config.VillagersPerFarm);
             villages.Add(created);
             State.World.Villages = villages.ToArray();
+            State.GameManager.StrategyMode.RedrawVillages();
         }
     }
 }
