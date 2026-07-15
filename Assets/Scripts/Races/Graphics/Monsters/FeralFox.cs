@@ -370,9 +370,9 @@ class FeralFox : BlankSlate
     {
 		if (actor.Unit.HasDick == false || Config.HideCocks) return null;
 		
-        if (actor.Unit.HasDick == false || Config.HideCocks || actor.PredatorComponent?.BallsFullness == 0)
+        if (actor.Unit.HasDick == true || !Config.HideCocks || actor.PredatorComponent?.BallsFullness == 0)
 		{
-			return null;
+			return SpriteDictionary.FeralFox[103];
         }
 
         int size = actor.GetBallSize(52);
