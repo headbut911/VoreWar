@@ -323,7 +323,7 @@ public class AssetBundleLoader
         SpriteDictionary.Plant = monsterBundle.LoadAssetWithSubAssets<Sprite>("PlantRace");
         SpriteDictionary.Fairy = monsterBundle.LoadAssetWithSubAssets<Sprite>("fairySmall");
         SpriteDictionary.FairyExtraHair = monsterBundle.LoadAssetWithSubAssets<Sprite>("fairy_addsheet");
-        SpriteDictionary.Fairy240 = monsterBundle.LoadAssetWithSubAssets<Sprite>("Fairy240 ");
+        SpriteDictionary.Fairy240 = monsterBundle.LoadAssetWithSubAssets<Sprite>("fairy240");
         SpriteDictionary.Ant = monsterBundle.LoadAssetWithSubAssets<Sprite>("Ant");
         SpriteDictionary.Gryphon = monsterBundle.LoadAssetWithSubAssets<Sprite>("Gryphon");
         SpriteDictionary.Griffin = monsterBundle.LoadAssetWithSubAssets<Sprite>("Griffin");

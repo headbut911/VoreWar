@@ -1971,7 +1971,10 @@ public class Actor_Unit
             {
                 animationUpdateTime = 1.0F;
                 if (Unit.Race == Race.Seville)
+                {
                     TacticalGraphicalEffects.VenomBiteEffect(target.Position);
+                    Mode = DisplayMode.Attacking;
+                }
                 //if (Unit.Race == Race.Tigers)//Use to specify races that can use differint attacks with the same weapon depending on range (Currently unused)
                 //    Mode = DisplayMode.MeleeAttacking;
                 else
@@ -2958,16 +2961,17 @@ public class Actor_Unit
         NewTurnPreMPTraits();
 
         Unit.RestoreMana(Unit.TraitBoosts.ManaRegen);
-        if (SelfPrey == null)
+        if (SelfPrey == null) // Restore stamina and proc regen if the unit isn't vored
         {
             Unit.RestoreStamPct(0.1f);
+            Unit.Heal(Unit.TraitBoosts.HealthRegen);
         }
         UnitSprite.UpdateHealthBar(this);
         TurnsSinceLastParalysis++;
         if (Targetable && Visible && Surrendered == false && Fled == false)
             RestoreMP();
         Unit.TickStatusEffects();
-        if (SelfPrey != null)
+        if (SelfPrey != null) // Stall prevention if a unit has been eaten for 100 turns
         {
             if (SelfPrey.TurnsDigested <= 100)
                 Unit.Heal(Unit.TraitBoosts.HealthRegen);

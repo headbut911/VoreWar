@@ -11,7 +11,7 @@ using UnityEngine;
 public static class State
 {
     static int saveErrors = 0;
-    public const string Version = "45B";
+    public const string Version = "45C";
     public static World World;
     public static Rand Rand = new Rand();
     public static NameGenerator NameGen;
@@ -54,7 +54,7 @@ public static class State
             ,"maleBoomBunnies","WyvernMatron","maleFeralOrcas","femaleFeralOrcas","femaleBears","maleBears","femaleCentaur","maleCentaur","femaleGnolls","maleGnolls","femaleMainlandElves","maleMainlandElves","femaleViisels","maleViisels","FeralSlimes","femaleEevee","maleEevee","femaleEqualeon"
             ,"maleEqualeon","femaleUmbreon","maleUmbreon","maleLupine","femaleLupine","femaleMatronsMinions","maleMatronsMinions","femaleJackals","maleJackals","femaleRwuMercenaries","maleRwuMercenaries","TwistedVines","femaleOtachi","maleOtachi","femaleRaiju","maleRaiju","femaleSmudger","maleSmudger","femaleBadgers","maleBadgers"
             ,"WoodDryad","RiverDryad","EarthDryad","FungalDryad","maleGhosts","femaleGhosts","femaleUtahraptor","maleUtahraptor","femaleTrex","maleTrex","femaleSpaceCroach","maleSpaceCroach","femaleMice","maleMice","Terminid","femaleFeralEevee","maleFeralEevee","femaleFeralEqualeon","maleFeralEqualeon","femaleFeralUmbreon","maleFeralUmbreon","Iliijiith","maleRenamon","femaleRenamon"
-            ,"maleOoviKat","femaleOoviKat","maleDemiDragons","femaleDemiDragons","maleYordles","femaleYordles","Pudding"};
+            ,"maleOoviKat","femaleOoviKat","maleDraconians","femaleDraconians","maleYordles","femaleYordles","Pudding"};
 
 
     static State()

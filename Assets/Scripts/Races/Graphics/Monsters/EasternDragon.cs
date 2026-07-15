@@ -256,6 +256,8 @@ class EasternDragon : BlankSlate
         if (actor.Unit.DickSize < 0) return null;
         if (Config.HideCocks) return null;
 
+        if (actor.PredatorComponent?.BallsFullness == 0)
+            return null;
         if (actor.PredatorComponent?.BallsFullness > 0 || actor.IsCockVoring)
         {
             int sprite = actor.GetBallSize(24, 0.8f);
@@ -274,6 +276,8 @@ class EasternDragon : BlankSlate
             }
             if (sprite >= 22)
                 return SpriteDictionary.EasternDragon[63];
+            if (sprite <= 1)
+                return SpriteDictionary.EasternDragon[42];
             return SpriteDictionary.EasternDragon[41 + sprite];
         }
         return null;

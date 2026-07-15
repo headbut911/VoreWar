@@ -128,11 +128,23 @@ class Konane : BlankSlate
     internal override Sprite BellySprite(Actor_Unit actor, GameObject belly)
     {
         int size = actor.GetStomachSize(27);
-        size = actor.PredatorComponent.GetSpecialPreySize(Race.Selicia, size, 19, 27, PreyLocation.stomach);
-
-        
-
-        return Sprites[24 + size];
+        if (!actor.HasBelly)
+            return null;
+        if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, true, PreyLocation.stomach, PreyLocation.womb) && size >= 18)
+            return Sprites[45];
+        if (actor.PredatorComponent.IsUnitOfSpecificationInPrey(Race.Selicia, false, PreyLocation.stomach, PreyLocation.womb) && size >= 12)
+        {
+            if (size >= 18) return Sprites[44];
+            if (size >= 17) return Sprites[43];
+            if (size >= 16) return Sprites[42];
+            if (size >= 15) return Sprites[41];
+            if (size >= 14) return Sprites[40];
+            if (size >= 13) return Sprites[39];
+            if (size >= 12) return Sprites[38];
+        }
+        if (size > 19)
+            size = 19;
+        return Sprites[18 + size];
     }
 
     protected override Sprite BodyAccentSprite(Actor_Unit actor) // Right WIng
