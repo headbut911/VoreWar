@@ -1745,7 +1745,7 @@ class DemiDragons : DefaultRaceData
                     }
                     else
                     {
-                        return SpritesCustomisation2[106 + actor.Unit.DickSize];
+                        return SpritesCustomisation2[98 + actor.Unit.DickSize];
                     }
                 }
                 else
@@ -1753,7 +1753,7 @@ class DemiDragons : DefaultRaceData
                     Dick.layer = 13;
                     if (actor.IsCockVoring)
                     {
-                        return SpritesCustomisation2[98 + actor.Unit.DickSize];
+                        return SpritesCustomisation2[106 + actor.Unit.DickSize];
                     }
                     else
                     {
@@ -2296,7 +2296,7 @@ class DemiDragons : DefaultRaceData
                 if (Races.DemiDragons.oversize)
                 {
                     clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[91];
-                    clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[142];
+                    clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[82];
                 }
                 else if (actor.Unit.HasBreasts)
                 {

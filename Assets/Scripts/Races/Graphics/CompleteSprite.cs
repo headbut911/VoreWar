@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using TacticalBuildings;
 using UnityEngine;
 
 public enum SpriteType
@@ -308,6 +310,8 @@ class CompleteSprite
     {
         var race = Races.GetRace(actor.Unit);        
         if (sprites[(int)SpriteType.Belly] == null) GetSpriteOfType(SpriteType.Belly);
+        if (sprites[(int)SpriteType.Breasts] == null) GetSpriteOfType(SpriteType.Breasts);
+        if (sprites[(int)SpriteType.SecondaryBreasts] == null) GetSpriteOfType(SpriteType.SecondaryBreasts);
         race.RunFirst(actor);
         SetSprite(SpriteType.Body, race.Body);
         SetSprite(SpriteType.Head, race.Head);
@@ -344,6 +348,10 @@ class CompleteSprite
             sprites[(int)SpriteType.BodyAccent5].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
         if (actor.Unit.Race == Race.Imps && sprites[(int)SpriteType.BodyAccent6] != null)
             sprites[(int)SpriteType.BodyAccent6].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+        if (actor.Unit.Race == Race.Draconians && sprites[(int)SpriteType.Beard] != null)
+            sprites[(int)SpriteType.Beard].GameObject.transform.SetParent(sprites[(int)SpriteType.SecondaryBreasts].GameObject.transform.parent, false);
+        if (actor.Unit.Race == Race.Draconians && sprites[(int)SpriteType.BodyAccent15] != null)
+            sprites[(int)SpriteType.BodyAccent15].GameObject.transform.SetParent(sprites[(int)SpriteType.Breasts].GameObject.transform.parent, false);        
         SetSprite(SpriteType.Belly, belly);
         SetSprite(SpriteType.SecondaryBelly, race.SecondaryBelly);
         SetSprite(SpriteType.Eyes, race.Eyes);
@@ -352,7 +360,25 @@ class CompleteSprite
         SetSprite(SpriteType.BodySize, race.BodySize);
         SetSprite(SpriteType.Mouth, race.Mouth);
         SetSprite(SpriteType.SecondaryEyes, race.SecondaryEyes);
-
+        if (actor.Unit.Race == Race.Pudding)
+        {
+            if (sprites[(int)SpriteType.BodyAccessory] != null)
+                sprites[(int)SpriteType.BodyAccessory].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+            if (sprites[(int)SpriteType.BodyAccent] != null)
+                sprites[(int)SpriteType.BodyAccent].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+            if (sprites[(int)SpriteType.BodyAccent2] != null)
+                sprites[(int)SpriteType.BodyAccent2].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+            if (sprites[(int)SpriteType.BodyAccent3] != null)
+                sprites[(int)SpriteType.BodyAccent3].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+            if (sprites[(int)SpriteType.BodyAccent4] != null)
+                sprites[(int)SpriteType.BodyAccent4].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+            if (sprites[(int)SpriteType.BodyAccent5] != null)
+                sprites[(int)SpriteType.BodyAccent5].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+            if (sprites[(int)SpriteType.Mouth] != null)
+                sprites[(int)SpriteType.Mouth].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+            if (sprites[(int)SpriteType.Eyes] != null)
+                sprites[(int)SpriteType.Eyes].GameObject.transform.SetParent(sprites[(int)SpriteType.Belly].GameObject.transform.parent, false);
+        }
         //Test Code
         //var bodyres = race.Body.GetSprite(actor).pixelsPerUnit;
         //var bodywidth = race.Body.GetSprite(actor).rect.width;

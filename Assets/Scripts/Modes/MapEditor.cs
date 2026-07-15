@@ -1325,6 +1325,8 @@ public class MapEditor : SceneBase
 
     void ProcessRightClick(int x, int y)
     {
+        if (!TilePanel.activeSelf)
+            return;
         var tileObjs = FindObjectsOfType<MapEditorTile>();
         var tile = tileObjs.Where(s => s.type == tiles[x, y]).FirstOrDefault();
         SetTileType(tile.type, tile.transform);
