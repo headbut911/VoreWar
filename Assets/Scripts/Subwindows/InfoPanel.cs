@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class InfoPanel
 {
@@ -72,6 +73,7 @@ public class InfoPanel
             UnitInfoPanel.Sprite?.ResetBellyScale(actor);
             UnitInfoPanel.Sprite?.UpdateSprites(actor, false);
         }
+
     }
 
     private void UpdateBars(Unit actor, bool showNextText = false)
@@ -874,8 +876,34 @@ public class InfoPanel
                     }
                 }
             }
-            if (Config.CheatUnitEditorEnabled)
-                sb.AppendLine("<color=#AB5200ff>UnitEditor</color>");
+
+            if (actor != null)
+            {
+                if (actor.Unit.EquippedPotions != null)
+                {
+                    if (!actor.Unit.EquippedPotions.Any(p => p.Value[0] > 0) == false)
+                        UnitInfoPanel.PotionHoverImage.gameObject.SetActive(true);
+                    else
+                        UnitInfoPanel.PotionHoverImage.gameObject.SetActive(false);
+                }
+                else
+                {
+                    UnitInfoPanel.PotionHoverImage.gameObject.SetActive(false);
+                }
+
+                List<UnitTag> Tags = TagConditionChecker.GetCombinedUnitTags(actor.Unit);
+                if (Tags.Count > 0)
+                    UnitInfoPanel.UnitTagHoverImage.gameObject.SetActive(true);
+                else
+                    UnitInfoPanel.UnitTagHoverImage.gameObject.SetActive(false);
+                if (Config.CheatUnitEditorEnabled)
+                    sb.AppendLine("<color=#AB5200ff>UnitEditor</color>");
+            }
+            else
+            {
+                UnitInfoPanel.PotionHoverImage.gameObject.SetActive(false);
+                UnitInfoPanel.UnitTagHoverImage.gameObject.SetActive(false);
+            }
         }
     }
 

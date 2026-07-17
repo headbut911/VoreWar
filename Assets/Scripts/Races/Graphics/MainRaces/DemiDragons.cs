@@ -2818,8 +2818,11 @@ class DemiDragons : DefaultRaceData
                     {
                         clothing3.GetSprite = (s) => SpriteDictionary.DemidragonClothes2[8 + actor.Unit.BodySize];
                     }
-                    if(actor.HasPreyInBreasts)
+                    if (actor.HasPreyInBreasts)
+                    {
                         clothing4.GetSprite = null;
+                        clothing3.GetSprite = null;
+                    }
                     else
                         clothing4.GetSprite = (s) => SpriteDictionary.DemidragonClothes2[35 + actor.Unit.BreastSize];
                 }
@@ -2914,7 +2917,10 @@ class DemiDragons : DefaultRaceData
                         clothing3.GetSprite = (s) => SpriteDictionary.DemidragonClothes3[9 + actor.Unit.BodySize];
                     }
                     if (actor.HasPreyInBreasts)
+                    {
                         clothing4.GetSprite = null;
+                        clothing3.GetSprite = null;
+                    }
                     else
                         clothing4.GetSprite = (s) => SpriteDictionary.DemidragonClothes3[37 + actor.Unit.BreastSize];
                 }

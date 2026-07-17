@@ -845,6 +845,10 @@ public class UnitCustomizer
         buttons[(int)ButtonTypes.BodyAccessoryColor].Label.text = "Scale Color";
         buttons[(int)ButtonTypes.ExtraColor1].Label.text = "Accent Color";
         buttons[(int)ButtonTypes.ExtraColor2].Label.text = "Tail Pattern Color";
+        buttons[(int)ButtonTypes.Furry].Label.text = "Anthro Toggle";
+        buttons[(int)ButtonTypes.BodyAccentTypes1].Label.text = "Eyebrow Type";
+        buttons[(int)ButtonTypes.BodyAccentTypes2].Label.text = "Hood Type";
+        buttons[(int)ButtonTypes.BodyAccentTypes3].Label.text = "Head Pattern";
     }
 
     void Taraluxia()

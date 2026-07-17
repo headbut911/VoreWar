@@ -395,7 +395,7 @@ public class ExternalTraitHandler
     {
         public string summary { get; set; }
         public TraitConditionCompareOperator compareOp { get; set; }
-        public int compareValue { get; set; }
+        public float compareValue { get; set; }
         public bool filled { get; set; }
         public List<TraitCondition> conditionVariable { get; set; }
         public List<TraitConditionArithmeticOperator> arithmeticOperator { get; set; }
