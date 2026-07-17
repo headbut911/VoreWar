@@ -640,7 +640,7 @@ static class StoredLogTexts
             new EventString((i) => $"<b>{i.Unit.Name}</b> begins to gag as {GPPHis(i.Unit)} prey’s hips get caught in {GPPHis(i.Unit)} {GetRandomStringFrom("hot", "humid", "moist", "slick", "greedy", "wet", "slimy", "dripping", "sopping", "needy", "steamy", "eager")} {GetRandomStringFrom("gullet", "throat", "esophagus")} but with a final gulp sends <b>{i.Target.Name}</b> down into {GPPHis(i.Unit)} {GetRandomStringFrom("starving", "hungry", "hungering", "ravenous", "voracious", "peckish", "munchy", "famished", "rapacious", "avaricious", "greedy", "gluttonous", "covetous")} {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
             priority: 8),
             new EventString((i) => $"<b>{i.Unit.Name}</b> flirts with <b>{i.Target.Name}</b> who lowers {GPPHis(i.Target)} guard. By the time {GPPHe(i.Target)} think{SIfSingular(i.Target)} of a response, <b>{i.Unit.Name}</b> kisses {GPPHim(i.Target)} which quickly turns into a sneaky swallow, sending the betrayed meal into digestive juices. {GetRandomStringFrom("\"Ooops~\"", "\"Hehe, what a loser!\"", "\"Sorry, you tasted way too good.\"", "\"Ha! Like I'd really kiss <i>you</i>!\"", "\"SO gullible.  Enjoy digesting, nerd!\"", "\"I'd spit you out again but... Nah.\"", "\"Umm... I don't know how to spit you up again... Sorry!\"")}",
-            priority: 8, conditional: Lewd),
+            priority: 8, conditional: s => Lewd(s) && ActorHumanoid(s)),
             new EventString((i) => $"<b>{i.Target.Name}</b> begs for mercy as <b>{i.Unit.Name}</b> greedily shoves {GPPHim(i.Target)} into {GPPHis(i.Unit)} {GetRandomStringFrom("hot", "humid", "moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "drooling", "steamy", "eager")} {GetRandomStringFrom("gullet", "throat", "esophagus", "jaws", "maw", "mouth", "muzzle", "gob", "oral entrance")}.",
             priority: 8),
             new EventString((i) => $"<b>{i.Target.Name}</b> panics and tries to run but can’t escape <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> {GetRandomStringFrom("fierce", "ravenous", "voracious", "peckish", "munchy", "famished", "rapacious", "avaricious", "greedy", "gluttonous", "covetous")} hunger and soon finds {GPPHeIsAbbr(i.Target)} sliding down {GPPHis(i.Unit)} {GetRandomStringFrom("moist", "slick", "sloppy", "wet", "slimy", "dripping", "sopping", "drooling")} {GetRandomStringFrom("gullet", "throat", "esophagus")}.",
@@ -2633,7 +2633,7 @@ static class StoredLogTexts
             priority: 10, conditional: s => s.Target == s.Unit && ActorHumanoid(s)),
 
             new EventString((i) => $"\"Mmmmmmmm...\" <b>{i.Target.Name}</b> moans as <b>{i.Unit.Name}</b> rubs and prods the {GetRaceDescSingl(i.Target)}'s {PreyLocStrings.BellyStuffedAdjSyn()} {PreyLocStrings.ToSyn(PreyLocation.stomach)}.",
-            priority: 8),
+            priority: 8, conditional: s => ActorHumanoid(s)),
 
             new EventString((i) => $"<b>{i.Unit.Name}</b> can't believe {GPPHe(i.Unit)} got the honour to rub the gut of the famous {(TargetHumanoid(i) ? "warrior" : "beast")}, <b>{i.Target.Name}</b>.",
             priority: 9, conditional: s => s.Unit.Level + 9 < s.Target.Level),
@@ -3793,7 +3793,7 @@ static class StoredLogTexts
             new EventString((i) => $"<b>{i.Unit.Name}</b> wraps {GPPHis(i.Unit)} arms around {GPPHis(i.Unit)} swollen midsection and squeezes hard, causing {GPPHim(i.Unit)} to let out a rolling belch. The burp soon deprives the belly chamber of air, causing <b>{i.Target.Name}</b> to pass out face first into the roaring acids.",
             priority: 9, conditional: s=> HardVore(s) && ActorHumanoid(s) && CanBurp(s) && InStomach(s)),
             new EventString((i) => $"\"Oh, here it comes!\" <b>{i.Unit.Name}</b> says excitedly as <b>{ApostrophizeWithOrWithoutS(i.Target.Name)}</b> struggles begin to wane. \"BUUUUUUUAAAAAARRRRRRPPP!\" The massive {GetRandomStringFrom("belch", "burp")} that <b>{i.Unit.Name}</b> released finishes off the {GetRaceDescSingl(i.Target)}, the struggling bumps sinking down as <b>{ApostrophizeWithOrWithoutS(i.Unit.Name)}</b> belly rounds out.",
-            priority: 9, conditional: s => CanBurp(s) && InStomach(s)),
+            priority: 9, conditional: s => CanBurp(s) && InStomach(s) && ActorHumanoid(s)),
             new EventString((i) => $"<b>{i.Unit.Name}</b> {GetRandomStringFrom("belches", "burps")} loudly, as <b>{i.Target.Name}</b> succumbs to {GPPHis(i.Unit)} belly.",
             priority: 9, conditional: s=> CanBurp(s) && InStomach(s)),
             new EventString((i) => $"As <b>{i.Unit.Name}</b> {GetRandomStringFrom("belches", "burps")} proudly from finishing off <b>{i.Target.Name}</b>, <b>{AttractedWarrior(i.Unit)}</b> can't help but get turned on by the {GetRaceDescSingl(i.Unit)}'s roar, and starts to plot 'activities' to do with {GPPHim(i.Unit)} after the battle.",
