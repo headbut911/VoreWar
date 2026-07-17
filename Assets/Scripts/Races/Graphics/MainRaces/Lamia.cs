@@ -84,6 +84,14 @@ class Lamia : DefaultRaceData
     }
     internal override int DickSizes => 6;
 
+    internal override void RandomCustom(Unit unit)
+    {
+        base.RandomCustom(unit);
+        unit.BodyAccentType1 = State.Rand.Next(BodyAccentTypes1);
+        unit.BodyAccentType2 = State.Rand.Next(BodyAccentTypes2);
+        unit.BodyAccentType3 = State.Rand.Next(BodyAccentTypes3);
+    }
+
     internal override void SetBaseOffsets(Actor_Unit actor)
     {
         AddOffset(Body, xOffset, yOffset);
@@ -354,7 +362,12 @@ class Lamia : DefaultRaceData
             Dick.GetPalette = null;
             Dick.GetColor = WhiteColored;
             if (actor.Unit.HasDick == false)
-                return null;
+            {
+                if (actor.IsUnbirthing)
+                {
+                    return SpriteDictionary.LamiaScalesBits[3];
+                }
+            }
 
             int size = actor.Unit.DickSize;
             if (size >= 6)
@@ -363,20 +376,20 @@ class Lamia : DefaultRaceData
             }
             if (actor.IsErect())
             {
-                if (actor.HasBelly == false)
+                if (actor.PredatorComponent?.VisibleFullness < .75f)
                 {
                     Dick.layer = 18;
-                    return SpriteDictionary.LamiaScalesBits[size];
+                    return SpriteDictionary.LamiaScalesBits[(actor.IsCockVoring ? 9 : 3) + size];
                 }
                 else
                 {
                     Dick.layer = 12;
-                    return SpriteDictionary.LamiaScalesBits[size];
+                    return null;
                 }
             }
             Dick.layer = 9;
             if (actor.IsErect())
-                return SpriteDictionary.LamiaScalesBits[size];
+                return SpriteDictionary.LamiaScalesBits[(actor.IsCockVoring ? 9 : 3) + size];
             return null;
 
         }
@@ -386,7 +399,7 @@ class Lamia : DefaultRaceData
         Dick.GetPalette = (s) => FurryColor(s);
         if (actor.IsErect())
         {
-            if (actor.HasBelly == false)
+            if (actor.HasBelly)
             {
                 Dick.layer = 18;
                 return State.GameManager.SpriteDictionary.ErectDicks[actor.Unit.DickSize];
@@ -433,6 +446,10 @@ class Lamia : DefaultRaceData
     {
         if (actor.Unit.Furry)
         {
+            if (actor.Unit.HasBreasts)
+            {
+                return SpriteDictionary.LamiaScalesBits[1];
+            }
             return SpriteDictionary.LamiaScalesBits[0];
         }
         var sprite = base.BallsSprite(actor);

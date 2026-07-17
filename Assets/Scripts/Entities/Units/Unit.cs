@@ -579,6 +579,8 @@ public class Unit
     internal int DamageBarrier(int amount)
     {
         int remaining = amount;
+        if (amount < 0)
+            remaining = 0;
         if (remaining > Barrier)
         {
             remaining = amount - Barrier;

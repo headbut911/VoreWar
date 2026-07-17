@@ -3259,6 +3259,8 @@ public class Actor_Unit
         if (Unit.HasTrait(Traits.ManaBarrier) && Unit.ManaPct >= 0.51f)
         {
             int reduc_dmg = (int)((Unit.ManaPct - .5f) * damage);
+            if (damage < 0)
+                reduc_dmg = 0;
             if (Unit.SpendMana(reduc_dmg))
                 damage -= reduc_dmg;
         }

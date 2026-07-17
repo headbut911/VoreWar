@@ -233,7 +233,7 @@ static class StrategicUtilities
         ConstructibleBuilding construct = GetConstructibleAt(location);
         if (construct != null)
         {
-            if (construct.Owner != empire && (construct.CaptureTime <= 0 || construct.Owner == null))
+            if ((construct.Owner != empire && (construct.CaptureTime <= 0 || construct.Owner == null)) || Config.BuildConfig.BuildingCaptureTurns == 0)
             {
                 if (empire.Race >= Race.Vagrants)
                 {

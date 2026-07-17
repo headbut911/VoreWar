@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2551358394
+CRC: 283377007
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bf377f15c964261ca64c69b693064e3d
+    Hash: 4f61a79e5479df94dd1f4eada47f6446
   TypeTreeHash:
     serializedVersion: 2
     Hash: ea5a42e0fd8ea905efa7aa926a3b8944
@@ -67,7 +67,6 @@ Assets:
 - Assets/Sprites/Units/catLeader.png
 - Assets/Sprites/Units/privates.png
 - Assets/Sprites/Units/imps/impovertops.png
-- Assets/Sprites/Units/LamiaNagaBits.png
 - Assets/Sprites/Units/Avians3.png
 - Assets/Sprites/Units/Eeveelution/AnthroUmbreon.png
 - Assets/Sprites/Units/SergalClothes.png
@@ -196,6 +195,7 @@ Assets:
 - Assets/Sprites/Units/Bees2.png
 - Assets/Sprites/Units/humanrework/hu_men_skirt.png
 - Assets/Sprites/Units/LizardCrossTop.png
+- Assets/Sprites/Units/LamiaNagaBits.png
 - Assets/Sprites/Units/AntQueen2.png
 - Assets/Sprites/Units/humanrework/humansBodySprites3.png
 Dependencies: []

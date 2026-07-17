@@ -1745,7 +1745,7 @@ class DemiDragons : DefaultRaceData
                     }
                     else
                     {
-                        return SpritesCustomisation2[106 + actor.Unit.DickSize];
+                        return SpritesCustomisation2[98 + actor.Unit.DickSize];
                     }
                 }
                 else
@@ -1753,7 +1753,7 @@ class DemiDragons : DefaultRaceData
                     Dick.layer = 13;
                     if (actor.IsCockVoring)
                     {
-                        return SpritesCustomisation2[98 + actor.Unit.DickSize];
+                        return SpritesCustomisation2[106 + actor.Unit.DickSize];
                     }
                     else
                     {
@@ -2296,7 +2296,7 @@ class DemiDragons : DefaultRaceData
                 if (Races.DemiDragons.oversize)
                 {
                     clothing1.GetSprite = (s) => SpriteDictionary.DemidragonClothes[91];
-                    clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[142];
+                    clothing2.GetSprite = (s) => SpriteDictionary.DemidragonClothes[82];
                 }
                 else if (actor.Unit.HasBreasts)
                 {
@@ -2818,8 +2818,11 @@ class DemiDragons : DefaultRaceData
                     {
                         clothing3.GetSprite = (s) => SpriteDictionary.DemidragonClothes2[8 + actor.Unit.BodySize];
                     }
-                    if(actor.HasPreyInBreasts)
+                    if (actor.HasPreyInBreasts)
+                    {
                         clothing4.GetSprite = null;
+                        clothing3.GetSprite = null;
+                    }
                     else
                         clothing4.GetSprite = (s) => SpriteDictionary.DemidragonClothes2[35 + actor.Unit.BreastSize];
                 }
@@ -2914,7 +2917,10 @@ class DemiDragons : DefaultRaceData
                         clothing3.GetSprite = (s) => SpriteDictionary.DemidragonClothes3[9 + actor.Unit.BodySize];
                     }
                     if (actor.HasPreyInBreasts)
+                    {
                         clothing4.GetSprite = null;
+                        clothing3.GetSprite = null;
+                    }
                     else
                         clothing4.GetSprite = (s) => SpriteDictionary.DemidragonClothes3[37 + actor.Unit.BreastSize];
                 }
