@@ -422,7 +422,7 @@ class Renamon : DefaultRaceData
         }
 
         Dick.layer = 11;
-        return Sprites[147 + actor.Unit.DickSize];
+        return null;
     }
 
     protected override Sprite BallsSprite(Actor_Unit actor)
